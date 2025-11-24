@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00d8cd56_fcced990",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:25:54Z",
+      "side": 1,
+      "message": "single Map: targetCmHandleStatePerCmHandleId\nplural:     targetCmHandleStatesPerCmHandleIds",
+      "range": {
+        "startLine": 220,
+        "startChar": 34,
+        "endLine": 220,
+        "endChar": 55
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adc49711_79efd9fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:25:54Z",
+      "side": 1,
+      "message": "move check to org.onap.cps.ncmp.impl.inventory.InventoryPersistenceImpl#updateCmHandleFields",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 48
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6571f2b1_05adca6d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:25:54Z",
+      "side": 1,
+      "message": "no need for several batches, just litely 1 batch 1 batch with 1 cm handles and use 0 * mockInventoryPersistence.bulkUpdateCmHandleStates",
+      "range": {
+        "startLine": 70,
+        "startChar": 51,
+        "endLine": 70,
+        "endChar": 60
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da6d34e2_f7f54677",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/CpsServicesConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:25:54Z",
+      "side": 1,
+      "message": "still need to answer if this need escpecialy now you use getters for each service anway",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 31
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50542400_dae548e4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/CpsServicesConfigSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:25:54Z",
+      "side": 1,
+      "message": "no expectation in the title",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 61
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6125d85b_d8b31707",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/CpsServicesConfigSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:25:54Z",
+      "side": 1,
+      "message": "define as class variables",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 55
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c70c15d_ce2c61f4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/CpsServicesConfigSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:25:54Z",
+      "side": 1,
+      "message": "declare as objectUnderTest and again as class variable",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 23
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5672602_ba20b7cb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/CpsServicesConfigSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:25:54Z",
+      "side": 1,
+      "message": "prefer assert ... \u003d\u003d ....",
+      "range": {
+        "startLine": 49,
+        "startChar": 35,
+        "endLine": 49,
+        "endChar": 38
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
