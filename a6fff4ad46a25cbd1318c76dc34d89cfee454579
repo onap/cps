@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e8928ea_89f50610",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-24T10:07:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d5e9349_68161dd6",
+      "revId": "a6fff4ad46a25cbd1318c76dc34d89cfee454579",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0657f9c_33eef490",
@@ -41,6 +59,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73eb0281_0aeecf29",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-24T10:07:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0657f9c_33eef490",
+      "range": {
+        "startLine": 212,
+        "startChar": 8,
+        "endLine": 212,
+        "endChar": 43
+      },
+      "revId": "a6fff4ad46a25cbd1318c76dc34d89cfee454579",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "530b228e_118e39b4",
@@ -54,6 +96,24 @@
       "writtenOn": "2025-11-21T11:27:05Z",
       "side": 1,
       "message": "NB: no code change here as well",
+      "revId": "a6fff4ad46a25cbd1318c76dc34d89cfee454579",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba89252d_d0d1516a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-24T10:07:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "530b228e_118e39b4",
       "revId": "a6fff4ad46a25cbd1318c76dc34d89cfee454579",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
