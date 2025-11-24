@@ -328,6 +328,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "289e091d_da0df039",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:45:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38e6f3a9_a5121283",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 48
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44413a96_955b8a22",
@@ -341,6 +365,30 @@
       "writtenOn": "2025-11-17T17:28:32Z",
       "side": 1,
       "message": "since this cannot really happen and you are catching ALL exceptions on the next line I dont think this is needed",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 84
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "435106ac_aabd364b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:45:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44413a96_955b8a22",
       "range": {
         "startLine": 132,
         "startChar": 0,
@@ -675,6 +723,30 @@
       "writtenOn": "2025-11-17T17:28:32Z",
       "side": 1,
       "message": "def",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 17
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d4fbef3_ee55a8e5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:45:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed5cc72f_0854e23a",
       "range": {
         "startLine": 80,
         "startChar": 4,
