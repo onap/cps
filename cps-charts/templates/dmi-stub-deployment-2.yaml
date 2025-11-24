@@ -24,12 +24,12 @@ spec:
           ports:
             - containerPort: {{ .Values.dmiStub.deployment2.containerPort }}
           env:
-            - name: DMI_STUB_SERVER_PORT
-              value: "{{ .Values.dmiStub.deployment2.containerPort }}"
-            {{- range $key, $value := .Values.dmiStub.env }}
-            - name: {{ $key }}
-              value: "{{ $value }}"
+            {{- range $envName, $envValue := .Values.dmiStub.env }}
+            - name: {{ $envName | upper }}
+              value: "{{ $envValue }}"
             {{- end }}
+            - name: SERVER_PORT
+              value: "{{ .Values.dmiStub.deployment2.containerPort }}"
           resources:
             {{- toYaml .Values.dmiStub.resources | nindent 12 }}
           livenessProbe:
