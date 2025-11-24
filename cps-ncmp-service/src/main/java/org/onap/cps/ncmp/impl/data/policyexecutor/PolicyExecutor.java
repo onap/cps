@@ -147,7 +147,7 @@ public class PolicyExecutor {
                 case REMOVE -> operations.add(
                     buildDeleteOperationDetails(requestPathParameters.toAlternateId()));
                 default -> log.warn("Unsupported Patch Operation Type:{}", patchItem.getOp().getValue());
-            };
+            }
         }
         return new PatchOperationsDetails("Some Permission Id", CHANGE_REQUEST_FORMAT, operations);
     }
