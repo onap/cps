@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ca947a3_36e805eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-25T14:27:30Z",
+      "side": 1,
+      "message": "Looks good, some NB comments",
+      "revId": "74035740241d6de5f9acfc8a3bf6c14faf6e7ead",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa65500_853e82e8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/DataJobMetadata.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-25T14:27:30Z",
+      "side": 1,
+      "message": "NB: update copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 21,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "74035740241d6de5f9acfc8a3bf6c14faf6e7ead",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28642ab1_697d5713",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/SubJobWriteRequest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-25T14:27:30Z",
+      "side": 1,
+      "message": "NB: update copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 21,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "74035740241d6de5f9acfc8a3bf6c14faf6e7ead",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5580e227_ca0888ec",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-25T14:27:30Z",
+      "side": 1,
+      "message": "NB: Would *_ not be better as you are not checking the values?",
+      "range": {
+        "startLine": 44,
+        "startChar": 48,
+        "endLine": 44,
+        "endChar": 113
+      },
+      "revId": "74035740241d6de5f9acfc8a3bf6c14faf6e7ead",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd78f8d5_72fabd50",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/WriteSubJobSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-25T14:27:30Z",
+      "side": 1,
+      "message": "NB: some accept type, some content type, some policy",
+      "range": {
+        "startLine": 55,
+        "startChar": 75,
+        "endLine": 55,
+        "endChar": 120
+      },
+      "revId": "74035740241d6de5f9acfc8a3bf6c14faf6e7ead",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
