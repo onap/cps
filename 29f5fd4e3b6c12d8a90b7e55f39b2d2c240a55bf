@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9ae2369_490c7535",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T12:39:17Z",
+      "side": 1,
+      "message": "it is a boolean not an exception!; expectException is better",
+      "parentUuid": "af419de4_28eca1f1",
+      "range": {
+        "startLine": 208,
+        "startChar": 16,
+        "endLine": 208,
+        "endChar": 31
+      },
+      "revId": "29f5fd4e3b6c12d8a90b7e55f39b2d2c240a55bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05f7b127_a97cb039",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2025-11-25T11:31:40Z",
       "side": 1,
       "message": "NB: space here",
+      "range": {
+        "startLine": 88,
+        "startChar": 15,
+        "endLine": 88,
+        "endChar": 16
+      },
+      "revId": "29f5fd4e3b6c12d8a90b7e55f39b2d2c240a55bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17e7404f_6b007d82",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T12:39:17Z",
+      "side": 1,
+      "message": "well spotted, maybe in a next commit :-)",
+      "parentUuid": "05f7b127_a97cb039",
       "range": {
         "startLine": 88,
         "startChar": 15,
