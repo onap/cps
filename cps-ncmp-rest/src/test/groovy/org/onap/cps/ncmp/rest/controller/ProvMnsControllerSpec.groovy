@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.ServletException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
+import org.onap.cps.ncmp.impl.data.policyexecutor.OperationDetailsFactory
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
@@ -66,6 +67,9 @@ class ProvMnsControllerSpec extends Specification {
 
     @SpringBean
     DmiRestClient dmiRestClient = Mock()
+
+    @SpringBean
+    OperationDetailsFactory operationDetailsFactory = Mock()
 
     @SpringBean
     ErrorResponseBuilder errorResponseBuilder = new ErrorResponseBuilder()
