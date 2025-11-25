@@ -1,0 +1,80 @@
+/*
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
+ */
+
+package org.onap.cps.ncmp.impl.data.policyexecutor;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
+
+@Getter
+@Setter
+@Slf4j
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ResourceObjectDetails {
+
+    private String id;
+    private String objectClass;
+    private Object attributes;
+
+    /**
+     * Create a ResourceObjectDetails instance from incoming JSON.
+     *
+     * @param json                     Resource data as string
+     * @param mapper                   Mapper object
+     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
+     * @return ResourceObjectDetails   details
+     */
+    public static ResourceObjectDetails fromJson(final String json,
+                                                 final ObjectMapper mapper,
+                                                 final RequestPathParameters requestPathParameters) {
+        try {
+            final TypeReference<Map<String, Object>> typeRef = new TypeReference<>() {};
+            final Map<String, Object> map = mapper.readValue(json, typeRef);
+
+            final ResourceObjectDetails details = new ResourceObjectDetails();
+            details.id = requestPathParameters.getId();
+            details.objectClass = extractObjectClass(map, requestPathParameters);
+            details.attributes = map.get("attributes");
+
+            return details;
+        } catch (final JsonProcessingException e) {
+            log.debug("JSON processing error: {}", e.getMessage());
+            final ResourceObjectDetails details = new ResourceObjectDetails();
+            details.id = requestPathParameters.getId();
+            details.objectClass = requestPathParameters.getClassName();
+            return details;
+        }
+    }
+
+    private static String extractObjectClass(final Map<String, Object> map, final RequestPathParameters pathParams) {
+        final Object objClass = map.get("objectClass");
+        if (objClass == null || objClass.toString().isBlank()) {
+            return pathParams.getClassName();
+        }
+        return objClass.toString();
+    }
+}

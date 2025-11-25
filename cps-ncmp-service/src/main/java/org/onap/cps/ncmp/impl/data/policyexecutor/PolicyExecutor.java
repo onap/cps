@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.UnknownHostException;
@@ -163,26 +162,25 @@ public class PolicyExecutor {
     public CreateOperationDetails buildCreateOperationDetails(final OperationType operationType,
                                                               final RequestPathParameters requestPathParameters,
                                                               final Object resourceAsObject) {
-        final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
-        final OperationEntry operationEntry = new OperationEntry();
 
-        final String resourceAsJson = jsonObjectMapper.asJsonString(resourceAsObject);
-        String className = requestPathParameters.getClassName();
-        try {
-            final TypeReference<HashMap<String, Object>> typeReference =
-                new TypeReference<HashMap<String, Object>>() {};
-            final Map<String, Object> valueMap = objectMapper.readValue(resourceAsJson, typeReference);
 
-            operationEntry.setId(requestPathParameters.getId());
-            operationEntry.setAttributes(valueMap.get("attributes"));
-            className = isNullEmptyOrBlank(valueMap)
-                ? requestPathParameters.getClassName() : valueMap.get("objectClass").toString();
-        } catch (final JsonProcessingException exception) {
-            log.debug("JSON processing error: {}", exception);
-        }
-        changeRequest.put(className, List.of(operationEntry));
-        return new CreateOperationDetails(operationType.name(),
-            requestPathParameters.getUriLdnFirstPart(), changeRequest);
+        final String resourceJson = jsonObjectMapper.asJsonString(resourceAsObject);
+
+        final ResourceObjectDetails details = ResourceObjectDetails
+                                                       .fromJson(resourceJson, objectMapper, requestPathParameters);
+
+        final OperationEntry entry = new OperationEntry();
+        entry.setId(details.getId());
+        entry.setAttributes(details.getAttributes());
+
+        final Map<String, List<OperationEntry>> changeRequest =
+                Map.of(details.getObjectClass(), List.of(entry));
+
+        return new CreateOperationDetails(
+                operationType.name(),
+                requestPathParameters.getUriLdnFirstPart(),
+                changeRequest
+        );
     }
 
     /**
