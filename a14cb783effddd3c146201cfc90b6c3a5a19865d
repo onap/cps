@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0d4eb35_eec8472d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "let\u0027s move all these build...OperationDetails methods to a new dedicated class\n(ensure public private method order)\n\nOperationDetailsFactory",
+      "range": {
+        "startLine": 136,
+        "startChar": 34,
+        "endLine": 136,
+        "endChar": 60
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0cb485f_144fea7d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "resourceAsJson but should be done in mapper method!",
+      "range": {
+        "startLine": 167,
+        "startChar": 21,
+        "endLine": 167,
+        "endChar": 34
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63e77722_b07a8c76",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
         "patchSetId": 1
@@ -112,6 +158,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6312a6f5_d7d96a25",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "after refatoring it might become a record",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 13
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44e23285_e44bf3d5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
         "patchSetId": 1
@@ -123,6 +192,30 @@
       "writtenOn": "2025-11-25T11:00:40Z",
       "side": 1,
       "message": "why is this an object?",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb98ace_cf718bf3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "According to Sean this probably can be Map\u003cString,Object\u003e which to me is the usual for \u0027attributes\u0027",
+      "parentUuid": "44e23285_e44bf3d5",
       "range": {
         "startLine": 41,
         "startChar": 12,
@@ -158,6 +251,99 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56121893_ec2e61b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "move method to new factory class as suggested before\n\ncreateResourceObjectDetails(resourceAsObject, requestPathParameters)",
+      "parentUuid": "682d2582_c69a4235",
+      "range": {
+        "startLine": 51,
+        "startChar": 40,
+        "endLine": 51,
+        "endChar": 48
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cfdb629_65758bf4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "resourceAsJson\n(consistent with caller)",
+      "range": {
+        "startLine": 51,
+        "startChar": 62,
+        "endLine": 51,
+        "endChar": 66
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "220ccc03_40476a3b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "resourceAsMap",
+      "range": {
+        "startLine": 56,
+        "startChar": 38,
+        "endLine": 56,
+        "endChar": 42
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07725b23_75acb05b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "resourceObjectDetails",
+      "range": {
+        "startLine": 58,
+        "startChar": 40,
+        "endLine": 58,
+        "endChar": 48
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "159e2abe_00c22067",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
         "patchSetId": 1
@@ -174,6 +360,145 @@
         "startChar": 11,
         "endLine": 69,
         "endChar": 27
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef3cf8a3_1adec132",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "159e2abe_00c22067",
+      "range": {
+        "startLine": 69,
+        "startChar": 11,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba89e36b_800a5215",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "need to agree with stakeholder, prefer to throw up a runtime exception so its realsut in 500 on the REST interface",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcc7fa57_4e8a5bc4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "requestPathParameters",
+      "range": {
+        "startLine": 73,
+        "startChar": 104,
+        "endLine": 73,
+        "endChar": 114
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e29a5afc_bc795b00",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "resourceAsMap",
+      "range": {
+        "startLine": 73,
+        "startChar": 71,
+        "endLine": 73,
+        "endChar": 74
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7930a4a6_8e2375d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "objectClass",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 30
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cbd6f24_b3ae0c31",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T11:52:59Z",
+      "side": 1,
+      "message": "why not String?!",
+      "range": {
+        "startLine": 74,
+        "startChar": 14,
+        "endLine": 74,
+        "endChar": 21
       },
       "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
