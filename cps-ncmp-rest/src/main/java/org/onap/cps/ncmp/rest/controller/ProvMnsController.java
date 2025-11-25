@@ -27,6 +27,7 @@ import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
+import org.onap.cps.ncmp.impl.data.policyexecutor.OperationDetailsFactory;
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
@@ -65,6 +66,7 @@ public class ProvMnsController implements ProvMnS {
     private final ErrorResponseBuilder errorResponseBuilder;
     private final PolicyExecutor policyExecutor;
     private final JsonObjectMapper jsonObjectMapper;
+    private final OperationDetailsFactory operationDetailsFactory;
 
     @Override
     public ResponseEntity<Object> getMoi(final HttpServletRequest httpServletRequest,
@@ -117,7 +119,7 @@ public class ProvMnsController implements ProvMnS {
                     OperationType.CREATE,
                     NO_AUTHORIZATION,
                     requestPathParameters.toAlternateId(),
-                    jsonObjectMapper.asJsonString(policyExecutor.buildPatchOperationDetails(
+                    jsonObjectMapper.asJsonString(operationDetailsFactory.buildPatchOperationDetails(
                         requestPathParameters, patchItems))
                 );
             } catch (final RuntimeException exception) {
@@ -154,7 +156,7 @@ public class ProvMnsController implements ProvMnS {
                     OperationType.CREATE,
                     NO_AUTHORIZATION,
                     requestPathParameters.toAlternateId(),
-                    jsonObjectMapper.asJsonString(policyExecutor.buildCreateOperationDetails(
+                    jsonObjectMapper.asJsonString(operationDetailsFactory.buildCreateOperationDetails(
                         OperationType.CREATE, requestPathParameters, resource))
                 );
             } catch (final RuntimeException exception) {
@@ -190,7 +192,7 @@ public class ProvMnsController implements ProvMnS {
                     OperationType.DELETE,
                     NO_AUTHORIZATION,
                     requestPathParameters.toAlternateId(),
-                    jsonObjectMapper.asJsonString(policyExecutor.buildDeleteOperationDetails(
+                    jsonObjectMapper.asJsonString(operationDetailsFactory.buildDeleteOperationDetails(
                         requestPathParameters.toAlternateId()))
                 );
             } catch (final RuntimeException exception) {
