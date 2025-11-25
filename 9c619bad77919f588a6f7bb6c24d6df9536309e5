@@ -276,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ce089d4_156cbc84",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 34
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-25T17:11:05Z",
+      "side": 1,
+      "message": "This invalid XML tag is intentionally used as part of a negative testcase .Xml element name cannot contain \u0027\u003c\u0027 we keep this invalid key to verify that the xml builder correctly throws DataValidationException when encountering tag name.",
+      "parentUuid": "35c8264a_9a5912cf",
+      "range": {
+        "startLine": 60,
+        "startChar": 130,
+        "endLine": 60,
+        "endChar": 167
+      },
+      "revId": "9c619bad77919f588a6f7bb6c24d6df9536309e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d9b07ae_465d6470",
