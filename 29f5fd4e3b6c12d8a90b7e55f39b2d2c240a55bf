@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af419de4_28eca1f1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:08:26Z",
+      "side": 1,
+      "message": "NB: expectedException*",
+      "range": {
+        "startLine": 208,
+        "startChar": 16,
+        "endLine": 208,
+        "endChar": 31
+      },
+      "revId": "29f5fd4e3b6c12d8a90b7e55f39b2d2c240a55bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
