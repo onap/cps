@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8725c39_17c0b83c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T17:23:35Z",
+      "side": 1,
+      "message": "have one question but since it is PATCH specific we can fix it later (in next commit)",
+      "revId": "4241eaa53bed9da2f314362a1ac067603e448672",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ced6b59_9a5ed3da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetailsFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-25T17:23:35Z",
+      "side": 1,
+      "message": "Only noticing this now, this looks like test code example\nI think we need a specific ID from the Original PATH request, maybe need to ask Csaba K?!",
+      "range": {
+        "startLine": 72,
+        "startChar": 43,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "4241eaa53bed9da2f314362a1ac067603e448672",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
