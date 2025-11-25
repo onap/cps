@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c7b2e54_e73b2f91",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0cb485f_144fea7d",
+      "range": {
+        "startLine": 167,
+        "startChar": 21,
+        "endLine": 167,
+        "endChar": 34
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63e77722_b07a8c76",
@@ -77,6 +101,30 @@
       "writtenOn": "2025-11-25T11:00:40Z",
       "side": 1,
       "message": "dont shorten",
+      "range": {
+        "startLine": 169,
+        "startChar": 36,
+        "endLine": 169,
+        "endChar": 44
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b67c1c6c_9abedb72",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63e77722_b07a8c76",
       "range": {
         "startLine": 169,
         "startChar": 36,
@@ -110,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7923a2a8_075e81f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0113eb5b_069f2f28",
+      "range": {
+        "startLine": 172,
+        "startChar": 29,
+        "endLine": 172,
+        "endChar": 35
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "190be899_9a9bcd25",
@@ -123,6 +195,30 @@
       "writtenOn": "2025-11-25T11:00:40Z",
       "side": 1,
       "message": "NB: I wonder if OperationEntry could become a record and create it one 1 line with a constructor rather then 3 lines using 2 setters...",
+      "range": {
+        "startLine": 172,
+        "startChar": 1,
+        "endLine": 174,
+        "endChar": 53
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01ccf2a9_9af0114b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "190be899_9a9bcd25",
       "range": {
         "startLine": 172,
         "startChar": 1,
@@ -156,6 +252,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38982c83_ea4a1cfe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fad634b9_95db3e54",
+      "range": {
+        "startLine": 176,
+        "startChar": 48,
+        "endLine": 176,
+        "endChar": 62
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6312a6f5_d7d96a25",
@@ -169,6 +289,30 @@
       "writtenOn": "2025-11-25T11:52:59Z",
       "side": 1,
       "message": "after refatoring it might become a record",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 13
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83731e3a_e3c8ef9f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6312a6f5_d7d96a25",
       "range": {
         "startLine": 37,
         "startChar": 7,
@@ -216,6 +360,30 @@
       "side": 1,
       "message": "According to Sean this probably can be Map\u003cString,Object\u003e which to me is the usual for \u0027attributes\u0027",
       "parentUuid": "44e23285_e44bf3d5",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd56836e_49cca023",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "have to be kept as an Object. the change would break unit tests",
+      "parentUuid": "4fb98ace_cf718bf3",
       "range": {
         "startLine": 41,
         "startChar": 12,
@@ -296,6 +464,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03b21199_03b0d583",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56121893_ec2e61b5",
+      "range": {
+        "startLine": 51,
+        "startChar": 40,
+        "endLine": 51,
+        "endChar": 48
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be0e2331_dd25cf7e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cfdb629_65758bf4",
+      "range": {
+        "startLine": 51,
+        "startChar": 62,
+        "endLine": 51,
+        "endChar": 66
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "220ccc03_40476a3b",
@@ -319,6 +535,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d82d06f_0d02853b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "220ccc03_40476a3b",
+      "range": {
+        "startLine": 56,
+        "startChar": 38,
+        "endLine": 56,
+        "endChar": 42
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07725b23_75acb05b",
@@ -332,6 +572,30 @@
       "writtenOn": "2025-11-25T11:52:59Z",
       "side": 1,
       "message": "resourceObjectDetails",
+      "range": {
+        "startLine": 58,
+        "startChar": 40,
+        "endLine": 58,
+        "endChar": 48
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de5c857c_e8e692b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07725b23_75acb05b",
       "range": {
         "startLine": 58,
         "startChar": 40,
@@ -412,6 +676,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f98d176_437e6932",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba89e36b_800a5215",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcc7fa57_4e8a5bc4",
@@ -448,6 +736,54 @@
       "writtenOn": "2025-11-25T11:52:59Z",
       "side": 1,
       "message": "resourceAsMap",
+      "range": {
+        "startLine": 73,
+        "startChar": 71,
+        "endLine": 73,
+        "endChar": 74
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6b2225a_7495cb88",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcc7fa57_4e8a5bc4",
+      "range": {
+        "startLine": 73,
+        "startChar": 104,
+        "endLine": 73,
+        "endChar": 114
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3ebdfdc_a2d645c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e29a5afc_bc795b00",
       "range": {
         "startLine": 73,
         "startChar": 71,
@@ -499,6 +835,54 @@
         "startChar": 14,
         "endLine": 74,
         "endChar": 21
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a217ccac_228c568b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "can not be a string, because other fields than \u0027objectClass\u0027 can have a complex value. so its has to be kept as an object",
+      "parentUuid": "8cbd6f24_b3ae0c31",
+      "range": {
+        "startLine": 74,
+        "startChar": 14,
+        "endLine": 74,
+        "endChar": 21
+      },
+      "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "962020e0_77c1c5de",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/ResourceObjectDetails.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-25T14:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7930a4a6_8e2375d4",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 30
       },
       "revId": "a14cb783effddd3c146201cfc90b6c3a5a19865d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
