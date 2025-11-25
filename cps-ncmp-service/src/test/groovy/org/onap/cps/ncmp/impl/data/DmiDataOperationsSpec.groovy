@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.config.CpsApplicationContext
@@ -43,7 +44,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import reactor.core.publisher.Mono
-import spock.lang.Shared
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
@@ -64,8 +64,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     def NO_REQUEST_ID = null
     def NO_AUTH_HEADER = null
 
-    @Shared
-    def OPTIONS_PARAM = '(a=1,b=2)'
+    static def OPTIONS_PARAM = '(a=1,b=2)'
 
     @SpringBean
     JsonObjectMapper spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
@@ -82,7 +81,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     @SpringBean
     AlternateIdMatcher alternateIdMatcher = Mock()
 
-    def 'call get resource data for #expectedDataStore from DMI without topic #scenario.'() {
+    def 'Get resource data for #expectedDataStore from DMI without topic #scenario.'() {
         given: 'a cm handle for #cmHandleId'
             alternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
             mockYangModelCmHandleRetrieval(additionalProperties)
@@ -107,7 +106,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             'datastore running with properties'    | [yangModelCmHandleProperty] || PASSTHROUGH_RUNNING     | OPTIONS_PARAM   | '{"prop1":"val1"}'
     }
 
-    def 'Execute (async) data operation from DMI service.'() {
+    def 'Request resource data from DMI (asynchronous).'() {
         given: 'collection of yang model cm Handles and data operation request'
             mockYangModelCmHandleRetrievalByCmHandleId([yangModelCmHandleProperty])
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
@@ -117,14 +116,26 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def responseFromDmi = Mono.just(new ResponseEntity<Object>(HttpStatus.ACCEPTED))
             def expectedUrlTemplateWithVariables = new UrlTemplateParameters('myServiceName/dmi/v1/data?requestId={requestId}&topic={topic}', ['requestId': 'requestId', 'topic': 'my-topic-name'])
             def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","moduleSetTag":"","cmHandleProperties":{"prop1":"val1"}}]}]}'
-            mockDmiRestClient.asynchronousPostOperation(DATA, expectedUrlTemplateWithVariables, _, READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get resource data for group of cm handles is invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
-        then: 'the post operation was called with the expected URL and JSON request body'
-            1 * mockDmiRestClient.asynchronousPostOperation(DATA, expectedUrlTemplateWithVariables, expectedBatchRequestAsJson, READ, NO_AUTH_HEADER)
+        then: 'A DMI request was made with the expected URL and JSON request body'
+            1 * mockDmiRestClient.asynchronousPostOperation(DATA, expectedUrlTemplateWithVariables, expectedBatchRequestAsJson, READ, NO_AUTH_HEADER) >> responseFromDmi
     }
 
-    def 'Execute (async) data operation from DMI service with Exception.'() {
+    def 'Request resource data from DMI without any matching cm handle.'() {
+        given: ' a valid request'
+            def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
+            def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
+        and: 'no valid cm handles are found for the request'
+            alternateIdMatcher.getCmHandleId(_) >> { throw new CmHandleNotFoundException('') }
+            mockInventoryPersistence.getYangModelCmHandles(_) >> []
+        when: 'get resource data for group of cm handles is invoked'
+            objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
+        then: 'No post request was made to the DMI'
+            0 * mockDmiRestClient.asynchronousPostOperation(*_)
+    }
+
+    def 'Request resource data from DMI with exception.'() {
         given: 'collection of yang model cm Handles and data operation request'
             mockYangModelCmHandleRetrievalByCmHandleId([yangModelCmHandleProperty])
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
@@ -146,7 +157,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             assert eventDataValue.ids == dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences
     }
 
-    def 'call get all resource data.'() {
+    def 'Get all resource data.'() {
         given: 'the system returns a cm handle with a sample property and sample module set tag'
             mockYangModelCmHandleRetrieval([yangModelCmHandleProperty], 'my-module-set-tag')
         and: 'a positive response from DMI service when it is called with the expected parameters'
@@ -183,7 +194,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             PATCH     || 'patch'
     }
 
-    def 'State Ready validation'() {
+    def 'State Ready validation.'() {
         given: 'a yang model cm handle'
             populateYangModelCmHandle([] ,'')
         when: 'Validating State of #cmHandleState'
@@ -194,13 +205,13 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
                 caughtException = e
             }
         then: 'only when not ready a exception is thrown'
-            if (expecteException) {
+            if (expectException) {
                 assert caughtException.details.contains('not in READY state')
             } else {
                 assert caughtException == null
             }
         where: 'the following states are used'
-            cmHandleState         || expecteException
+            cmHandleState         || expectException
             CmHandleState.READY   || false
             CmHandleState.ADVISED || true
     }

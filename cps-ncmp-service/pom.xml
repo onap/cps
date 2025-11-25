@@ -33,9 +33,6 @@
 
     <artifactId>cps-ncmp-service</artifactId>
 
-    <properties>
-        <minimum-coverage>0.99</minimum-coverage>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>io.opentelemetry</groupId>
