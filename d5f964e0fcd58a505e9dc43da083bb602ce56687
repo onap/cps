@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c65d63d3_05b6ce9c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/DataJobService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9559f1f0_3a07a745",
+      "range": {
+        "startLine": 45,
+        "startChar": 20,
+        "endLine": 45,
+        "endChar": 21
+      },
+      "revId": "d5f964e0fcd58a505e9dc43da083bb602ce56687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e074d3f_e630fc2e",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-11-24T17:18:01Z",
       "side": 1,
       "message": "NB: just looking at the order of the parameters here, should it be together with the other dataJobMetadata properties i.e. swap lines #69 and #70 ?",
+      "range": {
+        "startLine": 71,
+        "startChar": 81,
+        "endLine": 71,
+        "endChar": 117
+      },
+      "revId": "d5f964e0fcd58a505e9dc43da083bb602ce56687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e439a4e6_62e5bb07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e074d3f_e630fc2e",
       "range": {
         "startLine": 71,
         "startChar": 81,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f02cbb90_bb40f9cd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b419567c_2031c1cf",
+      "range": {
+        "startLine": 44,
+        "startChar": 48,
+        "endLine": 44,
+        "endChar": 61
+      },
+      "revId": "d5f964e0fcd58a505e9dc43da083bb602ce56687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c98f03a_7c96ea39",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-11-24T17:18:01Z",
       "side": 1,
       "message": "better than the blank strings in the previous test class but I would suggest\n\n\u0027my destination\u0027\n\u0027my accept type\u0027 \n\u0027my content type\u0027\n\u0027my policy\u0027",
+      "range": {
+        "startLine": 26,
+        "startChar": 54,
+        "endLine": 26,
+        "endChar": 75
+      },
+      "revId": "d5f964e0fcd58a505e9dc43da083bb602ce56687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd265d7d_7c967cff",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c98f03a_7c96ea39",
       "range": {
         "startLine": 26,
         "startChar": 54,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d66b800_7568175f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "134c5ab4_5600d2a4",
+      "range": {
+        "startLine": 27,
+        "startChar": 59,
+        "endLine": 27,
+        "endChar": 61
+      },
+      "revId": "d5f964e0fcd58a505e9dc43da083bb602ce56687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44ab04ce_f8adf753",
@@ -146,6 +266,30 @@
       "writtenOn": "2025-11-24T17:18:01Z",
       "side": 1,
       "message": "my job(id)",
+      "range": {
+        "startLine": 33,
+        "startChar": 161,
+        "endLine": 33,
+        "endChar": 172
+      },
+      "revId": "d5f964e0fcd58a505e9dc43da083bb602ce56687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b94e5424_0d27904a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44ab04ce_f8adf753",
       "range": {
         "startLine": 33,
         "startChar": 161,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d758481_07b79e92",
+        "filename": "docs/api/swagger/dmi/openapi-datajob.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "338edfd1_55bf38ec",
+      "range": {
+        "startLine": 162,
+        "startChar": 53,
+        "endLine": 162,
+        "endChar": 213
+      },
+      "revId": "d5f964e0fcd58a505e9dc43da083bb602ce56687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9300bb5b_7ee03315",
@@ -202,6 +370,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bd98eb7_4336c22f",
+        "filename": "docs/api/swagger/dmi/openapi-datajob.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9300bb5b_7ee03315",
+      "range": {
+        "startLine": 245,
+        "startChar": 52,
+        "endLine": 245,
+        "endChar": 214
+      },
+      "revId": "d5f964e0fcd58a505e9dc43da083bb602ce56687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f52ae9cc_6851db8b",
@@ -215,6 +407,30 @@
       "writtenOn": "2025-11-24T17:18:01Z",
       "side": 1,
       "message": "same comments as before",
+      "range": {
+        "startLine": 55,
+        "startChar": 56,
+        "endLine": 55,
+        "endChar": 72
+      },
+      "revId": "d5f964e0fcd58a505e9dc43da083bb602ce56687",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "091d217e_43ec7382",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/WriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-25T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f52ae9cc_6851db8b",
       "range": {
         "startLine": 55,
         "startChar": 56,
