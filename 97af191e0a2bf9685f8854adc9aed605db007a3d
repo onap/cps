@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c8c9cbc_0e5f41a3",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-app/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-26T14:00:03Z",
+      "side": 1,
+      "message": "missed",
+      "range": {
+        "startLine": 4,
+        "startChar": 16,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "97af191e0a2bf9685f8854adc9aed605db007a3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c504a31_8715d068",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-26T14:00:03Z",
+      "side": 1,
+      "message": "missed",
+      "range": {
+        "startLine": 3,
+        "startChar": 21,
+        "endLine": 3,
+        "endChar": 43
+      },
+      "revId": "97af191e0a2bf9685f8854adc9aed605db007a3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "651b4761_1a349672",
+        "filename": "version.properties",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-26T14:00:03Z",
+      "side": 1,
+      "message": "missed",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 44
+      },
+      "revId": "97af191e0a2bf9685f8854adc9aed605db007a3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
