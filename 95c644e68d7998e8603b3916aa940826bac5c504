@@ -330,6 +330,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "546589d0_941702b1",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/CpsServicesConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-26T08:50:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d9f12290_a7697602",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 31
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50542400_dae548e4",
