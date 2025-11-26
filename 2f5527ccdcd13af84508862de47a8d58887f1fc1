@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fdda4e8_2d0cc241",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-26T11:55:50Z",
+      "side": 1,
+      "message": "Hold of until we are properly releasing this ie when all negative scenarios and Ptch-opertation are completed too.\n\nAt that time we also need tup update te eRTD with specifically the LIMITATIONS of the implementation. Probably need to create  GROOM in more details an RTD user story!",
+      "revId": "2f5527ccdcd13af84508862de47a8d58887f1fc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
