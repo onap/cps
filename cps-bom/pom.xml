@@ -2,7 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (C) 2020 Pantheon.tech
-  Modifications Copyright (C) 2021-2023 Nordix Foundation
+  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
   Modifications Copyright (C) 2021 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.onap.cps</groupId>
     <artifactId>cps-bom</artifactId>
-    <version>3.7.3-SNAPSHOT</version>
+    <version>3.7.4-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <description>This artifact contains dependencyManagement declarations of all published CPS components.</description>

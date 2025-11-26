@@ -2,7 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (c) 2021 Linux Foundation.
-  Modifications Copyright (C) 2020-2024 Nordix Foundation
+  Modifications Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
   Modifications Copyright (C) 2022 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.onap.cps</groupId>
     <artifactId>cps-dependencies</artifactId>
-    <version>3.7.3-SNAPSHOT</version>
+    <version>3.7.4-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
