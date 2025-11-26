@@ -87,19 +87,23 @@ public interface ProvMnS {
                 + "only the selected attributes or sub-attributes are returned. "
                 + "The response message body is constructed according to the "
                 + "hierarchical response construction method (TS 32.158 [15]).", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class))
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class)),
+                    @Content(mediaType = "application/vnd.3gpp.object-tree-hierarchical+json",
+                        schema = @Schema(implementation = Resource.class))
                     }),
             @ApiResponse(responseCode = "422", description = "Invalid Path Exception", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
             }),
             @ApiResponse(responseCode = "default", description = "Error case.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseGet.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseGet.class)),
+                @Content(mediaType = "application/vnd.3gpp.object-tree-hierarchical+json",
+                    schema = @Schema(implementation = ErrorResponseGet.class))
             })
         }
     )
     @GetMapping(
         value = "v1/**",
-        produces = { "application/json"}
+        produces = { "application/json", "application/vnd.3gpp.object-tree-hierarchical+json"}
     )
 
     ResponseEntity<Object> getMoi(
