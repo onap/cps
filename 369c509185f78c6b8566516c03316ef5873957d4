@@ -64,6 +64,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa63c4fd_b2960bd3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "182a9b50_e1b7d7f0",
+      "range": {
+        "startLine": 219,
+        "startChar": 63,
+        "endLine": 219,
+        "endChar": 83
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8fbc8e0_42b9faf2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b11da719_5f4e4de6",
+      "range": {
+        "startLine": 219,
+        "startChar": 16,
+        "endLine": 219,
+        "endChar": 36
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7ca9206_d3dff362",
@@ -135,6 +183,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "791cf9f0_cd261ec8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "This is preexisting and is used in other tests in this groovy class",
+      "parentUuid": "318d8694_ef84b471",
+      "range": {
+        "startLine": 76,
+        "startChar": 22,
+        "endLine": 76,
+        "endChar": 36
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "915919bc_4473290e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8b8e228_251bfa47",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 19
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6169b86a_23e1fffe",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
         "patchSetId": 11
@@ -146,6 +242,30 @@
       "writtenOn": "2025-11-26T08:50:36Z",
       "side": 1,
       "message": "\u0027my field name\u0027 I also prefer spaces to not give the impression these strings are being validated and for more natural reading",
+      "range": {
+        "startLine": 77,
+        "startChar": 21,
+        "endLine": 77,
+        "endChar": 36
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bde68ef7_e69ddc47",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6169b86a_23e1fffe",
       "range": {
         "startLine": 77,
         "startChar": 21,
@@ -179,6 +299,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8a7446b_b5428ca2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f223291_2ec4c510",
+      "range": {
+        "startLine": 78,
+        "startChar": 22,
+        "endLine": 79,
+        "endChar": 19
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5843ffab_784253af",
@@ -192,6 +336,30 @@
       "writtenOn": "2025-11-26T08:50:36Z",
       "side": 1,
       "message": "use string literals, recommended values detailed in comment above",
+      "range": {
+        "startLine": 405,
+        "startChar": 48,
+        "endLine": 405,
+        "endChar": 81
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0be35902_84eb37f1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5843ffab_784253af",
       "range": {
         "startLine": 405,
         "startChar": 48,
@@ -225,6 +393,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0cc79d9_ecacaa4c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47f5bb0a_2124dc07",
+      "range": {
+        "startLine": 407,
+        "startChar": 12,
+        "endLine": 407,
+        "endChar": 53
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b40fadb7_c01cc735",
@@ -238,6 +430,30 @@
       "writtenOn": "2025-11-26T08:50:36Z",
       "side": 1,
       "message": "add desiptions",
+      "range": {
+        "startLine": 414,
+        "startChar": 8,
+        "endLine": 414,
+        "endChar": 13
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bed7637_e2c9af5d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b40fadb7_c01cc735",
       "range": {
         "startLine": 414,
         "startChar": 8,
@@ -271,6 +487,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38cbf9d4_0366d165",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c75baf8_a76ef617",
+      "range": {
+        "startLine": 418,
+        "startChar": 5,
+        "endLine": 422,
+        "endChar": 14
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "505806e5_85e28b67",
@@ -294,6 +534,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78fa8010_5cff1fcd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "505806e5_85e28b67",
+      "range": {
+        "startLine": 423,
+        "startChar": 28,
+        "endLine": 423,
+        "endChar": 29
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d60b80ac_37309a1e",
@@ -307,6 +571,30 @@
       "writtenOn": "2025-11-26T08:50:36Z",
       "side": 1,
       "message": "why collection data if you just need to check its empty?!\n\nI think you can even do this in Groovy for this case:\n 1 * mockInventoryPersistence.bulkUpdateCmHandleStates([])\n \n [] meaning its an empty collection (dont care about the type)",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 80,
+        "endChar": 102
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3256b5_bcdcc851",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d60b80ac_37309a1e",
       "range": {
         "startLine": 80,
         "startChar": 16,
@@ -342,6 +630,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65e28bed_59280bd4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "I\u0027d like you to have a look at this one. Not sure if it is the correct approach",
+      "parentUuid": "f693d48a_c6ce33f7",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 1
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64501bc7_da4e11a5",
         "filename": "cps-service/src/test/groovy/org/onap/cps/config/CpsServicesConfigSpec.groovy",
         "patchSetId": 11
@@ -353,6 +665,30 @@
       "writtenOn": "2025-11-26T08:50:36Z",
       "side": 1,
       "message": "no need for this not null check since you test its properties below",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f125fb61_442aa2a1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/CpsServicesConfigSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64501bc7_da4e11a5",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -376,6 +712,30 @@
       "writtenOn": "2025-11-26T08:50:36Z",
       "side": 1,
       "message": "always precede all assertions with \u0027assert\u0027 keyword",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 18
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d998516_2a6368dd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/CpsServicesConfigSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-26T18:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "723618c5_b0637974",
       "range": {
         "startLine": 50,
         "startChar": 12,
