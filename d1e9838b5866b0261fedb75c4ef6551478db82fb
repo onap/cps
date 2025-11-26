@@ -39,6 +39,30 @@
       },
       "revId": "d1e9838b5866b0261fedb75c4ef6551478db82fb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5953a97_c8b926ca",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-26T09:22:05Z",
+      "side": 1,
+      "message": "Yes we did as was not supported",
+      "parentUuid": "98fa5bce_1c1e50ed",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 74
+      },
+      "revId": "d1e9838b5866b0261fedb75c4ef6551478db82fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
