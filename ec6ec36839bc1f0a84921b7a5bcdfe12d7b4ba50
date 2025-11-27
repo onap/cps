@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12ec9c7c_199cd472",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T15:13:11Z",
+      "side": 1,
+      "message": "All good, a minor issues with import sorting in the update Groovy files but that is not important",
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93592b0f_9731d5e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T15:13:11Z",
+      "side": 1,
+      "message": "NB: TIP alway press Ctrl-O after refactoring a test (or if it has been updated automatically) to re-organise teh imports, SonarQ won\u0027t fail on import sorting in .groovy files but it is nice to stay consistent",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 65
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
