@@ -21,17 +21,14 @@
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.UnknownHostException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 import lombok.RequiredArgsConstructor;
@@ -40,11 +37,8 @@ import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
-import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
-import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -59,8 +53,6 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 @Service
 @RequiredArgsConstructor
 public class PolicyExecutor {
-
-    public static final String ATTRIBUTES_WITH_HASHTAG = "#/attributes";
 
     @Value("${ncmp.policy-executor.enabled:false}")
     private boolean enabled;
@@ -78,7 +70,6 @@ public class PolicyExecutor {
     @Value("${ncmp.policy-executor.httpclient.all-services.readTimeoutInSeconds:30}")
     private long readTimeoutInSeconds;
 
-    private static final String CHANGE_REQUEST_FORMAT = "cm-legacy";
     private static final String PERMISSION_BASE_PATH = "operation-permission";
     private static final String REQUEST_PATH = "permissions";
 
@@ -86,11 +77,8 @@ public class PolicyExecutor {
     private final WebClient policyExecutorWebClient;
 
     private final ObjectMapper objectMapper;
-    private final JsonObjectMapper jsonObjectMapper;
 
     private static final Throwable NO_ERROR = null;
-    private static final String ATTRIBUTE_NAME_SEPARATOR = "/";
-    private static final String REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS = "(^/)|(/$)";
 
     /**
      * Use the Policy Executor to check permission for a cm write operation.
@@ -127,132 +115,6 @@ public class PolicyExecutor {
         }
     }
 
-    /**
-     * Build a PatchOperationDetails object from ProvMnS request details.
-     *
-     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
-     * @param patchItems               provided request list of patch Items
-     * @return CreateOperationDetails object
-     */
-    public PatchOperationsDetails buildPatchOperationDetails(final RequestPathParameters requestPathParameters,
-                                                             final List<PatchItem> patchItems) {
-        final List<Object> operations = new ArrayList<>(patchItems.size());
-        for (final PatchItem patchItem : patchItems) {
-            switch (patchItem.getOp()) {
-                case ADD -> operations.add(
-                    buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
-                    patchItem.getValue()));
-                case REPLACE -> operations.add(
-                    buildCreateOperationDetailsForUpdate(OperationType.UPDATE, requestPathParameters, patchItem));
-                case REMOVE -> operations.add(
-                    buildDeleteOperationDetails(requestPathParameters.toAlternateId()));
-                default -> log.warn("Unsupported Patch Operation Type:{}", patchItem.getOp().getValue());
-            }
-        }
-        return new PatchOperationsDetails("Some Permission Id", CHANGE_REQUEST_FORMAT, operations);
-    }
-
-    /**
-     * Build a CreateOperationDetails object from ProvMnS request details.
-     *
-     * @param operationType            Type of operation create, update.
-     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
-     * @param resourceAsObject         provided request payload
-     * @return CreateOperationDetails object
-     */
-    public CreateOperationDetails buildCreateOperationDetails(final OperationType operationType,
-                                                              final RequestPathParameters requestPathParameters,
-                                                              final Object resourceAsObject) {
-        final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
-        final OperationEntry operationEntry = new OperationEntry();
-
-        final String resourceAsJson = jsonObjectMapper.asJsonString(resourceAsObject);
-        String className = requestPathParameters.getClassName();
-        try {
-            final TypeReference<HashMap<String, Object>> typeReference =
-                new TypeReference<HashMap<String, Object>>() {};
-            final Map<String, Object> valueMap = objectMapper.readValue(resourceAsJson, typeReference);
-
-            operationEntry.setId(requestPathParameters.getId());
-            operationEntry.setAttributes(valueMap.get("attributes"));
-            className = isNullEmptyOrBlank(valueMap)
-                ? requestPathParameters.getClassName() : valueMap.get("objectClass").toString();
-        } catch (final JsonProcessingException exception) {
-            log.debug("JSON processing error: {}", exception);
-        }
-        changeRequest.put(className, List.of(operationEntry));
-        return new CreateOperationDetails(operationType.name(),
-            requestPathParameters.getUriLdnFirstPart(), changeRequest);
-    }
-
-    /**
-     * Build a CreateOperationDetails object from ProvMnS request details.
-     *
-     * @param operationType            Type of operation create, update.
-     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
-     * @param patchItem                 provided request
-     * @return CreateOperationDetails object
-     */
-    public CreateOperationDetails buildCreateOperationDetailsForUpdate(final OperationType operationType,
-                                                                     final RequestPathParameters requestPathParameters,
-                                                                     final PatchItem patchItem) {
-        if (patchItem.getPath().contains(ATTRIBUTES_WITH_HASHTAG)) {
-            return buildCreateOperationDetailsForUpdateWithHash(operationType, requestPathParameters, patchItem);
-        } else {
-            return buildCreateOperationDetails(operationType, requestPathParameters, patchItem.getValue());
-        }
-    }
-
-    private CreateOperationDetails buildCreateOperationDetailsForUpdateWithHash(final OperationType operationType,
-                                                                      final RequestPathParameters requestPathParameters,
-                                                                      final PatchItem patchItem) {
-        final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
-        final OperationEntry operationEntry = new OperationEntry();
-        final String className = requestPathParameters.getClassName();
-
-        final Map<String, Object> attributeHierarchyAsMap = createNestedMap(patchItem);
-
-        operationEntry.setId(requestPathParameters.getId());
-        operationEntry.setAttributes(attributeHierarchyAsMap);
-        changeRequest.put(className, List.of(operationEntry));
-
-        return new CreateOperationDetails(operationType.getOperationName(),
-                                          requestPathParameters.getUriLdnFirstPart(),
-                                          changeRequest);
-    }
-
-    private Map<String, Object> createNestedMap(final PatchItem patchItem) {
-        final Map<String, Object> attributeHierarchyMap = new HashMap<>();
-        Map<String, Object> currentLevel = attributeHierarchyMap;
-
-        final String[] attributeHierarchyNames = patchItem.getPath().split(ATTRIBUTES_WITH_HASHTAG)[1]
-                                                   .replaceAll(REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS, "")
-                                                       .split(ATTRIBUTE_NAME_SEPARATOR);
-
-        for (int level = 0; level < attributeHierarchyNames.length; level++) {
-            final String attributeName = attributeHierarchyNames[level];
-
-            if (isLastLevel(attributeHierarchyNames, level)) {
-                currentLevel.put(attributeName, patchItem.getValue());
-            } else {
-                final Map<String, Object> nextLevel = new HashMap<>();
-                currentLevel.put(attributeName, nextLevel);
-                currentLevel = nextLevel;
-            }
-        }
-        return attributeHierarchyMap;
-    }
-
-    /**
-     * Builds a DeleteOperationDetails object from provided alternate id.
-     *
-     * @param alternateId        alternate id for request
-     * @return DeleteOperationDetails object
-     */
-    public DeleteOperationDetails buildDeleteOperationDetails(final String alternateId) {
-        return new DeleteOperationDetails(OperationType.DELETE.name(), alternateId);
-    }
-
     private Map<String, Object> getSingleOperationAsMap(final YangModelCmHandle yangModelCmHandle,
                                                         final OperationType operationType,
                                                         final String resourceIdentifier,
@@ -277,7 +139,7 @@ public class PolicyExecutor {
     private Object createBodyAsObject(final Map<String, Object> operationAsMap) {
         final Collection<Map<String, Object>> operations = Collections.singletonList(operationAsMap);
         final Map<String, Object> permissionRequestAsMap = new HashMap<>(2);
-        permissionRequestAsMap.put("changeRequestFormat", CHANGE_REQUEST_FORMAT);
+        permissionRequestAsMap.put("changeRequestFormat", "cm-legacy");
         permissionRequestAsMap.put("operations", operations);
         return permissionRequestAsMap;
     }
@@ -377,17 +239,5 @@ public class PolicyExecutor {
         final String warning = message + " Falling back to configured default decision: " + defaultDecision;
         log.warn(warning);
         processDecision(decisionId, decision, warning, cause);
-    }
-
-    private boolean isNullEmptyOrBlank(final Map<String, Object> jsonObject) {
-        try {
-            return jsonObject.get("objectClass").toString().isBlank();
-        } catch (final NullPointerException exception) {
-            return true;
-        }
-    }
-
-    private boolean isLastLevel(final String[] attributeNamesArray, final int level) {
-        return level == attributeNamesArray.length - 1;
     }
 }
