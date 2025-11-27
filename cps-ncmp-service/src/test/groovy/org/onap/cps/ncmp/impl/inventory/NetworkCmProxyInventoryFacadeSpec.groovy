@@ -25,9 +25,9 @@ package org.onap.cps.ncmp.impl.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.exceptions.DataValidationException
-import org.onap.cps.api.model.ConditionProperties
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.inventory.models.ConditionProperties
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.impl.inventory
 
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.api.exceptions.DataValidationException
-import org.onap.cps.api.model.ConditionProperties
+import org.onap.cps.ncmp.api.inventory.models.ConditionProperties
 import spock.lang.Specification
 
 class CmHandleQueryParametersParameterMapperSpec extends Specification {

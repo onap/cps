@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,20 +18,27 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.model
+package org.onap.cps.ncmp.api.inventory.models;
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import spock.lang.Specification
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-class ConditionPropertiesSpec extends Specification {
+@Setter
+@Getter
+@EqualsAndHashCode
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class ConditionProperties {
+    @JsonProperty("conditionName")
+    private String conditionName = "";
 
-    ObjectMapper objectMapper = new ObjectMapper()
-
-    def 'Condition Properties JSON conversion.'() {
-        given: 'a condition properties'
-            def objectUnderTest = new ConditionProperties(conditionName: 'test', conditionParameters: [[key: 'value' ] ])
-        expect: 'the name is blank'
-            assert objectMapper.writeValueAsString(objectUnderTest) == '{"conditionName":"test","conditionParameters":[{"key":"value"}]}'
-    }
-
+    @JsonProperty("conditionParameters")
+    @Valid
+    private List<Map<String, String>> conditionParameters = Collections.emptyList();
 }
