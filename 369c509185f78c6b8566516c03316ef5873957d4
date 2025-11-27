@@ -135,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec14f53_0037efe4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T15:15:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7ca9206_d3dff362",
+      "range": {
+        "startLine": 243,
+        "startChar": 73,
+        "endLine": 243,
+        "endChar": 80
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8b8e228_251bfa47",
