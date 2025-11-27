@@ -229,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a8bd919_4c3f22b1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T13:28:12Z",
+      "side": 1,
+      "message": "I understand but maybe a good oppertunity to improve it now",
+      "parentUuid": "791cf9f0_cd261ec8",
+      "range": {
+        "startLine": 76,
+        "startChar": 22,
+        "endLine": 76,
+        "endChar": 36
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6169b86a_23e1fffe",
@@ -642,6 +666,30 @@
       "side": 1,
       "message": "I\u0027d like you to have a look at this one. Not sure if it is the correct approach",
       "parentUuid": "f693d48a_c6ce33f7",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 1
+      },
+      "revId": "369c509185f78c6b8566516c03316ef5873957d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0abab0b9_8fd8ab01",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T13:28:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65e28bed_59280bd4",
       "range": {
         "startLine": 85,
         "startChar": 0,
