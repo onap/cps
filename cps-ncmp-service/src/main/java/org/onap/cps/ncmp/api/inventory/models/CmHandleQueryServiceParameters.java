@@ -29,7 +29,6 @@ import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.onap.cps.api.model.ConditionProperties;
 
 @Setter
 @Getter
