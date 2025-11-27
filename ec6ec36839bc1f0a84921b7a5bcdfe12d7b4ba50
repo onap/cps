@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61b02740_6a8ca8c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/CmHandleQueryServiceParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-11-27T16:18:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0524f337_2b77d1ce",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abb817eb_7c61638c",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-11-27T16:12:40Z",
       "side": 1,
       "message": "2022-2025 OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db159fc5_6b1812bf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/ConditionProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-11-27T16:18:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "abb817eb_7c61638c",
       "range": {
         "startLine": 3,
         "startChar": 18,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48d529ee_7b24e3c3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/ConditionPropertiesSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-11-27T16:18:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "684e6134_afad2062",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f10b9fb8_d26b792f",
@@ -127,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11827d80_905e2d53",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryParametersParameterMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-11-27T16:18:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f10b9fb8_d26b792f",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93592b0f_9731d5e4",
@@ -140,6 +236,30 @@
       "writtenOn": "2025-11-27T15:13:11Z",
       "side": 1,
       "message": "NB: TIP alway press Ctrl-O after refactoring a test (or if it has been updated automatically) to re-organise teh imports, SonarQ won\u0027t fail on import sorting in .groovy files but it is nice to stay consistent",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 65
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f71ab98_f15d9f5e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-11-27T16:18:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "93592b0f_9731d5e4",
       "range": {
         "startLine": 28,
         "startChar": 0,
