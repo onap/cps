@@ -37,6 +37,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0524f337_2b77d1ce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/CmHandleQueryServiceParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-27T16:12:40Z",
+      "side": 1,
+      "message": "2022-2025 OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abb817eb_7c61638c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/ConditionProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-27T16:12:40Z",
+      "side": 1,
+      "message": "2022-2025 OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "684e6134_afad2062",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/ConditionPropertiesSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-27T16:12:40Z",
+      "side": 1,
+      "message": "2023-2025 OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f10b9fb8_d26b792f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryParametersParameterMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-27T16:12:40Z",
+      "side": 1,
+      "message": "2022-2025 OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ec6ec36839bc1f0a84921b7a5bcdfe12d7b4ba50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93592b0f_9731d5e4",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
         "patchSetId": 1
