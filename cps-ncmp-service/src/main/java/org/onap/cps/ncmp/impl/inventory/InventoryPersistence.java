@@ -30,6 +30,7 @@ import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.models.CmHandleStateUpdate;
 
 public interface InventoryPersistence extends NcmpPersistence {
 
@@ -151,4 +152,32 @@ public interface InventoryPersistence extends NcmpPersistence {
      * @return boolean
      */
     boolean isExistingCmHandleId(String cmHandleId);
+
+    /**
+     * Updates the specified field of a CM handle with a new value in the DMI registry.
+     *
+     * @param cmHandleIdToUpdate                         the unique identifier of the CM handle to be updated
+     * @param fieldName                                  the name of the field within the CM handle to be updated
+     * @param newFieldValue                              the new value to be set for the
+     *                                                   specified field of the CM handle
+     */
+    void updateCmHandleField(String cmHandleIdToUpdate, String fieldName, String newFieldValue);
+
+
+    /**
+     * Bulk updates the specified fields of a batch of CM handles with a new value in the DMI registry.
+     *
+     * @param fieldName         the name of the field within the CM handle to be updated
+     * @param cmHandleIdToValue the CM handle to be updated and new value
+     */
+    void updateCmHandleFields(final String fieldName, final Map<String, String> cmHandleIdToValue);
+
+    /**
+     * Method to update a batch of cm handles status to the value in CompositeState.
+     *
+     * @param cmHandleStateUpdates               the cmHandleId and state change being performed on it
+     */
+    void bulkUpdateCmHandleStates(List<CmHandleStateUpdate> cmHandleStateUpdates);
+
+
 }
