@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7769b3d_7aded18a",
+        "filename": "postman-collections/CPS Environment.postman_environment.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T14:50:31Z",
+      "side": 1,
+      "message": "don\u0027t add new variables , instead add an k8 environment with a different value from the CPS (Socker) environment\nMaybe rename the old environment now: CPS Docker Env\nIs it possible the one Postman environment \u0027extends\u0027 another without duplicating all common values but only override those needed?",
+      "range": {
+        "startLine": 18,
+        "startChar": 12,
+        "endLine": 18,
+        "endChar": 34
+      },
+      "revId": "2d73e6536c2e0b86771009441d3af25639e450a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fded90e8_fb1cb669",
+        "filename": "postman-collections/CPS Environment.postman_environment.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T14:50:31Z",
+      "side": 1,
+      "message": "no scripting",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 9
+      },
+      "revId": "2d73e6536c2e0b86771009441d3af25639e450a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94c248b6_bec114cb",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2022,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T14:50:31Z",
+      "side": 1,
+      "message": "No scripting!\nJust a hardcoded copy for registering 1 or 2 handles with DMI 2",
+      "range": {
+        "startLine": 2022,
+        "startChar": 8,
+        "endLine": 2022,
+        "endChar": 14
+      },
+      "revId": "2d73e6536c2e0b86771009441d3af25639e450a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58071ac1_8049b8a1",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T14:50:31Z",
+      "side": 1,
+      "message": "nothing k8 specific about this request ie not needed here",
+      "range": {
+        "startLine": 2210,
+        "startChar": 6,
+        "endLine": 2210,
+        "endChar": 33
+      },
+      "revId": "2d73e6536c2e0b86771009441d3af25639e450a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5befc61_54f68c60",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2355,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-27T14:50:31Z",
+      "side": 1,
+      "message": "when scripting is gone we should need none of these",
+      "range": {
+        "startLine": 2355,
+        "startChar": 2,
+        "endLine": 2355,
+        "endChar": 10
+      },
+      "revId": "2d73e6536c2e0b86771009441d3af25639e450a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
