@@ -16,6 +16,24 @@
       "message": "Use single quotes for consistency",
       "revId": "c92730a04c82d38adfb008ff102dcafe17b53a8a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdfc1e64_44e4d7fb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-28T04:58:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11bf9806_884d2146",
+      "revId": "c92730a04c82d38adfb008ff102dcafe17b53a8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
