@@ -107,6 +107,8 @@ app:
             cm-subscription-dmi-out: ${CM_SUBSCRIPTION_DMI_OUT_TOPIC:dmi-ncmp-cm-avc-subscription}
             cm-events-topic: ${NCMP_CM_EVENTS_TOPIC:cm-events}
             inventory-events-topic: ncmp-inventory-events
+        provmns:
+            max-patch-operations: 10
     lcm:
         events:
             topic: ${LCM_EVENTS_TOPIC:ncmp-events}

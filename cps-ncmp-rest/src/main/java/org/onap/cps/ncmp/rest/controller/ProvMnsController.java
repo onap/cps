@@ -44,6 +44,7 @@ import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.ncmp.rest.provmns.ErrorResponseBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,6 +68,9 @@ public class ProvMnsController implements ProvMnS {
     private final PolicyExecutor policyExecutor;
     private final JsonObjectMapper jsonObjectMapper;
     private final OperationDetailsFactory operationDetailsFactory;
+
+    @Value("${app.ncmp.provmns.max-patch-operations:10}")
+    private Integer maxNumberOfPatchOperations;
 
     @Override
     public ResponseEntity<Object> getMoi(final HttpServletRequest httpServletRequest,
@@ -98,6 +102,10 @@ public class ProvMnsController implements ProvMnS {
     @Override
     public ResponseEntity<Object> patchMoi(final HttpServletRequest httpServletRequest,
                                            final List<PatchItem> patchItems) {
+        if (patchItems.size() > maxNumberOfPatchOperations) {
+            return errorResponseBuilder.buildErrorResponsePatch(HttpStatus.PAYLOAD_TOO_LARGE,
+               "Number of operations in request exceeds the maximum of " + maxNumberOfPatchOperations);
+        }
         final RequestPathParameters requestPathParameters =
             parameterMapper.extractRequestParameters(httpServletRequest);
         try {

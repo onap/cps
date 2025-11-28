@@ -34,7 +34,8 @@ public class ErrorResponseBuilder {
     private static final Map<HttpStatus, String> ERROR_MAP = Map.of(
         HttpStatus.NOT_FOUND, "IE_NOT_FOUND",
         HttpStatus.NOT_ACCEPTABLE, "APPLICATION_LAYER_ERROR",
-        HttpStatus.UNPROCESSABLE_ENTITY, "SERVER_LIMITATION"
+        HttpStatus.UNPROCESSABLE_ENTITY, "SERVER_LIMITATION",
+        HttpStatus.PAYLOAD_TOO_LARGE, "SERVER_LIMITATION"
     );
 
     /**

@@ -92,6 +92,9 @@ class ProvMnsControllerSpec extends Specification {
     @Value('${rest.api.provmns-base-path}')
     def provMnSBasePath
 
+    @Value('${app.ncmp.provmns.max-patch-operations:10}')
+    Integer maxNumberOfPatchOperations
+
     def 'Get resource data request where #scenario.'() {
         given: 'resource data url'
             def getUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
@@ -200,13 +203,31 @@ class ProvMnsControllerSpec extends Specification {
             inventoryPersistence.getYangModelCmHandle('cm-1') >> new YangModelCmHandle(id:'cm-1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: READY))
         and: 'policy executor throws exception (denied)'
             policyExecutor.checkPermission(*_) >> {throw new RuntimeException()}
-        when: 'put data resource request is performed'
+        when: 'patch data resource request is performed'
             def response = mvc.perform(patch(url)
                     .contentType(new MediaType('application', 'json-patch+json'))
                     .content(patchJsonBody))
                     .andReturn().response
         then: 'response status is NOT_ACCEPTABLE (406)'
             assert response.status == HttpStatus.NOT_ACCEPTABLE.value()
+    }
+
+    def 'Patch request with too many operations.'() {
+        given: 'resource data url'
+            def url = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
+        and: 'a patch request with more operations than the max allowed'
+            def patchItems = []
+            for (def i = 0; i <= maxNumberOfPatchOperations; i++) {
+                patchItems.add(new PatchItem(op: 'REMOVE', path: 'someUriLdnFirstPart'))
+            }
+           def patchItemsJsonRequestBody = jsonObjectMapper.asJsonString(patchItems)
+        when: 'patch data resource request is performed'
+            def response = mvc.perform(patch(url)
+                    .contentType(new MediaType('application', 'json-patch+json'))
+                    .content(patchItemsJsonRequestBody))
+                    .andReturn().response
+        then: 'response status is PAYLOAD_TOO_LARGE (413)'
+            assert response.status == HttpStatus.PAYLOAD_TOO_LARGE.value()
     }
 
     def 'Put resource data request where #scenario.'() {
