@@ -66,7 +66,8 @@ public class OperationDetailsFactory {
                                         requestPathParameters,
                                         patchItem));
                 case REMOVE -> operations.add(buildDeleteOperationDetails(requestPathParameters.toAlternateId()));
-                default -> log.warn("Unsupported Patch Operation Type:{}", patchItem.getOp().getValue());
+                default -> throw new ProvMnSException("UNSUPPORTED_OP",
+                    "Unsupported Patch Operation Type: " + patchItem.getOp().getValue());
             }
         }
         return new PatchOperationsDetails("Some Permission Id", "cm-legacy", operations);

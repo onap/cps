@@ -22,7 +22,8 @@ package org.onap.cps.ncmp.impl.data.policyexecutor
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.exceptions.NcmpException;
+import org.onap.cps.ncmp.api.exceptions.NcmpException
+import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
@@ -105,11 +106,10 @@ class OperationDetailsFactorySpec extends Specification {
         given: 'a provMnsRequestParameter and a patchItem list'
             def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'someClassName', id: 'someId')
             def patchItemsList = [new PatchItem(op: 'TEST', 'path':'myUriLdnFirstPart')]
-        when: 'a configurationManagementOperation is created and converted to JSON'
-            def result = objectUnderTest.buildPatchOperationDetails(path, patchItemsList)
-        then: 'the result is as expected (using json to compare)'
-            def expectedJsonString = '{"permissionId":"Some Permission Id","changeRequestFormat":"cm-legacy","operations":[]}'
-            assert expectedJsonString == jsonObjectMapper.asJsonString(result)
+        when: 'a build is attempted with an invalid op'
+            objectUnderTest.buildPatchOperationDetails(path, patchItemsList)
+        then: 'the result is as expected (exception thrown)'
+            thrown(ProvMnSException)
     }
 
     def 'Build policy executor create operation details from ProvMnS request parameters where #scenario.'() {
