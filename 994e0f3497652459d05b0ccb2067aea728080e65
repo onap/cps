@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a32b6b72_fc7d5797",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-11-28T09:04:23Z",
+      "side": 1,
+      "message": "if (!cpsDataUpdatedEvents.isEmpty()) \nthis check is not needed and can be removed",
+      "range": {
+        "startLine": 85,
+        "startChar": 16,
+        "endLine": 85,
+        "endChar": 53
+      },
+      "revId": "994e0f3497652459d05b0ccb2067aea728080e65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
