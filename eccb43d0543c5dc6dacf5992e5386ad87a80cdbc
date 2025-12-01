@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe70c751_36fef3ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-12-01T09:55:18Z",
+      "side": 1,
+      "message": "Fix copyright, otherwise looks good!",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e0c862d_8437efc9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/CmHandleQueryServiceParameters.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-12-01T09:55:18Z",
+      "side": 1,
+      "message": "Not necessary to update copyright for such a small change",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15ed7c04_9f9d9ab8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/ConditionProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-12-01T09:55:18Z",
+      "side": 1,
+      "message": "Not necessary to update copyright for such a small change",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec9049dd_e89293b2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/ConditionPropertiesSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-12-01T09:55:18Z",
+      "side": 1,
+      "message": "Not necessary to update copyright for such a small change",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddfefc26_ed1d5566",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryParametersParameterMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-12-01T09:55:18Z",
+      "side": 1,
+      "message": "Not necessary to update copyright for such a small change",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
