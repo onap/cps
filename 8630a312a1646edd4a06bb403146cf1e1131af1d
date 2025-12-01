@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8d8e6e5_4ffc175e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-12-01T09:58:26Z",
+      "side": 1,
+      "message": "One question and minor comments",
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "930ae39d_bb95cabb",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-12-01T09:58:26Z",
+      "side": 1,
+      "message": "Copyright (C) 2023-2025 Deutsche Telekom AG\nRemove Line Below",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 42
+      },
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1b8073f_e65a222e",
@@ -37,6 +77,40 @@
         "endLine": 164,
         "endChar": 47
       },
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d843320b_867dd0a8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-12-01T09:58:26Z",
+      "side": 1,
+      "message": "Copyright (C) 2023-2025 Deutsche Telekom AG\nRemove Line Below",
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0992a2a_1883fa5c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-12-01T09:58:26Z",
+      "side": 1,
+      "message": "is the formatting correct here? /test[invalid should be /test[invalid] ?",
       "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
