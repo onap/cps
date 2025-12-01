@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30f9e721_f3d5dde2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-01T08:16:44Z",
+      "side": 1,
+      "message": "minor suggestion",
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1b8073f_e65a222e",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-01T08:16:44Z",
+      "side": 1,
+      "message": "NB: to prevent NPE it is always better to swap this around ie. you know the constant will never be null:\n\nROOT_NODE_XPATH.equals(xpath)",
+      "range": {
+        "startLine": 164,
+        "startChar": 19,
+        "endLine": 164,
+        "endChar": 47
+      },
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
