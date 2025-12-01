@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e8f5f36_48c2f12d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/CmHandleQueryServiceParameters.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-01T19:39:09Z",
+      "side": 1,
+      "message": "should be changed - still in Nordix",
+      "parentUuid": "0e0c862d_8437efc9",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15ed7c04_9f9d9ab8",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-12-01T09:55:18Z",
       "side": 1,
       "message": "Not necessary to update copyright for such a small change",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3626e2c_a1e9e02b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/ConditionProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-01T19:39:09Z",
+      "side": 1,
+      "message": "should be changed - still in Nordix",
+      "parentUuid": "15ed7c04_9f9d9ab8",
       "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -69,6 +105,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb507e7d_e242a24d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/ConditionPropertiesSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-01T19:39:09Z",
+      "side": 1,
+      "message": "i disagree, the copyright is still in Nordix",
+      "parentUuid": "ec9049dd_e89293b2",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddfefc26_ed1d5566",
@@ -82,6 +136,24 @@
       "writtenOn": "2025-12-01T09:55:18Z",
       "side": 1,
       "message": "Not necessary to update copyright for such a small change",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae3b03e9_4382019f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryParametersParameterMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-01T19:39:09Z",
+      "side": 1,
+      "message": "should be changed - still in Nordix",
+      "parentUuid": "ddfefc26_ed1d5566",
       "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
