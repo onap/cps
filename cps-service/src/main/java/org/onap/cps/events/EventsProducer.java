@@ -86,34 +86,25 @@ public class EventsProducer {
         handleLegacyEventCallback(topicName, eventFuture);
     }
 
-    /**
-     * Legacy Event sender with headers. Schemas that implement LegacyEvent are eligible to use this method.
-     *
-     * @param topicName    valid topic name
-     * @param eventKey     message key
-     * @param eventHeaders event headers
-     * @param event        message payload
-     */
-    public void sendLegacyEvent(final String topicName, final String eventKey, final Headers eventHeaders,
-            final LegacyEvent event) {
-        final ProducerRecord<String, LegacyEvent> producerRecord =
-                new ProducerRecord<>(topicName, null, eventKey, event, eventHeaders);
-        final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture =
-                legacyEventKafkaTemplate.send(producerRecord);
-        handleLegacyEventCallback(topicName, eventFuture);
-    }
 
     /**
      * Legacy Event sender with headers in a Map. Schemas that implement LegacyEvent are eligible to use this method.
      *
      * @param topicName    valid topic name
      * @param eventKey     message key
-     * @param eventHeaders map of event headers
-     * @param event        message payload
+     * @param headersAsMap map of legacyEvent headers
+     * @param legacyEvent  message payload
      */
-    public void sendLegacyEvent(final String topicName, final String eventKey, final Map<String, Object> eventHeaders,
-            final LegacyEvent event) {
-        sendLegacyEvent(topicName, eventKey, convertToKafkaHeaders(eventHeaders), event);
+    public void sendLegacyEvent(final String topicName,
+                                final String eventKey,
+                                final Map<String, Object> headersAsMap,
+                                final LegacyEvent legacyEvent) {
+        final Headers headers = convertToKafkaHeaders(headersAsMap);
+        final ProducerRecord<String, LegacyEvent> producerRecord =
+            new ProducerRecord<>(topicName, null, eventKey, legacyEvent, headers);
+        final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture =
+            legacyEventKafkaTemplate.send(producerRecord);
+        handleLegacyEventCallback(topicName, eventFuture);
     }
 
     /**
@@ -129,16 +120,15 @@ public class EventsProducer {
         eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e, true));
     }
 
-
     private void handleLegacyEventCallback(final String topicName,
             final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture) {
         eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e, false));
     }
 
-    private Headers convertToKafkaHeaders(final Map<String, Object> eventMessageHeaders) {
-        final Headers eventHeaders = new RecordHeaders();
-        eventMessageHeaders.forEach((key, value) -> eventHeaders.add(key, SerializationUtils.serialize(value)));
-        return eventHeaders;
+    private Headers convertToKafkaHeaders(final Map<String, Object> headersAsMap) {
+        final Headers headers = new RecordHeaders();
+        headersAsMap.forEach((key, value) -> headers.add(key, SerializationUtils.serialize(value)));
+        return headers;
     }
 
     private static void logOutcome(final String topicName, final SendResult<String, ?> result, final Throwable e,

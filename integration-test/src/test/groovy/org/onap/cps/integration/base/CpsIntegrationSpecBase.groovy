@@ -46,6 +46,7 @@ import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncService
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
+import org.onap.cps.ncmp.impl.utils.EventDateTimeFormatter
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.repository.SchemaSetRepository
@@ -68,6 +69,7 @@ import spock.lang.Specification
 
 import java.time.Duration
 import java.time.OffsetDateTime
+import java.time.ZonedDateTime
 import java.util.concurrent.BlockingQueue
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
@@ -343,13 +345,15 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, numberOfRecordsToRead) {
         def consumerRecords = []
         def retryAttempts = 10
-        while (consumerRecords.size() < numberOfRecordsToRead) {
-            retryAttempts--
+        while (consumerRecords.size() < numberOfRecordsToRead && retryAttempts-- > 0) {
             consumerRecords.addAll(kafkaConsumer.poll(Duration.ofMillis(100)))
-            if (retryAttempts == 0)
-                break
         }
         return consumerRecords
+    }
+
+    def timestampIsVeryRecent(eventTime) {
+        def eventTimeAsOffsetDateTime = EventDateTimeFormatter.toIsoOffsetDateTime(eventTime)
+        Duration.between(eventTimeAsOffsetDateTime, ZonedDateTime.now()).seconds < 3
     }
 
 }
