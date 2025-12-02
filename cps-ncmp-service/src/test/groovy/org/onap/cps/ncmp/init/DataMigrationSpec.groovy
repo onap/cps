@@ -67,7 +67,7 @@ class DataMigrationSpec extends Specification{
             def cmHandleIds = ['ch-1', 'ch-2', 'ch-3']
             mockCmHandleQueryService.getAllCmHandleReferences(false) >> cmHandleIds
         when:   'migration is performed'
-            objectUnderTest.migrateInventoryToModelRelease20250722()
+            objectUnderTest.migrateInventoryToModelRelease20250722(3)
         then:   'handles are processed in bulk'
             1 * mockInventoryPersistence.bulkUpdateCmHandleStates({ cmHandleStateUpdates ->
                 def actualData = cmHandleStateUpdates.collect { [id: it.cmHandleId, state: it.state] }
@@ -87,7 +87,7 @@ class DataMigrationSpec extends Specification{
         and: 'an exception is thrown when getting cm handle'
             mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('faultyCmHandle') >> { throw new RuntimeException('Simulated failure') }
         when: 'migration is performed'
-            objectUnderTest.migrateInventoryToModelRelease20250722()
+            objectUnderTest.migrateInventoryToModelRelease20250722(2)
         then: 'migration processes no batches'
             1 * mockInventoryPersistence.bulkUpdateCmHandleStates([])
     }
@@ -101,7 +101,7 @@ class DataMigrationSpec extends Specification{
                 throw new RuntimeException('Simulated failure')
             }
         when: 'migration is performed'
-            objectUnderTest.migrateInventoryToModelRelease20250722()
+            objectUnderTest.migrateInventoryToModelRelease20250722(2)
         then: 'exception is caught and logged'
             def loggingEvent = logger.list[0]
             assert loggingEvent.level == Level.ERROR

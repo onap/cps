@@ -46,6 +46,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
     private static final String PREVIOUS_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
     private static final String NEW_INVENTORY_SCHEMA_SET_NAME = "dmi-registry-2025-07-22";
     private static final String INVENTORY_YANG_MODULE_NAME = "dmi-registry";
+    private static final int MIGRATION_BATCH_SIZE = 300;
 
     @Value("${ncmp.inventory.model.upgrade.r20250722.enabled:false}")
     private boolean newRevisionEnabled;
@@ -130,6 +131,6 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     private void upgradeAndMigrateInventoryModel() {
         upgradeInventoryModel();
-        dataMigration.migrateInventoryToModelRelease20250722();
+        dataMigration.migrateInventoryToModelRelease20250722(MIGRATION_BATCH_SIZE);
     }
 }

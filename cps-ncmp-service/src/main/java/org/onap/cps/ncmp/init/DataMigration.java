@@ -38,7 +38,6 @@ import org.springframework.stereotype.Component;
 public class DataMigration {
 
     public final InventoryPersistence inventoryPersistence;
-    protected int batchSize = 300;
     private final CmHandleQueryService cmHandleQueryService;
     private final NetworkCmProxyInventoryFacade networkCmProxyInventoryFacade;
 
@@ -47,7 +46,7 @@ public class DataMigration {
      * Migration of CompositeState CmHandleState into a new top level attribute.
      * One off migration job.
      */
-    public void migrateInventoryToModelRelease20250722() {
+    public void migrateInventoryToModelRelease20250722(final int batchSize) {
         log.info("Inventory data migration started");
         final List<String> cmHandleIds = new ArrayList<>(cmHandleQueryService.getAllCmHandleReferences(false));
         log.info("Number of cm handles to process {}", cmHandleIds.size());
