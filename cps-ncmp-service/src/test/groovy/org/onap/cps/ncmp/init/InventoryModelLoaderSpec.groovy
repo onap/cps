@@ -85,13 +85,6 @@ class InventoryModelLoaderSpec extends Specification {
         applicationContext.close()
     }
 
-    def callPrivatePerformInventoryDataMigration() {
-        def method = objectUnderTest.class.getDeclaredMethod('upgradeAndMigrateInventoryModel')
-        method.accessible = true
-        method.invoke(objectUnderTest)
-    }
-
-
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use with default newRevisionEnabled flag'
             objectUnderTest.newRevisionEnabled = false
@@ -156,9 +149,9 @@ class InventoryModelLoaderSpec extends Specification {
 
     def "Perform inventory data migration to Release20250722"() {
         when: 'the migration is performed'
-            callPrivatePerformInventoryDataMigration()
+            objectUnderTest.upgradeAndMigrateInventoryModel()
         then: 'the call is delegated to the Data Migration service'
-            1 * mockDataMigration.migrateInventoryToModelRelease20250722()
+            1 * mockDataMigration.migrateInventoryToModelRelease20250722(_)
     }
 
 
