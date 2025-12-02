@@ -68,8 +68,9 @@ public class LcmEventsProducer {
      * @param lcmEventHeader Optional headers associated with the LCM event
      */
     public void sendLcmEvent(final String cmHandleId, final LcmEvent lcmEvent, final LcmEventHeader lcmEventHeader) {
-
         if (notificationsEnabled) {
+            lcmEventHeader.setEventId(lcmEvent.getEventId());
+            lcmEventHeader.setEventTime(lcmEvent.getEventTime());
             final Timer.Sample timerSample = Timer.start(meterRegistry);
             try {
                 @SuppressWarnings("unchecked")

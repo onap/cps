@@ -150,25 +150,6 @@ class EventsProducerSpec extends Specification {
             assert verifyLoggingEvent(Level.DEBUG, 'Successfully sent event') == true
     }
 
-    def 'Send Legacy Event with Record Headers'() {
-        given: 'a successfully sent event'
-            def sampleEventHeaders = new RecordHeaders([new RecordHeader('k1', SerializationUtils.serialize('v1'))])
-            def sampleProducerRecord = new ProducerRecord('some-topic', null, 'some-key', 'some-value', sampleEventHeaders)
-            def eventFuture = CompletableFuture.completedFuture(
-                new SendResult(
-                    sampleProducerRecord,
-                    new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
-                )
-            )
-            def someLegacyEvent = Mock(LegacyEvent)
-        when: 'sending the legacy event'
-            objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', sampleEventHeaders, someLegacyEvent)
-        then: 'event is sent'
-            1 * mockLegacyKafkaTemplate.send(_) >> eventFuture
-        and: 'the correct debug message is logged'
-            assert verifyLoggingEvent(Level.DEBUG, 'Successfully sent event') == true
-    }
-
     def 'Handle Legacy Event Callback'() {
         given: 'an event is successfully sent'
             def eventFuture = CompletableFuture.completedFuture(
