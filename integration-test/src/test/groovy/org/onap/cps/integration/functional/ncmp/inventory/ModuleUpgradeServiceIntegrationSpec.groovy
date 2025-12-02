@@ -60,7 +60,9 @@ class ModuleUpgradeServiceIntegrationSpec extends FunctionalSpecBase {
             def newYangContent = readResourceDataFile('inventory/dmi-registry@2025-07-22.yang')
             def newYangResourceContentPerName = ["dmi-registry@2025-07-22.yang": newYangContent]
         then: 'The schema set is upgraded with the new module revision'
-            cpsModulePersistenceService.createSchemaSet('NCMP-Admin', 'dmi-registry-2025-07-22', newYangResourceContentPerName)
+            if (!cpsModulePersistenceService.schemaSetExists('NCMP-Admin', 'dmi-registry-2025-07-22')) {
+                    cpsModulePersistenceService.createSchemaSet('NCMP-Admin', 'dmi-registry-2025-07-22', newYangResourceContentPerName)
+            }
             cpsAnchorService.updateAnchorSchemaSet('NCMP-Admin','ncmp-dmi-registry','dmi-registry-2025-07-22')
         when: 'that state gets updated to a different value'
             final Collection<DataNode> cmHandleDataNodes = inventoryPersistence.getCmHandleDataNodeByCmHandleId('ch-1', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
