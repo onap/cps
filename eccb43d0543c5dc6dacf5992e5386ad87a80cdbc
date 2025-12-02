@@ -123,6 +123,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a2ededc_b31044de",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/ConditionPropertiesSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-02T11:11:51Z",
+      "side": 1,
+      "message": "as discussed the copyright does not HAVE TO Be changed for files that only have been automatically touched by the IDE\nBUT if you DO update the copyright is does need to have the correct format\n\nSuggestion: try using AI automatically change the copyright in all the changed files :-) I just tried this and it seems to work but I didnt need any changes:\n1) can you tell me all the changes files in my project\n(it ran a git command)\n2) is the copyright up to date in all those files\nANSWER: Yes, all copyright headers are up to date with 2025 in all the changed files:",
+      "parentUuid": "cb507e7d_e242a24d",
+      "revId": "eccb43d0543c5dc6dacf5992e5386ad87a80cdbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddfefc26_ed1d5566",
