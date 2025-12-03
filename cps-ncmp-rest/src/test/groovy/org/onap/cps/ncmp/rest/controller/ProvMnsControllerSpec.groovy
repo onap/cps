@@ -201,8 +201,8 @@ class ProvMnsControllerSpec extends Specification {
             alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/someUriLdnFirstPart/someClassName=someId', "/") >> 'cm-1'
         and: 'persistence service returns valid yangModelCmHandle'
             inventoryPersistence.getYangModelCmHandle('cm-1') >> new YangModelCmHandle(id:'cm-1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: READY))
-        and: 'policy executor throws exception (denied)'
-            policyExecutor.checkPermission(*_) >> {throw new RuntimeException()}
+        and: 'the permission is denied'
+            operationDetailsFactory.checkPermissionForEachPatchItem(*_) >> {throw new RuntimeException()}
         when: 'patch data resource request is performed'
             def response = mvc.perform(patch(url)
                     .contentType(new MediaType('application', 'json-patch+json'))

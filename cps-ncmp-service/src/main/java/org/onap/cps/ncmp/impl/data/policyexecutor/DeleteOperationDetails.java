@@ -20,4 +20,10 @@
 
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-public record DeleteOperationDetails(String operationType, String targetIdentifier) {}
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record DeleteOperationDetails(
+        String operation,
+        String targetIdentifier
+) implements OperationDetails {}

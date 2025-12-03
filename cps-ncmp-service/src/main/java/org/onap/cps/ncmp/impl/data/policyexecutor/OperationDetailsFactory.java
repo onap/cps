@@ -24,7 +24,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -44,33 +44,43 @@ public class OperationDetailsFactory {
 
     private static final String ATTRIBUTE_NAME_SEPARATOR = "/";
     private static final String REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS = "(^/)|(/$)";
+    private static final String NO_AUTHORIZATION = null;
+    private static final String UNSUPPORTED_OPERATION = "UNSUPPORTED_OP";
 
     private final JsonObjectMapper jsonObjectMapper;
     private final ObjectMapper objectMapper;
+    private final PolicyExecutor policyExecutor;
 
     /**
-     * Build a PatchOperationDetails object from ProvMnS request details.
+     * Build an operation details object from ProvMnS request details and send it to Policy Executor.
      *
      * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
      * @param patchItems               provided request list of patch Items
-     * @return CreateOperationDetails object
+     * @param yangModelCmHandle        representation of the cm handle to check
      */
-    public PatchOperationsDetails buildPatchOperationDetails(final RequestPathParameters requestPathParameters,
-                                                             final List<PatchItem> patchItems) {
-        final List<Object> operations = new ArrayList<>(patchItems.size());
+    public void checkPermissionForEachPatchItem(final RequestPathParameters requestPathParameters,
+                                                final List<PatchItem> patchItems,
+                                                final YangModelCmHandle yangModelCmHandle) {
+        OperationDetails operation;
         for (final PatchItem patchItem : patchItems) {
             switch (patchItem.getOp()) {
-                case ADD -> operations.add(buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
-                                        patchItem.getValue()));
-                case REPLACE -> operations.add(buildCreateOperationDetailsForUpdate(OperationType.UPDATE,
-                                        requestPathParameters,
-                                        patchItem));
-                case REMOVE -> operations.add(buildDeleteOperationDetails(requestPathParameters.toAlternateId()));
-                default -> throw new ProvMnSException("UNSUPPORTED_OP",
-                    "Unsupported Patch Operation Type: " + patchItem.getOp().getValue());
+                case ADD -> operation = buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
+                        patchItem.getValue());
+                case REPLACE -> operation = buildCreateOperationDetailsForUpdate(OperationType.UPDATE,
+                        requestPathParameters,
+                        patchItem);
+                case REMOVE -> operation = buildDeleteOperationDetails(requestPathParameters.toAlternateId());
+                default -> throw new ProvMnSException(UNSUPPORTED_OPERATION,
+                        "Unsupported Patch Operation Type: " + patchItem.getOp().getValue());
             }
+
+            policyExecutor.checkPermission(yangModelCmHandle,
+                    OperationType.fromOperationName(operation.operation()),
+                    NO_AUTHORIZATION,
+                    requestPathParameters.toAlternateId(),
+                    jsonObjectMapper.asJsonString(operation)
+            );
         }
-        return new PatchOperationsDetails("Some Permission Id", "cm-legacy", operations);
     }
 
     /**

@@ -20,6 +20,6 @@
 
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-import java.util.List;
-
-public record PatchOperationsDetails (String permissionId, String changeRequestFormat, List<Object> operations) {}
+public interface OperationDetails {
+    String operation();
+}

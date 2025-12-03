@@ -23,7 +23,8 @@ package org.onap.cps.ncmp.impl.data.policyexecutor
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
-import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
+import org.onap.cps.ncmp.api.exceptions.ProvMnSException
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
@@ -31,61 +32,122 @@ import org.onap.cps.utils.JsonObjectMapper;
 import spock.lang.Specification;
 
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
+import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE;
+import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
 
 class OperationDetailsFactorySpec extends Specification {
 
     def spiedObjectMapper = Spy(ObjectMapper)
     def jsonObjectMapper = new JsonObjectMapper(spiedObjectMapper)
+    def policyExecutor = Mock(PolicyExecutor)
 
-    OperationDetailsFactory objectUnderTest = new OperationDetailsFactory(jsonObjectMapper, spiedObjectMapper)
+    OperationDetailsFactory objectUnderTest = new OperationDetailsFactory(jsonObjectMapper, spiedObjectMapper, policyExecutor)
 
     static def complexValueAsResource = new ResourceOneOf(id: 'myId', attributes: ['myAttribute1:myValue1', 'myAttribute2:myValue2'], objectClass: 'myClassName')
     static def simpleValueAsResource = new ResourceOneOf(id: 'myId', attributes: ['simpleAttribute:1'], objectClass: 'myClassName')
+    static def yangModelCmHandle = new YangModelCmHandle(id: 'someId')
 
-
-    def 'Build policy executor patch operation details from ProvMnS request parameters where #scenario.'() {
-        given: 'a provMnsRequestParameter and a patchItem list'
+    def 'Build create operation details with all properties'() {
+        given: 'request parameters and resource'
             def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'classNameInUri', id: 'myId')
-            def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['someAttribute1:someValue1', 'someAttribute2:someValue2'], objectClass: classNameInBody)
-            def patchItemsList = [new PatchItem(op: 'ADD', 'path':'myUriLdnFirstPart', value: resource), new PatchItem(op: 'REPLACE', 'path':'myUriLdnFirstPart', value: resource), new PatchItem(op: 'REMOVE', 'path':'myUriLdnFirstPart'),]
-        when: 'patch operation details are created'
-            def result = objectUnderTest.buildPatchOperationDetails(path, patchItemsList)
-        then: 'the result contain 3 operations of the correct types in the correct order'
-            result.operations.size() == 3
-        and: 'note that Add and Replace both are defined using Create Operation Details'
-            assert result.operations[0] instanceof CreateOperationDetails
-            assert result.operations[1] instanceof CreateOperationDetails
-            assert result.operations[2] instanceof DeleteOperationDetails
-        and: 'the add operation target identifier is just the uri first part'
-            assert result.operations[0]['targetIdentifier'] == 'myUriLdnFirstPart'
-        and: 'the replace operation target identifier is just the uri first part'
-            assert result.operations[1]['targetIdentifier'] == 'myUriLdnFirstPart'
-        and: 'the replace change request has the correct class name'
-            assert result.operations[1].changeRequest.keySet()[0] == expectedChangeRequestKey
-        and: 'the delete operation target identifier includes the target class and id'
-            assert result.operations[2]['targetIdentifier'] == 'myUriLdnFirstPart/classNameInUri=myId'
-        where: 'the following class names are used in the body'
+            def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['attr1:val1'], objectClass: 'myClass')
+        when: 'create operation details are built'
+            def result = objectUnderTest.buildCreateOperationDetails(CREATE, path, resource)
+        then: 'all details are correct'
+            result.targetIdentifier == 'myUriLdnFirstPart'
+            result.changeRequest.keySet()[0] == 'myClass'
+            result.changeRequest['myClass'][0].id == 'myId'
+    }
+
+    def 'Build replace operation details with all properties where #scenario'() {
+        given: 'request parameters and resource'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'classNameInUri', id: 'myId')
+            def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['attr1:val1'], objectClass: classNameInBody)
+        when: 'replace operation details are built'
+            def result = objectUnderTest.buildCreateOperationDetails(CREATE, path, resource)
+        then: 'all details are correct'
+            result.targetIdentifier == 'myUriLdnFirstPart'
+            result.changeRequest.keySet()[0] == expectedChangeRequestKey
+        where:
             scenario                          | classNameInBody || expectedChangeRequestKey
             'class name in body is populated' | 'myClass'       || 'myClass'
-            'class name in body  is empty'    | ''              || 'classNameInUri'
-            'class name in body  is null'     | null            || 'classNameInUri'
+            'class name in body is empty'     | ''              || 'classNameInUri'
+            'class name in body is null'      | null            || 'classNameInUri'
+    }
+
+    def 'Build delete operation details with all properties'() {
+        given: 'request parameters'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'classNameInUri', id: 'myId')
+        when: 'delete operation details are built'
+            def result = objectUnderTest.buildDeleteOperationDetails(path.toAlternateId())
+        then: 'all details are correct'
+            assert result.targetIdentifier == 'myUriLdnFirstPart/classNameInUri=myId'
+    }
+
+    def 'Single patch operation with #operationType checks correct operation type'() {
+        given: 'request parameters and single patch item'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'classNameInUri', id: 'myId')
+            def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['attr1:val1'], objectClass: 'myClass')
+            def patchItemsList = [new PatchItem(op: operationType, 'path':'myUriLdnFirstPart', value: resource)]
+        when: 'patch operation is processed'
+            objectUnderTest.checkPermissionForEachPatchItem(path, patchItemsList, yangModelCmHandle)
+        then: 'policy executor is called with correct operation type'
+            1 * policyExecutor.checkPermission(yangModelCmHandle, expectedOperationType, _, _, _)
+        where:
+            operationType | expectedOperationType
+            'ADD'         | CREATE
+            'REPLACE'     | UPDATE
+    }
+
+    def 'Single patch operation with REMOVE checks correct operation type'() {
+        given: 'request parameters and single remove patch item'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'classNameInUri', id: 'myId')
+            def patchItemsList = [new PatchItem(op: 'REMOVE', 'path':'myUriLdnFirstPart')]
+        when: 'patch operation is processed'
+            objectUnderTest.checkPermissionForEachPatchItem(path, patchItemsList, yangModelCmHandle)
+        then: 'policy executor is called with DELETE operation type'
+            1 * policyExecutor.checkPermission(yangModelCmHandle, DELETE, _, _, _)
+    }
+
+    def 'Multiple patch operations invoke policy executor correct number of times in order'() {
+        given: 'request parameters and multiple patch items'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'classNameInUri', id: 'myId')
+            def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['attr1:val1'], objectClass: 'myClass')
+            def patchItemsList = [
+                new PatchItem(op: 'ADD', 'path':'myUriLdnFirstPart', value: resource),
+                new PatchItem(op: 'REPLACE', 'path':'myUriLdnFirstPart', value: resource),
+                new PatchItem(op: 'REMOVE', 'path':'myUriLdnFirstPart')
+            ]
+        when: 'patch operations are processed'
+            objectUnderTest.checkPermissionForEachPatchItem(path, patchItemsList, yangModelCmHandle)
+        then: 'policy executor is called 3 times with correct operation types in order'
+            1 * policyExecutor.checkPermission(yangModelCmHandle, CREATE, _, _, _)
+            1 * policyExecutor.checkPermission(yangModelCmHandle, UPDATE, _, _, _)
+            1 * policyExecutor.checkPermission(yangModelCmHandle, DELETE, _, _, _)
     }
 
     def 'Build policy executor patch operation details with single replace operation and #scenario.'() {
         given: 'a requestParameter and a patchItem list'
             def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'myClassName', id: 'myId')
             def pathItems = [new PatchItem(op: 'REPLACE', 'path':"myUriLdnFirstPart${suffix}", value: value)]
-        when: 'patch operation details are created'
-            def result = objectUnderTest.buildPatchOperationDetails(path, pathItems)
-        then: 'the result has the correct type'
-            assert result instanceof PatchOperationsDetails
-        and: 'the change request contains the correct attributes value'
-            assert result.operations[0]['changeRequest']['myClassName'][0]['attributes'].toString() == attributesValueInOperation
+        when: 'patch operation details are checked'
+            objectUnderTest.checkPermissionForEachPatchItem(path, pathItems, yangModelCmHandle)
+        then: 'policyExecutor is called with correct payload'
+            1 * policyExecutor.checkPermission(
+                    yangModelCmHandle,
+                    UPDATE,
+                    null,
+                    path.toAlternateId(),
+                    { String json ->
+                        // check for more details eg. verify type
+                        assert json.contains(attributesValueInOperation)
+                    }
+            )
         where: 'attributes are set using # or resource'
             scenario                           | suffix                         | value                  || attributesValueInOperation
-            'set simple value using #'         | '#/attributes/simpleAttribute' | 1                      || '[simpleAttribute:1]'
-            'set simple value using resource'  | ''                             | simpleValueAsResource  || '[simpleAttribute:1]'
-            'set complex value using resource' | ''                             | complexValueAsResource || '[myAttribute1:myValue1, myAttribute2:myValue2]'
+            'set simple value using #'         | '#/attributes/simpleAttribute' | 1                      || '{"simpleAttribute":1}'
+            'set simple value using resource'  | ''                             | simpleValueAsResource  || '["simpleAttribute:1"]'
+            'set complex value using resource' | ''                             | complexValueAsResource || '["myAttribute1:myValue1","myAttribute2:myValue2"]'
     }
 
     def 'Build an attribute map with different depths of hierarchy with #scenario.'() {
@@ -107,7 +169,7 @@ class OperationDetailsFactorySpec extends Specification {
             def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'someClassName', id: 'someId')
             def patchItemsList = [new PatchItem(op: 'TEST', 'path':'myUriLdnFirstPart')]
         when: 'a build is attempted with an invalid op'
-            objectUnderTest.buildPatchOperationDetails(path, patchItemsList)
+            objectUnderTest.checkPermissionForEachPatchItem(path, patchItemsList, yangModelCmHandle)
         then: 'the result is as expected (exception thrown)'
             thrown(ProvMnSException)
     }
