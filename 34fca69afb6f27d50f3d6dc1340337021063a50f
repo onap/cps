@@ -70,6 +70,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3107c1_d3812364",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-12-03T15:26:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4c7aa1e5_70d734b2",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c7bf405_40ca71d0",
