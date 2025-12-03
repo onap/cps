@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d1c8ca5_7a3bae4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-12-03T14:18:08Z",
+      "side": 1,
+      "message": "some minor comments.",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "114c7da7_4598fdd8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-12-03T14:18:08Z",
+      "side": 1,
+      "message": "missing ; at the end",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c7bf405_40ca71d0",
@@ -43,6 +77,91 @@
         "endLine": 33,
         "endChar": 17
       },
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0470cfce_ed88da1f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-12-03T14:18:08Z",
+      "side": 1,
+      "message": "ends with .",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7678d9c_53435bfc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-12-03T14:18:08Z",
+      "side": 1,
+      "message": "should starts with lower-case",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e0f2b4_bd2a9dfa",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-12-03T14:18:08Z",
+      "side": 1,
+      "message": "should starts with lower-case",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3be72a4b_6ed72ec5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-12-03T14:18:08Z",
+      "side": 1,
+      "message": "should starts with lower-case",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53137841_1be49079",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-12-03T14:18:08Z",
+      "side": 1,
+      "message": "should starts with lower-case",
       "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
