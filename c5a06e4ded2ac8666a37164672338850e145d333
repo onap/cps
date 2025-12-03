@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d400576_bd709b58",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T11:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d43c320_fbc61631",
+      "range": {
+        "startLine": 38,
+        "startChar": 3,
+        "endLine": 38,
+        "endChar": 83
+      },
+      "revId": "c5a06e4ded2ac8666a37164672338850e145d333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e6c1f42_b16ca8e3",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec0887bc_b565797a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T11:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e6c1f42_b16ca8e3",
+      "range": {
+        "startLine": 43,
+        "startChar": 16,
+        "endLine": 43,
+        "endChar": 109
+      },
+      "revId": "c5a06e4ded2ac8666a37164672338850e145d333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0d53c63_ce5f4f0d",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-12-03T08:31:47Z",
       "side": 1,
       "message": "Install the latest version of inventory model id needed",
+      "range": {
+        "startLine": 62,
+        "startChar": 15,
+        "endLine": 62,
+        "endChar": 70
+      },
+      "revId": "c5a06e4ded2ac8666a37164672338850e145d333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a10cbeb4_867a91d3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T11:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0d53c63_ce5f4f0d",
       "range": {
         "startLine": 62,
         "startChar": 15,
