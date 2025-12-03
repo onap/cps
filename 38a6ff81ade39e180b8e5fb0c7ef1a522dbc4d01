@@ -16,6 +16,29 @@
       "message": "Nothing overly objectionable there",
       "revId": "38a6ff81ade39e180b8e5fb0c7ef1a522dbc4d01",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec91139a_2c40978c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleCreateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-03T10:37:59Z",
+      "side": 1,
+      "message": "nice , this is new to me",
+      "range": {
+        "startLine": 230,
+        "startChar": 7,
+        "endLine": 230,
+        "endChar": 21
+      },
+      "revId": "38a6ff81ade39e180b8e5fb0c7ef1a522dbc4d01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
