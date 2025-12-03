@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13d63ffa_94c7df5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T15:22:30Z",
+      "side": 1,
+      "message": "Not going to fix this class in this commit as it is not part of the functionality I am trying to test. I will make a new ticket to clean this class up because I believe it is breaking a few Spock guidelines.",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "114c7da7_4598fdd8",
@@ -31,6 +48,24 @@
       "writtenOn": "2025-12-03T14:18:08Z",
       "side": 1,
       "message": "missing ; at the end",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c7aa1e5_70d734b2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T15:22:30Z",
+      "side": 1,
+      "message": "Not needed with groovy",
+      "parentUuid": "114c7da7_4598fdd8",
       "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -98,6 +133,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b1c775e_ad5e8189",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T15:22:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0470cfce_ed88da1f",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7678d9c_53435bfc",
@@ -111,6 +164,24 @@
       "writtenOn": "2025-12-03T14:18:08Z",
       "side": 1,
       "message": "should starts with lower-case",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09e44141_4a9fcdc2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T15:22:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7678d9c_53435bfc",
       "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -132,6 +203,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76676431_3625de28",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T15:22:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "16e0f2b4_bd2a9dfa",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3be72a4b_6ed72ec5",
@@ -149,6 +238,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4415c102_6192a9e7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T15:22:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3be72a4b_6ed72ec5",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53137841_1be49079",
@@ -162,6 +269,24 @@
       "writtenOn": "2025-12-03T14:18:08Z",
       "side": 1,
       "message": "should starts with lower-case",
+      "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d73239b_2f1737bc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T15:22:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "53137841_1be49079",
       "revId": "34fca69afb6f27d50f3d6dc1340337021063a50f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
