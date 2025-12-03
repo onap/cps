@@ -431,12 +431,33 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'the webinfo (container) is updated'
             json = '{"webinfo": {"domain-name":"newdomain.com" ,"contact-email":"info@newdomain.com" }}'
             objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', json, now, ContentType.JSON)
-        then: 'webinfo has been updated with teh new details'
+        then: 'webinfo has been updated with the new details'
             def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/webinfo', DIRECT_CHILDREN_ONLY)
             result.leaves.'domain-name'[0] == 'newdomain.com'
             result.leaves.'contact-email'[0] == 'info@newdomain.com'
         cleanup:
             restoreBookstoreDataAnchor(1)
+    }
+
+    def 'Update list items.'() {
+        given: 'list of books'
+            def json = '{"books": [ {"title":"Existing Book", "lang":"English"}, {"title":"Another existing book", "lang":"French"} ] }'
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2 , '/bookstore/categories[@code=\'1\']', json, now, ContentType.JSON)
+        when: 'the books list is updated'
+            json = '{"books": [ {"title":"Existing Book", "lang":"German"}, {"title":"A new book", "lang":"Hindi"} ] }'
+            objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, '/bookstore/categories[@code=\'1\']', json, now, ContentType.JSON)
+        then: 'the expected number of updated books are retrieved'
+            def result = objectUnderTest.getDataNodesForMultipleXpaths(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, ['/bookstore/categories[@code=\'1\']/books[@title="Existing Book"]', '/bookstore/categories[@code=\'1\']/books[@title="A new book"]', '/bookstore/categories[@code=\'1\']/books[@title="Another existing book"]'], DIRECT_CHILDREN_ONLY)
+            assert result.size() == 2
+        and: 'the updated books have expected xpaths'
+            def xpaths = result*.xpath
+            assert xpaths.containsAll(["/bookstore/categories[@code='1']/books[@title='A new book']", "/bookstore/categories[@code='1']/books[@title='Existing Book']"])
+        and: 'the updated book has expected leaf value'
+            result[1].leaves['lang'] == 'German'
+        and: 'the book that was removed in the update payload is no longer present'
+            assert result.every { it.xpath != "/bookstore/categories[@code='1']/books[@title='Another existing book']" }
+        cleanup:
+            restoreBookstoreDataAnchor(2)
     }
 
     def 'Update bookstore top-level container data node.'() {
