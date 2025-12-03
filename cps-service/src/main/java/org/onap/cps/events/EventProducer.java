@@ -36,18 +36,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.SerializationUtils;
 
 /**
- * EventsProducer to send events.
+ * EventProducer to send events.
  */
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EventsProducer {
+public class EventProducer {
 
     /**
      * KafkaTemplate for legacy (non-cloud) events.
-     * Note: Cloud events should be used. This will be addressed as part of  <a
-     * href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
+     * Note: Cloud events should be used. This will be addressed as part of
+     * <a href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
      */
     @Qualifier("legacyEventKafkaTemplate")
     private final KafkaTemplate<String, LegacyEvent> legacyEventKafkaTemplate;

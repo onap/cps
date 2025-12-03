@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.datajobs.subscription.dmi
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.v1.CloudEventBuilder
-import org.onap.cps.events.EventsProducer
+import org.onap.cps.events.EventProducer
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.CmHandle
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.Data
@@ -31,16 +31,14 @@ import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscript
 import org.onap.cps.ncmp.utils.events.CloudEventMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
-@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper, CloudEventBuilder])
-@ContextConfiguration(classes = [CpsApplicationContext])
+@SpringBootTest(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper, CloudEventBuilder])
 class EventProducerSpec extends Specification {
 
-    def mockEventsProducer = Mock(EventsProducer)
+    def mockEventProducer = Mock(EventProducer)
 
-    def objectUnderTest = new EventProducer(mockEventsProducer)
+    def objectUnderTest = new DmiEventProducer(mockEventProducer)
 
     def 'Create and Send Cm Notification Subscription DMI In Event'() {
         given: 'a cm subscription for a dmi plugin'
@@ -53,7 +51,7 @@ class EventProducerSpec extends Specification {
         when: 'the event is sent'
             objectUnderTest.send(subscriptionId, dmiPluginName, eventType, dmiInEvent)
         then: 'the event contains the required attributes'
-            1 * mockEventsProducer.sendCloudEvent(_, _, _) >> {
+            1 * mockEventProducer.sendCloudEvent(_, _, _) >> {
                 args ->
                     {
                         assert args[0] == 'dmiplugin-test-topic'

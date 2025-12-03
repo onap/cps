@@ -20,12 +20,9 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp
 
-import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED
-import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.REJECTED
-
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector
+import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.DmiEventProducer
 import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.DmiInEventMapper
-import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.EventProducer
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent
 import org.onap.cps.ncmp.impl.datajobs.subscription.utils.CmDataJobSubscriptionPersistenceService
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
@@ -34,11 +31,14 @@ import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.impl.utils.JexParser
 import spock.lang.Specification
 
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.REJECTED
+
 class CmSubscriptionHandlerImplSpec extends Specification {
 
     def mockCmSubscriptionPersistenceService = Mock(CmDataJobSubscriptionPersistenceService)
     def mockDmiInEventMapper = Mock(DmiInEventMapper)
-    def mockDmiInEventProducer = Mock(EventProducer)
+    def mockDmiInEventProducer = Mock(DmiEventProducer)
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
 

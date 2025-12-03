@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.events.EventsProducer;
+import org.onap.cps.events.EventProducer;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Data;
@@ -38,7 +38,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class InventoryEventProducer {
 
-    private final EventsProducer eventsProducer;
+    private final EventProducer eventProducer;
 
     @Value("${app.ncmp.avc.inventory-events-topic}")
     private String ncmpInventoryEventsTopicName;
@@ -61,7 +61,7 @@ public class InventoryEventProducer {
                                                  .build()
                                                  .asCloudEvent();
 
-        eventsProducer.sendCloudEvent(ncmpInventoryEventsTopicName, eventKey, avcCloudEvent);
+        eventProducer.sendCloudEvent(ncmpInventoryEventsTopicName, eventKey, avcCloudEvent);
     }
 
     private AvcEvent buildAvcEvent(final String attributeName,

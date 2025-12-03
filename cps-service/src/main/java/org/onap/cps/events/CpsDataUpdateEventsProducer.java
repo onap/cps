@@ -43,7 +43,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CpsDataUpdateEventsProducer {
 
-    private final EventsProducer eventsProducer;
+    private final EventProducer eventProducer;
 
     private final CpsNotificationService cpsNotificationService;
 
@@ -75,7 +75,7 @@ public class CpsDataUpdateEventsProducer {
             final CloudEvent cpsDataUpdatedEventAsCloudEvent =
                     CpsEvent.builder().type(CpsDataUpdatedEvent.class.getTypeName()).data(cpsDataUpdatedEvent)
                             .extensions(extensions).build().asCloudEvent();
-            eventsProducer.sendCloudEvent(topicName, updateEventId, cpsDataUpdatedEventAsCloudEvent);
+            eventProducer.sendCloudEvent(topicName, updateEventId, cpsDataUpdatedEventAsCloudEvent);
         } else {
             log.debug("State of Overall Notifications : {} and Cps Change Event Notifications : {}",
                     notificationsEnabled, cpsChangeEventNotificationsEnabled);

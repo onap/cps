@@ -21,8 +21,7 @@
 package org.onap.cps.ncmp.utils.events
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.cloudevents.CloudEvent
-import org.onap.cps.events.EventsProducer
+import org.onap.cps.events.EventProducer
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent
@@ -32,8 +31,8 @@ import org.springframework.test.context.ContextConfiguration
 @ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
 class InventoryEventProducerSpec extends MessagingBaseSpec {
 
-    def mockEventsProducer = Mock(EventsProducer)
-    def objectUnderTest = new InventoryEventProducer(mockEventsProducer)
+    def mockEventProducer = Mock(EventProducer)
+    def objectUnderTest = new InventoryEventProducer(mockEventProducer)
 
     def 'Send an attribute value change event'() {
         given: 'the event key'
@@ -47,7 +46,7 @@ class InventoryEventProducerSpec extends MessagingBaseSpec {
         when: 'an attribute value change event is sent'
             objectUnderTest.sendAvcEvent(someEventKey, someAttributeName, someOldAttributeValue, someNewAttributeValue)
         then: 'the cloud event producer is invoked with the correct data'
-            1 * mockEventsProducer.sendCloudEvent(_, someEventKey,
+            1 * mockEventProducer.sendCloudEvent(_, someEventKey,
                 cloudEvent -> {
                     def actualAvcs = CloudEventMapper.toTargetEvent(cloudEvent, AvcEvent.class).data.attributeValueChange
                     def expectedAvc = new Avc(attributeName: someAttributeName,

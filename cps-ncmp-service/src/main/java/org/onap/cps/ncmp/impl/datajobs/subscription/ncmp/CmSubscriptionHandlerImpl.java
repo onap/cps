@@ -32,8 +32,8 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector;
+import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.DmiEventProducer;
 import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.DmiInEventMapper;
-import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.EventProducer;
 import org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus;
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent;
 import org.onap.cps.ncmp.impl.datajobs.subscription.utils.CmDataJobSubscriptionPersistenceService;
@@ -52,7 +52,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
 
     private final CmDataJobSubscriptionPersistenceService cmDataJobSubscriptionPersistenceService;
     private final DmiInEventMapper dmiInEventMapper;
-    private final EventProducer eventProducer;
+    private final DmiEventProducer dmiEventProducer;
     private final InventoryPersistence inventoryPersistence;
     private final AlternateIdMatcher alternateIdMatcher;
 
@@ -134,7 +134,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
 
             final DataJobSubscriptionDmiInEvent dmiInEvent;
             dmiInEvent = buildDmiInEvent(cmHandleIdsAndDataNodeSelectors, dataSelector);
-            eventProducer.send(subscriptionId, dmiServiceName, eventType, dmiInEvent);
+            dmiEventProducer.send(subscriptionId, dmiServiceName, eventType, dmiInEvent);
         }
     }
 
