@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b539a17_095b36ed",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T13:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e65466a_bfde43b1",
+      "range": {
+        "startLine": 38,
+        "startChar": 34,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "86ecb93b6ea678208cf413cdf6d488bd632a5fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d073b89d_6e585c95",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c957294_73960b5d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T13:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d073b89d_6e585c95",
+      "range": {
+        "startLine": 47,
+        "startChar": 43,
+        "endLine": 47,
+        "endChar": 56
+      },
+      "revId": "86ecb93b6ea678208cf413cdf6d488bd632a5fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ad9df45_ad19c086",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-12-03T13:02:32Z",
       "side": 1,
       "message": "technically the same but I think more easy to read like so:\nassert someCmHandle.getCmHandleStatus() \u003d\u003d \u0027READY\u0027\nassert someCmHandle.getCompositeState().getCmHandleState().name() \u003d\u003d \u0027READY\u0027",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 117
+      },
+      "revId": "86ecb93b6ea678208cf413cdf6d488bd632a5fcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e8d3c76_5c5a3583",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-03T13:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ad9df45_ad19c086",
       "range": {
         "startLine": 50,
         "startChar": 16,
