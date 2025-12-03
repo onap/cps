@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c02057e_ae1e2f7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-03T13:05:02Z",
+      "side": 1,
+      "message": "no blockign issues but a few suggestions, can you let us know if you want to do them (in this pacth) or not ie answer those comments then I can decide to merge this or a next patch",
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "930ae39d_bb95cabb",
