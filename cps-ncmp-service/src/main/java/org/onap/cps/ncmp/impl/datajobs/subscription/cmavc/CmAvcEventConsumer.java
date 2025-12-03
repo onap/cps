@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.header.Headers;
-import org.onap.cps.events.EventsProducer;
+import org.onap.cps.events.EventProducer;
 import org.onap.cps.ncmp.events.avc1_0_0.AvcEvent;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,7 +52,7 @@ public class CmAvcEventConsumer {
     @Value("${app.ncmp.avc.cm-events-topic}")
     private String cmEventsTopicName;
 
-    private final EventsProducer eventsProducer;
+    private final EventProducer eventProducer;
     private final CmAvcEventService cmAvcEventService;
     private final InventoryPersistence inventoryPersistence;
 
@@ -76,7 +76,7 @@ public class CmAvcEventConsumer {
         final String outgoingAvcEventKey = cmAvcEventAsConsumerRecord.key();
 
         log.debug("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
-        eventsProducer.sendCloudEventUsingEos(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
+        eventProducer.sendCloudEventUsingEos(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
     }
 
     private void processCmAvcEventChanges(final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023 Nordix Foundation
+ * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,17 +20,15 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
-import org.mapstruct.Mapper;
-import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
-import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.onap.cps.ncmp.events.lcm.v1.Values;
 
-@Mapper(componentModel = "spring")
-public interface LcmEventHeaderMapper {
-
-    /**
-     * Mapper for converting incoming {@link LcmEvent} to outgoing {@link LcmEventHeader}.
-     */
-
-    LcmEventHeader toLcmEventHeader(LcmEvent lcmEvent);
-
+@NoArgsConstructor
+@Getter
+@Setter
+class CmHandlePropertyUpdates {
+    private Values oldValues;
+    private Values newValues;
 }

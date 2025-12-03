@@ -65,14 +65,14 @@ class CmHandleStateMonitorSpec extends Specification {
             1 * mockCmHandlesByState.putIfAbsent("lockedCmHandlesCount", expectedValue)
             1 * mockCmHandlesByState.putIfAbsent("deletingCmHandlesCount", expectedValue)
         where:
-            scenario                                 | queryResult                 || expectedValue
-            'query service returns zero cm handle id'| []                          || 0
-            'query service returns 1 cm handle id'   | ['someId']                  || 1
+            scenario                                 | queryResult || expectedValue
+            'query service returns zero cm handle id'| []          || 0
+            'query service returns 1 cm handle id'   | ['someId']  || 1
     }
 
 
     def 'Update cm handle state metric'() {
-        given: 'a collection of cm handle state pair'
+        given: 'a cm handle state pair'
             def cmHandleTransitionPair = new CmHandleTransitionPair(new YangModelCmHandle(compositeState: new CompositeState(cmHandleState: ADVISED)),
                                                                     new YangModelCmHandle(compositeState: new CompositeState(cmHandleState: READY))
             )
@@ -99,9 +99,9 @@ class CmHandleStateMonitorSpec extends Specification {
         then: 'the new value is as expected'
             assert entryProcessingMap.get(key) == expectedValue
         where: 'the following data is used'
-            scenario                        | key                 || expectedValue
-            'current value of count is zero'| 'zeroCmHandlesCount'|| 0
-            'current value of count is >0'  | 'tenCmHandlesCount' || 9
+            scenario                        | key                  || expectedValue
+            'current value of count is zero'| 'zeroCmHandlesCount' || 0
+            'current value of count is >0'  | 'tenCmHandlesCount'  || 9
     }
 
     def 'Applying increasing entry processor to a key on map'() {

@@ -33,7 +33,7 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
-import org.onap.cps.events.EventsProducer
+import org.onap.cps.events.EventProducer
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
@@ -143,7 +143,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     }
 
     def cleanup() {
-        ((Logger) LoggerFactory.getLogger(EventsProducer.class)).detachAndStopAllAppenders()
+        ((Logger) LoggerFactory.getLogger(EventProducer.class)).detachAndStopAllAppenders()
     }
 
     def 'Get Resource Data from pass-through operational.'() {

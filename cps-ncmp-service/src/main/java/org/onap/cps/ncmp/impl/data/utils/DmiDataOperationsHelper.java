@@ -34,7 +34,7 @@ import java.util.Set;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.events.EventsProducer;
+import org.onap.cps.events.EventProducer;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.data.models.DataOperationDefinition;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
@@ -141,10 +141,10 @@ public class DmiDataOperationsHelper {
         if (!cmHandleIdsPerResponseCodesPerOperation.isEmpty()) {
             final CloudEvent dataOperationCloudEvent = DataOperationEventCreator.createDataOperationEvent(clientTopic,
                     requestId, cmHandleIdsPerResponseCodesPerOperation);
-            final EventsProducer eventsProducer = CpsApplicationContext.getCpsBean(EventsProducer.class);
+            final EventProducer eventProducer = CpsApplicationContext.getCpsBean(EventProducer.class);
             log.warn("sending error message to client topic: {} ,requestId: {}, data operation cloud event id: {}",
                     clientTopic, requestId, dataOperationCloudEvent.getId());
-            eventsProducer.sendCloudEvent(clientTopic, requestId, dataOperationCloudEvent);
+            eventProducer.sendCloudEvent(clientTopic, requestId, dataOperationCloudEvent);
         }
     }
 

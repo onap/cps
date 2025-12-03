@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.inventory.sync.lcm
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
-import org.onap.cps.events.EventsProducer
+import org.onap.cps.events.EventProducer
 import org.onap.cps.events.LegacyEvent
 import org.onap.cps.ncmp.events.lcm.v1.Event
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
@@ -42,18 +42,16 @@ import java.time.Duration
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
-class EventsProducerSpec extends MessagingBaseSpec {
+class EventProducerSpec extends MessagingBaseSpec {
 
     def legacyEventKafkaConsumer = new KafkaConsumer<String, LegacyEvent>(eventConsumerConfigProperties('ncmp-group', StringDeserializer))
-
     def testTopic = 'ncmp-events-test'
 
     @SpringBean
-    EventsProducer eventsProducer = new EventsProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, cloudEventKafkaTemplateForEos)
+    EventProducer eventProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, cloudEventKafkaTemplateForEos)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
-
 
     def 'Produce and Consume Event'() {
         given: 'event key and event data'
@@ -86,20 +84,19 @@ class EventsProducerSpec extends MessagingBaseSpec {
         and: 'consumer has a subscription'
             legacyEventKafkaConsumer.subscribe([testTopic] as List<String>)
         when: 'an event is sent'
-            eventsProducer.sendLegacyEvent(testTopic, eventKey, eventHeader, eventData)
+            eventProducer.sendLegacyEvent(testTopic, eventKey, eventHeader, eventData)
         and: 'topic is polled'
             def records = legacyEventKafkaConsumer.poll(Duration.ofMillis(1500))
         then: 'poll returns one record'
             assert records.size() == 1
         and: 'record key matches the expected event key'
-            def record = records.iterator().next()
-            assert eventKey == record.key
+            assert eventKey == records[0].key
         and: 'record matches the expected event'
             def expectedJsonString = TestUtils.getResourceFileContent('expectedLcmEvent.json')
             def expectedLcmEvent = jsonObjectMapper.convertJsonString(expectedJsonString, LcmEvent.class)
-            assert expectedLcmEvent == jsonObjectMapper.convertJsonString(record.value, LcmEvent.class)
+            assert expectedLcmEvent == jsonObjectMapper.convertJsonString(records[0].value, LcmEvent.class)
         and: 'record header matches the expected parameters'
-            assert SerializationUtils.deserialize(record.headers().lastHeader('eventId').value()) == eventId
-            assert SerializationUtils.deserialize(record.headers().lastHeader('eventCorrelationId').value()) == eventCorrelationId
+            assert SerializationUtils.deserialize(records[0].headers().lastHeader('eventId').value()) == eventId
+            assert SerializationUtils.deserialize(records[0].headers().lastHeader('eventCorrelationId').value()) == eventCorrelationId
     }
 }

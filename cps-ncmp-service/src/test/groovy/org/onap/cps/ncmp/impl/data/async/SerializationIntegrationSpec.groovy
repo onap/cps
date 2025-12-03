@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.impl.data.async
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
-import org.onap.cps.events.EventsProducer
+import org.onap.cps.events.EventProducer
 import org.onap.cps.ncmp.config.KafkaConfig
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
@@ -46,7 +46,7 @@ import spock.util.concurrent.PollingConditions
 class SerializationIntegrationSpec extends ConsumerBaseSpec {
 
     @SpringBean
-    EventsProducer mockEventsProducer = Mock()
+    EventProducer mockEventProducer = Mock()
 
     @SpringBean
     NcmpAsyncRequestResponseEventMapper mapper = Stub() { toNcmpAsyncEvent(_) >> new NcmpAsyncRequestResponseEvent(eventId: 'my-event-id', eventTarget: 'some client topic')}
@@ -63,7 +63,7 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
         and: 'a flag to track the send cloud event call'
             def sendCloudEventMethodCalled = false
         and: 'the (mocked) events producer will use the flag to indicate if it is called and will capture the cloud event'
-            mockEventsProducer.sendCloudEvent('some client topic', 'some-correlation-id', cloudEvent) >> {
+            mockEventProducer.sendCloudEvent('some client topic', 'some-correlation-id', cloudEvent) >> {
                 sendCloudEventMethodCalled = true
             }
         when: 'send the event'
@@ -80,7 +80,7 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
         and: 'a flag to track the send event call'
             def sendEventMethodCalled = false
         and: 'the (mocked) events producer will use the flag to indicate if it is called and will capture the event'
-            mockEventsProducer.sendLegacyEvent(*_) >> {
+            mockEventProducer.sendLegacyEvent(*_) >> {
                 sendEventMethodCalled = true
             }
         when: 'send the event'

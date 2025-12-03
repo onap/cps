@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.impl.data.async
 
 import io.cloudevents.core.builder.CloudEventBuilder
-import org.onap.cps.events.EventsProducer
+import org.onap.cps.events.EventProducer
 import org.onap.cps.ncmp.config.KafkaConfig
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.onap.cps.ncmp.utils.events.ConsumerBaseSpec
@@ -42,7 +42,7 @@ import java.util.concurrent.TimeUnit
 class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
 
     @SpringBean
-    EventsProducer mockEventsProducer = Mock()
+    EventProducer mockEventProducer = Mock()
 
     @SpringBean
     NcmpAsyncRequestResponseEventMapper mapper = Stub()
@@ -61,7 +61,7 @@ class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
         then: 'wait a little for async processing of message (must wait to try to avoid false positives)'
             TimeUnit.MILLISECONDS.sleep(300)
         and: 'event is not consumed'
-            0 * mockEventsProducer.sendLegacyEvent(*_)
+            0 * mockEventProducer.sendLegacyEvent(*_)
     }
 
     def 'Legacy event consumer with valid legacy event.'() {
@@ -70,7 +70,7 @@ class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
         and: 'a flag to track the send event call'
             def sendEventMethodCalled = false
         and: 'the (mocked) events producer will use the flag to indicate if it is called'
-            mockEventsProducer.sendLegacyEvent(*_) >> {
+            mockEventProducer.sendLegacyEvent(*_) >> {
                 sendEventMethodCalled = true
             }
         when: 'send the cloud event'
@@ -90,7 +90,7 @@ class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
         and: 'a flag to track the sent event call'
             def sendEventMethodCalled = false
         and: 'the (mocked) events producer will use the flag to indicate if it is called'
-            mockEventsProducer.sendCloudEvent(*_) >> {
+            mockEventProducer.sendCloudEvent(*_) >> {
                 sendEventMethodCalled = true
             }
         when: 'send the cloud event'
@@ -114,7 +114,7 @@ class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
         then: 'wait a little for async processing of message (must wait to try to avoid false positives)'
             TimeUnit.MILLISECONDS.sleep(300)
         and: 'the event is not processed by this consumer'
-            0 * mockEventsProducer.sendCloudEvent(*_)
+            0 * mockEventProducer.sendCloudEvent(*_)
     }
 
 }

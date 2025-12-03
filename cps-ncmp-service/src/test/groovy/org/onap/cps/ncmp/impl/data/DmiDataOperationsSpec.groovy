@@ -22,7 +22,7 @@
 package org.onap.cps.ncmp.impl.data
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.events.EventsProducer
+import org.onap.cps.events.EventProducer
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
@@ -57,7 +57,7 @@ import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
 @SpringBootTest
-@ContextConfiguration(classes = [EventsProducer, CpsApplicationContext, DmiServiceAuthenticationProperties, DmiDataOperations, PolicyExecutor])
+@ContextConfiguration(classes = [EventProducer, CpsApplicationContext, DmiServiceAuthenticationProperties, DmiDataOperations, PolicyExecutor])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     def NO_TOPIC = null
@@ -73,17 +73,17 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     DmiDataOperations objectUnderTest
 
     @SpringBean
-    EventsProducer eventsProducer = Stub()
+    EventProducer eventProducerStub = Stub()
 
     @SpringBean
-    PolicyExecutor policyExecutor = Mock()
+    PolicyExecutor mockPolicyExecutor = Mock()
 
     @SpringBean
-    AlternateIdMatcher alternateIdMatcher = Mock()
+    AlternateIdMatcher mockAlternateIdMatcher = Mock()
 
     def 'Get resource data for #expectedDataStore from DMI without topic #scenario.'() {
         given: 'a cm handle for #cmHandleId'
-            alternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
+            mockAlternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
             mockYangModelCmHandleRetrieval(additionalProperties)
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = Mono.just(new ResponseEntity<Object>('{some-key:some-value}', HttpStatus.OK))
@@ -127,7 +127,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
         and: 'no valid cm handles are found for the request'
-            alternateIdMatcher.getCmHandleId(_) >> { throw new CmHandleNotFoundException('') }
+            mockAlternateIdMatcher.getCmHandleId(_) >> { throw new CmHandleNotFoundException('') }
             mockInventoryPersistence.getYangModelCmHandles(_) >> []
         when: 'get resource data for group of cm handles is invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
@@ -143,7 +143,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences = [cmHandleId]
         and: 'the sent cloud event will be captured'
             def actualDataOperationCloudEvent = null
-            eventsProducer.sendCloudEvent('my-topic-name', 'my-request-id', _) >> { args -> actualDataOperationCloudEvent = args[2] }
+            eventProducerStub.sendCloudEvent('my-topic-name', 'my-request-id', _) >> {args -> actualDataOperationCloudEvent = args[2] }
         and: 'a DMI client request exception is thrown when DMI service is called'
             mockDmiRestClient.asynchronousPostOperation(*_) >> { Mono.error(new DmiClientRequestException(123, '', '', UNKNOWN_ERROR)) }
         when: 'attempt to get resource data for group of cm handles is invoked'
@@ -174,7 +174,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     def 'Write data for pass-through:running datastore in DMI.'() {
         given: 'a cm handle for #cmHandleId'
             mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
-            alternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
+            mockAlternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def expectedUrlTemplateParameters = new UrlTemplateParameters('myServiceName/dmi/v1/ch/{cmHandleId}/data/ds/{datastore}?resourceIdentifier={resourceIdentifier}', ['resourceIdentifier': resourceIdentifier, 'datastore': 'ncmp-datastore:passthrough-running', 'cmHandleId': cmHandleId])
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}'
@@ -185,7 +185,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         and: 'the permission was checked with the policy executor'
-            1 * policyExecutor.checkPermission(_, operation, NO_AUTH_HEADER, resourceIdentifier, 'requestData' )
+            1 * mockPolicyExecutor.checkPermission(_, operation, NO_AUTH_HEADER, resourceIdentifier, 'requestData' )
         where: 'the following operation is performed'
             operation || expectedOperationInUrl
             CREATE    || 'create'

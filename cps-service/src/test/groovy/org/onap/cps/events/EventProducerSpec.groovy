@@ -29,8 +29,6 @@ import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.clients.producer.RecordMetadata
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.header.Headers
-import org.apache.kafka.common.header.internals.RecordHeader
-import org.apache.kafka.common.header.internals.RecordHeaders
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.SendResult
@@ -39,7 +37,7 @@ import spock.lang.Specification
 
 import java.util.concurrent.CompletableFuture
 
-class EventsProducerSpec extends Specification {
+class EventProducerSpec extends Specification {
 
     def mockLegacyKafkaTemplate = Mock(KafkaTemplate)
     def mockCloudEventKafkaTemplate = Mock(KafkaTemplate)
@@ -47,17 +45,17 @@ class EventsProducerSpec extends Specification {
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
-        def setupLogger = ((Logger) LoggerFactory.getLogger(EventsProducer.class))
+        def setupLogger = ((Logger) LoggerFactory.getLogger(EventProducer.class))
         setupLogger.setLevel(Level.DEBUG)
         setupLogger.addAppender(logger)
         logger.start()
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(EventsProducer.class)).detachAndStopAllAppenders()
+        ((Logger) LoggerFactory.getLogger(EventProducer.class)).detachAndStopAllAppenders()
     }
 
-    def objectUnderTest = new EventsProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate, mockCloudEventKafkaTemplateForEos)
+    def objectUnderTest = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate, mockCloudEventKafkaTemplateForEos)
 
     def 'Send Cloud Event'() {
         given: 'a successfully sent event'
@@ -180,7 +178,7 @@ class EventsProducerSpec extends Specification {
                 getProducerRecord() >> Mock(ProducerRecord)
             }
             def runtimeException = new RuntimeException('some runtime exception')
-            def logOutcomeMethod = EventsProducer.getDeclaredMethod('logOutcome', String, SendResult, Throwable, boolean)
+            def logOutcomeMethod = EventProducer.getDeclaredMethod('logOutcome', String, SendResult, Throwable, boolean)
             logOutcomeMethod.accessible = true
         when: 'logging the outcome with throwKafkaException set to true'
             logOutcomeMethod.invoke(null, 'some-topic', sendResult, runtimeException, true)

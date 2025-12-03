@@ -39,17 +39,17 @@ import static org.onap.cps.events.model.EventPayload.Action.REMOVE
 import static org.onap.cps.events.model.EventPayload.Action.REPLACE
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
-class CpsDataUpdateEventsProducerSpec extends Specification {
+class CpsDataUpdateEventProducerSpec extends Specification {
 
     static def CREATE_ACTION = CREATE.value()
     static def REPLACE_ACTION = REPLACE.value()
     static def REMOVE_ACTION = REMOVE.value()
 
-    def mockEventsProducer = Mock(EventsProducer)
+    def mockEventProducer = Mock(EventProducer)
     def objectMapper = new ObjectMapper();
     def mockCpsNotificationService = Mock(CpsNotificationService)
 
-    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsProducer, mockCpsNotificationService)
+    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventProducer, mockCpsNotificationService)
 
     def setup() {
         mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
@@ -66,7 +66,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         when: 'service is called to send data update event'
             objectUnderTest.sendCpsDataUpdateEvent(anchor, xpath, actionInRequest, OffsetDateTime.now())
         then: 'the event contains the required attributes'
-            1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
+            1 * mockEventProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
             args ->
                 {
                     def cpsDataUpdatedEvent = (args[2] as CloudEvent)
@@ -99,7 +99,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         when: 'service is called to send data event'
             objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE_ACTION, null)
         then: 'the event is sent'
-            1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
+            1 * mockEventProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
     }
 
     def 'Enabling and disabling sending cps events.'() {
@@ -114,7 +114,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         when: 'service is called to send data event'
             objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE_ACTION, null)
         then: 'the event is only sent when all related flags are true'
-            expectedCallsToProducer * mockEventsProducer.sendCloudEvent(*_)
+            expectedCallsToProducer * mockEventProducer.sendCloudEvent(*_)
         where: 'the following flags are used'
             notificationsEnabled | cpsChangeEventNotificationsEnabled | cpsNotificationServiceisNotificationEnabled  || expectedCallsToProducer
             false                | true                               | true                                         || 0

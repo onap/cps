@@ -25,7 +25,7 @@ import io.cloudevents.kafka.impl.KafkaHeaders;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.onap.cps.events.EventsProducer;
+import org.onap.cps.events.EventProducer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -39,7 +39,7 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class DataOperationEventConsumer {
 
-    private final EventsProducer eventsProducer;
+    private final EventProducer eventProducer;
 
     /**
      * Consume the DataOperation cloud event sent by producer to topic 'async-m2m.topic'
@@ -58,6 +58,6 @@ public class DataOperationEventConsumer {
                 dataOperationEventConsumerRecord.headers(), "ce_destination");
         final String correlationId = KafkaHeaders.getParsedKafkaHeader(
                 dataOperationEventConsumerRecord.headers(), "ce_correlationid");
-        eventsProducer.sendCloudEvent(eventTarget, correlationId, dataOperationEventConsumerRecord.value());
+        eventProducer.sendCloudEvent(eventTarget, correlationId, dataOperationEventConsumerRecord.value());
     }
 }
