@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d8ff2e0_970ac06c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-03T12:23:56Z",
+      "side": 1,
+      "message": "def json \n\nalso , you created 2 \u0027json\u0027 now , rename\nmaybe existingJsonData and newData or something",
+      "range": {
+        "startLine": 447,
+        "startChar": 12,
+        "endLine": 447,
+        "endChar": 16
+      },
+      "revId": "a77f71f0de07145e981f6e33b80b3cb0410210f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
