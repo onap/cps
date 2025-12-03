@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af854823_99ce2cfe",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleCreateSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-03T10:32:51Z",
+      "side": 1,
+      "message": "that does not work since the whole method needs to return a boolean",
+      "parentUuid": "416b9b8f_2236f8e3",
+      "range": {
+        "startLine": 87,
+        "startChar": 42,
+        "endLine": 87,
+        "endChar": 44
+      },
+      "revId": "cc13f793403850be119363417596f19a1eef3eaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c047bad_6003d0e5",
@@ -77,6 +101,30 @@
       "writtenOn": "2025-12-03T10:11:48Z",
       "side": 1,
       "message": "NB: I would have a helper method to fetch the .value() from the messages would shorten this assertion lines...",
+      "range": {
+        "startLine": 103,
+        "startChar": 19,
+        "endLine": 103,
+        "endChar": 68
+      },
+      "revId": "cc13f793403850be119363417596f19a1eef3eaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f12a257_c6f639a9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleCreateSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-03T10:32:51Z",
+      "side": 1,
+      "message": "since we have both old and new values i think this is easier to read",
+      "parentUuid": "0c047bad_6003d0e5",
       "range": {
         "startLine": 103,
         "startChar": 19,
