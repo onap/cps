@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ef85e86_e8f4bbc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-12-03T14:10:05Z",
+      "side": 1,
+      "message": "Sure, noted.",
+      "parentUuid": "b36c3d82_629a85d1",
+      "revId": "0cd9b7cd78b4f4cd38a42876734a634b511ca3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15946232_9a0bf6a7",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-12-03T14:07:50Z",
       "side": 1,
       "message": "remove this one, is not specific to K8\n(can be done as part of merge)",
+      "range": {
+        "startLine": 2237,
+        "startChar": 0,
+        "endLine": 2237,
+        "endChar": 162
+      },
+      "revId": "0cd9b7cd78b4f4cd38a42876734a634b511ca3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a017e45b_37061d03",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 2237,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-12-03T14:10:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "15946232_9a0bf6a7",
       "range": {
         "startLine": 2237,
         "startChar": 0,
