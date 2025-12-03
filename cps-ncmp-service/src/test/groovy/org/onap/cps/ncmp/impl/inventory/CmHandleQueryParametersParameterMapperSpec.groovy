@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@
 
 package org.onap.cps.ncmp.impl.inventory
 
-import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.api.exceptions.DataValidationException
-import org.onap.cps.api.model.ConditionProperties
+import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
+import org.onap.cps.ncmp.api.inventory.models.ConditionProperties
 import spock.lang.Specification
 
 class CmHandleQueryParametersParameterMapperSpec extends Specification {
@@ -41,8 +41,8 @@ class CmHandleQueryParametersParameterMapperSpec extends Specification {
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def condition = new ConditionProperties()
             condition.conditionName = 'validConditionName'
-            condition.conditionParameters = [['key':'value']]
-        cmHandleQueryParameters.cmHandleQueryParameters = [condition]
+            condition.conditionParameters = [['key': 'value']]
+            cmHandleQueryParameters.cmHandleQueryParameters = [condition]
         when: 'validator is invoked'
             CmHandleQueryParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters, ['validConditionName'])
         then: 'data validation exception is not thrown'
@@ -100,10 +100,10 @@ class CmHandleQueryParametersParameterMapperSpec extends Specification {
         and: 'exception message matches the expected message'
             e.details.contains(exceptionMessage)
         where:
-            scenario                              | conditionProperty                               || exceptionMessage
-            'more than one condition is supplied' | ['cpsPath':'some-path', 'cpsPath2':'some-path'] || 'Only one condition property is allowed for the CPS path query.'
-            'cpsPath key not supplied'            | ['wrong-key':'some-path']                       || 'Wrong CPS path condition property. - expecting "cpsPath" as the condition property.'
-            'cpsPath not supplied'                | ['cpsPath':'']                                  || 'Wrong CPS path. - please supply a valid CPS path.'
+            scenario                              | conditionProperty                                 || exceptionMessage
+            'more than one condition is supplied' | ['cpsPath': 'some-path', 'cpsPath2': 'some-path'] || 'Only one condition property is allowed for the CPS path query.'
+            'cpsPath key not supplied'            | ['wrong-key': 'some-path']                        || 'Wrong CPS path condition property. - expecting "cpsPath" as the condition property.'
+            'cpsPath not supplied'                | ['cpsPath': '']                                   || 'Wrong CPS path. - please supply a valid CPS path.'
     }
 
     def 'No conditions.'() {
@@ -113,7 +113,7 @@ class CmHandleQueryParametersParameterMapperSpec extends Specification {
 
     def 'Validate CmHandle where #scenario.'() {
         when: 'the validator is called on a cps path condition property'
-            def result = CmHandleQueryParametersValidator.validateCpsPathConditionProperties(['cpsPath':cpsPath])
+            def result = CmHandleQueryParametersValidator.validateCpsPathConditionProperties(['cpsPath': cpsPath])
         then: 'the expected boolean value is returned'
             result == expectedBoolean
         where:
