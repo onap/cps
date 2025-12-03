@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b36c3d82_629a85d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-03T14:07:50Z",
+      "side": 1,
+      "message": "one minor thing which probably is better handled in the merge user story. \nGo ahead now and merge the k8S folder with the normal folder in next US and commit\nGroopm that story first so the goal is very clear",
+      "revId": "0cd9b7cd78b4f4cd38a42876734a634b511ca3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15946232_9a0bf6a7",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 2237,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-03T14:07:50Z",
+      "side": 1,
+      "message": "remove this one, is not specific to K8\n(can be done as part of merge)",
+      "range": {
+        "startLine": 2237,
+        "startChar": 0,
+        "endLine": 2237,
+        "endChar": 162
+      },
+      "revId": "0cd9b7cd78b4f4cd38a42876734a634b511ca3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
