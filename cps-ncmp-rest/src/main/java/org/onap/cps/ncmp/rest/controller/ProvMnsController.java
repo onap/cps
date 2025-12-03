@@ -114,13 +114,8 @@ public class ProvMnsController implements ProvMnS {
                 alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
                     requestPathParameters.toAlternateId(), "/"));
             checkTarget(yangModelCmHandle);
-            policyExecutor.checkPermission(yangModelCmHandle,
-                OperationType.CREATE,
-                NO_AUTHORIZATION,
-                requestPathParameters.toAlternateId(),
-                jsonObjectMapper.asJsonString(operationDetailsFactory.buildPatchOperationDetails(requestPathParameters,
-                                                                                                 patchItems))
-            );
+            operationDetailsFactory
+                    .checkPermissionForEachPatchItem(requestPathParameters, patchItems, yangModelCmHandle);
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestPathParameters);
             return dmiRestClient.synchronousPatchOperation(RequiredDmiService.DATA, patchItems,
