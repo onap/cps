@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dceca12_ef8be6ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-03T08:35:57Z",
+      "side": 1,
+      "message": "I talked to Priyank about this. he agreed the headers and the event fields for id and time SHOULD have the same values!\nIt dues to unnecessary complexity of how these is created the differences arise.\nIn the next commit I will refactor tat and these lines will eb remove. Actually there will NOT be a separate LcmEventHeader in the signature for this method anymore!",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 65
+      },
+      "revId": "cc13f793403850be119363417596f19a1eef3eaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
