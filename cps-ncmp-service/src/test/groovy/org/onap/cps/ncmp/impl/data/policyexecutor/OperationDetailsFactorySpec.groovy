@@ -23,7 +23,8 @@ package org.onap.cps.ncmp.impl.data.policyexecutor
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
-import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
+import org.onap.cps.ncmp.api.exceptions.ProvMnSException
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
@@ -36,12 +37,13 @@ class OperationDetailsFactorySpec extends Specification {
 
     def spiedObjectMapper = Spy(ObjectMapper)
     def jsonObjectMapper = new JsonObjectMapper(spiedObjectMapper)
+    def policyExecutor = Mock(PolicyExecutor)
 
-    OperationDetailsFactory objectUnderTest = new OperationDetailsFactory(jsonObjectMapper, spiedObjectMapper)
+    OperationDetailsFactory objectUnderTest = new OperationDetailsFactory(jsonObjectMapper, spiedObjectMapper, policyExecutor)
 
     static def complexValueAsResource = new ResourceOneOf(id: 'myId', attributes: ['myAttribute1:myValue1', 'myAttribute2:myValue2'], objectClass: 'myClassName')
     static def simpleValueAsResource = new ResourceOneOf(id: 'myId', attributes: ['simpleAttribute:1'], objectClass: 'myClassName')
-
+    static def yangModelCmHandle = new YangModelCmHandle(id: 'someId')
 
     def 'Build policy executor patch operation details from ProvMnS request parameters where #scenario.'() {
         given: 'a provMnsRequestParameter and a patchItem list'
@@ -49,7 +51,7 @@ class OperationDetailsFactorySpec extends Specification {
             def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['someAttribute1:someValue1', 'someAttribute2:someValue2'], objectClass: classNameInBody)
             def patchItemsList = [new PatchItem(op: 'ADD', 'path':'myUriLdnFirstPart', value: resource), new PatchItem(op: 'REPLACE', 'path':'myUriLdnFirstPart', value: resource), new PatchItem(op: 'REMOVE', 'path':'myUriLdnFirstPart'),]
         when: 'patch operation details are created'
-            def result = objectUnderTest.buildPatchOperationDetails(path, patchItemsList)
+            def result = objectUnderTest.checkPermissionForEachPatchItem(path, patchItemsList, yangModelCmHandle)
         then: 'the result contain 3 operations of the correct types in the correct order'
             result.operations.size() == 3
         and: 'note that Add and Replace both are defined using Create Operation Details'
@@ -75,17 +77,23 @@ class OperationDetailsFactorySpec extends Specification {
         given: 'a requestParameter and a patchItem list'
             def path = new RequestPathParameters(uriLdnFirstPart: 'myUriLdnFirstPart', className: 'myClassName', id: 'myId')
             def pathItems = [new PatchItem(op: 'REPLACE', 'path':"myUriLdnFirstPart${suffix}", value: value)]
-        when: 'patch operation details are created'
-            def result = objectUnderTest.buildPatchOperationDetails(path, pathItems)
-        then: 'the result has the correct type'
-            assert result instanceof PatchOperationsDetails
-        and: 'the change request contains the correct attributes value'
-            assert result.operations[0]['changeRequest']['myClassName'][0]['attributes'].toString() == attributesValueInOperation
+        when: 'patch operation details are checked'
+            objectUnderTest.checkPermissionForEachPatchItem(path, pathItems, yangModelCmHandle)
+        then: 'policyExecutor is called with correct payload'
+            1 * policyExecutor.checkPermission(
+                    yangModelCmHandle,
+                    CREATE,
+                    null,
+                    path.toAlternateId(),
+                    { String json ->
+                        assert json.contains(attributesValueInOperation)
+                    }
+            )
         where: 'attributes are set using # or resource'
             scenario                           | suffix                         | value                  || attributesValueInOperation
-            'set simple value using #'         | '#/attributes/simpleAttribute' | 1                      || '[simpleAttribute:1]'
-            'set simple value using resource'  | ''                             | simpleValueAsResource  || '[simpleAttribute:1]'
-            'set complex value using resource' | ''                             | complexValueAsResource || '[myAttribute1:myValue1, myAttribute2:myValue2]'
+            'set simple value using #'         | '#/attributes/simpleAttribute' | 1                      || '{"simpleAttribute":1}'
+            'set simple value using resource'  | ''                             | simpleValueAsResource  || '["simpleAttribute:1"]'
+            'set complex value using resource' | ''                             | complexValueAsResource || '["myAttribute1:myValue1","myAttribute2:myValue2"]'
     }
 
     def 'Build an attribute map with different depths of hierarchy with #scenario.'() {
