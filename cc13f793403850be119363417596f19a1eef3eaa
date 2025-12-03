@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "40478acc_123b9e3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-12-03T10:11:48Z",
+      "side": 1,
+      "message": "some NB comments.",
+      "revId": "cc13f793403850be119363417596f19a1eef3eaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1dceca12_ef8be6ee",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
         "patchSetId": 1
@@ -19,6 +36,52 @@
         "startChar": 0,
         "endLine": 73,
         "endChar": 65
+      },
+      "revId": "cc13f793403850be119363417596f19a1eef3eaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "416b9b8f_2236f8e3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleCreateSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-12-03T10:11:48Z",
+      "side": 1,
+      "message": "NB: I would keep all assertions the same like below \n\nistead of \u0026\u0026 I would use;\n\nassert it.cmHandleId \u003d\u003d uniqueId\nassert it.alternateId \u003d\u003d \u0027fdn1\u0027",
+      "range": {
+        "startLine": 87,
+        "startChar": 42,
+        "endLine": 87,
+        "endChar": 44
+      },
+      "revId": "cc13f793403850be119363417596f19a1eef3eaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c047bad_6003d0e5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleCreateSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-12-03T10:11:48Z",
+      "side": 1,
+      "message": "NB: I would have a helper method to fetch the .value() from the messages would shorten this assertion lines...",
+      "range": {
+        "startLine": 103,
+        "startChar": 19,
+        "endLine": 103,
+        "endChar": 68
       },
       "revId": "cc13f793403850be119363417596f19a1eef3eaa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
