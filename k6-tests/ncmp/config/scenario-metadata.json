@@ -53,14 +53,14 @@
     "testName" : "CM-handle ID search with Trust Level filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_id_search_trust_level_filter",
-    "currentExpectation" : 1350
+    "currentExpectation" : 1200
   },
   {
     "testNumber" : "4a",
     "testName" : "CM-handle search with No filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_no_filter",
-    "currentExpectation" : 13000
+    "currentExpectation" : 12000
   },
   {
     "testNumber" : "4b",
@@ -74,21 +74,21 @@
     "testName" : "CM-handle search with Property filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_property_filter",
-    "currentExpectation" : 15000
+    "currentExpectation" : 12000
   },
   {
     "testNumber" : "4d",
     "testName" : "CM-handle search with Cps Path filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_cps_path_filter",
-    "currentExpectation" : 15000
+    "currentExpectation" : 12000
   },
   {
     "testNumber" : "4e",
     "testName" : "CM-handle search with Trust Level filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_trust_level_filter",
-    "currentExpectation" : 15000
+    "currentExpectation" : 12000
   },
   {
     "testNumber" : "5b",
@@ -109,7 +109,7 @@
     "testName" : "Legacy batch read operation",
     "unit" : "events/second",
     "measurementName" : "legacy_batch_read",
-    "currentExpectation" : 180
+    "currentExpectation" : 210
   },
   {
     "testNumber" : "8",
@@ -123,6 +123,6 @@
     "testName" : "Write data job scenario - large",
     "unit" : "milliseconds",
     "measurementName" : "dcm_write_data_job_large",
-    "currentExpectation" : 4000
+    "currentExpectation" : 3000
   }
 ]
