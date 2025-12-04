@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852d55e5_f806a77d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-04T13:50:52Z",
+      "side": 1,
+      "message": "NB: Just the issue-ID below will suffice (for future reference)",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 59
+      },
+      "revId": "5bc03e1ccbab09cce49d8f50d067d8dab53bb2fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6eb632a_8f060ca7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-04T13:50:52Z",
+      "side": 1,
+      "message": "looks good, 2 minor suggestions",
+      "revId": "5bc03e1ccbab09cce49d8f50d067d8dab53bb2fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae44a7a6_6e65b903",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-04T13:50:52Z",
+      "side": 1,
+      "message": "since you have \u0027 inside the string it is a valid reason to use \" and make it more readable: \"/test-tree/branch[@name\u003d\u0027Name\u0027]/nest\"",
+      "range": {
+        "startLine": 322,
+        "startChar": 60,
+        "endLine": 322,
+        "endChar": 100
+      },
+      "revId": "5bc03e1ccbab09cce49d8f50d067d8dab53bb2fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c5605aa_db018e59",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-04T13:50:52Z",
+      "side": 1,
+      "message": "probably can  be simplified using Groovy to\ndataNodes[0].xpath \u003d\u003d \u0027....\u0027",
+      "range": {
+        "startLine": 322,
+        "startChar": 23,
+        "endLine": 322,
+        "endChar": 102
+      },
+      "revId": "5bc03e1ccbab09cce49d8f50d067d8dab53bb2fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
