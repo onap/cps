@@ -22,6 +22,30 @@
       },
       "revId": "994e0f3497652459d05b0ccb2067aea728080e65",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a18eff8_a3616aff",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-04T09:45:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a32b6b72_fc7d5797",
+      "range": {
+        "startLine": 85,
+        "startChar": 16,
+        "endLine": 85,
+        "endChar": 53
+      },
+      "revId": "994e0f3497652459d05b0ccb2067aea728080e65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
