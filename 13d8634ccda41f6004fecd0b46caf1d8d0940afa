@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb5d1559_b8c98227",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetailsFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-04T09:00:36Z",
+      "side": 1,
+      "message": "not always CREATE, this depends on patchItem.getOp() too !",
+      "range": {
+        "startLine": 79,
+        "startChar": 20,
+        "endLine": 79,
+        "endChar": 40
+      },
+      "revId": "13d8634ccda41f6004fecd0b46caf1d8d0940afa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b72d6081_5e0903dd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetailsFactorySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-04T09:00:36Z",
+      "side": 1,
+      "message": "as discussed create these test\n\n1) Single Operation check all the details being created in the output object\n1a) Create\n1b) Replace (update?)\n1c) Remove (delete)\n\n2) A Patch Operation with ONE operation inside, only check TYPE of operation send to PE\n2a) Create\n2b) Replace (update?)\n2c) Remove (delete)\n\n3) A Patch Operation with multiple operations inside\nCheck PE is invoke as many times as you have operations. I possible make it stricter and check the order and type of operations it is called.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "13d8634ccda41f6004fecd0b46caf1d8d0940afa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
