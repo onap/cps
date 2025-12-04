@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a3e938_4bcc1a9e",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-04T04:43:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "930ae39d_bb95cabb",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 42
+      },
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1b8073f_e65a222e",
@@ -88,6 +112,30 @@
       "writtenOn": "2025-12-01T08:16:44Z",
       "side": 1,
       "message": "NB: to prevent NPE it is always better to swap this around ie. you know the constant will never be null:\n\nROOT_NODE_XPATH.equals(xpath)",
+      "range": {
+        "startLine": 164,
+        "startChar": 19,
+        "endLine": 164,
+        "endChar": 47
+      },
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "993f7c1c_47b95751",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-04T04:43:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1b8073f_e65a222e",
       "range": {
         "startLine": 164,
         "startChar": 19,
@@ -115,6 +163,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f880294a_c4638aaa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-04T04:43:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d843320b_867dd0a8",
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0992a2a_1883fa5c",
@@ -128,6 +194,24 @@
       "writtenOn": "2025-12-01T09:58:26Z",
       "side": 1,
       "message": "is the formatting correct here? /test[invalid should be /test[invalid] ?",
+      "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4edec8_e67802da",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-04T04:43:35Z",
+      "side": 1,
+      "message": "both would yield the same result, we are just testing with a path that does not fit the definition of a valid xpath 😊",
+      "parentUuid": "d0992a2a_1883fa5c",
       "revId": "8630a312a1646edd4a06bb403146cf1e1131af1d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
