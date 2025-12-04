@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efbaa688_66175fe6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-04T14:47:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ae1eb6e_43b8b40b",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 60,
+        "endChar": 142
+      },
+      "revId": "f070afd5970132aba9e47c60bffc4461217f859e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "730be1c4_3a65adf0",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d311b1d6_c829258a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-04T14:47:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "730be1c4_3a65adf0",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 94
+      },
+      "revId": "f070afd5970132aba9e47c60bffc4461217f859e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fd14318_b8b3d941",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-12-04T13:58:33Z",
       "side": 1,
       "message": "NB: not sure but this class can also be moved above.",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 54
+      },
+      "revId": "f070afd5970132aba9e47c60bffc4461217f859e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e30c0b23_5dc27d22",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventProducerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-04T14:47:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd14318_b8b3d941",
       "range": {
         "startLine": 38,
         "startChar": 33,
