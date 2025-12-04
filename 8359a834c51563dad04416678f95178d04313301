@@ -16,6 +16,29 @@
       "message": "resolved comment",
       "revId": "8359a834c51563dad04416678f95178d04313301",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23fa77a9_d457d710",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-04T10:14:35Z",
+      "side": 1,
+      "message": "Here, testcase name says for JSON data but XML data is also being used.\nFor XML and JSON, there are independent test cases.\nCan this be divided into two?",
+      "range": {
+        "startLine": 313,
+        "startChar": 47,
+        "endLine": 313,
+        "endChar": 61
+      },
+      "revId": "8359a834c51563dad04416678f95178d04313301",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
