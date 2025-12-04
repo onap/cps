@@ -32,14 +32,14 @@
     "testName" : "CM-handle ID search with Module filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_id_search_module_filter",
-    "currentExpectation" : 2300
+    "currentExpectation" : 1800
   },
   {
     "testNumber" : "3c",
     "testName" : "CM-handle ID search with Property filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_id_search_property_filter",
-    "currentExpectation" : 1450
+    "currentExpectation" : 1400
   },
   {
     "testNumber" : "3d",
@@ -53,76 +53,76 @@
     "testName" : "CM-handle ID search with Trust Level filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_id_search_trust_level_filter",
-    "currentExpectation" : 1600
+    "currentExpectation" : 1350
   },
   {
     "testNumber" : "4a",
     "testName" : "CM-handle search with No filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_no_filter",
-    "currentExpectation" : 18000
+    "currentExpectation" : 13000
   },
   {
     "testNumber" : "4b",
     "testName" : "CM-handle search with Module filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_module_filter",
-    "currentExpectation" : 18000
+    "currentExpectation" : 12000
   },
   {
     "testNumber" : "4c",
     "testName" : "CM-handle search with Property filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_property_filter",
-    "currentExpectation" : 18000
+    "currentExpectation" : 15000
   },
   {
     "testNumber" : "4d",
     "testName" : "CM-handle search with Cps Path filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_cps_path_filter",
-    "currentExpectation" : 18000
+    "currentExpectation" : 15000
   },
   {
     "testNumber" : "4e",
     "testName" : "CM-handle search with Trust Level filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_trust_level_filter",
-    "currentExpectation" : 18000
+    "currentExpectation" : 15000
   },
   {
     "testNumber" : "5b",
     "testName" : "NCMP overhead for Synchronous single CM-handle pass-through read with alternate id",
     "unit" : "milliseconds",
     "measurementName" : "ncmp_read_overhead",
-    "currentExpectation" : 18
+    "currentExpectation" : 10
   },
   {
     "testNumber" : "6b",
     "testName" : "NCMP overhead for Synchronous single CM-handle pass-through write with alternate id",
     "unit" : "milliseconds",
     "measurementName" : "ncmp_write_overhead",
-    "currentExpectation" : 18
+    "currentExpectation" : 10
   },
   {
     "testNumber" : "7",
     "testName" : "Legacy batch read operation",
     "unit" : "events/second",
     "measurementName" : "legacy_batch_read",
-    "currentExpectation" : 200
+    "currentExpectation" : 180
   },
   {
     "testNumber" : "8",
     "testName" : "Write data job scenario - small",
     "unit" : "milliseconds",
     "measurementName" : "dcm_write_data_job_small",
-    "currentExpectation" : 100
+    "currentExpectation" : 10
   },
   {
     "testNumber" : "9",
     "testName" : "Write data job scenario - large",
     "unit" : "milliseconds",
     "measurementName" : "dcm_write_data_job_large",
-    "currentExpectation" : 8000
+    "currentExpectation" : 4000
   }
 ]
