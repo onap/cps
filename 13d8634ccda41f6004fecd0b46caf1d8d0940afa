@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0ace128_58c462e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-12-04T17:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8977312_467feda8",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 20
+      },
+      "revId": "13d8634ccda41f6004fecd0b46caf1d8d0940afa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb5d1559_b8c98227",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-12-04T09:00:36Z",
       "side": 1,
       "message": "not always CREATE, this depends on patchItem.getOp() too !",
+      "range": {
+        "startLine": 79,
+        "startChar": 20,
+        "endLine": 79,
+        "endChar": 40
+      },
+      "revId": "13d8634ccda41f6004fecd0b46caf1d8d0940afa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba8bfec8_ede8a840",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetailsFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-12-04T17:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb5d1559_b8c98227",
       "range": {
         "startLine": 79,
         "startChar": 20,
