@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aace94ed_234f73c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:21:29Z",
+      "side": 1,
+      "message": "forgot to post below but you have my updated patch now anyway (in Nordix)",
+      "revId": "5dbe9a3324f730d7adaf2c011e9cfd97622fcee9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ba86321_dbf4fd99",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:21:29Z",
+      "side": 1,
+      "message": "previous description does make sense because throwing a runtime exception is not obviously dening...",
+      "range": {
+        "startLine": 204,
+        "startChar": 14,
+        "endLine": 204,
+        "endChar": 38
+      },
+      "revId": "5dbe9a3324f730d7adaf2c011e9cfd97622fcee9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a448d7e9_f74d1265",
@@ -31,6 +71,30 @@
       "writtenOn": "2025-12-08T08:21:13Z",
       "side": 1,
       "message": "Either rename the class or the instance, I am not sure what is best...\nI think we already have Operation enums, so maybe you need to extend the name\n\nhow about commonOperationDetails?",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "5dbe9a3324f730d7adaf2c011e9cfd97622fcee9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1d89642_74a5af17",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetailsFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:21:29Z",
+      "side": 1,
+      "message": "actually OPernationDetaisl is good, but instance name has to follow class name!",
+      "parentUuid": "a448d7e9_f74d1265",
       "range": {
         "startLine": 64,
         "startChar": 8,
@@ -146,6 +210,30 @@
       "writtenOn": "2025-12-08T08:21:13Z",
       "side": 1,
       "message": "don\u0027t think below verifies the order (not 100% sure)",
+      "range": {
+        "startLine": 123,
+        "startChar": 78,
+        "endLine": 123,
+        "endChar": 85
+      },
+      "revId": "5dbe9a3324f730d7adaf2c011e9cfd97622fcee9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "050d3ffb_7d8f6205",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetailsFactorySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:21:29Z",
+      "side": 1,
+      "message": "i tried it out, you need to insert then: statement to check the order (well that\u0027s the easiest way)",
+      "parentUuid": "bcea2a07_449a88b5",
       "range": {
         "startLine": 123,
         "startChar": 78,
