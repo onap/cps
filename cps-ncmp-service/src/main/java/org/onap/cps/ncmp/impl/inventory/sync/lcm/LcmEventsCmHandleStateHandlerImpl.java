@@ -48,7 +48,7 @@ import org.springframework.stereotype.Service;
 public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleStateHandler {
 
     private final InventoryPersistence inventoryPersistence;
-    private final LcmEventsHelper lcmEventsHelper;
+    private final LcmEventProducer lcmEventProducer;
     private final CmHandleStateMonitor cmHandleStateMonitor;
 
     @Override
@@ -58,8 +58,10 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         final Collection<CmHandleTransitionPair> cmHandleTransitionPairs =
                 prepareCmHandleTransitionBatch(targetCmHandleStatePerCmHandle);
         persistCmHandleBatch(cmHandleTransitionPairs);
-        lcmEventsHelper.sendLcmEventBatchAsynchronously(cmHandleTransitionPairs);
-        cmHandleStateMonitor.updateCmHandleStateMetrics(cmHandleTransitionPairs);
+        if (!cmHandleTransitionPairs.isEmpty()) {
+            lcmEventProducer.sendLcmEventBatchAsynchronously(cmHandleTransitionPairs);
+            cmHandleStateMonitor.updateCmHandleStateMetrics(cmHandleTransitionPairs);
+        }
     }
 
     @Override

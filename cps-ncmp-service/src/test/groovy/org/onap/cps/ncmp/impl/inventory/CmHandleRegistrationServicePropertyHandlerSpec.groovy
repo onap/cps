@@ -35,8 +35,7 @@ import org.onap.cps.api.model.DataNode
 import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsHelper
-import org.onap.cps.utils.ContentType
+import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventProducer
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
@@ -56,9 +55,9 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
     def mockCmHandleIdPerAlternateId = Mock(IMap)
-    def mockLcmEventsHelper = Mock(LcmEventsHelper)
+    def mockLcmEventProducer = Mock(LcmEventProducer)
 
-    def objectUnderTest = new CmHandleRegistrationServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker, mockCmHandleIdPerAlternateId, mockLcmEventsHelper)
+    def objectUnderTest = new CmHandleRegistrationServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker, mockCmHandleIdPerAlternateId, mockLcmEventProducer)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
@@ -253,7 +252,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
         then:   'the update node leaves method is invoked once with correct parameters'
             1 * mockInventoryPersistence.updateCmHandleField('cmHandleId', 'data-producer-identifier', 'New Data Producer Identifier')
         and:    'LCM event is sent'
-            1 * mockLcmEventsHelper.sendLcmEventBatchAsynchronously({ cmHandleTransitionPairs ->
+            1 * mockLcmEventProducer.sendLcmEventBatchAsynchronously({cmHandleTransitionPairs ->
                 assert cmHandleTransitionPairs[0].targetYangModelCmHandle.dataProducerIdentifier == 'New Data Producer Identifier'
             })
         where: 'the following scenarios are used'
@@ -272,7 +271,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
         then: 'the update node leaves method is not invoked'
             0 * mockCpsDataService.updateNodeLeaves(*_)
         and: 'No LCM events are sent'
-            0 * mockLcmEventsHelper.sendLcmEventBatchAsynchronously(*_)
+            0 * mockLcmEventProducer.sendLcmEventBatchAsynchronously(*_)
         and: 'debug information is logged'
             def loggingEvent = logger.list[0]
             assert loggingEvent.level == Level.DEBUG
@@ -291,7 +290,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
         then: 'the update node leaves method is invoked once with correct parameters'
             1 * mockInventoryPersistence.updateCmHandleField('cmHandleId', 'data-producer-identifier', 'newDataProducerIdentifier')
         and: 'LCM event is sent'
-            1 * mockLcmEventsHelper.sendLcmEventBatchAsynchronously( { cmHandleTransitionPairs ->
+            1 * mockLcmEventProducer.sendLcmEventBatchAsynchronously( {cmHandleTransitionPairs ->
                 assert cmHandleTransitionPairs[0].targetYangModelCmHandle.dataProducerIdentifier == 'newDataProducerIdentifier'
                 assert cmHandleTransitionPairs[0].currentYangModelCmHandle.dataProducerIdentifier == 'oldDataProducerIdentifier'
             })
@@ -307,7 +306,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
         then: 'the update node leaves method is not invoked'
             0 * mockCpsDataService.updateNodeLeaves(*_)
         and: 'No LCM events are sent'
-            0 * mockLcmEventsHelper.sendLcmEventBatchAsynchronously(*_)
+            0 * mockLcmEventProducer.sendLcmEventBatchAsynchronously(*_)
         and: 'warning is logged'
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.WARN

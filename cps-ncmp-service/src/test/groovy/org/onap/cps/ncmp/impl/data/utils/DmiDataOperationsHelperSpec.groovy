@@ -21,11 +21,10 @@
 package org.onap.cps.ncmp.impl.data.utils
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.impl.KafkaHeaders
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.onap.cps.events.EventsProducer
+import org.onap.cps.events.EventProducer
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.api.data.models.OperationType
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
@@ -46,7 +45,7 @@ import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
-@ContextConfiguration(classes = [EventsProducer, CpsApplicationContext])
+@ContextConfiguration(classes = [EventProducer, CpsApplicationContext])
 class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
 
     def static clientTopic = 'my-topic-name'
@@ -56,7 +55,7 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @SpringBean
-    EventsProducer eventsProducer = new EventsProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, cloudEventKafkaTemplateForEos)
+    EventProducer eventsProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, cloudEventKafkaTemplateForEos)
 
     def 'Process per data operation request with #serviceName.'() {
         given: 'data operation request with 3 operations'
