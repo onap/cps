@@ -33,19 +33,19 @@ class ParameterMapperSpec extends Specification {
 
     def 'Extract request parameters with url first part is a FDN with #scenario.'() {
         given: 'a http request with all the required parts'
-            mockHttpServletRequest.getAttribute(uriPathAttributeName) >> (String) "ProvMnS/v1/${fdnPrefix}/myClass=myId"
+            mockHttpServletRequest.getAttribute(uriPathAttributeName) >> path
         when: 'the request parameters are extracted'
             def result = objectUnderTest.extractRequestParameters(mockHttpServletRequest)
-        then: 'the Uri LDN first part is the fdnPrefix preceded with an extra  "/"'
-            assert result.uriLdnFirstPart == '/' + fdnPrefix
+        then: 'the Uri LDN first part is as expected'
+            assert result.uriLdnFirstPart == expectedUriLdnFirstPart
         and: 'the class name and id are mapped correctly'
             assert result.className == 'myClass'
             assert result.id == 'myId'
         where: 'The following FDN prefixes are used'
-            scenario            | fdnPrefix
-            '1 segment'         | 'somePrefix'
-            'multiple segments' | 'some/prefix'
-            'empty segment'     | ''
+            scenario            | path                                   || expectedUriLdnFirstPart
+            '1 segment'         | 'ProvMnS/v1/somePrefix/myClass=myId'  || '/somePrefix'
+            'multiple segments' | 'ProvMnS/v1/some/prefix/myClass=myId' || '/some/prefix'
+            'no slash'          | 'ProvMnS/v1/myClass=myId'             || ''
     }
 
     def 'Attempt to extract request parameters with #scenario.'() {
@@ -60,8 +60,6 @@ class ParameterMapperSpec extends Specification {
             assert thrown.details.contains(path)
         where: 'the following paths are used'
             scenario                       | path
-            'No / in URI first part'       | 'ProvMnS/v1/myClass=myId'
             'No = After (last) class name' | 'ProvMnS/v1/someOtherClass=someId/myClass'
     }
-
 }
