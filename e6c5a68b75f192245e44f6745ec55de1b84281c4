@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b0bb781_aae60071",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-08T08:42:03Z",
+      "side": 1,
+      "message": "Resolved",
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4982047_acd5dc9e",
@@ -70,6 +87,78 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4fb5052_7a809afb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-08T08:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20be8b2f_53f50dc7",
+      "range": {
+        "startLine": 37,
+        "startChar": 74,
+        "endLine": 37,
+        "endChar": 80
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9f7d34e_47510c79",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-08T08:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4982047_acd5dc9e",
+      "range": {
+        "startLine": 37,
+        "startChar": 31,
+        "endLine": 37,
+        "endChar": 38
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f07ef36_6d961edd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-08T08:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28e40f7a_61fecc4e",
+      "range": {
+        "startLine": 37,
+        "startChar": 246,
+        "endLine": 37,
+        "endChar": 252
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efd9fc10_92974c01",
@@ -93,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c137f834_bf4ab6c7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-08T08:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efd9fc10_92974c01",
+      "range": {
+        "startLine": 38,
+        "startChar": 31,
+        "endLine": 38,
+        "endChar": 35
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37400199_86d23fec",
@@ -106,6 +219,30 @@
       "writtenOn": "2025-12-08T08:14:41Z",
       "side": 1,
       "message": "use only \"create\",\"remove\" and \"replace\" in all places instead \"add\", \"delete\" and \"update\"\nin lowercases only",
+      "range": {
+        "startLine": 47,
+        "startChar": 71,
+        "endLine": 47,
+        "endChar": 78
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4683500_cecf2ea1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-08T08:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37400199_86d23fec",
       "range": {
         "startLine": 47,
         "startChar": 71,
