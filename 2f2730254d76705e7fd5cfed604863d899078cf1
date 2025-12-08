@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2708fa7e_df2cbb9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:19:48Z",
+      "side": 1,
+      "message": "the production code can be simplified. \nDid not look at testware as prod code changes are significant",
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "941a6e89_a118a9fa",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:19:48Z",
+      "side": 1,
+      "message": "why method parameter?! Shoudl be done like \u0027notificationsEnabled\u0027see ines #63,#64",
+      "range": {
+        "startLine": 76,
+        "startChar": 77,
+        "endLine": 76,
+        "endChar": 115
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac13535f_d75a6e72",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:19:48Z",
+      "side": 1,
+      "message": "so this notification overrules the OLD feature ie you cannot have both events, correct?",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 40
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36967eab_0e00467c",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:19:48Z",
+      "side": 1,
+      "message": "overuse of streaming\nI think you should do the conversion in a separate method with clear name\nlike toCpsDataUpdatedEvent(deltaReport)\nThen use POJO itertor of deltaReport and add each entry into a new list of cpsDataUpdatedEvents",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 61
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cfce704_841296ad",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:19:48Z",
+      "side": 1,
+      "message": "is this really possible? If so you could have check this at the first start, even BEFORE you call the conversion\n\nin pseudo java I would do something like this \n\ncpsDataUpdatedEvents \u003d new ArrayList()\nfor (deltaReport : deltaRports) {\n  if hasData(deltaReport) {\n     cpsDataUpdatedEvents.add(toCpsDataUpdatedEvent(deltaRport))\n  }\n}\n\nprivate boolean hasData(deltaRport) { .. }\nprivate CpsDataUpdatedEvent toCpsDataUpdatedEvent(delatareport)",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 13
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36976c07_08053c71",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:19:48Z",
+      "side": 1,
+      "message": "Same pattern in all 5-6 methods can be simplified by instead of a void method haf a method that creates the colelction conditionally liek so:\n\nList\u003cDeltaReport\u003e generateDeltaReports(...) {\nif deltaNotificationEnabled {\n   final List\u003cDeltaReport\u003e deltaReports \u003d new ArrayList\u003c\u003e();\n   ....\n   return deltaReports\n}\nreturn Collections.emptyList()",
+      "range": {
+        "startLine": 95,
+        "startChar": 32,
+        "endLine": 95,
+        "endChar": 45
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ddb40a_a6abe422",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:19:48Z",
+      "side": 1,
+      "message": "extract out NO_DELTA_REPORTS  for better readability",
+      "range": {
+        "startLine": 330,
+        "startChar": 75,
+        "endLine": 330,
+        "endChar": 98
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2f4adaa_7508e509",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T14:19:48Z",
+      "side": 1,
+      "message": "extract out NO_DELTA_REPORTS for better readability",
+      "range": {
+        "startLine": 362,
+        "startChar": 73,
+        "endLine": 362,
+        "endChar": 96
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
