@@ -1,5 +1,414 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "103b1d2c_f7e68e41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "The green lines so be an indication of the average value excluding the peaks when other test run in parallel. it is NOT threshold that triggers alarms! ...\nTeh suggested values below are my best visuals estimate. Please try them and we can tune tomorrow",
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c210b948_5668cb4a",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "70",
+      "range": {
+        "startLine": 14,
+        "startChar": 27,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01ee8fa3_2ebfc844",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "140",
+      "range": {
+        "startLine": 21,
+        "startChar": 27,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "412ff122_bf08feb2",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "700",
+      "range": {
+        "startLine": 28,
+        "startChar": 27,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "050f61ef_8f0fa98d",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "2000",
+      "range": {
+        "startLine": 35,
+        "startChar": 27,
+        "endLine": 35,
+        "endChar": 31
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f4bff67_525e2754",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "1500",
+      "range": {
+        "startLine": 42,
+        "startChar": 27,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0938d9fa_0f5e881c",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "1600",
+      "range": {
+        "startLine": 49,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 31
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e17a423c_85bf0a95",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "1400",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c7e571b_72da11ba",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "15000",
+      "range": {
+        "startLine": 63,
+        "startChar": 27,
+        "endLine": 63,
+        "endChar": 32
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efab2a21_bf1c512e",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "15000",
+      "range": {
+        "startLine": 70,
+        "startChar": 27,
+        "endLine": 70,
+        "endChar": 32
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a3b8732_54a73aae",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "16000",
+      "range": {
+        "startLine": 77,
+        "startChar": 27,
+        "endLine": 77,
+        "endChar": 32
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a0e769e_b00b68e2",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "16000",
+      "range": {
+        "startLine": 84,
+        "startChar": 27,
+        "endLine": 84,
+        "endChar": 32
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1d3f7b1_381db947",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "16000",
+      "range": {
+        "startLine": 91,
+        "startChar": 27,
+        "endLine": 91,
+        "endChar": 32
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b13bc18_1c293e08",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "14",
+      "range": {
+        "startLine": 98,
+        "startChar": 27,
+        "endLine": 98,
+        "endChar": 29
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bd2fe58_26eac5f4",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "14",
+      "range": {
+        "startLine": 105,
+        "startChar": 27,
+        "endLine": 105,
+        "endChar": 29
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ef8be90_e279e1ba",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "200",
+      "range": {
+        "startLine": 112,
+        "startChar": 27,
+        "endLine": 112,
+        "endChar": 30
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f4c85db_2d4dca0f",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "20",
+      "range": {
+        "startLine": 119,
+        "startChar": 27,
+        "endLine": 119,
+        "endChar": 29
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e44de849_879bff83",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-08T08:51:26Z",
+      "side": 1,
+      "message": "4200",
+      "range": {
+        "startLine": 126,
+        "startChar": 27,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "60b134ee522b9e866dc4c040f68ad09e8093e41d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
