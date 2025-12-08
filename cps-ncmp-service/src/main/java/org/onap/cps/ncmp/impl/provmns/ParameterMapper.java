@@ -41,23 +41,23 @@ public class ParameterMapper {
     public RequestPathParameters extractRequestParameters(final HttpServletRequest httpServletRequest) {
         final String uriPath = (String) httpServletRequest.getAttribute(
             "org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping");
-
         final String[] pathVariables = uriPath.split(PROVMNS_BASE_PATH);
         final int lastSlashIndex = pathVariables[1].lastIndexOf('/');
-        if (lastSlashIndex < 0) {
-            throw new ProvMnSException("not a valid path", String.format(INVALID_PATH_DETAILS_FORMAT, uriPath));
-        }
         final RequestPathParameters requestPathParameters = new RequestPathParameters();
-        requestPathParameters.setUriLdnFirstPart("/" + pathVariables[1].substring(0, lastSlashIndex));
-        final String classNameAndId = pathVariables[1].substring(lastSlashIndex + 1);
-
+        final String classNameAndId;
+        if (lastSlashIndex < 0) {
+            requestPathParameters.setUriLdnFirstPart("");
+            classNameAndId = pathVariables[1];
+        } else {
+            requestPathParameters.setUriLdnFirstPart("/" + pathVariables[1].substring(0, lastSlashIndex));
+            classNameAndId = pathVariables[1].substring(lastSlashIndex + 1);
+        }
         final String[] splitClassNameId = classNameAndId.split("=", 2);
         if (splitClassNameId.length != 2) {
             throw new ProvMnSException("not a valid path", String.format(INVALID_PATH_DETAILS_FORMAT, uriPath));
         }
         requestPathParameters.setClassName(splitClassNameId[0]);
         requestPathParameters.setId(splitClassNameId[1]);
-
         return requestPathParameters;
     }
 }
