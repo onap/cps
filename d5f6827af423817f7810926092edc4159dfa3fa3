@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "840bc441_5e2d4214",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-12-08T14:04:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f365c34_5726b79a",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 8
+      },
+      "revId": "d5f6827af423817f7810926092edc4159dfa3fa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c65c9c1f_c692d5b7",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-12-08T13:18:22Z",
       "side": 1,
       "message": "NB: not \u0027some\u0027 but \u0027my\u0027 now :-)\nactually in this case I would use the word \u0027segment\u0027 and maybe add a test for 3+ segment1 to for clarity:\n\n\u00271 segment\u0027 | \u0027ProvMnS/v1/segment1/myClass\u003dmyId\u0027\n\u00272 segments\u0027 | \u0027ProvMnS/v1/segment1/segment2/myClass\u003dmyId\u0027\n\u0027multiple segments\u0027 | \u0027ProvMnS/v1/segment1/segment2/segment3/segment4/myClass\u003dmyId\u0027",
+      "range": {
+        "startLine": 46,
+        "startChar": 46,
+        "endLine": 46,
+        "endChar": 50
+      },
+      "revId": "d5f6827af423817f7810926092edc4159dfa3fa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b5c97ea_1e1bd6e5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParameterMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-12-08T14:04:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c65c9c1f_c692d5b7",
       "range": {
         "startLine": 46,
         "startChar": 46,
