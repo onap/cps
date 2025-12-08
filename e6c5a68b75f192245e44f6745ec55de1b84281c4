@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4982047_acd5dc9e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-08T08:14:41Z",
+      "side": 1,
+      "message": "this should be \"remove\" instead of \"delete\"\nAlso keep lowercase",
+      "range": {
+        "startLine": 37,
+        "startChar": 31,
+        "endLine": 37,
+        "endChar": 38
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28e40f7a_61fecc4e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-08T08:14:41Z",
+      "side": 1,
+      "message": "this should be \"remove\" instead of \"delete\"",
+      "range": {
+        "startLine": 37,
+        "startChar": 246,
+        "endLine": 37,
+        "endChar": 252
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20be8b2f_53f50dc7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-08T08:14:41Z",
+      "side": 1,
+      "message": "this should be \"remove\" instead of \"delete\"",
+      "range": {
+        "startLine": 37,
+        "startChar": 74,
+        "endLine": 37,
+        "endChar": 80
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efd9fc10_92974c01",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-08T08:14:41Z",
+      "side": 1,
+      "message": "change \"Add\" to \"create\" in whole scenario",
+      "range": {
+        "startLine": 38,
+        "startChar": 31,
+        "endLine": 38,
+        "endChar": 35
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37400199_86d23fec",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 48
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-08T08:14:41Z",
+      "side": 1,
+      "message": "use only \"create\",\"remove\" and \"replace\" in all places instead \"add\", \"delete\" and \"update\"\nin lowercases only",
+      "range": {
+        "startLine": 47,
+        "startChar": 71,
+        "endLine": 47,
+        "endChar": 78
+      },
+      "revId": "e6c5a68b75f192245e44f6745ec55de1b84281c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
