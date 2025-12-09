@@ -23,13 +23,15 @@ package org.onap.cps.ncmp.init;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.impl.models.CmHandleStateUpdate;
+import org.onap.cps.ncmp.impl.models.CmHandleMigrationDetail;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -37,9 +39,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DataMigration {
 
-    public final InventoryPersistence inventoryPersistence;
+    private final InventoryPersistence inventoryPersistence;
     private final CmHandleQueryService cmHandleQueryService;
     private final NetworkCmProxyInventoryFacade networkCmProxyInventoryFacade;
+    private final JsonObjectMapper jsonObjectMapper;
 
 
     /**
@@ -61,26 +64,31 @@ public class DataMigration {
 
     private void migrateBatch(final List<String> cmHandleIds) {
         log.debug("Processing batch of {} Cm Handles", cmHandleIds.size());
-        final List<CmHandleStateUpdate> cmHandleStateUpdates = new ArrayList<>();
+        final List<CmHandleMigrationDetail> cmHandleMigrationDetails =
+                new ArrayList<>(cmHandleIds.size());
         for (final String cmHandleId : cmHandleIds) {
             try {
                 final NcmpServiceCmHandle ncmpServiceCmHandle =
                         networkCmProxyInventoryFacade.getNcmpServiceCmHandle(cmHandleId);
-                final String valueFromOldModel = ncmpServiceCmHandle.getCompositeState().getCmHandleState().name();
-                cmHandleStateUpdates.add(new CmHandleStateUpdate(
+                cmHandleMigrationDetails.add(new CmHandleMigrationDetail(
                         ncmpServiceCmHandle.getCmHandleId(),
-                        valueFromOldModel
+                        ncmpServiceCmHandle.getCompositeState().getCmHandleState().name(),
+                        convertAdditionalPropertiesToJson(ncmpServiceCmHandle.getAdditionalProperties())
                 ));
             } catch (final Exception e) {
                 log.error("Failed to process CM handle {} state", cmHandleId, e);
             }
         }
         try {
-            inventoryPersistence.bulkUpdateCmHandleStates(cmHandleStateUpdates);
+            inventoryPersistence.cmHandleBulkMigrate(cmHandleMigrationDetails);
             log.debug("Successfully updated Cm Handles");
         } catch (final Exception e) {
             log.error("Failed to perform bulk update for batch", e);
         }
+    }
+
+    private String convertAdditionalPropertiesToJson(final Map<String, String> additionalProperties) {
+        return jsonObjectMapper.asJsonString(additionalProperties);
     }
 }
 
