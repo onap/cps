@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 import spock.lang.Subject
@@ -41,16 +42,18 @@ class DataMigrationSpec extends Specification{
     def mockCmHandleQueryService = Mock(CmHandleQueryService)
     def mockNetworkCmProxyInventoryFacade = Mock(NetworkCmProxyInventoryFacade)
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def cmHandle1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1', dmiServiceName: 'dmi1', compositeState: new CompositeState(cmHandleState: READY))
-    def cmHandle2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2', dmiServiceName: 'dmi1', compositeState: new CompositeState(cmHandleState: ADVISED))
-    def cmHandle3 = new NcmpServiceCmHandle(cmHandleId: 'ch-3', dmiServiceName: 'dmi2', compositeState: new CompositeState(cmHandleState: READY))
+    def mockJsonObjectMapper = Mock(JsonObjectMapper)
+    def someCmHandle1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1', dmiServiceName: 'dmi1', compositeState: new CompositeState(cmHandleState: READY), additionalProperties: [id: '4'])
+    def someCmHandle2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2', dmiServiceName: 'dmi1', compositeState: new CompositeState(cmHandleState: ADVISED))
+    def someCmHandle3 = new NcmpServiceCmHandle(cmHandleId: 'ch-3', dmiServiceName: 'dmi2', compositeState: new CompositeState(cmHandleState: READY))
 
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     def setup() {
-        mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-1') >> cmHandle1
-        mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-2') >> cmHandle2
-        mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-3') >> cmHandle3
+        mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-1') >> someCmHandle1
+        mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-2') >> someCmHandle2
+        mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-3') >> someCmHandle3
+        mockJsonObjectMapper.asJsonString([id: '4']) >> '{"id":"4"}'
         setupLogger(Level.ERROR)
     }
 
@@ -60,7 +63,7 @@ class DataMigrationSpec extends Specification{
 
 
     @Subject
-    def objectUnderTest = Spy(new DataMigration(mockInventoryPersistence, mockCmHandleQueryService, mockNetworkCmProxyInventoryFacade))
+    def objectUnderTest = Spy(new DataMigration(mockInventoryPersistence, mockCmHandleQueryService, mockNetworkCmProxyInventoryFacade, mockJsonObjectMapper))
 
     def 'CM Handle migration.'() {
         given:  'a list of CM handle IDs'
@@ -69,14 +72,18 @@ class DataMigrationSpec extends Specification{
         when:   'migration is performed'
             objectUnderTest.migrateInventoryToModelRelease20250722(3)
         then:   'handles are processed in bulk'
-            1 * mockInventoryPersistence.bulkUpdateCmHandleStates({ cmHandleStateUpdates ->
-                def actualData = cmHandleStateUpdates.collect { [id: it.cmHandleId, state: it.state] }
+            1 * mockInventoryPersistence.bulkUpdateCmHandleStatesAndDmiProperties({ cmHandleStateUpdates ->
+                def actualData = cmHandleStateUpdates.collect { [id: it.cmHandleId, state: it.state, dmiProperties: it.dmiProperties] }
                 assert actualData.size() == 3
-                assert actualData.containsAll([
-                    [id: 'ch-1', state: 'READY'],
-                    [id: 'ch-2', state: 'ADVISED'],
-                    [id: 'ch-3', state: 'READY']
-                ])
+                assert actualData[0].id == 'ch-1'
+                assert actualData[0].state == 'READY'
+                assert actualData[0].dmiProperties == '{"id":"4"}'
+                assert actualData[1].id == 'ch-2'
+                assert actualData[1].state == 'ADVISED'
+                assert actualData[1].dmiProperties == null
+                assert actualData[2].id == 'ch-3'
+                assert actualData[2].state == 'READY'
+                assert actualData[2].dmiProperties == null
             })
     }
 
@@ -89,7 +96,7 @@ class DataMigrationSpec extends Specification{
         when: 'migration is performed'
             objectUnderTest.migrateInventoryToModelRelease20250722(2)
         then: 'migration processes no batches'
-            1 * mockInventoryPersistence.bulkUpdateCmHandleStates([])
+            1 * mockInventoryPersistence.bulkUpdateCmHandleStatesAndDmiProperties([])
     }
 
     def 'Migrate batch with error.'() {
@@ -97,7 +104,7 @@ class DataMigrationSpec extends Specification{
             def cmHandleIds = ['ch-1']
             mockCmHandleQueryService.getAllCmHandleReferences(false) >> cmHandleIds
         and: 'an exception happens updating cm handle states'
-            mockInventoryPersistence.bulkUpdateCmHandleStates(*_) >> {
+            mockInventoryPersistence.bulkUpdateCmHandleStatesAndDmiProperties(*_) >> {
                 throw new RuntimeException('Simulated failure')
             }
         when: 'migration is performed'

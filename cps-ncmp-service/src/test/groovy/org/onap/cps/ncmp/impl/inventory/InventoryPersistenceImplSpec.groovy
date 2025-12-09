@@ -35,7 +35,7 @@ import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.ncmp.impl.models.CmHandleStateUpdate
+import org.onap.cps.ncmp.impl.models.CmHandleStateAndDmiPropertiesUpdate
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.JsonObjectMapper
@@ -75,8 +75,8 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def cmHandleId = 'ch-1'
     def updates = [
-            new CmHandleStateUpdate("ch-1", "READY"),
-            new CmHandleStateUpdate("ch-2", "DELETING")
+            new CmHandleStateAndDmiPropertiesUpdate("ch-1", "READY", "some-dmi-properties"),
+            new CmHandleStateAndDmiPropertiesUpdate("ch-2", "DELETING", "some-dmi-properties")
     ]
     def alternateId = 'some-alternate-id'
     def leaves = ["id":cmHandleId, "alternateId":alternateId,"dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
@@ -402,14 +402,23 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'update is called.'
             objectUnderTest.updateCmHandleField('ch-1', 'my field', 'my new value')
         then: 'call is delegated to updateCmHandleFields'
-        1 * objectUnderTest.updateCmHandleFields('my field', ['ch-1':'my new value'])
+            1 * objectUnderTest.updateCmHandleFields('my field', ['ch-1':'my new value'])
     }
 
     def 'Bulk update cm handle state.'(){
         when: 'bulk update is called'
-            objectUnderTest.bulkUpdateCmHandleStates(updates)
+            objectUnderTest.bulkUpdateCmHandleStatesAndDmiProperties(updates)
         then: 'call is made to update the fileds of the cm handle'
-            1 * objectUnderTest.updateCmHandleFields('cm-handle-state', ['ch-1':'READY','ch-2':'DELETING'])
+        1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT, { jsonString ->
+            jsonString.contains('"cm-handle-state":"READY"') && jsonString.contains('"cm-handle-state":"DELETING"')
+        }, _, ContentType.JSON)
+    }
+
+    def 'Bulk update with empty list.'() {
+        when: 'bulk update is called with empty list'
+            objectUnderTest.bulkUpdateCmHandleStatesAndDmiProperties([])
+        then: 'no database call is made'
+            0 * mockCpsDataService.updateNodeLeaves(*_)
     }
 
 }

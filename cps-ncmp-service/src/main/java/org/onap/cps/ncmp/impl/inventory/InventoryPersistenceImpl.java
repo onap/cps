@@ -49,7 +49,7 @@ import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.models.CmHandleStateUpdate;
+import org.onap.cps.ncmp.impl.models.CmHandleStateAndDmiPropertiesUpdate;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
@@ -218,35 +218,46 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public void updateCmHandleFields(final String fieldName, final Map<String, String> newValuePerCmHandleId) {
         if (!newValuePerCmHandleId.isEmpty()) {
-            final Map<String, Object> targetCmHandleStatePerCmHandleId = new HashMap<>();
-            final List<Map<String, String>> targetCmHandleStatesPerCmHandleIds = new ArrayList<>();
-
+            final List<Map<String, String>> targetCmHandleFieldChangesPerCmHandleIds = new ArrayList<>();
             for (final Map.Entry<String, String> entry : newValuePerCmHandleId.entrySet()) {
                 final Map<String, String> cmHandleData = new HashMap<>();
                 cmHandleData.put("id", entry.getKey());
                 cmHandleData.put(fieldName, entry.getValue());
-                targetCmHandleStatesPerCmHandleIds.add(cmHandleData);
+                targetCmHandleFieldChangesPerCmHandleIds.add(cmHandleData);
                 log.debug("Updating {} for cmHandle {} to {}", fieldName, entry.getKey(), entry.getValue());
             }
-            targetCmHandleStatePerCmHandleId.put("cm-handles", targetCmHandleStatesPerCmHandleIds);
-            cpsDataService.updateNodeLeaves(
-                    NCMP_DATASPACE_NAME,
-                    NCMP_DMI_REGISTRY_ANCHOR,
-                    NCMP_DMI_REGISTRY_PARENT,
-                    jsonObjectMapper.asJsonString(targetCmHandleStatePerCmHandleId),
-                    OffsetDateTime.now(),
-                    ContentType.JSON);
+            updateCmHandleLeaves(targetCmHandleFieldChangesPerCmHandleIds);
+
         }
     }
 
     @Override
-    public void bulkUpdateCmHandleStates(final List<CmHandleStateUpdate> cmHandleStateUpdates) {
-        final Map<String, String> mappedCmHandleStateUpdates = cmHandleStateUpdates.stream()
-            .collect(Collectors.toMap(
-                    CmHandleStateUpdate::cmHandleId,
-                    CmHandleStateUpdate::state
-            ));
-        updateCmHandleFields("cm-handle-state", mappedCmHandleStateUpdates);
+    public void bulkUpdateCmHandleStatesAndDmiProperties(
+            final List<CmHandleStateAndDmiPropertiesUpdate> cmHandleStateAndDmiPropertiesUpdates) {
+        if (cmHandleStateAndDmiPropertiesUpdates.isEmpty()) {
+            return;
+        }
+        final List<Map<String, String>> cmHandlesList = new ArrayList<>(cmHandleStateAndDmiPropertiesUpdates.size());
+        for (final CmHandleStateAndDmiPropertiesUpdate data : cmHandleStateAndDmiPropertiesUpdates) {
+            final Map<String, String> cmHandleData = new HashMap<>();
+            cmHandleData.put("id", data.cmHandleId());
+            cmHandleData.put("cm-handle-state", data.state());
+            if (data.dmiProperties() != null) {
+                cmHandleData.put("dmi-properties", data.dmiProperties());
+            }
+            cmHandlesList.add(cmHandleData);
+        }
+        updateCmHandleLeaves(cmHandlesList);
+    }
+
+    private void updateCmHandleLeaves(final List<Map<String, String>> cmHandlesList) {
+        cpsDataService.updateNodeLeaves(
+                NCMP_DATASPACE_NAME,
+                NCMP_DMI_REGISTRY_ANCHOR,
+                NCMP_DMI_REGISTRY_PARENT,
+                jsonObjectMapper.asJsonString(Map.of("cm-handles", cmHandlesList)),
+                OffsetDateTime.now(),
+                ContentType.JSON);
     }
 
     private static String getXPathForCmHandleById(final String cmHandleId) {
