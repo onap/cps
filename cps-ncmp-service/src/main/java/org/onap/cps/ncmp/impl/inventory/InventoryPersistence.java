@@ -30,7 +30,7 @@ import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.models.CmHandleStateUpdate;
+import org.onap.cps.ncmp.impl.models.CmHandleMigrationDetail;
 
 public interface InventoryPersistence extends NcmpPersistence {
 
@@ -175,9 +175,10 @@ public interface InventoryPersistence extends NcmpPersistence {
     /**
      * Method to update a batch of cm handles status to the value in CompositeState.
      *
-     * @param cmHandleStateUpdates               the cmHandleId and state change being performed on it
+     * @param cmHandleMigrationDetails               the cmHandleId and state or dimProperties change being performed on it
      */
-    void bulkUpdateCmHandleStates(List<CmHandleStateUpdate> cmHandleStateUpdates);
+    void cmHandleBulkMigrate(
+            List<CmHandleMigrationDetail> cmHandleMigrationDetails);
 
 
 }
