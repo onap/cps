@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dc337cc_36adc38a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-12-09T10:18:36Z",
+      "side": 1,
+      "message": "refactored",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "46b4c661d3206c9289b3aa4f094f13cf139f2269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81488d79_500f006a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetailsFactorySpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-12-09T10:18:36Z",
+      "side": 1,
+      "message": "NB: not needed since json.contains is obvious to tell it will look for attributesVAlueInOperation...",
+      "range": {
+        "startLine": 143,
+        "startChar": 81,
+        "endLine": 143,
+        "endChar": 122
+      },
+      "revId": "46b4c661d3206c9289b3aa4f094f13cf139f2269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
