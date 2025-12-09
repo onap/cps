@@ -27,4 +27,4 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record CreateOperationDetails(String operation,
                                      String targetIdentifier,
-                                     Map<String, List<OperationEntry>> changeRequest) {}
+                                     Map<String, List<OperationEntry>> changeRequest) implements OperationDetails {}
