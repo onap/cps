@@ -277,7 +277,17 @@ components:
             name: "Funny"
           target-data:
             name: "Comic"
-    NotificationSubscriptionsDataSample:
+    notificationSubscriptionRequestSample:
+      value:
+        dataspace:
+          - name: test_data
+            anchors:
+              anchor:
+                - name: test_anchor
+                  xpaths:
+                    xpath:
+                      - path: /test
+    notificationSubscriptionResponseSample:
       value:
         cps-notification-subscriptions:dataspaces:
           dataspace:
