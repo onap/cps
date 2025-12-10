@@ -44,39 +44,29 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleId] = ['M1', 'M2']
             registerCmHandle(DMI1_URL, cmHandleId, initialModuleSetTag)
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(cmHandleId).moduleName.sort()
-
-        when: "the CM-handle is upgraded with given moduleSetTag '${updatedModuleSetTag}'"
+        when: 'the CM-handle is upgraded with given moduleSetTag #updatedModuleSetTag'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [cmHandleId], moduleSetTag: updatedModuleSetTag)
             def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(
                     new DmiPluginRegistration(dmiPlugin: DMI1_URL, upgradedCmHandles: cmHandlesToUpgrade))
-
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.upgradedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
-
         and: 'CM-handle is in LOCKED state due to MODULE_UPGRADE'
             def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState(cmHandleId)
             assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
             assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_UPGRADE
             assert cmHandleCompositeState.lockReason.details == "Upgrade to ModuleSetTag: ${updatedModuleSetTag}"
-
         when: 'DMI will return different modules for upgrade: M1 and M3'
             dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleId] = ['M1', 'M3']
-
         and: 'the module sync watchdog is triggered twice'
             2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
-
         then: 'CM-handle goes to READY state'
             assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState
-
         and: 'the CM-handle has expected moduleSetTag'
             assert objectUnderTest.getNcmpServiceCmHandle(cmHandleId).moduleSetTag == updatedModuleSetTag
-
         and: 'CM-handle has expected updated modules: M1 and M3'
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences(cmHandleId).moduleName.sort()
-
         cleanup: 'deregister CM-handle and remove all associated module resources'
             deregisterCmHandle(DMI1_URL, cmHandleId)
-
         where: 'following module set tags are used'
             initialModuleSetTag | updatedModuleSetTag
             NO_MODULE_SET_TAG   | NO_MODULE_SET_TAG
@@ -89,36 +79,28 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
         given: 'DMI will return modules for registration'
             dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleId] = ['M1', 'M2']
             dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleIdWithExistingModuleSetTag] = ['M1', 'M3']
-        and: "an existing CM-handle handle with moduleSetTag '${updatedModuleSetTag}'"
+        and: 'an existing CM-handle handle with moduleSetTag #updatedModuleSetTag'
             registerCmHandle(DMI1_URL, cmHandleIdWithExistingModuleSetTag, updatedModuleSetTag)
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences(cmHandleIdWithExistingModuleSetTag).moduleName.sort()
-        and: "a CM-handle with moduleSetTag '${initialModuleSetTag}' which will be upgraded"
+        and: 'a CM-handle with moduleSetTag #initialModuleSetTag which will be upgraded'
             registerCmHandle(DMI1_URL, cmHandleId, initialModuleSetTag)
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(cmHandleId).moduleName.sort()
-
-        when: "CM-handle is upgraded to moduleSetTag '${updatedModuleSetTag}'"
+        when: 'CM-handle is upgraded to moduleSetTag #updatedModuleSetTag'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [cmHandleId], moduleSetTag: updatedModuleSetTag)
             def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(
                     new DmiPluginRegistration(dmiPlugin: DMI1_URL, upgradedCmHandles: cmHandlesToUpgrade))
-
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.upgradedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
-
         and: 'the module sync watchdog is triggered twice'
             2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
-
         and: 'CM-handle goes to READY state'
             assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState
-
         and: 'the CM-handle has expected moduleSetTag'
             assert objectUnderTest.getNcmpServiceCmHandle(cmHandleId).moduleSetTag == updatedModuleSetTag
-
         and: 'CM-handle has expected updated modules: M1 and M3'
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences(cmHandleId).moduleName.sort()
-
         cleanup: 'deregister CM-handle'
             deregisterCmHandles(DMI1_URL, [cmHandleId, cmHandleIdWithExistingModuleSetTag])
-
         where:
             initialModuleSetTag | updatedModuleSetTag
             NO_MODULE_SET_TAG   | 'module@Set2'
@@ -130,21 +112,16 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleId] = ['M1', 'M2']
             registerCmHandle(DMI1_URL, cmHandleId, 'same')
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(cmHandleId).moduleName.sort()
-
         when: 'CM-handle is upgraded with the same moduleSetTag'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [cmHandleId], moduleSetTag: 'same')
             objectUnderTest.updateDmiRegistration(
                     new DmiPluginRegistration(dmiPlugin: DMI1_URL, upgradedCmHandles: cmHandlesToUpgrade))
-
         then: 'CM-handle remains in READY state'
             assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState
-
         and: 'the CM-handle has same moduleSetTag as before'
             assert objectUnderTest.getNcmpServiceCmHandle(cmHandleId).moduleSetTag == 'same'
-
         then: 'CM-handle has same modules as before: M1 and M2'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(cmHandleId).moduleName.sort()
-
         cleanup: 'deregister CM-handle'
             deregisterCmHandle(DMI1_URL, cmHandleId)
     }
@@ -155,23 +132,18 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             registerCmHandle(DMI1_URL, cmHandleId, 'oldTag')
         and: 'DMI is not available for upgrade'
             dmiDispatcher1.isAvailable = false
-
         when: 'the CM-handle is upgraded'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [cmHandleId], moduleSetTag: 'newTag')
             objectUnderTest.updateDmiRegistration(
                     new DmiPluginRegistration(dmiPlugin: DMI1_URL, upgradedCmHandles: cmHandlesToUpgrade))
-
         and: 'the module sync watchdog is triggered twice'
             2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
-
         then: 'CM-handle goes to LOCKED state with reason MODULE_UPGRADE_FAILED'
             def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState(cmHandleId)
             assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
             assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_UPGRADE_FAILED
-
         and: 'the CM-handle has same moduleSetTag as before'
             assert objectUnderTest.getNcmpServiceCmHandle(cmHandleId).moduleSetTag == 'oldTag'
-
         cleanup: 'deregister CM-handle'
             deregisterCmHandle(DMI1_URL, cmHandleId)
     }

@@ -53,24 +53,19 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
     def 'Update of CM-handle with new or unchanged alternate ID succeeds.'() {
         given: 'DMI will return modules when requested'
             dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2']]
-        and: "existing CM-handle with alternate ID: $oldAlternateId"
+        and: 'existing CM-handle with alternate ID: #oldAlternateId'
             registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, oldAlternateId)
-
-        when: "CM-handle is registered for update with new alternate ID: $newAlternateId"
+        when: 'CM-handle is registered for update with new alternate ID: #newAlternateId'
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: newAlternateId)
             def dmiPluginRegistrationResponse =
                     objectUnderTest.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate]))
-
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse('ch-1')]
-
         and: 'the CM-handle has expected alternate ID'
             assert objectUnderTest.getNcmpServiceCmHandle('ch-1').alternateId == expectedAlternateId
-
         cleanup: 'deregister CM handles'
             deregisterCmHandle(DMI1_URL, 'ch-1')
-
-        where:
+        where: 'following alternate ids are used'
             oldAlternateId | newAlternateId || expectedAlternateId
             ''             | ''             || ''
             ''             | 'new'          || 'new'
@@ -85,18 +80,14 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2']]
         and: 'existing CM-handle with alternate ID'
             registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'original')
-
         when: 'a CM-handle is registered for update with new alternate ID'
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: 'new')
             def dmiPluginRegistrationResponse =
                     objectUnderTest.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate]))
-
         then: 'registration gives failure response, due to cm-handle already existing'
             assert dmiPluginRegistrationResponse.updatedCmHandles == [CmHandleRegistrationResponse.createFailureResponse('ch-1', NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST)]
-
         and: 'the CM-handle still has the old alternate ID'
             assert objectUnderTest.getNcmpServiceCmHandle('ch-1').alternateId == 'original'
-
         cleanup: 'deregister CM handles'
             deregisterCmHandle(DMI1_URL, 'ch-1')
     }
@@ -105,33 +96,24 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
         given: 'DMI will return modules when requested'
             def cmHandleId = 'ch-id-for-update'
             dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleId] = ['M1', 'M2']
-
         when: 'a CM-handle is registered for creation'
-
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId)
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
             def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
-
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
-
         then: 'the module sync watchdog is triggered'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
-
-        and: 'flush the latest cm handle registration events( state transition from NONE to ADVISED and ADVISED to READY)'
-            getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2)
-
+        and: 'flush and check there are 2 cm handle registration events (state transition from NONE to ADVISED and ADVISED to READY)'
+            assert getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2).size() == 2
         and: 'cm handle updated with the data producer identifier'
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'my-data-producer-id')
             def dmiPluginRegistrationForUpdate = new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate])
             def dmiPluginRegistrationResponseForUpdate = objectUnderTest.updateDmiRegistration(dmiPluginRegistrationForUpdate)
-
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponseForUpdate.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
-
         and: 'get the latest message'
             def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
-
         and: 'the message has the updated data producer identifier'
             def notificationMessages = []
             for (def consumerRecord : consumerRecords) {
@@ -139,7 +121,6 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             }
             assert notificationMessages[0].event.cmHandleId.contains(cmHandleId)
             assert notificationMessages[0].event.dataProducerIdentifier == 'my-data-producer-id'
-
         cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI1_URL, cmHandleId)
     }

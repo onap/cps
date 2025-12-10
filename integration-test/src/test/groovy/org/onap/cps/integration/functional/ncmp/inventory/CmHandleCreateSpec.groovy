@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.functional.ncmp.inventory
 
+
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.onap.cps.events.LegacyEvent
 import org.onap.cps.integration.KafkaTestContainer
@@ -32,6 +33,7 @@ import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
+import spock.util.concurrent.PollingConditions
 
 import java.time.Duration
 
@@ -45,6 +47,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
         subscribeAndClearPreviousMessages('test-group', 'ncmp-events')
+        clearPreviousInstrumentation()
     }
 
     def cleanup() {
@@ -110,8 +113,16 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert messages[1].event.newValues.dataSyncEnabled == false
         and: 'there are no more messages to be read'
             assert getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1).size() == 0
-        cleanup: 'deregister CM handle'
+        and: 'instrumentation has recorded 2 events (null > ADVISED, ADVISED > READY)'
+            new PollingConditions().within(5) {
+                assert countLcmEventTimerInvocations() == 2
+            }
+        then: 'deregister CM handle'
             deregisterCmHandle(DMI1_URL, uniqueId)
+        and: 'instrumentation has recorded 2 more events (READY > DELETING, DELETING > null)'
+            new PollingConditions().within(5) {
+                assert countLcmEventTimerInvocations() == 2 + 2
+            }
     }
 
     def 'CM Handle registration with DMI error during module sync.'() {
@@ -244,6 +255,14 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert headerAsMap.get('eventSchemaVersion') == eventSchemaVersion
         }
         return true
+    }
+
+    def countLcmEventTimerInvocations() {
+        def totalCountForAllTagCombinations = 0
+        for (def timer : meterRegistry.get('cps.ncmp.lcm.events.send').timers()) {
+            totalCountForAllTagCombinations = totalCountForAllTagCombinations + timer.count()
+        }
+        return totalCountForAllTagCombinations
     }
 
 }
