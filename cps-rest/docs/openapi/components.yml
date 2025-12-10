@@ -277,12 +277,22 @@ components:
             name: "Funny"
           target-data:
             name: "Comic"
-    NotificationSubscriptionsDataSample:
+    notificationSubscriptionRequestSample:
+      value:
+        dataspace:
+          - name: my-dataspace
+            anchors:
+              anchor:
+                - name: my-anchor
+                  xpaths:
+                    xpath:
+                      - path: /shops/bookstore
+    notificationSubscriptionResponseSample:
       value:
         cps-notification-subscriptions:dataspaces:
           dataspace:
-            - name: dataspace01
-            - name: dataspace02
+            - name: my-dataspace
+            - name: bookstore-dataspace
   parameters:
     dataspaceNameInQuery:
       name: dataspace-name
@@ -370,10 +380,10 @@ components:
         type: string
         default: /dataspaces
       examples:
-        subscription by dataspace xpath:
+        dataspace xpath:
+          value: /dataspaces
+        anchor xpath:
           value: /dataspaces/dataspace[@name='dataspace01']
-        subscription by anchor xpath:
-          value: /dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']
     requiredXpathInQuery:
       name: xpath
       in: query
