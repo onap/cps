@@ -21,7 +21,6 @@
 package org.onap.cps.integration.functional.ncmp.inventory
 
 import com.hazelcast.map.IMap
-import io.micrometer.core.instrument.MeterRegistry
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.springframework.beans.factory.annotation.Autowired
@@ -35,9 +34,6 @@ import java.util.concurrent.TimeUnit
 class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
 
     ModuleSyncWatchdog objectUnderTest
-
-    @Autowired
-    MeterRegistry meterRegistry
 
     @Autowired
     IMap<String, Integer> cmHandlesByState

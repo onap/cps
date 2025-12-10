@@ -22,6 +22,7 @@
 package org.onap.cps.integration.base
 
 import com.hazelcast.map.IMap
+import io.micrometer.core.instrument.MeterRegistry
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
@@ -162,6 +163,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     ReadinessManager readinessManager
+
+    @Autowired
+    MeterRegistry meterRegistry
 
     @Value('${ncmp.policy-executor.server.port:8080}')
     private String policyServerPort;
@@ -354,6 +358,10 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def timestampIsVeryRecent(eventTime) {
         def eventTimeAsOffsetDateTime = EventDateTimeFormatter.toIsoOffsetDateTime(eventTime)
         Duration.between(eventTimeAsOffsetDateTime, ZonedDateTime.now()).seconds < 3
+    }
+
+    def clearPreviousInstrumentation() {
+        meterRegistry.clear()
     }
 
 }

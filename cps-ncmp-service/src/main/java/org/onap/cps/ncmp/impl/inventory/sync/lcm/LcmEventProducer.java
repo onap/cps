@@ -132,8 +132,11 @@ public class LcmEventProducer {
             .register(meterRegistry));
     }
 
-    private Tag createCmHandleStateTag(final String tageLabel, final Values values) {
-        return Tag.of(tageLabel, values.getCmHandleState().value());
+    private Tag createCmHandleStateTag(final String tagLabel, final Values values) {
+        if (values == null) {
+            return Tag.of(tagLabel, "N/A");
+        }
+        return Tag.of(tagLabel, values.getCmHandleState().value());
     }
 
 }

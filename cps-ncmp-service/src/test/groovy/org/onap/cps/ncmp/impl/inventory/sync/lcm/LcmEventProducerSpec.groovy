@@ -29,7 +29,6 @@ import org.springframework.kafka.KafkaException
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
-import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 
 class LcmEventProducerSpec extends Specification {
 
@@ -40,14 +39,14 @@ class LcmEventProducerSpec extends Specification {
     def objectUnderTest = new LcmEventProducer(mockEventProducer, lcmEventObjectCreator, meterRegistry)
 
     def cmHandleTransitionPair = new CmHandleTransitionPair(
-        new YangModelCmHandle(id: 'ch-1', compositeState: new CompositeState(cmHandleState: ADVISED), additionalProperties: [], publicProperties: []),
-        new YangModelCmHandle(id: 'ch-1', compositeState: new CompositeState(cmHandleState: READY), additionalProperties: [], publicProperties: [])
+        new YangModelCmHandle(id: 'ch-1',  additionalProperties: [], publicProperties: []),
+        new YangModelCmHandle(id: 'ch-1', compositeState: new CompositeState(cmHandleState: ADVISED), additionalProperties: [], publicProperties: [])
     )
 
     def 'Create and send lcm event where notifications are #scenario.'() {
         given: 'notificationsEnabled is #notificationsEnabled'
             objectUnderTest.notificationsEnabled = notificationsEnabled
-        when: 'service is called to send a batch of lcm events'
+        when: 'event send for (batch of) 1 cm handle transition pair (new cm handle going to READY)'
             objectUnderTest.sendLcmEventBatchAsynchronously([cmHandleTransitionPair])
         then: 'producer is called #expectedTimesMethodCalled times with correct identifiers'
             expectedTimesMethodCalled * mockEventProducer.sendLegacyEvent(_, 'ch-1', _, _) >> {
@@ -61,7 +60,7 @@ class LcmEventProducerSpec extends Specification {
             def timer = meterRegistry.find('cps.ncmp.lcm.events.send').timer()
             if (notificationsEnabled) {
                 assert timer.count() == 1
-                assert timer.id.tags.containsAll(Tag.of('oldCmHandleState', 'ADVISED'), Tag.of('newCmHandleState', 'READY'))
+                assert timer.id.tags.containsAll(Tag.of('oldCmHandleState', 'N/A'), Tag.of('newCmHandleState', 'ADVISED'))
             } else {
                 assert timer == null
             }
