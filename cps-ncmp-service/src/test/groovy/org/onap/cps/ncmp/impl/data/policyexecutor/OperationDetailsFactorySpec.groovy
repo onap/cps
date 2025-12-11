@@ -24,8 +24,8 @@ import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException
-import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.provmns.RequestParameters;
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
 import org.onap.cps.utils.JsonObjectMapper;
@@ -49,7 +49,7 @@ class OperationDetailsFactorySpec extends Specification {
 
     def 'Build create operation details with all properties.'() {
         given: 'request parameters and resource'
-            def requestPathParameters = new RequestPathParameters(uriLdnFirstPart: 'my uri', className: 'class in uri', id: 'my id')
+            def requestPathParameters = new RequestParameters(uriLdnFirstPart: 'my uri', className: 'class in uri', id: 'my id')
             def resource = new ResourceOneOf(id: 'some resource id', objectClass: 'class in resource')
         when: 'create operation details are built'
             def result = objectUnderTest.buildCreateOperationDetails(CREATE, requestPathParameters, resource)
@@ -61,7 +61,7 @@ class OperationDetailsFactorySpec extends Specification {
 
     def 'Build replace operation details with all properties where class name in body is #scenario.'() {
         given: 'request parameters and resource'
-            def requestPathParameters = new RequestPathParameters(uriLdnFirstPart: 'my uri', className: 'class in uri', id: 'some id')
+            def requestPathParameters = new RequestParameters(uriLdnFirstPart: 'my uri', className: 'class in uri', id: 'some id')
             def resource = new ResourceOneOf(id: 'some resource id', objectClass: classNameInBody)
         when: 'replace operation details are built'
             def result = objectUnderTest.buildCreateOperationDetails(CREATE, requestPathParameters, resource)
@@ -77,16 +77,16 @@ class OperationDetailsFactorySpec extends Specification {
 
     def 'Build delete operation details with all properties'() {
         given: 'request parameters'
-            def requestPathParameters = new RequestPathParameters(uriLdnFirstPart: 'my uri', className: 'classNameInUri', id: 'myId')
+            def requestPathParameters = new RequestParameters(uriLdnFirstPart: 'my uri', className: 'classNameInUri', id: 'myId')
         when: 'delete operation details are built'
-            def result = objectUnderTest.buildDeleteOperationDetails(requestPathParameters.toAlternateId())
+            def result = objectUnderTest.buildDeleteOperationDetails(requestPathParameters.toTargetFdn())
         then: 'all details are correct'
             assert result.targetIdentifier == 'my uri/classNameInUri=myId'
     }
 
     def 'Single patch operation with #patchOperationType checks correct operation type.'() {
         given: 'request parameters and single patch item'
-            def requestPathParameters = new RequestPathParameters(uriLdnFirstPart: 'some uri', className: 'some class')
+            def requestPathParameters = new RequestParameters(uriLdnFirstPart: 'some uri', className: 'some class')
             def resource = new ResourceOneOf(id: 'some resource id')
             def patchItem = new PatchItem(op: patchOperationType, 'path':'some uri', value: resource)
         when: 'patch operation is processed'
@@ -101,7 +101,7 @@ class OperationDetailsFactorySpec extends Specification {
 
     def 'Single patch operation with REMOVE checks correct operation type.'() {
         given: 'request parameters and single remove patch item'
-            def requestPathParameters = new RequestPathParameters(uriLdnFirstPart: 'some uri')
+            def requestPathParameters = new RequestParameters(uriLdnFirstPart: 'some uri')
             def patchItem = new PatchItem(op: 'REMOVE')
         when: 'patch operation is processed'
             objectUnderTest.checkPermissionForEachPatchItem(requestPathParameters, [patchItem], yangModelCmHandle)
@@ -111,7 +111,7 @@ class OperationDetailsFactorySpec extends Specification {
 
     def 'Multiple patch operations invoke policy executor correct number of times in order.'() {
         given: 'request parameters and multiple patch items'
-            def requestPathParameters = new RequestPathParameters(uriLdnFirstPart: 'some uri')
+            def requestPathParameters = new RequestParameters(uriLdnFirstPart: 'some uri')
             def resource = new ResourceOneOf(id: 'some resource id', objectClass: 'some class')
             def patchItemsList = [
                 new PatchItem(op: 'ADD', 'path':'some uri', value: resource),
@@ -130,7 +130,7 @@ class OperationDetailsFactorySpec extends Specification {
 
     def 'Build policy executor patch operation details with single replace operation and #scenario.'() {
         given: 'a requestParameter and a patchItem list'
-            def requestPathParameters = new RequestPathParameters(uriLdnFirstPart: 'some uri', className: 'some class')
+            def requestPathParameters = new RequestParameters(uriLdnFirstPart: 'some uri', className: 'some class')
             def pathItems = [new PatchItem(op: 'REPLACE', 'path':"some uri${suffix}", value: value)]
         when: 'patch operation details are checked'
             objectUnderTest.checkPermissionForEachPatchItem(requestPathParameters, pathItems, yangModelCmHandle)
@@ -139,7 +139,7 @@ class OperationDetailsFactorySpec extends Specification {
                     yangModelCmHandle,
                     UPDATE,
                     null,
-                    requestPathParameters.toAlternateId(),
+                    requestPathParameters.toTargetFdn(),
                     { json -> assert json.contains(attributesValueInOperation) } // check for more details eg. verify type
             )
         where: 'attributes are set using # or resource'
@@ -165,7 +165,7 @@ class OperationDetailsFactorySpec extends Specification {
 
     def 'Build policy executor patch operation details from ProvMnS request parameters with invalid op.'() {
         given: 'a provMnsRequestParameter and a patchItem list'
-            def path = new RequestPathParameters(uriLdnFirstPart: 'some uri', className: 'some class')
+            def path = new RequestParameters(uriLdnFirstPart: 'some uri', className: 'some class')
             def patchItemsList = [new PatchItem(op: 'TEST', 'path':'some uri')]
         when: 'a build is attempted with an invalid op'
             objectUnderTest.checkPermissionForEachPatchItem(path, patchItemsList, yangModelCmHandle)
@@ -175,7 +175,7 @@ class OperationDetailsFactorySpec extends Specification {
 
     def 'Build policy executor create operation details from ProvMnS request parameters where objectClass in resource #scenario.'() {
         given: 'a provMnsRequestParameter and a resource'
-            def requestPathParameters = new RequestPathParameters(uriLdnFirstPart: 'some uri', className: 'class in uri', id:'my id')
+            def requestPathParameters = new RequestParameters(uriLdnFirstPart: 'some uri', className: 'class in uri', id:'my id')
             def resource = new ResourceOneOf(id: 'some resource id', objectClass: objectInResouce)
         when: 'a configurationManagementOperation is created and converted to JSON'
             def result = objectUnderTest.buildCreateOperationDetails(CREATE, requestPathParameters, resource)
@@ -191,7 +191,7 @@ class OperationDetailsFactorySpec extends Specification {
 
     def 'Build Policy Executor Operation Details with a exception during conversion.'() {
         given: 'a provMnsRequestParameter and a resource'
-            def requestPathParameters = new RequestPathParameters(uriLdnFirstPart: 'some uri', className: 'some class')
+            def requestPathParameters = new RequestParameters(uriLdnFirstPart: 'some uri', className: 'some class')
             def resource = new ResourceOneOf(id: 'some resource id')
         and: 'json object mapper throws an exception'
             spiedObjectMapper.readValue(*_) >> { throw new JsonProcessingException('original exception message') }

@@ -188,7 +188,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         when: 'the DMI request is executed'
             def response = performTestRequest(NCMP)
         then: 'NCMP service responds with 502 Bad Gateway status'
-            response.status == BAD_GATEWAY.value()
+            assert response.status == BAD_GATEWAY.value()
         and: 'the NCMP response also contains the original DMI response details'
             response.contentAsString.contains('400')
             response.contentAsString.contains('Bad Request from DMI')

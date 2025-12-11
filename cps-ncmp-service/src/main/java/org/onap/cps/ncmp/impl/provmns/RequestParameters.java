@@ -25,18 +25,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RequestPathParameters {
+public class RequestParameters {
 
+    private String httpMethodName;
     private String uriLdnFirstPart;
     private String className;
     private String id;
 
     /**
-     * Gets alternate id from combining URI-LDN-First-Part, className and id.
+     * Gets target FDN by combining URI-LDN-First-Part, className and id.
      *
-     * @return String of alternate id.
+     * @return String of FDN
      */
-    public String toAlternateId() {
+    public String toTargetFdn() {
         return uriLdnFirstPart + "/" + className + "=" + id;
     }
 }

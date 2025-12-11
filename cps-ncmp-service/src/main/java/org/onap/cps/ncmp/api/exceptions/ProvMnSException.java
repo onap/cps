@@ -20,16 +20,34 @@
 
 package org.onap.cps.ncmp.api.exceptions;
 
-public class ProvMnSException extends NcmpException {
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.http.HttpStatus;
+
+@NoArgsConstructor
+@Getter
+@Setter
+public class ProvMnSException extends RuntimeException {
+
+    private String httpMethodName;
+    private HttpStatus httpStatus;
+    private String title;
 
     /**
      * Constructor.
      *
-     * @param message exception message
-     * @param details exception details
+     * @param httpMethodName  original REST method
+     * @param httpStatus      http status to be reported for this exception
+     * @param title           3GPP error title (detail)
      */
-    public ProvMnSException(final String message, final String details) {
-        super(message, details);
+    public ProvMnSException(final String httpMethodName,
+                            final HttpStatus httpStatus,
+                            final String title) {
+        super(httpMethodName + " failed");
+        this.httpMethodName = httpMethodName;
+        this.httpStatus = httpStatus;
+        this.title = title;
     }
 
 }
