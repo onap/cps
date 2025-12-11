@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd9971bc_35d5dc30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-11T11:46:06Z",
+      "side": 1,
+      "message": "resolved comments and merge conflict",
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "941a6e89_a118a9fa",
@@ -31,6 +48,30 @@
       "writtenOn": "2025-12-08T14:19:48Z",
       "side": 1,
       "message": "why method parameter?! Shoudl be done like \u0027notificationsEnabled\u0027see ines #63,#64",
+      "range": {
+        "startLine": 76,
+        "startChar": 77,
+        "endLine": 76,
+        "endChar": 115
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3480b925_75f99a0a",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-11T11:46:06Z",
+      "side": 1,
+      "message": "It is no longer needed as this is set in CPS Data service class and we handle delta report generation in that class based on the fact that whether the delta notifications are enabled or not. If they are enabled, we generate delta reports and it uses the new feature. and if they are disabled, it uses the old feature",
+      "parentUuid": "941a6e89_a118a9fa",
       "range": {
         "startLine": 76,
         "startChar": 77,
@@ -66,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0229f5f3_b6991182",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-11T11:46:06Z",
+      "side": 1,
+      "message": "we can have both of them, aftr the refactoring suggestion in Data Service class I noticed the boolean is no longer needed in parameter, so I have removed it. Now we can achieve the same usin delta reports.\nIf delta reports are present that means it should use them in notifications if they are empty, then it would roll back to using old feature where only the xpath is sent as notifications.",
+      "parentUuid": "ac13535f_d75a6e72",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 40
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36967eab_0e00467c",
         "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
         "patchSetId": 15
@@ -77,6 +142,30 @@
       "writtenOn": "2025-12-08T14:19:48Z",
       "side": 1,
       "message": "overuse of streaming\nI think you should do the conversion in a separate method with clear name\nlike toCpsDataUpdatedEvent(deltaReport)\nThen use POJO itertor of deltaReport and add each entry into a new list of cpsDataUpdatedEvents",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 61
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d38dbfb2_2a228557",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-11T11:46:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36967eab_0e00467c",
       "range": {
         "startLine": 122,
         "startChar": 8,
@@ -110,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e10b8719_1d9ee10e",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-11T11:46:06Z",
+      "side": 1,
+      "message": "I cross verified and the null check for cloudEventData is not needed as it is being set only when delta report has source and target data, so this was a redundant check.",
+      "parentUuid": "0cfce704_841296ad",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 13
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36976c07_08053c71",
@@ -123,6 +236,30 @@
       "writtenOn": "2025-12-08T14:19:48Z",
       "side": 1,
       "message": "Same pattern in all 5-6 methods can be simplified by instead of a void method haf a method that creates the colelction conditionally liek so:\n\nList\u003cDeltaReport\u003e generateDeltaReports(...) {\nif deltaNotificationEnabled {\n   final List\u003cDeltaReport\u003e deltaReports \u003d new ArrayList\u003c\u003e();\n   ....\n   return deltaReports\n}\nreturn Collections.emptyList()",
+      "range": {
+        "startLine": 95,
+        "startChar": 32,
+        "endLine": 95,
+        "endChar": 45
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84a83f28_aed75dbc",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-11T11:46:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36976c07_08053c71",
       "range": {
         "startLine": 95,
         "startChar": 32,
@@ -156,6 +293,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f153b6c0_6fa894e0",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-11T11:46:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58ddb40a_a6abe422",
+      "range": {
+        "startLine": 330,
+        "startChar": 75,
+        "endLine": 330,
+        "endChar": 98
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2f4adaa_7508e509",
@@ -169,6 +330,30 @@
       "writtenOn": "2025-12-08T14:19:48Z",
       "side": 1,
       "message": "extract out NO_DELTA_REPORTS for better readability",
+      "range": {
+        "startLine": 362,
+        "startChar": 73,
+        "endLine": 362,
+        "endChar": 96
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec0c9acb_a9dfed66",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-11T11:46:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2f4adaa_7508e509",
       "range": {
         "startLine": 362,
         "startChar": 73,
