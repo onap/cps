@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
+import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,9 @@ import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
+import org.onap.cps.ncmp.impl.provmns.model.ErrorResponseDefault;
+import org.onap.cps.ncmp.impl.provmns.model.ErrorResponseGet;
+import org.onap.cps.ncmp.impl.provmns.model.ErrorResponsePatch;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
@@ -59,28 +63,53 @@ public class NetworkCmProxyRestExceptionHandler {
 
     private static final String CHECK_LOGS_FOR_DETAILS = "Check logs for details.";
 
+    private static final Map<HttpStatus, String> PROVMNS_ERROR_TYPE_PER_ERROR_CODE = Map.of(
+        HttpStatus.NOT_FOUND, "IE_NOT_FOUND",
+        HttpStatus.NOT_ACCEPTABLE, "APPLICATION_LAYER_ERROR",
+        HttpStatus.UNPROCESSABLE_ENTITY, "SERVER_LIMITATION",
+        HttpStatus.PAYLOAD_TOO_LARGE, "SERVER_LIMITATION"
+    );
+
     /**
-     * Default exception handler.
+     * Default exception handler for internal server errors.
      *
      * @param exception the exception to handle
-     * @return response with response code 500.
+     * @return response with HTTP 500 status
      */
     @ExceptionHandler
     public static ResponseEntity<Object> handleInternalServerErrorExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
+    /**
+     * Exception handler for CPS and server NCMP exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 500 status
+     */
     @ExceptionHandler({CpsException.class, ServerNcmpException.class})
     public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
+    /**
+     * Exception handler for DMI client request exceptions.
+     *
+     * @param dmiClientRequestException the DMI client request exception to handle
+     * @return response with HTTP 502 status containing DMI error details
+     */
     @ExceptionHandler({DmiClientRequestException.class})
-    public static ResponseEntity<Object> handleClientRequestExceptions(
+    public static ResponseEntity<Object> handleDmiClientRequestExceptions(
             final DmiClientRequestException dmiClientRequestException) {
         return wrapDmiErrorResponse(dmiClientRequestException);
     }
 
+    /**
+     * Exception handler for various request validation and operation exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 400 status
+     */
     @ExceptionHandler({DmiRequestException.class, DataValidationException.class, InvalidOperationException.class,
         OperationNotSupportedException.class, HttpMessageNotReadableException.class, InvalidTopicException.class,
         InvalidDatastoreException.class})
@@ -88,24 +117,55 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
+    /**
+     * Exception handler for conflict exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 409 status
+     */
     @ExceptionHandler({AlreadyDefinedException.class, PolicyExecutorException.class})
     public static ResponseEntity<Object> handleConflictExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
 
+    /**
+     * Exception handler for CM handle and data node not found exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 404 status
+     */
     @ExceptionHandler({CmHandleNotFoundException.class, DataNodeNotFoundException.class})
     public static ResponseEntity<Object> cmHandleNotFoundExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 
+    /**
+     * Exception handler for payload too large exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 413 status
+     */
     @ExceptionHandler({PayloadTooLargeException.class})
     public static ResponseEntity<Object> handlePayloadTooLargeExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.PAYLOAD_TOO_LARGE, exception);
     }
 
+    /**
+     * Exception handler for ProvMnS exceptions with method-specific error responses.
+     *
+     * @param provMnSException the ProvMnS exception to handle
+     * @return response with appropriate HTTP status and method-specific error format
+     */
     @ExceptionHandler({ProvMnSException.class})
-    public static ResponseEntity<Object> invalidPathExceptions(final Exception exception) {
-        return buildErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY, exception);
+    public static ResponseEntity<Object> handleProvMnsExceptions(final ProvMnSException provMnSException) {
+        switch (provMnSException.getHttpMethodName()) {
+            case "PATCH":
+                return provMnSErrorResponsePatch(provMnSException.getHttpStatus(), provMnSException.getTitle());
+            case "GET":
+                return provMnSErrorResponseGet(provMnSException.getHttpStatus(), provMnSException.getTitle());
+            default:
+                return provMnSErrorResponseDefault(provMnSException.getHttpStatus(), provMnSException.getTitle());
+        }
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
@@ -126,7 +186,7 @@ public class NetworkCmProxyRestExceptionHandler {
     }
 
     private static ResponseEntity<Object> wrapDmiErrorResponse(final DmiClientRequestException
-                                                                       dmiClientRequestException) {
+                                                                     dmiClientRequestException) {
         final var dmiErrorMessage = new DmiErrorMessage();
         final var dmiErrorResponse = new DmiErrorMessageDmiResponse();
         dmiErrorResponse.setHttpCode(dmiClientRequestException.getHttpStatusCode());
@@ -135,4 +195,29 @@ public class NetworkCmProxyRestExceptionHandler {
         dmiErrorMessage.setDmiResponse(dmiErrorResponse);
         return new ResponseEntity<>(dmiErrorMessage, HttpStatus.BAD_GATEWAY);
     }
+
+    private static ResponseEntity<Object> provMnSErrorResponsePatch(final HttpStatus httpStatus, final String title) {
+        final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus);
+        final ErrorResponsePatch errorResponsePatch = new ErrorResponsePatch(type);
+        errorResponsePatch.setStatus(httpStatus.toString());
+        errorResponsePatch.setTitle(title);
+        return new ResponseEntity<>(errorResponsePatch, httpStatus);
+    }
+
+    private static ResponseEntity<Object> provMnSErrorResponseGet(final HttpStatus httpStatus, final String title) {
+        final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus);
+        final ErrorResponseGet errorResponseGet = new ErrorResponseGet(type);
+        errorResponseGet.setStatus(httpStatus.toString());
+        errorResponseGet.setTitle(title);
+        return new ResponseEntity<>(errorResponseGet, httpStatus);
+    }
+
+    private static ResponseEntity<Object> provMnSErrorResponseDefault(final HttpStatus httpStatus, final String title) {
+        final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus);
+        final ErrorResponseDefault errorResponseDefault = new ErrorResponseDefault(type);
+        errorResponseDefault.setStatus(httpStatus.toString());
+        errorResponseDefault.setTitle(title);
+        return new ResponseEntity<>(errorResponseDefault, httpStatus);
+    }
+
 }

@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.ServletException
+import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.data.policyexecutor.OperationDetailsFactory
@@ -32,7 +33,7 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem
 import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.ncmp.rest.provmns.ErrorResponseBuilder
+
 import org.onap.cps.ncmp.impl.provmns.ParametersBuilder
 import org.onap.cps.ncmp.impl.provmns.ParameterMapper
 import org.onap.cps.utils.JsonObjectMapper
@@ -330,7 +331,7 @@ class ProvMnsControllerSpec extends Specification {
         and: 'persistence service returns valid yangModelCmHandle'
             inventoryPersistence.getYangModelCmHandle('cm-1') >> new YangModelCmHandle(id:'cm-1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: READY))
         and: 'policy executor throws exception (denied)'
-            policyExecutor.checkPermission(*_) >> {throw new RuntimeException()}
+            policyExecutor.checkPermission(*_) >> {throw new PolicyExecutorException('','',null)}
         when: 'delete data resource request is performed'
             def response = mvc.perform(delete(deleteUrl)).andReturn().response
         then: 'response status is NOT_ACCEPTABLE (406)'

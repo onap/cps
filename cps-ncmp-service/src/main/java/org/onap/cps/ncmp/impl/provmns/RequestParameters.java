@@ -25,8 +25,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RequestPathParameters {
+public class RequestParameters {
 
+    private String httpMethodName;
     private String uriLdnFirstPart;
     private String className;
     private String id;
