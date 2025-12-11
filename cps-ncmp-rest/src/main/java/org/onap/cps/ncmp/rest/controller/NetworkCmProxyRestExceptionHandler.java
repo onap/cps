@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,7 +37,6 @@ import org.onap.cps.ncmp.api.exceptions.InvalidTopicException;
 import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
-import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
@@ -52,35 +51,52 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Exception handler with error message return.
  */
 @Slf4j
-@RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class,
-    NetworkCmProxyInventoryController.class})
+@RestControllerAdvice(assignableTypes = { NetworkCmProxyController.class,  NetworkCmProxyInventoryController.class })
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class NetworkCmProxyRestExceptionHandler {
 
     private static final String CHECK_LOGS_FOR_DETAILS = "Check logs for details.";
 
     /**
-     * Default exception handler.
+     * Default exception handler for internal server errors.
      *
      * @param exception the exception to handle
-     * @return response with response code 500.
+     * @return response with HTTP 500 status
      */
     @ExceptionHandler
     public static ResponseEntity<Object> handleInternalServerErrorExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
+    /**
+     * Exception handler for CPS and server NCMP exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 500 status
+     */
     @ExceptionHandler({CpsException.class, ServerNcmpException.class})
     public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
+    /**
+     * Exception handler for DMI client request exceptions.
+     *
+     * @param dmiClientRequestException the DMI client request exception to handle
+     * @return response with HTTP 502 status containing DMI error details
+     */
     @ExceptionHandler({DmiClientRequestException.class})
-    public static ResponseEntity<Object> handleClientRequestExceptions(
+    public static ResponseEntity<Object> handleDmiClientRequestExceptions(
             final DmiClientRequestException dmiClientRequestException) {
         return wrapDmiErrorResponse(dmiClientRequestException);
     }
 
+    /**
+     * Exception handler for various request validation and operation exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 400 status
+     */
     @ExceptionHandler({DmiRequestException.class, DataValidationException.class, InvalidOperationException.class,
         OperationNotSupportedException.class, HttpMessageNotReadableException.class, InvalidTopicException.class,
         InvalidDatastoreException.class})
@@ -88,24 +104,37 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
+    /**
+     * Exception handler for conflict exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 409 status
+     */
     @ExceptionHandler({AlreadyDefinedException.class, PolicyExecutorException.class})
     public static ResponseEntity<Object> handleConflictExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
 
+    /**
+     * Exception handler for CM handle and data node not found exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 404 status
+     */
     @ExceptionHandler({CmHandleNotFoundException.class, DataNodeNotFoundException.class})
     public static ResponseEntity<Object> cmHandleNotFoundExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 
+    /**
+     * Exception handler for payload too large exceptions.
+     *
+     * @param exception the exception to handle
+     * @return response with HTTP 413 status
+     */
     @ExceptionHandler({PayloadTooLargeException.class})
     public static ResponseEntity<Object> handlePayloadTooLargeExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.PAYLOAD_TOO_LARGE, exception);
-    }
-
-    @ExceptionHandler({ProvMnSException.class})
-    public static ResponseEntity<Object> invalidPathExceptions(final Exception exception) {
-        return buildErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
@@ -126,7 +155,7 @@ public class NetworkCmProxyRestExceptionHandler {
     }
 
     private static ResponseEntity<Object> wrapDmiErrorResponse(final DmiClientRequestException
-                                                                       dmiClientRequestException) {
+                                                                     dmiClientRequestException) {
         final var dmiErrorMessage = new DmiErrorMessage();
         final var dmiErrorResponse = new DmiErrorMessageDmiResponse();
         dmiErrorResponse.setHttpCode(dmiClientRequestException.getHttpStatusCode());
@@ -135,4 +164,5 @@ public class NetworkCmProxyRestExceptionHandler {
         dmiErrorMessage.setDmiResponse(dmiErrorResponse);
         return new ResponseEntity<>(dmiErrorMessage, HttpStatus.BAD_GATEWAY);
     }
+
 }

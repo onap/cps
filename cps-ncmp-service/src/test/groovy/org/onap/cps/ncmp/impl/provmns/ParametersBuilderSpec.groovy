@@ -28,19 +28,21 @@ class ParametersBuilderSpec extends Specification{
 
     def objectUnderTest = new ParametersBuilder()
 
-    def 'Create url template parameters for GET'() {
+    def 'Create url template parameters for read operations (GET).'() {
         when: 'Creating URL parameters for GET with all possible items'
             def result = objectUnderTest.createUrlTemplateParametersForRead(
-                    new Scope(scopeLevel: 1, scopeType: 'BASE_SUBTREE'),
-                    'my filter',
-                    ['my attributes'],
-                    ['my fields'],
-                    new ClassNameIdGetDataNodeSelectorParameter(dataNodeSelector: 'my dataNodeSelector'),
-                    new YangModelCmHandle(dmiServiceName: 'myDmiService'),
-                    new RequestPathParameters(uriLdnFirstPart:'myPathVariable=myPathValue', className: 'myClassName', id:'myId'))
+                new YangModelCmHandle(dmiServiceName: 'myDmiService'),
+                '/target/fdn',
+                new Scope(scopeLevel: 1, scopeType: 'BASE_SUBTREE'),
+                'my filter',
+                ['my attributes'],
+                ['my fields'],
+                new ClassNameIdGetDataNodeSelectorParameter(dataNodeSelector: 'my dataNodeSelector'),
+
+            )
         then: 'the template has the correct result'
-            assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1/myPathVariable=myPathValue/myClassName=myId')
-        and: 'all url variable have been set correctly'
+            assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1//target/fdn?')
+        and: 'all url variables have been set correctly'
             assert result.urlVariables.size() == 6
             assert result.urlVariables.scopeLevel == '1'
             assert result.urlVariables.scopeType == 'BASE_SUBTREE'
@@ -50,28 +52,27 @@ class ParametersBuilderSpec extends Specification{
             assert result.urlVariables.dataNodeSelector == 'my dataNodeSelector'
     }
 
-    def 'Create url template parameters for GET without all optional parameters.'() {
+    def 'Create url template parameters for GET without any optional parameter.'() {
         when: 'Creating URL parameters for GET with null=values where possible'
             def result = objectUnderTest.createUrlTemplateParametersForRead(
-                    new Scope(),
-                    null,
-                    null,
-                    null,
-                    new ClassNameIdGetDataNodeSelectorParameter(dataNodeSelector: 'my dataNodeSelector'),
-                    new YangModelCmHandle(dmiServiceName: 'myDmiService'),
-                    new RequestPathParameters(uriLdnFirstPart:'myPathVariable=myPathValue', className: 'myClassName', id:'myId'))
+                new YangModelCmHandle(dmiServiceName: 'myDmiService'),
+                'some target fdn',
+                new Scope(),
+                null,
+                null,
+                null,
+                new ClassNameIdGetDataNodeSelectorParameter(dataNodeSelector: 'my dataNodeSelector'),
+            )
         then: 'The url variables contains only a data node selector'
             assert result.urlVariables.size() == 1
             assert result.urlVariables.keySet()[0] == 'dataNodeSelector'
     }
 
-    def 'Create url template parameters for PUT and PATCH.'() {
+    def 'Create url template parameters for write operations.'() {
         when: 'Creating URL parameters for PUT (or PATCH)'
-            def result = objectUnderTest.createUrlTemplateParametersForWrite(
-                    new YangModelCmHandle(dmiServiceName: 'myDmiService'),
-                    new RequestPathParameters(uriLdnFirstPart:'myPathVariable=myPathValue', className: 'myClassName', id:'myId'))
+            def result = objectUnderTest.createUrlTemplateParametersForWrite(new YangModelCmHandle(dmiServiceName: 'myDmiService'),'/target/fdn')
         then: 'the template has the correct correct'
-            assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1/myPathVariable=myPathValue/myClassName=myId')
+            assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1//target/fdn')
         and: 'no url variables have been set'
             assert result.urlVariables.isEmpty()
     }

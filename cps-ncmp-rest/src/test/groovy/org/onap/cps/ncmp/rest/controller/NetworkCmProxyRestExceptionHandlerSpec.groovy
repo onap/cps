@@ -24,6 +24,10 @@ package org.onap.cps.ncmp.rest.controller
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
+import org.onap.cps.api.exceptions.AlreadyDefinedException
+import org.onap.cps.api.exceptions.CpsException
+import org.onap.cps.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.data.exceptions.InvalidOperationException
 import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
@@ -38,17 +42,12 @@ import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.provmns.ParametersBuilder
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.ncmp.api.exceptions.ProvMnSException
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
-import org.onap.cps.api.exceptions.AlreadyDefinedException
-import org.onap.cps.api.exceptions.CpsException
-import org.onap.cps.api.exceptions.DataNodeNotFoundException
-import org.onap.cps.api.exceptions.DataValidationException
-import org.onap.cps.ncmp.impl.provmns.ParametersBuilder
 import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -69,7 +68,6 @@ import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
-import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
@@ -119,7 +117,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     ParametersBuilder mockProvMnSParametersMapper = Mock()
 
     @SpringBean
-    ProvMnsController mockProvMnsController = Mock()
+    ProvMnSController mockProvMnsController = Mock()
 
     @SpringBean
     AlternateIdMatcher alternateIdMatcher = Mock()
@@ -169,7 +167,6 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'Existing entries'      | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName')          || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
             'Operation too large'   | new PayloadTooLargeException(sampleErrorMessage)                          || PAYLOAD_TOO_LARGE     | sampleErrorMessage          | 'Check logs'
             'Policy Executor'       | new PolicyExecutorException(sampleErrorMessage, sampleErrorDetails, null) || CONFLICT              | sampleErrorMessage          | sampleErrorDetails
-            'Invalid Path'          | new ProvMnSException('not a valid path' ,'some details')                  || UNPROCESSABLE_ENTITY  | 'not a valid path'          | 'some details'
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {
@@ -188,7 +185,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         when: 'the DMI request is executed'
             def response = performTestRequest(NCMP)
         then: 'NCMP service responds with 502 Bad Gateway status'
-            response.status == BAD_GATEWAY.value()
+            assert response.status == BAD_GATEWAY.value()
         and: 'the NCMP response also contains the original DMI response details'
             response.contentAsString.contains('400')
             response.contentAsString.contains('Bad Request from DMI')

@@ -38,24 +38,26 @@ public class ParametersBuilder {
     /**
      * Creates a UrlTemplateParameters object containing the relevant fields for read requests.
      *
-     * @param scope               Provided className parameter.
-     * @param filter              Filter string.
-     * @param attributes          Attributes List.
-     * @param fields              Fields list
-     * @param dataNodeSelector    dataNodeSelector parameter
-     * @param yangModelCmHandle   yangModelCmHandle object for resolved alternate ID
+     * @param yangModelCmHandle yangModelCmHandle object for resolved alternate ID
+     * @param targetFdn         Target FDN for the resource
+     * @param scope             Provided className parameter
+     * @param filter            Filter string
+     * @param attributes        Attributes List
+     * @param fields            Fields list
+     * @param dataNodeSelector  dataNodeSelector parameter
      * @return UrlTemplateParameters object.
      */
-    public UrlTemplateParameters createUrlTemplateParametersForRead(final Scope scope,
-                                                final String filter,
-                                                final List<String> attributes,
-                                                final List<String> fields,
-                                                final ClassNameIdGetDataNodeSelectorParameter dataNodeSelector,
-                                                final YangModelCmHandle yangModelCmHandle,
-                                                final RequestPathParameters requestPathParameters) {
+    public UrlTemplateParameters createUrlTemplateParametersForRead(final YangModelCmHandle yangModelCmHandle,
+                                                                    final String targetFdn,
+                                                                    final Scope scope,
+                                                                    final String filter,
+                                                                    final List<String> attributes,
+                                                                    final List<String> fields,
+                                                                    final ClassNameIdGetDataNodeSelectorParameter
+                                                                        dataNodeSelector) {
         final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
         return RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment(requestPathParameters.toAlternateId())
+            .fixedPathSegment(targetFdn)
             .queryParameter("scopeType", scope.getScopeType() != null ? scope.getScopeType().getValue() : null)
             .queryParameter("scopeLevel", scope.getScopeLevel() != null ? scope.getScopeLevel().toString() : null)
             .queryParameter("filter", filter)
@@ -68,15 +70,14 @@ public class ParametersBuilder {
     /**
      * Creates a UrlTemplateParameters object containing the relevant fields for a write requests.
      *
-     * @param yangModelCmHandle      yangModelCmHandle object for resolved alternate ID
-     * @param requestPathParameters  request path parameters.
+     * @param yangModelCmHandle yangModelCmHandle object for resolved alternate ID
      * @return UrlTemplateParameters object.
      */
     public UrlTemplateParameters createUrlTemplateParametersForWrite(final YangModelCmHandle yangModelCmHandle,
-                                                                   final RequestPathParameters requestPathParameters) {
+                                                                     final String targetFdn) {
         final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
         return RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment(requestPathParameters.toAlternateId())
+            .fixedPathSegment(targetFdn)
             .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
     }
 

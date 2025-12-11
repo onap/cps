@@ -50,17 +50,21 @@ class ParameterMapperSpec extends Specification {
     }
 
     def 'Attempt to extract request parameters with #scenario.'() {
-        given: 'a http request with all the required parts'
+        given: 'a http request with invalid path'
             mockHttpServletRequest.getAttribute(uriPathAttributeName) >> path
+            mockHttpServletRequest.getMethod() >> 'GET'
         when: 'attempt to extract the request parameters'
             objectUnderTest.extractRequestParameters(mockHttpServletRequest)
-        then: 'a ProvMnS exception is thrown with message about the path being invalid'
+        then: 'a ProvMnS exception is thrown'
             def thrown = thrown(ProvMnSException)
-            assert thrown.message == 'not a valid path'
-        then: 'the details contain the faulty path'
-            assert thrown.details.contains(path)
-        where: 'the following paths are used'
-            scenario                       | path
-            'No = After (last) class name' | 'ProvMnS/v1/someOtherClass=someId/myClass'
+            assert thrown.message == 'GET failed'
+        and: 'the title contains the expected error message'
+            assert thrown.title == path + ' not a valid path'
+        where: 'the following invalid paths are used'
+            scenario                      | path
+            'no = After (last) class name'| 'ProvMnS/v1/someOtherClass=someId/myClass'
+            'missing ProvMnS prefix'      | 'v1/segment1/myClass=myId'
+            'wrong version'               | 'ProvMnS/wrongVersion/myClass=myId'
+            'empty path'                  | ''
     }
 }

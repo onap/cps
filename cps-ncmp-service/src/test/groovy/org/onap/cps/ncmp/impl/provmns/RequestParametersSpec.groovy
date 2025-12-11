@@ -17,37 +17,26 @@
  *  SPDX-License-Identifier: Apache-2.0
  *  ============LICENSE_END=========================================================
  */
+package org.onap.cps.ncmp.impl.provmns
 
-package org.onap.cps.ncmp.api.exceptions;
+import spock.lang.Specification
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.http.HttpStatus;
+class RequestParametersSpec extends Specification {
 
-@NoArgsConstructor
-@Getter
-@Setter
-public class ProvMnSException extends RuntimeException {
+    def objectUnderTest = new RequestParameters()
 
-    private String httpMethodName;
-    private HttpStatus httpStatus;
-    private String title;
-
-    /**
-     * Constructor.
-     *
-     * @param httpMethodName  original REST method
-     * @param httpStatus      http status to be reported for this exception
-     * @param title           3GPP error title (detail)
-     */
-    public ProvMnSException(final String httpMethodName,
-                            final HttpStatus httpStatus,
-                            final String title) {
-        super(httpMethodName + " failed");
-        this.httpMethodName = httpMethodName;
-        this.httpStatus = httpStatus;
-        this.title = title;
+    def 'Generate target FDN #scenario.'() {
+        given: 'request parameters with URI LDN first part, class name and id'
+            objectUnderTest.uriLdnFirstPart = uriLdnFirstPart
+            objectUnderTest.className = 'myClass'
+            objectUnderTest.id = 'myId'
+        when: 'target FDN is generated'
+            def result = objectUnderTest.toTargetFdn()
+        then: 'the target FDN is as expected'
+            result == expectedTargetFdn
+        where: 'the following uri first part is used'
+            scenario           | uriLdnFirstPart || expectedTargetFdn
+            'with segments'    | '/segment1'     || '/segment1/myClass=myId'
+            'empty first part' | ''              || '/myClass=myId'
     }
-
 }

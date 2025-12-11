@@ -1,0 +1,392 @@
+/*
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
+ */
+
+package org.onap.cps.ncmp.rest.controller
+
+import com.fasterxml.jackson.databind.ObjectMapper
+import io.netty.handler.timeout.TimeoutException
+import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
+import org.onap.cps.ncmp.api.inventory.models.CompositeState
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
+import org.onap.cps.ncmp.impl.data.policyexecutor.OperationDetailsFactory
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
+import org.onap.cps.ncmp.impl.dmi.DmiRestClient
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.provmns.ParameterMapper
+import org.onap.cps.ncmp.impl.provmns.ParametersBuilder
+import org.onap.cps.ncmp.impl.provmns.model.PatchItem
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
+import org.onap.cps.utils.JsonObjectMapper
+import org.spockframework.spring.SpringBean
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
+import org.springframework.test.web.servlet.MockMvc
+import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
+
+@WebMvcTest([ProvMnSController, OperationDetailsFactory])
+class ProvMnSControllerSpec extends Specification {
+
+    @SpringBean
+    ParametersBuilder parametersBuilder = new ParametersBuilder()
+
+    @SpringBean
+    AlternateIdMatcher mockAlternateIdMatcher = Mock()
+
+    @SpringBean
+    InventoryPersistence mockInventoryPersistence = Mock()
+
+    @SpringBean
+    DmiRestClient mockDmiRestClient = Mock()
+
+    @Autowired
+    OperationDetailsFactory operationDetailsFactory
+
+    @SpringBean
+    ParameterMapper parameterMapper = new ParameterMapper()
+
+    @SpringBean
+    PolicyExecutor mockPolicyExecutor = Mock()
+
+    @Autowired
+    MockMvc mvc
+
+    @SpringBean
+    ObjectMapper objectMapper = new ObjectMapper()
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(objectMapper)
+
+    static def resourceAsJson = '{"id":"test"}'
+    static def validCmHandle = new YangModelCmHandle(id:'ch-1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: READY))
+    static def cmHandleWithoutDataProducer = new YangModelCmHandle(id:'ch-1', dmiServiceName: 'someDmiService', compositeState: new CompositeState(cmHandleState: READY))
+    static def cmHandleNotReady            = new YangModelCmHandle(id:'ch-1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: ADVISED))
+
+    static def patchMediaType       = new MediaType('application', 'json-patch+json')
+    static def patchMediaType3gpp   = new MediaType('application', '3gpp-json-patch+json')
+    static def patchJsonBody        = '[{"op":"replace","path":"className/attributes/attr1","value":{"id":"test"}}]'
+    static def patchJsonBody3gpp    = '[{"op":"replace","path":"className#/attributes/attr1","value":{"id":"test"}}]'
+    static def patchJsonBodyInvalid = '[{"op":"replace","path":"/test","value":"INVALID"}]'
+
+    @Value('${rest.api.provmns-base-path}')
+    def provMnSBasePath
+
+    @Value('${app.ncmp.provmns.max-patch-operations:10}')
+    int maxNumberOfPatchOperations
+
+    static def NO_CONTENT = ''
+    static def STATUS_NOT_RELEVANT = HttpStatus.SEE_OTHER
+
+    def 'Get resource data #scenario.'() {
+        given: 'resource data url'
+            def getUrl = "$provMnSBasePath/v1/myClass=id1?otherQueryParameter=ignored"
+        and: 'alternate Id can be matched'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
+        and: 'dmi provides a response'
+            mockDmiRestClient.synchronousGetOperation(*_) >> new ResponseEntity<>(responseContentFromDmi, responseStatusFromDmi)
+        when: 'get data resource request is performed'
+            def response = mvc.perform(get(getUrl)).andReturn().response
+        then: 'response status is the same as what DMI gave'
+            assert response.status == responseStatusFromDmi.value()
+        and: 'the content is whatever the DMI returned'
+            assert response.contentAsString == responseContentFromDmi
+        where: 'following responses returned by DMI'
+            scenario         | responseStatusFromDmi    | responseContentFromDmi
+            'happy flow'     | HttpStatus.OK            | 'content from DMI'
+            'error from DMI' | HttpStatus.I_AM_A_TEAPOT | 'error details from DMI'
+    }
+
+    def 'Get resource data request with #scenario.'() {
+        given: 'resource data url'
+            def getUrl = "$provMnSBasePath/v1/myClass=id1?otherQueryParameter=ignored"
+        and: 'alternate Id can be matched'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle
+        and: 'dmi provides a response'
+            mockDmiRestClient.synchronousGetOperation(*_) >> new ResponseEntity<>('Response from DMI service', HttpStatus.OK)
+        when: 'get data resource request is performed'
+            def response = mvc.perform(get(getUrl)).andReturn().response
+        then: 'response status as expected'
+            assert response.status == expectedHttpStatus.value()
+        and: 'the body contains the expected data'
+            assert response.contentAsString.contains(expectedInResponseBody)
+        where: 'following scenario'
+            scenario              | yangModelCmHandle           || expectedHttpStatus               | expectedInResponseBody
+            'no data producer id' | cmHandleWithoutDataProducer || HttpStatus.UNPROCESSABLE_ENTITY  | '"title":"Registered DMI does not support the ProvMnS interface."'
+            'cm Handle NOT READY' | cmHandleNotReady            || HttpStatus.NOT_ACCEPTABLE        | '"title":"ch-1 is not in READY state. Current state: ADVISED"'
+    }
+
+    def 'Get resource data request with Exception: #exceptionDuringProcessing.'() {
+        given: 'resource data url'
+            def getUrl = "$provMnSBasePath/v1/myClass=id1"
+        and: 'an exception happens during the process (method not relevant)'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(*_) >> {throw exceptionDuringProcessing}
+        when: 'get data resource request is performed'
+            def response = mvc.perform(get(getUrl)).andReturn().response
+        then: 'response status is #expectedHttpStatus'
+            assert response.status == expectedHttpStatus.value()
+        and: 'the title in the response indicates the fdn that cannot be found'
+            assert response.contentAsString.contains(expectedContent)
+        where: 'following exceptions occur'
+            exceptionDuringProcessing                           || expectedHttpStatus               || expectedContent
+            new NoAlternateIdMatchFoundException('myTarget')    || HttpStatus.NOT_FOUND             || '"title":"/myClass=id1 not found"'
+            new Exception("my message", new TimeoutException()) || HttpStatus.GATEWAY_TIMEOUT       || '"title":"my message"'
+            new Throwable("my message")                         || HttpStatus.INTERNAL_SERVER_ERROR || '"title":"my message"'
+    }
+
+
+    def 'Get resource data request with invalid URL: #scenario.'() {
+        given: 'resource data url'
+            def getUrl = "$provMnSBasePath/$version/$fdn$queryParameter"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(get(getUrl)).andReturn().response
+        then: 'response status as expected'
+            assert response.status == expectedHttpStatus
+        and: 'the body contains the expected 3GPP error data (when applicable)'
+            assert response.contentAsString.contains(expectedType)
+        where: 'following scenario'
+            scenario                 | version | fdn            | queryParameter     || expectedHttpStatus || expectedType                 | expectedTitle
+            'invalid version'        | 'v0'    | 'not relevant' | 'not relevant'     || 404                || NO_CONTENT                   | NO_CONTENT
+            'no fdn'                 | 'v1'    | ''             | ''                 || 422                || '"type":"SERVER_LIMITATION"' | '"title":"/ProvMnS/v1/ not a valid path"'
+            'fdn without class name' | 'v1'    | 'someClass'    | ''                 || 422                || '"type":"SERVER_LIMITATION"' | '"title":"/ProvMnS/v1/segment not a valid path"'
+            'incorrect scope(type)'  | 'v1'    | 'someClass=1'  | '?scopeType=WRONG' || 400                || NO_CONTENT                   | NO_CONTENT
+    }
+
+    def 'Get resource data request with list parameter: #scenario.'() {
+        given: 'resource data url'
+            def getUrl = "$provMnSBasePath/v1/myClass=id1$parameterInProvMnsRequest"
+        and: 'alternate Id can be matched'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
+        when: 'get data resource request is performed'
+             mvc.perform(get(getUrl))
+        then: 'the request to dmi contains the expected url parameters and values and then returns OK'
+            1 * mockDmiRestClient.synchronousGetOperation(*_) >> {arguments -> def urlTemplateParameters = arguments[1]
+                assert urlTemplateParameters.urlTemplate.contains(expectedParameterInUri)
+                assert urlTemplateParameters.urlVariables().get(parameterName) == expectedParameterValuesInDmiRequest
+                return new ResponseEntity<>('Some response from DMI service', HttpStatus.OK)
+            }
+        where: 'attributes is populated with the following '
+            scenario               | parameterName | parameterInProvMnsRequest   || expectedParameterInUri     || expectedParameterValuesInDmiRequest
+            'some attributes'      | 'attributes'  | '?attributes=value1,value2' || '?attributes={attributes}' || 'value1,value2'
+            'empty attributes'     | 'attributes'  | '?attributes='              || '?attributes={attributes}' || ''
+            'no attributes (null)' | 'attributes'  | ''                          || ''                         || null
+            'some fields'          | 'fields'      | '?fields=value3,value4'     || '?fields={fields}'         || 'value3,value4'
+            'empty fields'         | 'fields'      | '?fields='                  || '?fields={fields}'         || ''
+            'no fields (null)'     | 'fields'      | ''                          || ''                         || null
+    }
+
+    def 'Patch request with #scenario.'() {
+        given: 'provmns url'
+            def provmnsUrl = "$provMnSBasePath/v1/myClass=id1"
+        and: 'alternate Id can be matched'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
+        and: 'dmi provides a response'
+            mockDmiRestClient.synchronousPatchOperation(*_) >> new ResponseEntity<>('content from DMI', responseStatusFromDmi)
+        when: 'patch request is performed'
+            def response = mvc.perform(patch(provmnsUrl)
+                    .contentType(contentMediaType)
+                    .content(jsonBody))
+                    .andReturn().response
+        then: 'response status is the same as what DMI gave'
+            assert response.status == expectedRespinsStatusFromProvMnS.value()
+        and: 'the response contains the expected content'
+            assert response.contentAsString.contains(expectedResponseContent)
+        where: 'following scenarios are applied'
+            scenario          | contentMediaType   | jsonBody             | responseStatusFromDmi    | expectedResponseContent  || expectedRespinsStatusFromProvMnS
+            'happy flow 3gpp' | patchMediaType3gpp | patchJsonBody3gpp    | HttpStatus.OK            | 'content from DMI'       || HttpStatus.OK
+            'happy flow'      | patchMediaType     | patchJsonBody        | HttpStatus.OK            | 'content from DMI'       || HttpStatus.OK
+            'error from DMI'  | patchMediaType     | patchJsonBody        | HttpStatus.I_AM_A_TEAPOT | 'content from DMI'       || HttpStatus.I_AM_A_TEAPOT
+            'invalid Json'    | patchMediaType     | patchJsonBodyInvalid | STATUS_NOT_RELEVANT      | '"title":"Parsing error' || HttpStatus.BAD_REQUEST
+            'malformed Json'  | patchMediaType     | '{malformed]'        | STATUS_NOT_RELEVANT      | NO_CONTENT               || HttpStatus.BAD_REQUEST
+    }
+
+    def 'Patch request with no permission from Coordination Management (aka Policy Executor).'() {
+        given: 'resource data url'
+            def url = "$provMnSBasePath/v1/myClass=id1"
+        and: 'alternate Id can be matched'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+        and: 'persistence service returns valid yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
+        and: 'the permission is denied (Policy Executor throws an exception)'
+            mockPolicyExecutor.checkPermission(*_) >> {throw new PolicyExecutorException('denied for test','details',null)}
+        when: 'patch data resource request is performed'
+            def response = mvc.perform(patch(url)
+                    .contentType(patchMediaType)
+                    .content(patchJsonBody))
+                    .andReturn().response
+        then: 'response status is CONFLICT (409)'
+            assert response.status == HttpStatus.CONFLICT.value()
+        and: 'response contains the message from Policy Executor (as title)'
+            assert response.contentAsString.contains('"title":"denied for test"')
+    }
+
+    def 'Patch request with incorrect Media Types #scenario.'() {
+        given: 'resource data url'
+            def url = "$provMnSBasePath/v1/someClass=someId"
+        when: 'patch data resource request is performed'
+            def response = mvc.perform(patch(url)
+                .contentType(contentType)
+                .accept(acceptType)
+                .content(patchJsonBody))
+                .andReturn().response
+        then: 'response status is #expectedHttpStatus'
+            assert response.status == expectedHttpStatus.value()
+        where: 'following media types are used'
+            scenario             | contentType            | acceptType                  || expectedHttpStatus
+            'Content Type Wrong' | MediaType.TEXT_XML     | MediaType.APPLICATION_JSON  || HttpStatus.UNSUPPORTED_MEDIA_TYPE
+            'Accept Type Wrong'  | patchMediaType | MediaType.TEXT_XML || HttpStatus.NOT_ACCEPTABLE
+    }
+
+    def 'Patch request with too many operations.'() {
+        given: 'resource data url'
+            def url = "$provMnSBasePath/v1/someClass=someId"
+        and: 'a patch request with more operations than the max allowed'
+            def patchItems = []
+            for (def i = 0; i <= maxNumberOfPatchOperations; i++) {
+                patchItems.add(new PatchItem(op: 'REMOVE', path: 'somePath'))
+            }
+           def patchItemsJsonRequestBody = jsonObjectMapper.asJsonString(patchItems)
+        when: 'patch data resource request is performed'
+            def response = mvc.perform(patch(url)
+                    .contentType(patchMediaType)
+                    .content(patchItemsJsonRequestBody))
+                    .andReturn().response
+        then: 'response status is PAYLOAD_TOO_LARGE (413)'
+            assert response.status == HttpStatus.PAYLOAD_TOO_LARGE.value()
+        and: 'response contains a title detail the limitations with the number of operations'
+            assert response.contentAsString.contains('"title":"11 operations in request, this exceeds the maximum of 10"')
+    }
+
+    def 'Put resource data request with #scenario.'() {
+        given: 'resource data url'
+            def putUrl = "$provMnSBasePath/v1/myClass=id1"
+        and: 'alternate Id can be matched'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
+        and: 'dmi provides a response'
+            mockDmiRestClient.synchronousPutOperation(*_) >> new ResponseEntity<>(responseContentFromDmi, responseStatusFromDmi)
+        when: 'put data resource request is performed'
+            def response = mvc.perform(put(putUrl)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(resourceAsJson))
+                    .andReturn().response
+        then: 'response status is the same as what DMI gave'
+            assert response.status == responseStatusFromDmi.value()
+        and: 'the content is whatever the DMI returned'
+            assert response.contentAsString == responseContentFromDmi
+        where: 'following responses returned by DMI'
+            scenario         | responseStatusFromDmi    | responseContentFromDmi
+            'happy flow'     | HttpStatus.OK            | 'content from DMI'
+            'error from DMI' | HttpStatus.I_AM_A_TEAPOT | 'error details from DMI'
+    }
+
+    def 'Put resource data request when cm handle not found.'() {
+        given: 'resource data url'
+            def putUrl = "$provMnSBasePath/v1/myClass=id1"
+        and: 'cannot match alternate ID'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(*_) >> { throw new NoAlternateIdMatchFoundException('') }
+        when: 'put data resource request is performed'
+            def response = mvc.perform(put(putUrl)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(resourceAsJson))
+                .andReturn().response
+        then: 'response status NOT FOUND (404)'
+            assert response.status == HttpStatus.NOT_FOUND.value()
+        and: 'the content indicates the FDN could not be found'
+            assert response.contentAsString.contains('"title":"/myClass=id1 not found"')
+    }
+
+    def 'Delete resource data request with #scenario.'() {
+        given: 'resource data url'
+            def deleteUrl = "$provMnSBasePath/v1/myClass=id1"
+        and: 'alternate Id can be matched'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
+        and: 'dmi provides a response'
+            mockDmiRestClient.synchronousDeleteOperation(*_) >> new ResponseEntity<>(responseContentFromDmi, responseStatusFromDmi)
+        when: 'Delete data resource request is performed'
+            def response = mvc.perform(delete(deleteUrl)).andReturn().response
+        then: 'response status is the same as what DMI gave'
+            assert response.status == responseStatusFromDmi.value()
+        and: 'the content is whatever the DMI returned'
+            assert response.contentAsString == responseContentFromDmi
+        where: 'following responses returned by DMI'
+            scenario         | responseStatusFromDmi    | responseContentFromDmi
+            'happy flow'     | HttpStatus.OK            | 'content from DMI'
+            'error from DMI' | HttpStatus.I_AM_A_TEAPOT | 'error details from DMI'
+    }
+
+    def 'Delete resource data request when cm handle not found.'() {
+        given: 'resource data url'
+            def deleteUrl = "$provMnSBasePath/v1/myClass=id1"
+        and: 'cannot match alternate ID'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(*_) >> { throw new NoAlternateIdMatchFoundException('') }
+        when: 'Delete data resource request is performed'
+            def response = mvc.perform(delete(deleteUrl)).andReturn().response
+        then: 'response status is the same as what DMI gave'
+            assert response.status == HttpStatus.NOT_FOUND.value()
+        and: 'the content indicates the FDN could not be found'
+            assert response.contentAsString.contains('"title":"/myClass=id1 not found"')
+    }
+
+    def 'Patch request with invalid attribute reference: #scenario.'() {
+        given: 'provMns url'
+            def provMnsUrl = "$provMnSBasePath/v1/myClass=id1"
+        and: 'alternate Id can be matched'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> new YangModelCmHandle(id:'ch-1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: READY))
+        and: 'dmi provides a response'
+            mockDmiRestClient.synchronousPatchOperation(*_) >> new ResponseEntity<>('Response from DMI service', HttpStatus.OK)
+        when: 'patch request is performed'
+            def response = mvc.perform(patch(provMnsUrl)
+                .contentType(contentType)
+                .content('[{"op":"replace","path":"className' + attributeReference + '"}]'))
+                .andReturn().response
+        then: 'response status is BAD REQUEST (400)'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+        and: 'response contains expected message for error case'
+            assert response.contentAsString.contains('"title":"Invalid path for content-type ' + contentType + '"')
+        where: 'following scenarios'
+            scenario             | contentType                        | attributeReference
+            '3gpp without hash'  | 'application/3gpp-json-patch+json' | '/attributes/attr1'
+            'standard with hash' | "application/json-patch+json"      | '#/attributes/attr1'
+    }
+}

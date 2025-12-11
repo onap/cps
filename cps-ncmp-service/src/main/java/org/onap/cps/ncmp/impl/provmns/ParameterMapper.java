@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.provmns;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,34 +31,47 @@ import org.springframework.stereotype.Service;
 public class ParameterMapper {
 
     private static final String PROVMNS_BASE_PATH = "ProvMnS/v\\d+/";
-    private static final String INVALID_PATH_DETAILS_FORMAT = "%s not a valid path";
+    private static final String INVALID_PATH_DETAILS_TEMPLATE = "%s not a valid path";
+    private static final int PATH_VARIABLES_EXPECTED_LENGTH = 2;
+    private static final int OBJECT_INSTANCE_INDEX = 1;
 
     /**
-     * Converts HttpServletRequest to RequestPathParameters.
+     * Converts HttpServletRequest to RequestParameters.
      *
      * @param httpServletRequest HttpServletRequest object containing the path
-     * @return RequestPathParameters object containing parsed parameters
+     * @return RequestParameters object containing http method and parsed parameters
      */
-    public RequestPathParameters extractRequestParameters(final HttpServletRequest httpServletRequest) {
+    public RequestParameters extractRequestParameters(final HttpServletRequest httpServletRequest) {
         final String uriPath = (String) httpServletRequest.getAttribute(
             "org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping");
         final String[] pathVariables = uriPath.split(PROVMNS_BASE_PATH);
+        if (pathVariables.length != PATH_VARIABLES_EXPECTED_LENGTH) {
+            throwProvMnSException(httpServletRequest.getMethod(), uriPath);
+        }
         final int lastSlashIndex = pathVariables[1].lastIndexOf('/');
-        final RequestPathParameters requestPathParameters = new RequestPathParameters();
+        final RequestParameters requestParameters = new RequestParameters();
+        requestParameters.setHttpMethodName(httpServletRequest.getMethod());
         final String classNameAndId;
         if (lastSlashIndex < 0) {
-            requestPathParameters.setUriLdnFirstPart("");
-            classNameAndId = pathVariables[1];
+            requestParameters.setUriLdnFirstPart("");
+            classNameAndId = pathVariables[OBJECT_INSTANCE_INDEX];
         } else {
-            requestPathParameters.setUriLdnFirstPart("/" + pathVariables[1].substring(0, lastSlashIndex));
-            classNameAndId = pathVariables[1].substring(lastSlashIndex + 1);
+            final String uriLdnFirstPart = "/" + pathVariables[OBJECT_INSTANCE_INDEX].substring(0, lastSlashIndex);
+            requestParameters.setUriLdnFirstPart(uriLdnFirstPart);
+            classNameAndId = pathVariables[OBJECT_INSTANCE_INDEX].substring(lastSlashIndex + 1);
         }
         final String[] splitClassNameId = classNameAndId.split("=", 2);
         if (splitClassNameId.length != 2) {
-            throw new ProvMnSException("not a valid path", String.format(INVALID_PATH_DETAILS_FORMAT, uriPath));
+            throwProvMnSException(httpServletRequest.getMethod(), uriPath);
         }
-        requestPathParameters.setClassName(splitClassNameId[0]);
-        requestPathParameters.setId(splitClassNameId[1]);
-        return requestPathParameters;
+        requestParameters.setClassName(splitClassNameId[0]);
+        requestParameters.setId(splitClassNameId[1]);
+        return requestParameters;
     }
+
+    private void throwProvMnSException(final String httpMethodName, final String uriPath) {
+        final String title = String.format(INVALID_PATH_DETAILS_TEMPLATE, uriPath);
+        throw new ProvMnSException(httpMethodName, HttpStatus.UNPROCESSABLE_ENTITY, title);
+    }
+
 }

@@ -20,9 +20,10 @@
 
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
+import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
+import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE;
+
 import com.google.common.base.Strings;
 import java.util.HashMap;
 import java.util.List;
@@ -31,10 +32,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
-import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
+import org.onap.cps.ncmp.impl.provmns.RequestParameters;
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -44,88 +45,58 @@ public class OperationDetailsFactory {
 
     private static final String ATTRIBUTE_NAME_SEPARATOR = "/";
     private static final String REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS = "(^/)|(/$)";
-    private static final String NO_AUTHORIZATION = null;
-    private static final String UNSUPPORTED_OPERATION = "UNSUPPORTED_OP";
 
     private final JsonObjectMapper jsonObjectMapper;
-    private final ObjectMapper objectMapper;
-    private final PolicyExecutor policyExecutor;
 
     /**
-     * Build an operation details object from ProvMnS request details and send it to Policy Executor.
+     * Create OperationDetails object from ProvMnS request details.
      *
-     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
-     * @param patchItems               provided request list of patch Items
-     * @param yangModelCmHandle        representation of the cm handle to check
+     * @param requestParameters    request parameters including uri-ldn-first-part, className and id
+     * @param patchItem                provided request payload
+     * @return OperationDetails object
      */
-    public void checkPermissionForEachPatchItem(final RequestPathParameters requestPathParameters,
-                                                final List<PatchItem> patchItems,
-                                                final YangModelCmHandle yangModelCmHandle) {
-        OperationDetails operationDetails;
-        for (final PatchItem patchItem : patchItems) {
-            switch (patchItem.getOp()) {
-                case ADD -> operationDetails = buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
-                        patchItem.getValue());
-                case REPLACE -> operationDetails = buildCreateOperationDetailsForUpdate(OperationType.UPDATE,
-                        requestPathParameters,
-                        patchItem);
-                case REMOVE -> operationDetails = buildDeleteOperationDetails(requestPathParameters.toAlternateId());
-                default -> throw new ProvMnSException(UNSUPPORTED_OPERATION,
-                        "Unsupported Patch Operation Type: " + patchItem.getOp().getValue());
-            }
-            policyExecutor.checkPermission(yangModelCmHandle,
-                    OperationType.fromOperationName(operationDetails.operation()),
-                    NO_AUTHORIZATION,
-                    requestPathParameters.toAlternateId(),
-                    jsonObjectMapper.asJsonString(operationDetails)
-            );
+    public OperationDetails buildOperationDetails(final RequestParameters requestParameters,
+                                                  final PatchItem patchItem) {
+        final OperationDetails operationDetails;
+        switch (patchItem.getOp()) {
+            case ADD:
+                operationDetails = buildCreateOperationDetails(CREATE, requestParameters, patchItem.getValue());
+                break;
+            case REPLACE:
+                if (patchItem.getPath().contains("#/attributes")) {
+                    operationDetails = buildCreateOperationDetailsForUpdateWithHash(requestParameters, patchItem);
+                } else {
+                    operationDetails = buildCreateOperationDetails(UPDATE, requestParameters, patchItem.getValue());
+                }
+                break;
+            case REMOVE:
+                operationDetails = buildDeleteOperationDetails(requestParameters.toTargetFdn());
+                break;
+            default:
+                throw new ProvMnSException("PATCH", HttpStatus.UNPROCESSABLE_ENTITY,
+                    "Unsupported Patch Operation Type: " + patchItem.getOp().getValue());
         }
+        return operationDetails;
     }
 
     /**
      * Build a CreateOperationDetails object from ProvMnS request details.
      *
      * @param operationType            Type of operation create, update.
-     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
+     * @param requestParameters    request parameters including uri-ldn-first-part, className and id
      * @param resourceAsObject         provided request payload
      * @return CreateOperationDetails object
      */
     public CreateOperationDetails buildCreateOperationDetails(final OperationType operationType,
-                                                              final RequestPathParameters requestPathParameters,
+                                                              final RequestParameters requestParameters,
                                                               final Object resourceAsObject) {
-
         final ResourceObjectDetails resourceObjectDetails = createResourceObjectDetails(resourceAsObject,
-                                                                                        requestPathParameters);
-
+            requestParameters);
         final OperationEntry operationEntry = new OperationEntry(resourceObjectDetails.id(),
-                resourceObjectDetails.attributes());
-
-        final Map<String, List<OperationEntry>> operationEntriesPerObjectClass =
-                Map.of(resourceObjectDetails.objectClass(), List.of(operationEntry));
-
-        return new CreateOperationDetails(
-                operationType.name(),
-                requestPathParameters.getUriLdnFirstPart(),
-                operationEntriesPerObjectClass
-        );
-    }
-
-    /**
-     * Build a CreateOperationDetails object from ProvMnS request details.
-     *
-     * @param operationType            Type of operation create, update.
-     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
-     * @param patchItem                 provided request
-     * @return CreateOperationDetails object
-     */
-    public CreateOperationDetails buildCreateOperationDetailsForUpdate(final OperationType operationType,
-                                                                     final RequestPathParameters requestPathParameters,
-                                                                     final PatchItem patchItem) {
-        if (patchItem.getPath().contains("#/attributes")) {
-            return buildCreateOperationDetailsForUpdateWithHash(operationType, requestPathParameters, patchItem);
-        } else {
-            return buildCreateOperationDetails(operationType, requestPathParameters, patchItem.getValue());
-        }
+            resourceObjectDetails.attributes());
+        return new CreateOperationDetails(operationType.name(),
+            requestParameters.getUriLdnFirstPart(),
+            Map.of(resourceObjectDetails.objectClass(), List.of(operationEntry)));
     }
 
     /**
@@ -135,63 +106,49 @@ public class OperationDetailsFactory {
      * @return DeleteOperationDetails object
      */
     public DeleteOperationDetails buildDeleteOperationDetails(final String alternateId) {
-        return new DeleteOperationDetails(OperationType.DELETE.name(), alternateId);
+        return new DeleteOperationDetails(DELETE.name(), alternateId);
     }
 
+    @SuppressWarnings("unchecked")
     private ResourceObjectDetails createResourceObjectDetails(final Object resourceAsObject,
-                                                              final RequestPathParameters requestPathParameters) {
-        try {
-            final String resourceAsJson = jsonObjectMapper.asJsonString(resourceAsObject);
-            final TypeReference<Map<String, Object>> typeReference = new TypeReference<>() {};
-            final Map<String, Object> resourceAsMap = objectMapper.readValue(resourceAsJson, typeReference);
+                                                              final RequestParameters requestParameters) {
+        final String resourceAsJson = jsonObjectMapper.asJsonString(resourceAsObject);
+        final Map<String, Object> resourceAsMap = jsonObjectMapper.convertJsonString(resourceAsJson, Map.class);
+        return new ResourceObjectDetails(requestParameters.getId(),
+                                         extractObjectClass(resourceAsMap, requestParameters),
+                                         resourceAsMap.get("attributes"));
 
-            return new ResourceObjectDetails(requestPathParameters.getId(),
-                                             extractObjectClass(resourceAsMap, requestPathParameters),
-                                             resourceAsMap.get("attributes"));
-        } catch (final JsonProcessingException e) {
-            log.debug("JSON processing error: {}", e.getMessage());
-            throw new ProvMnSException("Cannot convert Resource Object", e.getMessage());
-        }
     }
 
     private static String extractObjectClass(final Map<String, Object> resourceAsMap,
-                                             final RequestPathParameters requestPathParameters) {
+                                             final RequestParameters requestParameters) {
         final String objectClass = (String) resourceAsMap.get("objectClass");
         if (Strings.isNullOrEmpty(objectClass)) {
-            return requestPathParameters.getClassName();
+            return requestParameters.getClassName();
         }
         return objectClass;
     }
 
-
-    private CreateOperationDetails buildCreateOperationDetailsForUpdateWithHash(final OperationType operationType,
-                                                                     final RequestPathParameters requestPathParameters,
+    private CreateOperationDetails buildCreateOperationDetailsForUpdateWithHash(
+                                                                     final RequestParameters requestParameters,
                                                                      final PatchItem patchItem) {
         final Map<String, List<OperationEntry>> operationEntriesPerObjectClass = new HashMap<>();
-        final String className = requestPathParameters.getClassName();
-
+        final String className = requestParameters.getClassName();
         final Map<String, Object> attributeHierarchyAsMap = createNestedMap(patchItem);
-
-        final OperationEntry operationEntry = new OperationEntry(requestPathParameters.getId(),
-                                                                 attributeHierarchyAsMap);
+        final OperationEntry operationEntry = new OperationEntry(requestParameters.getId(), attributeHierarchyAsMap);
         operationEntriesPerObjectClass.put(className, List.of(operationEntry));
-
-        return new CreateOperationDetails(operationType.getOperationName(),
-                requestPathParameters.getUriLdnFirstPart(),
-                operationEntriesPerObjectClass);
+        return new CreateOperationDetails(UPDATE.getOperationName(), requestParameters.getUriLdnFirstPart(),
+                                          operationEntriesPerObjectClass);
     }
 
     private Map<String, Object> createNestedMap(final PatchItem patchItem) {
         final Map<String, Object> attributeHierarchyMap = new HashMap<>();
         Map<String, Object> currentLevel = attributeHierarchyMap;
-
         final String[] attributeHierarchyNames = patchItem.getPath().split("#/attributes")[1]
                 .replaceAll(REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS, "")
                 .split(ATTRIBUTE_NAME_SEPARATOR);
-
         for (int level = 0; level < attributeHierarchyNames.length; level++) {
             final String attributeName = attributeHierarchyNames[level];
-
             if (isLastLevel(attributeHierarchyNames, level)) {
                 currentLevel.put(attributeName, patchItem.getValue());
             } else {
