@@ -186,6 +186,25 @@ class DeltaReportExecutorSpec extends Specification {
         and: 'a DataValidationException is thrown'
             thrown(DataValidationException)
     }
+    def 'Apply delta report with an invalid xpath'() {
+        given: 'delta report as JSON string with an invalid xpath for #action action'
+            def deltaReportJson = '[{"action":"create","xpath":"/xpath[","targetData":{"data":[{"key":"value"}]}}]'
+        when: 'attempt to apply delta using the delta report'
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+        then: 'DataValidationException is thrown'
+            def exception = thrown(DataValidationException)
+            assert exception.message == 'Error while parsing xpath expression'
+    }
+
+    def 'Apply delta report with an unknown action'() {
+        given: 'delta report as JSON string with an unknown action'
+            def deltaReportJson = '[{"action":"unknown","xpath":"/bookstore","targetData":{"categories":[{"code":"1"}]}}]'
+        when: 'attempt to apply delta using the delta report'
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+        then: 'DataValidationException is thrown with correct message'
+            def exception = thrown(DataValidationException)
+            assert exception.message == 'Invalid \'action\' in delta report.'
+    }
 
     def setupSchemaSetMocks(yangResources) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)

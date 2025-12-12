@@ -154,6 +154,6 @@ class JsonObjectMapperSpec extends Specification {
             jsonObjectMapper.convertToJsonArray(jsonContent, Map)
         then: 'a DataValidationException is thrown'
             def thrown = thrown(DataValidationException)
-            thrown.message.contains('Parsing error occurred while converting JSON content to specific class type.')
+        thrown.message.contains('JSON parsing error at line: 1, column: 19')
     }
 }
