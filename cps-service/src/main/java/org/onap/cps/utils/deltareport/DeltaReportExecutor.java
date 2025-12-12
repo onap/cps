@@ -30,10 +30,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.DataNodeFactory;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
@@ -65,16 +67,22 @@ public class DeltaReportExecutor {
             jsonObjectMapper.convertToJsonArray(deltaReportAsJsonString, DeltaReport.class);
         for (final DeltaReport deltaReport: deltaReports) {
             final String action = deltaReport.getAction();
-            final String xpath = deltaReport.getXpath();
+            final String xpath = validateXpath(deltaReport.getXpath());
             if (action.equals(DeltaReport.REPLACE_ACTION)) {
                 final String dataForUpdate = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
                 updateDataNodes(dataspaceName, anchorName, xpath, dataForUpdate);
             } else if (action.equals(DeltaReport.REMOVE_ACTION)) {
                 final String dataForDelete = jsonObjectMapper.asJsonString(deltaReport.getSourceData());
                 deleteDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForDelete);
-            } else {
+            } else if (action.equals(DeltaReport.CREATE_ACTION)) {
                 final String dataForCreate = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
                 addDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForCreate);
+            } else {
+                throw new DataValidationException("Invalid 'action' in delta report.",
+                    "Unsupported action '" + action + "' at xpath: " + xpath
+                        + ". Valid actions are: '" + DeltaReport.CREATE_ACTION
+                        + "', '" + DeltaReport.REMOVE_ACTION + "' or '"
+                        + DeltaReport.REPLACE_ACTION + "'.");
             }
         }
     }
@@ -113,5 +121,15 @@ public class DeltaReportExecutor {
                                                  final String xpath, final String nodeData) {
         final Anchor anchor = cpsAnchorService.getAnchor(datasapceName, anchorName);
         return dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor, xpath, nodeData, JSON);
+    }
+
+    private String validateXpath(final String xpath) {
+        try {
+            return CpsPathUtil.getNormalizedXpath(xpath);
+        } catch (final PathParsingException pathParsingException) {
+            throw new DataValidationException("Error while parsing xpath expression "
+                + "'" + xpath + "'.",
+                pathParsingException.getMessage());
+        }
     }
 }

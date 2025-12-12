@@ -138,9 +138,11 @@ public class JsonObjectMapper {
                 objectMapper.getTypeFactory().constructCollectionType(List.class, collectionEntryType);
             return objectMapper.readValue(jsonContent, collectionType);
         } catch (final JsonProcessingException e) {
+            final int lineNumber = e.getLocation().getLineNr();
+            final int columnNumber = e.getLocation().getColumnNr();
             log.error("Parsing error occurred while converting JSON content to json array.");
-            throw new DataValidationException("Parsing error occurred while converting "
-                + "JSON content to specific class type.", e.getMessage());
+            throw new DataValidationException("JSON parsing error at line: "
+                + lineNumber + ", column: " + columnNumber, e.getOriginalMessage());
         }
     }
 }
