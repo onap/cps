@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 TechMahindra Ltd.
+ *  Copyright (C) 2025-2026 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,9 @@
 
 package org.onap.cps.utils.deltareport;
 
+import static org.onap.cps.api.model.DeltaReport.CREATE_ACTION;
+import static org.onap.cps.api.model.DeltaReport.REMOVE_ACTION;
+import static org.onap.cps.api.model.DeltaReport.REPLACE_ACTION;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
 import static org.onap.cps.utils.ContentType.JSON;
 
@@ -30,10 +33,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.DataNodeFactory;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
@@ -64,12 +69,12 @@ public class DeltaReportExecutor {
         final List<DeltaReport> deltaReports =
             jsonObjectMapper.convertToJsonArray(deltaReportAsJsonString, DeltaReport.class);
         for (final DeltaReport deltaReport: deltaReports) {
-            final String action = deltaReport.getAction();
-            final String xpath = deltaReport.getXpath();
-            if (action.equals(DeltaReport.REPLACE_ACTION)) {
+            final String xpath = validateXpath(deltaReport.getXpath());
+            final String action = validateAction(deltaReport.getAction(), xpath);
+            if (REPLACE_ACTION.equals(action)) {
                 final String dataForUpdate = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
                 updateDataNodes(dataspaceName, anchorName, xpath, dataForUpdate);
-            } else if (action.equals(DeltaReport.REMOVE_ACTION)) {
+            } else if (REMOVE_ACTION.equals(action)) {
                 final String dataForDelete = jsonObjectMapper.asJsonString(deltaReport.getSourceData());
                 deleteDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForDelete);
             } else {
@@ -113,5 +118,25 @@ public class DeltaReportExecutor {
                                                  final String xpath, final String nodeData) {
         final Anchor anchor = cpsAnchorService.getAnchor(datasapceName, anchorName);
         return dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor, xpath, nodeData, JSON);
+    }
+
+    private String validateXpath(final String xpath) {
+        try {
+            return CpsPathUtil.getNormalizedXpath(xpath);
+        } catch (final PathParsingException pathParsingException) {
+            throw new DataValidationException(String.format("Error while parsing xpath expression '%s'.", xpath),
+                pathParsingException.getMessage());
+        }
+    }
+
+    private String validateAction(final String action, final String xpath) {
+        if (CREATE_ACTION.equals(action) || REMOVE_ACTION.equals(action) || REPLACE_ACTION.equals(action)) {
+            return action;
+        }
+        throw new DataValidationException("Invalid 'action' in delta report.",
+            String.format(
+                "Unsupported action '%s' at xpath: %s. Valid actions are: '%s', '%s' or '%s'.",
+                action, xpath, CREATE_ACTION, REMOVE_ACTION, REPLACE_ACTION
+            ));
     }
 }
