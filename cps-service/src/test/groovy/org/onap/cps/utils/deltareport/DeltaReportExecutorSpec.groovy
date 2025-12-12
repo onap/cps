@@ -186,6 +186,29 @@ class DeltaReportExecutorSpec extends Specification {
         and: 'a DataValidationException is thrown'
             thrown(DataValidationException)
     }
+    def 'Apply delta report with an invalid xpath'() {
+        given: 'delta report as JSON string with an invalid xpath for #action action'
+            def deltaReportJson = '[{"action":"create","xpath":"/invalid[","targetData":{"data":[{"key":"value"}]}}]'
+        when: 'attempt to apply delta'
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+        then: 'expected exception is thrown'
+            def thrownException = thrown(DataValidationException)
+            assert thrownException.message == 'Error while parsing xpath expression \'/invalid[\'.'
+            assert thrownException.details == 'failed to parse at line 1 due to no viable alternative at input \'[\''
+    }
+
+    def 'Apply delta report with an unsupported action'() {
+        given: 'delta report as JSON string'
+            def deltaReportJson = '[{"action":"invalidAction","xpath":"/bookstore","targetData":{"categories":[{"code":"1"}]}}]'
+        when: 'attempt to apply delta report'
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+        then: 'expected exception is thrown with correct details'
+            def thrownException = thrown(DataValidationException)
+            assert thrownException.message == 'Invalid \'action\' in delta report.'
+            assert thrownException.details.contains('invalidAction')
+            assert thrownException.details.contains('/bookstore')
+            assert thrownException.details.contains('\'create\', \'remove\' or \'replace\'')
+    }
 
     def setupSchemaSetMocks(yangResources) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
