@@ -1,7 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
- *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -139,8 +138,8 @@ public class JsonObjectMapper {
             return objectMapper.readValue(jsonContent, collectionType);
         } catch (final JsonProcessingException e) {
             log.error("Parsing error occurred while converting JSON content to json array.");
-            throw new DataValidationException("Parsing error occurred while converting "
-                + "JSON content to specific class type.", e.getMessage());
+            throw new DataValidationException(String.format("JSON parsing error at line: %d, column: %d",
+                e.getLocation().getLineNr(), e.getLocation().getColumnNr()), e.getOriginalMessage());
         }
     }
 }
