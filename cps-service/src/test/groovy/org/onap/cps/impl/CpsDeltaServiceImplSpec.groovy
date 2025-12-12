@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.exceptions.DataInUseException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
@@ -46,6 +47,7 @@ import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
+import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -355,6 +357,23 @@ class CpsDeltaServiceImplSpec extends Specification {
             objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
         then: 'utility class to apply the delta report is invoked with expected parameters'
             1 * mockDeltaReportExecutor.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+    }
+
+    def 'applyChangesInDeltaReport throws DataInUseException'() {
+        given: 'delta report JSON and nested exception'
+        def deltaReportJson = '[{"action":"create","xpath":"/bookstore","targetData":{"categories":[{"code":"1"}]}}]'
+        def nestedCause = new RuntimeException('duplicate key')
+        def causeLevel2 = new RuntimeException(nestedCause)
+        def causeLevel1 = new RuntimeException(causeLevel2)
+        def dataIntegrityViolationException = new DataIntegrityViolationException('error', causeLevel1)
+
+        when: 'deltaReportExecutor throws DataIntegrityViolationException'
+        mockDeltaReportExecutor.applyChangesInDeltaReport(_, _, _) >> { throw dataIntegrityViolationException }
+        objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+
+        then: 'DataInUseException is thrown with correct message'
+        def exception = thrown(DataInUseException)
+        exception.message == 'Duplicate key error'
     }
 
     def setupSchemaSetMocks(yangResources) {

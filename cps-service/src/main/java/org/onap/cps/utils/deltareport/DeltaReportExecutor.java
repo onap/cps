@@ -30,10 +30,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.DataNodeFactory;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
@@ -72,16 +74,25 @@ public class DeltaReportExecutor {
             } else if (action.equals(DeltaReport.REMOVE_ACTION)) {
                 final String dataForDelete = jsonObjectMapper.asJsonString(deltaReport.getSourceData());
                 deleteDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForDelete);
-            } else {
+            } else if (action.equals(DeltaReport.CREATE_ACTION)) {
                 final String dataForCreate = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
                 addDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForCreate);
+            } else {
+                throw new DataValidationException("Data Validation Failed",
+                    "Failed to parse JSON data at: <invalid-action>");
             }
         }
     }
 
     private void updateDataNodes(final String dataspaceName, final String anchorName, final String xpath,
                                  final String updatedData) {
-        final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
+        final String parentNodeXpath;
+        try {
+            parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
+        } catch (final PathParsingException pathParsingException) {
+            throw new DataValidationException("Error while parsing xpath expression",
+                pathParsingException.getMessage());
+        }
         final Collection<DataNode> dataNodesToUpdate =
             createDataNodes(dataspaceName, anchorName, parentNodeXpath, updatedData);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodesToUpdate);
@@ -89,14 +100,26 @@ public class DeltaReportExecutor {
 
     private void deleteDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
                                            final String dataToDelete) {
-        final Collection<DataNode> dataNodesToDelete = createDataNodes(dataspaceName, anchorName, xpath, dataToDelete);
+        final Collection<DataNode> dataNodesToDelete;
+        try {
+            dataNodesToDelete = createDataNodes(dataspaceName, anchorName, xpath, dataToDelete);
+        } catch (final PathParsingException pathParsingException) {
+            throw new DataValidationException("Error while parsing xpath expression",
+                pathParsingException.getMessage());
+        }
         final Collection<String> xpathsToDelete = dataNodesToDelete.stream().map(DataNode::getXpath).toList();
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName, xpathsToDelete);
     }
 
     private void addDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
                                         final String dataToAdd) {
-        final String xpathToAdd = isRootListNodeXpath(xpath) ? CpsPathUtil.ROOT_NODE_XPATH : xpath;
+        final String xpathToAdd;
+        try {
+            xpathToAdd = isRootListNodeXpath(xpath) ? CpsPathUtil.ROOT_NODE_XPATH : xpath;
+        } catch (final PathParsingException pathParsingException) {
+            throw new DataValidationException("Error while parsing xpath expression",
+                pathParsingException.getMessage());
+        }
         final Collection<DataNode> dataNodesToAdd = createDataNodes(dataspaceName, anchorName, xpathToAdd, dataToAdd);
         if (ROOT_NODE_XPATH.equals(xpathToAdd)) {
             cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, dataNodesToAdd);

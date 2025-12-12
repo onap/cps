@@ -35,6 +35,7 @@ import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.DataNodeFactory;
+import org.onap.cps.api.exceptions.DataInUseException;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
@@ -48,6 +49,7 @@ import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.deltareport.DeltaReportExecutor;
 import org.onap.cps.utils.deltareport.DeltaReportGenerator;
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -115,7 +117,12 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
     public void applyChangesInDeltaReport(final String dataspaceName, final String anchorName,
                                           final String deltaReportAsJsonString) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        deltaReportExecutor.applyChangesInDeltaReport(dataspaceName, anchorName, deltaReportAsJsonString);
+        try {
+            deltaReportExecutor.applyChangesInDeltaReport(dataspaceName, anchorName, deltaReportAsJsonString);
+        } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
+            throw new DataInUseException("Duplicate key error",
+                dataIntegrityViolationException.getCause().getCause().getCause().getMessage());
+        }
     }
 
     private List<DeltaReport> getDeltaReports(final Collection<DataNode> sourceDataNodes,
