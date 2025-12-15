@@ -330,6 +330,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b69fc0c_d19ca675",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T17:11:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "479993fb_dc6f06c5",
+      "range": {
+        "startLine": 91,
+        "startChar": 44,
+        "endLine": 91,
+        "endChar": 74
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2af0d4d_e457d4d1",
@@ -367,6 +391,30 @@
       "side": 1,
       "message": "We use jackson which will return \"null\" for null and \"{}\" for empty",
       "parentUuid": "d2af0d4d_e457d4d1",
+      "range": {
+        "startLine": 94,
+        "startChar": 45,
+        "endLine": 94,
+        "endChar": 65
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86f3d8d5_e6d1584f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T17:11:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4d3f911c_f39f55db",
       "range": {
         "startLine": 94,
         "startChar": 45,
