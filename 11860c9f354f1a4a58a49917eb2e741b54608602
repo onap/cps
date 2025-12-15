@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "954dba8a_8810525a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T07:58:55Z",
+      "side": 1,
+      "message": "NB: a bit cumbersome name...\nSee suggestion in class",
+      "range": {
+        "startLine": 33,
+        "startChar": 37,
+        "endLine": 33,
+        "endChar": 72
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "403714c4_870cf0a1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T07:58:55Z",
+      "side": 1,
+      "message": "update description",
+      "range": {
+        "startLine": 178,
+        "startChar": 79,
+        "endLine": 178,
+        "endChar": 112
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44e5f7a6_c64489e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T07:58:55Z",
+      "side": 1,
+      "message": "consider using the word \u0027migrate\u0027 to distinguish it from the normal \u0027update\u0027 usecase. Also I don;t think the method name needs to be specify what is being migrated...\n\nso consider: CmHandleBulkMigrate",
+      "range": {
+        "startLine": 235,
+        "startChar": 16,
+        "endLine": 235,
+        "endChar": 56
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac703fb6_78202aa6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T07:58:55Z",
+      "side": 1,
+      "message": "cmHandleUpdateDetailsPerLeaf",
+      "range": {
+        "startLine": 240,
+        "startChar": 40,
+        "endLine": 240,
+        "endChar": 54
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889c7438_03aa618b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T07:58:55Z",
+      "side": 1,
+      "message": "cmHandleUpdateDetailsPerLeaf",
+      "range": {
+        "startLine": 253,
+        "startChar": 70,
+        "endLine": 253,
+        "endChar": 83
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "924ec5f2_5d63d7d7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/models/CmHandleStateAndDmiPropertiesUpdate.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T07:58:55Z",
+      "side": 1,
+      "message": "CmHandleUpdate(s) / CmHandleMigrationDetail(s) / CmHandleMigrationRecord(s)\n\n(need to consider the plural for the collection",
+      "range": {
+        "startLine": 23,
+        "startChar": 14,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef382486_b65d8bd8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T07:58:55Z",
+      "side": 1,
+      "message": "I still wonder if empty (adn null) should be [] or even \u0027{[]}\u0027",
+      "range": {
+        "startLine": 91,
+        "startChar": 44,
+        "endLine": 91,
+        "endChar": 74
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2af0d4d_e457d4d1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T07:58:55Z",
+      "side": 1,
+      "message": "what happens if you pass in null or empty? I am not sure if it needs special treatment...",
+      "range": {
+        "startLine": 94,
+        "startChar": 45,
+        "endLine": 94,
+        "endChar": 65
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d97fa5a_496bab29",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-15T07:58:55Z",
+      "side": 1,
+      "message": "i think the differences in these cm handles are worth naming\nAlso include EMPTY example for properties eg.\ncmHandleWithAdditionalProperty\ncmHandleWithAdditionalPropertyNull\ncmHandleWithAdditionalPropertyEmpty",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 21
+      },
+      "revId": "11860c9f354f1a4a58a49917eb2e741b54608602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
