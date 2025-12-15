@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a03c49dc_94ad6a01",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-15T11:54:14Z",
+      "side": 1,
+      "message": "Why not just use .getMessage()?",
+      "range": {
+        "startLine": 124,
+        "startChar": 47,
+        "endLine": 124,
+        "endChar": 93
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7fe0a65_0bc6f6f6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-15T11:54:14Z",
+      "side": 1,
+      "message": "Message: Invalid \u0027action\u0027 in delta report.\nDetails: Unsupported action \u003caction\u003e at xpath \u003cxpath\u003e. Valid actions are: \u003cput the values of supported action fields\u003e",
+      "range": {
+        "startLine": 81,
+        "startChar": 51,
+        "endLine": 81,
+        "endChar": 73
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7097069d_745e3964",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-15T11:54:14Z",
+      "side": 1,
+      "message": "No need to validate individually. You can validate the xpath in line #68 as it is then used based on the \u0027action\u0027 field. Implement a xpath validator method like the one in CpsDeltaServiceImpl",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 37
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
