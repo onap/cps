@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b681fee_147001d0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-15T11:24:56Z",
+      "side": 1,
+      "message": "Can this be refactored in smaller methods?",
+      "revId": "b883946720f677c2e0437ec7d5bd3dcb684921de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "405581ca_61bb3bd3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 52
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-15T11:24:56Z",
+      "side": 1,
+      "message": "Test names should not contain expectations",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 65,
+        "endChar": 94
+      },
+      "revId": "b883946720f677c2e0437ec7d5bd3dcb684921de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1761b81f_729c8cd0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 52
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-15T11:24:56Z",
+      "side": 1,
+      "message": "Test names should not contain expectations",
+      "range": {
+        "startLine": 74,
+        "startChar": 9,
+        "endLine": 74,
+        "endChar": 98
+      },
+      "revId": "b883946720f677c2e0437ec7d5bd3dcb684921de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daf249a2_fc3562ee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 52
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-15T11:24:56Z",
+      "side": 1,
+      "message": "Test names should not contain expectations",
+      "range": {
+        "startLine": 83,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 119
+      },
+      "revId": "b883946720f677c2e0437ec7d5bd3dcb684921de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
