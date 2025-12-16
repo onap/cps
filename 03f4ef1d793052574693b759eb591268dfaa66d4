@@ -62,6 +62,30 @@
       },
       "revId": "03f4ef1d793052574693b759eb591268dfaa66d4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "432ce411_1de779d5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-16T18:16:39Z",
+      "side": 1,
+      "message": "from a non-developer PoV database call is OK...",
+      "parentUuid": "f1430ab4_64132b0c",
+      "range": {
+        "startLine": 420,
+        "startChar": 15,
+        "endLine": 420,
+        "endChar": 39
+      },
+      "revId": "03f4ef1d793052574693b759eb591268dfaa66d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
