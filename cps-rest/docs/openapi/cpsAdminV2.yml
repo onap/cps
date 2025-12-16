@@ -103,7 +103,7 @@ notificationSubscription:
         content:
           application/json:
             schema:
-              $ref: 'components.yml#/components/examples/NotificationSubscriptionsDataSample'
+              $ref: 'components.yml#/components/examples/notificationSubscriptionResponseSample'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
@@ -128,7 +128,7 @@ notificationSubscription:
             type: object
           examples:
             dataSample:
-              $ref: 'components.yml#/components/examples/NotificationSubscriptionsDataSample'
+              $ref: 'components.yml#/components/examples/notificationSubscriptionRequestSample'
     responses:
       '201':
         $ref: 'components.yml#/components/responses/CreatedV2'

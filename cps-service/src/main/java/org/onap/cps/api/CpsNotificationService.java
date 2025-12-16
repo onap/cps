@@ -25,11 +25,36 @@ import java.util.Map;
 
 public interface CpsNotificationService {
 
+    /**
+     * Creates a notification subscription for a given xpath. The dataspacename and anchor details are provided as part
+     * of the notification subscription JSON.
+     *
+     * @param notificationSubscriptionAsJson  notification subscription in JSON format
+     * @param xpath                           the location where the notification subscription is to be created
+     */
     void createNotificationSubscription(String notificationSubscriptionAsJson, String xpath);
 
+    /**
+     * Deletes a notification subscription for a given xpath.
+     *
+     * @param xpath the location where the notification subscription is to be deleted
+     */
     void deleteNotificationSubscription(String xpath);
 
+    /**
+     * Checks if notification is enabled for a given dataspace and anchor.
+     *
+     * @param dataspaceName the dataspace name
+     * @param anchorName    the anchor name
+     * @return true if notification is enabled, false otherwise
+     */
     boolean isNotificationEnabled(String dataspaceName, String anchorName);
 
+    /**
+     * Retrieves notification subscription for a given xpath.
+     *
+     * @param xpath the location where the notification subscription is to be retrieved
+     * @return list of notification subscriptions as map
+     */
     List<Map<String, Object>> getNotificationSubscription(String xpath);
 }
