@@ -22,8 +22,10 @@ package org.onap.cps.ncmp.rest.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
@@ -184,12 +186,16 @@ public class ProvMnsController implements ProvMnS {
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
             return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_FOUND, reason);
-        } catch (final ProvMnSException exception) {
+        } catch (final ProvMnSException provMnSException) {
             return errorResponseBuilder.buildErrorResponseDefault(
-                getHttpStatusForProvMnSException(exception), exception.getDetails());
-        } catch (final RuntimeException exception) {
+                    getHttpStatusForProvMnSException(provMnSException), provMnSException.getDetails());
+        } catch (final PolicyExecutorException policyExecutorException) {
             return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE,
-                exception.getMessage());
+                    policyExecutorException.getMessage());
+        } catch (final Throwable throwable) {
+            final HttpStatus httpStatus = (throwable.getCause() instanceof TimeoutException)
+                    ? HttpStatus.GATEWAY_TIMEOUT : HttpStatus.INTERNAL_SERVER_ERROR;
+            return errorResponseBuilder.buildErrorResponseDefault(httpStatus, throwable.getMessage());
         }
     }
 
@@ -211,9 +217,9 @@ public class ProvMnsController implements ProvMnS {
         return alternateId + " not found";
     }
 
-    private HttpStatus getHttpStatusForProvMnSException(final ProvMnSException exception) {
-        return "NOT READY".equals(exception.getMessage())
-            ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
+    private HttpStatus getHttpStatusForProvMnSException(final ProvMnSException provMnSException) {
+        return "NOT READY".equals(provMnSException.getMessage())
+                ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
     }
 
 }
