@@ -186,10 +186,10 @@ public class ProvMnsController implements ProvMnS {
             return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_FOUND, reason);
         } catch (final ProvMnSException exception) {
             return errorResponseBuilder.buildErrorResponseDefault(
-                getHttpStatusForProvMnSException(exception), exception.getDetails());
+                    getHttpStatusForProvMnSException(exception), exception.getDetails());
         } catch (final RuntimeException exception) {
             return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE,
-                exception.getMessage());
+                    exception.getMessage());
         }
     }
 
@@ -213,7 +213,7 @@ public class ProvMnsController implements ProvMnS {
 
     private HttpStatus getHttpStatusForProvMnSException(final ProvMnSException exception) {
         return "NOT READY".equals(exception.getMessage())
-            ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
+                ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
     }
 
 }
