@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7fd8ee4_33ae367f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-16T09:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a1b48b5_fdee9130",
+      "range": {
+        "startLine": 236,
+        "startChar": 48,
+        "endLine": 236,
+        "endChar": 76
+      },
+      "revId": "f2979de2b2b5257bb0b9bfd2e761b0d4ffe5df90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fdb9d8e_6126c275",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-12-15T17:11:03Z",
       "side": 1,
       "message": "this is the tricky one it is a collection of maps:\ncmHandlesUpdatesPerLeaf\n(note the \u0027s\u0027 in cmHandles, since it is a list)\n\nAlternatively it is like  conversion, so maybe\n\nCmHandleMigrationDetailAsMaps",
+      "range": {
+        "startLine": 240,
+        "startChar": 40,
+        "endLine": 240,
+        "endChar": 54
+      },
+      "revId": "f2979de2b2b5257bb0b9bfd2e761b0d4ffe5df90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56c58510_18abfce2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-16T09:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fdb9d8e_6126c275",
       "range": {
         "startLine": 240,
         "startChar": 40,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f55f8c09_f5eaf59c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-16T09:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82799c8d_420fafee",
+      "range": {
+        "startLine": 241,
+        "startChar": 43,
+        "endLine": 241,
+        "endChar": 48
+      },
+      "revId": "f2979de2b2b5257bb0b9bfd2e761b0d4ffe5df90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2a8e1b0_5a14cde7",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-12-15T17:11:03Z",
       "side": 1,
       "message": "cmHandleUpdatesPerLeaf\nnote the lack \u0027s\u0027 in cmHandle, since its for one cm handle\nOR\nCmHandleMigrationDetailAsMap",
+      "range": {
+        "startLine": 242,
+        "startChar": 38,
+        "endLine": 242,
+        "endChar": 51
+      },
+      "revId": "f2979de2b2b5257bb0b9bfd2e761b0d4ffe5df90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f81a743e_4d5fbde7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-16T09:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2a8e1b0_5a14cde7",
       "range": {
         "startLine": 242,
         "startChar": 38,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d05a97c_f7c3d3f0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-16T09:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90d1cd62_042da31d",
+      "range": {
+        "startLine": 253,
+        "startChar": 17,
+        "endLine": 253,
+        "endChar": 37
+      },
+      "revId": "f2979de2b2b5257bb0b9bfd2e761b0d4ffe5df90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed7bacb0_a6f80599",
@@ -139,6 +259,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e3ec95b_e126ecd1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-16T09:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed7bacb0_a6f80599",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 28
+      },
+      "revId": "f2979de2b2b5257bb0b9bfd2e761b0d4ffe5df90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8af507f1_6db582aa",
@@ -152,6 +296,30 @@
       "writtenOn": "2025-12-15T17:11:03Z",
       "side": 1,
       "message": "because you mock the behavior you are only testing what you mocked above :-(  never a good idea, so please use a real Mapper!",
+      "range": {
+        "startLine": 85,
+        "startChar": 54,
+        "endLine": 85,
+        "endChar": 58
+      },
+      "revId": "f2979de2b2b5257bb0b9bfd2e761b0d4ffe5df90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dccddc2c_20e196e3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-12-16T09:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8af507f1_6db582aa",
       "range": {
         "startLine": 85,
         "startChar": 54,
