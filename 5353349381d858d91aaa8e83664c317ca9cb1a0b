@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "490bae84_9eedacd9",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "converted to simple java code",
+      "parentUuid": "2dc181f6_49e6177f",
+      "range": {
+        "startLine": 115,
+        "startChar": 15,
+        "endLine": 115,
+        "endChar": 36
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1b9e60c_226fb4ac",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-12-15T12:00:17Z",
       "side": 1,
       "message": "No need checking here AND in the method called?!",
+      "range": {
+        "startLine": 116,
+        "startChar": 35,
+        "endLine": 116,
+        "endChar": 109
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dcf1dd3_c2de4f03",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1b9e60c_226fb4ac",
       "range": {
         "startLine": 116,
         "startChar": 35,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fa2fa3c_705a1b6a",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b21eabd1_0f17309d",
+      "range": {
+        "startLine": 130,
+        "startChar": 32,
+        "endLine": 130,
+        "endChar": 59
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebe9fd19_f53708bb",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-12-15T12:00:17Z",
       "side": 1,
       "message": "NB: no need for local variables if getSouceData()/getTargetData are simple getters",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 81
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "761c4883_20a76c4b",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebe9fd19_f53708bb",
       "range": {
         "startLine": 137,
         "startChar": 0,
@@ -139,6 +235,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57ffc5c5_c548503a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventProducerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "902053f2_b8a75647",
+      "range": {
+        "startLine": 131,
+        "startChar": 27,
+        "endLine": 131,
+        "endChar": 70
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "431a1555_6cdc49e0",
@@ -152,6 +272,30 @@
       "writtenOn": "2025-12-15T12:00:17Z",
       "side": 1,
       "message": "try to say it in English \neg.\n\u0027General notifications and cps change event notification are enabled\u0027",
+      "range": {
+        "startLine": 134,
+        "startChar": 14,
+        "endLine": 134,
+        "endChar": 89
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e44ca85_af80b9de",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventProducerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "431a1555_6cdc49e0",
       "range": {
         "startLine": 134,
         "startChar": 14,
@@ -185,6 +329,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10c6e275_1d872f05",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventProducerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d368ff9b_77788ae7",
+      "range": {
+        "startLine": 161,
+        "startChar": 27,
+        "endLine": 161,
+        "endChar": 59
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f5c2be8_f4d3382e",
@@ -198,6 +366,30 @@
       "writtenOn": "2025-12-15T12:00:17Z",
       "side": 1,
       "message": "see above",
+      "range": {
+        "startLine": 164,
+        "startChar": 14,
+        "endLine": 164,
+        "endChar": 90
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1037307_7e046d7e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventProducerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f5c2be8_f4d3382e",
       "range": {
         "startLine": 164,
         "startChar": 14,
@@ -231,6 +423,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39a71139_5748c8a1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventProducerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4e07b86_e725b314",
+      "range": {
+        "startLine": 168,
+        "startChar": 79,
+        "endLine": 168,
+        "endChar": 98
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1148a859_eaef4841",
@@ -244,6 +460,30 @@
       "writtenOn": "2025-12-15T12:00:17Z",
       "side": 1,
       "message": "cloud event\n\nCould you assert teh (legacy?) event is send instead?",
+      "range": {
+        "startLine": 169,
+        "startChar": 19,
+        "endLine": 169,
+        "endChar": 25
+      },
+      "revId": "5353349381d858d91aaa8e83664c317ca9cb1a0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "332aa088_3cde9c5d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventProducerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-16T11:42:31Z",
+      "side": 1,
+      "message": "I didn\u0027t understand the second part of the comment. Can you elaborate it for me 😊",
+      "parentUuid": "1148a859_eaef4841",
       "range": {
         "startLine": 169,
         "startChar": 19,
