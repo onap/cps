@@ -39,14 +39,17 @@ import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
+import org.onap.cps.ncmp.impl.provmns.model.ErrorResponseDefault;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 /**
  * Exception handler with error message return.
@@ -106,6 +109,41 @@ public class NetworkCmProxyRestExceptionHandler {
     @ExceptionHandler({ProvMnSException.class})
     public static ResponseEntity<Object> invalidPathExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY, exception);
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    public static ResponseEntity<ErrorResponseDefault> handleValidationExceptions(
+            final MethodArgumentNotValidException methodArgumentNotValidException) {
+
+        final ErrorResponseDefault errorResponse = new ErrorResponseDefault()
+                .status(String.valueOf(HttpStatus.BAD_REQUEST.value()))
+                .type("VALIDATION_ERROR");
+
+        methodArgumentNotValidException.getBindingResult().getFieldErrors()
+                .forEach(err -> errorResponse.addBadAttributesItem(err.getField()));
+
+        errorResponse.title(methodArgumentNotValidException.getMessage());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * Default exception handler.
+     *
+     * @param methodArgumentTypeMismatchException the exception to handle
+     * @return response with response code 400.
+     */
+    @ExceptionHandler({MethodArgumentTypeMismatchException.class})
+    public static ResponseEntity<ErrorResponseDefault> handleTypeMismatchExceptions(
+            final MethodArgumentTypeMismatchException methodArgumentTypeMismatchException) {
+
+        final ErrorResponseDefault errorResponse = new ErrorResponseDefault()
+                .status(String.valueOf(HttpStatus.BAD_REQUEST.value()))
+                .type("VALIDATION_ERROR")
+                .title(methodArgumentTypeMismatchException.getMessage())
+                .addBadAttributesItem(methodArgumentTypeMismatchException.getName());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {

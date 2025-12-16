@@ -22,8 +22,10 @@ package org.onap.cps.ncmp.rest.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
@@ -186,10 +188,10 @@ public class ProvMnsController implements ProvMnS {
             return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_FOUND, reason);
         } catch (final ProvMnSException exception) {
             return errorResponseBuilder.buildErrorResponseDefault(
-                getHttpStatusForProvMnSException(exception), exception.getDetails());
+                    getHttpStatusForProvMnSException(exception), exception.getDetails());
         } catch (final RuntimeException exception) {
             return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE,
-                exception.getMessage());
+                    exception.getMessage());
         }
     }
 
@@ -213,7 +215,7 @@ public class ProvMnsController implements ProvMnS {
 
     private HttpStatus getHttpStatusForProvMnSException(final ProvMnSException exception) {
         return "NOT READY".equals(exception.getMessage())
-            ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
+                ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
     }
 
 }
