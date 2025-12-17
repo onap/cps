@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2098b6_390130f8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-12-17T15:11:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75ff2e0e_d6e40392",
+      "range": {
+        "startLine": 123,
+        "startChar": 25,
+        "endLine": 123,
+        "endChar": 29
+      },
+      "revId": "25b183927847c780b29b75a60be84548d4c55ec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc5ff5eb_745ec1a7",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-12-17T13:55:21Z",
       "side": 1,
       "message": "no teh default handler!",
+      "range": {
+        "startLine": 131,
+        "startChar": 7,
+        "endLine": 131,
+        "endChar": 33
+      },
+      "revId": "25b183927847c780b29b75a60be84548d4c55ec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "156e4d60_fa4a5e42",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-12-17T15:11:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc5ff5eb_745ec1a7",
       "range": {
         "startLine": 131,
         "startChar": 7,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01f89a09_20b613ca",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-12-17T15:11:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f82b3d19_f4914f74",
+      "range": {
+        "startLine": 140,
+        "startChar": 35,
+        "endLine": 140,
+        "endChar": 49
+      },
+      "revId": "25b183927847c780b29b75a60be84548d4c55ec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c20cb01f_7ef70ce7",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-12-17T13:55:21Z",
       "side": 1,
       "message": "organise (remove unused) imports: Ctrl-Alt-O",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "25b183927847c780b29b75a60be84548d4c55ec8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55eb8937_b3d81da4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-12-17T15:11:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c20cb01f_7ef70ce7",
       "range": {
         "startLine": 25,
         "startChar": 0,
