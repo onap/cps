@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83699ccb_07dc2760",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-17T11:56:50Z",
+      "side": 1,
+      "message": "no need for private method",
+      "range": {
+        "startLine": 117,
+        "startChar": 15,
+        "endLine": 117,
+        "endChar": 43
+      },
+      "revId": "76f2ccd4ead30bd16032a3587765f1360d2dfd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31fec3d0_e7b22356",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-17T11:56:50Z",
+      "side": 1,
+      "message": "use full name",
+      "range": {
+        "startLine": 128,
+        "startChar": 54,
+        "endLine": 128,
+        "endChar": 63
+      },
+      "revId": "76f2ccd4ead30bd16032a3587765f1360d2dfd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d80382d_0f0818a5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-17T11:56:50Z",
+      "side": 1,
+      "message": "methodArgumentNotValidException",
+      "range": {
+        "startLine": 140,
+        "startChar": 50,
+        "endLine": 140,
+        "endChar": 59
+      },
+      "revId": "76f2ccd4ead30bd16032a3587765f1360d2dfd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc286e37_3cf16d94",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-17T11:56:50Z",
+      "side": 1,
+      "message": "use methodArgumentNotValidException.message instead",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 79
+      },
+      "revId": "76f2ccd4ead30bd16032a3587765f1360d2dfd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
