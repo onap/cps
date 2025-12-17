@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65c994d3_1d682f9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-17T07:20:34Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "9f5f46de_ba27b3bc",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a03c49dc_94ad6a01",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2025-12-15T11:54:14Z",
       "side": 1,
       "message": "Why not just use .getMessage()?",
+      "range": {
+        "startLine": 124,
+        "startChar": 47,
+        "endLine": 124,
+        "endChar": 93
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ce78a56_df6db02e",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-17T07:20:34Z",
+      "side": 1,
+      "message": "Defining custom message with xpath would require converting the deltareports to json array and then extracting xpath from list of delta reports which will unnecessary. Thus, Changed that to dataIntegrityViolationException.getRootCause().getMessage().",
+      "parentUuid": "a03c49dc_94ad6a01",
       "range": {
         "startLine": 124,
         "startChar": 47,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d7c2d47_90ed4306",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-17T07:20:34Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "a7fe0a65_0bc6f6f6",
+      "range": {
+        "startLine": 81,
+        "startChar": 51,
+        "endLine": 81,
+        "endChar": 73
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7097069d_745e3964",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
         "patchSetId": 1
@@ -83,6 +155,30 @@
       "writtenOn": "2025-12-15T11:54:14Z",
       "side": 1,
       "message": "No need to validate individually. You can validate the xpath in line #68 as it is then used based on the \u0027action\u0027 field. Implement a xpath validator method like the one in CpsDeltaServiceImpl",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 37
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0ccfa08_95cffa88",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-17T07:20:34Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "7097069d_745e3964",
       "range": {
         "startLine": 89,
         "startChar": 8,
