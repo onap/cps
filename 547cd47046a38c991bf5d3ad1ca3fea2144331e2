@@ -33,6 +33,23 @@
       "message": "ok",
       "revId": "547cd47046a38c991bf5d3ad1ca3fea2144331e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "740ee071_17cb67ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-17T17:50:20Z",
+      "side": 1,
+      "message": "This patch seems incomplete, we need to return DIFFERENT error Objects depending on the original operation. Laso we might not have captured all possible exception that the SpringFramework normally handles when validating the AP?!!\nThe complexity and the cost for all the possible combinations doesn\u0027t seem worth the effort if in some case the client need to handle the default error responses anyway (ie when the controller cannot be reached or the very start of the URL is incorrect etc.)\nI talked to the main stakeholder about this and he seems to agree. Hope to get confirmation tomorrow and if so we simply abandon this patch",
+      "revId": "547cd47046a38c991bf5d3ad1ca3fea2144331e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
