@@ -23,6 +23,7 @@ package org.onap.cps.integration.functional.ncmp.inventory
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.init.DataMigration
+import org.onap.cps.utils.ContentType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.TestPropertySource
 
@@ -38,9 +39,13 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
         and: 'multiple CM handles registered, (top level) status is null'
             (1..2).each {
                 registerCmHandle(DMI1_URL, 'ch-'+it, NO_MODULE_SET_TAG)
+                cpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='ch-${it}']",
+                        '{"additional-properties":[{"name":"prop1","value":"value1"}]}', now, ContentType.JSON)
                 def someCmHandle = networkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-'+it)
                 assert someCmHandle.getCmHandleStatus() == null
                 assert someCmHandle.getCompositeState().getCmHandleState().name() == 'READY'
+                assert someCmHandle.getDmiProperties() == null
+                assert someCmHandle.getAdditionalProperties() == ['prop1':'value1']
             }
         when: 'migration is executed'
             objectUnderTest.migrateInventoryToModelRelease20250722(1)
@@ -50,6 +55,8 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
                 def someCmHandle = networkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-'+it)
                 assert someCmHandle.getCmHandleStatus() == 'READY'
                 assert someCmHandle.getCompositeState().getCmHandleState().name() == 'READY'
+                assert someCmHandle.getDmiProperties() == '{"prop1":"value1"}'
+                assert someCmHandle.getAdditionalProperties() == ['prop1':'value1']
             }
         cleanup: 'deregister CM handles'
             deregisterCmHandles(DMI1_URL, (1..2).collect{ 'ch-'+it })
