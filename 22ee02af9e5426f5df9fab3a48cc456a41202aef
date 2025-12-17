@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d7fe684_516dc85d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "this can be moved to line #144",
+      "range": {
+        "startLine": 141,
+        "startChar": 36,
+        "endLine": 141,
+        "endChar": 47
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e3dd4c2_a88f26d9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "this too can be moved to line #144 and you can have 2 variables lineNumber and column which you can append in the statement below",
+      "range": {
+        "startLine": 142,
+        "startChar": 18,
+        "endLine": 142,
+        "endChar": 30
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d683d304_689c0355",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "can you verify what is being logged by position and message. It could contain sensitive info hence I would recommend to revert the logs statement.",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 143,
+        "endChar": 89
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f1f2691_b4902a81",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "you can use getNormalizedXpath(xpath) instead.",
+      "range": {
+        "startLine": 70,
+        "startChar": 33,
+        "endLine": 70,
+        "endChar": 55
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c3742d1_9cb895e8",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "NB: you can use static imports for maintainability",
+      "range": {
+        "startLine": 84,
+        "startChar": 48,
+        "endLine": 84,
+        "endChar": 79
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6985e268_a4c0b9a0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "NB: /invalid[",
+      "range": {
+        "startLine": 191,
+        "startChar": 64,
+        "endLine": 191,
+        "endChar": 71
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1f690a1_387c6688",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "NB: no need as it is clear from title statement.",
+      "range": {
+        "startLine": 192,
+        "startChar": 37,
+        "endLine": 192,
+        "endChar": 60
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "914a1031_4a089114",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "NB: you can assert the exception details and check if that provides relevant info.",
+      "range": {
+        "startLine": 196,
+        "startChar": 12,
+        "endLine": 196,
+        "endChar": 18
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41080028_86cfadad",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "unsupported",
+      "range": {
+        "startLine": 199,
+        "startChar": 36,
+        "endLine": 199,
+        "endChar": 43
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3f70a02_83d26bc7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "NB: not needed as same is mentioned above",
+      "range": {
+        "startLine": 200,
+        "startChar": 43,
+        "endLine": 200,
+        "endChar": 66
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "697945aa_4d271dde",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "atempt to apply delta report",
+      "range": {
+        "startLine": 202,
+        "startChar": 15,
+        "endLine": 202,
+        "endChar": 60
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b77f9d8_3eb7e9c2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T10:42:00Z",
+      "side": 1,
+      "message": "expected exception is thrown with correct details, assert the details as well",
+      "range": {
+        "startLine": 204,
+        "startChar": 15,
+        "endLine": 204,
+        "endChar": 69
+      },
+      "revId": "22ee02af9e5426f5df9fab3a48cc456a41202aef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
