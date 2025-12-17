@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb188290_eee6be5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-17T07:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65c994d3_1d682f9f",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a03c49dc_94ad6a01",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Defining custom message with xpath would require converting the deltareports to json array and then extracting xpath from list of delta reports which will unnecessary. Thus, Changed that to dataIntegrityViolationException.getRootCause().getMessage().",
       "parentUuid": "a03c49dc_94ad6a01",
+      "range": {
+        "startLine": 124,
+        "startChar": 47,
+        "endLine": 124,
+        "endChar": 93
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d796879_cd6e0b40",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-17T07:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ce78a56_df6db02e",
       "range": {
         "startLine": 124,
         "startChar": 47,
@@ -142,6 +190,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d434859d_97c8adbf",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-17T07:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d7c2d47_90ed4306",
+      "range": {
+        "startLine": 81,
+        "startChar": 51,
+        "endLine": 81,
+        "endChar": 73
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7097069d_745e3964",
@@ -179,6 +251,30 @@
       "side": 1,
       "message": "Corrected",
       "parentUuid": "7097069d_745e3964",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 37
+      },
+      "revId": "59c6d9acd5c48dc79bcdb65ae4fbaeca94b48f4e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af83ef4f_be98e676",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-17T07:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0ccfa08_95cffa88",
       "range": {
         "startLine": 89,
         "startChar": 8,
