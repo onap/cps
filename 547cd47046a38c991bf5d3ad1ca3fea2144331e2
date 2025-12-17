@@ -16,6 +16,23 @@
       "message": "OK, I\u0027ll add the unit tests soon",
       "revId": "547cd47046a38c991bf5d3ad1ca3fea2144331e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b852c02e_288057bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-17T15:38:41Z",
+      "side": 1,
+      "message": "ok",
+      "revId": "547cd47046a38c991bf5d3ad1ca3fea2144331e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
