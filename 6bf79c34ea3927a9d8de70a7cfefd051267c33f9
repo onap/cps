@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25cc4060_2326942b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T12:14:31Z",
+      "side": 1,
+      "message": "NB: you can use a static import",
+      "range": {
+        "startLine": 207,
+        "startChar": 27,
+        "endLine": 207,
+        "endChar": 56
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d04e04cd_e03d53d6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T12:14:31Z",
+      "side": 1,
+      "message": "responseData \u003d XML.equals(contentType) ? buildXML : asJsonString",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 34
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f891a66b_7e9a8a3a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T12:14:31Z",
+      "side": 1,
+      "message": "scenario: add xml and json",
+      "range": {
+        "startLine": 92,
+        "startChar": 58,
+        "endLine": 92,
+        "endChar": 69
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2b7af12_0af9cac4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T12:14:31Z",
+      "side": 1,
+      "message": "i notice that in a lot of places you add unnecessary extra lines in testware, remove them as these create changes in patch which are not functional. They increase patch size and cause confusion for reviewers as it appears a new change",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 19
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb2cbf6c_03e4beb5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T12:14:31Z",
+      "side": 1,
+      "message": "|| before expected values",
+      "range": {
+        "startLine": 111,
+        "startChar": 41,
+        "endLine": 111,
+        "endChar": 43
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbd510c7_7e96b4bf",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T12:14:31Z",
+      "side": 1,
+      "message": "place private methods after all public methods",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 5
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30963b1a_01cff31c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T12:14:31Z",
+      "side": 1,
+      "message": "these fields should not be hard coded, they shoould be populated by builder.",
+      "range": {
+        "startLine": 64,
+        "startChar": 68,
+        "endLine": 64,
+        "endChar": 76
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "491a7537_209aad6f",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 61
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-17T12:14:31Z",
+      "side": 1,
+      "message": "revert this file",
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
