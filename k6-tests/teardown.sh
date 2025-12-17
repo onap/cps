@@ -19,14 +19,6 @@
 testProfile=${1:-kpi}
 deploymentType=${2:-dockerHosts}
 
-# Function to create and store logs
-make_logs() {
-  local deployment_type=$1
-  echo "Creating logs for deployment type: $deployment_type"
-  chmod +x make-logs.sh
-  ./make-logs.sh "$deployment_type"
-}
-
 # Function to clean Docker images based on CLEAN_DOCKER_IMAGES environment variable
 clean_docker_images_if_needed() {
   if [[ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]]; then
@@ -77,10 +69,7 @@ teardown_docker_deployment() {
 # Function to teardown kubernetes deployment
 teardown_k8s_deployment() {
   echo '================================== k8s info =========================='
-  kubectl get all -l app=cps-and-ncmp
-
-  # Zip and store logs for the containers
-  make_logs "k8sHosts"
+  kubectl get all -l app=ncmp
 
   echo '================================== uninstalling cps... =========================='
   helm uninstall cps
