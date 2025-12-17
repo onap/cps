@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdf8ef54_c7cd0f55",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-17T12:26:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "779626d4_066508f4",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 4
+      },
+      "revId": "ced649589187b833547f257bee7ea5afa70c77c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7993a37_d092214e",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f8565a6_84057fd2",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-17T12:26:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7993a37_d092214e",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 15
+      },
+      "revId": "ced649589187b833547f257bee7ea5afa70c77c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96defef0_1baff4c4",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-12-17T10:47:10Z",
       "side": 1,
       "message": "archive",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 11
+      },
+      "revId": "ced649589187b833547f257bee7ea5afa70c77c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeffa1be_9a2d81d8",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-17T12:26:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96defef0_1baff4c4",
       "range": {
         "startLine": 40,
         "startChar": 2,
