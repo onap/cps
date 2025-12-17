@@ -20,4 +20,4 @@
 
 package org.onap.cps.ncmp.impl.models;
 
-public record CmHandleStateUpdate (String cmHandleId, String state) {}
+public record CmHandleMigrationDetail(String cmHandleId, String state, String dmiProperties) {}

@@ -49,7 +49,7 @@ import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.models.CmHandleStateUpdate;
+import org.onap.cps.ncmp.impl.models.CmHandleMigrationDetail;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
@@ -218,35 +218,49 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public void updateCmHandleFields(final String fieldName, final Map<String, String> newValuePerCmHandleId) {
         if (!newValuePerCmHandleId.isEmpty()) {
-            final Map<String, Object> targetCmHandleStatePerCmHandleId = new HashMap<>();
-            final List<Map<String, String>> targetCmHandleStatesPerCmHandleIds = new ArrayList<>();
-
+            final List<Map<String, String>> targetCmHandleFieldChangesPerCmHandleIds = new ArrayList<>();
             for (final Map.Entry<String, String> entry : newValuePerCmHandleId.entrySet()) {
                 final Map<String, String> cmHandleData = new HashMap<>();
                 cmHandleData.put("id", entry.getKey());
                 cmHandleData.put(fieldName, entry.getValue());
-                targetCmHandleStatesPerCmHandleIds.add(cmHandleData);
+                targetCmHandleFieldChangesPerCmHandleIds.add(cmHandleData);
                 log.debug("Updating {} for cmHandle {} to {}", fieldName, entry.getKey(), entry.getValue());
             }
-            targetCmHandleStatePerCmHandleId.put("cm-handles", targetCmHandleStatesPerCmHandleIds);
             cpsDataService.updateNodeLeaves(
                     NCMP_DATASPACE_NAME,
                     NCMP_DMI_REGISTRY_ANCHOR,
                     NCMP_DMI_REGISTRY_PARENT,
-                    jsonObjectMapper.asJsonString(targetCmHandleStatePerCmHandleId),
+                    jsonObjectMapper.asJsonString(Map.of("cm-handles", targetCmHandleFieldChangesPerCmHandleIds)),
                     OffsetDateTime.now(),
                     ContentType.JSON);
+
         }
     }
 
     @Override
-    public void bulkUpdateCmHandleStates(final List<CmHandleStateUpdate> cmHandleStateUpdates) {
-        final Map<String, String> mappedCmHandleStateUpdates = cmHandleStateUpdates.stream()
-            .collect(Collectors.toMap(
-                    CmHandleStateUpdate::cmHandleId,
-                    CmHandleStateUpdate::state
-            ));
-        updateCmHandleFields("cm-handle-state", mappedCmHandleStateUpdates);
+    public void cmHandleBulkMigrate(
+            final List<CmHandleMigrationDetail> cmHandleMigrationDetails) {
+        if (cmHandleMigrationDetails.isEmpty()) {
+            return;
+        }
+        final List<Map<String, String>> cmHandleMigrationDetailAsMaps =
+                new ArrayList<>(cmHandleMigrationDetails.size());
+        for (final CmHandleMigrationDetail cmHandleMigrationDetail : cmHandleMigrationDetails) {
+            final Map<String, String> cmHandleMigrationDetailAsMap = new HashMap<>();
+            cmHandleMigrationDetailAsMap.put("id", cmHandleMigrationDetail.cmHandleId());
+            cmHandleMigrationDetailAsMap.put("cm-handle-state", cmHandleMigrationDetail.state());
+            if (cmHandleMigrationDetail.dmiProperties() != null) {
+                cmHandleMigrationDetailAsMap.put("dmi-properties", cmHandleMigrationDetail.dmiProperties());
+            }
+            cmHandleMigrationDetailAsMaps.add(cmHandleMigrationDetailAsMap);
+        }
+        cpsDataService.updateNodeLeaves(
+                NCMP_DATASPACE_NAME,
+                NCMP_DMI_REGISTRY_ANCHOR,
+                NCMP_DMI_REGISTRY_PARENT,
+                jsonObjectMapper.asJsonString(Map.of("cm-handles", cmHandleMigrationDetailAsMaps)),
+                OffsetDateTime.now(),
+                ContentType.JSON);
     }
 
     private static String getXPathForCmHandleById(final String cmHandleId) {
