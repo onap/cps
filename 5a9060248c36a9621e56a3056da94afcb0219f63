@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "5a9060248c36a9621e56a3056da94afcb0219f63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d309369_f173f4a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-18T12:29:54Z",
+      "side": 1,
+      "message": "1 minor comment, other than that everything is good",
+      "revId": "5a9060248c36a9621e56a3056da94afcb0219f63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffc688c1_c32738ce",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2025-12-18T12:29:54Z",
+      "side": 1,
+      "message": "Change this to maxNodeId as it holds a single value, for better readability.",
+      "range": {
+        "startLine": 96,
+        "startChar": 12,
+        "endLine": 96,
+        "endChar": 22
+      },
+      "revId": "5a9060248c36a9621e56a3056da94afcb0219f63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
