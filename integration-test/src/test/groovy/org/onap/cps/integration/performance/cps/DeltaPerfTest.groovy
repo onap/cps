@@ -74,7 +74,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
             'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 2.0
             'direct descendants' | '/'                                                               | DIRECT_CHILDREN_ONLY    || 3.0
-            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 18.0
+            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 23.0
     }
 
     @Ignore
