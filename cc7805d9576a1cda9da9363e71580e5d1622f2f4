@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c355fa81_cba2b3cc",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-18T07:19:26Z",
+      "side": 1,
+      "message": "use static imports REPLACE_ACTION, change it in the existing production code as well.",
+      "range": {
+        "startLine": 71,
+        "startChar": 30,
+        "endLine": 71,
+        "endChar": 56
+      },
+      "revId": "cc7805d9576a1cda9da9363e71580e5d1622f2f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c3aa909_0cb68231",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-18T07:19:26Z",
+      "side": 1,
+      "message": "expected exception is thrown, sme for test case below",
+      "range": {
+        "startLine": 194,
+        "startChar": 15,
+        "endLine": 194,
+        "endChar": 48
+      },
+      "revId": "cc7805d9576a1cda9da9363e71580e5d1622f2f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c983a2e_b33137f0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-18T07:19:26Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 205,
+        "startChar": 15,
+        "endLine": 205,
+        "endChar": 48
+      },
+      "revId": "cc7805d9576a1cda9da9363e71580e5d1622f2f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
