@@ -91,33 +91,21 @@ class CpsPerfTestBase extends PerfTestBase {
 
     def generateModifiedOpenRoadData(numberOfNodes, removeNodesCount, addNodesCount, updateCount) {
         def innerNode = readResourceDataFile('openroadm/innerNode.json')
-        def allIndices = (0..<numberOfNodes).toList()
-        def nodeIdsAfterRemove = removeNodes(allIndices, removeNodesCount)
-        def newNodeIds = addNodes(nodeIdsAfterRemove, addNodesCount)
-        def nodeIds = (nodeIdsAfterRemove + newNodeIds).collect {
+        def nodeIds = (1..numberOfNodes).toList()
+        def nodeIdsAfterRemove = nodeIds.drop(removeNodesCount)
+        def maxNodeIds = nodeIdsAfterRemove ? nodeIdsAfterRemove.max() : 0
+        def newNodeIds = ((maxNodeIds + 1)..(maxNodeIds + addNodesCount))
+        def finalNodeIds = nodeIdsAfterRemove + newNodeIds
+        def nodeData = finalNodeIds.collect {
             innerNode.replace('NODE_ID_HERE', it.toString())
         }
-        def updatedNodes = updateNodes(nodeIds, innerNode, updateCount)
+        def updatedNodes = updateNodes(nodeData, updateCount)
         return '{ "openroadm-devices": { "openroadm-device": [' +
-            updatedNodes.collect {
-                it.toString()
-            }.join(',') +
+            updatedNodes.join(',') +
             ']}}'
     }
 
-    def removeNodes(allIndice, removeNodesCount) {
-        def indicesToRemove = allIndice.findAll{
-            it % 2 == 0
-        }.take(removeNodesCount)
-        return (allIndice - indicesToRemove).collect { it + 1 }
-    }
-
-    def addNodes(nodeIds, addNodesCount) {
-        def maxNodeId = nodeIds ? nodeIds.max() : 0
-        return ((maxNodeId + 1)..(maxNodeId + addNodesCount))
-    }
-
-    def updateNodes(nodeIds, innerNode, updateCount) {
+    def updateNodes(nodeIds, updateCount) {
         def slurper = new JsonSlurper()
         nodeIds.withIndex().collect { data, idx ->
             def jsonNode = slurper.parseText(data)
