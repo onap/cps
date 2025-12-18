@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c0474eb_48da2dc9",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-18T11:35:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3480b925_75f99a0a",
+      "range": {
+        "startLine": 76,
+        "startChar": 77,
+        "endLine": 76,
+        "endChar": 115
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac13535f_d75a6e72",
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "we can have both of them, aftr the refactoring suggestion in Data Service class I noticed the boolean is no longer needed in parameter, so I have removed it. Now we can achieve the same usin delta reports.\nIf delta reports are present that means it should use them in notifications if they are empty, then it would roll back to using old feature where only the xpath is sent as notifications.",
       "parentUuid": "ac13535f_d75a6e72",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 40
+      },
+      "revId": "2f2730254d76705e7fd5cfed604863d899078cf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a8d4829_441bd4d8",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-18T11:35:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0229f5f3_b6991182",
       "range": {
         "startLine": 81,
         "startChar": 16,
