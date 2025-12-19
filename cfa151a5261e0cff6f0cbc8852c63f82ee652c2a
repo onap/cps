@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07bb7e37_cf83a389",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-19T07:10:36Z",
+      "side": 1,
+      "message": "flip these around",
+      "range": {
+        "startLine": 74,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 45
+      },
+      "revId": "cfa151a5261e0cff6f0cbc8852c63f82ee652c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19966182_df017c78",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-19T07:10:36Z",
+      "side": 1,
+      "message": "Instead of handling exception at Service layer it can be done here\n\ntry {\nif..else if..else block\n} catch (DataIntegretyViolationException){\nthrow AlreadyDefinedException\n}",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 13
+      },
+      "revId": "cfa151a5261e0cff6f0cbc8852c63f82ee652c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f5d1c30_8eed55b1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-19T07:10:36Z",
+      "side": 1,
+      "message": "this can be extracted to a method like, validateAction(action) like you did for xpath",
+      "range": {
+        "startLine": 83,
+        "startChar": 14,
+        "endLine": 89,
+        "endChar": 13
+      },
+      "revId": "cfa151a5261e0cff6f0cbc8852c63f82ee652c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
