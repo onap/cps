@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4c63e81_e5748e2f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-22T17:39:13Z",
+      "side": 1,
+      "message": "1) only outgoing request to dmi webclient",
+      "parentUuid": "0952e7e8_2c721400",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 47
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f90314f7_735c43df",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2025-12-22T14:21:56Z",
       "side": 1,
       "message": "NB: check your formatting, both files have redundant spacing (pink in gerrit)\nP.S\u003e IN general I am not a fan of blank lines within methods, even we need separate it a \u0027code smell\u0027 for the need of private methods.\nBut in this case I think it is just overuse...",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 8
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab8a88ac_a342deaf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-22T17:39:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f90314f7_735c43df",
       "range": {
         "startLine": 56,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1998063a_e30f5382",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-22T17:39:13Z",
+      "side": 1,
+      "message": "healthcheck and watchdog triggers this with null , will leave if no performance degradation to having this null check",
+      "parentUuid": "2febdfea_95bf961c",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 24
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fae089d_51f7502d",
@@ -110,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6940cf95_7cf0ac3d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-22T17:39:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fae089d_51f7502d",
+      "range": {
+        "startLine": 58,
+        "startChar": 25,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4c34331_9df51d2e",
@@ -123,6 +219,30 @@
       "writtenOn": "2025-12-22T14:21:56Z",
       "side": 1,
       "message": "remove redundant spacing",
+      "range": {
+        "startLine": 70,
+        "startChar": 24,
+        "endLine": 70,
+        "endChar": 36
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0de8208e_277bf3a5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-12-22T17:39:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4c34331_9df51d2e",
       "range": {
         "startLine": 70,
         "startChar": 24,
