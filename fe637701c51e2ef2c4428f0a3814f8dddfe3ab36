@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0840d547_96ee32c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-22T14:21:56Z",
+      "side": 1,
+      "message": "Mainly minor quality issues, but I do have 2 important questions we need to discuss and then we can decide what to do next...",
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0952e7e8_2c721400",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-22T14:21:56Z",
+      "side": 1,
+      "message": "most import questions:\n1) what is the SCOPE of the customizer, will it affect al our IN and/or OUTGOING REST requests?!\n2) Any thoughts on performance impacts?! (Maybe we just need to try it out :-) )",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 47
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f90314f7_735c43df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-22T14:21:56Z",
+      "side": 1,
+      "message": "NB: check your formatting, both files have redundant spacing (pink in gerrit)\nP.S\u003e IN general I am not a fan of blank lines within methods, even we need separate it a \u0027code smell\u0027 for the need of private methods.\nBut in this case I think it is just overuse...",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 8
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2febdfea_95bf961c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-22T14:21:56Z",
+      "side": 1,
+      "message": "can this really be null?!",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 24
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fae089d_51f7502d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-22T14:21:56Z",
+      "side": 1,
+      "message": "NB: dont shorten (not consistent with method name)",
+      "range": {
+        "startLine": 58,
+        "startChar": 25,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c34331_9df51d2e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-22T14:21:56Z",
+      "side": 1,
+      "message": "remove redundant spacing",
+      "range": {
+        "startLine": 70,
+        "startChar": 24,
+        "endLine": 70,
+        "endChar": 36
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ed951e9_0eb1342c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-12-22T14:21:56Z",
+      "side": 1,
+      "message": "NB: consider a separate test for this scenario",
+      "range": {
+        "startLine": 74,
+        "startChar": 109,
+        "endLine": 74,
+        "endChar": 113
+      },
+      "revId": "fe637701c51e2ef2c4428f0a3814f8dddfe3ab36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
