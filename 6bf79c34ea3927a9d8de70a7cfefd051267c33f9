@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e43e411_40efbde3",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-22T07:22:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25cc4060_2326942b",
+      "range": {
+        "startLine": 207,
+        "startChar": 27,
+        "endLine": 207,
+        "endChar": 56
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d04e04cd_e03d53d6",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-12-17T12:14:31Z",
       "side": 1,
       "message": "responseData \u003d XML.equals(contentType) ? buildXML : asJsonString",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 34
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dba460ee_2e485efd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-22T07:22:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d04e04cd_e03d53d6",
       "range": {
         "startLine": 105,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e953c104_e57eb6a9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-22T07:22:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f891a66b_7e9a8a3a",
+      "range": {
+        "startLine": 92,
+        "startChar": 58,
+        "endLine": 92,
+        "endChar": 69
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2b7af12_0af9cac4",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-12-17T12:14:31Z",
       "side": 1,
       "message": "i notice that in a lot of places you add unnecessary extra lines in testware, remove them as these create changes in patch which are not functional. They increase patch size and cause confusion for reviewers as it appears a new change",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 19
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ebd7102_7c4b5da9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-22T07:22:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2b7af12_0af9cac4",
       "range": {
         "startLine": 96,
         "startChar": 16,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7d66100_1e9e74af",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-22T07:22:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb2cbf6c_03e4beb5",
+      "range": {
+        "startLine": 111,
+        "startChar": 41,
+        "endLine": 111,
+        "endChar": 43
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbd510c7_7e96b4bf",
@@ -129,6 +249,30 @@
       "writtenOn": "2025-12-17T12:14:31Z",
       "side": 1,
       "message": "place private methods after all public methods",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 5
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec7ee33c_edbc5d23",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-22T07:22:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbd510c7_7e96b4bf",
       "range": {
         "startLine": 45,
         "startChar": 4,
@@ -162,6 +306,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cc75430_563d1c61",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-22T07:22:03Z",
+      "side": 1,
+      "message": "Although a hard coded value is present, it does not impact the generation of the delta reports.\nThe delta reports are being generated correctly within the expected source and target tags.",
+      "parentUuid": "30963b1a_01cff31c",
+      "range": {
+        "startLine": 64,
+        "startChar": 68,
+        "endLine": 64,
+        "endChar": 76
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "491a7537_209aad6f",
@@ -175,6 +343,24 @@
       "writtenOn": "2025-12-17T12:14:31Z",
       "side": 1,
       "message": "revert this file",
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc0f3b16_9e56c8d7",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 61
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-12-22T07:22:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "491a7537_209aad6f",
       "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
