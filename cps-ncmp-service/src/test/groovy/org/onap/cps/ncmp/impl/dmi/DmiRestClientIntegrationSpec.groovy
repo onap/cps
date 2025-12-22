@@ -25,6 +25,7 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
 import org.onap.cps.ncmp.config.DmiHttpClientConfig
+import org.onap.cps.ncmp.impl.provmns.http.ClientRequestMetricsTagCustomizer
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
@@ -48,7 +49,8 @@ class DmiRestClientIntegrationSpec extends Specification {
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     def webClientBuilder = WebClient.builder().baseUrl(baseUrl.toString())
-    def dmiWebClientsConfiguration = new DmiWebClientsConfiguration(new DmiHttpClientConfig())
+    def mockClientRequestMetricsTagCustomizer = Mock(ClientRequestMetricsTagCustomizer)
+    def dmiWebClientsConfiguration = new DmiWebClientsConfiguration(new DmiHttpClientConfig(), mockClientRequestMetricsTagCustomizer)
     def webClientForMockServer = dmiWebClientsConfiguration.dataServicesWebClient(webClientBuilder)
 
     def objectUnderTest = new DmiRestClient(mockDmiServiceAuthenticationProperties, jsonObjectMapper, webClientForMockServer, webClientForMockServer, webClientForMockServer)
