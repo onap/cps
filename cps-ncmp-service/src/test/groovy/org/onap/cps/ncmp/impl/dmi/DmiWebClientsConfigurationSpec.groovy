@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.dmi
 
 
 import org.onap.cps.ncmp.config.DmiHttpClientConfig
+import org.onap.cps.ncmp.impl.provmns.http.ClientRequestMetricsTagCustomizer
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
@@ -41,8 +42,8 @@ class DmiWebClientsConfigurationSpec extends Specification {
     }
 
     def dmiHttpClientConfiguration = Spy(DmiHttpClientConfig.class)
-
-    def objectUnderTest = new DmiWebClientsConfiguration(dmiHttpClientConfiguration)
+    def mockClientRequestMetricsTagCustomizer = Mock(ClientRequestMetricsTagCustomizer)
+    def objectUnderTest = new DmiWebClientsConfiguration(dmiHttpClientConfiguration, mockClientRequestMetricsTagCustomizer)
 
     def 'Web client for data services.'() {
         when: 'creating a web client for dmi data services'

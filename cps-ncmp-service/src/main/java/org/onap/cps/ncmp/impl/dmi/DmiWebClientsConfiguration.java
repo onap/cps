@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.dmi;
 
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.config.DmiHttpClientConfig;
+import org.onap.cps.ncmp.impl.provmns.http.ClientRequestMetricsTagCustomizer;
 import org.onap.cps.ncmp.impl.utils.http.WebClientConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class DmiWebClientsConfiguration extends WebClientConfiguration {
 
     private final DmiHttpClientConfig dmiHttpClientConfig;
+    private final ClientRequestMetricsTagCustomizer clientRequestMetricsTagCustomizer;
 
     /**
      * Configures and creates a web client bean for DMI data services.
@@ -41,7 +43,7 @@ public class DmiWebClientsConfiguration extends WebClientConfiguration {
      */
     @Bean
     public WebClient dataServicesWebClient(final WebClient.Builder webClientBuilder) {
-        return configureWebClient(webClientBuilder, dmiHttpClientConfig.getDataServices());
+        return configureWebClientWithMetrics(webClientBuilder, dmiHttpClientConfig.getDataServices());
     }
 
     /**
@@ -52,7 +54,7 @@ public class DmiWebClientsConfiguration extends WebClientConfiguration {
      */
     @Bean
     public WebClient modelServicesWebClient(final WebClient.Builder webClientBuilder) {
-        return configureWebClient(webClientBuilder, dmiHttpClientConfig.getModelServices());
+        return configureWebClientWithMetrics(webClientBuilder, dmiHttpClientConfig.getModelServices());
     }
 
     /**
@@ -64,5 +66,18 @@ public class DmiWebClientsConfiguration extends WebClientConfiguration {
     @Bean
     public WebClient healthChecksWebClient(final WebClient.Builder webClientBuilder) {
         return configureWebClient(webClientBuilder, dmiHttpClientConfig.getHealthCheckServices());
+    }
+
+    /**
+     * Configures WebClient with custom metrics observation convention for ProvMnS API calls.
+     *
+     * @param webClientBuilder The builder instance to create the WebClient.
+     * @param serviceConfig The service configuration.
+     * @return a WebClient instance configured with custom metrics.
+     */
+    private WebClient configureWebClientWithMetrics(final WebClient.Builder webClientBuilder,
+                                                     final org.onap.cps.ncmp.config.ServiceConfig serviceConfig) {
+        webClientBuilder.observationConvention(clientRequestMetricsTagCustomizer);
+        return configureWebClient(webClientBuilder, serviceConfig);
     }
 }
