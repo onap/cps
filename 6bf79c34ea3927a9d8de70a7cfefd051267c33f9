@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79da434f_3ac100e7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-24T10:12:55Z",
+      "side": 1,
+      "message": "not resolved",
+      "parentUuid": "0ebd7102_7c4b5da9",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 19
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fb2cbf6c_03e4beb5",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
         "patchSetId": 61
@@ -332,6 +356,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87bd29b3_a21cebee",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-24T10:12:55Z",
+      "side": 1,
+      "message": "not resolved",
+      "parentUuid": "1cc75430_563d1c61",
+      "range": {
+        "startLine": 64,
+        "startChar": 68,
+        "endLine": 64,
+        "endChar": 76
+      },
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "491a7537_209aad6f",
         "filename": "docs/api/swagger/cps/openapi.yaml",
         "patchSetId": 61
@@ -361,6 +409,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "491a7537_209aad6f",
+      "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7cc43f0_a6f7e973",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 61
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-24T10:12:55Z",
+      "side": 1,
+      "message": "not resolved",
+      "parentUuid": "dc0f3b16_9e56c8d7",
       "revId": "6bf79c34ea3927a9d8de70a7cfefd051267c33f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }

@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61739a1_4939e572",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 71
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-24T10:12:55Z",
+      "side": 1,
+      "message": "Some unresolved comments",
+      "revId": "49725b8c3a6ec899bc0c7112bc74424b7d5eaa1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "727492e9_23686825",
@@ -37,6 +54,29 @@
       "writtenOn": "2025-12-24T10:07:42Z",
       "side": 1,
       "message": "NB: extra line space",
+      "revId": "49725b8c3a6ec899bc0c7112bc74424b7d5eaa1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1365708e_7b8d1a9d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 71
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-24T10:12:55Z",
+      "side": 1,
+      "message": "NB: expectedResponse",
+      "range": {
+        "startLine": 108,
+        "startChar": 53,
+        "endLine": 108,
+        "endChar": 67
+      },
       "revId": "49725b8c3a6ec899bc0c7112bc74424b7d5eaa1c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
