@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "727492e9_23686825",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 71
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-24T10:07:42Z",
+      "side": 1,
+      "message": "Why remove static imports? Please refer previous comment on how to do it properly.",
+      "range": {
+        "startLine": 104,
+        "startChar": 8,
+        "endLine": 107,
+        "endChar": 70
+      },
+      "revId": "49725b8c3a6ec899bc0c7112bc74424b7d5eaa1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38728700_0c7b2b51",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 71
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-24T10:07:42Z",
+      "side": 1,
+      "message": "NB: extra line space",
+      "revId": "49725b8c3a6ec899bc0c7112bc74424b7d5eaa1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f580315_081ed48f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 71
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-12-24T10:07:42Z",
+      "side": 1,
+      "message": "Just looked at this code in-depth and I would not approve this approach. You are trying to convert each field of delta reprt from its java equivalent to XML and this would be really slow for real world data or deeply nested data.\nApart from that as I mentioned earlier, the use of hard coded values for id, delta report, xpath, action, source and target data can be issue from point of  maintainability.\nI would like to discuss it later for alternate approach.",
+      "revId": "49725b8c3a6ec899bc0c7112bc74424b7d5eaa1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
