@@ -84,7 +84,7 @@ public class DataNodeFactoryImpl implements DataNodeFactory {
         final String normalizedParentNodeXpath = isRootNodeXpath(xpath) ? NO_PARENT_PATH :
             CpsPathUtil.getNormalizedParentXpath(xpath);
         final ContainerNode containerNode =
-            yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
+                yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
         return convertToDataNodes(normalizedParentNodeXpath, containerNode);
     }
 
@@ -94,9 +94,11 @@ public class DataNodeFactoryImpl implements DataNodeFactory {
             .withParentNodeXpath(normalizedParentNodeXpath)
             .withContainerNode(containerNode)
             .buildCollection();
+        final String xpathForException = normalizedParentNodeXpath.isEmpty() ? ROOT_NODE_XPATH
+            : normalizedParentNodeXpath;
         if (dataNodes.isEmpty()) {
             throw new DataValidationException("No Data Nodes", "The request did not return any data nodes for xpath "
-                + normalizedParentNodeXpath);
+                + xpathForException);
         }
         return dataNodes;
     }

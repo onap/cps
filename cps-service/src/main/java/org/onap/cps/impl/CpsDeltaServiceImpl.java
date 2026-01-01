@@ -75,11 +75,11 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                            final FetchDescendantsOption fetchDescendantsOption,
                                                            final boolean groupDataNodes) {
 
-        final String xpathForDeltaReport = validateXpath(xpath);
+        final String normalizedXpath = getNormalizedXpath(xpath);
         final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            sourceAnchorName, Collections.singletonList(xpathForDeltaReport), fetchDescendantsOption);
+            sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
         final Collection<DataNode> targetDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            targetAnchorName, Collections.singletonList(xpathForDeltaReport), fetchDescendantsOption);
+            targetAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
         return getDeltaReports(sourceDataNodes, targetDataNodes, groupDataNodes);
     }
 
@@ -94,13 +94,14 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                                  final FetchDescendantsOption fetchDescendantsOption,
                                                                  final boolean groupDataNodes) {
 
+        final String normalizedXpath = getNormalizedXpath(xpath);
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
         final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+            sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
         final Collection<DataNode> sourceDataNodesRebuilt =
-            rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes);
+            rebuildSourceDataNodes(normalizedXpath, sourceAnchor, sourceDataNodes);
         final Collection<DataNode> targetDataNodes = new ArrayList<>(
-            buildTargetDataNodes(sourceAnchor, xpath, yangResourceContentPerName, targetData));
+            buildTargetDataNodes(sourceAnchor, normalizedXpath, yangResourceContentPerName, targetData));
         return getDeltaReports(sourceDataNodesRebuilt, targetDataNodes, groupDataNodes);
     }
 
@@ -158,7 +159,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         }
     }
 
-    private String validateXpath(final String xpath) {
+    private String getNormalizedXpath(final String xpath) {
         try {
             return ROOT_NODE_XPATH.equals(xpath) ? ROOT_NODE_XPATH : CpsPathUtil.getNormalizedXpath(xpath);
         } catch (final PathParsingException pathParsingException) {
