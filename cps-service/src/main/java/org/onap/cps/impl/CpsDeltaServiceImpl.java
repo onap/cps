@@ -36,6 +36,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.DataNodeFactory;
 import org.onap.cps.api.exceptions.DataValidationException;
+import org.onap.cps.api.exceptions.ModelValidationException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
@@ -94,13 +95,14 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                                  final FetchDescendantsOption fetchDescendantsOption,
                                                                  final boolean groupDataNodes) {
 
+        final String xpathForDeltaReport = validateXpath(xpath);
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
         final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+            sourceAnchorName, Collections.singletonList(xpathForDeltaReport), fetchDescendantsOption);
         final Collection<DataNode> sourceDataNodesRebuilt =
-            rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes);
+            rebuildSourceDataNodes(xpathForDeltaReport, sourceAnchor, sourceDataNodes);
         final Collection<DataNode> targetDataNodes = new ArrayList<>(
-            buildTargetDataNodes(sourceAnchor, xpath, yangResourceContentPerName, targetData));
+            buildTargetDataNodes(sourceAnchor, xpathForDeltaReport, yangResourceContentPerName, targetData));
         return getDeltaReports(sourceDataNodesRebuilt, targetDataNodes, groupDataNodes);
     }
 
@@ -152,9 +154,13 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         if (yangResourceContentPerName.isEmpty()) {
             return dataNodeFactory
                 .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, JSON);
-        } else {
+        }
+        try {
             return dataNodeFactory
                 .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, targetData, JSON);
+        } catch (final ModelValidationException modelValidationException) {
+            throw new ModelValidationException("Yang resource processing exception.",
+                "Error at processing the given yang resource");
         }
     }
 
