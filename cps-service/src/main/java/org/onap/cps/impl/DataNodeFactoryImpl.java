@@ -61,7 +61,7 @@ public class DataNodeFactoryImpl implements DataNodeFactory {
         final String xpathToBuildNodes = isRootNodeXpath(xpath) ? NO_PARENT_PATH :
             CpsPathUtil.getNormalizedParentXpath(xpath);
         final ContainerNode containerNode = yangParser.parseData(contentType, nodeData, anchor, xpathToBuildNodes);
-        return convertToDataNodes(xpathToBuildNodes, containerNode);
+        return convertToDataNodes(xpathToBuildNodes, containerNode, xpath);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class DataNodeFactoryImpl implements DataNodeFactory {
         final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         final ContainerNode containerNode =
             yangParser.parseData(contentType, nodeData, anchor, normalizedParentNodeXpath);
-        return convertToDataNodes(normalizedParentNodeXpath, containerNode);
+        return convertToDataNodes(normalizedParentNodeXpath, containerNode, parentNodeXpath);
     }
 
     @Override
@@ -84,19 +84,20 @@ public class DataNodeFactoryImpl implements DataNodeFactory {
         final String normalizedParentNodeXpath = isRootNodeXpath(xpath) ? NO_PARENT_PATH :
             CpsPathUtil.getNormalizedParentXpath(xpath);
         final ContainerNode containerNode =
-            yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
-        return convertToDataNodes(normalizedParentNodeXpath, containerNode);
+                yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
+        return convertToDataNodes(normalizedParentNodeXpath, containerNode, xpath);
     }
 
     private static Collection<DataNode> convertToDataNodes(final String normalizedParentNodeXpath,
-                                                           final ContainerNode containerNode) {
+                                                           final ContainerNode containerNode,
+                                                           final String xpath) {
         final Collection<DataNode> dataNodes = new DataNodeBuilder()
             .withParentNodeXpath(normalizedParentNodeXpath)
             .withContainerNode(containerNode)
             .buildCollection();
         if (dataNodes.isEmpty()) {
             throw new DataValidationException("No Data Nodes", "The request did not return any data nodes for xpath "
-                + normalizedParentNodeXpath);
+                + xpath);
         }
         return dataNodes;
     }

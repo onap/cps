@@ -94,13 +94,14 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                                  final FetchDescendantsOption fetchDescendantsOption,
                                                                  final boolean groupDataNodes) {
 
+        final String xpathForDeltaReport = validateXpath(xpath);
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
         final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+            sourceAnchorName, Collections.singletonList(xpathForDeltaReport), fetchDescendantsOption);
         final Collection<DataNode> sourceDataNodesRebuilt =
-            rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes);
+            rebuildSourceDataNodes(xpathForDeltaReport, sourceAnchor, sourceDataNodes);
         final Collection<DataNode> targetDataNodes = new ArrayList<>(
-            buildTargetDataNodes(sourceAnchor, xpath, yangResourceContentPerName, targetData));
+            buildTargetDataNodes(sourceAnchor, xpathForDeltaReport, yangResourceContentPerName, targetData));
         return getDeltaReports(sourceDataNodesRebuilt, targetDataNodes, groupDataNodes);
     }
 
