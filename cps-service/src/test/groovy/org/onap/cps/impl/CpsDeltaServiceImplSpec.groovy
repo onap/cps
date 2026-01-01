@@ -28,6 +28,7 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.exceptions.ModelValidationException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.utils.ContentType
@@ -267,6 +268,19 @@ class CpsDeltaServiceImplSpec extends Specification {
             'root node xpath' | '/'                                   | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                         | ['bookstore':['bookstore-name':'Easons']]     | ['bookstore':['bookstore-name':'My Store']]
             'parent xpath'    | '/bookstore'                          | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                         | ['bookstore':['bookstore-name':'Easons']]     | ['bookstore':['bookstore-name':'My Store']]
             'non-root xpath'  | '/bookstore/categories[@code=\'02\']' | bookstoreDataNodeWithChildXpath  | bookstoreDataAsMapForChildNode  | bookstoreJsonForChildNode  || '/bookstore/categories[@code=\'02\']'| ['categories':[['code':'02', 'name':'Kids']]] | ['categories':[['code':'02', 'name':'Child']]]
+    }
+
+    def 'Get delta between anchor and payload with invalid schema'() {
+        given: 'user provided invalid schema'
+        def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('invalid.yang')
+        mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName) >> { throw new ModelValidationException('Yang resource processing exception.', 'Error at processing the given yang resource') }
+        def xpath = '/'
+        def jsonData = '{"some-key": "some-value"}'
+        when: 'attempt to get delta between an anchor and a JSON payload'
+        objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
+        then: 'excepted exception is thrown'
+        def e = thrown(ModelValidationException)
+        e.message == 'Yang resource processing exception.'
     }
 
     def 'Get delta between anchor and payload by using schema from anchor #scenario'() {
