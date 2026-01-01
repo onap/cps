@@ -119,8 +119,10 @@ public class JsonObjectMapper {
             return objectMapper.readTree(jsonContent);
         } catch (final JsonProcessingException e) {
             log.error("Parsing error occurred while converting JSON content to Json Node.");
-            throw new DataValidationException("Parsing error occurred while converting "
-                    + "JSON content to Json Node.", e.getMessage());
+            final int lineNumber = e.getLocation().getLineNr();
+            final int columnNumber = e.getLocation().getColumnNr();
+            throw new DataValidationException("JSON parsing error at line: "
+                + lineNumber + ", column: " + columnNumber, e.getOriginalMessage());
         }
     }
 
