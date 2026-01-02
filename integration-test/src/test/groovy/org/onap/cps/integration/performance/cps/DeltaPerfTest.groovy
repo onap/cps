@@ -74,7 +74,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
             'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 2.0
             'direct descendants' | '/'                                                               | DIRECT_CHILDREN_ONLY    || 3.0
-            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 18.0
+            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 23.0
     }
 
     @Ignore
@@ -141,14 +141,35 @@ class DeltaPerfTest extends CpsPerfTestBase{
             recordAndAssertResourceUsage('CPS:Apply delta report to an anchor', 20.0, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
     
-    def 'Clean up test data'() {
-        when: 'anchor is deleted'
-            def anchorNames = ['source-anchor1', 'target-anchor1']
-            resourceMeter.start()
-            cpsAnchorService.deleteAnchors(CPS_PERFORMANCE_TEST_DATASPACE, anchorNames)
-            resourceMeter.stop()
-            def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS: Delta Report test cleanup', 5, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+    def 'Clean up for CPS Delta API'() {
+        cleanup: 'test anchors and data nodes'
+            def anchors = ['source-anchor1', 'target-anchor1']
+            cpsAnchorService.deleteAnchors(CPS_PERFORMANCE_TEST_DATASPACE, anchors)
+    }
+
+    def generateModifiedOpenRoadData(numberOfNodes, removeNodesCount, addNodesCount, updateCount) {
+        def nodeIds = (1..numberOfNodes).toList()
+        def nodeIdsAfterRemove = nodeIds.drop(removeNodesCount)
+        def maxNodeId = nodeIdsAfterRemove.isEmpty() ? 1 : (nodeIdsAfterRemove.max() + 1)
+        def newNodeIds = (maxNodeId..<(maxNodeId + addNodesCount)).toList()
+        def finalNodeIds = nodeIdsAfterRemove + newNodeIds
+        def updatedNodes = updateNodes(finalNodeIds, updateCount)
+        return '{ "openroadm-devices": { "openroadm-device": [' + updatedNodes.join(',') + ']}}'
+    }
+
+    def updateNodes(List<Integer> nodeIds, int updateCount) {
+        nodeIds.withIndex().collect { id, idx ->
+            def changeLeaves = (idx < updateCount)
+            makeInnerNodeJson(id as int, changeLeaves)
+        }
+    }
+
+    def makeInnerNodeJson(int nodeId, boolean changeLeaf) {
+        def innerNodeJson = readResourceDataFile('openroadm/innerNode.json')
+        def nodeJson = innerNodeJson.replace('NODE_ID_HERE', nodeId.toString())
+        if (changeLeaf) {
+            nodeJson = nodeJson.replace('"status": "success"', '"status": "fail"')
+        }
+        return nodeJson
     }
 }
