@@ -55,8 +55,8 @@ services:
   cps-and-ncmp-template:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
     ### DEBUG: Uncomment next line to enable java debugging (ensure 'ports' aligns with 'deploy')
-    ports:
-      - ${CPS_CORE_DEBUG_PORT:-5005}:5005
+    ###ports:
+    ###  - ${CPS_CORE_DEBUG_PORT:-5005}:5005
     environment:
       DB_HOST: ${DB_HOST:-dbpostgresql}
       DB_USERNAME: ${DB_USERNAME:-cps}
@@ -71,9 +71,9 @@ services:
       POLICY_SERVICE_ENABLED: 'false'
       POLICY_SERVICE_DEFAULT_DECISION: 'deny from env'
       CPS_MONITORING_MICROMETER_JVM_EXTRAS: 'true'
-      ###JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
+      JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
       ### DEBUG: Uncomment next line to enable java debugging
-      JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      ### JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
       NCMP_INVENTORY_MODEL_UPGRADE_R20250722_ENABLED: 'false'
     restart: on-failure:3
     deploy:
@@ -104,18 +104,18 @@ services:
             condition: service_healthy
 
   ### DEBUG: For easier debugging use just 1 instance and comment out below
-#  cps-and-ncmp-1:
-#    extends:
-#      service: cps-and-ncmp-template
-#    container_name: ${CPS_INSTANCE_1_CONTAINER_NAME:-cps-and-ncmp-1}
-#    deploy:
-#      replicas: 1
-#    hostname: cps-ncmp-1
-#    ports:
-#      - ${CPS_INSTANCE_1_REST_PORT:-8699}:8080
-#    depends_on:
-#      dbpostgresql:
-#        condition: service_healthy
+  cps-and-ncmp-1:
+    extends:
+      service: cps-and-ncmp-template
+    container_name: ${CPS_INSTANCE_1_CONTAINER_NAME:-cps-and-ncmp-1}
+    deploy:
+      replicas: 1
+    hostname: cps-ncmp-1
+    ports:
+      - ${CPS_INSTANCE_1_REST_PORT:-8699}:8080
+    depends_on:
+      dbpostgresql:
+        condition: service_healthy
 
   nginx:
     container_name: ${NGINX_CONTAINER_NAME:-nginx-loadbalancer}
@@ -125,7 +125,7 @@ services:
     depends_on:
       - cps-and-ncmp-0
       ### DEBUG: For easier debugging use just 1 instance and comment out below
-#      - cps-and-ncmp-1
+      - cps-and-ncmp-1
     volumes:
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./config/nginx/proxy_params:/etc/nginx/proxy_params
@@ -178,17 +178,15 @@ services:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/dmi-stub:${DMI_DEMO_STUB_VERSION:-1.8.0-SNAPSHOT}
     ports:
       - ${DMI_DEMO_STUB_PORT:-8784}:8092
-      - 5006:5006
     environment:
       KAFKA_BOOTSTRAP_SERVER: kafka:29092
       NCMP_CONSUMER_GROUP_ID: ncmp-group
       NCMP_ASYNC_M2M_TOPIC: ncmp-async-m2m
-      MODULE_INITIAL_PROCESSING_DELAY_MS: 180
+      MODULE_INITIAL_PROCESSING_DELAY_MS: 180000
       MODULE_REFERENCES_DELAY_MS: 100
       MODULE_RESOURCES_DELAY_MS: 1000
       READ_DATA_FOR_CM_HANDLE_DELAY_MS: 300
       WRITE_DATA_FOR_CM_HANDLE_DELAY_MS: 670
-      JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006
     restart: unless-stopped
     healthcheck:
       test: wget -q -O - http://localhost:8092/actuator/health/readiness | grep -q '{"status":"UP"}' || exit 1
