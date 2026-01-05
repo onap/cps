@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf93b79_8fecec02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-05T17:14:28Z",
+      "side": 1,
+      "message": "mention unintended changes in subscription API",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "8dd6db0325f19ccb75b3261d3ef1a388154c8f5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b35442e_a821f195",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-05T17:14:28Z",
+      "side": 1,
+      "message": "add a comment about the version this file is based on",
+      "range": {
+        "startLine": 50,
+        "startChar": 17,
+        "endLine": 50,
+        "endChar": 25
+      },
+      "revId": "8dd6db0325f19ccb75b3261d3ef1a388154c8f5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "363c3a64_8b896714",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnSController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-05T17:14:28Z",
+      "side": 1,
+      "message": "introduce NO_OP constant",
+      "range": {
+        "startLine": 213,
+        "startChar": 60,
+        "endLine": 213,
+        "endChar": 64
+      },
+      "revId": "8dd6db0325f19ccb75b3261d3ef1a388154c8f5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc7da53f_e1f0f9fc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnSRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-05T17:14:28Z",
+      "side": 1,
+      "message": "use previously mentioned NO_OP constant",
+      "range": {
+        "startLine": 60,
+        "startChar": 51,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "8dd6db0325f19ccb75b3261d3ef1a388154c8f5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b3e694d_60f34aa6",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnSRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-05T17:14:28Z",
+      "side": 1,
+      "message": "no else need since you have return above it",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "8dd6db0325f19ccb75b3261d3ef1a388154c8f5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6b78166_222686b2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/ProvMnSException.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-05T17:14:28Z",
+      "side": 1,
+      "message": "introducee NO_OP (maybe in this file)",
+      "range": {
+        "startLine": 48,
+        "startChar": 70,
+        "endLine": 48,
+        "endChar": 74
+      },
+      "revId": "8dd6db0325f19ccb75b3261d3ef1a388154c8f5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
