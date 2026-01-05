@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Tag(name = "ProvMnS", description = "Provisioning Management Service")
+@Tag(name = "ProvMnS", description = "Provisioning Management Service; Version 18.6.0")
 public interface ProvMnS {
 
     /**
@@ -141,9 +141,12 @@ public interface ProvMnS {
         description = "With HTTP DELETE one resource is deleted. "
             + "The resources to be deleted is identified with the target URI.",
         responses = {
-            @ApiResponse(responseCode = "200",
-                description = "Success case (\"200 OK\"). This status code is returned, "
-                    + "when the resource has been successfully deleted. The response body is empty."),
+            @ApiResponse(responseCode = "200", description = "The response code is deprecated. Use 204 instead. "
+                + "Success case (\"200 OK\"). This status code is returned, "
+                + "when the resource has been successfully deleted. The response body is empty."),
+            @ApiResponse(responseCode = "204", description = "Success case (\"204 No Content\"). "
+                + "This status code is returned, when the resource has been successfully deleted. "
+                + "The response body is empty."),
             @ApiResponse(responseCode = "422", description = "Invalid Path Exception", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
             }),

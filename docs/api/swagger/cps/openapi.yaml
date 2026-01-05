@@ -2750,10 +2750,10 @@ paths:
       parameters:
       - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
         examples:
-          subscription by dataspace xpath:
+          dataspace xpath:
+            value: /dataspaces
+          anchor xpath:
             value: "/dataspaces/dataspace[@name='dataspace01']"
-          subscription by anchor xpath:
-            value: "/dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']"
         in: query
         name: xpath
         required: true
@@ -2813,10 +2813,10 @@ paths:
       parameters:
       - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
         examples:
-          subscription by dataspace xpath:
+          dataspace xpath:
+            value: /dataspaces
+          anchor xpath:
             value: "/dataspaces/dataspace[@name='dataspace01']"
-          subscription by anchor xpath:
-            value: "/dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']"
         in: query
         name: xpath
         required: true
@@ -2828,7 +2828,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationSubscriptionsDataSample'
+                $ref: '#/components/schemas/notificationSubscriptionResponseSample'
           description: OK
         "400":
           content:
@@ -2879,10 +2879,10 @@ paths:
       parameters:
       - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
         examples:
-          subscription by dataspace xpath:
+          dataspace xpath:
+            value: /dataspaces
+          anchor xpath:
             value: "/dataspaces/dataspace[@name='dataspace01']"
-          subscription by anchor xpath:
-            value: "/dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']"
         in: query
         name: xpath
         required: true
@@ -2894,7 +2894,7 @@ paths:
           application/json:
             examples:
               dataSample:
-                $ref: '#/components/examples/NotificationSubscriptionsDataSample'
+                $ref: '#/components/examples/notificationSubscriptionRequestSample'
             schema:
               type: object
         required: true
@@ -3060,12 +3060,16 @@ components:
               name: SciFi
             - code: 2
               name: kids
-    NotificationSubscriptionsDataSample:
+    notificationSubscriptionRequestSample:
       value:
-        cps-notification-subscriptions:dataspaces:
-          dataspace:
-          - name: dataspace01
-          - name: dataspace02
+        dataspace:
+        - name: my-dataspace
+          anchors:
+            anchor:
+            - name: my-anchor
+              xpaths:
+                xpath:
+                - path: /shops/bookstore
   parameters:
     dataspaceNameInQuery:
       description: dataspace-name
@@ -3259,10 +3263,10 @@ components:
     notificationSubscriptionXpathInQuery:
       description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
       examples:
-        subscription by dataspace xpath:
+        dataspace xpath:
+          value: /dataspaces
+        anchor xpath:
           value: "/dataspaces/dataspace[@name='dataspace01']"
-        subscription by anchor xpath:
-          value: "/dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']"
       in: query
       name: xpath
       required: true
@@ -3434,7 +3438,7 @@ components:
           type: string
       title: Module reference object
       type: object
-    NotificationSubscriptionsDataSample: {}
+    notificationSubscriptionResponseSample: {}
     getDeltaByDataspaceAnchorAndPayload_request:
       properties:
         targetDataAsJsonFile:
