@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3adfbcd2_8b89d5e6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-05T11:18:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07bb7e37_cf83a389",
+      "range": {
+        "startLine": 74,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 45
+      },
+      "revId": "cfa151a5261e0cff6f0cbc8852c63f82ee652c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19966182_df017c78",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab22fac7_84e0ac17",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-05T11:18:10Z",
+      "side": 1,
+      "message": "Since this method is marked @Transactional, the exception is only thrown when execution of this method ends. Hence, it cannot be caught here.",
+      "parentUuid": "19966182_df017c78",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 13
+      },
+      "revId": "cfa151a5261e0cff6f0cbc8852c63f82ee652c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f5d1c30_8eed55b1",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-12-19T07:10:36Z",
       "side": 1,
       "message": "this can be extracted to a method like, validateAction(action) like you did for xpath",
+      "range": {
+        "startLine": 83,
+        "startChar": 14,
+        "endLine": 89,
+        "endChar": 13
+      },
+      "revId": "cfa151a5261e0cff6f0cbc8852c63f82ee652c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da43dd24_4ec026bc",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-05T11:18:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f5d1c30_8eed55b1",
       "range": {
         "startLine": 83,
         "startChar": 14,
