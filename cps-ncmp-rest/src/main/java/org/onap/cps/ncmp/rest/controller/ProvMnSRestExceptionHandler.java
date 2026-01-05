@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Modifications Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Modifications Copyright (C) 2025-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 package org.onap.cps.ncmp.rest.controller;
 
 import java.util.Map;
+import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +41,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class ProvMnSRestExceptionHandler {
 
+    private static final String NO_OP = null;
     private static final Map<HttpStatus, String> PROVMNS_ERROR_TYPE_PER_ERROR_CODE = Map.of(
         HttpStatus.NOT_FOUND, "IE_NOT_FOUND",
         HttpStatus.NOT_ACCEPTABLE, "APPLICATION_LAYER_ERROR",
@@ -57,7 +59,11 @@ public class ProvMnSRestExceptionHandler {
     public static ResponseEntity<Object> handleProvMnsExceptions(final ProvMnSException provMnSException) {
         switch (provMnSException.getHttpMethodName()) {
             case "PATCH":
-                return provMnSErrorResponsePatch(provMnSException.getHttpStatus(), provMnSException.getTitle());
+                if (provMnSException.getBadOp() == NO_OP) {
+                    return provMnSErrorResponseDefault(provMnSException.getHttpStatus(), provMnSException.getTitle());
+                }
+                return provMnSErrorResponsePatch(provMnSException.getHttpStatus(), provMnSException.getTitle(),
+                        provMnSException.getBadOp());
             case "GET":
                 return provMnSErrorResponseGet(provMnSException.getHttpStatus(), provMnSException.getTitle());
             default:
@@ -65,9 +71,11 @@ public class ProvMnSRestExceptionHandler {
         }
     }
 
-    private static ResponseEntity<Object> provMnSErrorResponsePatch(final HttpStatus httpStatus, final String title) {
+    private static ResponseEntity<Object> provMnSErrorResponsePatch(final HttpStatus httpStatus,
+                                                                    final String title,
+                                                                    final String badOp) {
         final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus);
-        final ErrorResponsePatch errorResponsePatch = new ErrorResponsePatch(type);
+        final ErrorResponsePatch errorResponsePatch = new ErrorResponsePatch(type, badOp);
         errorResponsePatch.setStatus(String.valueOf(httpStatus.value()));
         errorResponsePatch.setTitle(title);
         return new ResponseEntity<>(errorResponsePatch, httpStatus);

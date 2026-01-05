@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,9 +30,12 @@ import org.springframework.http.HttpStatus;
 @Setter
 public class ProvMnSException extends RuntimeException {
 
+    private static final String NO_OP = null;
+
     private String httpMethodName;
     private HttpStatus httpStatus;
     private String title;
+    private String badOp;
 
     /**
      * Constructor.
@@ -44,10 +47,26 @@ public class ProvMnSException extends RuntimeException {
     public ProvMnSException(final String httpMethodName,
                             final HttpStatus httpStatus,
                             final String title) {
+        throw new ProvMnSException(httpMethodName, httpStatus, title, NO_OP);
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param httpMethodName  original REST method
+     * @param httpStatus      http status to be reported for this exception
+     * @param title           3GPP error title (detail)
+     * @param badOp           nullable string to describe operation type in patch operations
+     */
+    public ProvMnSException(final String httpMethodName,
+                            final HttpStatus httpStatus,
+                            final String title,
+                            final String badOp) {
         super(httpMethodName + " failed");
         this.httpMethodName = httpMethodName;
         this.httpStatus = httpStatus;
         this.title = title;
+        this.badOp = badOp;
     }
 
 }
