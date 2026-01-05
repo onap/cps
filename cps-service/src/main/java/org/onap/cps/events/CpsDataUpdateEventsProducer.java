@@ -133,8 +133,12 @@ public class CpsDataUpdateEventsProducer {
     private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
                                                       final DeltaReport deltaReport) {
         final CloudEventData cloudEventData = new CloudEventData();
-        cloudEventData.setSourceData(jsonObjectMapper.asJsonString(deltaReport.getSourceData()));
-        cloudEventData.setTargetData(jsonObjectMapper.asJsonString(deltaReport.getTargetData()));
+        if(deltaReport.getSourceData() != null && !deltaReport.getSourceData().isEmpty()) {
+            cloudEventData.setSourceData(jsonObjectMapper.asJsonString(deltaReport.getSourceData()));
+        }
+        if(deltaReport.getTargetData() != null && !deltaReport.getTargetData().isEmpty()) {
+            cloudEventData.setTargetData(jsonObjectMapper.asJsonString(deltaReport.getTargetData()));
+        }
         final EventPayload updateEventData = new EventPayload();
         updateEventData.setObservedTimestamp(DateTimeUtility.toString(observedTimestamp));
         updateEventData.setDataspaceName(anchor.getDataspaceName());
