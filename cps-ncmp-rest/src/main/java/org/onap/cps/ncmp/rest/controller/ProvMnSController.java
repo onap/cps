@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -201,17 +201,27 @@ public class ProvMnSController implements ProvMnS {
             final OperationDetails operationDetails =
                 operationDetailsFactory.buildOperationDetails(requestParameters, patchItem);
             final OperationType operationType = OperationType.fromOperationName(operationDetails.operation());
-            checkPermission(yangModelCmHandle, operationType, requestParameters.toTargetFdn(), operationDetails);
+            try {
+                checkPermission(yangModelCmHandle, operationType, requestParameters.toTargetFdn(), operationDetails);
+            } catch (final Throwable throwable) {
+                throw toProvMnSException("PATCH", throwable, operationType.name());
+            }
         }
     }
 
     private ProvMnSException toProvMnSException(final String httpMethodName, final Throwable throwable) {
+        throw toProvMnSException(httpMethodName, throwable, null);
+    }
+
+    private ProvMnSException toProvMnSException(final String httpMethodName, final Throwable throwable,
+                                                final String badOp) {
         if (throwable instanceof ProvMnSException) {
             return (ProvMnSException) throwable;
         }
         final ProvMnSException provMnSException = new ProvMnSException();
         provMnSException.setHttpMethodName(httpMethodName);
         provMnSException.setTitle(throwable.getMessage());
+        provMnSException.setBadOp(badOp);
         final HttpStatus httpStatus;
         if (throwable instanceof PolicyExecutorException) {
             httpStatus = HttpStatus.CONFLICT;
