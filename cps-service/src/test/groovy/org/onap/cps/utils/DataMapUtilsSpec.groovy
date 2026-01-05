@@ -98,6 +98,20 @@ class DataMapUtilsSpec extends Specification {
             result.isEmpty()
     }
 
+    def 'Check if a map is populated with #scenario.'() {
+        given: 'a map'
+            Map testMap = inputMap
+        when: 'checking if the map is populated'
+            boolean result = DataMapUtils.hasEntries(testMap)
+        then: 'the result contains expected value'
+            result == expectedResult
+        where: 'the following maps are checked'
+            scenario            | inputMap          || expectedResult
+            'a null map'        | null              || false
+            'an empty map'      | [:]               || false
+            'a populated map'   | [key: 'value']    || true
+    }
+
     def dataNode = buildDataNode(
         "/parent",[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
         buildDataNode('/parent/child-list[@id="1/2"]',[listElementLeaf:'listElement1leafValue'],noChildren),

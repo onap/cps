@@ -22,9 +22,11 @@
 package org.onap.cps.events;
 
 import static org.onap.cps.events.model.EventPayload.Action.fromValue;
+import static org.onap.cps.utils.DataMapUtils.hasEntries;
 
 import io.cloudevents.CloudEvent;
 import io.micrometer.core.annotation.Timed;
+import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -133,8 +135,14 @@ public class CpsDataUpdateEventsProducer {
     private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
                                                       final DeltaReport deltaReport) {
         final CloudEventData cloudEventData = new CloudEventData();
-        cloudEventData.setSourceData(jsonObjectMapper.asJsonString(deltaReport.getSourceData()));
-        cloudEventData.setTargetData(jsonObjectMapper.asJsonString(deltaReport.getTargetData()));
+        final Map<String, Serializable> sourceData = deltaReport.getSourceData();
+        final Map<String, Serializable> targetData = deltaReport.getTargetData();
+        if (hasEntries(sourceData)) {
+            cloudEventData.setSourceData(jsonObjectMapper.asJsonString(sourceData));
+        }
+        if (hasEntries(targetData)) {
+            cloudEventData.setTargetData(jsonObjectMapper.asJsonString(targetData));
+        }
         final EventPayload updateEventData = new EventPayload();
         updateEventData.setObservedTimestamp(DateTimeUtility.toString(observedTimestamp));
         updateEventData.setDataspaceName(anchor.getDataspaceName());
