@@ -67,6 +67,10 @@ public class DataMapUtils {
                 .put("dataNodes", dataMaps).build();
     }
 
+    public static boolean isMapPopulated(final Map<?, ?> anyMap) {
+        return anyMap != null && !anyMap.isEmpty();
+    }
+
     private static List<Map<String, Object>> toDataNodesWithIdentifier(final List<DataNode> dataNodeList,
                                                                        final String prefix) {
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodeList.size());

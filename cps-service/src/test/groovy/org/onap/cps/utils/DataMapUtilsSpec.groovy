@@ -98,6 +98,26 @@ class DataMapUtilsSpec extends Specification {
             result.isEmpty()
     }
 
+    def 'Check if a map is populated with null or empty map'() {
+        given: 'a map that is null or empty'
+            Map testMap = inputMap
+        when: 'checking if the map is populated'
+            boolean result = DataMapUtils.isMapPopulated(testMap)
+        then: 'the result is false'
+            !result
+        where:
+            inputMap << [null, [:]]
+    }
+
+    def 'Check if a map is populated'() {
+        given: 'a map with at least one entry'
+            Map testMap = [key: 'value']
+        when: 'checking if the map is populated'
+            boolean result = DataMapUtils.isMapPopulated(testMap)
+        then: 'the result is true'
+            result
+    }
+
     def dataNode = buildDataNode(
         "/parent",[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
         buildDataNode('/parent/child-list[@id="1/2"]',[listElementLeaf:'listElement1leafValue'],noChildren),
