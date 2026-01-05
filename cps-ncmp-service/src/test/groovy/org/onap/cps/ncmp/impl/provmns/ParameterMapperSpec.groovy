@@ -66,5 +66,6 @@ class ParameterMapperSpec extends Specification {
             'missing ProvMnS prefix'      | 'v1/segment1/myClass=myId'
             'wrong version'               | 'ProvMnS/wrongVersion/myClass=myId'
             'empty path'                  | ''
+            'multiple ProvMnS segments'   | 'ProvMnS/v1/myClass=myId/ProvMnS/v2/otherSegment'
     }
 }

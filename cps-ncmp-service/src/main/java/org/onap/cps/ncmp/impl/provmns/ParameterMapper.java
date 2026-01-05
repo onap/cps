@@ -46,7 +46,7 @@ public class ParameterMapper {
             "org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping");
         final String[] pathVariables = uriPath.split(PROVMNS_BASE_PATH);
         if (pathVariables.length != PATH_VARIABLES_EXPECTED_LENGTH) {
-            throwProvMnSException(httpServletRequest.getMethod(), uriPath);
+            throw createProvMnSException(httpServletRequest.getMethod(), uriPath);
         }
         final int lastSlashIndex = pathVariables[1].lastIndexOf('/');
         final RequestParameters requestParameters = new RequestParameters();
@@ -62,16 +62,16 @@ public class ParameterMapper {
         }
         final String[] splitClassNameId = classNameAndId.split("=", 2);
         if (splitClassNameId.length != 2) {
-            throwProvMnSException(httpServletRequest.getMethod(), uriPath);
+            throw createProvMnSException(httpServletRequest.getMethod(), uriPath);
         }
         requestParameters.setClassName(splitClassNameId[0]);
         requestParameters.setId(splitClassNameId[1]);
         return requestParameters;
     }
 
-    private void throwProvMnSException(final String httpMethodName, final String uriPath) {
+    private ProvMnSException createProvMnSException(final String httpMethodName, final String uriPath) {
         final String title = String.format(INVALID_PATH_DETAILS_TEMPLATE, uriPath);
-        throw new ProvMnSException(httpMethodName, HttpStatus.UNPROCESSABLE_ENTITY, title);
+        return new ProvMnSException(httpMethodName, HttpStatus.UNPROCESSABLE_ENTITY, title);
     }
 
 }
