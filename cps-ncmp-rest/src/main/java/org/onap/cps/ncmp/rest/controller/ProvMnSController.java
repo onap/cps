@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.rest.controller;
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
 import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
+import static org.onap.cps.ncmp.impl.provmns.ParameterMapper.NO_OP;
 
 import io.netty.handler.timeout.TimeoutException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -100,7 +101,7 @@ public class ProvMnSController implements ProvMnS {
                 yangModelCmHandle, targetFdn, scope, filter, attributes, fields, dataNodeSelector);
             return dmiRestClient.synchronousGetOperation(DATA, urlTemplateParameters);
         } catch (final Throwable throwable) {
-            throw toProvMnSException(httpServletRequest.getMethod(), throwable);
+            throw toProvMnSException(httpServletRequest.getMethod(), throwable, NO_OP);
         }
     }
 
@@ -110,7 +111,7 @@ public class ProvMnSController implements ProvMnS {
         if (patchItems.size() > maxNumberOfPatchOperations) {
             final String title = patchItems.size() + " operations in request, this exceeds the maximum of "
                 + maxNumberOfPatchOperations;
-            throw new ProvMnSException(httpServletRequest.getMethod(), HttpStatus.PAYLOAD_TOO_LARGE, title);
+            throw new ProvMnSException(httpServletRequest.getMethod(), HttpStatus.PAYLOAD_TOO_LARGE, title, NO_OP);
         }
         final RequestParameters requestParameters = parameterMapper.extractRequestParameters(httpServletRequest);
         for (final PatchItem patchItem : patchItems) {
@@ -125,7 +126,7 @@ public class ProvMnSController implements ProvMnS {
             return dmiRestClient.synchronousPatchOperation(DATA, patchItems, urlTemplateParameters,
                 httpServletRequest.getContentType());
         } catch (final Throwable throwable) {
-            throw toProvMnSException(httpServletRequest.getMethod(), throwable);
+            throw toProvMnSException(httpServletRequest.getMethod(), throwable, NO_OP);
         }
     }
 
@@ -141,8 +142,8 @@ public class ProvMnSController implements ProvMnS {
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, targetFdn);
             return dmiRestClient.synchronousPutOperation(DATA, resource, urlTemplateParameters);
-        } catch (final Throwable throwable) {
-            throw toProvMnSException(httpServletRequest.getMethod(), throwable);
+        } catch (final Exception throwable) {
+            throw toProvMnSException(httpServletRequest.getMethod(), throwable, NO_OP);
         }
     }
 
@@ -158,8 +159,8 @@ public class ProvMnSController implements ProvMnS {
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, targetFdn);
             return dmiRestClient.synchronousDeleteOperation(DATA, urlTemplateParameters);
-        } catch (final Throwable throwable) {
-            throw toProvMnSException(httpServletRequest.getMethod(), throwable);
+        } catch (final Exception throwable) {
+            throw toProvMnSException(httpServletRequest.getMethod(), throwable, NO_OP);
         }
     }
 
@@ -171,17 +172,18 @@ public class ProvMnSController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
             if (!StringUtils.hasText(yangModelCmHandle.getDataProducerIdentifier())) {
                 throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.UNPROCESSABLE_ENTITY,
-                                           PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE);
+                                           PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE, NO_OP);
             }
             if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {
                 final String title = yangModelCmHandle.getId() + " is not in READY state. Current state: "
                     + yangModelCmHandle.getCompositeState().getCmHandleState().name();
-                throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.NOT_ACCEPTABLE, title);
+                throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.NOT_ACCEPTABLE,
+                    title, NO_OP);
             }
             return yangModelCmHandle;
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String title = alternateId + " not found";
-            throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.NOT_FOUND, title);
+            throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.NOT_FOUND, title, NO_OP);
         }
     }
 
@@ -201,17 +203,23 @@ public class ProvMnSController implements ProvMnS {
             final OperationDetails operationDetails =
                 operationDetailsFactory.buildOperationDetails(requestParameters, patchItem);
             final OperationType operationType = OperationType.fromOperationName(operationDetails.operation());
-            checkPermission(yangModelCmHandle, operationType, requestParameters.toTargetFdn(), operationDetails);
+            try {
+                checkPermission(yangModelCmHandle, operationType, requestParameters.toTargetFdn(), operationDetails);
+            } catch (final Throwable throwable) {
+                throw toProvMnSException("PATCH", throwable, operationType.name());
+            }
         }
     }
 
-    private ProvMnSException toProvMnSException(final String httpMethodName, final Throwable throwable) {
+    private ProvMnSException toProvMnSException(final String httpMethodName, final Throwable throwable,
+                                                final String badOp) {
         if (throwable instanceof ProvMnSException) {
             return (ProvMnSException) throwable;
         }
         final ProvMnSException provMnSException = new ProvMnSException();
         provMnSException.setHttpMethodName(httpMethodName);
         provMnSException.setTitle(throwable.getMessage());
+        provMnSException.setBadOp(badOp);
         final HttpStatus httpStatus;
         if (throwable instanceof PolicyExecutorException) {
             httpStatus = HttpStatus.CONFLICT;
@@ -242,7 +250,7 @@ public class ProvMnSController implements ProvMnS {
         }
         if (attributesReferenceIncorrect) {
             throw new ProvMnSException(httpMethodName, HttpStatus.BAD_REQUEST,
-                                        "Invalid path for content-type " + contentType);
+                                        "Invalid path for content-type " + contentType, NO_OP);
         }
     }
 

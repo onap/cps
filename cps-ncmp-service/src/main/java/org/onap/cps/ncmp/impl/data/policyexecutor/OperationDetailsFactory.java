@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -74,7 +74,7 @@ public class OperationDetailsFactory {
                 break;
             default:
                 throw new ProvMnSException("PATCH", HttpStatus.UNPROCESSABLE_ENTITY,
-                    "Unsupported Patch Operation Type: " + patchItem.getOp().getValue());
+                    "Unsupported Patch Operation Type: " + patchItem.getOp().getValue(), patchItem.getOp().getValue());
         }
         return operationDetails;
     }

@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ParameterMapper {
 
+    public static final String NO_OP = null;
     private static final String PROVMNS_BASE_PATH = "ProvMnS/v\\d+/";
     private static final String INVALID_PATH_DETAILS_TEMPLATE = "%s not a valid path";
     private static final int PATH_VARIABLES_EXPECTED_LENGTH = 2;
@@ -71,7 +72,7 @@ public class ParameterMapper {
 
     private ProvMnSException createProvMnSException(final String httpMethodName, final String uriPath) {
         final String title = String.format(INVALID_PATH_DETAILS_TEMPLATE, uriPath);
-        return new ProvMnSException(httpMethodName, HttpStatus.UNPROCESSABLE_ENTITY, title);
+        return new ProvMnSException(httpMethodName, HttpStatus.UNPROCESSABLE_ENTITY, title, NO_OP);
     }
 
 }
