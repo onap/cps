@@ -22,6 +22,30 @@
       },
       "revId": "f50c80c8f8ff345106548d633e11073f7bf4e8d0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3140e64c_fd1d10f4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventProducerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-05T17:17:06Z",
+      "side": 1,
+      "message": "what I mean is you codu extract a separeet method (closure) like assertEventPayLoad()",
+      "parentUuid": "8752acf4_44829001",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 56
+      },
+      "revId": "f50c80c8f8ff345106548d633e11073f7bf4e8d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
