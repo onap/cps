@@ -269,7 +269,7 @@ class ProvMnSControllerSpec extends Specification {
         where: 'following media types are used'
             scenario             | contentType            | acceptType                  || expectedHttpStatus
             'Content Type Wrong' | MediaType.TEXT_XML     | MediaType.APPLICATION_JSON  || HttpStatus.UNSUPPORTED_MEDIA_TYPE
-            'Accept Type Wrong'  | patchMediaType | MediaType.TEXT_XML || HttpStatus.NOT_ACCEPTABLE
+            'Accept Type Wrong'  | patchMediaType         | MediaType.TEXT_XML          || HttpStatus.NOT_ACCEPTABLE
     }
 
     def 'Patch request with too many operations.'() {

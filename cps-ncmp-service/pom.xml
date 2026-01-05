@@ -146,7 +146,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>https://forge.3gpp.org/rep/all/5G_APIs/-/raw/REL-18/TS28532_ProvMnS.yaml</inputSpec>
+                            <inputSpec>https://forge.3gpp.org/rep/sa5/MnS/-/raw/Rel-18/OpenAPI/TS28532_ProvMnS.yaml</inputSpec>
                             <invokerPackage>org.onap.cps.ncmp.impl.provmns.controller</invokerPackage>
                             <modelPackage>org.onap.cps.ncmp.impl.provmns.model</modelPackage>
                             <apiPackage>org.onap.cps.ncmp.impl.provmns.api</apiPackage>
