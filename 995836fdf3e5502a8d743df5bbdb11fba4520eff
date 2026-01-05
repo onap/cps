@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45b70fd2_e13809ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-05T10:23:37Z",
+      "side": 1,
+      "message": "Rerun jenkins",
+      "revId": "995836fdf3e5502a8d743df5bbdb11fba4520eff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
