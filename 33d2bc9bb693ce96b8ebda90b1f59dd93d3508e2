@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "487648d7_beb6c9b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T11:19:55Z",
+      "side": 1,
+      "message": "all good, just need to define NO_OP only once!",
+      "revId": "33d2bc9bb693ce96b8ebda90b1f59dd93d3508e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cea0248_29651993",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnSController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T11:19:55Z",
+      "side": 1,
+      "message": "do you not need it elsewhere?!",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 12
+      },
+      "revId": "33d2bc9bb693ce96b8ebda90b1f59dd93d3508e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21bd5435_500690dd",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnSRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T11:19:55Z",
+      "side": 1,
+      "message": "this is what I meant; Define it public in the correct place (you to decide) not private in two or more places..",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 12
+      },
+      "revId": "33d2bc9bb693ce96b8ebda90b1f59dd93d3508e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ad7fd0d_df53f680",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T11:19:55Z",
+      "side": 1,
+      "message": "3rd one !",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 12
+      },
+      "revId": "33d2bc9bb693ce96b8ebda90b1f59dd93d3508e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
