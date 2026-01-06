@@ -72,7 +72,7 @@ class InventoryModelLoaderSpec extends Specification {
         objectUnderTest.isMaster = true
         expectedPreviousYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
         expectedNewYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2025-07-22.yang')
-        objectUnderTest.newRevisionEnabled = true
+        objectUnderTest.ignoreModelR20250722 = false
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -87,7 +87,7 @@ class InventoryModelLoaderSpec extends Specification {
 
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use with default newRevisionEnabled flag'
-            objectUnderTest.newRevisionEnabled = false
+            objectUnderTest.ignoreModelR20250722 = true
             mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         and: 'module revision does not exist'
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
