@@ -38,7 +38,6 @@ class ParametersBuilderSpec extends Specification{
                 ['my attributes'],
                 ['my fields'],
                 new ClassNameIdGetDataNodeSelectorParameter(dataNodeSelector: 'my dataNodeSelector'),
-
             )
         then: 'the template has the correct result'
             assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1/target/fdn?')

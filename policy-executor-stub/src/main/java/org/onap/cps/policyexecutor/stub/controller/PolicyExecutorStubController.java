@@ -20,7 +20,6 @@
 
 package org.onap.cps.policyexecutor.stub.controller;
 
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
@@ -42,11 +41,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class PolicyExecutorStubController implements OperationPermissionApi {
 
     private final Sleeper sleeper;
-    private static final Pattern ERROR_CODE_PATTERN = Pattern.compile("(\\d{3})");
+
+    private static final Pattern PATTERN_SIMULATION = Pattern.compile("policySimulation=(\\w+_\\w+)");
+    private static final Pattern PATTERN_HTTP_ERROR = Pattern.compile("httpError_(\\d{3})");
+    private static final Pattern PATTERN_SLOW_RESPONSE = Pattern.compile("slowResponse_(\\d{1,3})");
+    private static final Pattern PATTERN_POLICY_RESPONSE = Pattern.compile("policyResponse_(\\w+)");
+
     private int decisionCounter = 0;
-    @SuppressWarnings({"CanBeFinal", "FieldCanBeLocal"})
-    // Do NOT change below to final as it needs to be set during test
-    private static int slowResponseTimeInSeconds = 40;
 
     @Override
     public ResponseEntity<PermissionResponse> initiatePermissionRequest(final String contentType,
@@ -58,45 +59,43 @@ public class PolicyExecutorStubController implements OperationPermissionApi {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         final Operation firstOperation = permissionRequest.getOperations().iterator().next();
-        log.info("1st Operation: {}", firstOperation.getOperation());
+        log.info("1st Operation: {} for resource: {}", firstOperation.getOperation(),
+                                                       firstOperation.getResourceIdentifier());
         if (!"delete".equals(firstOperation.getOperation()) && firstOperation.getChangeRequest() == null) {
             log.warn("Change Request is required for {} operations", firstOperation.getOperation());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return handleOperation(firstOperation);
+        return createPolicyExecutionResponse(firstOperation.getResourceIdentifier());
     }
 
-    private ResponseEntity<PermissionResponse> handleOperation(final Operation operation) {
-        final String targetIdentifier = operation.getTargetIdentifier();
-
-        final Matcher matcher = ERROR_CODE_PATTERN.matcher(targetIdentifier);
-        if (matcher.find()) {
-            final int errorCode = Integer.parseInt(matcher.group(1));
-            log.warn("Stub is mocking an error response, code: {}", errorCode);
-            return new ResponseEntity<>(HttpStatusCode.valueOf(errorCode));
-        }
-
-        return createPolicyExecutionResponse(targetIdentifier);
-    }
-
-    private ResponseEntity<PermissionResponse> createPolicyExecutionResponse(final String targetIdentifier) {
+    private ResponseEntity<PermissionResponse> createPolicyExecutionResponse(final String resourceIdentifier) {
         final String id = String.valueOf(++decisionCounter);
-        final String permissionResult;
-        final String message;
-        if (targetIdentifier.toLowerCase(Locale.getDefault()).contains("slow")) {
-            try {
-                sleeper.haveALittleRest(slowResponseTimeInSeconds);
-            } catch (final InterruptedException e) {
-                log.trace("Sleep interrupted, re-interrupting the thread");
-                Thread.currentThread().interrupt(); // Re-interrupt the thread
+        String permissionResult = "allow";
+        String message = "all good";
+        Matcher matcher = PATTERN_SIMULATION.matcher(resourceIdentifier);
+        if (matcher.find()) {
+            final String simulation = matcher.group(1);
+            matcher = PATTERN_SLOW_RESPONSE.matcher(simulation);
+            if (matcher.matches()) {
+                try {
+                    final int slowResponseTimeInSeconds = Integer.parseInt(matcher.group(1));
+                    sleeper.haveALittleRest(slowResponseTimeInSeconds);
+                } catch (final InterruptedException e) {
+                    log.trace("Sleep interrupted, re-interrupting the thread");
+                    Thread.currentThread().interrupt(); // Re-interrupt the thread
+                }
             }
-        }
-        if (targetIdentifier.toLowerCase(Locale.getDefault()).contains("cps-is-great")) {
-            permissionResult = "allow";
-            message = "All good";
-        } else {
-            permissionResult = "deny";
-            message = "Only FDNs containing 'cps-is-great' are allowed";
+            matcher = PATTERN_HTTP_ERROR.matcher(simulation);
+            if (matcher.matches()) {
+                final int errorCode = Integer.parseInt(matcher.group(1));
+                log.warn("Stub is mocking an error response, code: {}", errorCode);
+                return new ResponseEntity<>(HttpStatusCode.valueOf(errorCode));
+            }
+            matcher = PATTERN_POLICY_RESPONSE.matcher(simulation);
+            if (matcher.matches()) {
+                permissionResult = matcher.group(1);
+                message = "Stub is mocking a policy response: " + permissionResult;
+            }
         }
         log.info("Decision: {} ({})", permissionResult, message);
         return ResponseEntity.ok(new PermissionResponse(id, permissionResult, message));
