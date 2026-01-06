@@ -21,11 +21,12 @@
 package org.onap.cps.integration.functional.ncmp.inventory
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.init.DataMigration
 import org.onap.cps.utils.ContentType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.TestPropertySource
+import org.springframework.test.util.ReflectionTestUtils
 
 @TestPropertySource(properties = ["ncmp.inventory.model.upgrade.r20250722.enabled=true"])
 class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
@@ -33,10 +34,15 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
     @Autowired
     DataMigration objectUnderTest
 
+    @Autowired
+    InventoryPersistence inventoryPersistence
+
     def 'Migrate inventory with batch processing.'() {
-        given: 'DMI will return modules when requested'
+        given: 'model upgrade is temporarily disabled'
+            ReflectionTestUtils.setField(inventoryPersistence, 'modelUpgradeEnabled', false)
+        and: 'DMI will return modules when requested'
             dmiDispatcher1.moduleNamesPerCmHandleId = (1..2).collectEntries{ ['ch-'+it, ['M1']] }
-        and: 'multiple CM handles registered, (top level) status is null'
+        and: 'multiple CM handles registered'
             (1..2).each {
                 registerCmHandle(DMI1_URL, 'ch-'+it, NO_MODULE_SET_TAG)
                 cpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='ch-${it}']",
@@ -47,10 +53,11 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
                 assert someCmHandle.getDmiProperties() == null
                 assert someCmHandle.getAdditionalProperties() == ['prop1':'value1']
             }
-        when: 'migration is executed'
+        when: 'model upgrade is enabled and migration is executed'
+            ReflectionTestUtils.setField(inventoryPersistence, 'modelUpgradeEnabled', true)
             objectUnderTest.migrateInventoryToModelRelease20250722(1)
         then: 'all CM handles are processed successfully,' +
-                'the (top level) status is set to the same value as the name of the complex state value'
+                'the dmi-properties field is populated'
             (1..2).each {
                 def someCmHandle = networkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-'+it)
                 assert someCmHandle.getCmHandleStatus() == 'READY'

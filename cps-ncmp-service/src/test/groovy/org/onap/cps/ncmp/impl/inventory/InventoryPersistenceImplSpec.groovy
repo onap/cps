@@ -39,6 +39,7 @@ import org.onap.cps.ncmp.impl.models.CmHandleMigrationDetail
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.JsonObjectMapper
+import org.springframework.test.util.ReflectionTestUtils
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -180,31 +181,41 @@ class InventoryPersistenceImplSpec extends Specification {
     }
 
     def 'Update Cm Handle with #scenario State.'() {
-        given: 'a cm handle and a composite state'
-            def cmHandleId = 'ch-1'
+        given: 'model upgrade is enabled'
+            ReflectionTestUtils.setField(objectUnderTest, 'modelUpgradeEnabled', true)
+        and: 'a cm handle and a composite state'
+            def someCmHandleId = 'some-cm-handle'
             def compositeState = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
+        and: 'alternate id cache contains the given cm handle reference'
+            mockCmHandleIdPerAlternateId.containsKey(_) >> true
         when: 'update cm handle state is invoked with the #scenario state'
-            objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
-        then: 'update node leaves is invoked with the correct params'
-            1 * mockCpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'ch-1\']', expectedJsonData, _ as OffsetDateTime, ContentType.JSON)
+            objectUnderTest.saveCmHandleState(someCmHandleId, compositeState)
+        then: 'update data nodes and descendants is invoked with the correct params'
+            1 * mockCpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['/dmi-registry/cm-handles[@id=\'some-cm-handle\']': expectedStateJsonData], _ as OffsetDateTime, ContentType.JSON)
+        and: 'update node leaves is invoked with the correct params'
+            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
         where: 'the following states are used'
-            scenario    | cmHandleState          || expectedJsonData
+            scenario    | cmHandleState          || expectedStateJsonData
             'READY'     | CmHandleState.READY    || '{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
             'LOCKED'    | CmHandleState.LOCKED   || '{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
             'DELETING'  | CmHandleState.DELETING || '{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
     }
 
     def 'Update Cm Handles with #scenario States.'() {
-        given: 'a map of cm handles composite states'
+        given: 'model upgrade is enabled'
+            ReflectionTestUtils.setField(objectUnderTest, 'modelUpgradeEnabled', true)
+        and: 'a map of cm handles composite states'
             def compositeState1 = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
             def compositeState2 = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
         and: 'alternate id cache contains the given cm handle reference'
             mockCmHandleIdPerAlternateId.containsKey(_) >> true
         when: 'update cm handle state is invoked with the #scenario state'
             def cmHandleStateMap = ['ch-11' : compositeState1, 'ch-12' : compositeState2]
-            objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
-        then: 'update node leaves is invoked with the correct params'
+            objectUnderTest.saveCmHandleStateAndTopLevelStateBatch(cmHandleStateMap)
+        then: 'update data nodes and descendants is invoked with the correct params'
             1 * mockCpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlesJsonDataMap, _ as OffsetDateTime, ContentType.JSON)
+        and: 'update node leaves is invoked with the correct params'
+            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
         where: 'the following states are used'
             scenario    | cmHandleState          || cmHandlesJsonDataMap
             'READY'     | CmHandleState.READY    || ['/dmi-registry/cm-handles[@id=\'ch-11\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'ch-12\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
@@ -213,22 +224,25 @@ class InventoryPersistenceImplSpec extends Specification {
     }
 
     def 'Update cm handle states when #scenario in alternate id cache.'() {
-        given: 'a map of cm handles composite states'
+        given: 'model upgrade is enabled'
+            ReflectionTestUtils.setField(objectUnderTest, 'modelUpgradeEnabled', true)
+        and: 'a map of cm handles composite states'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED, lastUpdateTime: formattedDateAndTime)
             def cmHandleStateMap = ['ch-1' : compositeState]
         and: 'alternate id cache returns #scenario'
             mockCmHandleIdPerAlternateId.containsKey(_) >> keyExists
             mockCmHandleIdPerAlternateId.containsValue(_) >> valueExists
         when: 'we update the state of a cm handle when #scenario'
-            objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
-        then: 'update node leaves is invoked correct number of times'
+            objectUnderTest.saveCmHandleStateAndTopLevelStateBatch(cmHandleStateMap)
+        then: 'update data nodes and descendants is invoked correct number of times'
             expectedCalls * mockCpsDataService.updateDataNodesAndDescendants(*_)
+        and: 'update node leaves is invoked correct number of times'
+            expectedCalls * mockCpsDataService.updateNodeLeaves(*_)
         where: 'the following cm handle ids are used'
             scenario            | keyExists | valueExists || expectedCalls
             'id exists as key'  | true      | false       || 1
             'id exists as value'| false     | true        || 1
             'id does not exist' | false     | false       || 0
-
     }
 
     def 'Getting module definitions by module.'() {
