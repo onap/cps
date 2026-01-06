@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "3fb9f537-3b7a-4b48-a336-ed66e1f5a05e",
+		"_postman_id": "f67af205-d2ab-4859-afdf-0e1eb2137463",
 		"name": "CPS",
 		"description": "<img src=\"https://content.pstmn.io/bfbd86c2-7aa4-4afd-bd4a-207de1305bb7/Q1BTTG9nby5wbmc=\">\n\n# [CPS ONAP Documentation](https://docs.onap.org/projects/onap-cps/en/latest/index.html)\n\n# [DMI ONAP Documentation](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html)\n\n### How-to\n\nBuild CPS docker images with maven:\n\n`mvn clean install`\n\nor\n\n`mvn clean install -DskipTests`\n\nNavigate to docker-compose folder:\n\n`cd .\\docker-compose\\`\n\nBring up docker containers using commands found in docker-compose.yaml or run CPS services including dmi plugin\n\n`docker-compose --profile dmi-service up -d`\n\n### CPS-Enviroment\n\nTo enable the CPS enviroment, go to the top right of the screen in Postman and click envrioments. Import the CPS-envrioment file from the Postman Collections file in CPS.\n\n**To utilise NCMP-DMI-Stub endpoints begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`\n\n# CPS Core Example\n\n- Create dataspace\n    \n- Verify dataspace exists\n    \n- etc...\n    \n\n# CPS-NCMP Example\n\n- Create CM handles\n    \n- Verify CM handles exist\n    \n- etc...",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21077354"
+		"_exporter_id": "16927565",
+		"_collection_link": "https://cps555.postman.co/workspace/CPS-Workspace~388a7e32-81fe-4932-8636-02ccf8b51aca/collection/16927565-f67af205-d2ab-4859-afdf-0e1eb2137463?action=share&source=collection_link&creator=16927565"
 	},
 	"item": [
 		{
@@ -811,7 +812,8 @@
 													""
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -820,7 +822,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-1\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X1\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"123\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-2\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X2\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"456\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
+											"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-1\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X1\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"123\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-2\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X2\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"456\",\r\n        \"userLabel\": \"test2\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1092,130 +1094,6 @@
 						{
 							"name": "Northbound (rApps)",
 							"item": [
-								{
-									"name": "ProvMnS",
-									"item": [
-										{
-											"name": "Get Resource Data",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"method": "GET",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": ""
-												},
-												"url": {
-													"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another",
-													"protocol": "http",
-													"host": [
-														"{{CPS_HOST}}"
-													],
-													"port": "{{CPS_PORT}}",
-													"path": [
-														"ProvMnS",
-														"test=another"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Patch Resource Data",
-											"protocolProfileBehavior": {
-												"disabledSystemHeaders": {
-													"content-type": true
-												}
-											},
-											"request": {
-												"method": "PATCH",
-												"header": [
-													{
-														"key": "Content-Type",
-														"value": "application/json-patch+json",
-														"type": "text"
-													}
-												],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"id\": \"test\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another",
-													"protocol": "http",
-													"host": [
-														"{{CPS_HOST}}"
-													],
-													"port": "{{CPS_PORT}}",
-													"path": [
-														"ProvMnS",
-														"test=another"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Put Resource Data",
-											"protocolProfileBehavior": {
-												"disabledSystemHeaders": {}
-											},
-											"request": {
-												"method": "PUT",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"id\": \"test\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another",
-													"protocol": "http",
-													"host": [
-														"{{CPS_HOST}}"
-													],
-													"port": "{{CPS_PORT}}",
-													"path": [
-														"ProvMnS",
-														"test=another"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Delete Resource Data",
-											"request": {
-												"method": "DELETE",
-												"header": [],
-												"url": {
-													"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another",
-													"protocol": "http",
-													"host": [
-														"{{CPS_HOST}}"
-													],
-													"port": "{{CPS_PORT}}",
-													"path": [
-														"ProvMnS",
-														"test=another"
-													]
-												}
-											},
-											"response": []
-										}
-									]
-								},
 								{
 									"name": "Get module references",
 									"protocolProfileBehavior": {
@@ -1597,7 +1475,239 @@
 					"description": "CPS-NCMP-Inventory endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-ncmp-inventory)"
 				},
 				{
-					"name": "Data",
+					"name": "Data (ProvMnS)",
+					"item": [
+						{
+							"name": "Get Resource Data",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1",
+									"protocol": "http",
+									"host": [
+										"{{CPS_HOST}}"
+									],
+									"port": "{{CPS_PORT}}",
+									"path": [
+										"ProvMnS",
+										"v1",
+										"Subnetwork=Europe",
+										"ManagedElement=X1"
+									],
+									"query": [
+										{
+											"key": "outputAlternateId",
+											"value": "true",
+											"description": "Returns alternate ids rather then cm handle ids",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request with http Error",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=httpError_418",
+									"protocol": "http",
+									"host": [
+										"{{CPS_HOST}}"
+									],
+									"port": "{{CPS_PORT}}",
+									"path": [
+										"ProvMnS",
+										"v1",
+										"Subnetwork=Europe",
+										"ManagedElement=X1",
+										"dmiSimulation=httpError_418"
+									],
+									"query": [
+										{
+											"key": "outputAlternateId",
+											"value": "true",
+											"description": "Returns alternate ids rather then cm handle ids",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request with Timeout",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X2/dmiSimulation=slowResponse_40",
+									"protocol": "http",
+									"host": [
+										"{{CPS_HOST}}"
+									],
+									"port": "{{CPS_PORT}}",
+									"path": [
+										"ProvMnS",
+										"v1",
+										"Subnetwork=Europe",
+										"ManagedElement=X2",
+										"dmiSimulation=slowResponse_40"
+									],
+									"query": [
+										{
+											"key": "outputAlternateId",
+											"value": "true",
+											"description": "Returns alternate ids rather then cm handle ids",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch Resource Data (TBC)",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json-patch+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n {\r\n   \"op\": \"add\",\r\n   \"path\":\"/SomeChildType=child1\",\r\n   \"value\": {\r\n     \"id\": \"child1\",\r\n     \"objectClass\": \"SomeChildType\",\r\n     \"attributes\": {\r\n       \"userLabel\": \"My first child\",\r\n       \"vendorName\": \"Company XY\"\r\n     }\r\n   }\r\n }\r\n]\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1",
+									"protocol": "http",
+									"host": [
+										"{{CPS_HOST}}"
+									],
+									"port": "{{CPS_PORT}}",
+									"path": [
+										"ProvMnS",
+										"v1",
+										"Subnetwork=Europe",
+										"ManagedElement=X1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put Resource Data",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"xyz1\",\r\n    \"objectClass\": \"XyzFunction\",\r\n    \"attributes\": {\r\n        \"attrC\": \"some new value\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/XyzFunction=xyz1",
+									"protocol": "http",
+									"host": [
+										"{{CPS_HOST}}"
+									],
+									"port": "{{CPS_PORT}}",
+									"path": [
+										"ProvMnS",
+										"v1",
+										"Subnetwork=Europe",
+										"ManagedElement=X1",
+										"XyzFunction=xyz1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Resource Data",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1",
+									"protocol": "http",
+									"host": [
+										"{{CPS_HOST}}"
+									],
+									"port": "{{CPS_PORT}}",
+									"path": [
+										"ProvMnS",
+										"v1",
+										"Subnetwork=Europe",
+										"ManagedElement=X1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Data (legacy)",
 					"item": [
 						{
 							"name": "Create resource data",
@@ -1884,8 +1994,7 @@
 							},
 							"response": []
 						}
-					],
-					"description": "CPS-NCMP endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-ncmp)\n\nDepends on the ncmp-dmi-stub for some endpoints returns static content"
+					]
 				}
 			],
 			"description": "CPS-NCMP endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-ncmp)\n\nCPS-NCMP-Inventory endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-ncmp-inventory)"

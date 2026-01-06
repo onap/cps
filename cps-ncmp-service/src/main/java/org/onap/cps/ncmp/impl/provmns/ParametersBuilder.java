@@ -56,8 +56,9 @@ public class ParametersBuilder {
                                                                     final ClassNameIdGetDataNodeSelectorParameter
                                                                         dataNodeSelector) {
         final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
+        final String targetFdnWithoutPrecedingSlash = targetFdn.substring(1);
         return RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment(targetFdn)
+            .fixedPathSegment(targetFdnWithoutPrecedingSlash)
             .queryParameter("scopeType", scope.getScopeType() != null ? scope.getScopeType().getValue() : null)
             .queryParameter("scopeLevel", scope.getScopeLevel() != null ? scope.getScopeLevel().toString() : null)
             .queryParameter("filter", filter)
@@ -76,8 +77,9 @@ public class ParametersBuilder {
     public UrlTemplateParameters createUrlTemplateParametersForWrite(final YangModelCmHandle yangModelCmHandle,
                                                                      final String targetFdn) {
         final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
+        final String targetFdnWithoutPrecedingSlash = targetFdn.substring(1);
         return RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment(targetFdn)
+            .fixedPathSegment(targetFdnWithoutPrecedingSlash)
             .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
     }
 
