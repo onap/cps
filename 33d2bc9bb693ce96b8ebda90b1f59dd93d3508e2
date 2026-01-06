@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeddcd11_f5c40cd7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnSController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-06T11:48:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cea0248_29651993",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 12
+      },
+      "revId": "33d2bc9bb693ce96b8ebda90b1f59dd93d3508e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21bd5435_500690dd",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e77082ee_5eb88b8a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnSRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-06T11:48:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21bd5435_500690dd",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 12
+      },
+      "revId": "33d2bc9bb693ce96b8ebda90b1f59dd93d3508e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ad7fd0d_df53f680",
@@ -77,6 +125,30 @@
       "writtenOn": "2026-01-06T11:19:55Z",
       "side": 1,
       "message": "3rd one !",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 12
+      },
+      "revId": "33d2bc9bb693ce96b8ebda90b1f59dd93d3508e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c72eba76_502c08a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-06T11:48:43Z",
+      "side": 1,
+      "message": "Made this one public as it is in ncmp-service package",
+      "parentUuid": "0ad7fd0d_df53f680",
       "range": {
         "startLine": 35,
         "startChar": 4,
