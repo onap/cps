@@ -16,6 +16,253 @@
       "message": "Ready for Community Review",
       "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5dd4230_abaf40a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "looks fine, no blockign comments, just a few tips for improvement",
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5749f85c_9bcdd6a2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "why did you not re-use org.onap.cps.api.exceptions.AlreadyDefinedException ?",
+      "range": {
+        "startLine": 123,
+        "startChar": 22,
+        "endLine": 123,
+        "endChar": 40
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57832f06_7584c4b0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "two conflicting conventions are at play here:\nbut since you have a getter whose name you cannot change I think I would prefer to call the variable \u0027lineNr\u0027\nAlternatively do NOT exrtact thesevariabel but inline it like so\nfinal String message \u003d String.fomat(..., e.getLocation().getLineNr(), e.getLocation().getColumnNr())",
+      "range": {
+        "startLine": 141,
+        "startChar": 22,
+        "endLine": 141,
+        "endChar": 33
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c26eb0_27c9aa10",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "consider using String.format to make this more readable",
+      "range": {
+        "startLine": 127,
+        "startChar": 46,
+        "endLine": 128,
+        "endChar": 36
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85dfea14_6230a9fb",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "consider using String.format to make this more readable",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 141,
+        "endChar": 39
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04160e31_5adab326",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "sentence not clear...",
+      "range": {
+        "startLine": 362,
+        "startChar": 36,
+        "endLine": 362,
+        "endChar": 55
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c89ec08_b460c075",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "\u0027thrown\u0027 or \u0027thrownException\u0027",
+      "range": {
+        "startLine": 375,
+        "startChar": 16,
+        "endLine": 375,
+        "endChar": 19
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57adbbe9_4c6e0def",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "\u0027thrown\u0027 or \u0027thrownException\u0027",
+      "range": {
+        "startLine": 195,
+        "startChar": 16,
+        "endLine": 195,
+        "endChar": 26
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e492bc52_cef65274",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "\u0027unsupport\u0027 is already part of teh message so I woudl use a ddiffernt example e.g. \u0027wrongAction\u0027 or  somethign like that",
+      "range": {
+        "startLine": 202,
+        "startChar": 47,
+        "endLine": 202,
+        "endChar": 58
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbebc5f3_ce550247",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "\u0027thrown\u0027 or \u0027thrownException\u0027",
+      "range": {
+        "startLine": 206,
+        "startChar": 16,
+        "endLine": 206,
+        "endChar": 26
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "837b5425_f44bd5b8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:24:41Z",
+      "side": 1,
+      "message": "when string assert become very long, the test can become brittle and I often prefer to just check it if CONTAINS the important information, make it also more readable (to see what is important)\n\ne.g. \nassert exception.details.contains(\u0027wrongAction\u0027)\nassert exception.details.contains(\u0027/bookstore\u0027)\n\n(dont use AND, just do multiple asserts as needed... )",
+      "range": {
+        "startLine": 208,
+        "startChar": 40,
+        "endLine": 208,
+        "endChar": 59
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
