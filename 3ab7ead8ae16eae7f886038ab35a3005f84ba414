@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56080ffc_c25056a3",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-06T17:26:27Z",
+      "side": 1,
+      "message": "Happy new year!\nSorry, we need to start updating the copyrights \n(I wont repeat this comment)",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "3ab7ead8ae16eae7f886038ab35a3005f84ba414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5749f85c_9bcdd6a2",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 7
