@@ -48,13 +48,9 @@ class PolicyExecutorStubControllerSpec extends Specification {
 
     def url = '/operation-permission/v1/permissions'
 
-    def setup() {
-        PolicyExecutorStubController.slowResponseTimeInSeconds = 1
-    }
-
-    def 'Permission request with #targetIdentifier.'() {
+    def 'Permission request with #resourceIdentifier.'() {
         given: 'a permission request with target: #targetIdentifier'
-            def requestBody = createRequestBody(targetIdentifier)
+            def requestBody = createRequestBody(resourceIdentifier)
         when: 'request is posted'
             def response = mockMvc.perform(post(url)
                     .header('Authorization','some string')
@@ -70,15 +66,17 @@ class PolicyExecutorStubControllerSpec extends Specification {
             assert permissionResponse.permissionResult == expectedResult
             assert permissionResponse.message == expectedMessage
         where: 'the following targets are used'
-            targetIdentifier        || expectedId | expectedResult | expectedMessage
-            'some fdn'              || '1'        | 'deny'         | "Only FDNs containing 'cps-is-great' are allowed"
-            'fdn with cps-is-great' || '2'        | 'allow'        | 'All good'
-            'slow'                  || '3'        | 'deny'         | "Only FDNs containing 'cps-is-great' are allowed"
+            resourceIdentifier                             || expectedId | expectedResult | expectedMessage
+            'some fdn'                                     || '1'        | 'allow'        | 'all good'
+            'prefix/policySimulation=slowResponse_1'       || '2'        | 'allow'        | 'all good'
+            'prefix/policySimulation=policyResponse_deny'  || '3'        | 'deny'         | 'Stub is mocking a policy response: deny'
+            'prefix/policySimulation=policyResponse_other' || '4'        | 'other'        | 'Stub is mocking a policy response: other'
+
     }
 
     def 'Permission request with a HTTP error code.'() {
-        given: 'a permission request with a target fdn with a 3-digit error code'
-            def requestBody = createRequestBody('target with error code 418')
+        given: 'a permission request with a target fdn to simulate an http error code'
+            def requestBody = createRequestBody('segment1=1/policySimulation=httpError_418')
         when: 'request is posted'
             def response = mockMvc.perform(post(url)
                 .header('Authorization','some string')
@@ -127,8 +125,8 @@ class PolicyExecutorStubControllerSpec extends Specification {
     }
 
     def 'Permission request with interrupted exception during slow response.'() {
-        given: 'a permission request with target: "slow" (stub will be slow)'
-            def requestBody = createRequestBody('slow')
+        given: 'a permission request with a target fdn to simulate a slow response'
+            def requestBody = createRequestBody('policySimulation=slowResponse_5')
             sleeper.haveALittleRest(_) >> { throw new InterruptedException() }
         when: 'request is posted'
             mockMvc.perform(post(url)
@@ -140,8 +138,8 @@ class PolicyExecutorStubControllerSpec extends Specification {
     }
 
     def 'Permission request with missing or invalid attributes.'() {
-        given: 'Permission request with operation=#operation and targetIdentifier=#targetIdentifier'
-            def requestBody = createRequestBody(operation, targetIdentifier, changeRequest)
+        given: 'Permission request with operation=#operation and resourceIdentifier=#resourceIdentifier'
+            def requestBody = createRequestBody(operation, 'some resource', changeRequest)
         when: 'request is posted'
             def response = mockMvc.perform(post(url)
                 .header('Authorization','something')
@@ -151,20 +149,20 @@ class PolicyExecutorStubControllerSpec extends Specification {
         then: 'response status as expected'
             assert response.status == expectedStatus.value()
         where: 'following parameters are used'
-            operation | targetIdentifier | changeRequest || expectedStatus
-            'delete'  | 'something'      | null          || HttpStatus.OK
-            'other'   | 'something'      | '{}'          || HttpStatus.OK
-            'delete'  | null             | null          || HttpStatus.BAD_REQUEST
-            'other'   | 'something'      | null          || HttpStatus.BAD_REQUEST
+            operation | changeRequest || expectedStatus
+            'delete'  | null          || HttpStatus.OK
+            'other'   | '{}'          || HttpStatus.OK
+            'other'   | null          || HttpStatus.BAD_REQUEST
     }
 
-    def createRequestBody(targetIdentifier) {
-        return createRequestBody('delete', targetIdentifier, '{}')
+    def createRequestBody(resourceIdentifier) {
+        return createRequestBody('delete', resourceIdentifier, '{}')
     }
 
-    def createRequestBody(operationName, targetIdentifier, changeRequest) {
-        def operation = new Operation(operationName, targetIdentifier)
+    def createRequestBody(operationName, resourceIdentifier, changeRequest) {
+        def operation = new Operation(operationName, 'some cm-handle')
         operation.setChangeRequest(changeRequest)
+        operation.setResourceIdentifier(resourceIdentifier)
         def permissionRequest = new PermissionRequest('cm-legacy', [operation])
         return objectMapper.writeValueAsString(permissionRequest)
     }

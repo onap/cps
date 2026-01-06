@@ -72,8 +72,8 @@ services:
       POLICY_SERVICE_DEFAULT_DECISION: 'deny from env'
       CPS_MONITORING_MICROMETER_JVM_EXTRAS: 'true'
       JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
-      ### DEBUG: Uncomment next line to enable java debugging
-      ### JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      ### DEBUG: Uncomment next line to enable java debugging (and comment out above line!)
+      ###JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
       NCMP_INVENTORY_MODEL_UPGRADE_R20250722_ENABLED: 'false'
     restart: on-failure:3
     deploy:
@@ -200,6 +200,10 @@ services:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/policy-executor-stub:latest
     ports:
       - ${POLICY_EXECUTOR_STUB_PORT:-8785}:8093
+    ### DEBUG: Uncomment next lines to enable java debugging in Policy Executor Stub
+    ###      - ${POLICY_EXECUTOR_STUB_DEBUG_PORT:-5005}:5005
+    ### environment:
+      #### JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     # Note policy-executor-stub does not have a healthcheck as it does not expose /actuator/health endpoint
 
