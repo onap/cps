@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,8 +27,6 @@ import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
 import io.netty.handler.timeout.TimeoutException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
@@ -68,7 +66,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ProvMnSController implements ProvMnS {
 
-    private static final Pattern STANDARD_ATTRIBUTE_PATTERN = Pattern.compile("[^#]/attributes");
     private static final String NO_AUTHORIZATION = null;
     private static final String PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE =
         "Registered DMI does not support the ProvMnS interface.";
@@ -113,9 +110,6 @@ public class ProvMnSController implements ProvMnS {
             throw new ProvMnSException(httpServletRequest.getMethod(), HttpStatus.PAYLOAD_TOO_LARGE, title);
         }
         final RequestParameters requestParameters = parameterMapper.extractRequestParameters(httpServletRequest);
-        for (final PatchItem patchItem : patchItems) {
-            validateAttributeReference(httpServletRequest.getMethod(), httpServletRequest.getContentType(), patchItem);
-        }
         try {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
             checkPermissionForEachPatchItem(requestParameters, patchItems, yangModelCmHandle);
@@ -225,25 +219,6 @@ public class ProvMnSController implements ProvMnS {
         provMnSException.setHttpStatus(httpStatus);
         log.warn("ProvMns Exception: {}", provMnSException.getTitle());
         return provMnSException;
-    }
-
-    private void validateAttributeReference(final String httpMethodName,
-                                            final String contentType,
-                                            final PatchItem patchItem) {
-        final String path = patchItem.getPath();
-        boolean attributesReferenceIncorrect = false;
-        if (path.contains("#/attributes") && "application/json-patch+json".equals(contentType))  {
-            attributesReferenceIncorrect = true;
-        } else {
-            final Matcher matcher = STANDARD_ATTRIBUTE_PATTERN.matcher(path);
-            if ("application/3gpp-json-patch+json".equals(contentType) && matcher.find()) {
-                attributesReferenceIncorrect = true;
-            }
-        }
-        if (attributesReferenceIncorrect) {
-            throw new ProvMnSException(httpMethodName, HttpStatus.BAD_REQUEST,
-                                        "Invalid path for content-type " + contentType);
-        }
     }
 
 }
