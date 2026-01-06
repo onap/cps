@@ -43,13 +43,13 @@ public class InventoryModelLoader extends AbstractModelLoader {
     private final DataMigration dataMigration;
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    private static final String PREVIOUS_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
+    private static final String SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
     private static final String NEW_INVENTORY_SCHEMA_SET_NAME = "dmi-registry-2025-07-22";
     private static final String INVENTORY_YANG_MODULE_NAME = "dmi-registry";
     private static final int MIGRATION_BATCH_SIZE = 300;
 
-    @Value("${ncmp.inventory.model.upgrade.r20250722.enabled:false}")
-    private boolean newRevisionEnabled;
+    @Value("${ignore.r20250722.model:true}")
+    private boolean ignoreModelR20250722;
 
     /**
      * Creates a new {@code InventoryModelLoader} instance responsible for onboarding or upgrading
@@ -75,13 +75,14 @@ public class InventoryModelLoader extends AbstractModelLoader {
         if (isMaster) {
             log.info("Model Loader #2 Started: NCMP Inventory Models");
             final String schemaToInstall =
-                newRevisionEnabled ? NEW_INVENTORY_SCHEMA_SET_NAME : PREVIOUS_SCHEMA_SET_NAME;
+                ignoreModelR20250722 ? SCHEMA_SET_NAME : NEW_INVENTORY_SCHEMA_SET_NAME;
             final String moduleRevision = getModuleRevision(schemaToInstall);
+            log.info("Model Loader #2 Schema Set: {}", schemaToInstall);
 
             if (isModuleRevisionInstalled(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME,
                 moduleRevision)) {
                 log.info("Model Loader #2: Revision {} is already installed.", moduleRevision);
-            } else if (newRevisionEnabled && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
+            } else if (!ignoreModelR20250722 && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
                 log.info("Model Loader #2: Upgrading already installed inventory to revision {}.", moduleRevision);
                 upgradeAndMigrateInventoryModel();
             } else {

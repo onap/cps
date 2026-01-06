@@ -51,7 +51,7 @@ public interface InventoryPersistence extends NcmpPersistence {
     void saveCmHandleState(String cmHandleId, CompositeState compositeState);
 
     /**
-     * Save all cm handles states in batch.
+     * Save all cm handle CompositeStates and cmHandleStatus in batch.
      *
      * @param cmHandleStatePerCmHandleId contains cm handle id and updated state
      */
