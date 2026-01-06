@@ -51,13 +51,13 @@ import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 class CmAvcEventConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
-    EventProducer eventsProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, cloudEventKafkaTemplateForEos)
+    EventProducer eventProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
 
     def mockCmAvcEventService = Mock(CmAvcEventService)
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
     @SpringBean
-    CmAvcEventConsumer objectUnderTest = new CmAvcEventConsumer(eventsProducer, mockCmAvcEventService, mockInventoryPersistence)
+    CmAvcEventConsumer objectUnderTest = new CmAvcEventConsumer(eventProducer, mockCmAvcEventService, mockInventoryPersistence)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper

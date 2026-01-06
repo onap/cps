@@ -184,10 +184,6 @@ ncmp:
   model-loader:
     maximum-attempt-count: 20
 
-  notifications:
-    avc-event-producer:
-      transaction-id-prefix: integration-test-tx-
-
   servlet:
     multipart:
       enabled: true

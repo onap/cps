@@ -32,7 +32,6 @@ import org.apache.kafka.common.header.Headers
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.SendResult
-import org.springframework.util.SerializationUtils
 import spock.lang.Specification
 
 import java.util.concurrent.CompletableFuture
@@ -41,7 +40,6 @@ class EventProducerSpec extends Specification {
 
     def mockLegacyKafkaTemplate = Mock(KafkaTemplate)
     def mockCloudEventKafkaTemplate = Mock(KafkaTemplate)
-    def mockCloudEventKafkaTemplateForEos = Mock(KafkaTemplate)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
@@ -55,7 +53,7 @@ class EventProducerSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(EventProducer.class)).detachAndStopAllAppenders()
     }
 
-    def objectUnderTest = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate, mockCloudEventKafkaTemplateForEos)
+    def objectUnderTest = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate)
 
     def 'Send Cloud Event'() {
         given: 'a successfully sent event'
@@ -73,22 +71,6 @@ class EventProducerSpec extends Specification {
             assert verifyLoggingEvent(Level.DEBUG, 'Successfully sent event')
     }
 
-    def 'Send Cloud Event Using EOS'() {
-        given: 'a successfull result from send event with EOS semantics'
-            def eventFuture = CompletableFuture.completedFuture(
-                new SendResult(
-                    new ProducerRecord('eos-topic', 'some-value'),
-                    new RecordMetadata(new TopicPartition('eos-topic', 0), 0, 0, 0, 0, 0)
-                )
-            )
-            def someCloudEvent = Mock(CloudEvent)
-            1 * mockCloudEventKafkaTemplateForEos.send('eos-topic', 'some-event-key', someCloudEvent) >> eventFuture
-        when: 'sending the cloud event using EOS'
-            objectUnderTest.sendCloudEventUsingEos('eos-topic', 'some-event-key', someCloudEvent)
-        then: 'the correct debug message is logged'
-            assert verifyLoggingEvent(Level.DEBUG, 'Successfully sent event') == true
-    }
-
     def 'Send Cloud Event with Exception'() {
         given: 'a failed event'
             def eventFutureWithFailure = new CompletableFuture<SendResult<String, String>>()
@@ -97,19 +79,6 @@ class EventProducerSpec extends Specification {
             1 * mockCloudEventKafkaTemplate.send('some-topic', 'some-event-key', someCloudEvent) >> eventFutureWithFailure
         when: 'sending the cloud event'
             objectUnderTest.sendCloudEvent('some-topic', 'some-event-key', someCloudEvent)
-        then: 'the correct error message is logged'
-            assert verifyLoggingEvent(Level.ERROR, 'Unable to send event') == true
-    }
-
-    def 'Send Cloud Event Using EOS with KafkaException'() {
-        given: 'an event fails with KafkaException'
-            def kafkaException = new org.springframework.kafka.KafkaException('some kafka exception')
-            def eventFutureWithFailure = new CompletableFuture<SendResult<String, CloudEvent>>()
-            eventFutureWithFailure.completeExceptionally(kafkaException)
-            def someCloudEvent = Mock(CloudEvent)
-            1 * mockCloudEventKafkaTemplateForEos.send('eos-topic', 'some-event-key', someCloudEvent) >> eventFutureWithFailure
-        when: 'sending the cloud event using EOS'
-            objectUnderTest.sendCloudEventUsingEos('eos-topic', 'some-event-key', someCloudEvent)
         then: 'the correct error message is logged'
             assert verifyLoggingEvent(Level.ERROR, 'Unable to send event') == true
     }
@@ -132,7 +101,7 @@ class EventProducerSpec extends Specification {
 
     def 'Send Legacy Event with Headers as Map'() {
         given: 'a successfully sent event'
-            def sampleEventHeaders = ['k1': SerializationUtils.serialize('v1')]
+            def sampleEventHeaders = ['k1': 'v1', 'k2': 'v2']
             def eventFuture = CompletableFuture.completedFuture(
                 new SendResult(
                     new ProducerRecord('some-topic', 'some-value'),
@@ -178,10 +147,10 @@ class EventProducerSpec extends Specification {
                 getProducerRecord() >> Mock(ProducerRecord)
             }
             def runtimeException = new RuntimeException('some runtime exception')
-            def logOutcomeMethod = EventProducer.getDeclaredMethod('logOutcome', String, SendResult, Throwable, boolean)
+            def logOutcomeMethod = EventProducer.getDeclaredMethod('logOutcome', String, SendResult, Throwable)
             logOutcomeMethod.accessible = true
         when: 'logging the outcome with throwKafkaException set to true'
-            logOutcomeMethod.invoke(null, 'some-topic', sendResult, runtimeException, true)
+            logOutcomeMethod.invoke(null, 'some-topic', sendResult, runtimeException)
         then: 'error message is logged'
             assert verifyLoggingEvent(Level.ERROR, 'Unable to send event') == true
     }

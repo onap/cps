@@ -237,10 +237,6 @@ ncmp:
     model-loader:
         maximum-attempt-count: 20
 
-    notifications:
-        avc-event-producer:
-            transaction-id-prefix: test-tx-
-
 # Custom Hazelcast Config.
 hazelcast:
     cluster-name: ${CPS_NCMP_CACHES_CLUSTER_NAME:"cps-and-ncmp-common-cache-cluster"}
