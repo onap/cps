@@ -55,7 +55,7 @@ public interface InventoryPersistence extends NcmpPersistence {
      *
      * @param cmHandleStatePerCmHandleId contains cm handle id and updated state
      */
-    void saveCmHandleStateBatch(Map<String, CompositeState> cmHandleStatePerCmHandleId);
+    void saveCmHandleStateAndTopLevelStateBatch(Map<String, CompositeState> cmHandleStatePerCmHandleId);
 
     /**
      * This method retrieves DMI service name, DMI properties and the state for a given cm handle.

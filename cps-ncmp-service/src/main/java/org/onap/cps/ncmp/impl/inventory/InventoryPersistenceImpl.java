@@ -55,6 +55,7 @@ import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -66,6 +67,9 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     private final CpsModuleService cpsModuleService;
     private final CpsValidator cpsValidator;
     private final IMap<String, String> cmHandleIdPerAlternateId;
+
+    @Value("${ncmp.inventory.model.upgrade.r20250722.enabled:false}")
+    private boolean r20250722UpgradeEnabled;
 
     /**
      * initialize an inventory persistence object.
@@ -100,25 +104,39 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     @Override
     public void saveCmHandleState(final String cmHandleId, final CompositeState compositeState) {
-        final String cmHandleJsonData = createStateJsonData(jsonObjectMapper.asJsonString(compositeState));
-        cpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                getXPathForCmHandleById(cmHandleId), cmHandleJsonData, OffsetDateTime.now(), ContentType.JSON);
+        saveCmHandleStateAndTopLevelStateBatch(Collections.singletonMap(cmHandleId, compositeState));
     }
 
     @Override
-    public void saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
-        final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
-        cmHandleStatePerCmHandleId.forEach((cmHandleId, compositeState) -> {
+    public void saveCmHandleStateAndTopLevelStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
+        final Map<String, String> cmHandlesJsonDataMap = new HashMap<>(cmHandleStatePerCmHandleId.size());
+        final List<Map<String, String>> topLevelStateUpdates = new ArrayList<>(cmHandleStatePerCmHandleId.size());
+
+        for (final Map.Entry<String, CompositeState> entry : cmHandleStatePerCmHandleId.entrySet()) {
+            final String cmHandleId = entry.getKey();
+            final CompositeState compositeState = entry.getValue();
             if (exists(cmHandleId)) {
                 cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId),
                         createStateJsonData(jsonObjectMapper.asJsonString(compositeState)));
+                if (r20250722UpgradeEnabled) {
+                    final Map<String, String> topLevelUpdate = new HashMap<>();
+                    topLevelUpdate.put("id", cmHandleId);
+                    topLevelUpdate.put("cm-handle-state", compositeState.getCmHandleState().name());
+                    topLevelStateUpdates.add(topLevelUpdate);
+                }
             } else {
                 log.warn("Failure to save state for cmHandle id '{}' as it does not exist in cache", cmHandleId);
             }
-        });
+        }
         if (!cmHandlesJsonDataMap.isEmpty()) {
             cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     cmHandlesJsonDataMap, OffsetDateTime.now(), ContentType.JSON);
+            if (r20250722UpgradeEnabled) {
+                cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                        NCMP_DMI_REGISTRY_PARENT,
+                        jsonObjectMapper.asJsonString(Map.of("cm-handles", topLevelStateUpdates)),
+                        OffsetDateTime.now(), ContentType.JSON);
+            }
         }
     }
 

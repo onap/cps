@@ -72,7 +72,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleStateBatch([(yangModelCmHandle): toCmHandleState])
         then: 'state is saved using inventory persistence'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(cmHandleStatePerCmHandleId -> {
+            1 * mockInventoryPersistence.saveCmHandleStateAndTopLevelStateBatch(cmHandleStatePerCmHandleId -> {
                     assert cmHandleStatePerCmHandleId.get(cmHandleId).cmHandleState == toCmHandleState
                 })
         and: 'log message shows state change at DEBUG level'
@@ -109,7 +109,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleStateBatch([(yangModelCmHandle): ADVISED])
         then: 'state is saved using inventory persistence and old lock reason details are retained'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(cmHandleStatePerCmHandleId -> {
+            1 * mockInventoryPersistence.saveCmHandleStateAndTopLevelStateBatch(cmHandleStatePerCmHandleId -> {
                     assert cmHandleStatePerCmHandleId.get(cmHandleId).lockReason.details == 'some lock details'
                 })
         and: 'event service is called to send event'
@@ -127,7 +127,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         when: 'update cmhandle state is invoked'
             objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, READY))
         then: 'state is saved using inventory persistence with expected dataSyncState'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(cmHandleStatePerCmHandleId -> {
+            1 * mockInventoryPersistence.saveCmHandleStateAndTopLevelStateBatch(cmHandleStatePerCmHandleId -> {
                     assert cmHandleStatePerCmHandleId.get(cmHandleId).dataSyncEnabled == false
                     assert cmHandleStatePerCmHandleId.get(cmHandleId).dataStores.operationalDataStore.dataStoreSyncState == DataStoreSyncState.NONE_REQUESTED
                 })
@@ -146,7 +146,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'the cm handle state is as expected'
             yangModelCmHandle.getCompositeState().getCmHandleState() == DELETING
         and: 'method to persist cm handle state is called once'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch([(cmHandleId): yangModelCmHandle.compositeState])
+            1 * mockInventoryPersistence.saveCmHandleStateAndTopLevelStateBatch([(cmHandleId): yangModelCmHandle.compositeState])
         and: 'the method to send Lcm event is called once'
             1 * mockLcmEventProducer.sendLcmEventBatchAsynchronously(_)
     }
@@ -170,7 +170,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
         then: 'no changes are persisted'
             1 * mockInventoryPersistence.saveCmHandleBatch(EMPTY_LIST)
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(EMPTY_MAP)
+            1 * mockInventoryPersistence.saveCmHandleStateAndTopLevelStateBatch(EMPTY_MAP)
         and: 'no event will be sent'
             0 * mockLcmEventProducer.sendLcmEventBatchAsynchronously(*_)
     }
@@ -185,7 +185,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                     assert yangModelCmHandles.id.containsAll('cmhandle1', 'cmhandle2')
                 })
         and: 'no state updates are persisted'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(EMPTY_MAP)
+            1 * mockInventoryPersistence.saveCmHandleStateAndTopLevelStateBatch(EMPTY_MAP)
         and: 'event service is called once to send 1 batch of 2 events (TODO Confirm size)'
             1 * mockLcmEventProducer.sendLcmEventBatchAsynchronously(_)
         and: 'two log entries are written'
@@ -199,7 +199,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         when: 'updating a batch of changes'
             objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
         then: 'existing cm handles composite states are persisted'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(cmHandleStatePerCmHandleId -> {
+            1 * mockInventoryPersistence.saveCmHandleStateAndTopLevelStateBatch(cmHandleStatePerCmHandleId -> {
                     assert cmHandleStatePerCmHandleId.keySet().containsAll(['cmhandle1', 'cmhandle2'])
                 })
         and: 'no new handles are persisted'
@@ -217,7 +217,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         when: 'updating a batch of changes'
             objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
         then: 'state of deleted handles is not persisted'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(EMPTY_MAP)
+            1 * mockInventoryPersistence.saveCmHandleStateAndTopLevelStateBatch(EMPTY_MAP)
         and: 'no new handles are persisted'
             1 * mockInventoryPersistence.saveCmHandleBatch(EMPTY_LIST)
         and: 'event service is called once to send 1 batch of 2 events (TODO Confirm size)'
@@ -231,7 +231,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         given: 'A batch of updated cm handles'
             def cmHandleStateMap = setupBatch('UPDATE')
         and: 'an error will be thrown when trying to persist'
-            mockInventoryPersistence.saveCmHandleStateBatch(_) >> { throw new RuntimeException() }
+            mockInventoryPersistence.saveCmHandleStateAndTopLevelStateBatch(_) >> { throw new RuntimeException() }
         when: 'updating a batch of changes'
             objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
         then: 'the exception is not handled'
