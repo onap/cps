@@ -41,7 +41,7 @@ class ParametersBuilderSpec extends Specification{
 
             )
         then: 'the template has the correct result'
-            assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1//target/fdn?')
+            assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1/target/fdn?')
         and: 'all url variables have been set correctly'
             assert result.urlVariables.size() == 6
             assert result.urlVariables.scopeLevel == '1'
@@ -72,7 +72,7 @@ class ParametersBuilderSpec extends Specification{
         when: 'Creating URL parameters for PUT (or PATCH)'
             def result = objectUnderTest.createUrlTemplateParametersForWrite(new YangModelCmHandle(dmiServiceName: 'myDmiService'),'/target/fdn')
         then: 'the template has the correct correct'
-            assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1//target/fdn')
+            assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1/target/fdn')
         and: 'no url variables have been set'
             assert result.urlVariables.isEmpty()
     }
