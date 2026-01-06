@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (c) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Listener for AVC events based on CM Subscriptions.
@@ -64,9 +63,8 @@ public class CmAvcEventConsumer {
      *
      * @param cmAvcEventAsConsumerRecord Incoming raw consumer record
      */
-    @Transactional
     @KafkaListener(topics = "${app.dmi.cm-events.topic}",
-        containerFactory = "cloudEventConcurrentKafkaListenerContainerFactoryForEos")
+        containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     @Timed(value = "cps.ncmp.cm.notifications.consume.and.forward", description = "Time taken to forward CM AVC events")
     public void consumeAndForward(final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
         if (isEventFromOnapDmiPlugin(cmAvcEventAsConsumerRecord.headers())) {
@@ -74,9 +72,8 @@ public class CmAvcEventConsumer {
         }
         final CloudEvent outgoingAvcEvent = cmAvcEventAsConsumerRecord.value();
         final String outgoingAvcEventKey = cmAvcEventAsConsumerRecord.key();
-
         log.debug("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
-        eventProducer.sendCloudEventUsingEos(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
+        eventProducer.sendCloudEvent(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
     }
 
     private void processCmAvcEventChanges(final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
@@ -93,6 +90,6 @@ public class CmAvcEventConsumer {
 
     private boolean isEventFromOnapDmiPlugin(final Headers headers) {
         final String sourceSystem = KafkaHeaders.getParsedKafkaHeader(headers, CLOUD_EVENT_SOURCE_SYSTEM_HEADER_KEY);
-        return "ONAP-DMI-PLUGIN".equals(sourceSystem);
+        return sourceSystem != null && sourceSystem.equals("ONAP-DMI-PLUGIN");
     }
 }

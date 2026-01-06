@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (c) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (c) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -51,13 +51,13 @@ import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 class CmAvcEventConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
-    EventProducer eventsProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, cloudEventKafkaTemplateForEos)
+    EventProducer eventProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
 
     def mockCmAvcEventService = Mock(CmAvcEventService)
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
     @SpringBean
-    CmAvcEventConsumer objectUnderTest = new CmAvcEventConsumer(eventsProducer, mockCmAvcEventService, mockInventoryPersistence)
+    CmAvcEventConsumer cmAvcEventConsumer = new CmAvcEventConsumer(eventProducer, mockCmAvcEventService, mockInventoryPersistence)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
@@ -66,7 +66,6 @@ class CmAvcEventConsumerSpec extends MessagingBaseSpec {
 
     def testEventKey = 'sample-key'
     def validAvcEventAsJson
-    def onapDmiSourceSystem = 'ONAP-DMI-PLUGIN'
 
     def setup() {
         validAvcEventAsJson = jsonObjectMapper.convertJsonString(getResourceFileContent('sampleAvcInputEvent.json'), AvcEvent.class)
@@ -74,14 +73,14 @@ class CmAvcEventConsumerSpec extends MessagingBaseSpec {
 
     def 'Consume and forward avc event [test A, using specific topic].'() {
         given: 'a cloud event'
-            def testCloudEventSent = buildCloudEvent('sample-source', 'test-cmhandle1', validAvcEventAsJson)
+            def testCloudEventSent = buildCloudEvent('sample-source', 'test-cmhandle1')
         and: 'consumer has a subscription on the target topic for this test'
-            objectUnderTest.cmEventsTopicName = 'target-topic-for-Test-A'
-            cloudEventKafkaConsumer.subscribe([objectUnderTest.cmEventsTopicName])
+            cmAvcEventConsumer.cmEventsTopicName = 'target-topic-for-Test-A'
+            cloudEventKafkaConsumer.subscribe([cmAvcEventConsumer.cmEventsTopicName])
         and: 'event is wrapped in a consumer record with message key(cmHandleId) and value as cloud event'
-            def consumerRecordReceived = new ConsumerRecord<String, CloudEvent>(objectUnderTest.cmEventsTopicName, 0, 0, testEventKey, testCloudEventSent)
+            def consumerRecordReceived = new ConsumerRecord<String, CloudEvent>(cmAvcEventConsumer.cmEventsTopicName, 0, 0, testEventKey, testCloudEventSent)
         when: 'the event is consumed and forwarded to target topic'
-            objectUnderTest.consumeAndForward(consumerRecordReceived)
+            cmAvcEventConsumer.consumeAndForward(consumerRecordReceived)
         then: 'the consumer record can be read from the target topic within 2 seconds'
             def consumerRecordOnTargetTopic = cloudEventKafkaConsumer.poll(Duration.ofMillis(2000)).iterator().next()
         and: 'the target event has the same key as the source event to maintain the ordering in a partition'
@@ -98,51 +97,35 @@ class CmAvcEventConsumerSpec extends MessagingBaseSpec {
 
     def 'Consume and process CM Avc Event with #scenario. [test B, using specific topic]'() {
         given: 'a cloud event is created with source ONAP-DMI-PLUGIN'
-            def testCloudEventSent = buildCloudEvent(sourceSystem, 'some-cmhandle-id', validAvcEventAsJson)
+            def sourceSystem = 'ONAP-DMI-PLUGIN'
+            def testCloudEventSent = buildCloudEvent(sourceSystem, 'some-cmhandle-id')
         and: 'a separate topic for this test'
-            objectUnderTest.cmEventsTopicName = 'some-topic-for-Test-B'
+            cmAvcEventConsumer.cmEventsTopicName = 'some-topic-for-Test-B'
         and: 'inventory persistence service has #scenario'
-            def compositeState = new CompositeState(dataSyncEnabled: dataSyncEnabled)
-            mockInventoryPersistence.getCmHandleState(_) >> compositeState
+            def compositeState = new CompositeState(dataSyncEnabled: dataSyncFlag)
+            1 * mockInventoryPersistence.getCmHandleState(_) >> compositeState
         and: 'event has source system as ONAP-DMI-PLUGIN and key(cmHandleId) and value as cloud event'
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>(objectUnderTest.cmEventsTopicName, 0, 0, testEventKey, testCloudEventSent)
-            if (sourceSystem!=null) {
-                consumerRecord.headers().add('ce_source', sourceSystem.getBytes(Charset.defaultCharset()))
-            }
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>(cmAvcEventConsumer.cmEventsTopicName, 0, 0, testEventKey, testCloudEventSent)
+            consumerRecord.headers().add('ce_source', sourceSystem.getBytes(Charset.defaultCharset()))
         when: 'the event is consumed'
-            objectUnderTest.consumeAndForward(consumerRecord)
+            cmAvcEventConsumer.consumeAndForward(consumerRecord)
         then: 'cm avc event is processed for updating the cached data'
             expectedCallToProcessCmAvcEvent * mockCmAvcEventService.processCmAvcEvent(testEventKey, _) >> {args ->
-                {  assert args[1] instanceof AvcEvent }
+                {
+                    assert args[1] instanceof AvcEvent
+                }
             }
         where: 'following scenarios are used'
-            scenario                          | sourceSystem      | dataSyncEnabled || expectedCallToProcessCmAvcEvent
-            'source ONAP, data sync enabled'  | 'ONAP-DMI-PLUGIN' | true            || 1
-            'source ONAP, data sync disabled' | 'ONAP-DMI-PLUGIN' | false           || 0
-            'other source, data sync enabled' | 'other'           | true            || 0
+            scenario                  | dataSyncFlag || expectedCallToProcessCmAvcEvent
+            'data sync flag enabled'  | true         || 1
+            'data sync flag disabled' | false        || 0
+
     }
 
-    def 'Forward non-avc invalid event with source ONAP-DMI-PLUGIN. [test C, using specific topic]'() {
-        given: 'an non-avc cloud event'
-            def someJsonForOtherStructure = '{"some attribute":"for other event"}'
-            def testCloudEventSent = buildCloudEvent(onapDmiSourceSystem, 'some-cmhandle-id', someJsonForOtherStructure)
-        and: 'a separate topic for this test'
-            objectUnderTest.cmEventsTopicName = 'some-topic-for-Test-C'
-        and: 'inventory persistence service has data sync enabled for any node'
-            def compositeState = new CompositeState(dataSyncEnabled: true)
-            mockInventoryPersistence.getCmHandleState(_) >> compositeState
-        and: 'event has source system as ONAP-DMI-PLUGIN and key(cmHandleId) and value as cloud event'
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>(objectUnderTest.cmEventsTopicName, 0, 0, testEventKey, testCloudEventSent)
-            consumerRecord.headers().add('ce_source', onapDmiSourceSystem.getBytes(Charset.defaultCharset()))
-        when: 'the event is consumed'
-            objectUnderTest.consumeAndForward(consumerRecord)
-        then: 'no AVC event processing takes place'
-            0 * mockCmAvcEventService.processCmAvcEvent(testEventKey, _)
-    }
+    def buildCloudEvent(sourceSystem, cmHandleId) {
 
-    def buildCloudEvent(sourceSystem, cmHandleId, sourceEvent) {
         return CloudEventBuilder.v1()
-            .withData(jsonObjectMapper.asJsonBytes(sourceEvent))
+            .withData(jsonObjectMapper.asJsonBytes(validAvcEventAsJson))
             .withId('sample-eventid')
             .withType('sample-test-type')
             .withSource(URI.create(sourceSystem as String))

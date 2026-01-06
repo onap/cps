@@ -20,9 +20,6 @@
 
 package org.onap.cps.integration.functional.ncmp.inventory
 
-import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.onap.cps.events.LegacyEvent
-import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NcmpResponseStatus
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
@@ -31,14 +28,9 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 
-import java.time.Duration
-
 class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyInventoryFacadeImpl objectUnderTest
-
-    KafkaConsumer<String, LegacyEvent> kafkaConsumer
-
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
@@ -53,9 +45,9 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
     def 'Update of CM-handle with new or unchanged alternate ID succeeds.'() {
         given: 'DMI will return modules when requested'
             dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2']]
-        and: 'existing CM-handle with alternate ID: #oldAlternateId'
+        and: 'existing CM-handle with alternate ID: $oldAlternateId'
             registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, oldAlternateId)
-        when: 'CM-handle is registered for update with new alternate ID: #newAlternateId'
+        when: 'CM-handle is registered for update with new alternate ID: $newAlternateId'
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: newAlternateId)
             def dmiPluginRegistrationResponse =
                     objectUnderTest.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate]))
@@ -65,7 +57,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             assert objectUnderTest.getNcmpServiceCmHandle('ch-1').alternateId == expectedAlternateId
         cleanup: 'deregister CM handles'
             deregisterCmHandle(DMI1_URL, 'ch-1')
-        where: 'following alternate ids are used'
+        where:
             oldAlternateId | newAlternateId || expectedAlternateId
             ''             | ''             || ''
             ''             | 'new'          || 'new'
@@ -97,6 +89,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             def cmHandleId = 'ch-id-for-update'
             dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleId] = ['M1', 'M2']
         when: 'a CM-handle is registered for creation'
+
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId)
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
             def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
@@ -104,8 +97,8 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
         then: 'the module sync watchdog is triggered'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
-        and: 'flush and check there are 2 cm handle registration events (state transition from NONE to ADVISED and ADVISED to READY)'
-            assert getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2).size() == 2
+        and: 'flush the latest cm handle registration events( state transition from NONE to ADVISED and ADVISED to READY)'
+            getLatestConsumerRecordsWithMaxPollOf1Second(2)
         and: 'cm handle updated with the data producer identifier'
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'my-data-producer-id')
             def dmiPluginRegistrationForUpdate = new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate])
@@ -113,7 +106,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponseForUpdate.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
         and: 'get the latest message'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(1)
         and: 'the message has the updated data producer identifier'
             def notificationMessages = []
             for (def consumerRecord : consumerRecords) {
@@ -125,9 +118,4 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             deregisterCmHandle(DMI1_URL, cmHandleId)
     }
 
-    def subscribeAndClearPreviousMessages(consumerGroupId, topicName) {
-        kafkaConsumer = KafkaTestContainer.getLegacyEventConsumer(consumerGroupId)
-        kafkaConsumer.subscribe([topicName])
-        kafkaConsumer.poll(Duration.ofMillis(500))
-    }
 }

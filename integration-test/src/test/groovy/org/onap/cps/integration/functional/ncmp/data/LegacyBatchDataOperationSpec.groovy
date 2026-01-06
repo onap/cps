@@ -21,6 +21,8 @@
 package org.onap.cps.integration.functional.ncmp.data
 
 import io.cloudevents.CloudEvent
+import io.cloudevents.kafka.CloudEventDeserializer
+import java.time.Duration
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
@@ -30,8 +32,6 @@ import org.onap.cps.ncmp.events.async1_0_0.Response
 import org.springframework.http.MediaType
 import spock.util.concurrent.PollingConditions
 
-import java.time.Duration
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
@@ -40,7 +40,7 @@ class LegacyBatchDataOperationSpec extends CpsIntegrationSpecBase {
     KafkaConsumer kafkaConsumer
 
     def setup() {
-        kafkaConsumer = KafkaTestContainer.getCloudEventConsumer('test-group')
+        kafkaConsumer = KafkaTestContainer.getConsumer('test-group', CloudEventDeserializer.class)
         kafkaConsumer.subscribe(['legacy-batch-topic'])
         kafkaConsumer.poll(Duration.ofMillis(500))
         dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
@@ -90,7 +90,7 @@ class LegacyBatchDataOperationSpec extends CpsIntegrationSpecBase {
                     .andExpect(status().is2xxSuccessful())
 
         then: 'there is one kafka message'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
+            def consumerRecords = kafkaConsumer.poll(Duration.ofMillis(1000))
             assert consumerRecords.size() == 1
 
         and: 'it is a cloud event'

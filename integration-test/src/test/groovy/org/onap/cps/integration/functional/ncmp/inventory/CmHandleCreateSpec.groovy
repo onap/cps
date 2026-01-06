@@ -21,9 +21,6 @@
 package org.onap.cps.integration.functional.ncmp.inventory
 
 
-import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.onap.cps.events.LegacyEvent
-import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NcmpResponseStatus
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
@@ -33,21 +30,15 @@ import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
-import spock.util.concurrent.PollingConditions
-
-import java.time.Duration
 
 class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyInventoryFacadeImpl objectUnderTest
-    def uniqueId = 'my-new-cm-handle'
-
-    KafkaConsumer<String, LegacyEvent> kafkaConsumer
+    def uniqueId = 'ch-unique-id-for-create-test'
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
         subscribeAndClearPreviousMessages('test-group', 'ncmp-events')
-        clearPreviousInstrumentation()
     }
 
     def cleanup() {
@@ -60,11 +51,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
             dmiDispatcher1.moduleNamesPerCmHandleId[uniqueId] = ['M1', 'M2']
         when: 'a CM-handle is registered for creation'
-            def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: uniqueId,
-                                                           alternateId: 'fdn1',
-                                                           moduleSetTag: 'tag1',
-                                                           dataProducerIdentifier: 'prod1',
-                                                           publicProperties: [color:'green'])
+            def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: uniqueId, dataProducerIdentifier: 'my-data-producer-identifier')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
             def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'registration gives successful response'
@@ -77,55 +64,27 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(uniqueId).cmHandleState
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(uniqueId).moduleName.sort()
-        then: 'get the last 2 messages and related headers'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2)
-            def messages = []
-            def headerMaps = []
-            consumerRecords.each { consumerRecord ->
-                messages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEvent))
-                headerMaps.add(getHeadersAsMap(consumerRecord))
+        then: 'get the latest messages'
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(2)
+        and: 'both converted messages are for the correct cm handle'
+            def notificationMessages = []
+            for (def consumerRecord : consumerRecords) {
+                notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEvent))
             }
-        and: 'both messages have the correct common attributes (that did not change)'
-            assert messages.event.every {
-                it.cmHandleId == uniqueId &&
-                it.alternateId == 'fdn1' &&
-                it.moduleSetTag == 'tag1' &&
-                it.dataProducerIdentifier == 'prod1'
-            }
-        and: 'the header fields are populated correctly and stored as kafka headers too'
-            validateEventHeaders(messages[0], headerMaps[0], 'create')
-            validateEventHeaders(messages[1], headerMaps[1], 'update')
-        and: 'the first lcm event has no old values and the initial attributes as new values state ADVISED'
-            with(messages[0].event) {
-                assert oldValues == null
-                assert newValues.cmHandleState.value() == 'ADVISED'
-                assert newValues.dataSyncEnabled == null
-                assert newValues.cmHandleProperties[0] == [color:'green']
-            }
-        and: 'the next event is about update to READY state (new value), the old value for state is ADVISED'
-            assert messages[1].event.oldValues.cmHandleState.value() == 'ADVISED'
-            assert messages[1].event.newValues.cmHandleState.value() == 'READY'
-        and: 'the cm handle (public) properties have not changed and are therefore null for old and new values'
-            assert messages[1].event.oldValues.cmHandleProperties == null
-            assert messages[1].event.newValues.cmHandleProperties == null
-        and: 'the data sync flag goes from undefined to false'
-            assert messages[1].event.oldValues.dataSyncEnabled == null
-            assert messages[1].event.newValues.dataSyncEnabled == false
+            assert notificationMessages.event.cmHandleId == [ uniqueId, uniqueId ]
+        and: 'the oldest event is about the update to ADVISED state and it has a data producer id'
+            assert notificationMessages[0].event.newValues.cmHandleState.value() == 'ADVISED'
+            assert notificationMessages[0].event.dataProducerIdentifier == 'my-data-producer-identifier'
+        and: 'the next event is about update to READY state and it has the same data producer identifier as in in ADVISED state'
+            assert notificationMessages[1].event.newValues.cmHandleState.value() == 'READY'
+            assert notificationMessages[1].event.dataProducerIdentifier == 'my-data-producer-identifier'
         and: 'there are no more messages to be read'
-            assert getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1).size() == 0
-        and: 'instrumentation has recorded 2 events (null > ADVISED, ADVISED > READY)'
-            new PollingConditions().within(5) {
-                assert countLcmEventTimerInvocations() == 2
-            }
-        then: 'deregister CM handle'
+            assert getLatestConsumerRecordsWithMaxPollOf1Second(1).size() == 0
+        cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI1_URL, uniqueId)
-        and: 'instrumentation has recorded 2 more events (READY > DELETING, DELETING > null)'
-            new PollingConditions().within(5) {
-                assert countLcmEventTimerInvocations() == 2 + 2
-            }
     }
 
-    def 'CM Handle registration with DMI error during module sync.'() {
+    def 'CM Handle goes to LOCKED state when DMI gives error during module sync.'() {
         given: 'DMI is not available to handle requests'
             dmiDispatcher1.isAvailable = false
         when: 'a CM-handle is registered for creation'
@@ -220,49 +179,6 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             }
         cleanup: 'deregister CM handles'
             deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2'])
-    }
-
-    def subscribeAndClearPreviousMessages(consumerGroupId, topicName) {
-        kafkaConsumer = KafkaTestContainer.getLegacyEventConsumer(consumerGroupId)
-        kafkaConsumer.subscribe([topicName])
-        kafkaConsumer.poll(Duration.ofMillis(500))
-    }
-
-    def getHeadersAsMap(consumerRecord) {
-        def headersAsMap = [:]
-        consumerRecord.headers().each { header ->
-            def value = (new String((byte[]) header.value())).substring(7) // The raw header is prefixed with encoded type
-            headersAsMap.put(header.key(), value)
-        }
-        return headersAsMap
-    }
-
-    def validateEventHeaders(message, headerAsMap, expectedEventType) {
-        with(message) {
-            assert UUID.fromString(eventId) != null
-            assert headerAsMap.get('eventId') == eventId
-            assert eventCorrelationId == uniqueId
-            assert headerAsMap.get('eventCorrelationId') == eventCorrelationId
-            assert timestampIsVeryRecent(eventTime)
-            assert headerAsMap.get('eventTime') == eventTime
-            assert eventSource == 'org.onap.ncmp'
-            assert headerAsMap.get('eventSource') == eventSource
-            assert eventType == 'org.onap.ncmp.cmhandle-lcm-event.'+expectedEventType
-            assert headerAsMap.get('eventType') == eventType
-            assert eventSchema == 'org.onap.ncmp:cmhandle-lcm-event'
-            assert headerAsMap.get('eventSchema') == eventSchema
-            assert eventSchemaVersion == '1.0'
-            assert headerAsMap.get('eventSchemaVersion') == eventSchemaVersion
-        }
-        return true
-    }
-
-    def countLcmEventTimerInvocations() {
-        def totalCountForAllTagCombinations = 0
-        for (def timer : meterRegistry.get('cps.ncmp.lcm.events.send').timers()) {
-            totalCountForAllTagCombinations = totalCountForAllTagCombinations + timer.count()
-        }
-        return totalCountForAllTagCombinations
     }
 
 }

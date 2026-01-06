@@ -45,13 +45,15 @@ import java.time.Duration
 class EventProducerSpec extends MessagingBaseSpec {
 
     def legacyEventKafkaConsumer = new KafkaConsumer<String, LegacyEvent>(eventConsumerConfigProperties('ncmp-group', StringDeserializer))
+
     def testTopic = 'ncmp-events-test'
 
     @SpringBean
-    EventProducer eventProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, cloudEventKafkaTemplateForEos)
+    EventProducer eventProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
+
 
     def 'Produce and Consume Event'() {
         given: 'event key and event data'
@@ -90,13 +92,14 @@ class EventProducerSpec extends MessagingBaseSpec {
         then: 'poll returns one record'
             assert records.size() == 1
         and: 'record key matches the expected event key'
-            assert eventKey == records[0].key
+            def record = records.iterator().next()
+            assert eventKey == record.key
         and: 'record matches the expected event'
             def expectedJsonString = TestUtils.getResourceFileContent('expectedLcmEvent.json')
             def expectedLcmEvent = jsonObjectMapper.convertJsonString(expectedJsonString, LcmEvent.class)
-            assert expectedLcmEvent == jsonObjectMapper.convertJsonString(records[0].value, LcmEvent.class)
+            assert expectedLcmEvent == jsonObjectMapper.convertJsonString(record.value, LcmEvent.class)
         and: 'record header matches the expected parameters'
-            assert SerializationUtils.deserialize(records[0].headers().lastHeader('eventId').value()) == eventId
-            assert SerializationUtils.deserialize(records[0].headers().lastHeader('eventCorrelationId').value()) == eventCorrelationId
+            assert SerializationUtils.deserialize(record.headers().lastHeader('eventId').value()) == eventId
+            assert SerializationUtils.deserialize(record.headers().lastHeader('eventCorrelationId').value()) == eventCorrelationId
     }
 }

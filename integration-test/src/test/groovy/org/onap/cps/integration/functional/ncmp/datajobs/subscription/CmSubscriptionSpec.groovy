@@ -26,6 +26,7 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import io.cloudevents.core.builder.CloudEventBuilder
+import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.CloudEventSerializer
 import java.nio.charset.StandardCharsets
 import java.time.Duration
@@ -65,7 +66,7 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
     def setup() {
         registerCmHandlesForSubscriptions()
         kafkaTestContainer.start()
-        dmiInConsumer = kafkaTestContainer.getCloudEventConsumer('test-group')
+        dmiInConsumer = kafkaTestContainer.getConsumer('test-group', CloudEventDeserializer.class)
         dmiInConsumer.subscribe([dmiInTopic])
         dmiInConsumer.poll(Duration.ofMillis(500))
         testRequestProducer = kafkaTestContainer.createProducer('test-client-id', StringSerializer.class)
@@ -302,7 +303,7 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
     }
 
     def getAllConsumedCorrelationIds() {
-        def consumedEvents = getLatestConsumerRecordsWithMaxPollOf1Second(dmiInConsumer, 1)
+        def consumedEvents = dmiInConsumer.poll(Duration.ofMillis(1000))
         def headersMap = getAllHeaders(consumedEvents)
         return headersMap.get('ce_correlationid')
     }

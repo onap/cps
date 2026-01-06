@@ -44,7 +44,7 @@ class NcmpAsyncRequestResponseEventProducerIntegrationSpec extends MessagingBase
 
     @SpringBean
     EventProducer cpsAsyncRequestResponseEventProducer =
-        new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, cloudEventKafkaTemplateForEos)
+        new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate);
 
 
     @SpringBean

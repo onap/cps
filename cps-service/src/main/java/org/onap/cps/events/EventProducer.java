@@ -29,7 +29,6 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Headers;
 import org.apache.kafka.common.header.internals.RecordHeaders;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.kafka.KafkaException;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
@@ -50,13 +49,10 @@ public class EventProducer {
      * <a href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
      */
     @Qualifier("legacyEventKafkaTemplate")
-    private final KafkaTemplate<String, LegacyEvent> legacyEventKafkaTemplate;
+    private final KafkaTemplate<String, LegacyEvent> legacyKafkaEventTemplate;
 
     @Qualifier("cloudEventKafkaTemplate")
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
-
-    @Qualifier("cloudEventKafkaTemplateForEos")
-    private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplateForEos;
 
     /**
      * Generic CloudEvent sender.
@@ -68,7 +64,7 @@ public class EventProducer {
     public void sendCloudEvent(final String topicName, final String eventKey, final CloudEvent event) {
         final CompletableFuture<SendResult<String, CloudEvent>> eventFuture =
                 cloudEventKafkaTemplate.send(topicName, eventKey, event);
-        eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e, false));
+        eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e));
     }
 
     /**
@@ -82,10 +78,26 @@ public class EventProducer {
      */
     public void sendLegacyEvent(final String topicName, final String eventKey, final LegacyEvent event) {
         final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture =
-                legacyEventKafkaTemplate.send(topicName, eventKey, event);
+                legacyKafkaEventTemplate.send(topicName, eventKey, event);
         handleLegacyEventCallback(topicName, eventFuture);
     }
 
+    /**
+     * Legacy Event sender with headers. Schemas that implement LegacyEvent are eligible to use this method.
+     *
+     * @param topicName    valid topic name
+     * @param eventKey     message key
+     * @param eventHeaders event headers
+     * @param event        message payload
+     */
+    public void sendLegacyEvent(final String topicName, final String eventKey, final Headers eventHeaders,
+                                final LegacyEvent event) {
+        final ProducerRecord<String, LegacyEvent> producerRecord =
+                new ProducerRecord<>(topicName, null, eventKey, event, eventHeaders);
+        final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture =
+                legacyKafkaEventTemplate.send(producerRecord);
+        handleLegacyEventCallback(topicName, eventFuture);
+    }
 
     /**
      * Legacy Event sender with headers in a Map. Schemas that implement LegacyEvent are eligible to use this method.
@@ -103,26 +115,14 @@ public class EventProducer {
         final ProducerRecord<String, LegacyEvent> producerRecord =
             new ProducerRecord<>(topicName, null, eventKey, legacyEvent, headers);
         final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture =
-            legacyEventKafkaTemplate.send(producerRecord);
+            legacyKafkaEventTemplate.send(producerRecord);
         handleLegacyEventCallback(topicName, eventFuture);
     }
 
-    /**
-     * Generic CloudEvent sender ensuring Exactly Once Semantics behaviour.
-     *
-     * @param topicName valid topic name
-     * @param eventKey  message key
-     * @param event     message payload
-     */
-    public void sendCloudEventUsingEos(final String topicName, final String eventKey, final CloudEvent event) {
-        final CompletableFuture<SendResult<String, CloudEvent>> eventFuture =
-                cloudEventKafkaTemplateForEos.send(topicName, eventKey, event);
-        eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e, true));
-    }
 
     private void handleLegacyEventCallback(final String topicName,
             final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture) {
-        eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e, false));
+        eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e));
     }
 
     private Headers convertToKafkaHeaders(final Map<String, Object> headersAsMap) {
@@ -131,16 +131,12 @@ public class EventProducer {
         return headers;
     }
 
-    private static void logOutcome(final String topicName, final SendResult<String, ?> result, final Throwable e,
-            final boolean throwKafkaException) {
+    private static void logOutcome(final String topicName, final SendResult<String, ?> result, final Throwable e) {
         if (e == null) {
             final Object event = result.getProducerRecord().value();
             log.debug("Successfully sent event to topic : {} , Event : {}", topicName, event);
         } else {
             log.error("Unable to send event to topic : {} due to {}", topicName, e.getMessage());
-            if (throwKafkaException && e instanceof KafkaException) {
-                throw (KafkaException) e;
-            }
         }
     }
 
