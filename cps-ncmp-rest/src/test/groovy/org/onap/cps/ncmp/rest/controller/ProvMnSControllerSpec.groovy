@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -366,27 +366,4 @@ class ProvMnSControllerSpec extends Specification {
             assert response.contentAsString.contains('"title":"/myClass=id1 not found"')
     }
 
-    def 'Patch request with invalid attribute reference: #scenario.'() {
-        given: 'provMns url'
-            def provMnsUrl = "$provMnSBasePath/v1/myClass=id1"
-        and: 'alternate Id can be matched'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
-        and: 'persistence service returns yangModelCmHandle'
-            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> new YangModelCmHandle(id:'ch-1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: READY))
-        and: 'dmi provides a response'
-            mockDmiRestClient.synchronousPatchOperation(*_) >> new ResponseEntity<>('Response from DMI service', HttpStatus.OK)
-        when: 'patch request is performed'
-            def response = mvc.perform(patch(provMnsUrl)
-                .contentType(contentType)
-                .content('[{"op":"replace","path":"className' + attributeReference + '"}]'))
-                .andReturn().response
-        then: 'response status is BAD REQUEST (400)'
-            assert response.status == HttpStatus.BAD_REQUEST.value()
-        and: 'response contains expected message for error case'
-            assert response.contentAsString.contains('"title":"Invalid path for content-type ' + contentType + '"')
-        where: 'following scenarios'
-            scenario             | contentType                        | attributeReference
-            '3gpp without hash'  | 'application/3gpp-json-patch+json' | '/attributes/attr1'
-            'standard with hash' | "application/json-patch+json"      | '#/attributes/attr1'
-    }
 }

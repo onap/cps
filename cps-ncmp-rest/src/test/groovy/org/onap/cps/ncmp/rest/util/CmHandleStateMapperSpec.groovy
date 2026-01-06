@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2026  OpenInfra Foundation Europe
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.rest.util
 
 import org.mapstruct.factory.Mappers
+import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
@@ -36,8 +37,7 @@ import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_S
 
 class CmHandleStateMapperSpec extends Specification {
 
-    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-        .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
+    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
     def objectUnderTest = Mappers.getMapper(CmHandleStateMapper)
 
     def 'Composite State to CmHandleCompositeState'() {
@@ -61,24 +61,30 @@ class CmHandleStateMapperSpec extends Specification {
             assert result.dataSyncState.operational.getSyncState() != null
     }
 
-    def 'Handling null state.'() {
+    def 'Convert composite datastore that is null.'() {
         expect: 'converting null returns null'
-            CmHandleStateMapper.toDataStores(null) == null
+            assert CmHandleStateMapper.toDataStores(null) == null
     }
 
-    def 'Internal to External Lock Reason Mapping of #scenario'() {
+    def 'Convert empty composite datastore.'() {
+        when: 'converting a empty data stores object'
+            def result = CmHandleStateMapper.toDataStores(new CompositeState.DataStores())
+        then: 'result not null but both datastores are null'
+            assert result.operational == null
+            assert result.running == null
+    }
+
+    def 'Internal to External Lock Reason Mapping of #scenario.'() {
         given: 'a LOCKED composite state with locked reason of #scenario'
-        def compositeState = new CompositeStateBuilder()
-                .withCmHandleState(CmHandleState.LOCKED)
-                .withLockReason(lockReason, '').build()
+            def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED).withLockReason(lockReason, '').build()
         when: 'the composite state is mapped to a CMHandle composite state'
-        def result = objectUnderTest.toCmHandleCompositeStateExternalLockReason(compositeState)
+            def result = objectUnderTest.toCmHandleCompositeStateExternalLockReason(compositeState)
         then: 'the composite state contains the expected lock Reason and details'
-        result.getLockReason().getReason() == (expectedExternalLockReason as String)
-        where:
-        scenario             | lockReason         || expectedExternalLockReason
-        'MODULE_SYNC_FAILED' | MODULE_SYNC_FAILED || MODULE_SYNC_FAILED
-        'null value'         | null               || LOCKED_MISBEHAVING
+            assert result.getLockReason().getReason() == (expectedExternalLockReason as String)
+        where: 'following lock states are used'
+            scenario             | lockReason         || expectedExternalLockReason
+            'MODULE_SYNC_FAILED' | MODULE_SYNC_FAILED || MODULE_SYNC_FAILED
+            'null value'         | null               || LOCKED_MISBEHAVING
     }
 
 }
