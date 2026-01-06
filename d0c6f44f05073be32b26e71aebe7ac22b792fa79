@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b75d33a_98a3aa38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-06T11:41:36Z",
+      "side": 1,
+      "message": "You should always explain the problem being resolved and the solution:\n- A delta report with null or empty source/target would generate a  cloud event with null source and target data.\n\n- The patch fixed the issue and the source and target data in cloud event are populated only when they are present in delta report.",
+      "revId": "d0c6f44f05073be32b26e71aebe7ac22b792fa79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18b196e7_fc1f30d0",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-06T11:41:36Z",
+      "side": 1,
+      "message": "sourceData \u003d deltaReport.getSourceData() and\ntargetData \u003d deltaReport.getTargetData()",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "revId": "d0c6f44f05073be32b26e71aebe7ac22b792fa79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
