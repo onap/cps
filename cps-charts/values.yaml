@@ -130,14 +130,14 @@ dmiStub:
   deployment1:
     containerPort: 8092
   deployment2:
-    containerPort: 8093
+    containerPort: 8092
   service1:
     type: NodePort
     port: 8092
     nodePort: 30092
   service2:
     type: NodePort
-    port: 8093
+    port: 8092
     nodePort: 31092
   env:
     KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka.default.svc.cluster.local:9092"
@@ -158,15 +158,34 @@ dmiStub:
   livenessProbe:
     deployment1:
       httpGet:
-        path: /actuator/health/readiness
+        path: /actuator/health
+        port: 8092
+      initialDelaySeconds: 60
+      periodSeconds: 30
+      failureThreshold: 5
+      timeoutSeconds: 10
+    deployment2:
+      httpGet:
+        path: /actuator/health
+        port: 8092
+      initialDelaySeconds: 60
+      periodSeconds: 30
+      failureThreshold: 5
+      timeoutSeconds: 10
+  readinessProbe:
+    deployment1:
+      httpGet:
+        path: /actuator/health
         port: 8092
       initialDelaySeconds: 30
       periodSeconds: 10
       failureThreshold: 3
+      timeoutSeconds: 5
     deployment2:
       httpGet:
-        path: /actuator/health/readiness
-        port: 8093
+        path: /actuator/health
+        port: 8092
       initialDelaySeconds: 30
       periodSeconds: 10
       failureThreshold: 3
+      timeoutSeconds: 5
