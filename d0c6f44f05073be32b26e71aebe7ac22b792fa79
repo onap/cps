@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "032e3807_34947a07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-07T05:32:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b75d33a_98a3aa38",
+      "revId": "d0c6f44f05073be32b26e71aebe7ac22b792fa79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18b196e7_fc1f30d0",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-01-06T11:41:36Z",
       "side": 1,
       "message": "sourceData \u003d deltaReport.getSourceData() and\ntargetData \u003d deltaReport.getTargetData()",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "revId": "d0c6f44f05073be32b26e71aebe7ac22b792fa79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c3e6cb8_b8fdba9b",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-07T05:32:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18b196e7_fc1f30d0",
       "range": {
         "startLine": 139,
         "startChar": 12,
