@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9240eeb9_bb6a14a9",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-07T17:33:16Z",
+      "side": 1,
+      "message": "just explain to me one more time what \u0027containerPort\u0027 exactly means, where and when is this PORT used",
+      "range": {
+        "startLine": 131,
+        "startChar": 4,
+        "endLine": 131,
+        "endChar": 17
+      },
+      "revId": "b65c3bec7e8f560fb70150c4f10d4cd0299bba0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9b0d41c_8deeec10",
         "filename": "cps-charts/values.yaml",
         "patchSetId": 2
@@ -55,6 +78,30 @@
       "side": 1,
       "message": "That\u0027s where our problem was. The readiness was getting a 404. When I tested the endpoint it did not contain a path for readiness, hence the failures. Only endpoints were:\n{\n  \"_links\": {\n    \"health\": {\"href\": \"http://localhost:8092/actuator/health\"},\n    \"info\": {\"href\": \"http://localhost:8092/actuator/info\"}\n  }\n}\n\nHealth will ensure we are both live and ready",
       "parentUuid": "d9b0d41c_8deeec10",
+      "range": {
+        "startLine": 161,
+        "startChar": 24,
+        "endLine": 161,
+        "endChar": 30
+      },
+      "revId": "b65c3bec7e8f560fb70150c4f10d4cd0299bba0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "277d40e2_451867bd",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-07T17:33:16Z",
+      "side": 1,
+      "message": "ah, does that not mean we should ADD an endpoint for Reasiness instead?!\n(Springboot configuration?)",
+      "parentUuid": "925d43f4_fc76ac63",
       "range": {
         "startLine": 161,
         "startChar": 24,
