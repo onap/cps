@@ -23,6 +23,14 @@ package org.onap.cps.ncmp.rest.controller;
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
 import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.GATEWAY_TIMEOUT;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE;
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 import io.netty.handler.timeout.TimeoutException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -110,7 +118,7 @@ public class ProvMnSController implements ProvMnS {
         if (patchItems.size() > maxNumberOfPatchOperations) {
             final String title = patchItems.size() + " operations in request, this exceeds the maximum of "
                 + maxNumberOfPatchOperations;
-            throw new ProvMnSException(httpServletRequest.getMethod(), HttpStatus.PAYLOAD_TOO_LARGE, title);
+            throw new ProvMnSException(httpServletRequest.getMethod(), PAYLOAD_TOO_LARGE, title);
         }
         final RequestParameters requestParameters = parameterMapper.extractRequestParameters(httpServletRequest);
         for (final PatchItem patchItem : patchItems) {
@@ -170,18 +178,18 @@ public class ProvMnSController implements ProvMnS {
             final String cmHandleId = alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(alternateId, "/");
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
             if (!StringUtils.hasText(yangModelCmHandle.getDataProducerIdentifier())) {
-                throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.UNPROCESSABLE_ENTITY,
+                throw new ProvMnSException(requestParameters.getHttpMethodName(), UNPROCESSABLE_ENTITY,
                                            PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE);
             }
             if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {
                 final String title = yangModelCmHandle.getId() + " is not in READY state. Current state: "
                     + yangModelCmHandle.getCompositeState().getCmHandleState().name();
-                throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.NOT_ACCEPTABLE, title);
+                throw new ProvMnSException(requestParameters.getHttpMethodName(), NOT_ACCEPTABLE, title);
             }
             return yangModelCmHandle;
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String title = alternateId + " not found";
-            throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.NOT_FOUND, title);
+            throw new ProvMnSException(requestParameters.getHttpMethodName(), NOT_FOUND, title);
         }
     }
 
@@ -214,13 +222,13 @@ public class ProvMnSController implements ProvMnS {
         provMnSException.setTitle(throwable.getMessage());
         final HttpStatus httpStatus;
         if (throwable instanceof PolicyExecutorException) {
-            httpStatus = HttpStatus.CONFLICT;
+            httpStatus = CONFLICT;
         } else if (throwable instanceof DataValidationException) {
-            httpStatus = HttpStatus.BAD_REQUEST;
+            httpStatus = BAD_REQUEST;
         } else if (throwable.getCause() instanceof TimeoutException) {
-            httpStatus = HttpStatus.GATEWAY_TIMEOUT;
+            httpStatus = GATEWAY_TIMEOUT;
         } else {
-            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+            httpStatus = INTERNAL_SERVER_ERROR;
         }
         provMnSException.setHttpStatus(httpStatus);
         log.warn("ProvMns Exception: {}", provMnSException.getTitle());
@@ -241,7 +249,7 @@ public class ProvMnSController implements ProvMnS {
             }
         }
         if (attributesReferenceIncorrect) {
-            throw new ProvMnSException(httpMethodName, HttpStatus.BAD_REQUEST,
+            throw new ProvMnSException(httpMethodName, BAD_REQUEST,
                                         "Invalid path for content-type " + contentType);
         }
     }
