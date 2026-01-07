@@ -11,11 +11,13 @@ spec:
     matchLabels:
       app: {{ include "cps-and-ncmp.name" . }}
       component: dmi-stub
+      instance: dmi-stub-1
   template:
     metadata:
       labels:
         app: {{ include "cps-and-ncmp.name" . }}
         component: dmi-stub
+        instance: dmi-stub-1
     spec:
       containers:
         - name: dmi-stub
@@ -24,6 +26,12 @@ spec:
           ports:
             - containerPort: {{ .Values.dmiStub.deployment1.containerPort }}
           env:
+            - name: DMI_STUB_SERVER_PORT
+              value: "{{ .Values.dmiStub.deployment1.containerPort }}"
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              value: "health,info"
+            - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
+              value: "always"
             {{- range $key, $value := .Values.dmiStub.env }}
             - name: {{ $key }}
               value: "{{ $value }}"
@@ -32,3 +40,5 @@ spec:
             {{- toYaml .Values.dmiStub.resources | nindent 12 }}
           livenessProbe:
             {{- toYaml .Values.dmiStub.livenessProbe.deployment1 | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.dmiStub.readinessProbe.deployment1 | nindent 12 }}

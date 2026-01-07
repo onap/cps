@@ -18,3 +18,4 @@ spec:
   selector:
     app: {{ include "cps-and-ncmp.name" . }}
     component: dmi-stub
+    instance: dmi-stub-2
