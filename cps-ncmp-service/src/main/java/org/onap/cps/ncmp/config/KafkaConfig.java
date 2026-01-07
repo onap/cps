@@ -99,7 +99,8 @@ public class KafkaConfig {
      *
      * @return an instance of legacy Kafka template.
      */
-    @Bean(name = "legacyEventKafkaTemplate")
+    @Bean
+    @Primary
     public KafkaTemplate<String, LegacyEvent> legacyEventKafkaTemplate() {
         final KafkaTemplate<String, LegacyEvent> kafkaTemplate = new KafkaTemplate<>(legacyEventProducerFactory());
         kafkaTemplate.setConsumerFactory(legacyEventConsumerFactory());
@@ -165,8 +166,7 @@ public class KafkaConfig {
      *
      * @return an instance of cloud Kafka template.
      */
-    @Primary
-    @Bean(name = "cloudEventKafkaTemplate")
+    @Bean
     public KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate() {
         final KafkaTemplate<String, CloudEvent> kafkaTemplate = new KafkaTemplate<>(cloudEventProducerFactory());
         kafkaTemplate.setConsumerFactory(cloudEventConsumerFactory());
