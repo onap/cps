@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ae9d3c9_8184a31c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-07T09:04:19Z",
+      "side": 1,
+      "message": "Test cases are already there with null values for source and target data",
+      "revId": "88fac4ab4b1e977919ba97288264c2b74addd441",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
