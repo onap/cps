@@ -16,6 +16,23 @@
       "message": "Postman requests appear to work fine besides the patch as mentioned in commit message",
       "revId": "9b8a2ba53920c81c843830277a6584e55ce1a108",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c311ab50_c0aaee44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-07T13:02:11Z",
+      "side": 1,
+      "message": "All looks good, just need the patch to finish it off now",
+      "revId": "9b8a2ba53920c81c843830277a6584e55ce1a108",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
