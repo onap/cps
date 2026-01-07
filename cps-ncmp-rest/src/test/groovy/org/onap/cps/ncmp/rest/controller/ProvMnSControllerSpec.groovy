@@ -162,7 +162,7 @@ class ProvMnSControllerSpec extends Specification {
             exceptionDuringProcessing                           || expectedHttpStatus               || expectedContent
             new NoAlternateIdMatchFoundException('myTarget')    || HttpStatus.NOT_FOUND             || '"title":"/myClass=id1 not found"'
             new Exception("my message", new TimeoutException()) || HttpStatus.GATEWAY_TIMEOUT       || '"title":"my message"'
-            new Throwable("my message")                         || HttpStatus.INTERNAL_SERVER_ERROR || '"title":"my message"'
+            new Exception("my message")                         || HttpStatus.INTERNAL_SERVER_ERROR || '"title":"my message"'
     }
 
 
@@ -269,7 +269,7 @@ class ProvMnSControllerSpec extends Specification {
         where: 'following media types are used'
             scenario             | contentType            | acceptType                  || expectedHttpStatus
             'Content Type Wrong' | MediaType.TEXT_XML     | MediaType.APPLICATION_JSON  || HttpStatus.UNSUPPORTED_MEDIA_TYPE
-            'Accept Type Wrong'  | patchMediaType | MediaType.TEXT_XML || HttpStatus.NOT_ACCEPTABLE
+            'Accept Type Wrong'  | patchMediaType         | MediaType.TEXT_XML          || HttpStatus.NOT_ACCEPTABLE
     }
 
     def 'Patch request with too many operations.'() {
