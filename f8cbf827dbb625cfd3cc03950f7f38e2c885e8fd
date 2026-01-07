@@ -16,6 +16,24 @@
       "message": "are we not able to use one file for each like we do with cps service?",
       "revId": "f8cbf827dbb625cfd3cc03950f7f38e2c885e8fd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e91d4b7_b6fba582",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-07T17:28:29Z",
+      "side": 1,
+      "message": "No, we are trying to do different things. CPS service is a straight load balancing.\nHere we are creating 2 distinct instances of DMI. Mimicing having more than one actual DMI not one DMI that is load balanced",
+      "parentUuid": "822741fe_16bb8cc6",
+      "revId": "f8cbf827dbb625cfd3cc03950f7f38e2c885e8fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
