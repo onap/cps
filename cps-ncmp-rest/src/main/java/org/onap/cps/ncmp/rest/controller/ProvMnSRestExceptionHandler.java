@@ -43,11 +43,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class ProvMnSRestExceptionHandler {
 
+    @SuppressWarnings("deprecation")
     private static final Map<HttpStatus, String> PROVMNS_ERROR_TYPE_PER_ERROR_CODE = Map.of(
-        HttpStatus.NOT_FOUND, "IE_NOT_FOUND",
+        HttpStatus.BAD_REQUEST, "VALIDATION_ERROR",
+        HttpStatus.CONFLICT, "APPLICATION_LAYER_ERROR",
+        HttpStatus.GATEWAY_TIMEOUT, "APPLICATION_LAYER_ERROR",
+        HttpStatus.INTERNAL_SERVER_ERROR, "APPLICATION_LAYER_ERROR",
         HttpStatus.NOT_ACCEPTABLE, "APPLICATION_LAYER_ERROR",
-        HttpStatus.UNPROCESSABLE_ENTITY, "SERVER_LIMITATION",
-        HttpStatus.PAYLOAD_TOO_LARGE, "SERVER_LIMITATION"
+        HttpStatus.NOT_FOUND, "IE_NOT_FOUND",
+        HttpStatus.PAYLOAD_TOO_LARGE, "SERVER_LIMITATION",
+        HttpStatus.UNPROCESSABLE_ENTITY, "SERVER_LIMITATION"
     );
 
     /**

@@ -39,7 +39,6 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.test.web.servlet.MockMvc
@@ -47,6 +46,18 @@ import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
+import static org.springframework.http.HttpStatus.BAD_REQUEST
+import static org.springframework.http.HttpStatus.CONFLICT
+import static org.springframework.http.HttpStatus.GATEWAY_TIMEOUT
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import static org.springframework.http.HttpStatus.I_AM_A_TEAPOT
+import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE
+import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.OK
+import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
+import static org.springframework.http.HttpStatus.SEE_OTHER
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
+import static org.springframework.http.HttpStatus.UNSUPPORTED_MEDIA_TYPE
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
@@ -103,7 +114,7 @@ class ProvMnSControllerSpec extends Specification {
     int maxNumberOfPatchOperations
 
     static def NO_CONTENT = ''
-    static def STATUS_NOT_RELEVANT = HttpStatus.SEE_OTHER
+    static def STATUS_NOT_RELEVANT = SEE_OTHER
 
     def 'Get resource data #scenario.'() {
         given: 'resource data url'
@@ -121,9 +132,9 @@ class ProvMnSControllerSpec extends Specification {
         and: 'the content is whatever the DMI returned'
             assert response.contentAsString == responseContentFromDmi
         where: 'following responses returned by DMI'
-            scenario         | responseStatusFromDmi    | responseContentFromDmi
-            'happy flow'     | HttpStatus.OK            | 'content from DMI'
-            'error from DMI' | HttpStatus.I_AM_A_TEAPOT | 'error details from DMI'
+            scenario         | responseStatusFromDmi | responseContentFromDmi
+            'happy flow'     | OK                    | 'content from DMI'
+            'error from DMI' | I_AM_A_TEAPOT         | 'error details from DMI'
     }
 
     def 'Get resource data request with #scenario.'() {
@@ -134,17 +145,19 @@ class ProvMnSControllerSpec extends Specification {
         and: 'persistence service returns yangModelCmHandle'
             mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle
         and: 'dmi provides a response'
-            mockDmiRestClient.synchronousGetOperation(*_) >> new ResponseEntity<>('Response from DMI service', HttpStatus.OK)
+            mockDmiRestClient.synchronousGetOperation(*_) >> new ResponseEntity<>('Response from DMI service', OK)
         when: 'get data resource request is performed'
             def response = mvc.perform(get(getUrl)).andReturn().response
         then: 'response status as expected'
             assert response.status == expectedHttpStatus.value()
-        and: 'the body contains the expected data'
-            assert response.contentAsString.contains(expectedInResponseBody)
+        and: 'the body contains the expected type'
+            assert response.contentAsString.contains('"type":"' + expectedType)
+        and: 'the body contains the expected title'
+            assert response.contentAsString.contains('"title":"' + expectedTitle)
         where: 'following scenario'
-            scenario              | yangModelCmHandle           || expectedHttpStatus               | expectedInResponseBody
-            'no data producer id' | cmHandleWithoutDataProducer || HttpStatus.UNPROCESSABLE_ENTITY  | '"title":"Registered DMI does not support the ProvMnS interface."'
-            'cm Handle NOT READY' | cmHandleNotReady            || HttpStatus.NOT_ACCEPTABLE        | '"title":"ch-1 is not in READY state. Current state: ADVISED"'
+            scenario              | yangModelCmHandle           || expectedHttpStatus   | expectedType              | expectedTitle
+            'no data producer id' | cmHandleWithoutDataProducer || UNPROCESSABLE_ENTITY | 'SERVER_LIMITATION'       | 'Registered DMI does not support the ProvMnS interface.'
+            'cm Handle NOT READY' | cmHandleNotReady            || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'ch-1 is not in READY state. Current state: ADVISED'
     }
 
     def 'Get resource data request with Exception: #exceptionDuringProcessing.'() {
@@ -156,13 +169,15 @@ class ProvMnSControllerSpec extends Specification {
             def response = mvc.perform(get(getUrl)).andReturn().response
         then: 'response status is #expectedHttpStatus'
             assert response.status == expectedHttpStatus.value()
-        and: 'the title in the response indicates the fdn that cannot be found'
-            assert response.contentAsString.contains(expectedContent)
+        and: 'the body contains the expected type'
+            assert response.contentAsString.contains('"type":"' + expectedType)
+        and: 'the body contains the expected title'
+            assert response.contentAsString.contains('"title":"' + expectedTitle)
         where: 'following exceptions occur'
-            exceptionDuringProcessing                           || expectedHttpStatus               || expectedContent
-            new NoAlternateIdMatchFoundException('myTarget')    || HttpStatus.NOT_FOUND             || '"title":"/myClass=id1 not found"'
-            new Exception("my message", new TimeoutException()) || HttpStatus.GATEWAY_TIMEOUT       || '"title":"my message"'
-            new Exception("my message")                         || HttpStatus.INTERNAL_SERVER_ERROR || '"title":"my message"'
+            exceptionDuringProcessing                           || expectedHttpStatus    | expectedType              | expectedTitle
+            new NoAlternateIdMatchFoundException('myTarget')    || NOT_FOUND             | 'IE_NOT_FOUND'            | '/myClass=id1 not found'
+            new Exception("my message", new TimeoutException()) || GATEWAY_TIMEOUT       | 'APPLICATION_LAYER_ERROR' | 'my message'
+            new Exception("my message")                         || INTERNAL_SERVER_ERROR | 'APPLICATION_LAYER_ERROR' | 'my message'
     }
 
 
@@ -196,7 +211,7 @@ class ProvMnSControllerSpec extends Specification {
             1 * mockDmiRestClient.synchronousGetOperation(*_) >> {arguments -> def urlTemplateParameters = arguments[1]
                 assert urlTemplateParameters.urlTemplate.contains(expectedParameterInUri)
                 assert urlTemplateParameters.urlVariables().get(parameterName) == expectedParameterValuesInDmiRequest
-                return new ResponseEntity<>('Some response from DMI service', HttpStatus.OK)
+                return new ResponseEntity<>('Some response from DMI service', OK)
             }
         where: 'attributes is populated with the following '
             scenario               | parameterName | parameterInProvMnsRequest   || expectedParameterInUri     || expectedParameterValuesInDmiRequest
@@ -227,12 +242,12 @@ class ProvMnSControllerSpec extends Specification {
         and: 'the response contains the expected content'
             assert response.contentAsString.contains(expectedResponseContent)
         where: 'following scenarios are applied'
-            scenario          | contentMediaType   | jsonBody             | responseStatusFromDmi    | expectedResponseContent  || expectedRespinsStatusFromProvMnS
-            'happy flow 3gpp' | patchMediaType3gpp | patchJsonBody3gpp    | HttpStatus.OK            | 'content from DMI'       || HttpStatus.OK
-            'happy flow'      | patchMediaType     | patchJsonBody        | HttpStatus.OK            | 'content from DMI'       || HttpStatus.OK
-            'error from DMI'  | patchMediaType     | patchJsonBody        | HttpStatus.I_AM_A_TEAPOT | 'content from DMI'       || HttpStatus.I_AM_A_TEAPOT
-            'invalid Json'    | patchMediaType     | patchJsonBodyInvalid | STATUS_NOT_RELEVANT      | '"title":"Parsing error' || HttpStatus.BAD_REQUEST
-            'malformed Json'  | patchMediaType     | '{malformed]'        | STATUS_NOT_RELEVANT      | NO_CONTENT               || HttpStatus.BAD_REQUEST
+            scenario          | contentMediaType   | jsonBody             | responseStatusFromDmi || expectedResponseContent     | expectedRespinsStatusFromProvMnS
+            'happy flow 3gpp' | patchMediaType3gpp | patchJsonBody3gpp    | OK                    || 'content from DMI'          | OK
+            'happy flow'      | patchMediaType     | patchJsonBody        | OK                    || 'content from DMI'          | OK
+            'error from DMI'  | patchMediaType     | patchJsonBody        | I_AM_A_TEAPOT         || 'content from DMI'          | I_AM_A_TEAPOT
+            'invalid Json'    | patchMediaType     | patchJsonBodyInvalid | STATUS_NOT_RELEVANT   || '"type":"VALIDATION_ERROR"' | BAD_REQUEST
+            'malformed Json'  | patchMediaType     | '{malformed]'        | STATUS_NOT_RELEVANT   || NO_CONTENT                  | BAD_REQUEST
     }
 
     def 'Patch request with no permission from Coordination Management (aka Policy Executor).'() {
@@ -250,7 +265,9 @@ class ProvMnSControllerSpec extends Specification {
                     .content(patchJsonBody))
                     .andReturn().response
         then: 'response status is CONFLICT (409)'
-            assert response.status == HttpStatus.CONFLICT.value()
+            assert response.status == CONFLICT.value()
+        and: 'response contains the correct type'
+            assert response.contentAsString.contains('"type":"APPLICATION_LAYER_ERROR"')
         and: 'response contains the message from Policy Executor (as title)'
             assert response.contentAsString.contains('"title":"denied for test"')
     }
@@ -267,9 +284,9 @@ class ProvMnSControllerSpec extends Specification {
         then: 'response status is #expectedHttpStatus'
             assert response.status == expectedHttpStatus.value()
         where: 'following media types are used'
-            scenario             | contentType            | acceptType                  || expectedHttpStatus
-            'Content Type Wrong' | MediaType.TEXT_XML     | MediaType.APPLICATION_JSON  || HttpStatus.UNSUPPORTED_MEDIA_TYPE
-            'Accept Type Wrong'  | patchMediaType         | MediaType.TEXT_XML          || HttpStatus.NOT_ACCEPTABLE
+            scenario             | contentType        | acceptType                 || expectedHttpStatus
+            'Content Type Wrong' | MediaType.TEXT_XML | MediaType.APPLICATION_JSON || UNSUPPORTED_MEDIA_TYPE
+            'Accept Type Wrong'  | patchMediaType     | MediaType.TEXT_XML         || NOT_ACCEPTABLE
     }
 
     def 'Patch request with too many operations.'() {
@@ -287,7 +304,9 @@ class ProvMnSControllerSpec extends Specification {
                     .content(patchItemsJsonRequestBody))
                     .andReturn().response
         then: 'response status is PAYLOAD_TOO_LARGE (413)'
-            assert response.status == HttpStatus.PAYLOAD_TOO_LARGE.value()
+            assert response.status == PAYLOAD_TOO_LARGE.value()
+        and: 'response contains the correct type'
+            assert response.contentAsString.contains('"type":"SERVER_LIMITATION"')
         and: 'response contains a title detail the limitations with the number of operations'
             assert response.contentAsString.contains('"title":"11 operations in request, this exceeds the maximum of 10"')
     }
@@ -311,9 +330,9 @@ class ProvMnSControllerSpec extends Specification {
         and: 'the content is whatever the DMI returned'
             assert response.contentAsString == responseContentFromDmi
         where: 'following responses returned by DMI'
-            scenario         | responseStatusFromDmi    | responseContentFromDmi
-            'happy flow'     | HttpStatus.OK            | 'content from DMI'
-            'error from DMI' | HttpStatus.I_AM_A_TEAPOT | 'error details from DMI'
+            scenario         | responseStatusFromDmi | responseContentFromDmi
+            'happy flow'     | OK                    | 'content from DMI'
+            'error from DMI' | I_AM_A_TEAPOT         | 'error details from DMI'
     }
 
     def 'Put resource data request when cm handle not found.'() {
@@ -327,7 +346,7 @@ class ProvMnSControllerSpec extends Specification {
                 .content(resourceAsJson))
                 .andReturn().response
         then: 'response status NOT FOUND (404)'
-            assert response.status == HttpStatus.NOT_FOUND.value()
+            assert response.status == NOT_FOUND.value()
         and: 'the content indicates the FDN could not be found'
             assert response.contentAsString.contains('"title":"/myClass=id1 not found"')
     }
@@ -348,9 +367,9 @@ class ProvMnSControllerSpec extends Specification {
         and: 'the content is whatever the DMI returned'
             assert response.contentAsString == responseContentFromDmi
         where: 'following responses returned by DMI'
-            scenario         | responseStatusFromDmi    | responseContentFromDmi
-            'happy flow'     | HttpStatus.OK            | 'content from DMI'
-            'error from DMI' | HttpStatus.I_AM_A_TEAPOT | 'error details from DMI'
+            scenario         | responseStatusFromDmi | responseContentFromDmi
+            'happy flow'     | OK                    | 'content from DMI'
+            'error from DMI' | I_AM_A_TEAPOT         | 'error details from DMI'
     }
 
     def 'Delete resource data request when cm handle not found.'() {
@@ -361,7 +380,7 @@ class ProvMnSControllerSpec extends Specification {
         when: 'Delete data resource request is performed'
             def response = mvc.perform(delete(deleteUrl)).andReturn().response
         then: 'response status is the same as what DMI gave'
-            assert response.status == HttpStatus.NOT_FOUND.value()
+            assert response.status == NOT_FOUND.value()
         and: 'the content indicates the FDN could not be found'
             assert response.contentAsString.contains('"title":"/myClass=id1 not found"')
     }
