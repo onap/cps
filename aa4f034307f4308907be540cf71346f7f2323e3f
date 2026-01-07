@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceac198b_ba45a208",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/EventProducerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T13:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b44ac17b_b85cc226",
+      "range": {
+        "startLine": 95,
+        "startChar": 25,
+        "endLine": 95,
+        "endChar": 50
+      },
+      "revId": "aa4f034307f4308907be540cf71346f7f2323e3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbbdadd6_1d3ea944",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0583792_7a290f7d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/events/CloudEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T13:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbbdadd6_1d3ea944",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 26
+      },
+      "revId": "aa4f034307f4308907be540cf71346f7f2323e3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e866d4f_0ca43168",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-01-07T12:36:32Z",
       "side": 1,
       "message": "redundant",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 37
+      },
+      "revId": "aa4f034307f4308907be540cf71346f7f2323e3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ce191f5_a415c581",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/events/CloudEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T13:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e866d4f_0ca43168",
       "range": {
         "startLine": 63,
         "startChar": 12,
@@ -116,6 +188,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2165ecd_0318f6c5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T13:53:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b8317afc_4e6cacde",
+      "range": {
+        "startLine": 145,
+        "startChar": 35,
+        "endLine": 145,
+        "endChar": 39
+      },
+      "revId": "aa4f034307f4308907be540cf71346f7f2323e3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc38ce74_57982024",
@@ -129,6 +225,30 @@
       "writtenOn": "2026-01-07T12:36:32Z",
       "side": 1,
       "message": "verifyLoggingEvent seemed to have been a usefull refactoring not really related to one-semantic. PLease restore that",
+      "range": {
+        "startLine": 167,
+        "startChar": 16,
+        "endLine": 167,
+        "endChar": 33
+      },
+      "revId": "aa4f034307f4308907be540cf71346f7f2323e3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7f0d770_94ce02a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T13:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc38ce74_57982024",
       "range": {
         "startLine": 167,
         "startChar": 16,
@@ -162,6 +282,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b6ea8b0_abfaa5a2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T13:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7740dc0d_e4856412",
+      "range": {
+        "startLine": 87,
+        "startChar": 3,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "aa4f034307f4308907be540cf71346f7f2323e3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4c3f047_2fd4e7cc",
@@ -175,6 +319,30 @@
       "writtenOn": "2026-01-07T12:36:32Z",
       "side": 1,
       "message": "maybe we shoudl keep using getLatestConsumerRecordsWithMaxPollOf1Second",
+      "range": {
+        "startLine": 306,
+        "startChar": 29,
+        "endLine": 306,
+        "endChar": 42
+      },
+      "revId": "aa4f034307f4308907be540cf71346f7f2323e3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4fa0b74_c947face",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T13:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4c3f047_2fd4e7cc",
       "range": {
         "startLine": 306,
         "startChar": 29,
@@ -208,6 +376,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "647338c8_6bc80761",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleCreateSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T13:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97f01945_5f09b7b2",
+      "range": {
+        "startLine": 37,
+        "startChar": 20,
+        "endLine": 37,
+        "endChar": 48
+      },
+      "revId": "aa4f034307f4308907be540cf71346f7f2323e3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bce1d2c_d3013145",
@@ -221,6 +413,30 @@
       "writtenOn": "2026-01-07T12:36:32Z",
       "side": 1,
       "message": "still clear previosu instrumentation in separate method",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 41
+      },
+      "revId": "aa4f034307f4308907be540cf71346f7f2323e3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7651cc57_ab767b8d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleCreateSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T13:53:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bce1d2c_d3013145",
       "range": {
         "startLine": 41,
         "startChar": 8,
