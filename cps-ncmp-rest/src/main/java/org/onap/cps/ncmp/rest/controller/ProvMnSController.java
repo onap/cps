@@ -24,6 +24,14 @@ import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
 import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
 import static org.onap.cps.ncmp.impl.provmns.ParameterMapper.NO_OP;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.GATEWAY_TIMEOUT;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE;
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 import io.netty.handler.timeout.TimeoutException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -108,7 +116,7 @@ public class ProvMnSController implements ProvMnS {
         if (patchItems.size() > maxNumberOfPatchOperations) {
             final String title = patchItems.size() + " operations in request, this exceeds the maximum of "
                 + maxNumberOfPatchOperations;
-            throw new ProvMnSException(httpServletRequest.getMethod(), HttpStatus.PAYLOAD_TOO_LARGE, title, NO_OP);
+            throw new ProvMnSException(httpServletRequest.getMethod(), PAYLOAD_TOO_LARGE, title, NO_OP);
         }
         final RequestParameters requestParameters = parameterMapper.extractRequestParameters(httpServletRequest);
         try {
@@ -131,7 +139,7 @@ public class ProvMnSController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
             final CreateOperationDetails createOperationDetails =
                 operationDetailsFactory.buildCreateOperationDetails(CREATE, requestParameters, resource);
-            checkPermission(yangModelCmHandle, CREATE, requestParameters.toTargetFdn(), createOperationDetails);
+            checkPermission(yangModelCmHandle, requestParameters.toTargetFdn(), createOperationDetails);
             final String targetFdn = requestParameters.toTargetFdn();
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, targetFdn);
@@ -148,7 +156,7 @@ public class ProvMnSController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
             final DeleteOperationDetails deleteOperationDetails =
                 operationDetailsFactory.buildDeleteOperationDetails(requestParameters.toTargetFdn());
-            checkPermission(yangModelCmHandle, DELETE, requestParameters.toTargetFdn(), deleteOperationDetails);
+            checkPermission(yangModelCmHandle, requestParameters.toTargetFdn(), deleteOperationDetails);
             final String targetFdn = requestParameters.toTargetFdn();
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, targetFdn);
@@ -165,26 +173,25 @@ public class ProvMnSController implements ProvMnS {
             final String cmHandleId = alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(alternateId, "/");
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
             if (!StringUtils.hasText(yangModelCmHandle.getDataProducerIdentifier())) {
-                throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.UNPROCESSABLE_ENTITY,
+                throw new ProvMnSException(requestParameters.getHttpMethodName(), UNPROCESSABLE_ENTITY,
                                            PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE, NO_OP);
             }
             if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {
                 final String title = yangModelCmHandle.getId() + " is not in READY state. Current state: "
                     + yangModelCmHandle.getCompositeState().getCmHandleState().name();
-                throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.NOT_ACCEPTABLE,
-                    title, NO_OP);
+                throw new ProvMnSException(requestParameters.getHttpMethodName(), NOT_ACCEPTABLE, title, NO_OP);
             }
             return yangModelCmHandle;
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String title = alternateId + " not found";
-            throw new ProvMnSException(requestParameters.getHttpMethodName(), HttpStatus.NOT_FOUND, title, NO_OP);
+            throw new ProvMnSException(requestParameters.getHttpMethodName(), NOT_FOUND, title, NO_OP);
         }
     }
 
     private void checkPermission(final YangModelCmHandle yangModelCmHandle,
-                                 final OperationType operationType,
                                  final String alternateId,
                                  final OperationDetails operationDetails) {
+        final OperationType operationType = OperationType.fromOperationName(operationDetails.operation());
         final String operationDetailsAsJson = jsonObjectMapper.asJsonString(operationDetails);
         policyExecutor.checkPermission(yangModelCmHandle, operationType, NO_AUTHORIZATION, alternateId,
             operationDetailsAsJson);
@@ -196,11 +203,12 @@ public class ProvMnSController implements ProvMnS {
         for (final PatchItem patchItem : patchItems) {
             final OperationDetails operationDetails =
                 operationDetailsFactory.buildOperationDetails(requestParameters, patchItem);
-            final OperationType operationType = OperationType.fromOperationName(operationDetails.operation());
             try {
-                checkPermission(yangModelCmHandle, operationType, requestParameters.toTargetFdn(), operationDetails);
+                checkPermission(yangModelCmHandle, requestParameters.toTargetFdn(), operationDetails);
             } catch (final Exception exception) {
-                throw toProvMnSException("PATCH", exception, operationType.name());
+                final String httpMethodName = "PATCH";
+                final OperationType operationType = OperationType.fromOperationName(operationDetails.operation());
+                throw toProvMnSException(httpMethodName, exception, operationType.name());
             }
         }
     }
@@ -216,13 +224,13 @@ public class ProvMnSController implements ProvMnS {
         provMnSException.setBadOp(badOp);
         final HttpStatus httpStatus;
         if (exception instanceof PolicyExecutorException) {
-            httpStatus = HttpStatus.CONFLICT;
+            httpStatus = CONFLICT;
         } else if (exception instanceof DataValidationException) {
-            httpStatus = HttpStatus.BAD_REQUEST;
+            httpStatus = BAD_REQUEST;
         } else if (exception.getCause() instanceof TimeoutException) {
-            httpStatus = HttpStatus.GATEWAY_TIMEOUT;
+            httpStatus = GATEWAY_TIMEOUT;
         } else {
-            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+            httpStatus = INTERNAL_SERVER_ERROR;
         }
         provMnSException.setHttpStatus(httpStatus);
         log.warn("ProvMns Exception: {}", provMnSException.getTitle());
