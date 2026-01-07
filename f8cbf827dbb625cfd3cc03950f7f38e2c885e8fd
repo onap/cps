@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "822741fe_16bb8cc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-07T16:03:36Z",
+      "side": 1,
+      "message": "are we not able to use one file for each like we do with cps service?",
+      "revId": "f8cbf827dbb625cfd3cc03950f7f38e2c885e8fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
