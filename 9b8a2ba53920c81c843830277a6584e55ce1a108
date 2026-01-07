@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f6feaa4_b4f7dc73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-07T11:37:48Z",
+      "side": 1,
+      "message": "Postman requests appear to work fine besides the patch as mentioned in commit message",
+      "revId": "9b8a2ba53920c81c843830277a6584e55ce1a108",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
