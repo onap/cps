@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe840eb3_a9aa5493",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-08T11:48:45Z",
+      "side": 1,
+      "message": "This is to do with the traffic flow. \n\nYour browser\n  ↓\nNode IP : 30092   (nodePort)\n  ↓\nService : 8092    (service.port)\n  ↓\nPod : 8092        (containerPort)\n  ↓\nApplication\n\nTechnicaally, the containerPort can be removed as it is mostly documentary and the service.port will direct the traffic but it is best practice to keep it there",
+      "parentUuid": "9240eeb9_bb6a14a9",
+      "range": {
+        "startLine": 131,
+        "startChar": 4,
+        "endLine": 131,
+        "endChar": 17
+      },
+      "revId": "b65c3bec7e8f560fb70150c4f10d4cd0299bba0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9025da13_184a33bb",
         "filename": "cps-charts/values.yaml",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2026-01-08T09:37:43Z",
       "side": 1,
       "message": "why is this declared again",
+      "range": {
+        "startLine": 136,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 14
+      },
+      "revId": "b65c3bec7e8f560fb70150c4f10d4cd0299bba0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d7e86d4_cdde1b03",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-08T11:48:45Z",
+      "side": 1,
+      "message": "See above",
+      "parentUuid": "9025da13_184a33bb",
       "range": {
         "startLine": 136,
         "startChar": 4,
@@ -135,6 +183,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dec9a89_a2e19828",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-08T11:48:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "277d40e2_451867bd",
+      "range": {
+        "startLine": 161,
+        "startChar": 24,
+        "endLine": 161,
+        "endChar": 30
+      },
+      "revId": "b65c3bec7e8f560fb70150c4f10d4cd0299bba0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8afba270_7934664c",
@@ -184,6 +256,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b62d6dd_1b6fb66c",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-08T11:48:45Z",
+      "side": 1,
+      "message": "I\u0027ve done some testing and the DMI can access the liveness probe. Presumably the main issue that needed fixing was the instance stuff that was added. The readiness probe can be added back in with the next commit",
+      "parentUuid": "25607b2e_13bf939e",
+      "range": {
+        "startLine": 178,
+        "startChar": 24,
+        "endLine": 178,
+        "endChar": 30
+      },
+      "revId": "b65c3bec7e8f560fb70150c4f10d4cd0299bba0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea248d09_81229b4f",
         "filename": "cps-charts/values.yaml",
         "patchSetId": 2
@@ -195,6 +291,30 @@
       "writtenOn": "2026-01-07T17:12:16Z",
       "side": 1,
       "message": "should this not be readiness ?, given line #175",
+      "range": {
+        "startLine": 186,
+        "startChar": 24,
+        "endLine": 186,
+        "endChar": 30
+      },
+      "revId": "b65c3bec7e8f560fb70150c4f10d4cd0299bba0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7b5df02_2249e5ba",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-08T11:48:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ea248d09_81229b4f",
       "range": {
         "startLine": 186,
         "startChar": 24,
