@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e1d8c59_d1ffa5b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 74
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-08T09:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "847142fe_1ab86a23",
+      "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbe47c21_e6567b30",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-01-08T08:44:41Z",
       "side": 1,
       "message": "Why have you changed the private methods to public.\nis it required?",
+      "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98b63988_98fe21ed",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 74
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-08T09:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbe47c21_e6567b30",
       "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -69,6 +105,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04b8cace_256acfde",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 74
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-08T09:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2883adf1_a15ffb6b",
+      "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abbd13b3_bcc6713f",
@@ -86,6 +140,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "350785b4_7c0c6aef",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 74
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-08T09:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abbd13b3_bcc6713f",
+      "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35c53c8b_720a329a",
@@ -99,6 +171,30 @@
       "writtenOn": "2026-01-08T08:44:41Z",
       "side": 1,
       "message": "Indentation is improper in both the test cases",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 48
+      },
+      "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c28c8401_cd285d3f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 74
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-08T09:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35c53c8b_720a329a",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -132,6 +228,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cea8f350_9d4b3bad",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 74
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-08T09:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e917110f_794d9910",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 52
+      },
+      "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e72d097_b85a2b32",
@@ -145,6 +265,30 @@
       "writtenOn": "2026-01-08T08:44:41Z",
       "side": 1,
       "message": "deltaReports",
+      "range": {
+        "startLine": 47,
+        "startChar": 27,
+        "endLine": 47,
+        "endChar": 36
+      },
+      "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee7adc03_38251b3c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 74
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-08T09:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e72d097_b85a2b32",
       "range": {
         "startLine": 47,
         "startChar": 27,
@@ -178,6 +322,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd1077a9_002ecb45",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 74
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-08T09:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4cefa86_79025f7f",
+      "range": {
+        "startLine": 49,
+        "startChar": 15,
+        "endLine": 49,
+        "endChar": 47
+      },
+      "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbb40fb3_65a4aa98",
@@ -191,6 +359,30 @@
       "writtenOn": "2026-01-08T08:44:41Z",
       "side": 1,
       "message": "Change this to \"thrownException\"",
+      "range": {
+        "startLine": 50,
+        "startChar": 15,
+        "endLine": 50,
+        "endChar": 24
+      },
+      "revId": "4901b38614112c548ead2fafea9e47dd6fce57fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c2ab88b_90417f5a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 74
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-08T09:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbb40fb3_65a4aa98",
       "range": {
         "startLine": 50,
         "startChar": 15,
