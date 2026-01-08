@@ -3,7 +3,7 @@
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
- *  Modifications Copyright (C) 2025 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2025 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
