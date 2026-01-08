@@ -18,6 +18,69 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c31b0566_5eb0e220",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-08T12:04:05Z",
+      "side": 1,
+      "message": "fix merge conflict",
+      "revId": "27f2f2d129d63c2daf0d41f815513b973ee221ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6e5ad25_50902400",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-08T12:04:05Z",
+      "side": 1,
+      "message": "will this always be the correct exception ?",
+      "range": {
+        "startLine": 123,
+        "startChar": 21,
+        "endLine": 123,
+        "endChar": 63
+      },
+      "revId": "27f2f2d129d63c2daf0d41f815513b973ee221ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "867cf52e_f85be164",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-08T12:04:05Z",
+      "side": 1,
+      "message": "2025-2026",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 42
+      },
+      "revId": "27f2f2d129d63c2daf0d41f815513b973ee221ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fac07224_affd3ae3",
