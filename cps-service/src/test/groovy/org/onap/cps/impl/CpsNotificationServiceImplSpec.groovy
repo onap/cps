@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 TechMahindra Ltd.
+ * Copyright (C) 2025 Deutsche Telekom AG
  * Modifications Copyright (C) 2025 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
