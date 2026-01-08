@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec03d6c6_4e699f76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-08T10:07:29Z",
+      "side": 1,
+      "message": "All the files now have correct copyrights info.",
+      "revId": "5e81f243bf2541ff984b857cb83f9c519f1d06ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
