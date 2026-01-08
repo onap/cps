@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57a706e1_25b53241",
+        "filename": "cps-rest/docs/openapi/cpsDataV2Deprecated.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-08T11:20:16Z",
+      "side": 1,
+      "message": "I have the same doubt, I thought if a file is merged and then modified at a later point in time then Modifications Copyright is added. If this can be clarified, I can make the change",
+      "parentUuid": "ec1b3655_193d57d3",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 59
+      },
+      "revId": "329ac1c742f290a20b573a5887952bf12fa69ad1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f296e241_5278cce4",
         "filename": "cps-rest/docs/openapi/cpsQueryV2.yml",
         "patchSetId": 3
