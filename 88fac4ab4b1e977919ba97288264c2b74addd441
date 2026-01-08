@@ -33,6 +33,46 @@
       "message": "Patch Ready for Community Review",
       "revId": "88fac4ab4b1e977919ba97288264c2b74addd441",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08866a71_a3db3355",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-08T08:45:15Z",
+      "side": 1,
+      "message": "ok, but would like to see a quality improvement as outlined below",
+      "revId": "88fac4ab4b1e977919ba97288264c2b74addd441",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb544a49_bc4a4e62",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-08T08:45:15Z",
+      "side": 1,
+      "message": "this is OK but I would like you to do to things:\n1) extract out a standard utility method mapIsPopulated(Map anyMap) ...\n2) add test for these scenarios to cover all branches\n\nif you have the utility method you very easily can test all the method scenarios for \u0027any map\u0027. org.onap.cps.utils.DataMapUtils seems a good place\nand then you just need 2 additional test for toCpsDataUpdatedEvent() for each map being empty or null",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 54
+      },
+      "revId": "88fac4ab4b1e977919ba97288264c2b74addd441",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
