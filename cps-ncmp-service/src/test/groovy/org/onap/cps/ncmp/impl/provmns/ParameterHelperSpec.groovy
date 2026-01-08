@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,9 +23,9 @@ import jakarta.servlet.http.HttpServletRequest
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException
 import spock.lang.Specification
 
-class ParameterMapperSpec extends Specification {
+class ParameterHelperSpec extends Specification {
 
-    def objectUnderTest = new ParameterMapper()
+    def objectUnderTest = new ParameterHelper()
 
     def mockHttpServletRequest = Mock(HttpServletRequest)
 
@@ -59,13 +59,24 @@ class ParameterMapperSpec extends Specification {
             def thrown = thrown(ProvMnSException)
             assert thrown.message == 'GET failed'
         and: 'the title contains the expected error message'
-            assert thrown.title == path + ' not a valid path'
+            assert thrown.title == expectedPathInError + ' not a valid path'
         where: 'the following invalid paths are used'
-            scenario                      | path
-            'no = After (last) class name'| 'ProvMnS/v1/someOtherClass=someId/myClass'
-            'missing ProvMnS prefix'      | 'v1/segment1/myClass=myId'
-            'wrong version'               | 'ProvMnS/wrongVersion/myClass=myId'
-            'empty path'                  | ''
-            'multiple ProvMnS segments'   | 'ProvMnS/v1/myClass=myId/ProvMnS/v2/otherSegment'
+            scenario                       | path                                || expectedPathInError
+            'no = After (last) class name' | 'ProvMnS/v1/myClass1=id/Class2'     || '/myClass1=id/Class2'
+            'attributes in path'           | 'ProvMnS/v1/myClass=id/attributes'  || '/myClass=id/attributes'
+            '#/attributes in path'         | 'ProvMnS/v1/myClass=id#/attributes' || '/myClass=id#/attributes'
+            'missing ProvMnS prefix'       | 'v1/segment1/myClass=id'            || 'v1/segment1/myClass=id'
+            'wrong version'                | 'ProvMnS/wrongVersion/myClass=id'   || 'ProvMnS/wrongVersion/myClass=id'
+            'empty path'                   | ''                                  ||  ''
+    }
+
+    def 'Remove trailing hash.'() {
+        expect: 'hash gets removed only at the end'
+            assert objectUnderTest.removeTrailingHash(fdn) == expectedResult
+        where: 'following fdn are used'
+            fdn                        || expectedResult
+            'fdn with trailing#'       || 'fdn with trailing'
+            'fdn without hash'         || 'fdn without hash'
+            'fdn with # in the middle' || 'fdn with # in the middle'
     }
 }

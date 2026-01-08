@@ -39,7 +39,7 @@ public class ParametersBuilder {
      * Creates a UrlTemplateParameters object containing the relevant fields for read requests.
      *
      * @param yangModelCmHandle yangModelCmHandle object for resolved alternate ID
-     * @param targetFdn         Target FDN for the resource
+     * @param resourceIdentifier         Target FDN for the resource
      * @param scope             Provided className parameter
      * @param filter            Filter string
      * @param attributes        Attributes List
@@ -48,7 +48,7 @@ public class ParametersBuilder {
      * @return UrlTemplateParameters object.
      */
     public UrlTemplateParameters createUrlTemplateParametersForRead(final YangModelCmHandle yangModelCmHandle,
-                                                                    final String targetFdn,
+                                                                    final String resourceIdentifier,
                                                                     final Scope scope,
                                                                     final String filter,
                                                                     final List<String> attributes,
@@ -56,9 +56,9 @@ public class ParametersBuilder {
                                                                     final ClassNameIdGetDataNodeSelectorParameter
                                                                         dataNodeSelector) {
         final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
-        final String targetFdnWithoutPrecedingSlash = targetFdn.substring(1);
+        final String resourceIdentifierWithoutPrecedingSlash = resourceIdentifier.substring(1);
         return RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment(targetFdnWithoutPrecedingSlash)
+            .fixedPathSegment(resourceIdentifierWithoutPrecedingSlash)
             .queryParameter("scopeType", scope.getScopeType() != null ? scope.getScopeType().getValue() : null)
             .queryParameter("scopeLevel", scope.getScopeLevel() != null ? scope.getScopeLevel().toString() : null)
             .queryParameter("filter", filter)

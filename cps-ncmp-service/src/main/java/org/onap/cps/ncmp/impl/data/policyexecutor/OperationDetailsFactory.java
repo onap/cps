@@ -20,11 +20,10 @@
 
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
+import static java.util.Collections.emptyMap;
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
-import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
 import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE;
 
-import com.google.common.base.Strings;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
+import org.onap.cps.ncmp.impl.provmns.ParameterHelper;
 import org.onap.cps.ncmp.impl.provmns.RequestParameters;
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -43,6 +43,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OperationDetailsFactory {
 
+    public static final OperationDetails DELETE_OPERATION_DETAILS  = new OperationDetails("delete", "", emptyMap());
+
     private static final String ATTRIBUTE_NAME_SEPARATOR = "/";
     private static final String REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS = "(^/)|(/$)";
 
@@ -51,8 +53,8 @@ public class OperationDetailsFactory {
     /**
      * Create OperationDetails object from ProvMnS request details.
      *
-     * @param requestParameters    request parameters including uri-ldn-first-part, className and id
-     * @param patchItem                provided request payload
+     * @param requestParameters request parameters including uri-ldn-first-part, className and id
+     * @param patchItem provided request payload
      * @return OperationDetails object
      */
     public OperationDetails buildOperationDetails(final RequestParameters requestParameters,
@@ -60,17 +62,17 @@ public class OperationDetailsFactory {
         final OperationDetails operationDetails;
         switch (patchItem.getOp()) {
             case ADD:
-                operationDetails = buildCreateOperationDetails(CREATE, requestParameters, patchItem.getValue());
+                operationDetails = buildOperationDetailsForPatchItem(CREATE, requestParameters, patchItem);
                 break;
             case REPLACE:
                 if (patchItem.getPath().contains("#/attributes")) {
-                    operationDetails = buildCreateOperationDetailsForUpdateWithHash(requestParameters, patchItem);
+                    operationDetails = buildOperationDetailsForPatchItemWithHash(requestParameters, patchItem);
                 } else {
-                    operationDetails = buildCreateOperationDetails(UPDATE, requestParameters, patchItem.getValue());
+                    operationDetails = buildOperationDetailsForPatchItem(UPDATE, requestParameters, patchItem);
                 }
                 break;
             case REMOVE:
-                operationDetails = buildDeleteOperationDetails(requestParameters.toTargetFdn());
+                operationDetails = DELETE_OPERATION_DETAILS;
                 break;
             default:
                 throw new ProvMnSException("PATCH", HttpStatus.UNPROCESSABLE_ENTITY,
@@ -80,33 +82,58 @@ public class OperationDetailsFactory {
     }
 
     /**
-     * Build a CreateOperationDetails object from ProvMnS request details.
+     * Build a OperationDetails object from ProvMnS request details.
      *
-     * @param operationType            Type of operation create, update.
+     * @param operationType        Type of operation create, update.
      * @param requestParameters    request parameters including uri-ldn-first-part, className and id
-     * @param resourceAsObject         provided request payload
-     * @return CreateOperationDetails object
+     * @param resourceAsObject     provided request payload
+     * @return OperationDetails object
      */
-    public CreateOperationDetails buildCreateOperationDetails(final OperationType operationType,
+    public OperationDetails buildOperationDetails(final OperationType operationType,
+                                                  final RequestParameters requestParameters,
+                                                  final Object resourceAsObject) {
+        return toOperationDetails(operationType, requestParameters, resourceAsObject);
+    }
+
+    /**
+     * Build OperationDetails for a specific patch item.
+     *
+     * @param operationType the type of operation (CREATE, UPDATE)
+     * @param requestParameters request parameters including uri-ldn-first-part, className and id
+     * @param patchItem the patch item containing operation details
+     * @return OperationDetails object for the patch item
+     */
+    public OperationDetails buildOperationDetailsForPatchItem(final OperationType operationType,
                                                               final RequestParameters requestParameters,
-                                                              final Object resourceAsObject) {
+                                                              final PatchItem patchItem) {
+        final Map<String, Object> resourceAsObject = new HashMap<>(2);
+        resourceAsObject.put("id", requestParameters.id());
+        resourceAsObject.put("attributes", patchItem.getValue());
+        return toOperationDetails(operationType, requestParameters, resourceAsObject);
+    }
+
+    private OperationDetails buildOperationDetailsForPatchItemWithHash(final RequestParameters requestParameters,
+                                                                       final PatchItem patchItem) {
+        final Map<String, Object> attributeHierarchyAsMap = createNestedMap(patchItem);
+        final String id = ParameterHelper.removeTrailingHash(requestParameters.id());
+        final OperationEntry operationEntry = new OperationEntry(id, attributeHierarchyAsMap);
+        final String targetIdentifier = ParameterHelper.extractParentFdn(requestParameters.fdn());
+        final Map<String, List<OperationEntry>> operationEntriesPerObjectClass = new HashMap<>();
+        operationEntriesPerObjectClass.put(requestParameters.className(), List.of(operationEntry));
+        return new OperationDetails(UPDATE.getOperationName(), targetIdentifier, operationEntriesPerObjectClass);
+    }
+
+    private OperationDetails toOperationDetails(final OperationType operationType,
+                                                final RequestParameters requestParameters,
+                                                final Object resourceAsObject) {
         final ResourceObjectDetails resourceObjectDetails = createResourceObjectDetails(resourceAsObject,
             requestParameters);
         final OperationEntry operationEntry = new OperationEntry(resourceObjectDetails.id(),
             resourceObjectDetails.attributes());
-        return new CreateOperationDetails(operationType.name(),
-            requestParameters.getUriLdnFirstPart(),
-            Map.of(resourceObjectDetails.objectClass(), List.of(operationEntry)));
-    }
-
-    /**
-     * Builds a DeleteOperationDetails object from provided alternate id.
-     *
-     * @param alternateId        alternate id for request
-     * @return DeleteOperationDetails object
-     */
-    public DeleteOperationDetails buildDeleteOperationDetails(final String alternateId) {
-        return new DeleteOperationDetails(DELETE.name(), alternateId);
+        final Map<String, List<OperationEntry>> changeRequestAsMap =
+            Map.of(resourceObjectDetails.objectClass(), List.of(operationEntry));
+        final String targetIdentifier = ParameterHelper.extractParentFdn(requestParameters.fdn());
+        return new OperationDetails(operationType.getOperationName(), targetIdentifier, changeRequestAsMap);
     }
 
     @SuppressWarnings("unchecked")
@@ -114,31 +141,9 @@ public class OperationDetailsFactory {
                                                               final RequestParameters requestParameters) {
         final String resourceAsJson = jsonObjectMapper.asJsonString(resourceAsObject);
         final Map<String, Object> resourceAsMap = jsonObjectMapper.convertJsonString(resourceAsJson, Map.class);
-        return new ResourceObjectDetails(requestParameters.getId(),
-                                         extractObjectClass(resourceAsMap, requestParameters),
+        return new ResourceObjectDetails(requestParameters.id(),
+                                         requestParameters.className(),
                                          resourceAsMap.get("attributes"));
-
-    }
-
-    private static String extractObjectClass(final Map<String, Object> resourceAsMap,
-                                             final RequestParameters requestParameters) {
-        final String objectClass = (String) resourceAsMap.get("objectClass");
-        if (Strings.isNullOrEmpty(objectClass)) {
-            return requestParameters.getClassName();
-        }
-        return objectClass;
-    }
-
-    private CreateOperationDetails buildCreateOperationDetailsForUpdateWithHash(
-                                                                     final RequestParameters requestParameters,
-                                                                     final PatchItem patchItem) {
-        final Map<String, List<OperationEntry>> operationEntriesPerObjectClass = new HashMap<>();
-        final String className = requestParameters.getClassName();
-        final Map<String, Object> attributeHierarchyAsMap = createNestedMap(patchItem);
-        final OperationEntry operationEntry = new OperationEntry(requestParameters.getId(), attributeHierarchyAsMap);
-        operationEntriesPerObjectClass.put(className, List.of(operationEntry));
-        return new CreateOperationDetails(UPDATE.getOperationName(), requestParameters.getUriLdnFirstPart(),
-                                          operationEntriesPerObjectClass);
     }
 
     private Map<String, Object> createNestedMap(final PatchItem patchItem) {
