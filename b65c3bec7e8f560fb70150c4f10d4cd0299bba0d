@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9025da13_184a33bb",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-08T09:37:43Z",
+      "side": 1,
+      "message": "why is this declared again",
+      "range": {
+        "startLine": 136,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 14
+      },
+      "revId": "b65c3bec7e8f560fb70150c4f10d4cd0299bba0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9b0d41c_8deeec10",
         "filename": "cps-charts/values.yaml",
         "patchSetId": 2
@@ -125,6 +148,30 @@
       "writtenOn": "2026-01-07T17:12:16Z",
       "side": 1,
       "message": "should this not be readiness ?, given line #175",
+      "range": {
+        "startLine": 178,
+        "startChar": 24,
+        "endLine": 178,
+        "endChar": 30
+      },
+      "revId": "b65c3bec7e8f560fb70150c4f10d4cd0299bba0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25607b2e_13bf939e",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-08T09:37:43Z",
+      "side": 1,
+      "message": "like we discussed I prefer to define a livenessProbe that points to a liveNess URL\nSeem for readiness \nBut first we need to make sure that all 3 actuator endpoint on DMI work as expected!\n\\health\n\\liveness\n\\readiness",
+      "parentUuid": "8afba270_7934664c",
       "range": {
         "startLine": 178,
         "startChar": 24,
