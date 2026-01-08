@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2197e5e8_d09c4464",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-08T11:52:11Z",
+      "side": 1,
+      "message": "great thanks!\nBut the test can be simplified and I want you to check coverage, see details below",
+      "revId": "adc0931421339df2c5e698f7dc3025152f3898a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce2dd52_57534b2f",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-08T11:52:11Z",
+      "side": 1,
+      "message": "you have not added any specific test for the branch where this is false...\nBut maybe you already have existing test. Check using the Jacoco Code Coverage report please:\nrun mvn install in the cps-service module, then check target\\site\\ for the jacoco report\nIntelliJ does not do this correctly as it does not spot partial coverage if there is no else branch, it considers it \u0027green\u0027\u0027 but SonarQube (and Jacoco) require both branches to be covered even if there is no else! it will mark it yello if you havn\u0027t",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 38
+      },
+      "revId": "adc0931421339df2c5e698f7dc3025152f3898a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92e67dc4_349b6f10",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-08T11:52:11Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 143,
+        "endChar": 26
+      },
+      "revId": "adc0931421339df2c5e698f7dc3025152f3898a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa07521_e800f051",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-08T11:52:11Z",
+      "side": 1,
+      "message": "NB: good test but would have combined into one test with a table like this\n\nscenario | map || expectedResult\n\u0027populated\u0027 | [key:\u0027value\u0027] || true\n\u0027empty\u0027 | [] || false\n\u0027null\u0027 | null | false\n\nDont forget to add a description to the where like so\nwhere: \u0027the following maps are checked\u0027",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "adc0931421339df2c5e698f7dc3025152f3898a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
