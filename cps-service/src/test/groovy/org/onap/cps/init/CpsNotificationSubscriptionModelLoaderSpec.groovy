@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 TechMahindra Ltd.
+ *  Copyright (C) 2024-2025 Deutsche Telekom AG
  *  Modifications Copyright (c) 2022-2025 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
