@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d104fb26_42a3c1b7",
+        "filename": "cps-rest/docs/openapi/cpsDataV2Deprecated.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-08T11:40:37Z",
+      "side": 1,
+      "message": "it  a legacy issue really I would consider it a blocker...",
+      "parentUuid": "57a706e1_25b53241",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 59
+      },
+      "revId": "329ac1c742f290a20b573a5887952bf12fa69ad1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f296e241_5278cce4",
