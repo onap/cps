@@ -73,6 +73,30 @@
       },
       "revId": "88fac4ab4b1e977919ba97288264c2b74addd441",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c410a1e3_7649853d",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-08T10:42:30Z",
+      "side": 1,
+      "message": "I have added the code as suggested , please re-review",
+      "parentUuid": "fb544a49_bc4a4e62",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 54
+      },
+      "revId": "88fac4ab4b1e977919ba97288264c2b74addd441",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
