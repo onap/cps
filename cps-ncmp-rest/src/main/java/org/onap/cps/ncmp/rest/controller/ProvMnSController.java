@@ -206,8 +206,7 @@ public class ProvMnSController implements ProvMnS {
                 checkPermission(yangModelCmHandle, requestParameters.toTargetFdn(), operationDetails);
             } catch (final Exception exception) {
                 final String httpMethodName = "PATCH";
-                final OperationType operationType = OperationType.fromOperationName(operationDetails.operation());
-                throw toProvMnSException(httpMethodName, exception, operationType.name());
+                throw toProvMnSException(httpMethodName, exception, patchItem.getOp().getValue());
             }
         }
     }

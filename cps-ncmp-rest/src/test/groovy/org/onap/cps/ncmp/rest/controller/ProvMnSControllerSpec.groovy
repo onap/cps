@@ -268,6 +268,8 @@ class ProvMnSControllerSpec extends Specification {
             assert response.status == CONFLICT.value()
         and: 'response contains the correct type'
             assert response.contentAsString.contains('"type":"APPLICATION_LAYER_ERROR"')
+        and: 'response contains the bad operation'
+            assert response.contentAsString.contains('"badOp":"replace"')
         and: 'response contains the message from Policy Executor (as title)'
             assert response.contentAsString.contains('"title":"denied for test"')
     }
