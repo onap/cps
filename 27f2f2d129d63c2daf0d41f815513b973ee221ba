@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "941ea1f4_b0857456",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-08T05:02:30Z",
+      "side": 1,
+      "message": "I will raise a patch for that changing it everywhere at once.",
+      "parentUuid": "fac07224_affd3ae3",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "27f2f2d129d63c2daf0d41f815513b973ee221ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "565fd20d_804e9e7c",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
         "patchSetId": 10
