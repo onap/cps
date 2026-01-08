@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,17 +38,17 @@ public class ParametersBuilder {
     /**
      * Creates a UrlTemplateParameters object containing the relevant fields for read requests.
      *
-     * @param yangModelCmHandle yangModelCmHandle object for resolved alternate ID
-     * @param targetFdn         Target FDN for the resource
-     * @param scope             Provided className parameter
-     * @param filter            Filter string
-     * @param attributes        Attributes List
-     * @param fields            Fields list
-     * @param dataNodeSelector  dataNodeSelector parameter
+     * @param yangModelCmHandle  yangModelCmHandle object for resolved alternate ID
+     * @param resourceIdentifier Target FDN for the resource
+     * @param scope              Provided className parameter
+     * @param filter             Filter string
+     * @param attributes         Attributes List
+     * @param fields             Fields list
+     * @param dataNodeSelector   dataNodeSelector parameter
      * @return UrlTemplateParameters object.
      */
     public UrlTemplateParameters createUrlTemplateParametersForRead(final YangModelCmHandle yangModelCmHandle,
-                                                                    final String targetFdn,
+                                                                    final String resourceIdentifier,
                                                                     final Scope scope,
                                                                     final String filter,
                                                                     final List<String> attributes,
@@ -56,9 +56,9 @@ public class ParametersBuilder {
                                                                     final ClassNameIdGetDataNodeSelectorParameter
                                                                         dataNodeSelector) {
         final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
-        final String targetFdnWithoutPrecedingSlash = targetFdn.substring(1);
+        final String resourceIdentifierWithoutPrecedingSlash = resourceIdentifier.substring(1);
         return RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment(targetFdnWithoutPrecedingSlash)
+            .fixedPathSegment(resourceIdentifierWithoutPrecedingSlash)
             .queryParameter("scopeType", scope.getScopeType() != null ? scope.getScopeType().getValue() : null)
             .queryParameter("scopeLevel", scope.getScopeLevel() != null ? scope.getScopeLevel().toString() : null)
             .queryParameter("filter", filter)

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,24 +20,9 @@
 
 package org.onap.cps.ncmp.impl.provmns;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-public class RequestParameters {
-
-    private String httpMethodName;
-    private String uriLdnFirstPart;
-    private String className;
-    private String id;
-
-    /**
-     * Gets target FDN by combining URI-LDN-First-Part, className and id.
-     *
-     * @return String of FDN
-     */
-    public String toTargetFdn() {
-        return uriLdnFirstPart + "/" + className + "=" + id;
-    }
-}
+public record RequestParameters(
+    String httpMethodName,
+    String fdn,
+    String uriLdnFirstPart,
+    String className,
+    String id) {}
