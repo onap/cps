@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f32a6572_bf9a5af6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-09T13:47:57Z",
+      "side": 1,
+      "message": "some minor comments looks good otherwise",
+      "revId": "91deed91d329aa67a4fd961ce651f5381009cfe9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "240659ad_7d788247",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-09T13:47:57Z",
+      "side": 1,
+      "message": "response contains the bad operation index",
+      "revId": "91deed91d329aa67a4fd961ce651f5381009cfe9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13943dc4_2495147f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-09T13:47:57Z",
+      "side": 1,
+      "message": "grandchild",
+      "revId": "91deed91d329aa67a4fd961ce651f5381009cfe9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1d991d9_2172aea1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetailsFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-09T13:47:57Z",
+      "side": 1,
+      "message": "NB: Inline like javadoc above",
+      "revId": "91deed91d329aa67a4fd961ce651f5381009cfe9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e3b0871_374e0f1e",
+        "filename": "docker-compose/config/nginx/nginx.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-09T13:47:57Z",
+      "side": 1,
+      "message": "Revert before submission",
+      "revId": "91deed91d329aa67a4fd961ce651f5381009cfe9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adf7ddde_19203fe9",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-09T13:47:57Z",
+      "side": 1,
+      "message": "Revert all changes in file before submission",
+      "revId": "91deed91d329aa67a4fd961ce651f5381009cfe9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
