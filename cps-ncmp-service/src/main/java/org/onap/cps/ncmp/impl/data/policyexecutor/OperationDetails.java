@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,11 @@
 
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-public interface OperationDetails {
-    String operation();
-}
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
+import java.util.Map;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record OperationDetails(String operation,
+                               String targetIdentifier,
+                               Map<String, List<OperationEntry>> changeRequest) {}

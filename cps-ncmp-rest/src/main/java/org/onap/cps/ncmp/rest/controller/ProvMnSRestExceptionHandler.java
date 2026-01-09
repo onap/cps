@@ -19,7 +19,7 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-import static org.onap.cps.ncmp.impl.provmns.ParameterMapper.NO_OP;
+import static org.onap.cps.ncmp.impl.provmns.ParameterHelper.NO_OP;
 
 import java.util.Map;
 import java.util.Objects;

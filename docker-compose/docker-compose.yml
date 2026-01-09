@@ -198,9 +198,9 @@ services:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/policy-executor-stub:latest
     ports:
       - ${POLICY_EXECUTOR_STUB_PORT:-8785}:8093
-    ### DEBUG: Uncomment next lines to enable java debugging in Policy Executor Stub
-    ###      - ${POLICY_EXECUTOR_STUB_DEBUG_PORT:-5005}:5005
-    ### environment:
+      ### DEBUG: Uncomment next lines to enable java debugging in Policy Executor Stub
+      ###      - ${POLICY_EXECUTOR_STUB_DEBUG_PORT:-5005}:5005
+      ### environment:
       #### JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     # Note policy-executor-stub does not have a healthcheck as it does not expose /actuator/health endpoint
