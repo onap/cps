@@ -20,7 +20,9 @@
 
 package org.onap.cps.policyexecutor.stub.controller
 
+import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.ObjectWriter
 import org.onap.cps.policyexecutor.stub.model.Operation
 import org.onap.cps.policyexecutor.stub.model.PermissionRequest
 import org.onap.cps.policyexecutor.stub.model.PermissionResponse
@@ -40,11 +42,11 @@ class PolicyExecutorStubControllerSpec extends Specification {
     @Autowired
     MockMvc mockMvc
 
-    @Autowired
-    ObjectMapper objectMapper
+    @SpringBean
+    ObjectMapper spiedObjectMapper = Spy(new ObjectMapper())
 
     @SpringBean
-    Sleeper sleeper = Spy()
+    Sleeper spiedSleeper = Spy()
 
     def url = '/operation-permission/v1/permissions'
 
@@ -61,7 +63,7 @@ class PolicyExecutorStubControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
         and: 'the response body has the expected decision details'
             def responseBody = response.contentAsString
-            def permissionResponse = objectMapper.readValue(responseBody, PermissionResponse.class)
+            def permissionResponse = spiedObjectMapper.readValue(responseBody, PermissionResponse.class)
             assert permissionResponse.id == expectedId
             assert permissionResponse.permissionResult == expectedResult
             assert permissionResponse.message == expectedMessage
@@ -71,7 +73,6 @@ class PolicyExecutorStubControllerSpec extends Specification {
             'prefix/policySimulation=slowResponse_1'       || '2'        | 'allow'        | 'all good'
             'prefix/policySimulation=policyResponse_deny'  || '3'        | 'deny'         | 'Stub is mocking a policy response: deny'
             'prefix/policySimulation=policyResponse_other' || '4'        | 'other'        | 'Stub is mocking a policy response: other'
-
     }
 
     def 'Permission request with a HTTP error code.'() {
@@ -102,7 +103,7 @@ class PolicyExecutorStubControllerSpec extends Specification {
     def 'Permission request with no operations.'() {
         given: 'a permission request with no operations'
             def permissionRequest = new PermissionRequest('some decision type', [])
-            def requestBody = objectMapper.writeValueAsString(permissionRequest)
+            def requestBody = spiedObjectMapper.writeValueAsString(permissionRequest)
         when: 'request is posted'
             def response = mockMvc.perform(post(url)
                 .header('Authorization','some string')
@@ -124,10 +125,26 @@ class PolicyExecutorStubControllerSpec extends Specification {
             assert response.status == HttpStatus.BAD_REQUEST.value()
     }
 
+    def 'Exception thrown while printing pretty json.'() {
+        given: 'object writer for pretty json throws an exception'
+            def mockObjectWriter = Mock(ObjectWriter)
+            spiedObjectMapper.writerWithDefaultPrettyPrinter() >> mockObjectWriter
+            mockObjectWriter.writeValueAsString(_) >> { throw new JsonProcessingException('test') }
+        when: 'request is posted'
+            def response = mockMvc.perform(post(url)
+                .header('Authorization','some string')
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(createRequestBody('some fdn')))
+                .andReturn().response
+        then: 'response status is OK (exception is ignored)'
+            assert response.status == HttpStatus.OK.value()
+    }
+
+
     def 'Permission request with interrupted exception during slow response.'() {
         given: 'a permission request with a target fdn to simulate a slow response'
             def requestBody = createRequestBody('policySimulation=slowResponse_5')
-            sleeper.haveALittleRest(_) >> { throw new InterruptedException() }
+            spiedSleeper.haveALittleRest(_) >> { throw new InterruptedException() }
         when: 'request is posted'
             mockMvc.perform(post(url)
                 .header('Authorization','some string')
@@ -164,7 +181,7 @@ class PolicyExecutorStubControllerSpec extends Specification {
         operation.setChangeRequest(changeRequest)
         operation.setResourceIdentifier(resourceIdentifier)
         def permissionRequest = new PermissionRequest('cm-legacy', [operation])
-        return objectMapper.writeValueAsString(permissionRequest)
+        return spiedObjectMapper.writeValueAsString(permissionRequest)
     }
 
 }

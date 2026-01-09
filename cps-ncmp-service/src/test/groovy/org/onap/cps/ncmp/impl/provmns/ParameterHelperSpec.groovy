@@ -86,7 +86,7 @@ class ParameterHelperSpec extends Specification {
     }
 
     def 'Extract Fdn.'() {
-        expect: 'Only valid name-id pairs are retuned up to the required index'
+        expect: 'Only valid name-id pairs are returned up to the required index'
             assert objectUnderTest.extractFdn('/a=1/b=2/c=3/d/e/f', indexFromEnd) == expectedResult
         where: 'following fdns are used'
             indexFromEnd || expectedResult
@@ -98,7 +98,7 @@ class ParameterHelperSpec extends Specification {
     }
 
     def 'Extract Parent Fdn.'() {
-        expect: 'Teh cortect Parent FDN (up to 2nd last name-id pair)) is returned'
+        expect: 'The correct Parent FDN (up to 2nd last name-id pair)) is returned'
             assert objectUnderTest.extractParentFdn('/a=1/b=2/c=3/d/e/f') == '/a=1/b=2'
     }
 
