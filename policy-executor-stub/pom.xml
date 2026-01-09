@@ -19,6 +19,7 @@
         <image.name>policy-executor-stub</image.name>
         <image.tag>${project.version}-${maven.build.timestamp}</image.tag>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <minimum-coverage>0.98</minimum-coverage>
     </properties>
 
     <dependencies>
