@@ -1,56 +1,123 @@
-# k6 tests
+# k6 Performance Tests - Reorganized Structure
 
-[k6](https://k6.io/) is used for performance tests.
-k6 tests are written in JavaScript.
+[k6](https://k6.io/) is used for performance tests. k6 tests are written in JavaScript.
 
-## k6 installation
-Follow the instructions in the [build from source guide](https://github.com/mostafa/xk6-kafka) to get started.
+## 📁 Directory Structure
 
-## Running k6 test suites
-The CPS k6 tests measure the system capabilities as per requirements.
+The k6 tests are now organized for better maintainability and clear separation of concerns:
+
+```
+k6-tests/
+├── environments/           # Environment-specific configurations
+│   ├── docker/            # Docker environment settings
+│   │   └── config.json    # Docker host URLs and settings
+│   └── kubernetes/        # Kubernetes environment settings
+│       └── config.json    # K8s host URLs and settings
+├── profiles/              # Test profile configurations
+│   ├── kpi/              # KPI performance test scenarios
+│   │   └── scenarios.json # KPI test scenarios and thresholds
+│   └── endurance/        # Endurance test scenarios
+│       └── scenarios.json # Long-running stability test scenarios
+├── deployment/            # Environment-specific execution scripts
+│   ├── docker/           # Docker environment scripts
+│   │   ├── setup.sh      # Docker-specific setup
+│   │   └── execute-tests.sh # Docker test execution
+│   └── kubernetes/       # Kubernetes environment scripts
+│       ├── setup.sh      # K8s-specific setup
+│       └── execute-tests.sh # K8s test execution
+├── common/               # Shared test utilities and scenarios
+│   ├── cmhandle-crud.js  # CM Handle CRUD operations
+│   ├── passthrough-crud.js # Passthrough operations
+│   ├── search-base.js    # Search functionality
+│   ├── utils.js          # Common utilities
+│   ├── produce-avc-event.js # Kafka event production
+│   └── write-data-job.js # Data job operations
+├── ncmp/                 # NCMP-specific test files (legacy structure)
+├── resources/            # Test resources and sample data
+└── k6-main-new.sh       # Updated main execution script
+```
+
+## 🚀 Running Tests
+
+### Quick Start
+```bash
+# Run KPI tests on Docker
+./k6-main-new.sh kpi dockerHosts
+
+# Run Endurance tests on Kubernetes
+./k6-main-new.sh endurance k8sHosts
+```
 
 ### Test Profiles
-There are two test profiles that can be run with either:
-1. kpi — The test profile is to evaluate overall performance.
-2. endurance — The test profile to measure long-term stability.
+1. **kpi** — Performance evaluation with specific thresholds and requirements
+2. **endurance** — Long-term stability testing (2+ hours)
 
 ### Deployment Types
-1. dockerHosts — A docker-compose based deployment for the services in CPS/NCMP.
-2. k8sHosts — A Kubernetes based deployment for the services in CPS/NCMP with Helm Charts.
+1. **dockerHosts** — Docker-compose based deployment
+2. **k8sHosts** — Kubernetes based deployment with Helm Charts
 
-### Running the k6 test suites on a docker-compose environment
-Only docker-compose deployment type supported: dockerHosts
-Run the main script.
-The script assumes k6 and the relevant docker-compose have been installed.
-```shell
-./k6-main.sh [kpi|endurance] [dockerHosts]
-```
+## 📋 Prerequisites
 
-### Running the k6 test suites on a Kubernetes environment
-Only kubernetes cluster deployment type supported: k8sHosts
+### For Docker Environment
+- Docker and Docker Compose
+- k6 with Kafka extension
 
-#### Prerequisites for Windows
-1. Docker Desktop
-2. Enable Kubernetes in Docker Desktop (Settings, Kubernetes). Known issue: it may hang on "starting kubernetes" for a few minutes. Resolution: click "Reset Cluster" then it starts.
-3. Install Helm, see [installing helm on windows](https://helm.sh/docs/intro/install/). Recommended approach: install Helm with winget.
+### For Kubernetes Environment
 
-#### Prerequisites for Linux
-1. k3s from Rancher [installing k3s on linux](https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-cluster-setup/k3s-for-rancher)
-2. Install Helm, see [installing helm on linux](https://helm.sh/docs/intro/install/)
+#### Windows
+1. Docker Desktop with Kubernetes enabled
+2. Helm (install via winget: `winget install Helm.Helm`)
 
-Run the main script.
-By default, kpi profile is supported, and it assumes the kubernetes environment with Helm is already available.
-```shell
-./k6-main.sh [kpi|endurance] [k8sHosts]
-```
+#### Linux
+1. k3s from Rancher
+2. Helm installation
 
-## Running k6 tests manually
-Before running tests, ensure CPS/NCMP is running:
-```shell
-docker-compose -f docker-compose/docker-compose.yml up -d
-```
+## 🔧 Configuration Management
 
-To run an individual test from the command line, use
-```shell
-k6 run ncmp/scenarios-config.js
-```
+### Environment Configuration
+- **Docker**: `environments/docker/config.json`
+- **Kubernetes**: `environments/kubernetes/config.json`
+
+### Test Scenarios
+- **KPI**: `profiles/kpi/scenarios.json`
+- **Endurance**: `profiles/endurance/scenarios.json`
+
+## 🛠 Maintenance
+
+### Adding New Environments
+1. Create new directory under `environments/`
+2. Add `config.json` with environment-specific settings
+3. Create corresponding setup and execution scripts under `deployment/`
+
+### Adding New Test Profiles
+1. Create new directory under `profiles/`
+2. Add `scenarios.json` with test scenarios and thresholds
+3. Update execution scripts to handle the new profile
+
+### Modifying Common Utilities
+- All shared test functions are in the `common/` directory
+- Update import paths in test files when modifying utilities
+
+## 📊 Results and Monitoring
+
+### KPI Tests
+- Automatic pass/fail evaluation against FS requirements
+- CSV reports with ✅/❌ indicators
+- Threshold validation and summary
+
+### Endurance Tests
+- Focus on stability and memory trends
+- Use Grafana dashboards for analysis
+- Monitor container resource usage over time
+
+## 🔍 Troubleshooting
+
+### Common Issues
+1. **Import Path Errors**: Update import paths to use `../common/` or `../environments/`
+2. **Configuration Not Found**: Ensure environment and profile JSON files exist
+3. **Script Permissions**: Make sure shell scripts are executable (`chmod +x`)
+
+### Monitoring Tools
+- **Grafana**: https://monitoring.nordix.org/login
+- **Local Logs**: Check `archive-logs.sh` output
+- **K6 Output**: Review test execution logs for detailed metrics

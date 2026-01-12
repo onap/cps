@@ -18,12 +18,11 @@
 set -o errexit  # Exit on most errors
 set -o nounset  # Disallow expansion of unset variables
 set -o pipefail # Use last non-zero exit code in a pipeline
-#set -o xtrace   # Uncomment for debugging
 
-# Default test profile is kpi.
+# Default test profile is kpi
 testProfile=${1:-kpi}
 
-# The default deployment type is dockerCompose
+# The default deployment type is dockerHosts
 deploymentType=${2:-dockerHosts}
 
 # Function to create and store logs
@@ -33,8 +32,7 @@ make_logs() {
   ./archive-logs.sh "$deploymentType"
 }
 
-# Cleanup handler: capture exit status, run teardown,
-# and restore directory, report failures, and exit with original code.
+# Cleanup handler
 on_exit() {
   rc=$?
   make_logs
@@ -43,7 +41,7 @@ on_exit() {
   exit $rc
 }
 
-# Call on_exit, on script exit (EXIT) or when interrupted (SIGINT, SIGTERM, SIGQUIT) to perform cleanup
+# Call on_exit on script exit or interruption
 trap on_exit EXIT SIGINT SIGTERM SIGQUIT
 
 pushd "$(dirname "$0")" || exit 1
@@ -51,22 +49,26 @@ pushd "$(dirname "$0")" || exit 1
 # Install needed dependencies for any deployment type
 source install-deps.sh "$deploymentType"
 
-# Handle deployment type specific setup
+# Handle deployment type specific setup and execution
 if [[ "$deploymentType" == "dockerHosts" ]]; then
-    echo "Test profile: $testProfile, and deployment type: $deploymentType provided for docker-compose cluster"
-
-    # Run setup for docker-compose environment
-    ./setup.sh "$testProfile"
+    echo "Test profile: $testProfile, deployment type: $deploymentType (Docker environment)"
+    
+    # Run Docker-specific setup
+    ./deployment/docker/setup.sh "$testProfile"
+    
+    # Execute tests in Docker environment
+    ./deployment/docker/execute-tests.sh "$testProfile"
+    RESULT=$?
 
 elif [[ "$deploymentType" == "k8sHosts" ]]; then
-    echo "Test profile: $testProfile, and deployment type: $deploymentType provided for k8s cluster"
-
-    # Deploy cps charts for k8s
-    helm install cps ../cps-charts
-
-    # Wait for pods and services until becomes ready
-    echo "Waiting for cps and ncmp pods to be ready..."
-    kubectl wait --for=condition=available deploy -l app=ncmp --timeout=300s
+    echo "Test profile: $testProfile, deployment type: $deploymentType (Kubernetes environment)"
+    
+    # Run Kubernetes-specific setup
+    ./deployment/kubernetes/setup.sh "$testProfile"
+    
+    # Execute tests in Kubernetes environment
+    ./deployment/kubernetes/execute-tests.sh "$testProfile"
+    RESULT=$?
 
 else
     echo "Error: Unsupported deployment type: $deploymentType"
@@ -74,9 +76,5 @@ else
     exit 1
 fi
 
-# Run k6 test suite for both deployment types
-./ncmp/execute-k6-scenarios.sh "$testProfile" "$deploymentType"
-NCMP_RESULT=$?
-
 # Note that the final steps are done in on_exit function after this exit!
-exit $NCMP_RESULT
+exit $RESULT

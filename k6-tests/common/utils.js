@@ -25,12 +25,16 @@ import {Trend} from 'k6/metrics';
 
 export const TEST_PROFILE = __ENV.TEST_PROFILE ? __ENV.TEST_PROFILE : 'kpi'
 export const HOST_TYPE = __ENV.DEPLOYMENT_TYPE ? __ENV.DEPLOYMENT_TYPE : 'dockerHosts'
-export const testConfig = JSON.parse(open(`../config/${TEST_PROFILE}.json`));
-export const scenarioMetaData = JSON.parse(open(`../config/scenario-metadata.json`));
-export const KAFKA_BOOTSTRAP_SERVERS = testConfig[`${HOST_TYPE}`].kafkaBootstrapServer;
-export const NCMP_BASE_URL = testConfig[`${HOST_TYPE}`].ncmpBaseUrl;
-export const DMI_PLUGIN_URL = testConfig[`${HOST_TYPE}`].dmiStubUrl;
-export const CONTAINER_COOL_DOWW_TIME_IN_SECONDS = testConfig[`${HOST_TYPE}`].containerCoolDownTimeInSeconds || 10;
+
+// Load environment and profile configurations
+const environmentConfig = JSON.parse(open(`../environments/${HOST_TYPE === 'dockerHosts' ? 'docker' : 'kubernetes'}/config.json`));
+const profileConfig = JSON.parse(open(`../profiles/${TEST_PROFILE}/scenarios.json`));
+export const scenarioMetaData = JSON.parse(open(`../ncmp/config/scenario-metadata.json`));
+
+export const KAFKA_BOOTSTRAP_SERVERS = environmentConfig.kafkaBootstrapServer;
+export const NCMP_BASE_URL = environmentConfig.ncmpBaseUrl;
+export const DMI_PLUGIN_URL = environmentConfig.dmiStubUrl;
+export const CONTAINER_COOL_DOWW_TIME_IN_SECONDS = environmentConfig.containerCoolDownTimeInSeconds || 10;
 export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
 export const TOTAL_CM_HANDLES = __ENV.TOTAL_CM_HANDLES ? parseInt(__ENV.TOTAL_CM_HANDLES) : 50000;
 export const REGISTRATION_BATCH_SIZE = 2000;

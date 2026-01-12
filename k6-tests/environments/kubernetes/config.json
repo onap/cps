@@ -1,0 +1,5 @@
+{
+  "ncmpBaseUrl": "http://localhost:30080",
+  "dmiStubUrl": "http://cps-ncmp-dmi-stub-1:8092",
+  "kafkaBootstrapServer": "localhost:30093"
+}

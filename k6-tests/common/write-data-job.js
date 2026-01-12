@@ -116,5 +116,3 @@ function buildDataJobRequestPayload(numberOfWriteOperations) {
         }
     };
 }
-
-

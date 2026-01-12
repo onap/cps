@@ -1,0 +1,6 @@
+{
+  "ncmpBaseUrl": "http://localhost:8883",
+  "dmiStubUrl": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
+  "kafkaBootstrapServer": "localhost:9092",
+  "containerCoolDownTimeInSeconds": 10
+}

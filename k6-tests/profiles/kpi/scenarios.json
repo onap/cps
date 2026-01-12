@@ -1,15 +1,4 @@
 {
-  "dockerHosts": {
-    "ncmpBaseUrl": "http://localhost:8883",
-    "dmiStubUrl": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
-    "kafkaBootstrapServer": "localhost:9092",
-    "containerCoolDownTimeInSeconds": 10
-  },
-  "k8sHosts": {
-    "ncmpBaseUrl": "http://localhost:30080",
-    "dmiStubUrl": "http://cps-ncmp-dmi-stub-1:8092",
-    "kafkaBootstrapServer": "localhost:30093"
-  },
   "scenarios": {
     "passthrough_read_alt_id_scenario": {
       "executor": "constant-arrival-rate",
