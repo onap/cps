@@ -31,6 +31,33 @@ XNF data access and module information.
 
 :download:`CPS NCMP RestOpenApi Specification <api/swagger/ncmp/openapi.yaml>`
 
+Provisioning Management Service.
+
+`ProvMns <https://forge.3gpp.org/rep/sa5/MnS/-/raw/Tag_Rel18_SA110/OpenAPI/TS28532_ProvMnS.yaml>`_API
+
+:download:`CPS NCMP RestOpenApi Specification <api/swagger/ncmp/openapi.yaml>`
+
+Limitations
+^^^^^^^^^^^
+
+- Supported Patch Operations:
+   ADD
+   REMOVE
+   REPLACE
+
+- Supported GET Accept Types:
+   TYPE1
+   TYPE2
+
+- Supported PATH Accept Types:
+   TYPE1
+   TYPE2
+
+- Maximum of 10 Operations in a single Patch request.
+
+- Asynchronous notifications (callbacks) not implemented.
+
+
 CPS-NCMP-Inventory
 ------------------
 

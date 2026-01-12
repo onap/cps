@@ -31,6 +31,9 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
+Features
+--------
+    - `CPS-1992 <https://lf-onap.atlassian.net/browse/CPS-1992>`_ NCMP to Support ProvMnS CM New 3GPP sync single FDN request
 
 Version: 3.7.3
 ==============
