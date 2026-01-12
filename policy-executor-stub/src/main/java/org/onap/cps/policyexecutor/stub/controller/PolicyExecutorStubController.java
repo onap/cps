@@ -20,6 +20,8 @@
 
 package org.onap.cps.policyexecutor.stub.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +43,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PolicyExecutorStubController implements OperationPermissionApi {
 
     private final Sleeper sleeper;
+    private final ObjectMapper objectMapper;
 
     private static final Pattern PATTERN_SIMULATION = Pattern.compile("policySimulation=(\\w+_\\w+)");
     private static final Pattern PATTERN_HTTP_ERROR = Pattern.compile("httpError_(\\d{3})");
@@ -55,6 +58,7 @@ public class PolicyExecutorStubController implements OperationPermissionApi {
                                                                         final String accept,
                                                                         final String authorization) {
         log.info("Stub Policy Executor Invoked");
+        log.info("Permission Request: {}", formatPermissionRequest(permissionRequest));
         if (permissionRequest.getOperations().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -99,6 +103,15 @@ public class PolicyExecutorStubController implements OperationPermissionApi {
         }
         log.info("Decision: {} ({})", permissionResult, message);
         return ResponseEntity.ok(new PermissionResponse(id, permissionResult, message));
+    }
+
+    private String formatPermissionRequest(final PermissionRequest permissionRequest)  {
+        try {
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(permissionRequest);
+        } catch (final JsonProcessingException jsonProcessingException) {
+            log.error("Error while formatting permission request", jsonProcessingException);
+            return "invalid json";
+        }
     }
 
 }
