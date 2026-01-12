@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "851f6e72_61fb01e1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-01-12T11:27:45Z",
+      "side": 1,
+      "message": "NB: prefer to even just call it \u0027map\u0027 than using word \u0027any\u0027",
+      "range": {
+        "startLine": 70,
+        "startChar": 57,
+        "endLine": 70,
+        "endChar": 63
+      },
+      "revId": "71d76f3bf85db0a962aecfc8cf2c5fdcd7ea61c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
