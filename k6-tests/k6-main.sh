@@ -38,8 +38,6 @@ make_logs() {
 on_exit() {
   rc=$?
   make_logs
-  chmod +x teardown.sh
-  ./teardown.sh "$testProfile" "$deploymentType"
   popd
   echo "TEST FAILURES: $rc"
   exit $rc
