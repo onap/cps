@@ -27,9 +27,36 @@ CPS-Core functionality.
 CPS-NCMP
 --------
 
-XNF data access and module information.
+XNF data access and module information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 :download:`CPS NCMP RestOpenApi Specification <api/swagger/ncmp/openapi.yaml>`
+
+Provisioning Management Service
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:download:`ProvMnS API Specification <https://forge.3gpp.org/rep/sa5/MnS/-/raw/Tag_Rel18_SA110/OpenAPI/TS28532_ProvMnS.yaml>`
+
+The following limitations apply to the implementation of the ProvMnS API:
+
+- Unsupported GET Accept Type:
+
+   - application/vnd.3gpp.object-tree-flat+json
+
+- Unsupported PATCH Accept Types:
+
+   - application/merge-patch+json
+   - application/3gpp-merge-patch+json
+
+- Unsupported PATCH Operations:
+
+   - copy
+   - move
+   - test
+
+- Maximum of 10 Operations in a single PATCH request.
+
+- Asynchronous notifications (callbacks) are not implemented.
 
 CPS-NCMP-Inventory
 ------------------
@@ -61,7 +88,7 @@ Notes
 -----
 
 Input Size limitations
-++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^^
 
 Depending on HTTP servers used, the request size is typically limited. For example Nginx has a default limit of 1MB.
 In this case it means that a registration request is limited to approximately 3,000 cm handles (depending on the length of cm handle ids and other properties involved).
