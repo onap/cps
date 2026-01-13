@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.rest.controller;
 
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
-import static org.onap.cps.ncmp.impl.data.policyexecutor.OperationDetailsFactory.DELETE_OPERATION_DETAILS;
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
 import static org.onap.cps.ncmp.impl.provmns.ParameterHelper.NO_OP;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -35,15 +34,17 @@ import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 import io.netty.handler.timeout.TimeoutException;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
-import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
+import org.onap.cps.ncmp.impl.data.policyexecutor.ClassInstance;
 import org.onap.cps.ncmp.impl.data.policyexecutor.OperationDetails;
 import org.onap.cps.ncmp.impl.data.policyexecutor.OperationDetailsFactory;
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor;
@@ -134,7 +135,7 @@ public class ProvMnSController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
             final OperationDetails operationDetails =
                 operationDetailsFactory.buildOperationDetails(CREATE, requestParameters, resource);
-            checkPermission(yangModelCmHandle, requestParameters.fdn(), operationDetails);
+            checkPermission(yangModelCmHandle, operationDetails);
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
             return dmiRestClient.synchronousPutOperation(DATA, resource, urlTemplateParameters);
@@ -148,7 +149,9 @@ public class ProvMnSController implements ProvMnS {
         final RequestParameters requestParameters = ParameterHelper.extractRequestParameters(httpServletRequest);
         try {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
-            checkPermission(yangModelCmHandle, requestParameters.fdn(), DELETE_OPERATION_DETAILS);
+            final OperationDetails operationDetails =
+                operationDetailsFactory.buildOperationDetailsForDelete(requestParameters.fdn());
+            checkPermission(yangModelCmHandle, operationDetails);
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
             return dmiRestClient.synchronousDeleteOperation(DATA, urlTemplateParameters);
@@ -179,12 +182,14 @@ public class ProvMnSController implements ProvMnS {
     }
 
     private void checkPermission(final YangModelCmHandle yangModelCmHandle,
-                                 final String resourceIdentifier,
                                  final OperationDetails operationDetails) {
-        final OperationType operationType = OperationType.fromOperationName(operationDetails.operation());
-        final String operationDetailsAsJson = jsonObjectMapper.asJsonString(operationDetails);
-        policyExecutor.checkPermission(yangModelCmHandle, operationType, NO_AUTHORIZATION, resourceIdentifier,
-            operationDetailsAsJson);
+        final Map<String, List<ClassInstance>> changeRequestAsMap = new HashMap<>(1);
+        changeRequestAsMap.put(operationDetails.className(), operationDetails.ClassInstances());
+        final String changeRequestAsJson = jsonObjectMapper.asJsonString(changeRequestAsMap);
+        final int index = yangModelCmHandle.getAlternateId().length() + 1;
+        final String resourceIdentifier = operationDetails.parentFdn().substring(index);
+        policyExecutor.checkPermission(yangModelCmHandle, operationDetails.operationType(),
+            NO_AUTHORIZATION, resourceIdentifier, changeRequestAsJson);
     }
 
     private void checkPermissionForEachPatchItem(final String baseFdn,
@@ -197,7 +202,7 @@ public class ProvMnSController implements ProvMnS {
             final OperationDetails operationDetails =
                 operationDetailsFactory.buildOperationDetails(requestParameters, patchItem);
             try {
-                checkPermission(yangModelCmHandle, requestParameters.fdn(), operationDetails);
+                checkPermission(yangModelCmHandle, operationDetails);
                 patchItemCounter++;
             } catch (final Exception exception) {
                 final String httpMethodName = "PATCH";

@@ -35,20 +35,9 @@ import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE
 class OperationDetailsFactorySpec extends Specification {
 
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def requestPathParameters = new RequestParameters('some method', '/parent=1/child=2','some uri', 'class in uri', 'id in uri')
+    def requestPathParameters = new RequestParameters('some method', '/parent=id1/someChild=someId','some uri', 'class from uri', 'id from uri')
 
     OperationDetailsFactory objectUnderTest = new OperationDetailsFactory(jsonObjectMapper)
-
-    def 'Build create operation details with all properties.'() {
-        given: 'a resource'
-            def resource = new ResourceOneOf(id: 'id in resource', objectClass: 'class in resource')
-        when: 'create operation details are built'
-            def result = objectUnderTest.buildOperationDetails(CREATE, requestPathParameters, resource)
-        then: 'all details are correct'
-            assert result.targetIdentifier == '/parent=1'
-            assert result.changeRequest.keySet()[0] == 'class in uri'
-            assert result.changeRequest['class in uri'][0].id == 'id in uri'
-    }
 
     def 'Build replace (~create) operation details with all properties where class name in body is #scenario.'() {
         given: 'a resource'
@@ -56,8 +45,9 @@ class OperationDetailsFactorySpec extends Specification {
         when: 'replace operation details are built'
             def result = objectUnderTest.buildOperationDetails(CREATE, requestPathParameters, resource)
         then: 'all details are correct'
-            assert result.targetIdentifier == '/parent=1'
-            assert result.changeRequest.keySet()[0] == 'class in uri'
+            assert result.parentFdn == '/parent=id1'
+            assert result.className == 'class from uri'
+            assert result.ClassInstances[0].id == 'id from uri'
         where:
             scenario    | classNameInBody
             'populated' | 'class in body'
@@ -72,7 +62,7 @@ class OperationDetailsFactorySpec extends Specification {
         when: 'operation details is created'
             def result = objectUnderTest.buildOperationDetails(requestPathParameters, patchItem)
         then: 'it has the correct operation type (for Policy Executor check)'
-            assert result.operation() == expectedPolicyExecutorOperationType.operationName
+            assert result.operationType == expectedPolicyExecutorOperationType
         where: 'following operations are used'
             patchOperationType | expectedPolicyExecutorOperationType
             'ADD'              | CREATE
@@ -85,10 +75,10 @@ class OperationDetailsFactorySpec extends Specification {
             def patchItem = new PatchItem(op: 'REPLACE', 'path':"some uri${suffix}", value: value)
         when: 'patch operation details are checked'
             def result = objectUnderTest.buildOperationDetails(requestPathParameters, patchItem)
-        then: 'Attribute Value in operation is correct'
-            result.changeRequest.values()[0].attributes[0] == expectedAttributesValueInOperation
+        then: 'Attribute value is correct'
+            result.ClassInstances[0].attributes == expectedAttributesValue
         where: 'attributes are set using # or resource'
-            scenario                            | suffix               | value                          || expectedAttributesValueInOperation
+            scenario                            | suffix               | value                          || expectedAttributesValue
             'set simple value using #'          | '#/attributes/attr1' | 1                              || [attr1:1]
             'set complex value using resource'  | ''                   | '{"attr1":"abc","attr2":123}'  || '{"attr1":"abc","attr2":123}'
     }
