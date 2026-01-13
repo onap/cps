@@ -53,9 +53,6 @@ teardown_docker_deployment() {
   echo '================================== docker info =========================='
   docker ps -a
 
-  # Zip and store logs for the containers
-  make_logs "dockerHosts"
-
   local docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --project-name $testProfile down --volumes"
 
   # Check env. variable CLEAN_DOCKER_IMAGES=1 to decide removing CPS images
