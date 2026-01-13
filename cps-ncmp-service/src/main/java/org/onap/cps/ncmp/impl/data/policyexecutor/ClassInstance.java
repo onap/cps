@@ -20,4 +20,4 @@
 
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-public record OperationEntry(String id, Object attributes) {}
+public record ClassInstance(String id, Object attributes) {}
