@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b56ae962_c42a77ca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetailsFactorySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-13T17:55:47Z",
+      "side": 1,
+      "message": "123",
+      "range": {
+        "startLine": 84,
+        "startChar": 102,
+        "endLine": 84,
+        "endChar": 103
+      },
+      "revId": "8d06642bbad5c46ed4cf023e8db802c539bd5ffd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
