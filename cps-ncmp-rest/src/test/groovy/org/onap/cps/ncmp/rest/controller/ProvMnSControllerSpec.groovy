@@ -100,7 +100,7 @@ class ProvMnSControllerSpec extends Specification {
 
     static def patchMediaType       = new MediaType('application', 'json-patch+json')
     static def patchMediaType3gpp   = new MediaType('application', '3gpp-json-patch+json')
-    static def patchJsonBody        = '[{"op":"replace","path":"/child=id2/attributes","value":{"id":"id1","attributes":{"attr1":"test"}}}]'
+    static def patchJsonBody        = '[{"op":"replace","path":"/child=id2/attributes","value":{"attr1":"test"}}]'
     static def patchJsonBody3gpp    = '[{"op":"replace","path":"/child=id2#/attributes/attr1","value":"test"}]'
 
     static def expectedDeleteChangeRequest = '{"":[]}'

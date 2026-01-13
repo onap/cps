@@ -80,7 +80,7 @@ class OperationDetailsFactorySpec extends Specification {
         where: 'attributes are set using # or resource'
             scenario                            | suffix               | value
             'set simple value using #'          | '#/attributes/attr1' | 456
-            'set complex value using resource'  | ''                   | [id:'id1', attributes:[attr1:456]]
+            'set complex value using resource'  | '/attributes'        | [attr1:456]
     }
 
     def 'Build an attribute map with different depths of hierarchy with #scenario.'() {

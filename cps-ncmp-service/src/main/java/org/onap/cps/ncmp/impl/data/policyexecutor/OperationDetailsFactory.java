@@ -66,7 +66,7 @@ public class OperationDetailsFactory {
                 if (patchItem.getPath().contains("#/attributes")) {
                     operationDetails = buildOperationDetailsForPatchItemWithHash(requestParameters, patchItem);
                 } else {
-                    operationDetails = buildOperationDetails(UPDATE, requestParameters, patchItem.getValue());
+                    operationDetails = buildOperationDetailsForPatchItem(requestParameters, patchItem);
                 }
                 break;
             case REMOVE:
@@ -107,6 +107,21 @@ public class OperationDetailsFactory {
     public OperationDetails buildOperationDetailsForDelete(final String fdn) {
         final String parentFdn = ParameterHelper.extractParentFdn(fdn);
         return new OperationDetails(OperationType.DELETE, parentFdn, "", emptyList());
+    }
+
+    /**
+     * Build OperationDetails for a specific patch item.
+     *
+     * @param requestParameters request parameters including uri-ldn-first-part, className and id
+     * @param patchItem         the patch item containing operation details
+     * @return OperationDetails object for the patch item
+     */
+    public OperationDetails buildOperationDetailsForPatchItem(final RequestParameters requestParameters,
+                                                              final PatchItem patchItem) {
+        final Map<String, Object> resourceAsObject = new HashMap<>(2);
+        resourceAsObject.put("id", requestParameters.id());
+        resourceAsObject.put("attributes", patchItem.getValue());
+        return buildOperationDetails(UPDATE, requestParameters, resourceAsObject);
     }
 
     private OperationDetails buildOperationDetailsForPatchItemWithHash(final RequestParameters requestParameters,
