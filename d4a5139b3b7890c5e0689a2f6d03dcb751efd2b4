@@ -206,6 +206,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4741608d_a4ab8197",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 77
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-13T11:39:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01fd291d_f0f6d091",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "d4a5139b3b7890c5e0689a2f6d03dcb751efd2b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "230ef389_b9d0b9f6",
@@ -253,6 +277,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b4778d3_0ce508f0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 77
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-13T11:39:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a393545_ed4f3926",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 33
+      },
+      "revId": "d4a5139b3b7890c5e0689a2f6d03dcb751efd2b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa636ec2_4189f004",
@@ -290,6 +338,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "aa636ec2_4189f004",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 18
+      },
+      "revId": "d4a5139b3b7890c5e0689a2f6d03dcb751efd2b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa4dc299_d44fb78f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 77
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-13T11:39:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec158dd_bbd29345",
       "range": {
         "startLine": 49,
         "startChar": 12,
