@@ -47,7 +47,7 @@ class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
     def 'Put Resource Data from provmns interface.'() {
         given: 'an example resource json body'
             dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
-            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/A=1/B=2/C=3')
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/A=1/B=2')
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         expect: 'an OK response on PUT endpoint'
             mvc.perform(put("/ProvMnS/v1/A=1/B=2/C=3")
@@ -61,8 +61,8 @@ class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
     def 'Patch Resource Data from provmns interface.'() {
         given: 'an example resource json body'
             dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
-            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/A=1/B=2/C=3')
-            def jsonBody = jsonObjectMapper.asJsonString([new PatchItem(op: 'REMOVE', path: 'someUriLdnFirstPart')])
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/A=1/B=2')
+            def jsonBody = jsonObjectMapper.asJsonString([new PatchItem(op: 'REMOVE', path: '/D=3/C=4')])
         expect: 'an OK response on PATCH endpoint'
             mvc.perform(patch("/ProvMnS/v1/A=1/B=2/C=3")
                     .contentType(new MediaType('application', 'json-patch+json'))
@@ -75,7 +75,7 @@ class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
     def 'Delete Resource Data from provmns interface.'() {
         given: 'a registered cm handle'
             dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
-            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/A=1/B=2/C=3')
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/A=1/B=2')
         expect: 'ok response on DELETE endpoint'
             mvc.perform(delete("/ProvMnS/v1/A=1/B=2/C=3")).andExpect(status().isOk())
         cleanup: 'deregister CM handles'
