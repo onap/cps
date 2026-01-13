@@ -22,6 +22,30 @@
       },
       "revId": "71d76f3bf85db0a962aecfc8cf2c5fdcd7ea61c8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51546a75_91256c80",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-13T13:53:41Z",
+      "side": 1,
+      "message": "Wouldn\u0027t even have map in the method name. Prefer something like \n\npublic static hasEntries(final Map\u003c?, ?\u003e map)",
+      "parentUuid": "851f6e72_61fb01e1",
+      "range": {
+        "startLine": 70,
+        "startChar": 57,
+        "endLine": 70,
+        "endChar": 63
+      },
+      "revId": "71d76f3bf85db0a962aecfc8cf2c5fdcd7ea61c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
