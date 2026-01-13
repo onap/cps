@@ -55,7 +55,11 @@ class PolicyExecutorSpec extends Specification {
 
     def logAppender = Spy(ListAppender<ILoggingEvent>)
 
-    def someValidJson = '{"Hello":"World"}'
+    def static someValidJson = '{"Hello":"World"}'
+    def static provMnSExampleJson = '{"grandChildClass":[{"id":"2","attributes":{"attr1":"value1"}}]}'
+    def static grandChildInstance = [id:'2', attributes:[attr1:'value1']]
+    def static provMnSExampleAsMap = [grandChildClass: [grandChildInstance]]
+    def static NO_CHANGE_REQUEST_FOR_DELETE = null
 
     def setup() {
         setupLogger()
@@ -77,13 +81,24 @@ class PolicyExecutorSpec extends Specification {
         given: 'allow response'
             mockResponse([permissionResult:'allow'], HttpStatus.OK)
         when: 'permission is checked for an operation'
-            objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource',someValidJson)
+            objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource',provMnSExampleJson)
         then: 'system logs the operation is allowed'
             assert getLogEntry(4) == 'Operation allowed.'
+        and: 'the request body sent has expected operation and change request'
+            1 * mockRequestBodyUriSpec.body(*_) >> { args ->
+                def firstOperationAsMap = args[0].arg$1.get('operations')[0]
+                assert firstOperationAsMap.get('operation') == operationType.operationName
+                assert firstOperationAsMap.get('changeRequest') == expectedChangeRequest
+                return mockRequestBodyUriSpec
+            }
         and: 'no exception occurs'
             noExceptionThrown()
         where: 'all write operations are tested'
-            operationType << [ CREATE, DELETE, PATCH, UPDATE ]
+            operationType || expectedChangeRequest
+            CREATE        || provMnSExampleAsMap
+            DELETE        || NO_CHANGE_REQUEST_FOR_DELETE
+            PATCH         || provMnSExampleAsMap
+            UPDATE        || provMnSExampleAsMap
     }
 
     def 'Permission check with "other" decision (not allowed).'() {
