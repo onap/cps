@@ -22,9 +22,10 @@ package org.onap.cps.ncmp.impl.data.policyexecutor;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
-import java.util.Map;
+import org.onap.cps.ncmp.api.data.models.OperationType;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record OperationDetails(String operation,
-                               String targetIdentifier,
-                               Map<String, List<OperationEntry>> changeRequest) {}
+public record OperationDetails(OperationType operationType,
+                               String parentFdn,
+                               String className,
+                               List<ClassInstance> ClassInstances) {}

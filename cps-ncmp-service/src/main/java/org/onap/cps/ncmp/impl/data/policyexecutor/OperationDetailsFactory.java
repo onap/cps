@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-import static java.util.Collections.emptyMap;
+import static java.util.Collections.emptyList;
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
 import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE;
 
@@ -43,8 +43,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OperationDetailsFactory {
 
-    public static final OperationDetails DELETE_OPERATION_DETAILS  = new OperationDetails("delete", "", emptyMap());
-
     private static final String ATTRIBUTE_NAME_SEPARATOR = "/";
     private static final String REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS = "(^/)|(/$)";
 
@@ -62,17 +60,17 @@ public class OperationDetailsFactory {
         final OperationDetails operationDetails;
         switch (patchItem.getOp()) {
             case ADD:
-                operationDetails = buildOperationDetailsForPatchItem(CREATE, requestParameters, patchItem);
+                operationDetails = buildOperationDetails(CREATE, requestParameters, patchItem.getValue());
                 break;
             case REPLACE:
                 if (patchItem.getPath().contains("#/attributes")) {
                     operationDetails = buildOperationDetailsForPatchItemWithHash(requestParameters, patchItem);
                 } else {
-                    operationDetails = buildOperationDetailsForPatchItem(UPDATE, requestParameters, patchItem);
+                    operationDetails = buildOperationDetails(UPDATE, requestParameters, patchItem.getValue());
                 }
                 break;
             case REMOVE:
-                operationDetails = DELETE_OPERATION_DETAILS;
+                operationDetails = buildOperationDetailsForDelete(requestParameters.fdn());
                 break;
             default:
                 throw new ProvMnSException("PATCH", HttpStatus.UNPROCESSABLE_ENTITY,
@@ -94,39 +92,30 @@ public class OperationDetailsFactory {
                                                   final Object resourceAsObject) {
         final ResourceObjectDetails resourceObjectDetails = createResourceObjectDetails(resourceAsObject,
             requestParameters);
-        final OperationEntry operationEntry = new OperationEntry(resourceObjectDetails.id(),
-            resourceObjectDetails.attributes());
-        final Map<String, List<OperationEntry>> changeRequestAsMap =
-            Map.of(resourceObjectDetails.objectClass(), List.of(operationEntry));
-        final String targetIdentifier = ParameterHelper.extractParentFdn(requestParameters.fdn());
-        return new OperationDetails(operationType.getOperationName(), targetIdentifier, changeRequestAsMap);
+        final String parentFdn = ParameterHelper.extractParentFdn(requestParameters.fdn());
+        final List<ClassInstance> classInstances
+            = List.of(new ClassInstance(resourceObjectDetails.id(), resourceObjectDetails.attributes()));
+        return new OperationDetails(operationType, parentFdn, resourceObjectDetails.objectClass(), classInstances);
     }
 
     /**
-     * Build OperationDetails for a specific patch item.
+     * Build a OperationDetails object from ProvMnS request details for delete.
      *
-     * @param operationType     the type of operation (CREATE, UPDATE)
-     * @param requestParameters request parameters including uri-ldn-first-part, className and id
-     * @param patchItem         the patch item containing operation details
-     * @return OperationDetails object for the patch item
+     * @param fdn    fdn to be deleted
+     * @return OperationDetails object
      */
-    public OperationDetails buildOperationDetailsForPatchItem(final OperationType operationType,
-                                                              final RequestParameters requestParameters,
-                                                              final PatchItem patchItem) {
-        final Map<String, Object> resourceAsObject = new HashMap<>(2);
-        resourceAsObject.put("id", requestParameters.id());
-        resourceAsObject.put("attributes", patchItem.getValue());
-        return buildOperationDetails(operationType, requestParameters, resourceAsObject);
+    public OperationDetails buildOperationDetailsForDelete(final String fdn) {
+        final String parentFdn = ParameterHelper.extractParentFdn(fdn);
+        return new OperationDetails(OperationType.DELETE, parentFdn, "", emptyList());
     }
 
     private OperationDetails buildOperationDetailsForPatchItemWithHash(final RequestParameters requestParameters,
                                                                        final PatchItem patchItem) {
         final Map<String, Object> attributeHierarchyAsMap = createNestedMap(patchItem);
-        final OperationEntry operationEntry = new OperationEntry(requestParameters.id(), attributeHierarchyAsMap);
-        final String targetIdentifier = ParameterHelper.extractParentFdn(requestParameters.fdn());
-        final Map<String, List<OperationEntry>> operationEntriesPerObjectClass = new HashMap<>();
-        operationEntriesPerObjectClass.put(requestParameters.className(), List.of(operationEntry));
-        return new OperationDetails(UPDATE.getOperationName(), targetIdentifier, operationEntriesPerObjectClass);
+        final String parentFdn = ParameterHelper.extractParentFdn(requestParameters.fdn());
+        final List<ClassInstance> classInstances
+            = List.of(new ClassInstance(requestParameters.id(), attributeHierarchyAsMap));
+        return new OperationDetails(UPDATE, parentFdn, requestParameters.className(), classInstances);
     }
 
     @SuppressWarnings("unchecked")
