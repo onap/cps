@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1df252ae_e0baa28f",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-14T10:15:59Z",
+      "side": 1,
+      "message": "This is not required as yang model validation is done at controller layer.",
+      "range": {
+        "startLine": 161,
+        "startChar": 10,
+        "endLine": 164,
+        "endChar": 9
+      },
+      "revId": "0e6856def069b78a32628ff884d1f5317d66fe85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3222d9b9_76aaf86b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-14T10:15:59Z",
+      "side": 1,
+      "message": "NB: I remember in a previous patch Toine had suggested how to handle this and you have followed the same convention here.",
+      "revId": "0e6856def069b78a32628ff884d1f5317d66fe85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
