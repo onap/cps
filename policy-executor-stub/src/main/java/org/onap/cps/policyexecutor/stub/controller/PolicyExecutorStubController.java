@@ -58,6 +58,7 @@ public class PolicyExecutorStubController implements OperationPermissionApi {
                                                                         final String accept,
                                                                         final String authorization) {
         log.info("Stub Policy Executor Invoked");
+        log.info("Authorization sent with request: {}", authorization);
         log.info("Permission Request: {}", formatPermissionRequest(permissionRequest));
         if (permissionRequest.getOperations().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

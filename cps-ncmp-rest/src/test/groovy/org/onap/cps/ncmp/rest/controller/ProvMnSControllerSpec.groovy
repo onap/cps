@@ -234,6 +234,7 @@ class ProvMnSControllerSpec extends Specification {
             mockDmiRestClient.synchronousPatchOperation(*_) >> new ResponseEntity<>('content from DMI', responseStatusFromDmi)
         when: 'patch request is performed'
             def response = mvc.perform(patch(provmnsUrl)
+                    .header('Authorization', 'my authorization')
                     .contentType(contentMediaType)
                     .content(jsonBody))
                     .andReturn().response
@@ -242,7 +243,7 @@ class ProvMnSControllerSpec extends Specification {
         and: 'the response contains the expected content'
             assert response.contentAsString.contains('content from DMI')
         and: 'policy executor was invoked with the expected parameters'
-            1 * mockPolicyExecutor.checkPermission(validCmHandle, OperationType.UPDATE, _, expectedResourceIdForPolicyExecutor, expectedChangeRequest)
+            1 * mockPolicyExecutor.checkPermission(validCmHandle, OperationType.UPDATE, 'my authorization', expectedResourceIdForPolicyExecutor, expectedChangeRequest)
         where: 'following scenarios are applied'
             scenario          | contentMediaType   | jsonBody             | responseStatusFromDmi || expectedResponseStatusFromProvMnS
             'happy flow 3gpp' | patchMediaType3gpp | patchJsonBody3gpp    | OK                    || OK
@@ -259,6 +260,7 @@ class ProvMnSControllerSpec extends Specification {
             mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
         when: 'patch request is performed'
             def response = mvc.perform(patch(provmnsUrl)
+                .header('Authorization', 'my authorization')
                 .contentType(patchMediaType)
                 .content('{malformed}'))
                 .andReturn().response
@@ -279,6 +281,7 @@ class ProvMnSControllerSpec extends Specification {
             spiedJsonObjectMapper.asJsonString(_) >> { throw new DataValidationException('my message','some details') }
         when: 'patch request is performed'
             def response = mvc.perform(patch(provmnsUrl)
+                .header('Authorization', 'my authorization')
                 .contentType(patchMediaType)
                 .content(patchJsonBody))
                 .andReturn().response
@@ -299,13 +302,14 @@ class ProvMnSControllerSpec extends Specification {
             def expectedResourceIdentifier = '/myClass=id1/childClass=1'
         when: 'patch data resource request is performed'
             def response = mvc.perform(patch(url)
+                .header('Authorization', 'my authorization')
                 .contentType(patchMediaType)
                 .content('[{"op":"remove","path":"/childClass=1/grandchildClass=1"}]'))
                 .andReturn().response
         then: 'response status is OK'
             assert response.status == OK.value()
         and: 'Policy Executor was invoked with correct details'
-            1 * mockPolicyExecutor.checkPermission(_, OperationType.DELETE, _, expectedResourceIdentifier, expectedDeleteChangeRequest)
+            1 * mockPolicyExecutor.checkPermission(_, OperationType.DELETE, 'my authorization', expectedResourceIdentifier, expectedDeleteChangeRequest)
     }
 
     def 'Patch request with no permission from Coordination Management (aka Policy Executor).'() {
@@ -319,6 +323,7 @@ class ProvMnSControllerSpec extends Specification {
             mockPolicyExecutor.checkPermission(*_) >> {throw new PolicyExecutorException('denied for test','details',null)}
         when: 'patch data resource request is performed'
             def response = mvc.perform(patch(url)
+                    .header('Authorization', 'my authorization')
                     .contentType(patchMediaType)
                     .content(patchJsonBody))
                     .andReturn().response
@@ -337,6 +342,7 @@ class ProvMnSControllerSpec extends Specification {
             def url = "$provMnSBasePath/v1/someClass=someId"
         when: 'patch data resource request is performed'
             def response = mvc.perform(patch(url)
+                .header('Authorization', 'my authorization')
                 .contentType(contentType)
                 .accept(acceptType)
                 .content(patchJsonBody))
@@ -360,6 +366,7 @@ class ProvMnSControllerSpec extends Specification {
            def patchItemsJsonRequestBody = spiedJsonObjectMapper.asJsonString(patchItems)
         when: 'patch data resource request is performed'
             def response = mvc.perform(patch(url)
+                    .header('Authorization', 'my authorization')
                     .contentType(patchMediaType)
                     .content(patchItemsJsonRequestBody))
                     .andReturn().response
@@ -386,6 +393,7 @@ class ProvMnSControllerSpec extends Specification {
             def expectedChangeRequest = '{"grandChildClass":[{"id":"2","attributes":{"attr1":"value1"}}]}'
         when: 'put data resource request is performed'
             def response = mvc.perform(put(putUrl)
+                    .header('Authorization', 'my authorization')
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(resourceAsJson))
                     .andReturn().response
@@ -394,7 +402,7 @@ class ProvMnSControllerSpec extends Specification {
         and: 'the content is whatever the DMI returned'
             assert response.contentAsString == responseContentFromDmi
         and: 'The policy executor was invoked with the expected parameters'
-            1 * mockPolicyExecutor.checkPermission(_, OperationType.CREATE, _, expectedResourceIdentifier, expectedChangeRequest)
+            1 * mockPolicyExecutor.checkPermission(validCmHandle, OperationType.CREATE, 'my authorization', expectedResourceIdentifier, expectedChangeRequest)
         where: 'following responses returned by DMI'
             scenario         | responseStatusFromDmi | responseContentFromDmi
             'happy flow'     | OK                    | 'content from DMI'
@@ -408,6 +416,7 @@ class ProvMnSControllerSpec extends Specification {
             mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(*_) >> { throw new NoAlternateIdMatchFoundException('') }
         when: 'put data resource request is performed'
             def response = mvc.perform(put(putUrl)
+                .header('Authorization', 'my authorization')
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(resourceAsJson))
                 .andReturn().response
@@ -427,13 +436,13 @@ class ProvMnSControllerSpec extends Specification {
         and: 'dmi provides a response'
             mockDmiRestClient.synchronousDeleteOperation(*_) >> new ResponseEntity<>(responseContentFromDmi, responseStatusFromDmi)
         when: 'Delete data resource request is performed'
-            def response = mvc.perform(delete(deleteUrl)).andReturn().response
+            def response = mvc.perform(delete(deleteUrl).header('Authorization', 'my authorization')).andReturn().response
         then: 'response status is the same as what DMI gave'
             assert response.status == responseStatusFromDmi.value()
         and: 'the content is whatever the DMI returned'
             assert response.contentAsString == responseContentFromDmi
         and: 'Policy Executor was invoked with correct resource identifier and almost empty operation details (not used for delete!)'
-            1 * mockPolicyExecutor.checkPermission(_, OperationType.DELETE, _, '/myClass=id1/childClass=1', expectedDeleteChangeRequest)
+            1 * mockPolicyExecutor.checkPermission(_, OperationType.DELETE, 'my authorization', '/myClass=id1/childClass=1', expectedDeleteChangeRequest)
         where: 'following responses returned by DMI'
             scenario         | responseStatusFromDmi | responseContentFromDmi
             'happy flow'     | OK                    | 'content from DMI'
@@ -446,7 +455,7 @@ class ProvMnSControllerSpec extends Specification {
         and: 'cannot match alternate ID'
             mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(*_) >> { throw new NoAlternateIdMatchFoundException('') }
         when: 'Delete data resource request is performed'
-            def response = mvc.perform(delete(deleteUrl)).andReturn().response
+            def response = mvc.perform(delete(deleteUrl).header('Authorization', 'my authorization')).andReturn().response
         then: 'response status is the same as what DMI gave'
             assert response.status == NOT_FOUND.value()
         and: 'the content indicates the FDN could not be found'
