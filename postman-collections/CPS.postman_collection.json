@@ -1,11 +1,10 @@
 {
 	"info": {
-		"_postman_id": "f67af205-d2ab-4859-afdf-0e1eb2137463",
+		"_postman_id": "1af7e978-267a-4833-bc42-6cf27be038b4",
 		"name": "CPS",
 		"description": "<img src=\"https://content.pstmn.io/bfbd86c2-7aa4-4afd-bd4a-207de1305bb7/Q1BTTG9nby5wbmc=\">\n\n# [CPS ONAP Documentation](https://docs.onap.org/projects/onap-cps/en/latest/index.html)\n\n# [DMI ONAP Documentation](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html)\n\n### How-to\n\nBuild CPS docker images with maven:\n\n`mvn clean install`\n\nor\n\n`mvn clean install -DskipTests`\n\nNavigate to docker-compose folder:\n\n`cd .\\docker-compose\\`\n\nBring up docker containers using commands found in docker-compose.yaml or run CPS services including dmi plugin\n\n`docker-compose --profile dmi-service up -d`\n\n### CPS-Enviroment\n\nTo enable the CPS enviroment, go to the top right of the screen in Postman and click envrioments. Import the CPS-envrioment file from the Postman Collections file in CPS.\n\n**To utilise NCMP-DMI-Stub endpoints begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`\n\n# CPS Core Example\n\n- Create dataspace\n    \n- Verify dataspace exists\n    \n- etc...\n    \n\n# CPS-NCMP Example\n\n- Create CM handles\n    \n- Verify CM handles exist\n    \n- etc...",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "16927565",
-		"_collection_link": "https://cps555.postman.co/workspace/CPS-Workspace~388a7e32-81fe-4932-8636-02ccf8b51aca/collection/16927565-f67af205-d2ab-4859-afdf-0e1eb2137463?action=share&source=collection_link&creator=16927565"
+		"_exporter_id": "26733783"
 	},
 	"item": [
 		{
@@ -822,7 +821,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-1\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X1\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"123\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-2\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X2\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"456\",\r\n        \"userLabel\": \"test2\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
+											"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-1\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X1\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"123\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-2\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X2\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"456\",\r\n        \"userLabel\": \"test2\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-3-never-ready\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X3\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"moduleSetTag\": \"errorTag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -905,7 +904,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"removedCmHandles\": [ \"cm-handle-1\", \"cm-handle-2\"]\r\n}",
+											"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"removedCmHandles\": [ \"cm-handle-1\", \"cm-handle-2\", \"cm-handle-3-never-ready\"]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1496,7 +1495,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1",
+									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1?ScopeType=BASE_ONLY&ScopeLevel=1&filter=\"some filter\"&attributes=\"some attributes\"&fields=[\"my field\",\"other field\"]",
 									"protocol": "http",
 									"host": [
 										"{{CPS_HOST}}"
@@ -1510,36 +1509,182 @@
 									],
 									"query": [
 										{
-											"key": "outputAlternateId",
-											"value": "true",
-											"description": "Returns alternate ids rather then cm handle ids",
-											"disabled": true
+											"key": "ScopeType",
+											"value": "BASE_ONLY"
+										},
+										{
+											"key": "ScopeLevel",
+											"value": "1"
+										},
+										{
+											"key": "filter",
+											"value": "\"some filter\""
+										},
+										{
+											"key": "attributes",
+											"value": "\"some attributes\""
+										},
+										{
+											"key": "fields",
+											"value": "[\"my field\",\"other field\"]"
 										}
 									]
-								}
+								},
+								"description": "Get resource data with all parameters populated"
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Http Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=httpError_418",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"dmiSimulation=httpError_418"
+											],
+											"query": [
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Timeout Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=slowResponse_40",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"dmiSimulation=slowResponse_40"
+											],
+											"query": [
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Not Ready State Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X3",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X3"
+											],
+											"query": [
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
 						},
 						{
-							"name": "Request with http Error",
+							"name": "Put Resource Data",
 							"protocolProfileBehavior": {
-								"disableBodyPruning": true
+								"disabledSystemHeaders": {}
 							},
 							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
+								"method": "PUT",
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": ""
+									"raw": "{\r\n    \"id\": \"id2\",\r\n    \"objectClass\": \"child\",\r\n    \"attributes\": {\r\n        \"userLabel\" : \"my new label\"    \r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=httpError_418",
+									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/parent=id1/child=id2",
 									"protocol": "http",
 									"host": [
 										"{{CPS_HOST}}"
@@ -1550,37 +1695,161 @@
 										"v1",
 										"Subnetwork=Europe",
 										"ManagedElement=X1",
-										"dmiSimulation=httpError_418"
-									],
-									"query": [
-										{
-											"key": "outputAlternateId",
-											"value": "true",
-											"description": "Returns alternate ids rather then cm handle ids",
-											"disabled": true
-										}
+										"parent=id1",
+										"child=id2"
 									]
-								}
+								},
+								"description": "Creates new managed object \"child\" under \"parent\""
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Http Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"id2\",\r\n    \"objectClass\": \"child\",\r\n    \"attributes\": {\r\n        \"plmnId\": { \r\n            \"mcc\" : \"1234\"\r\n        }\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=httpError_418",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"dmiSimulation=httpError_418"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Timeout Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"id2\",\r\n    \"objectClass\": \"child\",\r\n    \"attributes\": {\r\n        \"plmnId\": { \r\n            \"mcc\" : \"1234\"\r\n        }\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=slowResponse_40",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"dmiSimulation=slowResponse_40"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Not Ready Error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"id2\",\r\n    \"objectClass\": \"child\",\r\n    \"attributes\": {\r\n        \"plmnId\": { \r\n            \"mcc\" : \"1234\"\r\n        }\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X3",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X3"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Policy Executor Deny",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"id2\",\r\n    \"objectClass\": \"child\",\r\n    \"attributes\": {\r\n        \"plmnId\": { \r\n            \"mcc\" : \"1234\"\r\n        }\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/policySimulation=policyResponse_Denied",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"policySimulation=policyResponse_Denied"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
 						},
 						{
-							"name": "Request with Timeout",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
+							"name": "Delete Resource Data",
 							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X2/dmiSimulation=slowResponse_40",
+									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/parent=id1/child=id2/grandchild=id3",
 									"protocol": "http",
 									"host": [
 										"{{CPS_HOST}}"
@@ -1590,23 +1859,122 @@
 										"ProvMnS",
 										"v1",
 										"Subnetwork=Europe",
-										"ManagedElement=X2",
-										"dmiSimulation=slowResponse_40"
-									],
-									"query": [
-										{
-											"key": "outputAlternateId",
-											"value": "true",
-											"description": "Returns alternate ids rather then cm handle ids",
-											"disabled": true
-										}
+										"ManagedElement=X1",
+										"parent=id1",
+										"child=id2",
+										"grandchild=id3"
 									]
-								}
+								},
+								"description": "Deletes managed object \"grandchild\""
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Http Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=httpError_418",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"dmiSimulation=httpError_418"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Timeout Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=slowResponse_40",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"dmiSimulation=slowResponse_40"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Not Ready State Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X3",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X3"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Policy Executor Deny",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/policySimulation=policyResponse_Denied",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"policySimulation=policyResponse_Denied"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
 						},
 						{
-							"name": "Patch Resource Data (TBC)",
+							"name": "Patch Resource Data",
 							"protocolProfileBehavior": {
 								"disabledSystemHeaders": {
 									"content-type": true
@@ -1623,7 +1991,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "[\r\n {\r\n   \"op\": \"add\",\r\n   \"path\":\"/SomeChildType=child1\",\r\n   \"value\": {\r\n     \"id\": \"child1\",\r\n     \"objectClass\": \"SomeChildType\",\r\n     \"attributes\": {\r\n       \"userLabel\": \"My first child\",\r\n       \"vendorName\": \"Company XY\"\r\n     }\r\n   }\r\n }\r\n]\r\n",
+									"raw": "[\r\n {\r\n   \"op\": \"add\",\r\n   \"path\":\"/parent=id1/child=id2\",\r\n   \"value\": {\r\n     \"id\": \"id2\",\r\n     \"attributes\": {\r\n       \"userLabel\": \"my userLabel\"\r\n     }\r\n   }\r\n }\r\n]\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1643,66 +2011,293 @@
 										"Subnetwork=Europe",
 										"ManagedElement=X1"
 									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Put Resource Data",
-							"protocolProfileBehavior": {
-								"disabledSystemHeaders": {}
-							},
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"xyz1\",\r\n    \"objectClass\": \"XyzFunction\",\r\n    \"attributes\": {\r\n        \"attrC\": \"some new value\"\r\n    }\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/XyzFunction=xyz1",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ProvMnS",
-										"v1",
-										"Subnetwork=Europe",
-										"ManagedElement=X1",
-										"XyzFunction=xyz1"
-									]
-								}
+								"description": "Creates new managed object \"child\" under \"parent\""
 							},
-							"response": []
-						},
-						{
-							"name": "Delete Resource Data",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ProvMnS",
-										"v1",
-										"Subnetwork=Europe",
-										"ManagedElement=X1"
-									]
+							"response": [
+								{
+									"name": "Simple /attribute change",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json-patch+json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n {\r\n   \"op\": \"replace\",\r\n   \"path\":\"/parent=id1/attributes\",\r\n   \"value\": {\r\n       \"userLabel\": \"A new userLabel\"\r\n   }\r\n }\r\n]\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Complex #/attribute change",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/3gpp-json-patch+json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n {\r\n   \"op\": \"replace\",\r\n   \"path\": \"/parent=id1/child=id2/grandchild=id3#/attributes/plmnId/mcc\",\r\n   \"value\": \"1234\"\r\n }\r\n]\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Multiple operations",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json-patch+json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n {\r\n   \"op\": \"add\",\r\n   \"path\":\"/parent=id1/child=id2\",\r\n   \"value\": {\r\n     \"id\": \"id2\",\r\n     \"objectClass\": \"child\",\r\n     \"attributes\": {\r\n       \"userLabel\": \"My first child\",\r\n       \"vendorName\": \"Company XY\"\r\n     }\r\n   }\r\n },\r\n {\r\n   \"op\": \"replace\",\r\n   \"path\":\"/parent=id1/child=id2/attributes\",\r\n   \"value\": {\r\n       \"userLabel\": \"new userLabel\"\r\n   }\r\n },\r\n {\r\n   \"op\": \"remove\",\r\n   \"path\":\"/parent=id1/child=id2\"\r\n }\r\n]\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Not Ready State Error",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json-patch+json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n {\r\n   \"op\": \"remove\",\r\n   \"path\":\"/andAnotherChildType=child3\"\r\n }\r\n]\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X3",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X3"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Http Error",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json-patch+json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n  {\r\n   \"op\": \"remove\",\r\n   \"path\":\"/parent=id1/child=id2\"\r\n }\r\n]\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=httpError_418",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"dmiSimulation=httpError_418"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Timeout Error",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json-patch+json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n  {\r\n   \"op\": \"remove\",\r\n   \"path\":\"/parent=id1/child=id2\"\r\n }\r\n]\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1/dmiSimulation=slowResponse_40",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1",
+												"dmiSimulation=slowResponse_40"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Policy Executor Deny",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json-patch+json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n {\r\n   \"op\": \"remove\",\r\n   \"path\":\"/parent=id1/child=id2\"\r\n },\r\n {\r\n   \"op\": \"remove\",\r\n   \"path\":\"/parent=id1/child=id3/policySimulation=policyResponse_Denied\"\r\n }\r\n]\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/v1/Subnetwork=Europe/ManagedElement=X1",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ProvMnS",
+												"v1",
+												"Subnetwork=Europe",
+												"ManagedElement=X1"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
 								}
-							},
-							"response": []
+							]
 						}
 					]
 				},
