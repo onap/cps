@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.provmns;
 
 public record RequestParameters(
     String httpMethodName,
+    String authorization,
     String fdn,
     String uriLdnFirstPart,
     String className,
