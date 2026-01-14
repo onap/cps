@@ -118,7 +118,8 @@ public class ProvMnSController implements ProvMnS {
         final RequestParameters requestParameters = ParameterHelper.extractRequestParameters(httpServletRequest);
         try {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
-            checkPermissionForEachPatchItem(requestParameters.fdn(), patchItems, yangModelCmHandle);
+            checkPermissionForEachPatchItem(requestParameters.fdn(), patchItems,
+                yangModelCmHandle, requestParameters.authorization());
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
             return dmiRestClient.synchronousPatchOperation(DATA, patchItems, urlTemplateParameters,
@@ -135,7 +136,7 @@ public class ProvMnSController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
             final OperationDetails operationDetails =
                 operationDetailsFactory.buildOperationDetails(CREATE, requestParameters, resource);
-            checkPermission(yangModelCmHandle, operationDetails);
+            checkPermission(yangModelCmHandle, operationDetails, requestParameters);
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
             return dmiRestClient.synchronousPutOperation(DATA, resource, urlTemplateParameters);
@@ -151,7 +152,7 @@ public class ProvMnSController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
             final OperationDetails operationDetails =
                 operationDetailsFactory.buildOperationDetailsForDelete(requestParameters.fdn());
-            checkPermission(yangModelCmHandle, operationDetails);
+            checkPermission(yangModelCmHandle, operationDetails, requestParameters);
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
             return dmiRestClient.synchronousDeleteOperation(DATA, urlTemplateParameters);
@@ -182,27 +183,30 @@ public class ProvMnSController implements ProvMnS {
     }
 
     private void checkPermission(final YangModelCmHandle yangModelCmHandle,
-                                 final OperationDetails operationDetails) {
+                                 final OperationDetails operationDetails,
+                                 final RequestParameters requestParameters) {
         final Map<String, List<ClassInstance>> changeRequestAsMap = new HashMap<>(1);
         changeRequestAsMap.put(operationDetails.className(), operationDetails.ClassInstances());
         final String changeRequestAsJson = jsonObjectMapper.asJsonString(changeRequestAsMap);
         final int index = yangModelCmHandle.getAlternateId().length();
         final String resourceIdentifier = operationDetails.parentFdn().substring(index);
         policyExecutor.checkPermission(yangModelCmHandle, operationDetails.operationType(),
-            NO_AUTHORIZATION, resourceIdentifier, changeRequestAsJson);
+            requestParameters.authorization(), resourceIdentifier, changeRequestAsJson);
     }
 
     private void checkPermissionForEachPatchItem(final String baseFdn,
                                                  final List<PatchItem> patchItems,
-                                                 final YangModelCmHandle yangModelCmHandle) {
+                                                 final YangModelCmHandle yangModelCmHandle,
+                                                 final String authorization) {
         int patchItemCounter = 0;
         for (final PatchItem patchItem : patchItems) {
             final String extendedPath = baseFdn + patchItem.getPath();
-            final RequestParameters requestParameters = ParameterHelper.createRequestParametersForPatch(extendedPath);
+            final RequestParameters requestParameters =
+                ParameterHelper.createRequestParametersForPatch(extendedPath, authorization);
             final OperationDetails operationDetails =
                 operationDetailsFactory.buildOperationDetails(requestParameters, patchItem);
             try {
-                checkPermission(yangModelCmHandle, operationDetails);
+                checkPermission(yangModelCmHandle, operationDetails, requestParameters);
                 patchItemCounter++;
             } catch (final Exception exception) {
                 final String httpMethodName = "PATCH";
