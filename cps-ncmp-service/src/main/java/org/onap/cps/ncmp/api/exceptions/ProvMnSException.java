@@ -21,19 +21,15 @@
 package org.onap.cps.ncmp.api.exceptions;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
 @Getter
-@Setter
-@NoArgsConstructor
 public class ProvMnSException extends RuntimeException {
 
-    private String httpMethodName;
-    private HttpStatus httpStatus;
-    private String title;
-    private String badOp;
+    private final String httpMethodName;
+    private final HttpStatus httpStatus;
+    private final String title;
+    private final String badOp;
 
     /**
      * Constructor.

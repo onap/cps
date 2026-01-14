@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-   Copyright (C) 2024 Nordix Foundation.
+   Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -337,6 +337,7 @@ https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16429749/How+to+update+ONAP+c
             <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
             <property name="validateEnhancedForLoopVariable" value="true"/>
         </module>
+        <module name="UnusedLocalVariable"/>
         <module name="UnusedImports"/>
     </module>
 </module>

@@ -216,10 +216,6 @@ public class ProvMnSController implements ProvMnS {
         if (exception instanceof ProvMnSException) {
             return (ProvMnSException) exception;
         }
-        final ProvMnSException provMnSException = new ProvMnSException();
-        provMnSException.setHttpMethodName(httpMethodName);
-        provMnSException.setTitle(exception.getMessage());
-        provMnSException.setBadOp(badOp);
         final HttpStatus httpStatus;
         if (exception instanceof PolicyExecutorException) {
             httpStatus = CONFLICT;
@@ -230,9 +226,8 @@ public class ProvMnSController implements ProvMnS {
         } else {
             httpStatus = INTERNAL_SERVER_ERROR;
         }
-        provMnSException.setHttpStatus(httpStatus);
-        log.warn("ProvMns Exception: {}", provMnSException.getTitle());
-        return provMnSException;
+        log.warn("ProvMns Exception: {}", exception.getMessage());
+        return new ProvMnSException(httpMethodName, httpStatus, exception.getMessage(), badOp);
     }
 
 }

@@ -21,11 +21,12 @@
 package org.onap.cps.ncmp.impl.provmns;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.springframework.http.HttpStatus;
 
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ParameterHelper {
 
     public static final String NO_OP = null;
