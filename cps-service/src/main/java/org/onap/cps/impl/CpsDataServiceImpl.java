@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022-2025 Deutsche Telekom AG
@@ -319,7 +319,6 @@ public class CpsDataServiceImpl implements CpsDataService {
         description = "Time taken to delete all data nodes for multiple anchors")
     public void deleteDataNodes(final String dataspaceName, final Collection<String> anchorNames,
                                 final OffsetDateTime observedTimestamp) {
-        final boolean deltaNotification = false;
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(anchorNames);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorNames);
