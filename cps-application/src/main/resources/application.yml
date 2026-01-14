@@ -198,7 +198,7 @@ ncmp:
             port: ${POLICY_SERVICE_PORT:8093}
         httpclient:
             all-services:
-                maximumInMemorySizeInMegabytes: 16
+                maximumInMemorySizeInMegabytes: 64
                 maximumConnectionsTotal: 100
                 pendingAcquireMaxCount: 50
                 connectionTimeoutInSeconds: 30
@@ -208,7 +208,7 @@ ncmp:
     dmi:
         httpclient:
             data-services:
-                maximumInMemorySizeInMegabytes: 16
+                maximumInMemorySizeInMegabytes: 64
                 maximumConnectionsTotal: 100
                 pendingAcquireMaxCount: 50
                 connectionTimeoutInSeconds: 30
@@ -216,7 +216,7 @@ ncmp:
                 writeTimeoutInSeconds: 30
                 responseTimeoutInSeconds: 60
             model-services:
-                maximumInMemorySizeInMegabytes: 16
+                maximumInMemorySizeInMegabytes: 64
                 maximumConnectionsTotal: 100
                 pendingAcquireMaxCount: 50
                 connectionTimeoutInSeconds: 30
