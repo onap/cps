@@ -51,7 +51,7 @@ class ParameterHelperSpec extends Specification {
 
     def 'Extract request parameters for Patch Path with attributes.'() {
         when: 'the request parameters are extracted from the path'
-            def result = objectUnderTest.createRequestParametersForPatch(path)
+            def result = objectUnderTest.createRequestParametersForPatch(path, 'some authorization')
         then: 'the FDN is as expected'
             assert result.fdn == expectedFdn
         and: 'the class name and id are mapped correctly'

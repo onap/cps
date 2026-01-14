@@ -35,7 +35,7 @@ import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE
 class OperationDetailsFactorySpec extends Specification {
 
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def requestPathParameters = new RequestParameters('some method', '/parent=id1/someChild=someId','some uri', 'class from uri', 'id from uri')
+    def requestPathParameters = new RequestParameters('some method', 'some authorization', '/parent=id1/someChild=someId','some uri', 'class from uri', 'id from uri')
 
     OperationDetailsFactory objectUnderTest = new OperationDetailsFactory(jsonObjectMapper)
 

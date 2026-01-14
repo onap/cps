@@ -48,18 +48,21 @@ public class ParameterHelper {
             throw createProvMnSException(httpServletRequest.getMethod(), uriPath);
         }
         final String fdn = "/" + pathVariables[REQUEST_FDN_INDEX];
-        return createRequestParameters(httpServletRequest.getMethod(), fdn);
+        return createRequestParameters(httpServletRequest.getMethod(),
+            httpServletRequest.getHeader("Authorization"), fdn);
     }
 
     /**
      * Create RequestParameters object for PATCH operations.
      *
      * @param pathWithAttributes the path a fdn possibly with containing attributes
+     * @param authorization HttpServletRequest object
      * @return RequestParameters object for PATCH operation
      */
-    public static RequestParameters createRequestParametersForPatch(final String pathWithAttributes) {
+    public static RequestParameters createRequestParametersForPatch(
+        final String pathWithAttributes, final String authorization) {
         final String fdn = removeTrailingHash(extractFdn(pathWithAttributes));
-        return createRequestParameters("PATCH", fdn);
+        return createRequestParameters("PATCH", authorization, fdn);
     }
 
     /**
@@ -98,6 +101,7 @@ public class ParameterHelper {
     }
 
     private static RequestParameters createRequestParameters(final String httpMethodName,
+                                                             final String authorization,
                                                              final String fdn) {
         final int lastSlashIndex = fdn.lastIndexOf('/');
         final String classNameAndId;
@@ -110,7 +114,7 @@ public class ParameterHelper {
         }
         final String className = splitClassNameId[0];
         final String id = removeTrailingHash(splitClassNameId[1]);
-        return new RequestParameters(httpMethodName, fdn, uriLdnFirstPart, className, id);
+        return new RequestParameters(httpMethodName, authorization, fdn, uriLdnFirstPart, className, id);
     }
 
     private static ProvMnSException createProvMnSException(final String httpMethodName, final String uriPath) {
