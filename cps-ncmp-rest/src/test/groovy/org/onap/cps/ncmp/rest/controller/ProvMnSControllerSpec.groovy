@@ -297,7 +297,7 @@ class ProvMnSControllerSpec extends Specification {
             mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/managedElement=1/myClass=id1', "/") >> 'ch-1'
         and: 'persistence service returns valid yangModelCmHandle'
             mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
-            def expectedResourceIdentifier = '/myClass=id1/childClass=1'
+            def expectedResourceIdentifier = '/myClass=id1/childClass=1/grandchildClass=1'
         when: 'patch data resource request is performed'
             def response = mvc.perform(patch(url)
                 .header('Authorization', 'my authorization')
@@ -436,7 +436,7 @@ class ProvMnSControllerSpec extends Specification {
         and: 'the content is whatever the DMI returned'
             assert response.contentAsString == responseContentFromDmi
         and: 'Policy Executor was invoked with correct resource identifier and almost empty operation details (not used for delete!)'
-            1 * mockPolicyExecutor.checkPermission(_, OperationType.DELETE, 'my authorization', '/myClass=id1/childClass=1', expectedDeleteChangeRequest)
+            1 * mockPolicyExecutor.checkPermission(_, OperationType.DELETE, 'my authorization', '/myClass=id1/childClass=1/grandChildClass=2', expectedDeleteChangeRequest)
         where: 'following responses returned by DMI'
             scenario         | responseStatusFromDmi | responseContentFromDmi
             'happy flow'     | OK                    | 'content from DMI'

@@ -105,8 +105,7 @@ public class OperationDetailsFactory {
      * @return OperationDetails object
      */
     public OperationDetails buildOperationDetailsForDelete(final String fdn) {
-        final String parentFdn = ParameterHelper.extractParentFdn(fdn);
-        return new OperationDetails(OperationType.DELETE, parentFdn, "", emptyList());
+        return new OperationDetails(OperationType.DELETE, fdn, "", emptyList());
     }
 
     /**
