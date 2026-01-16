@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast
+  name: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast-service
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: cps-and-ncmp

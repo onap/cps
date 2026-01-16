@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.fullname" . }}-dmi-stub-1
+  name: {{ include "cps-and-ncmp.release-name" . }}-dmi-stub-1
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: dmi-stub
@@ -26,19 +26,15 @@ spec:
           ports:
             - containerPort: {{ .Values.dmiStub.deployment1.containerPort }}
           env:
-            - name: DMI_STUB_SERVER_PORT
-              value: "{{ .Values.dmiStub.deployment1.containerPort }}"
-            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
-              value: "health,info"
-            - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
-              value: "always"
             {{- range $key, $value := .Values.dmiStub.env }}
-            - name: {{ $key }}
+            - name: {{ $key | upper }}
               value: "{{ $value }}"
             {{- end }}
+            - name: DMI_SERVER_PORT
+              value: "{{ .Values.dmiStub.deployment1.containerPort }}"
           resources:
             {{- toYaml .Values.dmiStub.resources | nindent 12 }}
           livenessProbe:
-            {{- toYaml .Values.dmiStub.livenessProbe.deployment1 | nindent 12 }}
+            {{- toYaml .Values.dmiStub.livenessProbe | nindent 12 }}
           readinessProbe:
-            {{- toYaml .Values.dmiStub.readinessProbe.deployment1 | nindent 12 }}
+            {{- toYaml .Values.dmiStub.readinessProbe | nindent 12 }}
