@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0894cb6_0cde57c9",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-16T11:06:34Z",
+      "side": 1,
+      "message": "At controller layer, code is coverting yang file to map.\nI did not find validation of yang there.\nWhen using invalid yang, the code throws exception here while parsing.\nThus, I handled it here.",
+      "parentUuid": "1df252ae_e0baa28f",
+      "range": {
+        "startLine": 161,
+        "startChar": 10,
+        "endLine": 164,
+        "endChar": 9
+      },
+      "revId": "0e6856def069b78a32628ff884d1f5317d66fe85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3222d9b9_76aaf86b",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
         "patchSetId": 6
@@ -37,6 +61,24 @@
       "writtenOn": "2026-01-14T10:15:59Z",
       "side": 1,
       "message": "NB: I remember in a previous patch Toine had suggested how to handle this and you have followed the same convention here.",
+      "revId": "0e6856def069b78a32628ff884d1f5317d66fe85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a853d9c_559aaa7d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-16T11:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3222d9b9_76aaf86b",
       "revId": "0e6856def069b78a32628ff884d1f5317d66fe85",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
