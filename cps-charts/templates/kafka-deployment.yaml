@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.fullname" . }}-kafka
+  name: {{ include "cps-and-ncmp.release-name" . }}-kafka
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: kafka
@@ -9,51 +9,33 @@ spec:
   replicas: {{ .Values.kafka.replicaCount }}
   selector:
     matchLabels:
-      app: kafka
+      app: {{ include "cps-and-ncmp.name" . }}
+      component: kafka
   template:
     metadata:
       labels:
-        app: kafka
+        app: {{ include "cps-and-ncmp.name" . }}
+        component: kafka
     spec:
       containers:
         - name: kafka
           image: "{{ .Values.kafka.image.repository }}:{{ .Values.kafka.image.tag }}"
           imagePullPolicy: {{ .Values.kafka.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.kafka.service.ports.internal }}
+            - containerPort: 29092
               name: internal
-            - containerPort: {{ .Values.kafka.service.ports.external }}
+            - containerPort: 9092
               name: external
+            - containerPort: 9093
+              name: nodeport
           env:
-            - name: KAFKA_BROKER_ID
-              value: "{{ .Values.kafka.brokerId }}"
-            - name: KAFKA_ZOOKEEPER_CONNECT
-              value: "{{ .Values.kafka.zookeeperConnect }}:2181"
-            - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
-              value: "{{ .Values.kafka.listenerSecurityProtocolMap }}"
-            - name: KAFKA_LISTENERS
-              value: "{{ .Values.kafka.listeners }}"
-            - name: KAFKA_ADVERTISED_LISTENERS
-              value: "{{ .Values.kafka.advertisedListeners }}"
-            - name: KAFKA_INTER_BROKER_LISTENER_NAME
-              value: "{{ .Values.kafka.interBrokerListenerName }}"
-            - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
-              value: "{{ .Values.kafka.offsetsTopicReplicationFactor }}"
+            {{- range $key, $value := .Values.kafka.env }}
+            - name: {{ $key | upper }}
+              value: "{{ $value }}"
+            {{- end }}
           resources:
-            requests:
-              cpu: {{ .Values.kafka.resources.requests.cpu }}
-              memory: {{ .Values.kafka.resources.requests.memory }}
-            limits:
-              cpu: "{{ .Values.kafka.resources.limits.cpu }}"
-              memory: "{{ .Values.kafka.resources.limits.memory }}"
+            {{- toYaml .Values.kafka.resources | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.kafka.livenessProbe | nindent 12 }}
           readinessProbe:
-            exec:
-              command:
-                - kafka-topics
-                - --bootstrap-server
-                - localhost:{{ .Values.kafka.service.ports.internal }}
-                - --list
-            initialDelaySeconds: {{ .Values.kafka.healthcheck.startPeriod | default 30 }}
-            periodSeconds: {{ .Values.kafka.healthcheck.interval | default 10 }}
-            timeoutSeconds: {{ .Values.kafka.healthcheck.timeout | default 10 }}
-            failureThreshold: {{ .Values.kafka.healthcheck.retries | default 3 }}
+            {{- toYaml .Values.kafka.readinessProbe | nindent 12 }}

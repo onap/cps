@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.fullname" . }}
+  name: {{ include "cps-and-ncmp.release-name" . }}
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: cps-and-ncmp
@@ -18,6 +18,8 @@ spec:
         component: cps
     spec:
       serviceAccountName: cps-hazelcast-service-account
+      initContainers:
+        {{- toYaml .Values.cps.initContainers | nindent 8 }}
       containers:
         - name: cps
           image: "{{ .Values.cps.image.repository }}:{{ .Values.cps.image.tag }}"
@@ -31,27 +33,12 @@ spec:
               value: "{{ $envValue }}"
             {{- end }}
             - name: CPS_NCMP_SERVICE_NAME
-              value: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast
+              value: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast-service
           resources:
-            requests:
-              cpu: {{ .Values.cps.resources.requests.cpu }}
-              memory: {{ .Values.cps.resources.requests.memory }}
-            limits:
-              cpu: {{ .Values.cps.resources.limits.cpu }}
-              memory: {{ .Values.cps.resources.limits.memory }}
-          readinessProbe:
-            httpGet:
-              path: /actuator/health/readiness
-              port: 8080
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 5
+            {{- toYaml .Values.cps.resources | nindent 12 }}
           livenessProbe:
-            httpGet:
-              path: /actuator/health/liveness
-              port: 8080
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 5
+            # Give cps up to 175 second to become alive
+            {{- toYaml .Values.cps.livenessProbe | nindent 12 }}
+          readinessProbe:
+            # After CPS is alive it can take up to 115 seconds to be ready for requests
+            {{- toYaml .Values.cps.readinessProbe | nindent 12 }}
