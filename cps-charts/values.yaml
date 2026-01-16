@@ -1,5 +1,7 @@
 postgresql:
   image: "postgres:14.1-alpine"
+  persistence:
+    enabled: false
   resources:
     requests:
       cpu: "2000m"
@@ -13,15 +15,34 @@ postgresql:
     POSTGRES_USER: "cps"
     POSTGRES_PASSWORD: "cps"
   initSql:
-    enabled: true
+    enabled: false
     configMapName: postgres-init-sql
     mountPath: /docker-entrypoint-initdb.d
+  livenessProbe:
+    exec:
+      command:
+        - sh
+        - -c
+        - pg_isready -U cps
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 3
+  readinessProbe:
+    exec:
+      command:
+        - sh
+        - -c
+        - pg_isready -U cps -d cpsdb
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 6
 
 cps:
   image:
     repository: "nexus3.onap.org:10003/onap/cps-and-ncmp"
     tag: "latest"
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   replicas: 2
   servicePort: 8080
   service:
@@ -30,18 +51,72 @@ cps:
     nodePort: 30080
   resources:
     requests:
-      cpu: "2000m"
-      memory: "3Gi"
+      cpu: "500m"
+      memory: "1Gi"
     limits:
-      cpu: "6000m"
-      memory: "5Gi"
+      cpu: "2000m"
+      memory: "2Gi"
+  initContainers:
+    # Wait for PostgreSQL and Kafka to be ready
+    - name: wait-for-dependencies
+      image: busybox:1.36
+      command:
+        - sh
+        - -c
+        - |
+          echo "Waiting for PostgreSQL..."
+          for i in $(seq 1 60); do
+            if nc -z {{ include "cps-and-ncmp.release-name" . }}-postgresql-service 5432; then
+              echo "PostgreSQL is ready"
+              break
+            fi
+            sleep 2
+          done
+          echo "Waiting for Kafka..."
+          maxAttempts=60  # Double the expected startup time
+          for i in $(seq 1 $maxAttempts); do
+            if nc -z {{ include "cps-and-ncmp.release-name" . }}-kafka-service 9092; then
+              echo "Kafka port is open, verifying readiness..."
+              if nc -z {{ include "cps-and-ncmp.release-name" . }}-kafka-service 9092; then
+                echo "Kafka is ready"
+                break
+              fi
+            fi
+            if [ $((i % 10)) -eq 0 ]; then  # Reduce log noise by printing every 10th attempt
+              echo "Attempt $i/$maxAttempts: Kafka not ready, waiting..."
+            fi
+            sleep 2
+          done
+          echo "All dependencies (PostgreSQL, Kafka) are ready"
+  livenessProbe:
+    httpGet:
+      path: /actuator/health/liveness
+      port: 8080
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 5
+  readinessProbe:
+    httpGet:
+      path: /actuator/health/readiness
+      port: 8080
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 5
   env:
-    DB_HOST: "cps-ncmp-postgresql"
+    DB_HOST: "cps-ncmp-postgresql-service"
     DB_USERNAME: "cps"
     DB_PASSWORD: "cps"
+    DB_NAME: "cpsdb"
+    SPRING_DATASOURCE_URL: "jdbc:postgresql://cps-ncmp-postgresql-service:5432/cpsdb"
+    SPRING_DATASOURCE_USERNAME: "cps"
+    SPRING_DATASOURCE_PASSWORD: "cps"
     DMI_USERNAME: "cpsuser"
     DMI_PASSWORD: "cpsr0cks!"
-    KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka.default.svc.cluster.local:9092"
+    SPRING_KAFKA_BOOTSTRAP_SERVERS: "cps-ncmp-kafka-service:9092"
+    SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS: "cps-ncmp-kafka-service:9092"
+    SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS: "cps-ncmp-kafka-service:9092"
     notification_enabled: "true"
     ONAP_TRACING_ENABLED: "false"
     ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: "http://jaeger-service:14250"
@@ -49,7 +124,7 @@ cps:
     POLICY_SERVICE_ENABLED: "false"
     POLICY_SERVICE_DEFAULT_DECISION: "deny from env"
     CPS_MONITORING_MICROMETER_JVM_EXTRAS: "true"
-    JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
+    JAVA_TOOL_OPTIONS: "-Xms512m -Xmx1g -XX:+UseG1GC"
     HAZELCAST_MODE_KUBERNETES_ENABLED: "true"
     NCMP_INVENTORY_MODEL_UPGRADE_R20250722_ENABLED: 'false'
 
@@ -63,21 +138,26 @@ kafka:
   service:
     type: ClusterIP
     ports:
-      external: 9092
       internal: 29092
+      external: 9092
   externalService:
     ports:
       internal: 9092
       external: 9093
     nodePorts:
       external: 30093
-  zookeeperConnect: "cps-ncmp-zookeeper.default.svc.cluster.local"
-  brokerId: 1
-  listeners: "INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092,NODEPORT://0.0.0.0:9093"
-  advertisedListeners: "INTERNAL://localhost:29092,EXTERNAL://cps-ncmp-kafka:9092,NODEPORT://localhost:30093"
-  interBrokerListenerName: "INTERNAL"
-  listenerSecurityProtocolMap: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,NODEPORT:PLAINTEXT"
-  offsetsTopicReplicationFactor: 1
+  env:
+    KAFKA_ZOOKEEPER_CONNECT: "cps-ncmp-zookeeper-service:2181"
+    KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: "60000"
+    KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS: "60000"
+    KAFKA_BROKER_ID: "1"
+    KAFKA_LISTENERS: "INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092,NODEPORT://0.0.0.0:9093"
+    KAFKA_ADVERTISED_LISTENERS: "INTERNAL://cps-ncmp-kafka-service:29092,EXTERNAL://cps-ncmp-kafka-service:9092,NODEPORT://localhost:30093"
+    KAFKA_INTER_BROKER_LISTENER_NAME: "INTERNAL"
+    KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,NODEPORT:PLAINTEXT"
+    KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+    KAFKA_RESTART_ATTEMPTS: "10"
+    KAFKA_RESTART_DELAY_MS: "5000"
   resources:
     requests:
       cpu: "500m"
@@ -85,14 +165,20 @@ kafka:
     limits:
       cpu: "2000m"
       memory: "2Gi"
-  healthcheck:
-    enabled: true
-    command: >
-      kafka-topics --bootstrap-server cps-ncmp-kafka:29092 --list || exit 1
-    interval: 10
-    timeout: 10
-    retries: 3
-    startPeriod: 30
+  livenessProbe:
+    tcpSocket:
+      port: 29092
+    initialDelaySeconds: 60
+    periodSeconds: 30
+    failureThreshold: 5
+    timeoutSeconds: 10
+  readinessProbe:
+    tcpSocket:
+      port: 29092
+    initialDelaySeconds: 5
+    periodSeconds: 3
+    timeoutSeconds: 3
+    failureThreshold: 3
 
 zookeeper:
   enabled: true
@@ -112,13 +198,19 @@ zookeeper:
       memory: "1Gi"
   env:
     ZOOKEEPER_CLIENT_PORT: 2181
-  healthcheck:
-    enabled: true
-    command: ["sh", "-c", "nc -z localhost 2181 || exit 1"]
-    interval: 10s
-    timeout: 10s
-    retries: 3
-    startPeriod: 30s
+  livenessProbe:
+    exec:
+      command: [ "sh", "-c", "nc -z localhost 2181 || exit 1" ]
+    initialDelaySeconds: 15
+    periodSeconds: 5
+    failureThreshold: 3
+  readinessProbe:
+    exec:
+      command: [ "sh", "-c", "nc -z localhost 2181 || exit 1" ]
+    initialDelaySeconds: 5
+    periodSeconds: 3
+    timeoutSeconds: 3
+    failureThreshold: 3
 
 dmiStub:
   enabled: true
@@ -129,18 +221,18 @@ dmiStub:
   replicaCount: 1
   deployment1:
     containerPort: 8092
-  deployment2:
-    containerPort: 8092
   service1:
     type: NodePort
     port: 8092
     nodePort: 30092
+  deployment2:
+    containerPort: 8093
   service2:
     type: NodePort
     port: 8092
-    nodePort: 31092
+    nodePort: 30094
   env:
-    KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka.default.svc.cluster.local:9092"
+    KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka-service:9092"
     NCMP_CONSUMER_GROUP_ID: "ncmp-group"
     NCMP_ASYNC_M2M_TOPIC: "ncmp-async-m2m"
     MODULE_INITIAL_PROCESSING_DELAY_MS: 180000
@@ -156,36 +248,20 @@ dmiStub:
       cpu: "1000m"
       memory: "2Gi"
   livenessProbe:
-    deployment1:
-      httpGet:
-        path: /actuator/health
-        port: 8092
-      initialDelaySeconds: 60
-      periodSeconds: 30
-      failureThreshold: 5
-      timeoutSeconds: 10
-    deployment2:
-      httpGet:
-        path: /actuator/health
-        port: 8092
-      initialDelaySeconds: 60
-      periodSeconds: 30
-      failureThreshold: 5
-      timeoutSeconds: 10
+    httpGet:
+      path: /actuator/health/liveness
+      port: 8092
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    failureThreshold: 3
+    timeoutSeconds: 5
   readinessProbe:
-    deployment1:
-      httpGet:
-        path: /actuator/health
-        port: 8092
-      initialDelaySeconds: 30
-      periodSeconds: 10
-      failureThreshold: 3
-      timeoutSeconds: 5
-    deployment2:
-      httpGet:
-        path: /actuator/health
-        port: 8092
-      initialDelaySeconds: 30
-      periodSeconds: 10
-      failureThreshold: 3
-      timeoutSeconds: 5
+    httpGet:
+      path: /actuator/health/readiness
+      port: 8092
+    initialDelaySeconds: 15
+    periodSeconds: 5
+    failureThreshold: 3
+    timeoutSeconds: 5
+
+
