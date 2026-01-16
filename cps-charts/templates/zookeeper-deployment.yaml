@@ -26,24 +26,13 @@ spec:
           env:
             - name: ZOOKEEPER_CLIENT_PORT
               value: "{{ .Values.zookeeper.env.ZOOKEEPER_CLIENT_PORT }}"
-          readinessProbe:
-            exec:
-              command: {{ toJson .Values.zookeeper.healthcheck.command }}
-            initialDelaySeconds: {{ .Values.zookeeper.healthcheck.startPeriod | int }}
-            periodSeconds: {{ .Values.zookeeper.healthcheck.interval | int }}
-            timeoutSeconds: {{ .Values.zookeeper.healthcheck.timeout | int }}
-            failureThreshold: {{ .Values.zookeeper.healthcheck.retries | int }}
+            - name: ZOOKEEPER_SERVER_ID
+              value: "1"
+            - name: ZOOKEEPER_TICK_TIME
+              value: "2000"
           livenessProbe:
-            exec:
-              command: {{ toJson .Values.zookeeper.healthcheck.command }}
-            initialDelaySeconds: {{ .Values.zookeeper.healthcheck.startPeriod | int }}
-            periodSeconds: {{ .Values.zookeeper.healthcheck.interval | int }}
-            timeoutSeconds: {{ .Values.zookeeper.healthcheck.timeout | int }}
-            failureThreshold: {{ .Values.zookeeper.healthcheck.retries | int }}
+            {{- toYaml .Values.zookeeper.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.zookeeper.readinessProbe | nindent 12 }}
           resources:
-            requests:
-              cpu: {{ .Values.zookeeper.resources.requests.cpu }}
-              memory: {{ .Values.zookeeper.resources.requests.memory }}
-            limits:
-              cpu: {{ .Values.zookeeper.resources.limits.cpu }}
-              memory: {{ .Values.zookeeper.resources.limits.memory }}
+            {{- toYaml .Values.zookeeper.resources | nindent 12 }}

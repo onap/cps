@@ -4,7 +4,7 @@ metadata:
   name: {{ include "cps-and-ncmp.fullname" . }}-postgresql
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
-    component: postgres
+    component: postgresql
 spec:
   replicas: 1
   selector:
@@ -33,22 +33,26 @@ spec:
             - name: init-sql
               mountPath: {{ .Values.postgresql.initSql.mountPath }}
           resources:
-            requests:
-              cpu: {{ .Values.postgresql.resources.requests.cpu }}
-              memory: {{ .Values.postgresql.resources.requests.memory }}
-            limits:
-              cpu: {{ .Values.postgresql.resources.limits.cpu }}
-              memory: {{ .Values.postgresql.resources.limits.memory }}
+            {{- toYaml .Values.postgresql.resources | nindent 12 }}
           readinessProbe:
             exec:
               command:
                 - sh
                 - -c
                 - pg_isready -U {{ .Values.postgresql.env.POSTGRES_USER }} -d {{ .Values.postgresql.env.POSTGRES_DB }}
-            initialDelaySeconds: 10
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 6
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - pg_isready -U {{ .Values.postgresql.env.POSTGRES_USER }}
+            initialDelaySeconds: 30
             periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 10
+            failureThreshold: 3
       volumes:
         - name: init-sql
           configMap:

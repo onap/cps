@@ -5,7 +5,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: cps-hazelcast-service-account
-  namespace: default
+  namespace: {{ .Release.Namespace }}
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: hazelcast
@@ -51,4 +51,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: cps-hazelcast-service-account
-    namespace: default
+    namespace: {{ .Release.Namespace }}

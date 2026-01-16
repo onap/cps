@@ -18,6 +18,34 @@ spec:
         component: cps
     spec:
       serviceAccountName: cps-hazelcast-service-account
+      initContainers:
+        - name: wait-for-dependencies
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for PostgreSQL..."
+              until nc -z {{ include "cps-and-ncmp.fullname" . }}-postgresql-service 5432; do
+                sleep 2
+              done
+              echo "PostgreSQL is ready"
+              echo "Waiting for Kafka..."
+              for i in $(seq 1 120); do
+                if nc -z {{ include "cps-and-ncmp.fullname" . }}-kafka-service 9092; then
+                  echo "Kafka port is open, verifying readiness..."
+                  sleep 2
+                  if nc -z {{ include "cps-and-ncmp.fullname" . }}-kafka-service 9092; then
+                    echo "Kafka is ready"
+                    break
+                  fi
+                fi
+                if [ $((i % 10)) -eq 0 ]; then
+                  echo "Attempt $i/120: Kafka not ready, waiting..."
+                fi
+                sleep 2
+              done
+              echo "All dependencies (PostgreSQL, Kafka) are ready"
       containers:
         - name: cps
           image: "{{ .Values.cps.image.repository }}:{{ .Values.cps.image.tag }}"
@@ -31,14 +59,9 @@ spec:
               value: "{{ $envValue }}"
             {{- end }}
             - name: CPS_NCMP_SERVICE_NAME
-              value: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast
+              value: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast-service
           resources:
-            requests:
-              cpu: {{ .Values.cps.resources.requests.cpu }}
-              memory: {{ .Values.cps.resources.requests.memory }}
-            limits:
-              cpu: {{ .Values.cps.resources.limits.cpu }}
-              memory: {{ .Values.cps.resources.limits.memory }}
+            {{- toYaml .Values.cps.resources | nindent 12 }}
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
@@ -51,7 +74,7 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 8080
-            initialDelaySeconds: 60
+            initialDelaySeconds: 120
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 5
