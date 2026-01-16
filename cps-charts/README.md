@@ -54,12 +54,19 @@ kubectl port-forward service/cps-ncmp 8080:8080
 Once port forwarding is active, you can access the CPS/NCMP API at:
 http://localhost:8080
 ---
-## DMI Stub Service
+## DMI Stub Service 1
 ```bash
 kubectl port-forward service/cps-ncmp-dmi-stub 8092:8092
 ```
 Access the DMI stub API at:
 http://localhost:8092
+---
+## DMI Stub Service 2
+```bash
+kubectl port-forward svc/cps-ncmp-dmi-stub-2 8093:8093
+```
+Access the DMI stub API at:
+http://localhost:8093
 ---
 ## Default Credentials
 ### PostgreSQL

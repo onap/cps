@@ -1,14 +1,15 @@
+{{- if .Values.dmiStub.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "cps-and-ncmp.fullname" . }}-dmi-stub-2
+  name: cps-ncmp-dmi-stub-2
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: dmi-stub
 spec:
   type: {{ .Values.dmiStub.service2.type }}
   ports:
-    - port: {{ .Values.dmiStub.service2.port }}
+    - port: {{ .Values.dmiStub.deployment2.containerPort }}
       targetPort: {{ .Values.dmiStub.deployment2.containerPort }}
       protocol: TCP
       name: http
@@ -19,3 +20,4 @@ spec:
     app: {{ include "cps-and-ncmp.name" . }}
     component: dmi-stub
     instance: dmi-stub-2
+{{- end }}
