@@ -1,3 +1,4 @@
+{{- if .Values.dmiStub.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,10 +25,10 @@ spec:
           image: "{{ .Values.dmiStub.image.repository }}:{{ .Values.dmiStub.image.tag }}"
           imagePullPolicy: {{ .Values.dmiStub.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.dmiStub.deployment1.containerPort }}
+            - containerPort: {{ .Values.dmiStub.containerPort }}
           env:
             - name: DMI_STUB_SERVER_PORT
-              value: "{{ .Values.dmiStub.deployment1.containerPort }}"
+              value: "{{ .Values.dmiStub.containerPort }}"
             - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
               value: "health,info"
             - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
@@ -39,6 +40,7 @@ spec:
           resources:
             {{- toYaml .Values.dmiStub.resources | nindent 12 }}
           livenessProbe:
-            {{- toYaml .Values.dmiStub.livenessProbe.deployment1 | nindent 12 }}
+            {{- toYaml .Values.dmiStub.livenessProbe | nindent 12 }}
           readinessProbe:
-            {{- toYaml .Values.dmiStub.readinessProbe.deployment1 | nindent 12 }}
+            {{- toYaml .Values.dmiStub.readinessProbe | nindent 12 }}
+{{- end }}
