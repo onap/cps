@@ -1,7 +1,8 @@
+{{- if .Values.dmiStub.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "cps-and-ncmp.fullname" . }}-dmi-stub-1
+  name: cps-ncmp-dmi-stub
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: dmi-stub
@@ -19,3 +20,4 @@ spec:
     app: {{ include "cps-and-ncmp.name" . }}
     component: dmi-stub
     instance: dmi-stub-1
+{{- end }}

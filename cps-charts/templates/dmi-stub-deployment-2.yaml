@@ -1,3 +1,4 @@
+{{- if .Values.dmiStub.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -39,6 +40,19 @@ spec:
           resources:
             {{- toYaml .Values.dmiStub.resources | nindent 12 }}
           livenessProbe:
-            {{- toYaml .Values.dmiStub.livenessProbe.deployment2 | nindent 12 }}
+            httpGet:
+              path: /actuator/health/liveness
+              port: {{ .Values.dmiStub.deployment2.containerPort }}
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+            timeoutSeconds: 10
           readinessProbe:
-            {{- toYaml .Values.dmiStub.readinessProbe.deployment2 | nindent 12 }}
+            httpGet:
+              path: /actuator/health/readiness
+              port: {{ .Values.dmiStub.deployment2.containerPort }}
+            initialDelaySeconds: 45
+            periodSeconds: 10
+            failureThreshold: 5
+            timeoutSeconds: 10
+{{- end }}
