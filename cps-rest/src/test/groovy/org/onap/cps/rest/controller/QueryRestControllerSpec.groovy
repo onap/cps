@@ -40,6 +40,7 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DES
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(QueryRestController)
 class QueryRestControllerSpec extends Specification {
@@ -148,5 +149,47 @@ class QueryRestControllerSpec extends Specification {
             scenario           | parameterName
             'only page size'   | 'pageSize'
             'only page index'  | 'pageIndex'
+    }
+
+    def 'Query data nodes with JSON payload (v2) for given dataspace and anchor with #scenario.'() {
+        given: 'the search query endpoint'
+            def searchEndpoint = "$basePath/v2/dataspaces/my_dataspace/anchors/my_anchor/nodes/query"
+        and: 'a JSON search body'
+            def searchBody = '{"cpsPath":"//books[@price>14]","operator":"and","conditions":[]}'
+        when: 'the search query API is invoked with the JSON body'
+            def response = mvc.perform(post(searchEndpoint)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .param('descendants', descendantsOption)
+                    .content(searchBody))
+                    .andReturn().response
+        then: 'the call is delegated to the cps facade executeSearchQuery which returns a list with one data node map'
+            1 * mockCpsFacade.executeSearchQuery('my_dataspace', 'my_anchor', searchBody,
+                    { fetchDescendantsOption -> fetchDescendantsOption.depth == expectedDepth }) >> [dataNodeAsMap]
+        and: 'the response is OK and contains the data node in JSON format'
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString() == '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+        where: 'the following descendants options are used'
+            scenario              | descendantsOption || expectedDepth
+            'no descendants'      | 'none'            || 0
+            'direct children'     | 'direct'          || 1
+            'all descendants'     | 'all'             || -1
+            'two levels of depth' | '2'               || 2
+    }
+
+    def 'Query data nodes with JSON payload (v2) returns empty list when no nodes match.'() {
+        given: 'the search query endpoint'
+            def searchEndpoint = "$basePath/v2/dataspaces/my_dataspace/anchors/my_anchor/nodes/query"
+        and: 'a JSON search body'
+            def searchBody = '{"cpsPath":"//books[@price>999]","operator":"and","conditions":[]}'
+        when: 'the search query API is invoked'
+            def response = mvc.perform(post(searchEndpoint)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(searchBody))
+                    .andReturn().response
+        then: 'the facade returns an empty list'
+            1 * mockCpsFacade.executeSearchQuery('my_dataspace', 'my_anchor', searchBody, _) >> []
+        and: 'the response is OK with an empty JSON array'
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString() == '[]'
     }
 }

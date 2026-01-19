@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
@@ -85,5 +86,13 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     public Integer countAnchorsForDataspaceAndCpsPath(final String dataspaceName, final String cpsPath) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsDataPersistenceService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
+    }
+
+    @Override
+    public Collection<DataNode> searchDataNodes(final String dataspaceName, final String anchorName,
+                                                final CompositeQuery searchQuery,
+                                                final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        return cpsDataPersistenceService.searchDataNodes(dataspaceName, anchorName, searchQuery, fetchDescendantsOption);
     }
 }

@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 
@@ -247,4 +248,8 @@ public interface CpsDataPersistenceService {
      * @return total anchors for dataspace name and cps path
      */
     Integer countAnchorsForDataspaceAndCpsPath(String dataspaceName, String cpsPath);
+
+    Collection<DataNode> searchDataNodes(String dataspaceName, String anchorName,
+                                         CompositeQuery searchQuery,
+                                         FetchDescendantsOption fetchDescendantsOption);
 }
