@@ -29,12 +29,14 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsFacade;
 import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.utils.DataMapper;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -44,6 +46,7 @@ public class CpsFacadeImpl implements CpsFacade {
     private final CpsDataService cpsDataService;
     private final CpsQueryService cpsQueryService;
     private final DataMapper dataMapper;
+    private final JsonObjectMapper jsonObjectMapper;
 
     @Override
     public Map<String, Object> getFirstDataNodeByAnchor(final String dataspaceName,
@@ -114,5 +117,16 @@ public class CpsFacadeImpl implements CpsFacade {
             : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
     }
 
-}
+    @Override
+    public List<Map<String, Object>> searchDataNodes(final String dataspaceName,
+                                                     final String anchorName,
+                                                     final String compositeQueryString,
+                                                     final FetchDescendantsOption fetchDescendantsOption) {
+        final CompositeQuery compositeQuery = jsonObjectMapper
+            .convertJsonString(compositeQueryString, CompositeQuery.class);
+        final Collection<DataNode> dataNodes =
+                cpsQueryService.searchDataNodes(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption);
+        return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
+    }
 
+}
