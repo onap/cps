@@ -30,6 +30,7 @@ import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.ri.models.AnchorEntity
 import org.onap.cps.ri.models.DataspaceEntity
 import org.onap.cps.ri.models.FragmentEntity
+import org.onap.cps.ri.query.CompositeQueryProcessor
 import org.onap.cps.ri.repository.AnchorRepository
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.repository.FragmentRepository
@@ -49,9 +50,10 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockSessionManager = Mock(SessionManager)
     def someCause = Mock(Throwable)
+    def compositeQueryProcessor = Mock(CompositeQueryProcessor)
 
     def objectUnderTest = Spy(new CpsDataPersistenceServiceImpl(mockDataspaceRepository, mockAnchorRepository,
-            mockFragmentRepository, jsonObjectMapper, mockSessionManager))
+            mockFragmentRepository, jsonObjectMapper, mockSessionManager, compositeQueryProcessor))
 
     static def anchorEntity = new AnchorEntity(id: 123, dataspace: new DataspaceEntity(id: 1))
 
