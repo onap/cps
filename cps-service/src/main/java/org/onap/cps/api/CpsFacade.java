@@ -116,4 +116,9 @@ public interface CpsFacade {
     int countAnchorsInDataspaceQuery(String dataspaceName,
                                      String cpsPath,
                                      PaginationOption paginationOption);
+
+    List<Map<String, Object>> executeSearchQuery(String dataspaceName,
+                                                 String anchorName,
+                                                 String searchBody,
+                                                 FetchDescendantsOption fetchDescendantsOption);
 }

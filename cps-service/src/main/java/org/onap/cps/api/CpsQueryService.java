@@ -23,6 +23,7 @@ package org.onap.cps.api;
 
 import java.util.Collection;
 import java.util.Set;
+import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
@@ -94,4 +95,9 @@ public interface CpsQueryService {
      * @return total number of anchors for given dataspace name and cps path.
      */
     Integer countAnchorsForDataspaceAndCpsPath(String dataspaceName, String cpsPath);
+
+    Collection<DataNode> searchDataNodes(String dataspaceName, String anchorName,
+                                         CompositeQuery searchQuery,
+                                         FetchDescendantsOption fetchDescendantsOption);
+
 }

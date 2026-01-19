@@ -24,6 +24,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 import org.springframework.util.StopWatch
+import spock.lang.Ignore
 
 import java.util.concurrent.ThreadLocalRandom
 

@@ -49,6 +49,7 @@ import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.impl.utils.EventDateTimeFormatter
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController
+import org.onap.cps.ri.query.CompositeQueryProcessor
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.repository.SchemaSetRepository
 import org.onap.cps.ri.utils.SessionManager
