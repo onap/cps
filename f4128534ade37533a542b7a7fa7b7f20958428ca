@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a58dc1c_e39206cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-19T11:31:51Z",
+      "side": 1,
+      "message": "Minor comments otherwise looks good",
+      "revId": "f4128534ade37533a542b7a7fa7b7f20958428ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c4f1e60_8864aa70",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-19T11:31:51Z",
+      "side": 1,
+      "message": "Should be\n- Database: cpsdb\n- Username: cps\n- Password: cps\nSame for username below",
+      "revId": "f4128534ade37533a542b7a7fa7b7f20958428ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6eb32103_31381f39",
