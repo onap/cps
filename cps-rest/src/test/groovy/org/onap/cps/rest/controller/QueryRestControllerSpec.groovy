@@ -34,12 +34,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import spock.lang.Shared
 import spock.lang.Specification
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(QueryRestController)
 class QueryRestControllerSpec extends Specification {
@@ -56,7 +58,9 @@ class QueryRestControllerSpec extends Specification {
     @Value('${rest.api.cps-base-path}')
     def basePath
 
-    def dataNodeAsMap = ['prefixedPath':[path:[leaf:'value']]]
+    def sampleDataNodeAsMap  = ['prefixedPath':[path:[leaf:'value']]]
+    @Shared
+    def expectedDataNodeAsJson = '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
 
     def 'Query data node (v1) by cps path for the given dataspace and anchor with #scenario.'() {
         given: 'the query endpoint'
@@ -65,10 +69,10 @@ class QueryRestControllerSpec extends Specification {
             def response = mvc.perform(get(dataNodeEndpoint).param('cps-path', 'my/path').param('include-descendants', includeDescendantsOption))
                 .andReturn().response
         then: 'the call is delegated to the cps service facade which returns a list containing one data node as a map'
-            1 * mockCpsFacade.executeAnchorQuery('my_dataspace', 'my_anchor', 'my/path', expectedCpsDataServiceOption) >> [dataNodeAsMap]
+            1 * mockCpsFacade.executeAnchorQuery('my_dataspace', 'my_anchor', 'my/path', expectedCpsDataServiceOption) >> [sampleDataNodeAsMap ]
         then: 'the response contains the the datanode in json format'
             assert response.status == HttpStatus.OK.value()
-            assert response.getContentAsString() == '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+            assert response.getContentAsString() == expectedDataNodeAsJson
         where: 'the following options for include descendants are provided in the request'
             scenario                    | includeDescendantsOption || expectedCpsDataServiceOption
             'no descendants by default' | ''                       || OMIT_DESCENDANTS
@@ -83,14 +87,14 @@ class QueryRestControllerSpec extends Specification {
                     .andReturn().response
         then: 'the call is delegated to the cps service facade which returns a list containing one data node as a map'
             1 * mockCpsFacade.executeAnchorQuery('my_dataspace', 'my_anchor', 'my/path',
-                { descendantsOption -> assert descendantsOption.depth == expectedDepth }) >> [dataNodeAsMap]
+                { descendantsOption -> assert descendantsOption.depth == expectedDepth }) >> [sampleDataNodeAsMap ]
         and: 'the response contains the datanode in the expected format'
             assert response.status == HttpStatus.OK.value()
             assert response.getContentAsString() == expectedOutput
         where: 'the following options for include descendants are provided in the request'
             scenario               | includeDescendantsOptionString | contentType                || expectedDepth || expectedOutput
-            'direct children JSON' | 'direct'                       | MediaType.APPLICATION_JSON || 1             || '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
-            'descendants JSON'     | '2'                            | MediaType.APPLICATION_JSON || 2             || '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+            'direct children JSON' | 'direct'                       | MediaType.APPLICATION_JSON || 1             || expectedDataNodeAsJson
+            'descendants JSON'     | '2'                            | MediaType.APPLICATION_JSON || 2             || expectedDataNodeAsJson
             'descendants XML'      | '2'                            | MediaType.APPLICATION_XML  || 2             || '<prefixedPath><path><leaf>value</leaf></path></prefixedPath>'
     }
 
@@ -121,10 +125,10 @@ class QueryRestControllerSpec extends Specification {
                         get(dataNodeEndpoint).param('cps-path', 'my/path').param('pageIndex', String.valueOf(2)).param('pageSize', String.valueOf(5)))
                         .andReturn().response
         then: 'the call is delegated to the cps service facade which returns a list containing one data node as a map'
-            1 * mockCpsFacade.executeDataspaceQuery('my_dataspace', 'my/path', OMIT_DESCENDANTS, new PaginationOption(2,5)) >> [dataNodeAsMap]
+            1 * mockCpsFacade.executeDataspaceQuery('my_dataspace', 'my/path', OMIT_DESCENDANTS, new PaginationOption(2,5)) >> [sampleDataNodeAsMap ]
         then: 'the response is OK and contains the the datanode in json format'
             assert response.status == HttpStatus.OK.value()
-            assert response.getContentAsString() == '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+            assert response.getContentAsString() == expectedDataNodeAsJson
         and: 'the header indicates the correct number of pages'
             assert response.getHeaderValue('total-pages') == '123'
     }
@@ -138,15 +142,40 @@ class QueryRestControllerSpec extends Specification {
             def response = mvc.perform(get(dataNodeEndpoint).param('cps-path', 'my/path').param(parameterName, '1'))
                 .andReturn().response
         then: 'the call is delegated to the cps service facade which returns a list containing one data node as a map'
-            1 * mockCpsFacade.executeDataspaceQuery('my_dataspace', 'my/path', OMIT_DESCENDANTS, PaginationOption.NO_PAGINATION) >> [dataNodeAsMap]
+            1 * mockCpsFacade.executeDataspaceQuery('my_dataspace', 'my/path', OMIT_DESCENDANTS, PaginationOption.NO_PAGINATION) >> [sampleDataNodeAsMap ]
         then: 'the response is OK and contains the datanode in json format'
             assert response.status == HttpStatus.OK.value()
-            assert response.getContentAsString() == '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+            assert response.getContentAsString() == expectedDataNodeAsJson
         and: 'the header indicates the correct number of pages'
             assert response.getHeaderValue('total-pages') == '1'
         where: 'only the following rest parameter is used'
             scenario           | parameterName
             'only page size'   | 'pageSize'
             'only page index'  | 'pageIndex'
+    }
+
+    def 'Query data nodes with composite query payload for given dataspace and anchor with #scenario.'() {
+        given: 'the search query endpoint'
+            def searchEndpoint = "$basePath/v2/dataspaces/my_dataspace/anchors/my_anchor/nodes/query"
+        and: 'a query search body'
+            def searchBody = '{"cpsPath":"my-path"}'
+        when: 'the search query API is invoked with the JSON body'
+            def response = mvc.perform(post(searchEndpoint)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .param('descendants', descendantsOption)
+                    .content(searchBody))
+                    .andReturn().response
+        then: 'the call is delegated to the cps facade searchDataNodes which returns a list with one data node map'
+            1 * mockCpsFacade.searchDataNodes('my_dataspace', 'my_anchor', searchBody,
+                    { fetchDescendantsOption -> fetchDescendantsOption.depth == expectedDepth }) >> [sampleDataNodeAsMap ]
+        and: 'the response is OK and contains the data node in JSON format'
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString() == '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+        where: 'the following descendants options are used'
+            scenario              | descendantsOption || expectedDepth
+            'no descendants'      | 'none'            || 0
+            'direct children'     | 'direct'          || 1
+            'all descendants'     | 'all'             || -1
+            'two levels of depth' | '2'               || 2
     }
 }
