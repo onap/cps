@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a9905d6_74ddfe3d",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-19T13:40:00Z",
+      "side": 1,
+      "message": "k6 tests use port 8883 for localhost (dockerHosts). Since the Helm chart is for k8s deployment and uses NodePort 30080, I think it\u0027s better to keep the Helm chart consistent and update the k6 config to use 8080 instead.",
+      "parentUuid": "6eb32103_31381f39",
+      "range": {
+        "startLine": 29,
+        "startChar": 10,
+        "endLine": 29,
+        "endChar": 14
+      },
+      "revId": "f4128534ade37533a542b7a7fa7b7f20958428ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f95290d_80aac103",
         "filename": "cps-charts/values.yaml",
         "patchSetId": 3
@@ -71,6 +95,30 @@
       "writtenOn": "2026-01-19T11:28:19Z",
       "side": 1,
       "message": "NB: Just want to confirm this has been left as 18ms intentionally.",
+      "range": {
+        "startLine": 169,
+        "startChar": 40,
+        "endLine": 169,
+        "endChar": 42
+      },
+      "revId": "f4128534ade37533a542b7a7fa7b7f20958428ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19c5d8d4_825f8572",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-19T13:40:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2f95290d_80aac103",
       "range": {
         "startLine": 169,
         "startChar": 40,
