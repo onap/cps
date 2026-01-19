@@ -688,6 +688,18 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
     }
 
+//    @Override
+//    @Transactional
+//    @Timed(value = "cps.ri.data.persistence.search.datanodes",
+//        description = "Time taken to search data nodes with nested conditions")
+//    public Collection<DataNode> searchDataNodes(final String dataspaceName,
+//                                                final String anchorName,
+//                                                final CompositeQuery compositeQuery,
+//                                                final FetchDescendantsOption fetchDescendantsOption) {
+//        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+//        return compositeQueryProcessor.processCompositeQuery(anchorEntity, compositeQuery, fetchDescendantsOption);
+//    }
+
     private static void logMissingXPaths(final Collection<String> xpaths,
                                          final Collection<FragmentEntity> existingFragmentEntities) {
         final Set<String> existingXPaths =
