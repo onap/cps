@@ -95,6 +95,18 @@ public class QueryRestController implements CpsQueryApi {
                 .body(jsonObjectMapper.asJsonString(dataNodesAsMaps));
     }
 
+    @Override
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndPayloadV2(final String dataspaceName,
+                                                                           final String anchorName,
+                                                                           final String compositeQuery,
+                                                                           final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption =
+                FetchDescendantsOption.getFetchDescendantsOption(descendants);
+        final List<Map<String, Object>> dataNodesAsMaps
+                = cpsFacade.searchDataNodes(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption);
+        return buildResponseEntity(dataNodesAsMaps, ContentType.JSON);
+    }
+
     private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataNodesAsMaps,
                                                final ContentType contentType) {
         final String responseData;
