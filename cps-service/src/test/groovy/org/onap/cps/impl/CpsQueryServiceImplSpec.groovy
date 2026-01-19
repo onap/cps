@@ -22,6 +22,8 @@
 package org.onap.cps.impl
 
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.api.model.CompositeQuery
+import org.onap.cps.impl.query.CompositeQueryProcessor
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.api.parameters.FetchDescendantsOption
@@ -31,8 +33,9 @@ import spock.lang.Specification
 class CpsQueryServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsValidator = Mock(CpsValidator)
+    def compositeQueryProcessor = Mock(CompositeQueryProcessor)
 
-    def objectUnderTest = new CpsQueryServiceImpl(mockCpsDataPersistenceService, mockCpsValidator)
+    def objectUnderTest = new CpsQueryServiceImpl(mockCpsDataPersistenceService, mockCpsValidator, compositeQueryProcessor)
 
     def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
         given: 'a dataspace name, an anchor name and a cps path'
@@ -93,5 +96,19 @@ class CpsQueryServiceImplSpec extends Specification {
             objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
         then: 'the persistence service is called once with the correct parameters'
             1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+    }
+
+    def 'Search data nodes with a composite query.'() {
+        given: 'a dataspace name, anchor name, composite query and fetch descendants option'
+            def dataspaceName = 'some-dataspace'
+            def anchorName = 'some-anchor'
+            def compositeQuery = new CompositeQuery(cpsPath: '/cps-path', operator: 'and', conditions: [])
+            def fetchDescendantsOption = FetchDescendantsOption.OMIT_DESCENDANTS
+        when: 'executeCompositeQuery is invoked'
+            objectUnderTest.compositeQueryDataNodes(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption)
+        then: 'the persistence service is called once with the correct parameters'
+            1 * compositeQueryProcessor.processCompositeQuery(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption)
+        and: 'the CpsValidator is called on the dataspaceName and anchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 }

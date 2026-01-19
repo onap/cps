@@ -24,21 +24,39 @@ package org.onap.cps.impl;
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.Set;
-import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
+import org.onap.cps.impl.query.CompositeQueryProcessor;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.CpsValidator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class CpsQueryServiceImpl implements CpsQueryService {
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final CpsValidator cpsValidator;
+    private final CompositeQueryProcessor compositeQueryProcessor;
+
+    /**
+     * Constructor with qualified composite query processor injection.
+     *
+     * @param cpsDataPersistenceService the persistence service
+     * @param cpsValidator              the validator
+     * @param compositeQueryProcessor   the service-layer composite query processor
+     */
+    public CpsQueryServiceImpl(final CpsDataPersistenceService cpsDataPersistenceService,
+                               final CpsValidator cpsValidator,
+                               @Qualifier("serviceLayerCompositeQueryProcessor")
+                               final CompositeQueryProcessor compositeQueryProcessor) {
+        this.cpsDataPersistenceService = cpsDataPersistenceService;
+        this.cpsValidator = cpsValidator;
+        this.compositeQueryProcessor = compositeQueryProcessor;
+    }
 
     @Override
     @Timed(value = "cps.data.service.datanode.query",
@@ -85,5 +103,14 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     public Integer countAnchorsForDataspaceAndCpsPath(final String dataspaceName, final String cpsPath) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsDataPersistenceService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
+    }
+
+    @Override
+    public Collection<DataNode> compositeQueryDataNodes(final String dataspaceName, final String anchorName,
+                                                        final CompositeQuery compositeQuery,
+                                                        final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        return compositeQueryProcessor
+            .processCompositeQuery(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption);
     }
 }
