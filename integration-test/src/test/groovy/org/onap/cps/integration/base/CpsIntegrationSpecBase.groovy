@@ -167,7 +167,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Autowired
     MeterRegistry meterRegistry
 
-    @Value('${ncmp.policy-executor.server.port:8080}')
+    @Value('${ncmp.policy-operatorEvaluator.server.port:8080}')
     private String policyServerPort;
 
     MockWebServer mockDmiServer1 = new MockWebServer()

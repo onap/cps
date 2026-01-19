@@ -49,6 +49,7 @@ import org.onap.cps.api.exceptions.CpsAdminException;
 import org.onap.cps.api.exceptions.CpsPathException;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch;
+import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
@@ -59,6 +60,7 @@ import org.onap.cps.impl.DataNodeBuilder;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
+import org.onap.cps.ri.query.CompositeQueryProcessor;
 import org.onap.cps.ri.repository.AnchorRepository;
 import org.onap.cps.ri.repository.DataspaceRepository;
 import org.onap.cps.ri.repository.FragmentRepository;
@@ -79,6 +81,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final FragmentRepository fragmentRepository;
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
+    private final CompositeQueryProcessor compositeQueryProcessor;
 
     @Override
     public void storeDataNodes(final String dataspaceName, final String anchorName,
@@ -686,6 +689,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } catch (final PathParsingException e) {
             throw new CpsPathException(e.getMessage());
         }
+    }
+
+    @Override
+    @Transactional
+    @Timed(value = "cps.ri.data.persistence.search.datanodes",
+        description = "Time taken to search data nodes with nested conditions")
+    public Collection<DataNode> searchDataNodes(final String dataspaceName,
+                                                final String anchorName,
+                                                final CompositeQuery searchQuery,
+                                                final FetchDescendantsOption fetchDescendantsOption) {
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+
+        return compositeQueryProcessor.processCompositeQuery(anchorEntity, searchQuery, fetchDescendantsOption);
     }
 
     private static void logMissingXPaths(final Collection<String> xpaths,

@@ -21,6 +21,9 @@
 
 package org.onap.cps.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.utils.JsonObjectMapper
+
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 
@@ -40,11 +43,12 @@ class CpsFacadeImplSpec extends Specification {
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockPrefixResolver = Mock(PrefixResolver)
     def dataMapper = new DataMapper(mockCpsAnchorService, mockPrefixResolver)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     def myFetchDescendantsOption = OMIT_DESCENDANTS
     def myPaginationOption = NO_PAGINATION
 
-    def objectUnderTest = new CpsFacadeImpl(mockCpsDataService, mockCpsQueryService , dataMapper)
+    def objectUnderTest = new CpsFacadeImpl(mockCpsDataService, mockCpsQueryService , dataMapper, jsonObjectMapper)
 
     def dataNode1 = new DataNode(xpath:'/path1', anchorName: 'my anchor')
     def dataNode2 = new DataNode(xpath:'/path2', anchorName: 'my anchor')
