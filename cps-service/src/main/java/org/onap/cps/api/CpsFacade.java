@@ -23,6 +23,8 @@ package org.onap.cps.api;
 
 import java.util.List;
 import java.util.Map;
+
+import org.onap.cps.api.model.NestedSearchQuery;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 
@@ -116,4 +118,9 @@ public interface CpsFacade {
     int countAnchorsInDataspaceQuery(String dataspaceName,
                                      String cpsPath,
                                      PaginationOption paginationOption);
+
+    List<Map<String, Object>> executeSearchQuery(String dataspaceName,
+                                                 String anchorName,
+                                                 String searchBody,
+                                                 FetchDescendantsOption fetchDescendantsOption);
 }

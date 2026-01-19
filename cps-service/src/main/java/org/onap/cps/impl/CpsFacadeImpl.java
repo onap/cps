@@ -21,22 +21,24 @@
 
 package org.onap.cps.impl;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsFacade;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.NestedSearchQuery;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.utils.DataMapper;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class CpsFacadeImpl implements CpsFacade {
@@ -44,6 +46,7 @@ public class CpsFacadeImpl implements CpsFacade {
     private final CpsDataService cpsDataService;
     private final CpsQueryService cpsQueryService;
     private final DataMapper dataMapper;
+    private final JsonObjectMapper jsonObjectMapper;
 
     @Override
     public Map<String, Object> getFirstDataNodeByAnchor(final String dataspaceName,
@@ -114,5 +117,16 @@ public class CpsFacadeImpl implements CpsFacade {
             : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
     }
 
-}
+    @Override
+    public List<Map<String, Object>> executeSearchQuery(final String dataspaceName,
+                                                        final String anchorName,
+                                                        final String searchBody,
+                                                        final FetchDescendantsOption fetchDescendantsOption) {
+        final NestedSearchQuery searchQuery = jsonObjectMapper.convertJsonString(searchBody, NestedSearchQuery.class);
+        final Collection<DataNode> dataNodes =
+                cpsQueryService.searchDataNodes(dataspaceName, anchorName, searchQuery, fetchDescendantsOption);
+        log.info("Number of data nodes found: {}", dataNodes.size());
+        return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
+    }
 
+}

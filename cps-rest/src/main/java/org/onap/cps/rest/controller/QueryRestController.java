@@ -38,6 +38,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.onap.cps.api.model.NestedSearchQuery;
+
 @RestController
 @RequestMapping("${rest.api.cps-base-path}")
 @RequiredArgsConstructor
@@ -92,6 +94,18 @@ public class QueryRestController implements CpsQueryApi {
         final int totalPages = cpsFacade.countAnchorsInDataspaceQuery(dataspaceName, cpsPath, paginationOption);
         return ResponseEntity.ok().header("total-pages", String.valueOf(totalPages))
                 .body(jsonObjectMapper.asJsonString(dataNodesAsMaps));
+    }
+
+    @Override
+    public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndPayloadV2(final String dataspaceName,
+                                                                           final String anchorName,
+                                                                           final String body,
+                                                                           final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption =
+                FetchDescendantsOption.getFetchDescendantsOption(descendants);
+        final List<Map<String, Object>> dataNodesAsMaps
+                = cpsFacade.executeSearchQuery(dataspaceName, anchorName, body, fetchDescendantsOption);
+        return buildResponseEntity(dataNodesAsMaps, ContentType.JSON);
     }
 
     private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataNodesAsMaps,

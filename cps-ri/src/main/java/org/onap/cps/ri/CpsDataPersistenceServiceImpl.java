@@ -50,6 +50,7 @@ import org.onap.cps.api.exceptions.CpsPathException;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.NestedSearchQuery;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
