@@ -116,4 +116,19 @@ public interface CpsFacade {
     int countAnchorsInDataspaceQuery(String dataspaceName,
                                      String cpsPath,
                                      PaginationOption paginationOption);
+
+    /**
+     * Query data nodes within the given anchor using a composite query defined as a JSON string.
+     *
+     * @param dataspaceName             the name of the dataspace
+     * @param anchorName                the anchor name
+     * @param compositeQuery            search query as JSON string that defines search operations on data nodes
+     * @param fetchDescendantsOption    control what level of descendants should be returned
+     * @return                          a list of maps where each map represents a data node matching the search
+     *                                  criteria, and its descendants as nested maps or lists
+     */
+    List<Map<String, Object>> searchDataNodes(String dataspaceName,
+                                              String anchorName,
+                                              String compositeQuery,
+                                              FetchDescendantsOption fetchDescendantsOption);
 }

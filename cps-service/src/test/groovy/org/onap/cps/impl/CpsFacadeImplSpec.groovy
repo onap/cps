@@ -21,6 +21,10 @@
 
 package org.onap.cps.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.model.CompositeQuery
+import org.onap.cps.utils.JsonObjectMapper
+
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 
@@ -40,11 +44,12 @@ class CpsFacadeImplSpec extends Specification {
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockPrefixResolver = Mock(PrefixResolver)
     def dataMapper = new DataMapper(mockCpsAnchorService, mockPrefixResolver)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     def myFetchDescendantsOption = OMIT_DESCENDANTS
     def myPaginationOption = NO_PAGINATION
 
-    def objectUnderTest = new CpsFacadeImpl(mockCpsDataService, mockCpsQueryService , dataMapper)
+    def objectUnderTest = new CpsFacadeImpl(mockCpsDataService, mockCpsQueryService , dataMapper, jsonObjectMapper)
 
     def dataNode1 = new DataNode(xpath:'/path1', anchorName: 'my anchor')
     def dataNode2 = new DataNode(xpath:'/path2', anchorName: 'my anchor')
@@ -128,6 +133,30 @@ class CpsFacadeImplSpec extends Specification {
             '3 anchors per page'            | new PaginationOption(1,3)   || 4
             '10 anchors per page'           | new PaginationOption(1,10)  || 1
             '100 anchors per page'          | new PaginationOption(1,100) || 1
+    }
+
+    def 'Execute composite search query.'() {
+        given: 'a JSON search body representing a composite query'
+            def searchBody = '{"cpsPath":"/my/path","operator":"and","conditions":[]}'
+        and: 'the cps query service returns data nodes'
+            mockCpsQueryService.searchDataNodes('my dataspace', 'my anchor', _ as CompositeQuery, myFetchDescendantsOption) >> [dataNode1, dataNode2]
+        when: 'composite search query is invoked'
+            def result = objectUnderTest.searchDataNodes('my dataspace', 'my anchor', searchBody, myFetchDescendantsOption)
+        then: 'expected data nodes are returned'
+            assert result.size() == 2
+            assert result[0].keySet()[0] == 'prefix1:path1'
+            assert result[1].keySet()[0] == 'prefix2:path2'
+    }
+
+    def 'Execute search query deserializes the JSON body into a Composite Query.'() {
+        given: 'a JSON search body with a specific cps path'
+            def searchBody = '{"cpsPath":"/search/path","operator":"or","conditions":[]}'
+        when: ' is invoked'
+            objectUnderTest.searchDataNodes('my dataspace', 'my anchor', searchBody, myFetchDescendantsOption)
+        then: 'the search data nodes method is called with a composite query having the correct cps path and operator'
+            1 * mockCpsQueryService.searchDataNodes('my dataspace', 'my anchor',
+                    { CompositeQuery q -> q.cpsPath == '/search/path' && q.operator == 'or' },
+                    myFetchDescendantsOption) >> []
     }
 
 }
