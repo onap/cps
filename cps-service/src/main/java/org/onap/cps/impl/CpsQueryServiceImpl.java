@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
- *  Modifications Copyright (C) 2022-2023 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2022-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,9 +26,11 @@ import java.util.Collection;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
+import org.onap.cps.impl.query.CompositeQueryProcessor;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,7 @@ public class CpsQueryServiceImpl implements CpsQueryService {
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final CpsValidator cpsValidator;
+    private final CompositeQueryProcessor compositeQueryProcessor;
 
     @Override
     @Timed(value = "cps.data.service.datanode.query",
@@ -85,5 +88,14 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     public Integer countAnchorsForDataspaceAndCpsPath(final String dataspaceName, final String cpsPath) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsDataPersistenceService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
+    }
+
+    @Override
+    public Collection<DataNode> compositeQueryDataNodes(final String dataspaceName, final String anchorName,
+                                                        final CompositeQuery compositeQuery,
+                                                        final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        return compositeQueryProcessor
+            .processCompositeQuery(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption);
     }
 }

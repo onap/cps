@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2025 Nordix Foundation
- *  Modifications Copyright (C) 2023 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2023-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,17 +22,22 @@
 package org.onap.cps.impl
 
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.api.model.CompositeQuery
+import org.onap.cps.impl.query.CompositeQueryProcessor
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.parameters.PaginationOption
 import spock.lang.Specification
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+
 class CpsQueryServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsValidator = Mock(CpsValidator)
+    def compositeQueryProcessor = Mock(CompositeQueryProcessor)
 
-    def objectUnderTest = new CpsQueryServiceImpl(mockCpsDataPersistenceService, mockCpsValidator)
+    def objectUnderTest = new CpsQueryServiceImpl(mockCpsDataPersistenceService, mockCpsValidator, compositeQueryProcessor)
 
     def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
         given: 'a dataspace name, an anchor name and a cps path'
@@ -93,5 +98,16 @@ class CpsQueryServiceImplSpec extends Specification {
             objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
         then: 'the persistence service is called once with the correct parameters'
             1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+    }
+
+    def 'Search data nodes with a composite query.'() {
+        given: 'a composite query'
+            def compositeQuery = new CompositeQuery(cpsPath: '/cps-path', operator: 'and', conditions: [])
+        when: 'executeCompositeQuery is invoked'
+            objectUnderTest.compositeQueryDataNodes('my-dataspace', 'my-anchor', compositeQuery, OMIT_DESCENDANTS)
+        then: 'the persistence service is called once with the correct parameters'
+            1 * compositeQueryProcessor.processCompositeQuery('my-dataspace', 'my-anchor', compositeQuery, OMIT_DESCENDANTS)
+        and: 'the CpsValidator is called on the dataspaceName and anchorName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-anchor')
     }
 }
