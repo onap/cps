@@ -1,0 +1,337 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "436aa145_2607df27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "I am aware I am probably the reviewer with the least experience with helm charts but I have a lot of questions... \nMaybe best if we organize a review meeting with the whole team later today?",
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dac09013_3f5f171b",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "NB: does the serviceCountName have anything to do with the init containers logic. I dont think so. Maybe move that property down to a more relevant area if you can. Or at some comment about it. The hazelcast setting seem very much out of place in this whole file...",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 20
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89c88a23_022f52cc",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "NB Remove any redundant whitspace (ping in Gerrit)",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 14
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "192c9472_261c0996",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "NB: maybe add clarification like so:\n\"All dependencies (Postgresql, Kafka) are ready\"",
+      "range": {
+        "startLine": 50,
+        "startChar": 34,
+        "endLine": 50,
+        "endChar": 37
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9877441_02a21e2f",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "how did you get to these new values?",
+      "range": {
+        "startLine": 73,
+        "startChar": 27,
+        "endLine": 74,
+        "endChar": 32
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bbfb148_b0837ae7",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "why so much inconsitencies in these values compared to the readinessProbe.\nWhich Probe(s) does k8 use and how, do we understand that now?",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f266f3b_c5c66ef1",
+        "filename": "cps-charts/templates/cps-service.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "this doesn\u0027t seem to be the \u0027full\u0027 name if we need to add \u0027service\u0027 here :-(",
+      "range": {
+        "startLine": 4,
+        "startChar": 33,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f169e80_68cd8382",
+        "filename": "cps-charts/templates/dmi-stub-deployment-1.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "handy but when would we NOT enable it?\nWhen we (ericsson) have a REAL DMI\nThat reminds me will anyone else use our charts here?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 33
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8a72204_5a8a0c97",
+        "filename": "cps-charts/templates/dmi-stub-deployment-2.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "I dont see these in cps-charts/templates/dmi-stub-deployment-1.yaml\nall and all that files is very different, which makes me wonder i would expect almost identical files and then do we really need to full file really, can we not have a \u0027template\u0027 to avoid most of the duplication",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 30
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72e184a3_50405f5e",
+        "filename": "cps-charts/templates/dmi-stub-service-2.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "again why 2 files, can we not have a re-usable template?",
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a003f34_9cfa73e1",
+        "filename": "cps-charts/templates/postgresql-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "NB: actually i was wondering about this earlier, any reason you extended from postgres to postgresal",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942c9d45_7d966351",
+        "filename": "cps-charts/templates/postgresql-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "like before, I would like to have see some analysis on how you got to these numbers\n(we should have a wiki about these)",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9082a73d_b1f8903f",
+        "filename": "cps-charts/templates/zookeeper-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "are these not default anyway, do we really need these if so why exactly (these values)",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8e3461c_262a8ddf",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "does this make the variables on line 42 and 43 redundant?! , if not should we not pint ie link those variables?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29c3d04b_50d2e035",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T11:13:25Z",
+      "side": 1,
+      "message": "it seems that most refactoring is about moving away from env.SOME_ENV_VARIABLE but here we are introducing them?! Can we discuss please",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
