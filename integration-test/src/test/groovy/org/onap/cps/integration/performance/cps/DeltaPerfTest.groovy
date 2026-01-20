@@ -77,7 +77,6 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 23.0
     }
 
-    @Ignore
     def 'Get delta between 2 anchors with grouping disabled and #scenario'() {
         when: 'attempt to get delta between two 2 anchors'
             resourceMeter.start()
