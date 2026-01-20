@@ -81,6 +81,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "872d4632_a2c21a9c",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-20T14:26:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "89c88a23_022f52cc",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 14
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "192c9472_261c0996",
@@ -94,6 +118,30 @@
       "writtenOn": "2026-01-20T11:13:25Z",
       "side": 1,
       "message": "NB: maybe add clarification like so:\n\"All dependencies (Postgresql, Kafka) are ready\"",
+      "range": {
+        "startLine": 50,
+        "startChar": 34,
+        "endLine": 50,
+        "endChar": 37
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee3297aa_84778c3a",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-20T14:26:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "192c9472_261c0996",
       "range": {
         "startLine": 50,
         "startChar": 34,
@@ -127,6 +175,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94eb2f46_cb2f4ab5",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-20T14:26:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a9877441_02a21e2f",
+      "range": {
+        "startLine": 73,
+        "startChar": 27,
+        "endLine": 74,
+        "endChar": 32
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bbfb148_b0837ae7",
@@ -140,6 +212,30 @@
       "writtenOn": "2026-01-20T11:13:25Z",
       "side": 1,
       "message": "why so much inconsitencies in these values compared to the readinessProbe.\nWhich Probe(s) does k8 use and how, do we understand that now?",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdc24fbb_3141d033",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-20T14:26:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7bbfb148_b0837ae7",
       "range": {
         "startLine": 80,
         "startChar": 8,
@@ -196,6 +292,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8d84a92_f69536d5",
+        "filename": "cps-charts/templates/dmi-stub-deployment-1.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-20T14:26:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f169e80_68cd8382",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 33
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8a72204_5a8a0c97",
@@ -209,6 +329,30 @@
       "writtenOn": "2026-01-20T11:13:25Z",
       "side": 1,
       "message": "I dont see these in cps-charts/templates/dmi-stub-deployment-1.yaml\nall and all that files is very different, which makes me wonder i would expect almost identical files and then do we really need to full file really, can we not have a \u0027template\u0027 to avoid most of the duplication",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 30
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c33425a7_114b909a",
+        "filename": "cps-charts/templates/dmi-stub-deployment-2.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-20T14:26:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b8a72204_5a8a0c97",
       "range": {
         "startLine": 43,
         "startChar": 0,
