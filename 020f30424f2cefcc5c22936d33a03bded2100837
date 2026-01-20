@@ -66,6 +66,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94bb5171_4ef512c0",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T12:40:14Z",
+      "side": 1,
+      "message": "as below, i think adding  \u0027with...\u0027 to describe teh parameters and disthinguish between methods with different purposes and signatures is a code smell, use proper JavaDoc instead",
+      "range": {
+        "startLine": 46,
+        "startChar": 47,
+        "endLine": 46,
+        "endChar": 75
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d32a354_f7bd4366",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T12:40:14Z",
+      "side": 1,
+      "message": "Legacy issue: instead of thee long methods names use JavaDoc to properly describe each variables and probably just call it xPath in this ann all subsequent methods for the context of the metod itself and subsequent method",
+      "range": {
+        "startLine": 58,
+        "startChar": 47,
+        "endLine": 58,
+        "endChar": 74
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "578bdc29_7ecbcdea",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
         "patchSetId": 9
@@ -105,6 +151,52 @@
         "startChar": 15,
         "endLine": 64,
         "endChar": 33
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a87a4031_77205569",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T12:40:14Z",
+      "side": 1,
+      "message": "as before",
+      "range": {
+        "startLine": 68,
+        "startChar": 32,
+        "endLine": 68,
+        "endChar": 79
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6924a0fb_abbadb72",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-20T12:40:14Z",
+      "side": 1,
+      "message": "as before",
+      "range": {
+        "startLine": 80,
+        "startChar": 32,
+        "endLine": 80,
+        "endChar": 79
       },
       "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
