@@ -158,6 +158,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0008d5a6_3de9be68",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-21T11:15:40Z",
+      "side": 1,
+      "message": "I think he is using xpath just for exception handling, because the user might have given xpath \"/bookstore/books\" but using normalized parent xpath would return \"/bookstore\" it would be a discrepancy in what the user provided vs what is in the response.",
+      "parentUuid": "6e679005_f6899b02",
+      "range": {
+        "startLine": 64,
+        "startChar": 15,
+        "endLine": 64,
+        "endChar": 33
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a87a4031_77205569",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
         "patchSetId": 9
