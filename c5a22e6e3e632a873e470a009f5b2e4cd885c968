@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bebadcda_d7770346",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-21T14:17:57Z",
+      "side": 1,
+      "message": "The serviceAccountName applies to the entire pod (both init and main containers) s the convention is to position it at the pod spec level.",
+      "parentUuid": "dac09013_3f5f171b",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 20
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89c88a23_022f52cc",
         "filename": "cps-charts/templates/cps-deployment.yaml",
         "patchSetId": 4
@@ -199,6 +223,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91429078_a853cfcf",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-21T14:17:57Z",
+      "side": 1,
+      "message": "Yeah this one is on me. I just used some defaut times. I would suggest going back to the docker values for now at least unless we observe issues with them.\nAlso I would suggest looking at the right sizing to see if we can get solid numbers for cpu and memory for cps \nhttps://eteamspace.ericsson.net/display/RERIC/Right+Sizing",
+      "parentUuid": "94eb2f46_cb2f4ab5",
+      "range": {
+        "startLine": 73,
+        "startChar": 27,
+        "endLine": 74,
+        "endChar": 32
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bbfb148_b0837ae7",
@@ -271,6 +319,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9f3e083_7e8af9dc",
+        "filename": "cps-charts/templates/cps-service.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-21T14:17:57Z",
+      "side": 1,
+      "message": "This comes from the _helpers.tpl. In this instance fullname represents the Release name + chart name.\nThese helpers ensure consistent naming across all Kubernetes resources and allow multiple chart installations in the same namespace without name conflicts.",
+      "parentUuid": "1f266f3b_c5c66ef1",
+      "range": {
+        "startLine": 4,
+        "startChar": 33,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f169e80_68cd8382",
         "filename": "cps-charts/templates/dmi-stub-deployment-1.yaml",
         "patchSetId": 4
@@ -306,6 +378,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "1f169e80_68cd8382",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 33
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1351dd7_39ca3f82",
+        "filename": "cps-charts/templates/dmi-stub-deployment-1.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-21T14:17:57Z",
+      "side": 1,
+      "message": "No one else should be using our charts. We only have them for our own test purposes but if they are published I suppose people could",
+      "parentUuid": "b8d84a92_f69536d5",
       "range": {
         "startLine": 1,
         "startChar": 0,
@@ -382,6 +478,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98630deb_c5cee2e6",
+        "filename": "cps-charts/templates/dmi-stub-service-2.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-21T14:17:57Z",
+      "side": 1,
+      "message": "Like we have in docker:\n    extends:\n      service: cps-and-ncmp-template\nThe k8s equivalent of this is install instances in different releases.\n\nThere might be something cleverer we can do but it will need some investigtion.",
+      "parentUuid": "72e184a3_50405f5e",
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a003f34_9cfa73e1",
         "filename": "cps-charts/templates/postgresql-deployment.yaml",
         "patchSetId": 4
@@ -393,6 +507,30 @@
       "writtenOn": "2026-01-20T11:13:25Z",
       "side": 1,
       "message": "NB: actually i was wondering about this earlier, any reason you extended from postgres to postgresal",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "621e0272_ba228ff0",
+        "filename": "cps-charts/templates/postgresql-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-21T14:17:57Z",
+      "side": 1,
+      "message": "The standard convention is to use postgresql",
+      "parentUuid": "6a003f34_9cfa73e1",
       "range": {
         "startLine": 7,
         "startChar": 22,
@@ -451,6 +589,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ad13a8b_f010f969",
+        "filename": "cps-charts/templates/zookeeper-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-21T14:17:57Z",
+      "side": 1,
+      "message": "Not strictly needed no. Required for a multiple node setup which this is not",
+      "parentUuid": "9082a73d_b1f8903f",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8e3461c_262a8ddf",
         "filename": "cps-charts/values.yaml",
         "patchSetId": 4
@@ -462,6 +624,30 @@
       "writtenOn": "2026-01-20T11:13:25Z",
       "side": 1,
       "message": "does this make the variables on line 42 and 43 redundant?! , if not should we not pint ie link those variables?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d56f67b_2bca9861",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-21T14:17:57Z",
+      "side": 1,
+      "message": "Yes these can go. This is left over from some testing.",
+      "parentUuid": "b8e3461c_262a8ddf",
       "range": {
         "startLine": 46,
         "startChar": 0,
