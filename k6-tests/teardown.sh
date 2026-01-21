@@ -48,13 +48,17 @@ remove_cps_images() {
   done
 }
 
+# Function to create and store logs
+make_logs() {
+  echo "Creating logs for deployment type: $deploymentType"
+  chmod +x archive-logs.sh
+  ./archive-logs.sh "$deploymentType"
+}
+
 # Function to teardown docker-compose deployment
 teardown_docker_deployment() {
   echo '================================== docker info =========================='
   docker ps -a
-
-  # Zip and store logs for the containers
-  make_logs "dockerHosts"
 
   local docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --project-name $testProfile down --volumes"
 
@@ -78,7 +82,8 @@ teardown_k8s_deployment() {
   clean_docker_images_if_needed
 }
 
-# Main logic: determine which deployment type to teardown
+# Main logic: archive logs and determine which deployment type to teardown
+make_logs
 case "$deploymentType" in
   "k8sHosts")
     teardown_k8s_deployment

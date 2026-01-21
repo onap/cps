@@ -26,18 +26,10 @@ testProfile=${1:-kpi}
 # The default deployment type is dockerCompose
 deploymentType=${2:-dockerHosts}
 
-# Function to create and store logs
-make_logs() {
-  echo "Creating logs for deployment type: $deploymentType"
-  chmod +x archive-logs.sh
-  ./archive-logs.sh "$deploymentType"
-}
-
 # Cleanup handler: capture exit status, run teardown,
 # and restore directory, report failures, and exit with original code.
 on_exit() {
   rc=$?
-  make_logs
   popd
   echo "TEST FAILURES: $rc"
   exit $rc
