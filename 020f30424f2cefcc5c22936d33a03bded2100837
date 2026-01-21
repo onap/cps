@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46d285bf_6e204ec8",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-21T11:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03280953_e1a313c0",
+      "range": {
+        "startLine": 97,
+        "startChar": 21,
+        "endLine": 97,
+        "endChar": 41
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3efb824_3dd00668",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-01-20T12:19:56Z",
       "side": 1,
       "message": "better rename this to normalizeXPath since you are changing the path into something else not JUST validating it...  Validating is a \u0027side-effect\u0027 which does not have to be mentioned in the method name...",
+      "range": {
+        "startLine": 162,
+        "startChar": 19,
+        "endLine": 162,
+        "endChar": 32
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed81623c_3c9ad9c5",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-21T11:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3efb824_3dd00668",
       "range": {
         "startLine": 162,
         "startChar": 19,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "675fbde0_0f65abcd",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-21T11:17:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "94bb5171_4ef512c0",
+      "range": {
+        "startLine": 46,
+        "startChar": 47,
+        "endLine": 46,
+        "endChar": 75
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d32a354_f7bd4366",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
         "patchSetId": 9
@@ -112,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b6a8312_283d8c71",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-21T11:17:09Z",
+      "side": 1,
+      "message": "JavaDoc comments are already present in the DataNodeFactory interface for this implementation.\nAlso, these methods are used in a number of diff places so changing their names in this patch will cause a lot of changes.\nI will raise a diff patch for these changes altogether.",
+      "parentUuid": "3d32a354_f7bd4366",
+      "range": {
+        "startLine": 58,
+        "startChar": 47,
+        "endLine": 58,
+        "endChar": 74
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "578bdc29_7ecbcdea",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
         "patchSetId": 9
@@ -123,6 +219,30 @@
       "writtenOn": "2026-01-20T12:19:56Z",
       "side": 1,
       "message": "normalizedPath",
+      "range": {
+        "startLine": 61,
+        "startChar": 21,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "deffb984_cf94de8e",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-21T11:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "578bdc29_7ecbcdea",
       "range": {
         "startLine": 61,
         "startChar": 21,
@@ -169,6 +289,30 @@
       "writtenOn": "2026-01-21T11:15:40Z",
       "side": 1,
       "message": "I think he is using xpath just for exception handling, because the user might have given xpath \"/bookstore/books\" but using normalized parent xpath would return \"/bookstore\" it would be a discrepancy in what the user provided vs what is in the response.",
+      "parentUuid": "6e679005_f6899b02",
+      "range": {
+        "startLine": 64,
+        "startChar": 15,
+        "endLine": 64,
+        "endChar": 33
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "022bbfbf_45e8d098",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-21T11:17:09Z",
+      "side": 1,
+      "message": "Normalizing xpath inside convertToDataNodes() will not work as it is being passed on differently from diff methods.\nInstead, if incoming xpath is empty \"\", I have converted it back to \u0027/\u0027 as it had been before being changed to empty \"\".",
       "parentUuid": "6e679005_f6899b02",
       "range": {
         "startLine": 64,
