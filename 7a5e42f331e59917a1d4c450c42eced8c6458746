@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "cea8c354_1cb2de93",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-21T11:22:43Z",
+      "side": 1,
+      "message": "NB: you can add the info about the test being reintroduced in the description for clarity",
+      "revId": "7a5e42f331e59917a1d4c450c42eced8c6458746",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8351948e_c945c05e",
@@ -14,6 +31,41 @@
       "writtenOn": "2026-01-20T12:21:34Z",
       "side": 1,
       "message": "Are we still tracking these update on that Wiki page we create a long while back?!",
+      "revId": "7a5e42f331e59917a1d4c450c42eced8c6458746",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c58ae03e_481c2965",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-21T11:22:43Z",
+      "side": 1,
+      "message": "yes, after merging the first 2 tests we did not see any significant disruption. The situation where some delete performance tests were fluctuating was stabilized after a patch reverted by Lee Anjella. Since then we have not noticed any significant change.",
+      "parentUuid": "8351948e_c945c05e",
+      "revId": "7a5e42f331e59917a1d4c450c42eced8c6458746",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b0ee6c9_eba46eab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-21T11:22:43Z",
+      "side": 1,
+      "message": "Small comment and a reply for Toine",
       "revId": "7a5e42f331e59917a1d4c450c42eced8c6458746",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
