@@ -159,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6f18c47_03098df3",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-21T12:31:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "675fbde0_0f65abcd",
+      "range": {
+        "startLine": 46,
+        "startChar": 47,
+        "endLine": 46,
+        "endChar": 75
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d32a354_f7bd4366",
@@ -196,6 +220,30 @@
       "side": 1,
       "message": "JavaDoc comments are already present in the DataNodeFactory interface for this implementation.\nAlso, these methods are used in a number of diff places so changing their names in this patch will cause a lot of changes.\nI will raise a diff patch for these changes altogether.",
       "parentUuid": "3d32a354_f7bd4366",
+      "range": {
+        "startLine": 58,
+        "startChar": 47,
+        "endLine": 58,
+        "endChar": 74
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36544d63_7e769f62",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-21T12:31:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0b6a8312_283d8c71",
       "range": {
         "startLine": 58,
         "startChar": 47,
