@@ -374,6 +374,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56f9f561_4b2331fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-01-21T15:49:05Z",
+      "side": 1,
+      "message": "to use the original xpath in exception , it has to be passed",
+      "parentUuid": "022bbfbf_45e8d098",
+      "range": {
+        "startLine": 64,
+        "startChar": 15,
+        "endLine": 64,
+        "endChar": 33
+      },
+      "revId": "020f30424f2cefcc5c22936d33a03bded2100837",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a87a4031_77205569",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeFactoryImpl.java",
         "patchSetId": 9
