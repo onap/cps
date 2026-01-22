@@ -188,8 +188,17 @@ public class ProvMnSController implements ProvMnS {
         final Map<String, List<ClassInstance>> changeRequestAsMap = new HashMap<>(1);
         changeRequestAsMap.put(operationDetails.className(), operationDetails.ClassInstances());
         final String changeRequestAsJson = jsonObjectMapper.asJsonString(changeRequestAsMap);
-        final int index = yangModelCmHandle.getAlternateId().length();
-        final String resourceIdentifier = operationDetails.parentFdn().substring(index);
+        final String resourceIdentifier;
+        if (operationDetails.parentFdn().length() <= yangModelCmHandle.getAlternateId().length()) {
+            if (operationDetails.parentFdn().isEmpty()) {
+                resourceIdentifier = "/";
+            } else {
+                resourceIdentifier = operationDetails.parentFdn();
+            }
+        } else {
+            final int index = yangModelCmHandle.getAlternateId().length();
+            resourceIdentifier = operationDetails.parentFdn().substring(index);
+        }
         policyExecutor.checkPermission(yangModelCmHandle, operationDetails.operationType(),
             requestParameters.authorization(), resourceIdentifier, changeRequestAsJson);
     }
