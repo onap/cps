@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6bca74f_f63696e5",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-22T15:46:48Z",
+      "side": 1,
+      "message": "instead add info about the helm command option to set the release to \u0027test\u0027 for consistent naming of the DMI plugins for testing purposes",
+      "parentUuid": "e2b10e37_1314525a",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 21
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b19ce5b_38b14e89",
         "filename": "cps-charts/templates/cps-deployment.yaml",
         "patchSetId": 5
