@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7bfe3bc_82d4e5d2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 77
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-22T05:05:57Z",
+      "side": 1,
+      "message": "given: \u0027a xpath and delta report\u0027\nand: \u0027service returns a list containing delta reports\u0027\nmockCpsDeltaService.getDeltaByDataspaceAndAnchors()...\nwhen:..\nthen:..\nand: \u0027the response contains expected value\u0027",
+      "parentUuid": "0d14caa2_e6a5315a",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 14
+      },
+      "revId": "d4a5139b3b7890c5e0689a2f6d03dcb751efd2b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "498027e7_315a2914",
         "filename": "cps-service/pom.xml",
         "patchSetId": 77
