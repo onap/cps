@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89fcf8cf_ec869e1f",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-22T15:45:03Z",
+      "side": 1,
+      "message": "could it be move to values yaml and insert here using toYaml like all other vars are",
+      "parentUuid": "bebadcda_d7770346",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 20
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89c88a23_022f52cc",
         "filename": "cps-charts/templates/cps-deployment.yaml",
         "patchSetId": 4
