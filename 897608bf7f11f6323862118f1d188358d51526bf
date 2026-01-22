@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4945af59_cad5dc5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-22T15:51:46Z",
+      "side": 1,
+      "message": "just remove redundant test variable",
+      "revId": "897608bf7f11f6323862118f1d188358d51526bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d71b62c1_2f65b993",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-22T15:51:46Z",
+      "side": 1,
+      "message": "i think we use teh mock now instead",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 249
+      },
+      "revId": "897608bf7f11f6323862118f1d188358d51526bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1104d88_848379bb",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-22T15:51:46Z",
+      "side": 1,
+      "message": "great!",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 191
+      },
+      "revId": "897608bf7f11f6323862118f1d188358d51526bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
