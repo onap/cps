@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f259ff52_2f274f84",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-01-22T16:06:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d71b62c1_2f65b993",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 249
+      },
+      "revId": "897608bf7f11f6323862118f1d188358d51526bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e1104d88_848379bb",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerSpec.groovy",
         "patchSetId": 2
