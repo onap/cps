@@ -177,7 +177,7 @@ class DeltaRestControllerSpec extends Specification {
         then: 'expected response code is returned'
             assert response.status == HttpStatus.BAD_REQUEST.value()
         then: 'the response contains expected error message'
-            assert response.contentAsString.contains("Parsing error occurred while converting JSON content to Json Node")
+            assert response.contentAsString.contains("JSON parsing error at line: 1, column: 2")
     }
 
     def 'Apply changes from a delta report, in JSON format, on an anchor'() {
