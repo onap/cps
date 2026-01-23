@@ -16,6 +16,190 @@
       "message": "Resolved",
       "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "467d782c_98f25813",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 86
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-23T11:18:09Z",
+      "side": 1,
+      "message": "NB: put this in a static variable",
+      "range": {
+        "startLine": 109,
+        "startChar": 91,
+        "endLine": 109,
+        "endChar": 103
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6a481b2_7537ed16",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 86
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-23T11:18:09Z",
+      "side": 1,
+      "message": "See previous comment: \u0027the response contains expected value\u0027",
+      "range": {
+        "startLine": 111,
+        "startChar": 13,
+        "endLine": 111,
+        "endChar": 62
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f38e988_08349e21",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/XmlObjectMapper.java",
+        "patchSetId": 86
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-23T11:18:09Z",
+      "side": 1,
+      "message": "File should be placed in utls folder as it is a generic xml mapper now",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86fb424f_86820c28",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/XmlObjectMapper.java",
+        "patchSetId": 86
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-23T11:18:09Z",
+      "side": 1,
+      "message": "use annotations",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 5
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cc49f2c_0fdeb19c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/XmlObjectMapper.java",
+        "patchSetId": 86
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-23T11:18:09Z",
+      "side": 1,
+      "message": "javadoc for rootName parameter is missing",
+      "range": {
+        "startLine": 45,
+        "startChar": 7,
+        "endLine": 45,
+        "endChar": 14
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d96a2778_1d34952a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/XmlObjectMapper.java",
+        "patchSetId": 86
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-23T11:18:09Z",
+      "side": 1,
+      "message": "instead of making it generic like this you can do, Object object, String rootName",
+      "range": {
+        "startLine": 48,
+        "startChar": 40,
+        "endLine": 48,
+        "endChar": 41
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f40808e_b2931475",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/XmlObjectMapper.java",
+        "patchSetId": 86
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-23T11:18:09Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 14
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "206cf1d9_6aa04880",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/XmlObjectMapperSpec.groovy",
+        "patchSetId": 86
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-23T11:18:09Z",
+      "side": 1,
+      "message": "You are testing Xml object mapper so your tests should focus on converting generic java object to xml rather than focusing on delta report.",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
