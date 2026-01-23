@@ -136,6 +136,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e15c2b6_2b0e05dc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 77
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-23T04:29:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7bfe3bc_82d4e5d2",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 14
+      },
+      "revId": "d4a5139b3b7890c5e0689a2f6d03dcb751efd2b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "498027e7_315a2914",

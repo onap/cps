@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "627b85c9_4c6428ef",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 84
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-23T04:29:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7d2ad72_3af0b5b8",
+      "range": {
+        "startLine": 108,
+        "startChar": 26,
+        "endLine": 108,
+        "endChar": 42
+      },
+      "revId": "f994c3cca285641e1e379fd2539556bb9939f63b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1a814c1_1e67a284",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cba81e3_94eb85e4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 84
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-23T04:29:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1a814c1_1e67a284",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 29
+      },
+      "revId": "f994c3cca285641e1e379fd2539556bb9939f63b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf05a5dc_f5105a4e",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-01-21T10:46:21Z",
       "side": 1,
       "message": "asXmlString(deltaReportWrapper, DELTA_REPORTS)",
+      "range": {
+        "startLine": 43,
+        "startChar": 22,
+        "endLine": 43,
+        "endChar": 27
+      },
+      "revId": "f994c3cca285641e1e379fd2539556bb9939f63b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4191e7c_7b0ee490",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/XmlObjectMapper.java",
+        "patchSetId": 84
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-01-23T04:29:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf05a5dc_f5105a4e",
       "range": {
         "startLine": 43,
         "startChar": 22,
