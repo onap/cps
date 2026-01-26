@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4560b57_5e12f165",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T16:58:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "717ab7c2_51399cac",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 55
+      },
+      "revId": "019328ef9c037c47c3b0820faa1402a1d5cc30d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fcb6838_ab197eb0",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-01-26T15:25:18Z",
       "side": 1,
       "message": "Could this comment be moved to the values file because that is now where all the relevant figures are..",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 87
+      },
+      "revId": "019328ef9c037c47c3b0820faa1402a1d5cc30d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f87e7c6_48e02234",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T16:58:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8fcb6838_ab197eb0",
       "range": {
         "startLine": 43,
         "startChar": 12,
@@ -100,6 +148,30 @@
       "writtenOn": "2026-01-26T15:25:18Z",
       "side": 1,
       "message": "what did we decide to do about this infinitive loop, separate commit ?!",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 14
+      },
+      "revId": "019328ef9c037c47c3b0820faa1402a1d5cc30d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "417b7f61_8af670c4",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T16:58:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "73503aa4_608e01b5",
       "range": {
         "startLine": 68,
         "startChar": 0,
