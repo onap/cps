@@ -38,6 +38,7 @@ export const REGISTRATION_BATCH_SIZE = 2000;
 export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as in docker-compose.yml
 export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as in docker-compose.yml
 export const CONTENT_TYPE_JSON_PARAM = {'Content-Type': 'application/json'};
+export const CONTENT_TYPE_JSON_PATCH_PARAM = {'Content-Type': 'application/json-patch+json'};
 export const LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE = 200; // Note: a maximum batch size of 200 implemented in production code!
 export const MODULE_SET_TAGS = ['tagA', 'tagB', 'tagC', 'tagD', 'tagE'];
 
@@ -120,6 +121,29 @@ export function performGetRequest(url, metricTag) {
         endpoint: metricTag
     };
     return http.get(url, {tags: metricTags});
+}
+
+/**
+ * Helper function to perform PATCH requests with metric tags.
+ *
+ * This function sends an HTTP PATCH request to the specified URL and attaches
+ * a metric tag to the request, which is useful for monitoring and analytics.
+ *
+ * @param {string} url - The URL to which the PATCH request will be sent.
+ * @param {Object} payload - The JSON payload to send in the PATCH request.
+ * @param {string} metricTag - A string representing the metric tag to associate with the request.
+ *                             This tag is used for monitoring and tracking the request.
+ * @returns {Object} The response from the HTTP PATCH request.
+ */
+export function performPatchRequest(url, payload, metricTag) {
+    const metricTags = {
+        endpoint: metricTag
+    };
+
+    return http.request('PATCH', url, payload, {
+        headers: CONTENT_TYPE_JSON_PATCH_PARAM,
+        tags: metricTags
+    });
 }
 
 export function makeCustomSummaryReport(testResults, scenarioConfig) {
