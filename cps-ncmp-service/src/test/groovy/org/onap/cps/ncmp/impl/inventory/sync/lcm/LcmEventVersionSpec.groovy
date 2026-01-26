@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,17 +18,20 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.inventory.sync.lcm;
+package org.onap.cps.ncmp.impl.inventory.sync.lcm
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.onap.cps.ncmp.events.lcm.Values;
+import spock.lang.Specification
 
-@NoArgsConstructor
-@Getter
-@Setter
-class CmHandlePropertyUpdates {
-    private Values oldValues;
-    private Values newValues;
+class LcmEventVersionSpec extends Specification {
+
+    def 'Enum values.'() {
+        expect: 'enum has expected values'
+            assert LcmEventVersion.values() == [LcmEventVersion.V1, LcmEventVersion.V2] as LcmEventVersion[]
+    }
+
+    def 'Enum valueOf.'() {
+        expect: 'valueOf returns correct enum constant'
+            assert LcmEventVersion.valueOf('V1') == LcmEventVersion.V1
+            assert LcmEventVersion.valueOf('V2') == LcmEventVersion.V2
+    }
 }

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,15 +20,7 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.onap.cps.ncmp.events.lcm.Values;
-
-@NoArgsConstructor
-@Getter
-@Setter
-class CmHandlePropertyUpdates {
-    private Values oldValues;
-    private Values newValues;
+public enum LcmEventVersion {
+    V1,
+    V2
 }

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import org.onap.cps.ncmp.api.NcmpResponseStatus
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
+import org.onap.cps.ncmp.events.lcm.LcmEventV1
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 
 import java.time.Duration
@@ -117,7 +117,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
         and: 'the message has the updated data producer identifier'
             def notificationMessages = []
             for (def consumerRecord : consumerRecords) {
-                notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEvent))
+                notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEventV1))
             }
             assert notificationMessages[0].event.cmHandleId.contains(cmHandleId)
             assert notificationMessages[0].event.dataProducerIdentifier == 'my-data-producer-id'

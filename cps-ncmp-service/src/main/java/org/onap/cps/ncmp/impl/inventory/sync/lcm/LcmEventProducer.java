@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventProducer;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
-import org.onap.cps.ncmp.events.lcm.v1.Values;
+import org.onap.cps.ncmp.events.lcm.LcmEventBase;
+import org.onap.cps.ncmp.events.lcm.LcmEventV1;
+import org.onap.cps.ncmp.events.lcm.Values;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.KafkaException;
@@ -92,14 +93,14 @@ public class LcmEventProducer {
     private void sendLcmEvent(final NcmpServiceCmHandle currentNcmpServiceCmHandle,
                               final NcmpServiceCmHandle targetNcmpServiceCmHandle) {
         if (notificationsEnabled) {
-            final LcmEvent lcmEvent = lcmEventObjectCreator.createLcmEvent(currentNcmpServiceCmHandle,
-                                                                           targetNcmpServiceCmHandle);
+            final LcmEventV1 lcmEventV1 = lcmEventObjectCreator.createLcmEventV1(currentNcmpServiceCmHandle,
+                                                                               targetNcmpServiceCmHandle);
             final Timer.Sample timerSample = Timer.start(meterRegistry);
             try {
-                final Map<String, Object> headersAsMap = extractHeadersAsMap(lcmEvent);
+                final Map<String, Object> headersAsMap = extractHeadersAsMap(lcmEventV1);
                 final String eventKey = currentNcmpServiceCmHandle.getCmHandleId();
-                eventProducer.sendLegacyEvent(topicName, eventKey, headersAsMap, lcmEvent);
-                recordMetrics(lcmEvent, timerSample);
+                eventProducer.sendLegacyEvent(topicName, eventKey, headersAsMap, lcmEventV1);
+                recordMetrics(lcmEventV1, timerSample);
             } catch (final KafkaException e) {
                 log.error("Unable to send message to topic : {} and cause : {}", topicName, e.getMessage());
             }
@@ -108,24 +109,24 @@ public class LcmEventProducer {
         }
     }
 
-    private Map<String, Object> extractHeadersAsMap(final LcmEvent lcmEvent) {
+    private Map<String, Object> extractHeadersAsMap(final LcmEventBase lcmEventBase) {
         final Map<String, Object> headersAsMap = new HashMap<>(7);
-        headersAsMap.put("eventId", lcmEvent.getEventId());
-        headersAsMap.put("eventCorrelationId", lcmEvent.getEventCorrelationId());
-        headersAsMap.put("eventTime", lcmEvent.getEventTime());
-        headersAsMap.put("eventSource", lcmEvent.getEventSource());
-        headersAsMap.put("eventType", lcmEvent.getEventType());
-        headersAsMap.put("eventSchema", lcmEvent.getEventSchema());
-        headersAsMap.put("eventSchemaVersion", lcmEvent.getEventSchemaVersion());
+        headersAsMap.put("eventId", lcmEventBase.getEventId());
+        headersAsMap.put("eventCorrelationId", lcmEventBase.getEventCorrelationId());
+        headersAsMap.put("eventTime", lcmEventBase.getEventTime());
+        headersAsMap.put("eventSource", lcmEventBase.getEventSource());
+        headersAsMap.put("eventType", lcmEventBase.getEventType());
+        headersAsMap.put("eventSchema", lcmEventBase.getEventSchema());
+        headersAsMap.put("eventSchemaVersion", lcmEventBase.getEventSchemaVersion());
         return headersAsMap;
     }
 
-    private void recordMetrics(final LcmEvent lcmEvent, final Timer.Sample timerSample) {
+    private void recordMetrics(final LcmEventV1 lcmEventV1, final Timer.Sample timerSample) {
         final List<Tag> tags = new ArrayList<>(4);
         tags.add(METRIC_TAG_CLASS);
         tags.add(METRIC_TAG_METHOD);
-        tags.add(createCmHandleStateTag("oldCmHandleState", lcmEvent.getEvent().getOldValues()));
-        tags.add(createCmHandleStateTag("newCmHandleState", lcmEvent.getEvent().getNewValues()));
+        tags.add(createCmHandleStateTag("oldCmHandleState", lcmEventV1.getEvent().getOldValues()));
+        tags.add(createCmHandleStateTag("newCmHandleState", lcmEventV1.getEvent().getNewValues()));
         timerSample.stop(Timer.builder("cps.ncmp.lcm.events.send")
             .description("Time taken to send a LCM event")
             .tags(tags)

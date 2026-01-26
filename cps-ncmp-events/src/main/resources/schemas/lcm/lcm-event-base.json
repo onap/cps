@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.ncmp.cmhandle.lcm-event.base",
+  "description": "The base (header fields) for LCM events",
+  "type": "object",
+  "javaType" : "org.onap.cps.ncmp.events.lcm.LcmEventBase",
+  "javaInterfaces" : ["org.onap.cps.events.LegacyEvent"],
+  "properties": {
+    "eventId": {
+      "description": "The unique id identifying the event",
+      "type": "string"
+    },
+    "eventCorrelationId": {
+      "description": "The id identifying the event",
+      "type": "string"
+    },
+    "eventTime": {
+      "description": "The timestamp when original event occurred",
+      "type": "string"
+    },
+    "eventSource": {
+      "description": "The source of the event",
+      "type": "string"
+    },
+    "eventType": {
+      "description": "The type of the event",
+      "type": "string"
+    },
+    "eventSchema": {
+      "description": "The schema that this event adheres to",
+      "type": "string"
+    },
+    "eventSchemaVersion": {
+      "description": "The version of the schema that this event adheres to",
+      "type": "string"
+    }
+  },
+  "required": [
+    "eventId",
+    "eventCorrelationId",
+    "eventTime",
+    "eventSource",
+    "eventType",
+    "eventSchema",
+    "eventSchemaVersion"
+  ],
+  "additionalProperties": false
+}
