@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12e89dc4_cf67fe4b",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-26T12:32:14Z",
+      "side": 1,
+      "message": "I do not believe that this works. The include function does not work in values.yaml to parse the name from helpers.tpl",
+      "revId": "1e30d3d7d79c90f393dc3855171a16c4684041fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5644e7f5_d0937cd3",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-26T12:32:14Z",
+      "side": 1,
+      "message": ".fullname no longer exists with the changes to helpers.tpl",
+      "revId": "1e30d3d7d79c90f393dc3855171a16c4684041fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
