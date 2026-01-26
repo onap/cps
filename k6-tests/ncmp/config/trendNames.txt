@@ -15,3 +15,5 @@ ncmp_write_overhead
 legacy_batch_read
 dcm_write_data_job_small
 dcm_write_data_job_large
+provmns_read_overhead
+provmns_write_overhead
