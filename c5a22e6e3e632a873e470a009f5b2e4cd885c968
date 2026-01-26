@@ -106,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f49b6208_a4761bd4",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "89fcf8cf_ec869e1f",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 20
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89c88a23_022f52cc",
@@ -365,6 +389,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6e3b9e3_ae37d063",
+        "filename": "cps-charts/templates/cps-service.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c9f3e083_7e8af9dc",
+      "range": {
+        "startLine": 4,
+        "startChar": 33,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f169e80_68cd8382",
@@ -518,6 +566,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87fee7e3_23ae9cf8",
+        "filename": "cps-charts/templates/dmi-stub-service-2.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "98630deb_c5cee2e6",
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a003f34_9cfa73e1",
@@ -555,6 +621,30 @@
       "side": 1,
       "message": "The standard convention is to use postgresql",
       "parentUuid": "6a003f34_9cfa73e1",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "509bfe6c_6103f579",
+        "filename": "cps-charts/templates/postgresql-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "621e0272_ba228ff0",
       "range": {
         "startLine": 7,
         "startChar": 22,
@@ -635,6 +725,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f5d9709_d339f9ef",
+        "filename": "cps-charts/templates/zookeeper-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ad13a8b_f010f969",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8e3461c_262a8ddf",
@@ -672,6 +786,30 @@
       "side": 1,
       "message": "Yes these can go. This is left over from some testing.",
       "parentUuid": "b8e3461c_262a8ddf",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc981036_6df8d2a4",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d56f67b_2bca9861",
       "range": {
         "startLine": 46,
         "startChar": 0,

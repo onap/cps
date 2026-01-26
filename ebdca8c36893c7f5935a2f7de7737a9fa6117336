@@ -117,6 +117,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0229b1a8_7f1512f8",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9b19ce5b_38b14e89",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af8fbecb_82463c16",
@@ -130,6 +154,30 @@
       "writtenOn": "2026-01-22T15:45:03Z",
       "side": 1,
       "message": "this is an infinitive loop!\nPrefer a loop with a maximum timeout of double the expected time.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 18
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e41e90b_0518828d",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "af8fbecb_82463c16",
       "range": {
         "startLine": 29,
         "startChar": 0,
@@ -163,6 +211,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43484ca3_7ad5cd10",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f7bddb4_24b962ca",
+      "range": {
+        "startLine": 34,
+        "startChar": 31,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffeb6337_0000382c",
@@ -186,6 +258,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb096457_57c6d3eb",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ffeb6337_0000382c",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8162a9c6_4c6de9e7",
@@ -199,6 +295,30 @@
       "writtenOn": "2026-01-22T15:45:03Z",
       "side": 1,
       "message": "not sure if you need to only print every 10th time",
+      "range": {
+        "startLine": 43,
+        "startChar": 16,
+        "endLine": 43,
+        "endChar": 46
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4797145c_0bb041ed",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8162a9c6_4c6de9e7",
       "range": {
         "startLine": 43,
         "startChar": 16,
@@ -255,6 +375,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a5563e2_a4a2a10d",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d3b23863_f6a4f5cb",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 31
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9783b38b_9a1226aa",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "536c8ee0_68587607",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 31
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f13313ec_816e2ab0",
@@ -268,6 +436,30 @@
       "writtenOn": "2026-01-22T15:45:03Z",
       "side": 1,
       "message": "for consistency (with other services put this in yaml file as well)",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 24
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7eeb47f_1eaa28c3",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f13313ec_816e2ab0",
       "range": {
         "startLine": 74,
         "startChar": 0,
@@ -301,6 +493,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bf23e3f_d14e1eb5",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b87e4344_bce3f192",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 36
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09c7df97_5a2d89d2",
@@ -314,6 +530,30 @@
       "writtenOn": "2026-01-22T15:45:03Z",
       "side": 1,
       "message": "mayeb consider a better naming schema like:\ncps-and-ncmp.name\ncps-and-ncmp.release-name  (isntead of full name)",
+      "range": {
+        "startLine": 4,
+        "startChar": 33,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61509854_a849efb1",
+        "filename": "cps-charts/templates/cps-service.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "09c7df97_5a2d89d2",
       "range": {
         "startLine": 4,
         "startChar": 33,
@@ -347,6 +587,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e857daea_d435080e",
+        "filename": "cps-charts/templates/dmi-stub-deployment-1.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cebd3bed_e864289a",
+      "range": {
+        "startLine": 29,
+        "startChar": 24,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b030cea_5eb5753a",
@@ -360,6 +624,30 @@
       "writtenOn": "2026-01-22T15:45:03Z",
       "side": 1,
       "message": "do really need these, CPS Probes work fine without these",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 29
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5a854a_9e923738",
+        "filename": "cps-charts/templates/dmi-stub-deployment-1.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7b030cea_5eb5753a",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -393,6 +681,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ce367a8_2b745e52",
+        "filename": "cps-charts/templates/dmi-stub-deployment-1.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "013b7ed2_a87b601a",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f338336_62022e11",
@@ -406,6 +718,30 @@
       "writtenOn": "2026-01-22T15:45:03Z",
       "side": 1,
       "message": "proably not needed",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 29
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3a57451_7e08cf76",
+        "filename": "cps-charts/templates/dmi-stub-deployment-2.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2f338336_62022e11",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -439,6 +775,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb509288_fc9750d5",
+        "filename": "cps-charts/templates/dmi-stub-deployment-2.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eacbb2cc_45b7d8f5",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf14afb4_354a5fa8",
@@ -452,6 +812,30 @@
       "writtenOn": "2026-01-22T15:45:03Z",
       "side": 1,
       "message": "this should be\n {{ include \"cps-and-ncmp.fullname\" . }}-dmi-stub-1-service\n \n affects k6 tesware and postman?!\n for test purposes we could pass in release \u003d \u0027test\u0027 to get consistent names",
+      "range": {
+        "startLine": 4,
+        "startChar": 8,
+        "endLine": 4,
+        "endChar": 25
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5916c64f_9d5e3ca8",
+        "filename": "cps-charts/templates/dmi-stub-service-1.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T11:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf14afb4_354a5fa8",
       "range": {
         "startLine": 4,
         "startChar": 8,
