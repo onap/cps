@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e36e4e5b_cde421f0",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T14:03:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "12e89dc4_cf67fe4b",
+      "revId": "1e30d3d7d79c90f393dc3855171a16c4684041fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5644e7f5_d0937cd3",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-01-26T12:32:14Z",
       "side": 1,
       "message": ".fullname no longer exists with the changes to helpers.tpl",
+      "revId": "1e30d3d7d79c90f393dc3855171a16c4684041fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "690ca6c4_d0206db5",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T14:03:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5644e7f5_d0937cd3",
       "revId": "1e30d3d7d79c90f393dc3855171a16c4684041fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }

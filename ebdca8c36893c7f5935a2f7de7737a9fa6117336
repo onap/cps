@@ -142,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cd0a644_992c85f6",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T14:03:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a6bca74f_f63696e5",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 21
+      },
+      "revId": "ebdca8c36893c7f5935a2f7de7737a9fa6117336",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b19ce5b_38b14e89",

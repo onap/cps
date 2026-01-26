@@ -678,6 +678,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34d14075_1f0d7333",
+        "filename": "cps-charts/templates/postgresql-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T14:03:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "942c9d45_7d966351",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9082a73d_b1f8903f",
@@ -833,6 +857,30 @@
       "writtenOn": "2026-01-20T11:13:25Z",
       "side": 1,
       "message": "it seems that most refactoring is about moving away from env.SOME_ENV_VARIABLE but here we are introducing them?! Can we discuss please",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "c5a22e6e3e632a873e470a009f5b2e4cd885c968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9cab651_a043ff67",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-26T14:03:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "29c3d04b_50d2e035",
       "range": {
         "startLine": 82,
         "startChar": 0,
