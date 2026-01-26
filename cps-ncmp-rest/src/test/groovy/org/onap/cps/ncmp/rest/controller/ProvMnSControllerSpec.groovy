@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.provmns.ParameterHelper
 import org.onap.cps.ncmp.impl.provmns.ParametersBuilder
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
@@ -101,6 +102,7 @@ class ProvMnSControllerSpec extends Specification {
     static def patchMediaType       = new MediaType('application', 'json-patch+json')
     static def patchMediaType3gpp   = new MediaType('application', '3gpp-json-patch+json')
     static def patchJsonBody        = '[{"op":"replace","path":"/child=id2/attributes","value":{"attr1":"test"}}]'
+    static def patchWithoutChild    = '[{"op":"replace","path":"/attributes","value":{"attr2":"test2"}}]'
     static def patchJsonBody3gpp    = '[{"op":"replace","path":"/child=id2#/attributes/attr1","value":"test"}]'
 
     static def expectedDeleteChangeRequest = '{"":[]}'
@@ -112,6 +114,13 @@ class ProvMnSControllerSpec extends Specification {
     int maxNumberOfPatchOperations
 
     static def NO_CONTENT = ''
+
+    def mockedCmHandle = Mock(YangModelCmHandle)
+
+    def setup() {
+        mockedCmHandle.getCompositeState() >> new CompositeState(cmHandleState: READY)
+        mockedCmHandle.getDataProducerIdentifier() >> 'some-dataproducerId'
+    }
 
     def 'Get resource data #scenario.'() {
         given: 'resource data url'
@@ -221,34 +230,52 @@ class ProvMnSControllerSpec extends Specification {
 
     def 'Patch request with #scenario.'() {
         given: 'provmns url'
-            def provmnsUrl = "$provMnSBasePath/v1/managedElement=1/myClass=id1"
+            mockedCmHandle.getAlternateId() >> ParameterHelper.extractParentFdn(fdn)
+            def provmnsUrl = "$provMnSBasePath/v1$fdn"
         and: 'alternate Id can be matched'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/managedElement=1/myClass=id1', "/") >> 'ch-1'
-        and: 'resource id for policy executor points to child node'
-            def expectedResourceIdForPolicyExecutor = '/myClass=id1'
-        and: 'operation details has correct class and attributes, target identifier points to parent'
-            def expectedChangeRequest = '{"child":[{"id":"id2","attributes":{"attr1":"test"}}]}'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> 'mock'
         and: 'persistence service returns yangModelCmHandle'
-            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
+            mockInventoryPersistence.getYangModelCmHandle('mock') >> mockedCmHandle
         and: 'dmi provides a response'
-            mockDmiRestClient.synchronousPatchOperation(*_) >> new ResponseEntity<>('content from DMI', responseStatusFromDmi)
+            mockDmiRestClient.synchronousPatchOperation(*_) >> new ResponseEntity<>('content from DMI', OK)
         when: 'patch request is performed'
             def response = mvc.perform(patch(provmnsUrl)
                     .header('Authorization', 'my authorization')
                     .contentType(contentMediaType)
                     .content(jsonBody))
                     .andReturn().response
-        then: 'response status is the same as what DMI gave'
-            assert response.status == expectedResponseStatusFromProvMnS.value()
-        and: 'the response contains the expected content'
+        then: 'the response contains the expected content'
             assert response.contentAsString.contains('content from DMI')
         and: 'policy executor was invoked with the expected parameters'
-            1 * mockPolicyExecutor.checkPermission(validCmHandle, OperationType.UPDATE, 'my authorization', expectedResourceIdForPolicyExecutor, expectedChangeRequest)
+            1 * mockPolicyExecutor.checkPermission(mockedCmHandle, OperationType.UPDATE, 'my authorization', expectedResourceIdForPolicyExecutor, expectedChangeRequest)
         where: 'following scenarios are applied'
-            scenario          | contentMediaType   | jsonBody             | responseStatusFromDmi || expectedResponseStatusFromProvMnS
-            'happy flow 3gpp' | patchMediaType3gpp | patchJsonBody3gpp    | OK                    || OK
-            'happy flow'      | patchMediaType     | patchJsonBody        | OK                    || OK
-            'error from DMI'  | patchMediaType     | patchJsonBody        | I_AM_A_TEAPOT         || I_AM_A_TEAPOT
+            scenario               | contentMediaType   | fdn                                          | jsonBody           || expectedResourceIdForPolicyExecutor | expectedChangeRequest
+            'happy flow '          | patchMediaType     | '/subnetwork=1/managedElement=2/myClass=id1' | patchJsonBody      || '/myClass=id1'                      | '{"child":[{"id":"id2","attributes":{"attr1":"test"}}]}'
+            'happy flow 3gpp'      | patchMediaType3gpp | '/subnetwork=1/managedElement=2/myClass=id1' | patchJsonBody3gpp  || '/myClass=id1'                      | '{"child":[{"id":"id2","attributes":{"attr1":"test"}}]}'
+            'no subnetwork'        | patchMediaType     | '/managedElement=2/myClass=id1'              | patchJsonBody      || '/myClass=id1'                      | '{"child":[{"id":"id2","attributes":{"attr1":"test"}}]}'
+            'no child'             | patchMediaType     | '/subnetwork=1/managedElement=2'             | patchWithoutChild  || '/subnetwork=1'                     | '{"managedElement":[{"id":"2","attributes":{"attr2":"test2"}}]}'
+            'no subnetwork & child'| patchMediaType     | '/managedElement=2'                          | patchWithoutChild  || '/'                                 | '{"managedElement":[{"id":"2","attributes":{"attr2":"test2"}}]}'
+    }
+
+    def 'Patch request with error from DMI.'() {
+        given: 'provmns url'
+            def provmnsUrl = "$provMnSBasePath/v1/managedElement=1/myClass=id1"
+        and: 'alternate Id can be matched'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/managedElement=1/myClass=id1', "/") >> 'ch-1'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
+        and: 'dmi provides an error response'
+            mockDmiRestClient.synchronousPatchOperation(*_) >> new ResponseEntity<>('content from DMI', I_AM_A_TEAPOT)
+        when: 'patch request is performed'
+            def response = mvc.perform(patch(provmnsUrl)
+                    .header('Authorization', 'my authorization')
+                    .contentType(patchMediaType)
+                    .content(patchJsonBody))
+                    .andReturn().response
+        then: 'response status is the same as what DMI gave'
+            assert response.status == I_AM_A_TEAPOT.value()
+        and: 'the response contains the expected content'
+            assert response.contentAsString.contains('content from DMI')
     }
 
     def 'Attempt Patch request with malformed json.'() {
@@ -422,11 +449,12 @@ class ProvMnSControllerSpec extends Specification {
 
     def 'Delete resource data request with #scenario.'() {
         given: 'resource data url'
-            def deleteUrl = "$provMnSBasePath/v1/ManagedElement=1/myClass=id1/childClass=1/grandChildClass=2"
-        and: 'alternate Id can be matched'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/ManagedElement=1/myClass=id1/childClass=1/grandChildClass=2', "/") >> 'ch-1'
+            def deleteUrl = "$provMnSBasePath/v1$fdn"
+        and: 'alternate Id is mocked can be matched'
+            mockedCmHandle.getAlternateId() >> ParameterHelper.extractParentFdn(fdn)
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> 'mock'
         and: 'persistence service returns yangModelCmHandle'
-            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> validCmHandle
+            mockInventoryPersistence.getYangModelCmHandle('mock') >> mockedCmHandle
         and: 'dmi provides a response'
             mockDmiRestClient.synchronousDeleteOperation(*_) >> new ResponseEntity<>(responseContentFromDmi, responseStatusFromDmi)
         when: 'Delete data resource request is performed'
@@ -436,11 +464,13 @@ class ProvMnSControllerSpec extends Specification {
         and: 'the content is whatever the DMI returned'
             assert response.contentAsString == responseContentFromDmi
         and: 'Policy Executor was invoked with correct resource identifier and almost empty operation details (not used for delete!)'
-            1 * mockPolicyExecutor.checkPermission(_, OperationType.DELETE, 'my authorization', '/myClass=id1/childClass=1/grandChildClass=2', expectedDeleteChangeRequest)
+            1 * mockPolicyExecutor.checkPermission(_, OperationType.DELETE, 'my authorization', expectedResourceId, expectedDeleteChangeRequest)
         where: 'following responses returned by DMI'
-            scenario         | responseStatusFromDmi | responseContentFromDmi
-            'happy flow'     | OK                    | 'content from DMI'
-            'error from DMI' | I_AM_A_TEAPOT         | 'error details from DMI'
+            scenario                 | fdn                                                                         | responseStatusFromDmi | responseContentFromDmi     || expectedResourceId
+            'happy flow'             | '/Subnetwork=1/ManagedElement=1/myClass=id1/childClass=1/grandChildClass=2' | OK                    | 'content from DMI'         || '/grandChildClass=2'
+            'no child'               | '/Subnetwork=1/ManagedElement=1'                                            | OK                    | 'content from DMI'         || '/ManagedElement=1'
+            'no subnetwork & child'  | '/ManagedElement=1'                                                         | OK                    | 'content from DMI'         || '/ManagedElement=1'
+            'error from DMI'         | '/Subnetwork=1/ManagedElement=1/myClass=id1/childClass=1/grandChildClass=2' | I_AM_A_TEAPOT         | 'error details from DMI'   || '/grandChildClass=2'
     }
 
     def 'Delete resource data request when cm handle not found.'() {
