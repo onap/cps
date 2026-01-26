@@ -124,5 +124,19 @@
     "unit" : "milliseconds",
     "measurementName" : "dcm_write_data_job_large",
     "currentExpectation" : 4200
+  },
+  {
+    "testNumber" : "10",
+    "testName" : "ProvMnS Read Operation",
+    "unit" : "milliseconds",
+    "measurementName" : "provmns_read_overhead",
+    "currentExpectation" : 4200
+  },
+  {
+    "testNumber" : "11",
+    "testName" : "ProvMnS Write Operation",
+    "unit" : "milliseconds",
+    "measurementName" : "provmns_write_overhead",
+    "currentExpectation" : 4200
   }
 ]

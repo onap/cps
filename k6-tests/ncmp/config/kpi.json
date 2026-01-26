@@ -172,6 +172,26 @@
       "preAllocatedVUs": 10,
       "maxVUs": 12,
       "startTime": "923ms"
+    },
+    "provmns_read_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "provMnSReadScenario",
+      "rate": 25,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "maxVUs": 25,
+      "startTime": "200ms"
+    },
+    "provmns_write_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "provMnSWriteScenario",
+      "rate": 13,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "maxVUs": 25,
+      "startTime": "600ms"
     }
   },
   "thresholds": {
@@ -192,6 +212,8 @@
     "ncmp_write_overhead": ["avg <= 40"],
     "legacy_batch_read": ["avg >= 150"],
     "dcm_write_data_job_small": ["avg <= 500"],
-    "dcm_write_data_job_large": ["avg <= 30000"]
+    "dcm_write_data_job_large": ["avg <= 30000"],
+    "provmns_read_overhead": ["avg <= 100"],
+    "provmns_write_overhead": ["avg <= 100"]
   }
 }

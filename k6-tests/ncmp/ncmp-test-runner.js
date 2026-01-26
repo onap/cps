@@ -42,6 +42,7 @@ import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
 import { executeWriteDataJob } from "./common/write-data-job.js";
+import {provMnSReadOperation, provMnSWriteOperation} from "./common/provmns-crud.js";
 
 
 const throughputTrends = ['cm_handles_created', 'cm_handles_deleted', 'legacy_batch_read'];
@@ -164,6 +165,16 @@ export function cmHandleIdSearchTrustLevelScenario() {
 export function cmHandleSearchTrustLevelScenario() {
     const response = executeCmHandleSearch('trust-level');
     validateResponseAndRecordMetric(response, 200, 'CM handle trust level search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_trust_level_filter);
+}
+
+export function provMnSReadScenario() {
+    const response = provMnSReadOperation();
+    validateResponseAndRecordMetric(response, 200, 'ProvMnS Read', TOTAL_CM_HANDLES, kpiTrendDeclarations.provmns_read_overhead);
+}
+
+export function provMnSWriteScenario() {
+    const response = provMnSWriteOperation();
+    validateResponseAndRecordMetric(response, 200, 'ProvMnS Write', TOTAL_CM_HANDLES, kpiTrendDeclarations.provmns_write_overhead);
 }
 
 export function legacyBatchProduceScenario() {
