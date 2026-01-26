@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.ncmp.cmhandle.lcm-event.v2",
+  "javaType": "org.onap.cps.ncmp.events.lcm.LcmEventV2",
+  "extends": {
+    "$ref": "lcm-event-base.json"
+  },
+  "type": "object",
+  "properties": {
+    "event": {
+      "$ref": "#/$defs/PayloadV2"
+    }
+  },
+  "required": ["event"],
+  "$defs": {
+    "PayloadV2": {
+      "description": "The Payload of an event V2",
+      "javaType": "org.onap.cps.ncmp.events.lcm.PayloadV2",
+      "type": "object",
+      "properties": {
+        "cmHandleId": {
+          "description": "cmHandle id",
+          "type": "string"
+        },
+        "oldProperties": {
+          "description": "the old cmHandle properties(values) that have changed or been deleted",
+          "type": "object",
+          "default": null,
+          "existingJavaType": "java.util.Map<String,Object>",
+          "additionalProperties": false
+        },
+        "newProperties": {
+          "description": "cmHandle properties(values) that have been changed or been created",
+          "type": "object",
+          "default": null,
+          "existingJavaType": "java.util.Map<String,Object>",
+          "additionalProperties": false
+        }
+      },
+      "required": ["cmHandleId"],
+      "additionalProperties": false
+    }
+  }
+
+
+
+
+}

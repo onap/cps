@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.events.EventProducer
 import org.onap.cps.events.LegacyEvent
-import org.onap.cps.ncmp.events.lcm.v1.Event
-import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
+import org.onap.cps.ncmp.events.lcm.LcmEventV1
+import org.onap.cps.ncmp.events.lcm.PayloadV1
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.ncmp.utils.events.MessagingBaseSpec
 import org.onap.cps.utils.JsonObjectMapper
@@ -64,7 +64,7 @@ class EventProducerSpec extends MessagingBaseSpec {
             def eventType = 'org.onap.ncmp.cmhandle.lcm.event'
             def eventSchema = 'org.onap.ncmp.cmhandle.lcm.event'
             def eventSchemaVersion = 'v1'
-            def eventData = new LcmEvent(
+            def lcmEventV1 = new LcmEventV1(
                 eventId: eventId,
                 eventCorrelationId: eventCorrelationId,
                 eventSource: eventSource,
@@ -72,7 +72,7 @@ class EventProducerSpec extends MessagingBaseSpec {
                 eventType: eventType,
                 eventSchema: eventSchema,
                 eventSchemaVersion: eventSchemaVersion,
-                event: new Event(cmHandleId: 'cmhandle-test'))
+                event: new PayloadV1(cmHandleId: 'cmhandle-test'))
         and: 'we have a event header'
             def eventHeader = [
                 eventId           : eventId,
@@ -85,7 +85,7 @@ class EventProducerSpec extends MessagingBaseSpec {
         and: 'consumer has a subscription'
             legacyEventKafkaConsumer.subscribe([testTopic] as List<String>)
         when: 'an event is sent'
-            eventProducer.sendLegacyEvent(testTopic, eventKey, eventHeader, eventData)
+            eventProducer.sendLegacyEvent(testTopic, eventKey, eventHeader, lcmEventV1)
         and: 'topic is polled'
             def records = legacyEventKafkaConsumer.poll(Duration.ofMillis(1500))
         then: 'poll returns one record'
@@ -94,8 +94,8 @@ class EventProducerSpec extends MessagingBaseSpec {
             assert eventKey == records[0].key
         and: 'record matches the expected event'
             def expectedJsonString = TestUtils.getResourceFileContent('expectedLcmEvent.json')
-            def expectedLcmEvent = jsonObjectMapper.convertJsonString(expectedJsonString, LcmEvent.class)
-            assert expectedLcmEvent == jsonObjectMapper.convertJsonString(records[0].value, LcmEvent.class)
+            def expectedLcmEvent = jsonObjectMapper.convertJsonString(expectedJsonString, LcmEventV1.class)
+            assert expectedLcmEvent == jsonObjectMapper.convertJsonString(records[0].value, LcmEventV1.class)
         and: 'record header matches the expected parameters'
             assert SerializationUtils.deserialize(records[0].headers().lastHeader('eventId').value()) == eventId
             assert SerializationUtils.deserialize(records[0].headers().lastHeader('eventCorrelationId').value()) == eventCorrelationId
