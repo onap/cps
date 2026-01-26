@@ -17,8 +17,8 @@
       "rate": 25,
       "timeUnit": "1s",
       "duration": "15m",
-      "preAllocatedVUs": 5,
-      "maxVUs": 25,
+      "preAllocatedVUs": 1,
+      "maxVUs": 1,
       "startTime": "200ms"
     },
     "passthrough_write_alt_id_scenario": {
@@ -27,8 +27,8 @@
       "rate": 13,
       "timeUnit": "1s",
       "duration": "15m",
-      "preAllocatedVUs": 5,
-      "maxVUs": 25,
+      "preAllocatedVUs": 1,
+      "maxVUs": 1,
       "startTime": "600ms"
     },
     "cm_handle_id_search_nofilter_scenario": {
@@ -37,7 +37,7 @@
       "rate": 1,
       "timeUnit": "2600ms",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "142ms"
     },
     "cm_handle_id_search_module_scenario": {
@@ -46,9 +46,9 @@
       "rate": 1,
       "timeUnit": "2600ms",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "613ms",
-      "maxVUs": 3
+      "maxVUs": 1
     },
     "cm_handle_id_search_property_scenario": {
       "executor": "constant-arrival-rate",
@@ -56,7 +56,7 @@
       "rate": 1,
       "timeUnit": "2600ms",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "1084ms"
     },
     "cm_handle_id_search_cpspath_scenario": {
@@ -65,7 +65,7 @@
       "rate": 1,
       "timeUnit": "2600ms",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "1555ms"
     },
     "cm_handle_id_search_trustlevel_scenario": {
@@ -74,7 +74,7 @@
       "rate": 1,
       "timeUnit": "2600ms",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "2026ms"
     },
     "cm_handle_search_nofilter_scenario": {
@@ -83,7 +83,7 @@
       "rate": 1,
       "timeUnit": "24s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "497ms"
     },
     "cm_handle_search_module_scenario": {
@@ -92,7 +92,7 @@
       "rate": 1,
       "timeUnit": "24s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "3568ms"
     },
     "cm_handle_search_property_scenario": {
@@ -101,7 +101,7 @@
       "rate": 1,
       "timeUnit": "24s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "6639ms"
     },
     "cm_handle_search_cpspath_scenario": {
@@ -110,7 +110,7 @@
       "rate": 1,
       "timeUnit": "24s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "9710ms"
     },
     "cm_handle_search_trustlevel_scenario": {
@@ -119,9 +119,9 @@
       "rate": 1,
       "timeUnit": "24s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "12781ms",
-      "maxVUs": 3
+      "maxVUs": 1
     },
     "legacy_batch_produce_scenario": {
       "executor": "constant-arrival-rate",
@@ -166,12 +166,32 @@
     "write_small_data_job_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "writeDataJobSmallScenario",
-      "rate": 2,
+      "rate": 1,
       "timeUnit": "1s",
       "duration": "15m",
       "preAllocatedVUs": 10,
-      "maxVUs": 12,
+      "maxVUs": 3,
       "startTime": "923ms"
+    },
+    "provmns_read_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "provMnSReadScenario",
+      "rate": 40,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "maxVUs": 25,
+      "startTime": "200ms"
+    },
+    "provmns_write_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "provMnSWriteScenario",
+      "rate": 1,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "maxVUs": 25,
+      "startTime": "600ms"
     }
   },
   "thresholds": {
@@ -192,6 +212,8 @@
     "ncmp_write_overhead": ["avg <= 40"],
     "legacy_batch_read": ["avg >= 150"],
     "dcm_write_data_job_small": ["avg <= 500"],
-    "dcm_write_data_job_large": ["avg <= 30000"]
+    "dcm_write_data_job_large": ["avg <= 30000"],
+    "provmns_read_overhead": ["avg <= 100"],
+    "provmns_write_overhead": ["avg <= 100"]
   }
 }
