@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ffa185d_6491fce7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-26T15:25:58Z",
+      "side": 1,
+      "message": "a lot better, main issue I have is the dmi service name change that needs to be implemented in our testware too!",
+      "revId": "019328ef9c037c47c3b0820faa1402a1d5cc30d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "717ab7c2_51399cac",
