@@ -35,7 +35,7 @@ echo "Running $testProfile performance tests..."
 # ══════════════════════════════════════════════════════════════
 # Run K6 Performance Tests
 # ══════════════════════════════════════════════════════════════
-k6 run "./ncmp-test-runner.js" --quiet -e TEST_PROFILE="$testProfile" -e DEPLOYMENT_TYPE="$deploymentType" > "$summaryFile"
+k6 run "ncmp-test-runner.js" --quiet -e TEST_PROFILE="$testProfile" -e DEPLOYMENT_TYPE="$deploymentType" > "$summaryFile"
 k6_exit_code=$?
 
 # ══════════════════════════════════════════════════════════════
@@ -74,7 +74,7 @@ while [ $elapsed -lt $TIMEOUT ]; do
 done
 
 # Append Kafka verification result to summary
-echo "10,Kafka Message Verification,messages,$expected_messages,$expected_messages,$message_count" >> "$summaryFile"
+echo "12,Kafka Message Verification,messages,$expected_messages,$expected_messages,$message_count" >> "$summaryFile"
 
 # ══════════════════════════════════════════════════════════════
 # K6 Exit Code Summary
@@ -91,7 +91,7 @@ esac
 # Adds ✅/❌ based on pass/fail criteria:
 #   • Throughput tests (0,1,2,7): PASS if Actual ≥ Requirement
 #   • Duration tests: PASS if Actual ≤ Requirement
-#   • Kafka verification (10): PASS if Actual ≥ 99% of Requirement
+#   • Kafka verification (12): PASS if Actual ≥ 99% of Requirement
 addResultColumn() {
   local summaryFile="$1"
   local tmp
@@ -115,7 +115,7 @@ awk -F',' -v OFS=',' '
         initRowVariables()
         isThroughput = (testNumber=="0" || testNumber=="1" || \
                         testNumber=="2" || testNumber=="7")
-        isKafkaVerification = (testNumber=="10")
+        isKafkaVerification = (testNumber=="12")
 
         if (isKafkaVerification)
             pass = (actual >= fsRequirement * 0.99)

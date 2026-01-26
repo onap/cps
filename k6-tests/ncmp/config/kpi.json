@@ -14,121 +14,121 @@
     "passthrough_read_alt_id_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "passthroughReadAltIdScenario",
-      "rate": 25,
+      "rate": 5,
       "timeUnit": "1s",
       "duration": "15m",
-      "preAllocatedVUs": 5,
-      "maxVUs": 25,
+      "preAllocatedVUs": 2,
+      "maxVUs": 10,
       "startTime": "200ms"
     },
     "passthrough_write_alt_id_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "passthroughWriteAltIdScenario",
       "rate": 13,
-      "timeUnit": "1s",
+      "timeUnit": "5s",
       "duration": "15m",
-      "preAllocatedVUs": 5,
-      "maxVUs": 25,
+      "preAllocatedVUs": 2,
+      "maxVUs": 10,
       "startTime": "600ms"
     },
     "cm_handle_id_search_nofilter_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchNoFilterScenario",
       "rate": 1,
-      "timeUnit": "2600ms",
+      "timeUnit": "13s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "142ms"
     },
     "cm_handle_id_search_module_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchModuleScenario",
       "rate": 1,
-      "timeUnit": "2600ms",
+      "timeUnit": "13s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "613ms",
-      "maxVUs": 3
+      "maxVUs": 1
     },
     "cm_handle_id_search_property_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchPropertyScenario",
       "rate": 1,
-      "timeUnit": "2600ms",
+      "timeUnit": "13s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "1084ms"
     },
     "cm_handle_id_search_cpspath_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchCpsPathScenario",
       "rate": 1,
-      "timeUnit": "2600ms",
+      "timeUnit": "13s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "1555ms"
     },
     "cm_handle_id_search_trustlevel_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchTrustLevelScenario",
       "rate": 1,
-      "timeUnit": "2600ms",
+      "timeUnit": "13s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "2026ms"
     },
     "cm_handle_search_nofilter_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleSearchNoFilterScenario",
       "rate": 1,
-      "timeUnit": "24s",
+      "timeUnit": "120s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "497ms"
     },
     "cm_handle_search_module_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleSearchModuleScenario",
       "rate": 1,
-      "timeUnit": "24s",
+      "timeUnit": "120s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "3568ms"
     },
     "cm_handle_search_property_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleSearchPropertyScenario",
       "rate": 1,
-      "timeUnit": "24s",
+      "timeUnit": "120s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "6639ms"
     },
     "cm_handle_search_cpspath_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleSearchCpsPathScenario",
       "rate": 1,
-      "timeUnit": "24s",
+      "timeUnit": "120s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "9710ms"
     },
     "cm_handle_search_trustlevel_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleSearchTrustLevelScenario",
       "rate": 1,
-      "timeUnit": "24s",
+      "timeUnit": "120s",
       "duration": "15m",
-      "preAllocatedVUs": 2,
+      "preAllocatedVUs": 1,
       "startTime": "12781ms",
-      "maxVUs": 3
+      "maxVUs": 1
     },
     "legacy_batch_produce_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "legacyBatchProduceScenario",
       "rate": 1,
       "preAllocatedVUs": 1,
-      "timeUnit": "1s",
+      "timeUnit": "5s",
       "duration": "15m5s",
       "maxVUs": 1,
       "startTime": "71ms"
@@ -137,7 +137,7 @@
       "executor": "constant-arrival-rate",
       "exec": "legacyBatchConsumeScenario",
       "rate": 1,
-      "timeUnit": "1s",
+      "timeUnit": "5s",
       "duration": "15m",
       "preAllocatedVUs": 1,
       "maxVUs": 1,
@@ -172,6 +172,26 @@
       "preAllocatedVUs": 10,
       "maxVUs": 12,
       "startTime": "923ms"
+    },
+    "provmns_read_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "provMnSReadScenario",
+      "rate": 40,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "maxVUs": 25,
+      "startTime": "200ms"
+    },
+    "provmns_write_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "provMnSWriteScenario",
+      "rate": 1,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "maxVUs": 25,
+      "startTime": "600ms"
     }
   },
   "thresholds": {
@@ -192,6 +212,8 @@
     "ncmp_write_overhead": ["avg <= 40"],
     "legacy_batch_read": ["avg >= 150"],
     "dcm_write_data_job_small": ["avg <= 500"],
-    "dcm_write_data_job_large": ["avg <= 30000"]
+    "dcm_write_data_job_large": ["avg <= 30000"],
+    "provmns_read_overhead": ["avg <= 100"],
+    "provmns_write_overhead": ["avg <= 200"]
   }
 }
