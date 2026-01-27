@@ -159,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e21724e_768d5a76",
+        "filename": "cps-charts/templates/dmi-stub-service-1.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-27T14:01:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cb228f60_30340d18",
+      "range": {
+        "startLine": 4,
+        "startChar": 51,
+        "endLine": 4,
+        "endChar": 70
+      },
+      "revId": "019328ef9c037c47c3b0820faa1402a1d5cc30d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73503aa4_608e01b5",
