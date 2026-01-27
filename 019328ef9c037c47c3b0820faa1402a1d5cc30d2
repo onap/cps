@@ -137,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb228f60_30340d18",
+        "filename": "cps-charts/templates/dmi-stub-service-1.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-27T14:01:33Z",
+      "side": 1,
+      "message": "will update postman collection separately.",
+      "parentUuid": "d9566f1f_dbf5417f",
+      "range": {
+        "startLine": 4,
+        "startChar": 51,
+        "endLine": 4,
+        "endChar": 70
+      },
+      "revId": "019328ef9c037c47c3b0820faa1402a1d5cc30d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73503aa4_608e01b5",
         "filename": "cps-charts/values.yaml",
         "patchSetId": 8
