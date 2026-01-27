@@ -39,6 +39,30 @@
       },
       "revId": "ee188445103e5dcea12c2cad079f099e3ce69e6c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1358ca5a_a3b3b5ad",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-27T16:08:23Z",
+      "side": 1,
+      "message": "Sorry I forgot to reply this comment.I will create a separate ticket for that.",
+      "parentUuid": "7bf474a6_1134e5eb",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "ee188445103e5dcea12c2cad079f099e3ce69e6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
