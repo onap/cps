@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bb4f6cb_4bf537b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-27T15:53:49Z",
+      "side": 1,
+      "message": "all looking good thanks!\nYOu acknowlegded but didn\u0027t answer my question about the infinite loop. Please make sure we have a separate ticket for it!",
+      "revId": "ee188445103e5dcea12c2cad079f099e3ce69e6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf474a6_1134e5eb",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-27T15:53:49Z",
+      "side": 1,
+      "message": "cn will we handle this (infinite loop) in a sepeparate ticket please",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "ee188445103e5dcea12c2cad079f099e3ce69e6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
