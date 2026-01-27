@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e08f35f_a4d2fd81",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 88
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-27T11:52:17Z",
+      "side": 1,
+      "message": "NB: XML_ROOT_NAME",
+      "revId": "068476521614ff5d009292d7ec473ab67d77f779",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53091f3a_9369c86c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 88
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-27T11:52:17Z",
+      "side": 1,
+      "message": "this should be in line 98",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 25
+      },
+      "revId": "068476521614ff5d009292d7ec473ab67d77f779",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34a62d70_50972f37",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 88
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-27T11:52:17Z",
+      "side": 1,
+      "message": "Mocking and spying should be done at class level instead of doing it individually for each test",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 7
+      },
+      "revId": "068476521614ff5d009292d7ec473ab67d77f779",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
