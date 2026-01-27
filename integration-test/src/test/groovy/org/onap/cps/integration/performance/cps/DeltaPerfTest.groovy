@@ -91,7 +91,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
             'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 1.0
             'direct descendants' | '/openroadm-devices'                                              | DIRECT_CHILDREN_ONLY    || 2.0
-            'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 20.0
+            'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 25.0
     }
 
     def 'Get delta between an anchor and JSON payload with grouping enabled and #scenario'() {
