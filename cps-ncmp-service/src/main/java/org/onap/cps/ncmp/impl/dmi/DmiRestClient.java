@@ -124,14 +124,16 @@ public class DmiRestClient {
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @param authorization           The authorization token to be added to the request headers.
      * @return                      ResponseEntity containing the response from the DMI.
      */
     public ResponseEntity<Object> synchronousGetOperation(final RequiredDmiService requiredDmiService,
-                                                          final UrlTemplateParameters urlTemplateParameters) {
+                                                          final UrlTemplateParameters urlTemplateParameters,
+                                                          final String authorization) {
         return getWebClient(requiredDmiService)
             .get()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
-            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
             .exchangeToMono(this::createIdenticalResponseForClient)
             .block();
     }
@@ -142,11 +144,13 @@ public class DmiRestClient {
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param body                  resource object to be forwarded.
      * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @param authorization           The authorization token to be added to the request headers.
      * @return                      ResponseEntity containing the response from the DMI.
      */
     public ResponseEntity<Object> synchronousPutOperation(final RequiredDmiService requiredDmiService,
                                                           final Object body,
-                                                          final UrlTemplateParameters urlTemplateParameters) {
+                                                          final UrlTemplateParameters urlTemplateParameters,
+                                                          final String authorization) {
         return getWebClient(requiredDmiService)
             .put()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
@@ -163,16 +167,18 @@ public class DmiRestClient {
      * @param body                  object
      * @param urlTemplateParameters The DMI resource URL template with variables.
      * @param contentType           Content type example: application/json
+     * @param authorization         The authorization token to be added to the request headers.
      * @return                      ResponseEntity containing the response from the DMI.
      */
     public ResponseEntity<Object> synchronousPatchOperation(final RequiredDmiService requiredDmiService,
                                                             final Object body,
                                                             final UrlTemplateParameters urlTemplateParameters,
-                                                            final String contentType) {
+                                                            final String contentType,
+                                                            final String authorization) {
         return getWebClient(requiredDmiService)
             .patch()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
-            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
             .contentType(MediaType.parseMediaType(contentType))
             .bodyValue(body)
             .exchangeToMono(this::createIdenticalResponseForClient)
@@ -228,15 +234,17 @@ public class DmiRestClient {
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @param authorization           The authorization token to be added to the request headers.
      * @return                      ResponseEntity containing the response from the DMI.
      *
      */
     public ResponseEntity<Object> synchronousDeleteOperation(final RequiredDmiService requiredDmiService,
-                                                             final UrlTemplateParameters urlTemplateParameters) {
+                                                             final UrlTemplateParameters urlTemplateParameters,
+                                                             final String authorization) {
         return getWebClient(requiredDmiService)
                 .delete()
                 .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
-                .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+                .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
                 .exchangeToMono(this::createIdenticalResponseForClient)
                 .block();
     }
