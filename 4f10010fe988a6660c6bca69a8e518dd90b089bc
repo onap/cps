@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4995c6da_c85e1f2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-28T17:50:13Z",
+      "side": 1,
+      "message": "NB: would be good to have a description of the fix",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "4f10010fe988a6660c6bca69a8e518dd90b089bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68b0f096_78bee25f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-28T17:50:13Z",
+      "side": 1,
+      "message": "I am not so happy/dont understand the fix but am happy enough to merge/test it as a first step. If it works great! and then we can see how it can be cleaned up and done in a less hacky way :-)",
+      "revId": "4f10010fe988a6660c6bca69a8e518dd90b089bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "145eef94_ef2adca8",
         "filename": "k6-tests/ncmp/common/utils.js",
         "patchSetId": 1
@@ -19,6 +59,29 @@
         "startChar": 39,
         "endLine": 30,
         "endChar": 68
+      },
+      "revId": "4f10010fe988a6660c6bca69a8e518dd90b089bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1324731e_a2831b6b",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-28T17:50:13Z",
+      "side": 1,
+      "message": "seems a bit of a hack, but i am happy to merge/test it. we can alway improve it again later....",
+      "range": {
+        "startLine": 32,
+        "startChar": 55,
+        "endLine": 32,
+        "endChar": 122
       },
       "revId": "4f10010fe988a6660c6bca69a8e518dd90b089bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
