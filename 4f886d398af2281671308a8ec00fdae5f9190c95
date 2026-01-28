@@ -208,6 +208,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b973eaa_89daa48c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/XmlObjectMapper.java",
+        "patchSetId": 86
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-01-28T03:12:45Z",
+      "side": 1,
+      "message": "Not resolved, if you added annotation remove the constructors.",
+      "parentUuid": "05844b7a_3de5b474",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 5
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5cc49f2c_0fdeb19c",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/XmlObjectMapper.java",
         "patchSetId": 86
