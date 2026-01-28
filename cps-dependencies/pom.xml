@@ -70,7 +70,16 @@
     </distributionManagement>
 
     <dependencyManagement>
+
         <dependencies>
+            <!-- Prioritizing latest testcontainers to prevent override by older versions embedded in springboot -->
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>2.0.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- S P R I N G   D E P E N D E N C I E S -->
             <dependency>
                 <groupId>org.springdoc</groupId>
@@ -276,13 +285,6 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.32</version>
-            </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers-bom</artifactId>
-                <version>1.20.4</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.spockframework</groupId>
