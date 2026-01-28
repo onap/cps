@@ -124,7 +124,7 @@ public class DmiRestClient {
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param urlTemplateParameters The DMI resource URL template with variables.
-     * @param authorization           The authorization token to be added to the request headers.
+     * @param authorization         The authorization token to be added to the request headers.
      * @return                      ResponseEntity containing the response from the DMI.
      */
     public ResponseEntity<Object> synchronousGetOperation(final RequiredDmiService requiredDmiService,
@@ -144,7 +144,7 @@ public class DmiRestClient {
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param body                  resource object to be forwarded.
      * @param urlTemplateParameters The DMI resource URL template with variables.
-     * @param authorization           The authorization token to be added to the request headers.
+     * @param authorization         The authorization token to be added to the request headers.
      * @return                      ResponseEntity containing the response from the DMI.
      */
     public ResponseEntity<Object> synchronousPutOperation(final RequiredDmiService requiredDmiService,
@@ -234,7 +234,7 @@ public class DmiRestClient {
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param urlTemplateParameters The DMI resource URL template with variables.
-     * @param authorization           The authorization token to be added to the request headers.
+     * @param authorization         The authorization token to be added to the request headers.
      * @return                      ResponseEntity containing the response from the DMI.
      *
      */

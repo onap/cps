@@ -66,19 +66,19 @@ class DmiRestClientIntegrationSpec extends Specification {
             def result
             switch(method) {
                 case 'get':
-                    result = objectUnderTest.synchronousGetOperation(DATA, urlTemplateParameters, 'some-authorization')
+                    result = objectUnderTest.synchronousGetOperation(DATA, urlTemplateParameters, 'my-authorization')
                     break
                 case 'post':
                     result = objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters, 'body', CREATE, '')
                     break
                 case 'put':
-                    result = objectUnderTest.synchronousPutOperation(DATA, 'body', urlTemplateParameters, 'some-authorization')
+                    result = objectUnderTest.synchronousPutOperation(DATA, 'body', urlTemplateParameters, 'my-authorization')
                     break
                 case 'patch':
-                    result = objectUnderTest.synchronousPatchOperation(DATA, 'body', urlTemplateParameters, 'application/json-patch+json', 'some-authorization')
+                    result = objectUnderTest.synchronousPatchOperation(DATA, 'body', urlTemplateParameters, 'application/json-patch+json', 'my-authorization')
                     break
                 case 'delete':
-                    result = objectUnderTest.synchronousDeleteOperation(DATA, urlTemplateParameters, 'some-authorization')
+                    result = objectUnderTest.synchronousDeleteOperation(DATA, urlTemplateParameters, 'my-authorization')
             }
         then: 'the result has the same status code of 200'
             assert result.statusCode.value() == 200
