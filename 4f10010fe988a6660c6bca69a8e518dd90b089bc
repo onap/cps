@@ -85,6 +85,30 @@
       },
       "revId": "4f10010fe988a6660c6bca69a8e518dd90b089bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e064363_ba7d2992",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-01-28T18:29:19Z",
+      "side": 1,
+      "message": "we can create a separate jenkins config file with proper URLs and remove the hardcoded approach",
+      "parentUuid": "1324731e_a2831b6b",
+      "range": {
+        "startLine": 32,
+        "startChar": 55,
+        "endLine": 32,
+        "endChar": 122
+      },
+      "revId": "4f10010fe988a6660c6bca69a8e518dd90b089bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
