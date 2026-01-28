@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "125ea1e4_5c259fe5",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-28T14:00:47Z",
+      "side": 1,
+      "message": "I suspect it will become tomorrow but don\u0027t worry about this value here",
+      "range": {
+        "startLine": 53,
+        "startChar": 54,
+        "endLine": 53,
+        "endChar": 56
+      },
+      "revId": "ce95183f1d669195ff578aa28f326ff72147dd02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
