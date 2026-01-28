@@ -27,9 +27,10 @@ export const TEST_PROFILE = __ENV.TEST_PROFILE ? __ENV.TEST_PROFILE : 'kpi'
 export const HOST_TYPE = __ENV.DEPLOYMENT_TYPE ? __ENV.DEPLOYMENT_TYPE : 'dockerHosts'
 export const testConfig = JSON.parse(open(`../config/${TEST_PROFILE}.json`));
 export const scenarioMetaData = JSON.parse(open(`../config/scenario-metadata.json`));
-export const KAFKA_BOOTSTRAP_SERVERS = testConfig[`${HOST_TYPE}`].kafkaBootstrapServer;
-export const NCMP_BASE_URL = testConfig[`${HOST_TYPE}`].ncmpBaseUrl;
-export const DMI_PLUGIN_URL = testConfig[`${HOST_TYPE}`].dmiStubUrl;
+export const KAFKA_BOOTSTRAP_SERVERS = __ENV.KAFKA_BOOTSTRAP_SERVERS || testConfig[`${HOST_TYPE}`].kafkaBootstrapServer;
+export const NCMP_BASE_URL = __ENV.NCMP_BASE_URL || testConfig[`${HOST_TYPE}`].ncmpBaseUrl;
+export const DMI_PLUGIN_URL = __ENV.DMI_PLUGIN_URL || (HOST_TYPE === 'k8sHosts' ? 'http://cps-ncmp-dmi-stub-1-service:8092'
+    : testConfig[`${HOST_TYPE}`].dmiStubUrl);
 export const CONTAINER_COOL_DOWW_TIME_IN_SECONDS = testConfig[`${HOST_TYPE}`].containerCoolDownTimeInSeconds || 10;
 export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
 export const TOTAL_CM_HANDLES = __ENV.TOTAL_CM_HANDLES ? parseInt(__ENV.TOTAL_CM_HANDLES) : 50000;
@@ -48,7 +49,7 @@ export const MODULE_SET_TAGS = ['tagA', 'tagB', 'tagC', 'tagD', 'tagE'];
  */
 export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
     const startIndex = 1 + batchNumber * batchSize;
-    return Array.from({ length: batchSize }, (_, i) => `ch-${startIndex + i}`);
+    return Array.from({length: batchSize}, (_, i) => `ch-${startIndex + i}`);
 }
 
 /**
@@ -124,17 +125,17 @@ export function performGetRequest(url, metricTag) {
 export function makeCustomSummaryReport(testResults, scenarioConfig) {
     const summaryCsvLines = [
         '#,Test Name,Unit,Fs Requirement,Current Expectation,Actual',
-            ...scenarioMetaData.map(kpiTest => {
-                return makeSummaryCsvLine(
-                    kpiTest.testNumber,
-                    kpiTest.testName,
-                    kpiTest.unit,
-                    kpiTest.measurementName,
-                    kpiTest.currentExpectation,
-                    testResults,
-                    scenarioConfig
-                );
-            })
+        ...scenarioMetaData.map(kpiTest => {
+            return makeSummaryCsvLine(
+                kpiTest.testNumber,
+                kpiTest.testName,
+                kpiTest.unit,
+                kpiTest.measurementName,
+                kpiTest.currentExpectation,
+                testResults,
+                scenarioConfig
+            );
+        })
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
