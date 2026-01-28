@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41b9131e_1c1e2310",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-28T10:52:54Z",
+      "side": 1,
+      "message": "just to very minor NBs that can be handled in future commit (ie when doing the release notes)",
+      "revId": "9f6d589769ad30a19e732858a9d0539bd8fdd96c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "234b60f9_ffb64440",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-28T10:52:54Z",
+      "side": 1,
+      "message": "NB: alignment",
+      "range": {
+        "startLine": 127,
+        "startChar": 37,
+        "endLine": 127,
+        "endChar": 39
+      },
+      "revId": "9f6d589769ad30a19e732858a9d0539bd8fdd96c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bbc29a9_52a11c68",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-28T10:52:54Z",
+      "side": 1,
+      "message": "NB: since you are verifying it later it i prefer \u0027my\u0027 over \u0027some\u0027",
+      "range": {
+        "startLine": 69,
+        "startChar": 99,
+        "endLine": 69,
+        "endChar": 103
+      },
+      "revId": "9f6d589769ad30a19e732858a9d0539bd8fdd96c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55cef98c_fb09ac24",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-28T10:52:54Z",
+      "side": 1,
+      "message": "this is where the use of \u0027some\u0027 is correct",
+      "range": {
+        "startLine": 131,
+        "startChar": 76,
+        "endLine": 131,
+        "endChar": 81
+      },
+      "revId": "9f6d589769ad30a19e732858a9d0539bd8fdd96c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
