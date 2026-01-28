@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "145eef94_ef2adca8",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-28T16:49:04Z",
+      "side": 1,
+      "message": "That\u0027s clever to access the environment variable like that",
+      "range": {
+        "startLine": 30,
+        "startChar": 39,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "4f10010fe988a6660c6bca69a8e518dd90b089bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
