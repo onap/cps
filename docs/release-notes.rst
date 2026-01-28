@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+.. Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _release_notes:
@@ -10,6 +10,29 @@ CPS Release Notes
 
 .. contents::
     :depth: 2
+
+Version: 3.7.6
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:3.7.6                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 3.7.6                                                  |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | Not yet released                                       |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Features
+--------
 
 Version: 3.7.5
 ==============
@@ -27,12 +50,13 @@ Release Data
 | **Release designation**              | 3.7.5                                                  |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not yet released                                       |
+| **Release date**                     | 2026 January 28                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Features
 --------
+    - `CPS-3150 https://lf-onap.atlassian.net/browse/CPS-3150`_ Fix passing authorization headers to DMI from ProvMnS interface
 
 Version: 3.7.4
 ==============
