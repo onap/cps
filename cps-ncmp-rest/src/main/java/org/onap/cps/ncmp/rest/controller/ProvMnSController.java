@@ -101,7 +101,8 @@ public class ProvMnSController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
             final UrlTemplateParameters urlTemplateParameters = parametersBuilder.createUrlTemplateParametersForRead(
                 yangModelCmHandle, requestParameters.fdn(), scope, filter, attributes, fields, dataNodeSelector);
-            return dmiRestClient.synchronousGetOperation(DATA, urlTemplateParameters);
+            return dmiRestClient.synchronousGetOperation(DATA,
+                urlTemplateParameters, requestParameters.authorization());
         } catch (final Exception exception) {
             throw toProvMnSException(httpServletRequest.getMethod(), exception, NO_OP);
         }
@@ -123,7 +124,7 @@ public class ProvMnSController implements ProvMnS {
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
             return dmiRestClient.synchronousPatchOperation(DATA, patchItems, urlTemplateParameters,
-                httpServletRequest.getContentType());
+                httpServletRequest.getContentType(), requestParameters.authorization());
         } catch (final Exception exception) {
             throw toProvMnSException(httpServletRequest.getMethod(), exception, NO_OP);
         }
@@ -139,7 +140,8 @@ public class ProvMnSController implements ProvMnS {
             checkPermission(yangModelCmHandle, operationDetails, requestParameters);
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
-            return dmiRestClient.synchronousPutOperation(DATA, resource, urlTemplateParameters);
+            return dmiRestClient.synchronousPutOperation(DATA, resource,
+                urlTemplateParameters, requestParameters.authorization());
         } catch (final Exception exception) {
             throw toProvMnSException(httpServletRequest.getMethod(), exception, NO_OP);
         }
@@ -155,7 +157,8 @@ public class ProvMnSController implements ProvMnS {
             checkPermission(yangModelCmHandle, operationDetails, requestParameters);
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
-            return dmiRestClient.synchronousDeleteOperation(DATA, urlTemplateParameters);
+            return dmiRestClient.synchronousDeleteOperation(DATA,
+                urlTemplateParameters, requestParameters.authorization());
         } catch (final Exception exception) {
             throw toProvMnSException(httpServletRequest.getMethod(), exception, NO_OP);
         }
