@@ -101,9 +101,9 @@ class ProvMnSControllerSpec extends Specification {
 
     static def patchMediaType       = new MediaType('application', 'json-patch+json')
     static def patchMediaType3gpp   = new MediaType('application', '3gpp-json-patch+json')
-    static def patchJsonBody        = '[{"op":"replace","path":"/child=id2/attributes","value":{"attr1":"test"}}]'
+    static def patchJsonBody        = '[{"op":"replace","path":"/otherChild=id2/attributes","value":{"attr1":"test"}}]'
     static def patchWithoutChild    = '[{"op":"replace","path":"/attributes","value":{"attr2":"test2"}}]'
-    static def patchJsonBody3gpp    = '[{"op":"replace","path":"/child=id2#/attributes/attr1","value":"test"}]'
+    static def patchJsonBody3gpp    = '[{"op":"replace","path":"/otherChild=id2#/attributes/attr1","value":"test"}]'
 
     static def expectedDeleteChangeRequest = '{"":[]}'
 
@@ -230,7 +230,7 @@ class ProvMnSControllerSpec extends Specification {
 
     def 'Patch request with #scenario.'() {
         given: 'provmns url'
-            mockedCmHandle.getAlternateId() >> ParameterHelper.extractParentFdn(fdn)
+            mockedCmHandle.getAlternateId() >> alternateId
             def provmnsUrl = "$provMnSBasePath/v1$fdn"
         and: 'alternate Id can be matched'
             mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> 'mock'
@@ -249,12 +249,13 @@ class ProvMnSControllerSpec extends Specification {
         and: 'policy executor was invoked with the expected parameters'
             1 * mockPolicyExecutor.checkPermission(mockedCmHandle, OperationType.UPDATE, 'my authorization', expectedResourceIdForPolicyExecutor, expectedChangeRequest)
         where: 'following scenarios are applied'
-            scenario               | contentMediaType   | fdn                                          | jsonBody           || expectedResourceIdForPolicyExecutor | expectedChangeRequest
-            'happy flow '          | patchMediaType     | '/subnetwork=1/managedElement=2/myClass=id1' | patchJsonBody      || '/myClass=id1'                      | '{"child":[{"id":"id2","attributes":{"attr1":"test"}}]}'
-            'happy flow 3gpp'      | patchMediaType3gpp | '/subnetwork=1/managedElement=2/myClass=id1' | patchJsonBody3gpp  || '/myClass=id1'                      | '{"child":[{"id":"id2","attributes":{"attr1":"test"}}]}'
-            'no subnetwork'        | patchMediaType     | '/managedElement=2/myClass=id1'              | patchJsonBody      || '/myClass=id1'                      | '{"child":[{"id":"id2","attributes":{"attr1":"test"}}]}'
-            'no child'             | patchMediaType     | '/subnetwork=1/managedElement=2'             | patchWithoutChild  || '/subnetwork=1'                     | '{"managedElement":[{"id":"2","attributes":{"attr2":"test2"}}]}'
-            'no subnetwork & child'| patchMediaType     | '/managedElement=2'                          | patchWithoutChild  || '/'                                 | '{"managedElement":[{"id":"2","attributes":{"attr2":"test2"}}]}'
+            scenario                 | contentMediaType    | alternateId                      | fdn                                        | jsonBody           || expectedResourceIdForPolicyExecutor | expectedChangeRequest
+            'modify grandchild'      | patchMediaType      | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2/child=id1' | patchJsonBody      || '/child=id1'                        | '{"otherChild":[{"id":"id2","attributes":{"attr1":"test"}}]}'
+            '3gpp modify grandchild' | patchMediaType3gpp  | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2/child=id1' | patchJsonBody3gpp  || '/child=id1'                        | '{"otherChild":[{"id":"id2","attributes":{"attr1":"test"}}]}'
+            'no subnetwork'          | patchMediaType      | '/managedElement=2'              | '/managedElement=2/child=id1'              | patchJsonBody      || '/child=id1'                        | '{"otherChild":[{"id":"id2","attributes":{"attr1":"test"}}]}'
+            'modify first child'     | patchMediaType      | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2'           | patchJsonBody      || '/subnetwork=1/managedElement=2'    | '{"otherChild":[{"id":"id2","attributes":{"attr1":"test"}}]}'
+            'modify alternate id'    | patchMediaType      | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2'           | patchWithoutChild  || '/subnetwork=1'                     | '{"managedElement":[{"id":"2","attributes":{"attr2":"test2"}}]}'
+            'modify root MO'         | patchMediaType      | '/managedElement=2'              | '/managedElement=2'                        | patchWithoutChild  || '/'                                 | '{"managedElement":[{"id":"2","attributes":{"attr2":"test2"}}]}'
     }
 
     def 'Patch request with error from DMI.'() {
