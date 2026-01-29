@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a80b3da6_041b11af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-01-29T16:56:14Z",
+      "side": 1,
+      "message": "Don\u0027t merg yet, pending a manual check of EventStructire in integration test!\n(see TODO in commit message)",
+      "revId": "70c0726c9c76508dbaf804f5e697fc1fab19bc25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
