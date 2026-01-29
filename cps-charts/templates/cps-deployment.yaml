@@ -27,17 +27,23 @@ spec:
             - -c
             - |
               echo "Waiting for PostgreSQL..."
-              until nc -z {{ include "cps-and-ncmp.release-name" . }}-postgresql-service 5432; do
-                echo "PostgreSQL not ready, waiting..."
+              for i in $(seq 1 60); do
+                if nc -z {{ include "cps-and-ncmp.release-name" . }}-postgresql-service 5432; then
+                  echo "PostgreSQL is ready"
+                  break
+                fi
+                echo "PostgreSQL not ready, waiting... ($i/60)"
                 sleep 2
               done
-              echo "PostgreSQL is ready"
               echo "Waiting for Kafka..."
-              until nc -z {{ include "cps-and-ncmp.release-name" . }}-kafka-service 9092; do
-                echo "Kafka not ready, waiting..."
+              for i in $(seq 1 60); do
+                if nc -z {{ include "cps-and-ncmp.release-name" . }}-kafka-service 9092; then
+                  echo "Kafka is ready"
+                  break
+                fi
+                echo "Kafka not ready, waiting... ($i/60)"
                 sleep 2
               done
-              echo "Kafka is ready"
               echo "All dependencies are ready"
       containers:
         - name: cps
