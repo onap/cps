@@ -253,9 +253,35 @@ class ProvMnSControllerSpec extends Specification {
             'modify grandchild'      | patchMediaType      | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2/child=id1' | patchJsonBody      || '/child=id1'                        | '{"otherChild":[{"id":"id2","attributes":{"attr1":"test"}}]}'
             '3gpp modify grandchild' | patchMediaType3gpp  | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2/child=id1' | patchJsonBody3gpp  || '/child=id1'                        | '{"otherChild":[{"id":"id2","attributes":{"attr1":"test"}}]}'
             'no subnetwork'          | patchMediaType      | '/managedElement=2'              | '/managedElement=2/child=id1'              | patchJsonBody      || '/child=id1'                        | '{"otherChild":[{"id":"id2","attributes":{"attr1":"test"}}]}'
-            'modify first child'     | patchMediaType      | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2'           | patchJsonBody      || '/subnetwork=1/managedElement=2'    | '{"otherChild":[{"id":"id2","attributes":{"attr1":"test"}}]}'
-            'modify alternate id'    | patchMediaType      | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2'           | patchWithoutChild  || '/subnetwork=1'                     | '{"managedElement":[{"id":"2","attributes":{"attr2":"test2"}}]}'
-            'modify root MO'         | patchMediaType      | '/managedElement=2'              | '/managedElement=2'                        | patchWithoutChild  || '/'                                 | '{"managedElement":[{"id":"2","attributes":{"attr2":"test2"}}]}'
+            'modify first child'     | patchMediaType      | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2'           | patchJsonBody      || ''                                  | '{"otherChild":[{"id":"id2","attributes":{"attr1":"test"}}]}'
+    }
+
+    def 'Attempt Patch request with root MO, #scenario.'() {
+        given: 'provmns url'
+            def provmnsUrl = "$provMnSBasePath/v1$fdn"
+        and: 'alternate Id can be matched'
+            mockedCmHandle.getAlternateId() >> alternateId
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> 'mock'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('mock') >> mockedCmHandle
+        when: 'patch request is performed'
+            def response = mvc.perform(patch(provmnsUrl)
+                    .header('Authorization', 'my authorization')
+                    .contentType(patchMediaType)
+                    .content(jsonBody))
+                    .andReturn().response
+        then: 'policy executor is never invoked'
+            0 * mockPolicyExecutor._
+        and: 'the response status is BAD_REQUEST'
+            assert response.status == BAD_REQUEST.value()
+        and: 'the response content contains the required error details'
+            assert response.contentAsString.contains('VALIDATION_ERROR')
+            assert response.contentAsString.contains('not supported')
+            assert response.contentAsString.contains(fdn)
+        where: 'following scenarios are applied'
+            scenario              | alternateId                      | fdn                              | jsonBody
+            'modify alternate id' | '/subnetwork=1/managedElement=2' | '/subnetwork=1/managedElement=2' | patchWithoutChild
+            'modify root MO'      | '/managedElement=2'              | '/managedElement=2'              | patchWithoutChild
     }
 
     def 'Patch request with error from DMI.'() {
@@ -485,6 +511,30 @@ class ProvMnSControllerSpec extends Specification {
             assert response.status == NOT_FOUND.value()
         and: 'the content indicates the FDN could not be found'
             assert response.contentAsString.contains('"title":"/myClass=id1 not found"')
+    }
+
+    def 'Attempt Delete root MO, #scenario.'() {
+        given: 'resource data url'
+            def deleteUrl = "$provMnSBasePath/v1$fdn"
+        and: 'alternate Id is mocked can be matched'
+            mockedCmHandle.getAlternateId() >> alternateId
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> 'mock'
+        and: 'persistence service returns yangModelCmHandle'
+            mockInventoryPersistence.getYangModelCmHandle('mock') >> mockedCmHandle
+        when: 'Delete data resource request is attempted'
+            def response = mvc.perform(delete(deleteUrl).header('Authorization', 'my authorization')).andReturn().response
+        then: 'policy executor is never invoked'
+            0 * mockPolicyExecutor._
+        and: 'the response status is BAD_REQUEST'
+            assert response.status == BAD_REQUEST.value()
+        and: 'the response content contains the required error details'
+            assert response.contentAsString.contains('VALIDATION_ERROR')
+            assert response.contentAsString.contains('not supported')
+            assert response.contentAsString.contains(fdn)
+        where: 'root MOs are targeted'
+            scenario          | fdn                              | alternateId
+            'with subnetwork' | '/Subnetwork=1/ManagedElement=1' | '/subnetwork=1/managedElement=1'
+            'no subnetwork'   | '/ManagedElement=1'              | '/managedElement=1'
     }
 
 }

@@ -154,7 +154,7 @@ public class DmiRestClient {
         return getWebClient(requiredDmiService)
             .put()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
-            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
             .bodyValue(body)
             .exchangeToMono(this::createIdenticalResponseForClient)
             .block();

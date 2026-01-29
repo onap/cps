@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.rest.controller;
 
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
+import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
 import static org.onap.cps.ncmp.impl.provmns.ParameterHelper.NO_OP;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -191,19 +192,21 @@ public class ProvMnSController implements ProvMnS {
         final Map<String, List<ClassInstance>> changeRequestAsMap = new HashMap<>(1);
         changeRequestAsMap.put(operationDetails.className(), operationDetails.ClassInstances());
         final String changeRequestAsJson = jsonObjectMapper.asJsonString(changeRequestAsMap);
-        final String resourceIdentifier;
-        if (operationDetails.parentFdn().length() <= yangModelCmHandle.getAlternateId().length()) {
-            if (operationDetails.parentFdn().isEmpty()) {
-                resourceIdentifier = "/";
-            } else {
-                resourceIdentifier = operationDetails.parentFdn();
-            }
-        } else {
-            final int index = yangModelCmHandle.getAlternateId().length();
-            resourceIdentifier = operationDetails.parentFdn().substring(index);
+        if (targetIsRootMo(yangModelCmHandle.getAlternateId(), operationDetails)) {
+            throw new DataValidationException("Data manipulation operations are not supported on "
+                + requestParameters.fdn(), "");
         }
+        final int index = yangModelCmHandle.getAlternateId().length();
+        final String resourceIdentifier = operationDetails.parentFdn().substring(index);
         policyExecutor.checkPermission(yangModelCmHandle, operationDetails.operationType(),
             requestParameters.authorization(), resourceIdentifier, changeRequestAsJson);
+    }
+
+    private static boolean targetIsRootMo(final String alternateId, final OperationDetails operationDetails) {
+        if (DELETE.equals(operationDetails.operationType())) {
+            return operationDetails.parentFdn().length() <= alternateId.length();
+        }
+        return operationDetails.parentFdn().length() < alternateId.length();
     }
 
     private void checkPermissionForEachPatchItem(final String baseFdn,
