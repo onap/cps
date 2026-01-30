@@ -51,6 +51,23 @@
       "parentUuid": "bf95126d_539f1d86",
       "revId": "b41f8f6932a6b35b8035210a5f62f6e4c67390de",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f9b21b5_11b91c47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-01-30T12:06:20Z",
+      "side": 1,
+      "message": "I fundamentally disagree with this change.\nWhat is there waits until the dependencies are ready.\nDoing a for loop just limits how long we can wait for a slow service and then restarts the CPS container which is not the cause of the timeout our loop has adhered to.\nthe until allows for slow containers, is resilient and stable as is.",
+      "revId": "b41f8f6932a6b35b8035210a5f62f6e4c67390de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
