@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f016f90_db9e56e5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 88
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-02T07:54:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e08f35f_a4d2fd81",
+      "revId": "068476521614ff5d009292d7ec473ab67d77f779",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53091f3a_9369c86c",
@@ -41,6 +59,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "014dfc38_8acd5cc3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 88
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-02T07:54:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53091f3a_9369c86c",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 25
+      },
+      "revId": "068476521614ff5d009292d7ec473ab67d77f779",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34a62d70_50972f37",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-01-27T11:52:17Z",
       "side": 1,
       "message": "Mocking and spying should be done at class level instead of doing it individually for each test",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 7
+      },
+      "revId": "068476521614ff5d009292d7ec473ab67d77f779",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3f8344b_fe5cc995",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 88
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-02T07:54:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34a62d70_50972f37",
       "range": {
         "startLine": 41,
         "startChar": 4,
