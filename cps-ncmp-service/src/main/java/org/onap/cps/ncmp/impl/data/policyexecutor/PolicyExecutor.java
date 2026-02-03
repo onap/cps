@@ -72,6 +72,7 @@ public class PolicyExecutor {
 
     private static final String PERMISSION_BASE_PATH = "operation-permission";
     private static final String REQUEST_PATH = "permissions";
+    private static final String DO_NOT_LOG_POLICY_EXCEPTION = "";
 
     @Qualifier("policyExecutorWebClient")
     private final WebClient policyExecutorWebClient;
@@ -189,14 +190,17 @@ public class PolicyExecutor {
         if ("allow".equals(permissionResult)) {
             log.trace("Operation allowed.");
         } else {
-            log.warn("Policy Executor permission result: {}", permissionResult);
-            log.warn("Policy Executor message: {}", details);
+            log.trace("Policy Executor permission result: {}", permissionResult);
+            log.trace("Policy Executor message: {}", details);
             final String message = "Operation not allowed. Decision id " + id + " : " + permissionResult;
             throw new PolicyExecutorException(message, details, optionalCauseOfError);
         }
     }
 
     private String createErrorDetailsMessage(final Throwable throwable) {
+        if (throwable instanceof PolicyExecutorException) {
+            return DO_NOT_LOG_POLICY_EXCEPTION;
+        }
         if (throwable instanceof WebClientResponseException webClientResponseException) {
             return "Policy Executor returned HTTP Status code "
                     + webClientResponseException.getStatusCode().value() + ".";
@@ -216,8 +220,10 @@ public class PolicyExecutor {
     private void processException(final RuntimeException runtimeException) {
         final String errorDetailsMessage = createErrorDetailsMessage(runtimeException);
 
-        log.warn("Exception during Policy Execution check. Class: {}, Message: {}, Details: {}",
+        if (!DO_NOT_LOG_POLICY_EXCEPTION.equals(errorDetailsMessage)) {
+            log.warn("Exception during Policy Execution check. Class: {}, Message: {}, Details: {}",
                 runtimeException.getClass().getSimpleName(), runtimeException.getMessage(), errorDetailsMessage);
+        }
 
         if (runtimeException instanceof WebClientResponseException
                 || runtimeException instanceof WebClientRequestException) {
