@@ -72,6 +72,7 @@ public class PolicyExecutor {
 
     private static final String PERMISSION_BASE_PATH = "operation-permission";
     private static final String REQUEST_PATH = "permissions";
+    private static final String DO_NOT_LOG_POLICY_EXCEPTION = "";
 
     @Qualifier("policyExecutorWebClient")
     private final WebClient policyExecutorWebClient;
@@ -197,6 +198,9 @@ public class PolicyExecutor {
     }
 
     private String createErrorDetailsMessage(final Throwable throwable) {
+        if (throwable instanceof PolicyExecutorException) {
+            return DO_NOT_LOG_POLICY_EXCEPTION;
+        }
         if (throwable instanceof WebClientResponseException webClientResponseException) {
             return "Policy Executor returned HTTP Status code "
                     + webClientResponseException.getStatusCode().value() + ".";
@@ -216,8 +220,10 @@ public class PolicyExecutor {
     private void processException(final RuntimeException runtimeException) {
         final String errorDetailsMessage = createErrorDetailsMessage(runtimeException);
 
-        log.warn("Exception during Policy Execution check. Class: {}, Message: {}, Details: {}",
+        if (!DO_NOT_LOG_POLICY_EXCEPTION.equals(errorDetailsMessage)) {
+            log.warn("Exception during Policy Execution check. Class: {}, Message: {}, Details: {}",
                 runtimeException.getClass().getSimpleName(), runtimeException.getMessage(), errorDetailsMessage);
+        }
 
         if (runtimeException instanceof WebClientResponseException
                 || runtimeException instanceof WebClientRequestException) {
