@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "cps-and-ncmp.release-name" . }}-kafka-external-service
+  name: {{ include "cps-and-ncmp.fullname" . }}-kafka-external
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: kafka-external
@@ -16,5 +16,4 @@ spec:
       targetPort: {{ .Values.kafka.externalService.ports.external }}
       nodePort: {{ .Values.kafka.externalService.nodePorts.external }}
   selector:
-    app: {{ include "cps-and-ncmp.name" . }}
-    component: kafka
+    app: kafka

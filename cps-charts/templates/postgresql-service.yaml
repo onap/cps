@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "cps-and-ncmp.release-name" . }}-postgresql-service
+  name: {{ include "cps-and-ncmp.fullname" . }}-postgresql
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
-    component: postgresql
+    component: postgres
 spec:
   type: ClusterIP
   selector:

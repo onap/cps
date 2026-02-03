@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.release-name" . }}-zookeeper
+  name: {{ include "cps-and-ncmp.fullname" . }}-zookeeper
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: zookeeper
@@ -24,13 +24,26 @@ spec:
           ports:
             - containerPort: {{ .Values.zookeeper.service.port }}
           env:
-            {{- range $envName, $envValue := .Values.zookeeper.env }}
-            - name: {{ $envName  | upper}}
-              value: "{{ $envValue }}"
-            {{- end }}
-          resources:
-            {{- toYaml .Values.zookeeper.resources | nindent 12 }}
-          livenessProbe:
-            {{- toYaml .Values.zookeeper.livenessProbe | nindent 12 }}
+            - name: ZOOKEEPER_CLIENT_PORT
+              value: "{{ .Values.zookeeper.env.ZOOKEEPER_CLIENT_PORT }}"
           readinessProbe:
-            {{- toYaml .Values.zookeeper.readinessProbe | nindent 12 }}
+            exec:
+              command: {{ toJson .Values.zookeeper.healthcheck.command }}
+            initialDelaySeconds: {{ .Values.zookeeper.healthcheck.startPeriod | int }}
+            periodSeconds: {{ .Values.zookeeper.healthcheck.interval | int }}
+            timeoutSeconds: {{ .Values.zookeeper.healthcheck.timeout | int }}
+            failureThreshold: {{ .Values.zookeeper.healthcheck.retries | int }}
+          livenessProbe:
+            exec:
+              command: {{ toJson .Values.zookeeper.healthcheck.command }}
+            initialDelaySeconds: {{ .Values.zookeeper.healthcheck.startPeriod | int }}
+            periodSeconds: {{ .Values.zookeeper.healthcheck.interval | int }}
+            timeoutSeconds: {{ .Values.zookeeper.healthcheck.timeout | int }}
+            failureThreshold: {{ .Values.zookeeper.healthcheck.retries | int }}
+          resources:
+            requests:
+              cpu: {{ .Values.zookeeper.resources.requests.cpu }}
+              memory: {{ .Values.zookeeper.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.zookeeper.resources.limits.cpu }}
+              memory: {{ .Values.zookeeper.resources.limits.memory }}

@@ -2,6 +2,6 @@
 {{ .Chart.Name }}
 {{- end }}
 
-{{- define "cps-and-ncmp.release-name" -}}
+{{- define "cps-and-ncmp.fullname" -}}
 {{ .Release.Name }}-{{ .Chart.Name }}
 {{- end }}

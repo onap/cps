@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.release-name" . }}-postgresql
+  name: {{ include "cps-and-ncmp.fullname" . }}-postgresql
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
-    component: postgresql
+    component: postgres
 spec:
   replicas: 1
   selector:
@@ -23,19 +23,32 @@ spec:
           ports:
             - containerPort: 5432
           env:
-            {{- range $envName, $envValue := .Values.postgresql.env }}
-            - name: {{ $envName | upper }}
-              value: "{{ $envValue }}"
-            {{- end }}
+            - name: POSTGRES_DB
+              value: "{{ .Values.postgresql.env.POSTGRES_DB }}"
+            - name: POSTGRES_USER
+              value: "{{ .Values.postgresql.env.POSTGRES_USER }}"
+            - name: POSTGRES_PASSWORD
+              value: "{{ .Values.postgresql.env.POSTGRES_PASSWORD }}"
           volumeMounts:
             - name: init-sql
               mountPath: {{ .Values.postgresql.initSql.mountPath }}
           resources:
-            {{- toYaml .Values.postgresql.resources | nindent 12 }}
-          livenessProbe:
-            {{- toYaml .Values.postgresql.livenessProbe | nindent 12 }}
+            requests:
+              cpu: {{ .Values.postgresql.resources.requests.cpu }}
+              memory: {{ .Values.postgresql.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.postgresql.resources.limits.cpu }}
+              memory: {{ .Values.postgresql.resources.limits.memory }}
           readinessProbe:
-            {{- toYaml .Values.postgresql.readinessProbe | nindent 12 }}
+            exec:
+              command:
+                - sh
+                - -c
+                - pg_isready -U {{ .Values.postgresql.env.POSTGRES_USER }} -d {{ .Values.postgresql.env.POSTGRES_DB }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 10
       volumes:
         - name: init-sql
           configMap:

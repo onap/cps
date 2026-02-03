@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.release-name" . }}
+  name: {{ include "cps-and-ncmp.fullname" . }}
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: cps-and-ncmp
@@ -18,44 +18,3 @@ spec:
         component: cps
     spec:
       serviceAccountName: cps-hazelcast-service-account
-      initContainers:
-        # Wait for PostgreSQL and Kafka to be ready
-        - name: wait-for-dependencies
-          image: busybox:1.36
-          command:
-            - sh
-            - -c
-            - |
-              echo "Waiting for PostgreSQL..."
-              until nc -z {{ include "cps-and-ncmp.release-name" . }}-postgresql-service 5432; do
-                echo "PostgreSQL not ready, waiting..."
-                sleep 2
-              done
-              echo "PostgreSQL is ready"
-              echo "Waiting for Kafka..."
-              until nc -z {{ include "cps-and-ncmp.release-name" . }}-kafka-service 9092; do
-                echo "Kafka not ready, waiting..."
-                sleep 2
-              done
-              echo "Kafka is ready"
-              echo "All dependencies are ready"
-      containers:
-        - name: cps
-          image: "{{ .Values.cps.image.repository }}:{{ .Values.cps.image.tag }}"
-          imagePullPolicy: {{ .Values.cps.image.pullPolicy }}
-          ports:
-            - containerPort: 8080
-            - containerPort: 5701
-          env:
-            {{- range $envName, $envValue := .Values.cps.env }}
-            - name: {{ $envName | upper }}
-              value: "{{ $envValue }}"
-            {{- end }}
-            - name: CPS_NCMP_SERVICE_NAME
-              value: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast-service
-          resources:
-            {{- toYaml .Values.cps.resources | nindent 12 }}
-          livenessProbe:
-            {{- toYaml .Values.cps.livenessProbe | nindent 12 }}
-          readinessProbe:
-            {{- toYaml .Values.cps.readinessProbe | nindent 12 }}
