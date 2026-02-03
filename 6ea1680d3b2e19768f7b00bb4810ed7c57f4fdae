@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfbf2925_0f735d21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-03T17:00:07Z",
+      "side": 1,
+      "message": "looks like a proper revert, let\u0027s hold of till the morning though, pending Sean\u0027s experiments",
+      "revId": "6ea1680d3b2e19768f7b00bb4810ed7c57f4fdae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
