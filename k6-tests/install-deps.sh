@@ -39,6 +39,7 @@ else
 fi
 echo " Checking k6 Version:"
 k6 --version
+sudo apt-get install -y kafkacat jq
 
 # Download docker-compose for only dockerHosts
 if [ ! -x bin/docker-compose ] && [ "$deploymentType" = "dockerHosts" ]; then
