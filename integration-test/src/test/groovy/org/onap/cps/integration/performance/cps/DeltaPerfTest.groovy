@@ -109,7 +109,6 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 6.0
     }
 
-    @Ignore
     def 'Get delta between an anchor and JSON payload with grouping disabled and #scenario'() {
         when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
