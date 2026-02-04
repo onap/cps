@@ -109,7 +109,6 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 6.0
     }
 
-    @Ignore
     def 'Get delta between an anchor and JSON payload with grouping disabled and #scenario'() {
         when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
@@ -125,7 +124,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 7.0
     }
 
-    @Ignore
+   git 
     def 'Apply delta report to an anchor'() {
         given: 'a delta report between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(CPS_PERFORMANCE_TEST_DATASPACE, 'target-anchor1', 'source-anchor1', '/openroadm-devices', INCLUDE_ALL_DESCENDANTS, true)
