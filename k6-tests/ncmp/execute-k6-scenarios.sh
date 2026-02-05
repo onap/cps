@@ -15,45 +15,83 @@
 # limitations under the License.
 #
 
-# ─────────────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════
 # Navigate to Script Directory
-# ─────────────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════
 pushd "$(dirname "$0")" >/dev/null || {
   echo "❌ Failed to access script directory. Exiting."
   exit 1
 }
 
-# ─────────────────────────────────────────────────────────────
-# 📌 Global Variables
-# ─────────────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════
+# Global Variables
+# ══════════════════════════════════════════════════════════════
 threshold_failures=0
 testProfile=$1
 deploymentType=$2
 summaryFile="${testProfile}Summary.csv"
 echo "Running $testProfile performance tests..."
 
-# ─────────────────────────────────────────────────────────────
-# Run K6 and Capture Output
-# '$?' is immediately captures the exit code after k6 finishes,
-#   and assign it to k6_exit_code.
-# ─────────────────────────────────────────────────────────────
-k6 run ncmp-test-runner.js --quiet -e TEST_PROFILE="$testProfile" -e DEPLOYMENT_TYPE="$deploymentType" > "$summaryFile"
+# ══════════════════════════════════════════════════════════════
+# Run K6 Performance Tests
+# ══════════════════════════════════════════════════════════════
+k6 run "./ncmp-test-runner.js" --quiet -e TEST_PROFILE="$testProfile" -e DEPLOYMENT_TYPE="$deploymentType" > "$summaryFile"
 k6_exit_code=$?
 
+# ══════════════════════════════════════════════════════════════
+# Kafka Message Verification (Test #10)
+# ══════════════════════════════════════════════════════════════
+BROKER="localhost:30093"
+SOURCE_TOPIC="dmi-cm-events"
+TARGET_TOPIC="cm-events"
+PARTITION="0"
+TIMEOUT=60
+CHECK_INTERVAL=5
+
+# Calculate expected messages from source topic
+latest_source=$(kafkacat -Q -b $BROKER -t $SOURCE_TOPIC:$PARTITION:-1 | awk '{print $NF}')
+earliest_source=$(kafkacat -Q -b $BROKER -t $SOURCE_TOPIC:$PARTITION:-2 | awk '{print $NF}')
+expected_messages=$((latest_source - earliest_source))
+target_threshold=$((expected_messages * 99 / 100))
+
+# Poll target topic until threshold met or timeout
+elapsed=0
+while [ $elapsed -lt $TIMEOUT ]; do
+    latest=$(kafkacat -Q -b $BROKER -t $TARGET_TOPIC:$PARTITION:-1 | awk '{print $NF}')
+    earliest=$(kafkacat -Q -b $BROKER -t $TARGET_TOPIC:$PARTITION:-2 | awk '{print $NF}')
+    message_count=$((latest - earliest))
+    
+    if [ "$message_count" -ge "$target_threshold" ]; then
+        break
+    fi
+    
+    if [ $((elapsed + CHECK_INTERVAL)) -ge $TIMEOUT ]; then
+        break
+    fi
+    
+    sleep $CHECK_INTERVAL
+    elapsed=$((elapsed + CHECK_INTERVAL))
+done
+
+# Append Kafka verification result to summary
+echo "10,Kafka Message Verification,messages,$expected_messages,$expected_messages,$message_count" >> "$summaryFile"
+
+# ══════════════════════════════════════════════════════════════
+# K6 Exit Code Summary
+# ══════════════════════════════════════════════════════════════
 case $k6_exit_code in
   0) echo "✅ K6 executed successfully for profile: [$testProfile]" ;;
   99) echo "⚠️  K6 thresholds failed (exit code 99)" ;;
   *) echo "❌ K6 execution error (exit code $k6_exit_code)";;
 esac
 
-###############################################################################
-# Adds a “Result” column with ✅ / ❌ to the given summary file
-#   • Increments global variable `threshold_failures` for each ❌ row
-# NR == 1 catches the header only once, appending “Result”
-# PASS rules
-#   • Throughput Tests #1, #2, #7: PASS when Actual ≥ Fs Requirement
-#   • All others (Duration Tests): PASS when Actual ≤ Fs Requirement
-###############################################################################
+# ══════════════════════════════════════════════════════════════
+# Add Result Column to Summary
+# ══════════════════════════════════════════════════════════════
+# Adds ✅/❌ based on pass/fail criteria:
+#   • Throughput tests (0,1,2,7): PASS if Actual ≥ Requirement
+#   • Duration tests: PASS if Actual ≤ Requirement
+#   • Kafka verification (10): PASS if Actual ≥ 99% of Requirement
 addResultColumn() {
   local summaryFile="$1"
   local tmp
@@ -77,8 +115,11 @@ awk -F',' -v OFS=',' '
         initRowVariables()
         isThroughput = (testNumber=="0" || testNumber=="1" || \
                         testNumber=="2" || testNumber=="7")
+        isKafkaVerification = (testNumber=="10")
 
-        if (actual == 0 && testNumber != "0")
+        if (isKafkaVerification)
+            pass = (actual >= fsRequirement * 0.99)
+        else if (actual == 0 && testNumber != "0")
             pass = 0
         else if (isThroughput)
             pass = (actual >= fsRequirement)
@@ -97,15 +138,15 @@ awk -F',' -v OFS=',' '
   threshold_failures=$(( threshold_failures + newFails ))
 }
 
+# ══════════════════════════════════════════════════════════════
+# Generate and Display Results
+# ══════════════════════════════════════════════════════════════
 if [ -f "$summaryFile" ]; then
-
-  # Output raw CSV for plotting job
   echo "-- BEGIN CSV REPORT"
   cat "$summaryFile"
   echo "-- END CSV REPORT"
   echo
 
-  # Output human-readable report
   echo "####################################################################################################"
   if [ "$testProfile" = "kpi" ]; then
     echo "##            K 6     K P I       P E R F O R M A N C E   T E S T   R E S U L T S                  ##"
@@ -115,17 +156,16 @@ if [ -f "$summaryFile" ]; then
   column -t -s, "$summaryFile"
   echo
 
-  # Clean up
   rm -f "$summaryFile"
-
 else
   echo "Error: Failed to generate $summaryFile" >&2
 fi
 
-# Change the directory back where it was
 popd >/dev/null || exit 1
 
-# 🎯 Final FS Summary of threshold result and exit if needed
+# ══════════════════════════════════════════════════════════════
+# Final Summary and Exit
+# ══════════════════════════════════════════════════════════════
 if [[ "$testProfile" == "kpi" ]]; then
   if (( threshold_failures > 0 )); then
     echo "❌ Summary: [$threshold_failures] test(s) failed FS requirements."
@@ -141,37 +181,34 @@ if [[ "$testProfile" == "kpi" ]]; then
     echo "You can review detailed results in the generated summary."
   fi
 else
-# ─────────────────────────────────────────────────────────────
-# Endurance Profile: Investigative Guidance
-# ─────────────────────────────────────────────────────────────
-    echo
-    echo "🔍 Skipping KPI evaluation for profile [$testProfile]"
-    echo
-    echo "📌 Please use the following tools and dashboards to investigate performance:"
-    echo
-    echo "  • 📈 Grafana Dashboards:"
-    echo "     - Nordix Prometheus/Grafana can visualize memory and latency trends."
-    echo "     - Especially useful for endurance/stability runs."
-    echo "     - 🌐 https://monitoring.nordix.org/login"
-    echo "     - Dashboards include:"
-    echo "         ▪ Check CM Handle operation latency trends over time."
-    echo "         ▪ Focus on 'Pass-through Read/Write', 'Search', or 'Kafka Batch' graphs."
-    echo "         ▪ Memory usage patterns (cps/ncmp containers)"
-    echo "         ▪ Kafka lag and consumer trends (if applicable)"
-    echo
-    echo "  • 📊 GnuPlot:"
-    echo "     - Optional local alternative to visualize memory trends."
-    echo "     - Requires exporting memory data (CSV/JSON) and plotting manually."
-    echo
-    echo "  • 🔎 Important Metrics to Watch:"
-    echo "     - HTTP duration (avg, p95, max)"
-    echo "     - VU concurrency and iteration rates"
-    echo "     - Error rates and failed checks"
-    echo "     - Container memory growth over time (especially in endurance tests)"
-    echo
-    echo "  • 📄 Logs:"
-    echo "     - Inspect logs for timeout/retries/exception patterns."
-    echo
-    echo "ℹ️  Reminder: For KPI validation with FS thresholds, re-run with profile: 'kpi'"
-    exit 0
+  echo
+  echo "🔍 Skipping KPI evaluation for profile [$testProfile]"
+  echo
+  echo "📌 Please use the following tools and dashboards to investigate performance:"
+  echo
+  echo "  • 📈 Grafana Dashboards:"
+  echo "     - Nordix Prometheus/Grafana can visualize memory and latency trends."
+  echo "     - Especially useful for endurance/stability runs."
+  echo "     - 🌐 https://monitoring.nordix.org/login"
+  echo "     - Dashboards include:"
+  echo "         ▪ Check CM Handle operation latency trends over time."
+  echo "         ▪ Focus on 'Pass-through Read/Write', 'Search', or 'Kafka Batch' graphs."
+  echo "         ▪ Memory usage patterns (cps/ncmp containers)"
+  echo "         ▪ Kafka lag and consumer trends (if applicable)"
+  echo
+  echo "  • 📊 GnuPlot:"
+  echo "     - Optional local alternative to visualize memory trends."
+  echo "     - Requires exporting memory data (CSV/JSON) and plotting manually."
+  echo
+  echo "  • 🔎 Important Metrics to Watch:"
+  echo "     - HTTP duration (avg, p95, max)"
+  echo "     - VU concurrency and iteration rates"
+  echo "     - Error rates and failed checks"
+  echo "     - Container memory growth over time (especially in endurance tests)"
+  echo
+  echo "  • 📄 Logs:"
+  echo "     - Inspect logs for timeout/retries/exception patterns."
+  echo
+  echo "ℹ️  Reminder: For KPI validation with FS thresholds, re-run with profile: 'kpi'"
+  exit 0
 fi
