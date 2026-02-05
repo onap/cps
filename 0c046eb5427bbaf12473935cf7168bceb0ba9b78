@@ -16,6 +16,23 @@
       "message": "file comparison concluded. good for review now",
       "revId": "0c046eb5427bbaf12473935cf7168bceb0ba9b78",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72df5a0b_5645d703",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-05T11:05:30Z",
+      "side": 1,
+      "message": "looks ok",
+      "revId": "0c046eb5427bbaf12473935cf7168bceb0ba9b78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
