@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3ff757a_6de33dc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-05T08:08:24Z",
+      "side": 1,
+      "message": "some NB sugegstions only",
+      "revId": "c867a8d004b76dde6e6220a6384bec4cabf52308",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dad4581_267a5335",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-05T08:08:24Z",
+      "side": 1,
+      "message": "seconds? maybe include in name or add comment...",
+      "range": {
+        "startLine": 49,
+        "startChar": 15,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "c867a8d004b76dde6e6220a6384bec4cabf52308",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dfebc8e_0abae190",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-05T08:08:24Z",
+      "side": 1,
+      "message": "suggestion: extract out MINIMUM_EXPECTED_PERCENTAGE",
+      "range": {
+        "startLine": 55,
+        "startChar": 40,
+        "endLine": 55,
+        "endChar": 42
+      },
+      "revId": "c867a8d004b76dde6e6220a6384bec4cabf52308",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f59b7f_b05c4e14",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-05T08:08:24Z",
+      "side": 1,
+      "message": "suggestion: could we had a graph for yst 10 and plot the number of received messages or as a percenatge of expected. so we also have a visual indication too?",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 17
+      },
+      "revId": "c867a8d004b76dde6e6220a6384bec4cabf52308",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
