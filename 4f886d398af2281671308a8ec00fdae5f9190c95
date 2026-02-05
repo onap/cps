@@ -230,6 +230,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6874ef4_ba3258d9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/XmlObjectMapper.java",
+        "patchSetId": 86
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-05T05:03:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b973eaa_89daa48c",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 5
+      },
+      "revId": "4f886d398af2281671308a8ec00fdae5f9190c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cc49f2c_0fdeb19c",

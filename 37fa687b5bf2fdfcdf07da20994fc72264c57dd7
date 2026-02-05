@@ -16,6 +16,24 @@
       "message": "NB: Needs linespace",
       "revId": "37fa687b5bf2fdfcdf07da20994fc72264c57dd7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "080bf174_0fa34c58",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 96
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-05T05:03:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa91eb45_ee3767b1",
+      "revId": "37fa687b5bf2fdfcdf07da20994fc72264c57dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
