@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb0ec9e2_0bbb9983",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-05T10:45:57Z",
+      "side": 1,
+      "message": "Agree with Toine that static vars could be more verbose but otherwise looks good!",
+      "revId": "c867a8d004b76dde6e6220a6384bec4cabf52308",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1dad4581_267a5335",
