@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.ncmp.cmhandle.lcm-event.v1",
+  "javaType": "org.onap.cps.ncmp.events.lcm.LcmEventV1",
+  "extends": {
+    "$ref": "lcm-event-base.json"
+  },
+  "type": "object",
+  "properties": {
+    "event": {
+      "$ref": "#/$defs/PayloadV1"
+    }
+  },
+  "required": ["event"],
+  "$defs": {
+    "PayloadV1": {
+      "description": "The Payload of an event",
+      "type": "object",
+      "properties": {
+        "cmHandleId": {
+          "description": "cmHandle id",
+          "type": "string"
+        },
+        "alternateId": {
+          "description": "alternative id for cmHandle (e.g. 3GPP FDN)",
+          "type": "string"
+        },
+        "moduleSetTag": {
+          "description": "module set tag for cmHandle",
+          "type": "string"
+        },
+        "dataProducerIdentifier": {
+          "description": "data producer identifier for cmHandle",
+          "type": "string"
+        },
+        "oldValues": {
+          "$ref": "#/$defs/Values"
+        },
+        "newValues": {
+          "$ref": "#/$defs/Values"
+        }
+      },
+      "required": ["cmHandleId"],
+      "additionalProperties": false
+    },
+    "Values": {
+      "description": "Values that represents the state and properties of a cmHandle",
+      "javaType": "org.onap.cps.ncmp.events.lcm.Values",
+      "type": "object",
+      "properties": {
+        "dataSyncEnabled": {
+          "description": "Whether data sync enabled",
+          "type": "boolean"
+        },
+        "cmHandleState": {
+          "description": "State of cmHandle",
+          "type": "string",
+          "enum": [
+            "ADVISED",
+            "READY",
+            "LOCKED",
+            "DELETING",
+            "DELETED"
+          ]
+        },
+        "cmHandleProperties": {
+          "description": "cmHandle properties",
+          "type": "object",
+          "default": null,
+          "existingJavaType": "java.util.List<java.util.Map<String,String>>",
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@
 
 package org.onap.cps.integration.functional.ncmp.inventory
 
-
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.onap.cps.events.LegacyEvent
 import org.onap.cps.integration.KafkaTestContainer
@@ -31,7 +30,7 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
+import org.onap.cps.ncmp.events.lcm.LcmEventV1
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import spock.util.concurrent.PollingConditions
 
@@ -82,7 +81,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             def messages = []
             def headerMaps = []
             consumerRecords.each { consumerRecord ->
-                messages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEvent))
+                messages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEventV1))
                 headerMaps.add(getHeadersAsMap(consumerRecord))
             }
         and: 'both messages have the correct common attributes (that did not change)'
