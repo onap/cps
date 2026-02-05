@@ -1,0 +1,11 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Shivani Khare <shivani.khare@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+1: Sean Beirne <sean.beirne@est.tech>
+Code-Review+2: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Verified+1: ONAP Bypass GHA <releng+onap.bypass.gha@linuxfoundation.org>
+Submitted-by: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Submitted-at: Thu, 05 Feb 2026 15:20:27 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/143097
+Project: cps
+Branch: refs/heads/master
