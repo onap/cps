@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "348233c5_038d1f25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 100
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-05T16:04:27Z",
+      "side": 1,
+      "message": "Resolved",
+      "revId": "83e8642ee37339e7da8b33e8d52e44df30ef3b37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b692d3c7_12eec684",
@@ -43,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b592962d_b509d46f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 100
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-05T16:04:27Z",
+      "side": 1,
+      "message": "I tried the suggested change using @AllArgsConstructor for XmlObjectMapper.\nHowever, after applying it, the ApplicationSpec test started failing while starting the CPS application.\nThe failure is due to an UnsatisfiedDependencyException.\nSpring is trying to autowire XmlMapper through the generated all-args constructor, but no XmlMapper bean is defined in the application context.\nAdditionally, XmlMapper is not provided as a default Spring/Jackson bean.\nBecause of this, it must be manually instantiated unless we explicitly define it as a Spring bean.",
+      "parentUuid": "b692d3c7_12eec684",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 5
+      },
+      "revId": "83e8642ee37339e7da8b33e8d52e44df30ef3b37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0fbb4a49_049c9169",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
         "patchSetId": 100
@@ -54,6 +95,30 @@
       "writtenOn": "2026-02-05T08:20:17Z",
       "side": 1,
       "message": "objectUnderTest",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 24
+      },
+      "revId": "83e8642ee37339e7da8b33e8d52e44df30ef3b37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04b1ed14_912a837c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 100
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-05T16:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fbb4a49_049c9169",
       "range": {
         "startLine": 30,
         "startChar": 8,
@@ -89,6 +154,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca536ea5_3b6834b8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 100
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-05T16:04:27Z",
+      "side": 1,
+      "message": "I tried an additional approach by registering XmlMapper as a Spring bean through a dedicated configuration class.\nHowever, the same UnsatisfiedDependencyException still occurs during CPS application startup.",
+      "parentUuid": "689ca6e3_5ef455a5",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 31
+      },
+      "revId": "83e8642ee37339e7da8b33e8d52e44df30ef3b37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33413d76_d648a8a2",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
         "patchSetId": 100
@@ -100,6 +189,30 @@
       "writtenOn": "2026-02-05T08:20:17Z",
       "side": 1,
       "message": "with exception during mapping",
+      "range": {
+        "startLine": 43,
+        "startChar": 32,
+        "endLine": 43,
+        "endChar": 52
+      },
+      "revId": "83e8642ee37339e7da8b33e8d52e44df30ef3b37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69d92679_0d850be3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 100
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-05T16:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33413d76_d648a8a2",
       "range": {
         "startLine": 43,
         "startChar": 32,
