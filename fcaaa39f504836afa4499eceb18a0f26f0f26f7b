@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3eff680_d0585f3d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandlePropertyChangeDetectorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-09T13:38:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f8b3eef1_5a82c31d",
+      "range": {
+        "startLine": 58,
+        "startChar": 56,
+        "endLine": 58,
+        "endChar": 72
+      },
+      "revId": "fcaaa39f504836afa4499eceb18a0f26f0f26f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bb386d4_e250ed68",
@@ -98,6 +122,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3684c4ee_ec35aee6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandlePropertyChangeDetectorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-09T13:38:15Z",
+      "side": 1,
+      "message": "these are boolean :-)",
+      "parentUuid": "5bb386d4_e250ed68",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 59
+      },
+      "revId": "fcaaa39f504836afa4499eceb18a0f26f0f26f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86fdbb41_71a3b723",
@@ -111,6 +159,30 @@
       "writtenOn": "2026-02-09T13:23:30Z",
       "side": 1,
       "message": "bit confusing between first and last pairs\n\nsuggestion\n\n[\u0027sameProp1\u0027: \u0027newValue1\u0027, \u0027sameProp2\u0027: \u0027sameValue2\u0027 ,\u0027newProp3\u0027: \u0027newValue3\u0027]\n\n\n\u0027same\u0027 or \u0027old\u0027  whichever",
+      "range": {
+        "startLine": 106,
+        "startChar": 34,
+        "endLine": 106,
+        "endChar": 101
+      },
+      "revId": "fcaaa39f504836afa4499eceb18a0f26f0f26f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f733f959_fe8baa94",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandlePropertyChangeDetectorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-09T13:38:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "86fdbb41_71a3b723",
       "range": {
         "startLine": 106,
         "startChar": 34,
