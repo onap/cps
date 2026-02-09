@@ -7,7 +7,7 @@ postgresql:
       cpu: "2000m"
       memory: "1Gi"
     limits:
-      cpu: "6000m"
+      cpu: "4000m"
       memory: "3Gi"
   servicePort: 5432
   extraContainers:
@@ -61,10 +61,10 @@ cps:
     nodePort: 30080
   resources:
     requests:
-      cpu: "2000m"
+      cpu: "1000m"
       memory: "3Gi"
     limits:
-      cpu: "6000m"
+      cpu: "7000m"
       memory: "5Gi"
   livenessProbe:
     # Give cps up to 170 seconds to become alive
