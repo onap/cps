@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d07eae8_7ed99487",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-09T16:10:56Z",
+      "side": 1,
+      "message": "Changes needed in /CPS/CPS-NCMP/Inventory/Southbound (dmi)\n\nCM handle registration (discovery)\nBody Line 2\n\"dmiPlugin\": \"http://{{DMI_HOST}}:{{DMI_PORT}}\",\n\nGet registered CM handle references\nParameter dmi-plugin-identifier\nhttp://{{DMI_HOST}}:{{DMI_PORT}}\n\nCM handle de-registration\nBody Line 2\n\"dmiPlugin\": \"http://{{DMI_HOST}}:{{DMI_PORT}}\",\n\nQuery CM handles (withDmiPlugin, incl.add.props)\nBody Line 7\n\"dmiPluginName\": \"http://{{DMI_HOST}}:{{DMI_PORT}}\"\n\n\nDelete CPS/CPS-NCMP-K8s folder from Postman",
+      "revId": "2582be4ef314bb2a5c6f905b700e96c59d04c39a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
