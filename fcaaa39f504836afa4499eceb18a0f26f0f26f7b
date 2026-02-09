@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "fcaaa39f504836afa4499eceb18a0f26f0f26f7b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f33ddf14_c8f60491",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-09T13:05:07Z",
+      "side": 1,
+      "message": "looks good, just have a comment on the method naming in the prod class",
+      "revId": "fcaaa39f504836afa4499eceb18a0f26f0f26f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8b3eef1_5a82c31d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandlePropertyChangeDetectorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-09T13:05:07Z",
+      "side": 1,
+      "message": "this is not a great name, method creates a CmHandlePropertyUpdates object. Extract may be a better word to use. extractUpdates, extractUpdatesForCreate, etc.",
+      "range": {
+        "startLine": 58,
+        "startChar": 56,
+        "endLine": 58,
+        "endChar": 72
+      },
+      "revId": "fcaaa39f504836afa4499eceb18a0f26f0f26f7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
