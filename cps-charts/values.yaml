@@ -4,11 +4,11 @@ postgresql:
     enabled: false
   resources:
     requests:
-      cpu: "2000m"
+      cpu: "850m"
       memory: "1Gi"
     limits:
-      cpu: "6000m"
-      memory: "3Gi"
+      cpu: "4200m"
+      memory: "2Gi"
   servicePort: 5432
   env:
     POSTGRES_DB: "cpsdb"
@@ -51,10 +51,10 @@ cps:
     nodePort: 30080
   resources:
     requests:
-      cpu: "2000m"
+      cpu: "1100m"
       memory: "3Gi"
     limits:
-      cpu: "6000m"
+      cpu: "8000m"
       memory: "5Gi"
   livenessProbe:
     # Give cps up to 170 seconds to become alive
