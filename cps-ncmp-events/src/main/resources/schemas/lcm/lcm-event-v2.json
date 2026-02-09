@@ -22,14 +22,14 @@
           "description": "cmHandle id",
           "type": "string"
         },
-        "oldProperties": {
+        "oldValues": {
           "description": "the old cmHandle properties(values) that have changed or been deleted",
           "type": "object",
           "default": null,
           "existingJavaType": "java.util.Map<String,Object>",
           "additionalProperties": false
         },
-        "newProperties": {
+        "newValues": {
           "description": "cmHandle properties(values) that have been changed or been created",
           "type": "object",
           "default": null,

@@ -26,17 +26,17 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.Values
 import spock.lang.Specification
 
-class CmHandlePropertyChangeDetectorSpec extends Specification {
-
-    def 'Determine updates for create operation.'() {
+class PayloadFactorySpec extends Specification {
+    def 'Create payload for create operation.'() {
         given: 'a new cm handle'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch',
                 compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.READY),
                 publicProperties: ['prop1': 'value1']
             )
-        when: 'updates are determined for create'
-            def result = CmHandlePropertyChangeDetector.determineUpdatesForCreate(ncmpServiceCmHandle)
+        when: 'payload is created for create'
+            def result = PayloadFactory.createPayloadV1(LcmEventType.CREATE, null, ncmpServiceCmHandle)
         then: 'new values are populated'
+            assert result.cmHandleId == 'ch'
             assert result.newValues.dataSyncEnabled == true
             assert result.newValues.cmHandleState == Values.CmHandleState.READY
             assert result.newValues.cmHandleProperties == [['prop1': 'value1']]
@@ -44,24 +44,25 @@ class CmHandlePropertyChangeDetectorSpec extends Specification {
             assert result.oldValues == null
     }
 
-    def 'Determine updates when no changes detected.'() {
+    def 'Create payload when no changes detected.'() {
         given: 'current and target cm handles with same properties'
             def currentCmHandle = new NcmpServiceCmHandle(
                 compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.READY),
                 publicProperties: ['prop1': 'value1']
             )
-            def targetCmHandle = new NcmpServiceCmHandle(
+            def targetCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch',
                 compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.READY),
                 publicProperties: ['prop1': 'value1']
             )
-        when: 'updates are determined'
-            def result = CmHandlePropertyChangeDetector.determineUpdates(currentCmHandle, targetCmHandle)
+        when: 'payload is created'
+            def result = PayloadFactory.createPayloadV1(LcmEventType.UPDATE, currentCmHandle, targetCmHandle)
         then: 'no updates are detected'
+            assert result.cmHandleId == 'ch'
             assert result.oldValues == null
             assert result.newValues == null
     }
 
-    def 'Determine updates when data sync flag changes.'() {
+    def 'Create payload when data sync flag changes.'() {
         given: 'current and target cm handles with different data sync flags'
             def currentCmHandle = new NcmpServiceCmHandle(
                 compositeState: new CompositeState(dataSyncEnabled: false, cmHandleState: CmHandleState.READY),
@@ -71,14 +72,14 @@ class CmHandlePropertyChangeDetectorSpec extends Specification {
                 compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.READY),
                 publicProperties: [:]
             )
-        when: 'updates are determined'
-            def result = CmHandlePropertyChangeDetector.determineUpdates(currentCmHandle, targetCmHandle)
+        when: 'payload is created'
+            def result = PayloadFactory.createPayloadV1(LcmEventType.UPDATE,currentCmHandle, targetCmHandle)
         then: 'data sync flag change is detected'
             assert result.oldValues.dataSyncEnabled == false
             assert result.newValues.dataSyncEnabled == true
     }
 
-    def 'Determine updates when cm handle state changes.'() {
+    def 'Create payload when cm handle state changes.'() {
         given: 'current and target cm handles with different states'
             def currentCmHandle = new NcmpServiceCmHandle(
                 compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.ADVISED),
@@ -88,36 +89,36 @@ class CmHandlePropertyChangeDetectorSpec extends Specification {
                 compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.READY),
                 publicProperties: [:]
             )
-        when: 'updates are determined'
-            def result = CmHandlePropertyChangeDetector.determineUpdates(currentCmHandle, targetCmHandle)
+        when: 'payload is created'
+            def result = PayloadFactory.createPayloadV1(LcmEventType.UPDATE,currentCmHandle, targetCmHandle)
         then: 'state change is detected'
             assert result.oldValues.cmHandleState == Values.CmHandleState.ADVISED
             assert result.newValues.cmHandleState == Values.CmHandleState.READY
     }
 
-    def 'Determine updates when public properties change.'() {
+    def 'Create payload when public properties change.'() {
         given: 'current and target cm handles with different properties'
             def currentCmHandle = new NcmpServiceCmHandle(
                 compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.READY),
-                publicProperties: ['prop1': 'value1', 'prop2': 'value2', 'unchanged': 'sameValue']
+                publicProperties: ['prop1': 'old value', 'prop2': 'to be deleted', 'prop4': 'unchanged']
             )
             def targetCmHandle = new NcmpServiceCmHandle(
                 compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.READY),
-                publicProperties: ['prop1': 'newValue1', 'prop3': 'value3', 'unchanged': 'sameValue']
+                publicProperties: ['prop1': 'new value', 'prop3': 'new', 'prop4': 'unchanged']
             )
-        when: 'updates are determined'
-            def result = CmHandlePropertyChangeDetector.determineUpdates(currentCmHandle, targetCmHandle)
+        when: 'payload is created'
+            def result = PayloadFactory.createPayloadV1(LcmEventType.UPDATE,currentCmHandle, targetCmHandle)
         then: 'property changes are detected'
-            assert result.oldValues.cmHandleProperties[0]['prop1'] == 'value1'
-            assert result.oldValues.cmHandleProperties[0]['prop2'] == 'value2'
-            assert result.newValues.cmHandleProperties[0]['prop1'] == 'newValue1'
-            assert result.newValues.cmHandleProperties[0]['prop3'] == 'value3'
+            assert result.oldValues.cmHandleProperties[0]['prop1'] == 'old value'
+            assert result.oldValues.cmHandleProperties[0]['prop2'] == 'to be deleted'
+            assert result.newValues.cmHandleProperties[0]['prop1'] == 'new value'
+            assert result.newValues.cmHandleProperties[0]['prop3'] == 'new'
         and: 'unchanged property is not included in the result'
-            assert !result.oldValues.cmHandleProperties[0].containsKey('unchanged')
-            assert !result.newValues.cmHandleProperties[0].containsKey('unchanged')
+            assert !result.oldValues.cmHandleProperties[0].containsKey('prop4')
+            assert !result.newValues.cmHandleProperties[0].containsKey('prop4')
     }
 
-    def 'Determine updates when multiple changes occur.'() {
+    def 'Create payload when multiple changes occur.'() {
         given: 'current and target cm handles with multiple differences'
             def currentCmHandle = new NcmpServiceCmHandle(
                 compositeState: new CompositeState(dataSyncEnabled: false, cmHandleState: CmHandleState.ADVISED),
@@ -127,8 +128,8 @@ class CmHandlePropertyChangeDetectorSpec extends Specification {
                 compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.READY),
                 publicProperties: ['prop1': 'newValue1']
             )
-        when: 'updates are determined'
-            def result = CmHandlePropertyChangeDetector.determineUpdates(currentCmHandle, targetCmHandle)
+        when: 'payload is created'
+            def result = PayloadFactory.createPayloadV1(LcmEventType.UPDATE,currentCmHandle, targetCmHandle)
         then: 'all changes are detected'
             assert result.oldValues.dataSyncEnabled == false
             assert result.newValues.dataSyncEnabled == true
@@ -136,5 +137,24 @@ class CmHandlePropertyChangeDetectorSpec extends Specification {
             assert result.newValues.cmHandleState == Values.CmHandleState.READY
             assert result.oldValues.cmHandleProperties[0]['prop1'] == 'value1'
             assert result.newValues.cmHandleProperties[0]['prop1'] == 'newValue1'
+    }
+
+    def 'Create payload for delete operation.'() {
+        given: 'a cm handle being deleted'
+            def currentCmHandle = new NcmpServiceCmHandle(
+                compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: CmHandleState.READY),
+                publicProperties: ['prop1': 'value1']
+            )
+            def targetCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch',
+                compositeState: new CompositeState(dataSyncEnabled: false, cmHandleState: CmHandleState.DELETED),
+                publicProperties: ['prop1': 'value1']
+            )
+        when: 'payload is created for delete'
+            def result = PayloadFactory.createPayloadV1(LcmEventType.DELETE, currentCmHandle, targetCmHandle)
+        then: 'cmHandleId is populated'
+            assert result.cmHandleId == 'ch'
+        and: 'no values are populated'
+            assert result.oldValues == null
+            assert result.newValues == null
     }
 }
