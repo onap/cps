@@ -61,11 +61,11 @@ cps:
     nodePort: 30080
   resources:
     requests:
-      cpu: "2000m"
-      memory: "3Gi"
+      cpu: "1100m"
+      memory: "2Gi"
     limits:
       cpu: "6000m"
-      memory: "5Gi"
+      memory: "3Gi"
   livenessProbe:
     # Give cps up to 170 seconds to become alive
     httpGet:
