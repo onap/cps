@@ -112,6 +112,7 @@ app:
     lcm:
         events:
             topic: ${LCM_EVENTS_TOPIC:ncmp-events}
+            event-schema-version: "v2"
     dmi:
         cm-events:
             topic: ${DMI_CM_EVENTS_TOPIC:dmi-cm-events}

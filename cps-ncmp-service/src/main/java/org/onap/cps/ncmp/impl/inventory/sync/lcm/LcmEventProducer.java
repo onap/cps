@@ -34,6 +34,9 @@ import org.onap.cps.events.EventProducer;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.LcmEventBase;
 import org.onap.cps.ncmp.events.lcm.LcmEventV1;
+import org.onap.cps.ncmp.events.lcm.LcmEventV2;
+import org.onap.cps.ncmp.events.lcm.PayloadV1;
+import org.onap.cps.ncmp.events.lcm.PayloadV2;
 import org.onap.cps.ncmp.events.lcm.Values;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -60,6 +63,9 @@ public class LcmEventProducer {
 
     @Value("${app.lcm.events.topic:ncmp-events}")
     private String topicName;
+
+    @Value("${app.lcm.events.event-schema-version}")
+    private String eventSchemaVersion;
 
     @Value("${notification.enabled:true}")
     private boolean notificationsEnabled;
@@ -93,14 +99,20 @@ public class LcmEventProducer {
     private void sendLcmEvent(final NcmpServiceCmHandle currentNcmpServiceCmHandle,
                               final NcmpServiceCmHandle targetNcmpServiceCmHandle) {
         if (notificationsEnabled) {
-            final LcmEventV1 lcmEventV1 = lcmEventObjectCreator.createLcmEventV1(currentNcmpServiceCmHandle,
-                                                                               targetNcmpServiceCmHandle);
             final Timer.Sample timerSample = Timer.start(meterRegistry);
+            final LcmEventBase lcmEvent;
+            if (useSchemaV2()) {
+                lcmEvent = lcmEventObjectCreator.createLcmEventV2(currentNcmpServiceCmHandle,
+                                                                  targetNcmpServiceCmHandle);
+            } else {
+                lcmEvent = lcmEventObjectCreator.createLcmEventV1(currentNcmpServiceCmHandle,
+                                                                    targetNcmpServiceCmHandle);
+            }
             try {
-                final Map<String, Object> headersAsMap = extractHeadersAsMap(lcmEventV1);
+                final Map<String, Object> headersAsMap = extractHeadersAsMap(lcmEvent);
                 final String eventKey = currentNcmpServiceCmHandle.getCmHandleId();
-                eventProducer.sendLegacyEvent(topicName, eventKey, headersAsMap, lcmEventV1);
-                recordMetrics(lcmEventV1, timerSample);
+                eventProducer.sendLegacyEvent(topicName, eventKey, headersAsMap, lcmEvent);
+                recordMetrics(lcmEvent, timerSample);
             } catch (final KafkaException e) {
                 log.error("Unable to send message to topic : {} and cause : {}", topicName, e.getMessage());
             }
@@ -121,23 +133,41 @@ public class LcmEventProducer {
         return headersAsMap;
     }
 
-    private void recordMetrics(final LcmEventV1 lcmEventV1, final Timer.Sample timerSample) {
+    private void recordMetrics(final LcmEventBase lcmEvent, final Timer.Sample timerSample) {
         final List<Tag> tags = new ArrayList<>(4);
         tags.add(METRIC_TAG_CLASS);
         tags.add(METRIC_TAG_METHOD);
-        tags.add(createCmHandleStateTag("oldCmHandleState", lcmEventV1.getEvent().getOldValues()));
-        tags.add(createCmHandleStateTag("newCmHandleState", lcmEventV1.getEvent().getNewValues()));
+        if (lcmEvent instanceof LcmEventV2) {
+            final PayloadV2 payloadV2 = ((LcmEventV2) lcmEvent).getEvent();
+            tags.add(createCmHandleStateTagForV2("oldCmHandleState", payloadV2.getOldValues()));
+            tags.add(createCmHandleStateTagForV2("newCmHandleState", payloadV2.getNewValues()));
+        } else {
+            final PayloadV1 payloadV1 = ((LcmEventV1) lcmEvent).getEvent();
+            tags.add(createCmHandleStateTagForV1("oldCmHandleState", payloadV1.getOldValues()));
+            tags.add(createCmHandleStateTagForV1("newCmHandleState", payloadV1.getNewValues()));
+        }
         timerSample.stop(Timer.builder("cps.ncmp.lcm.events.send")
             .description("Time taken to send a LCM event")
             .tags(tags)
             .register(meterRegistry));
     }
 
-    private Tag createCmHandleStateTag(final String tagLabel, final Values values) {
+    private Tag createCmHandleStateTagForV1(final String tagLabel, final Values values) {
         if (values == null) {
             return Tag.of(tagLabel, "N/A");
         }
         return Tag.of(tagLabel, values.getCmHandleState().value());
+    }
+
+    private Tag createCmHandleStateTagForV2(final String tagLabel, final Map<String, Object> properties) {
+        if (properties == null || !properties.containsKey("cmHandleState")) {
+            return Tag.of(tagLabel, "N/A");
+        }
+        return Tag.of(tagLabel, properties.get("cmHandleState").toString());
+    }
+
+    private boolean useSchemaV2() {
+        return "v2".equals(eventSchemaVersion);
     }
 
 }
