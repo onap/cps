@@ -31,7 +31,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.LcmEventBase;
 import org.onap.cps.ncmp.events.lcm.LcmEventV1;
+import org.onap.cps.ncmp.events.lcm.LcmEventV2;
 import org.onap.cps.ncmp.events.lcm.PayloadV1;
+import org.onap.cps.ncmp.events.lcm.PayloadV2;
 import org.onap.cps.ncmp.impl.utils.EventDateTimeFormatter;
 import org.springframework.stereotype.Service;
 
@@ -58,41 +60,40 @@ public class LcmEventObjectCreator {
             determineEventType(currentNcmpServiceCmHandle, targetNcmpServiceCmHandle);
         final LcmEventV1 lcmEventV1 = new LcmEventV1();
         populateHeaderDetails(lcmEventV1, cmHandleId, lcmEventType);
-        final PayloadV1 payloadV1 = new PayloadV1();
-        payloadV1.setCmHandleId(cmHandleId);
-        payloadV1.setAlternateId(targetNcmpServiceCmHandle.getAlternateId());
-        payloadV1.setModuleSetTag(targetNcmpServiceCmHandle.getModuleSetTag());
-        payloadV1.setDataProducerIdentifier(targetNcmpServiceCmHandle.getDataProducerIdentifier());
-        final CmHandlePropertyUpdates cmHandlePropertyUpdates =
-            determineEventValues(lcmEventType, currentNcmpServiceCmHandle, targetNcmpServiceCmHandle);
-        payloadV1.setOldValues(cmHandlePropertyUpdates.getOldValues());
-        payloadV1.setNewValues(cmHandlePropertyUpdates.getNewValues());
+        final PayloadV1 payloadV1 = PayloadFactory.createPayloadV1(lcmEventType, currentNcmpServiceCmHandle,
+                                                                                 targetNcmpServiceCmHandle);
         lcmEventV1.setEvent(payloadV1);
         return lcmEventV1;
     }
 
+    /**
+     * Create Lifecycle Management Event Version 2.
+     *
+     * @param currentNcmpServiceCmHandle  current ncmp service cmhandle
+     * @param targetNcmpServiceCmHandle   target ncmp service cmhandle
+     * @return Populated LcmEvent Version 2
+     */
+    public LcmEventV2 createLcmEventV2(final NcmpServiceCmHandle currentNcmpServiceCmHandle,
+                                       final NcmpServiceCmHandle targetNcmpServiceCmHandle) {
+        final LcmEventV2 lcmEventV2 = new LcmEventV2();
+        final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
+        final LcmEventType lcmEventType =
+            determineEventType(currentNcmpServiceCmHandle, targetNcmpServiceCmHandle);
+        populateHeaderDetails(lcmEventV2, cmHandleId, lcmEventType);
+        final PayloadV2 payloadV2 = PayloadFactory.createPayloadV2(lcmEventType, currentNcmpServiceCmHandle,
+            targetNcmpServiceCmHandle);
+        lcmEventV2.setEvent(payloadV2);
+        return lcmEventV2;
+    }
+
     private static LcmEventType determineEventType(final NcmpServiceCmHandle currentNcmpServiceCmHandle,
                                                    final NcmpServiceCmHandle targetNcmpServiceCmHandle) {
-
         if (currentNcmpServiceCmHandle.getCompositeState() == null) {
             return CREATE;
         } else if (targetNcmpServiceCmHandle.getCompositeState().getCmHandleState() == DELETED) {
             return DELETE;
         }
         return UPDATE;
-    }
-
-    private static CmHandlePropertyUpdates determineEventValues(final LcmEventType lcmEventType,
-                                                                final NcmpServiceCmHandle currentNcmpServiceCmHandle,
-                                                                final NcmpServiceCmHandle targetNcmpServiceCmHandle) {
-        if (CREATE == lcmEventType) {
-            return CmHandlePropertyChangeDetector.determineUpdatesForCreate(targetNcmpServiceCmHandle);
-        }
-        if (UPDATE == lcmEventType) {
-            return CmHandlePropertyChangeDetector.determineUpdates(currentNcmpServiceCmHandle,
-                targetNcmpServiceCmHandle);
-        }
-        return new CmHandlePropertyUpdates();
     }
 
     private void populateHeaderDetails(final LcmEventBase lcmEventBase,

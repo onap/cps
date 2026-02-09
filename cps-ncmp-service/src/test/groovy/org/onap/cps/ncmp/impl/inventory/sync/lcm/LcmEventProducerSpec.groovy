@@ -43,17 +43,20 @@ class LcmEventProducerSpec extends Specification {
         new YangModelCmHandle(id: 'ch-1', compositeState: new CompositeState(cmHandleState: ADVISED), additionalProperties: [], publicProperties: [])
     )
 
-    def 'Create and send lcm event where notifications are #scenario.'() {
+    def 'Create and send lcm event #eventVersion where notifications are #scenario.'() {
         given: 'notificationsEnabled is #notificationsEnabled'
             objectUnderTest.notificationsEnabled = notificationsEnabled
+            objectUnderTest.eventSchemaVersion = eventVersion
         when: 'event send for (batch of) 1 cm handle transition pair (new cm handle going to READY)'
             objectUnderTest.sendLcmEventBatchAsynchronously([cmHandleTransitionPair])
         then: 'producer is called #expectedTimesMethodCalled times with correct identifiers'
             expectedTimesMethodCalled * mockEventProducer.sendLegacyEvent(_, 'ch-1', _, _) >> {
                 args -> {
                     def eventHeaders = args[2]
+                    def event = args[3]
                     assert UUID.fromString(eventHeaders.get('eventId')) != null
                     assert eventHeaders.get('eventCorrelationId') == 'ch-1'
+                    assert event.class.simpleName == expectedEventClass
                 }
             }
         and: 'metrics are recorded with correct tags'
@@ -65,9 +68,10 @@ class LcmEventProducerSpec extends Specification {
                 assert timer == null
             }
         where: 'the following values are used'
-            scenario   | notificationsEnabled || expectedTimesMethodCalled
-            'enabled'  | true                 || 1
-            'disabled' | false                || 0
+            scenario   | eventVersion | notificationsEnabled || expectedTimesMethodCalled | expectedEventClass
+            'enabled'  | 'v1'         | true                 || 1                         | 'LcmEventV1'
+            'enabled'  | 'v2'         | true                 || 1                         | 'LcmEventV2'
+            'disabled' | 'v1'         | false                || 0                         | 'N/A'
     }
 
     def 'Exception while sending message.'(){
