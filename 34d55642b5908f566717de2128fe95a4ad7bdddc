@@ -16,6 +16,40 @@
       "message": "recheck",
       "revId": "34d55642b5908f566717de2128fe95a4ad7bdddc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06434a59_ea5a75fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-10T15:06:58Z",
+      "side": 1,
+      "message": "looking good, just a small suggestion on the filenames for the environments...\n(check if it works on your postman impport though)",
+      "revId": "34d55642b5908f566717de2128fe95a4ad7bdddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fbc73b1_be9682ce",
+        "filename": "postman-collections/CPS Environment k8s.postman_environment.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-10T15:06:58Z",
+      "side": 1,
+      "message": "not sure if these file names need to be so long, can you try with\nEnv_k8s.json  \u0026\nEnv_docker.json",
+      "revId": "34d55642b5908f566717de2128fe95a4ad7bdddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
