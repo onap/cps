@@ -47,16 +47,6 @@ meetings:
       time: '08:00 America/New_York'
 committers:
     - <<: *onap_releng_ptl
-    - name: 'Sourabh Sharma'
-      email: 'sourabh.sourabh@est.tech'
-      company: 'Ericsson Software Technology'
-      id: 'sourabh_sourabh'
-      timezone: 'Europe/Dublin'
-    - name: 'Priyank Maheshwari'
-      email: 'priyank.maheshwari@est.tech'
-      company: 'Ericsson Software Technology'
-      id: 'mpriyank'
-      timezone: 'Europe/Dublin'
     - name: 'Lee Anjella Macabuhay'
       email: 'lee.anjella.macabuhay@est.tech'
       company: 'Ericsson Software Technology'
@@ -66,6 +56,16 @@ committers:
       email: 'daniel.hanrahan@est.tech'
       company: 'Ericsson Software Technology'
       id: 'danielhanrahan'
+      timezone: 'Europe/Dublin'
+    - name: 'Sean Beirne'
+      email: 'sean.beirne@est.tech'
+      company: 'Ericsson Software Technology'
+      id: 'seanbeirne'
+      timezone: 'Europe/Dublin'
+    - name: 'Gerard Nugent'
+      email: 'gerard.nugent@est.tech'
+      company: 'Ericsson Software Technology'
+      id: 'egernug'
       timezone: 'Europe/Dublin'
 repositories:
     - cps
