@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d943ba04_19c66750",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-10T16:20:15Z",
+      "side": 1,
+      "message": "We have to change the description at some stage to include k8s but not necessary in this patch. There\u0027s another ticket for it",
+      "revId": "00f2824fb0a70fcf42fd9c9da8bf5216333153cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
