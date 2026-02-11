@@ -106,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fd4098e_b09256fc",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 100
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-11T13:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ccb28d3_67ce1832",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 5
+      },
+      "revId": "83e8642ee37339e7da8b33e8d52e44df30ef3b37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fbb4a49_049c9169",
@@ -214,6 +238,30 @@
       "side": 1,
       "message": "my comment was about xmlObjectMapperdefault  NOT BEING USED :-) I think you can simply remove it",
       "parentUuid": "ca536ea5_3b6834b8",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 31
+      },
+      "revId": "83e8642ee37339e7da8b33e8d52e44df30ef3b37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad351525_58931e94",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 100
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-02-11T13:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e1d7043_e0604283",
       "range": {
         "startLine": 31,
         "startChar": 8,
