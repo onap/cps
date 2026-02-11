@@ -41,7 +41,7 @@ trap on_exit EXIT SIGINT SIGTERM SIGQUIT
 pushd "$(dirname "$0")" || exit 1
 
 # Install needed dependencies for any deployment type
-source install-deps.sh "$deploymentType"
+source ./install-deps.sh "$deploymentType"
 
 # Handle deployment type specific setup
 if [[ "$deploymentType" == "dockerHosts" ]]; then
