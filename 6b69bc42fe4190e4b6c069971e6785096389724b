@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc86f19a_ce8aabdd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-11T16:00:11Z",
+      "side": 1,
+      "message": "Looks like what we are looking for. Just some structural comments",
+      "revId": "6b69bc42fe4190e4b6c069971e6785096389724b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c6965af_bcfd55cd",
+        "filename": "cps-charts/templates/postgresql-deployment.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-11T16:00:11Z",
+      "side": 1,
+      "message": "Can get these from values file",
+      "revId": "6b69bc42fe4190e4b6c069971e6785096389724b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "158a04b0_94561813",
+        "filename": "cps-charts/templates/postgresql-exporter-service.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-11T16:00:11Z",
+      "side": 1,
+      "message": "Can be got from values",
+      "revId": "6b69bc42fe4190e4b6c069971e6785096389724b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "222cd3f1_0de9e00c",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-11T16:00:11Z",
+      "side": 1,
+      "message": "Can we just call this exporter?",
+      "revId": "6b69bc42fe4190e4b6c069971e6785096389724b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
