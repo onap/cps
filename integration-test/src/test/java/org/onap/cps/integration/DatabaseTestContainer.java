@@ -19,7 +19,7 @@
 
 package org.onap.cps.integration;
 
-import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.postgresql.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 /**
@@ -29,7 +29,7 @@ import org.testcontainers.utility.DockerImageName;
  *  docker exec -it {container-id} sh
  *  psql -d test -U test
  */
-public class DatabaseTestContainer extends PostgreSQLContainer<DatabaseTestContainer> {
+public class DatabaseTestContainer extends PostgreSQLContainer {
     private static final String IMAGE_VERSION = "registry.nordix.org/onaptest/postgres:14.1";
     private static DatabaseTestContainer databaseTestContainer;
 
