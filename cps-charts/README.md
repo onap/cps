@@ -34,6 +34,10 @@ helm install cps ./<chart-directory>
 ```
 Replace <chart-directory> with the path to this Helm chart.
 
+To install with policy executor stub enabled
+```bash
+helm install cps ./<chart-directory> --set cps.env.POLICY_SERVICE_ENABLED=true
+```
 ---
 
 ## check deployment status
@@ -71,4 +75,5 @@ This Helm chart deploys the following components:
 - kafka: Kafka message broker
 - zookeeper: Zookeeper coordination service for Kafka
 - dmi-stub: Stub service for NCMP device interactions
+- policy-executor-stub: Stub service for Policy Executor interactions
 ---

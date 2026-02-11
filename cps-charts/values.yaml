@@ -93,6 +93,8 @@ cps:
     ONAP_OTEL_EXPORTER_ENDPOINT: "http://jaeger-service:4317"
     POLICY_SERVICE_ENABLED: "false"
     POLICY_SERVICE_DEFAULT_DECISION: "deny from env"
+    POLICY_SERVICE_PORT: "8094"
+    POLICY_SERVICE_URL: "http://cps-ncmp-policy-executor-stub-service"
     CPS_MONITORING_MICROMETER_JVM_EXTRAS: "true"
     JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
     HAZELCAST_MODE_KUBERNETES_ENABLED: "true"
@@ -234,4 +236,23 @@ dmiStub:
     failureThreshold: 3
     timeoutSeconds: 5
 
-
+policyExecutorStub:
+  enabled: true
+  image:
+    repository: nexus3.onap.org:10003/onap/policy-executor-stub
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    type: NodePort
+    port: 8094
+    nodePort: 30095
+  env:
+    POLICY_SERVICE_PORT: 8094
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "350Mi"
+    limits:
+      cpu: "1000m"
+      memory: "2Gi"

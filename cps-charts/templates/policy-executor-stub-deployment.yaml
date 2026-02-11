@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-policy-executor-stub
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: policy-executor-stub
+spec:
+  replicas: {{ .Values.dmiStub.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "cps-and-ncmp.name" . }}
+      component: policy-executor-stub
+      instance: policy-executor-stub
+  template:
+    metadata:
+      labels:
+        app: {{ include "cps-and-ncmp.name" . }}
+        component: policy-executor-stub
+        instance: policy-executor-stub
+    spec:
+      containers:
+        - name: policy-executor-stub
+          image: "{{ .Values.policyExecutorStub.image.repository }}:{{ .Values.policyExecutorStub.image.tag }}"
+          imagePullPolicy: {{ .Values.policyExecutorStub.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.policyExecutorStub.service.port }}
+          env:
+            - name: POLICY_SERVICE_PORT
+              value: "{{ .Values.policyExecutorStub.service.port }}"
+          resources:
+            {{ toYaml .Values.policyExecutorStub.resources | nindent 12 }}
