@@ -18,6 +18,7 @@ spec:
         component: postgresql
     spec:
       containers:
+        # --- Main Postgres container ---
         - name: postgresql
           image: "{{ .Values.postgresql.image }}"
           ports:
@@ -36,6 +37,17 @@ spec:
             {{- toYaml .Values.postgresql.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.postgresql.readinessProbe | nindent 12 }}
+
+        # --- Postgres Exporter sidecar ---
+        - name: postgres-exporter
+          image: quay.io/prometheuscommunity/postgres-exporter:latest
+          ports:
+            - containerPort: 9187
+              name: metrics
+          env:
+            - name: DATA_SOURCE_NAME
+              value: "postgresql://{{ .Values.postgresql.env.POSTGRES_USER }}:{{ .Values.postgresql.env.POSTGRES_PASSWORD }}@localhost:5432/{{ .Values.postgresql.env.POSTGRES_DB }}?sslmode=disable"
+
       volumes:
         - name: init-sql
           configMap:

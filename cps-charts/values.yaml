@@ -10,6 +10,16 @@ postgresql:
       cpu: "6000m"
       memory: "3Gi"
   servicePort: 5432
+  extraContainers:
+    - name: postgres-exporter
+      image: quay.io/prometheuscommunity/postgres-exporter:latest
+      ports:
+        - containerPort: 9187
+          name: metrics
+      env:
+        - name: DATA_SOURCE_NAME
+          value: "postgresql://cps:cps@localhost:5432/cpsdb?sslmode=disable"
+
   env:
     POSTGRES_DB: "cpsdb"
     POSTGRES_USER: "cps"
