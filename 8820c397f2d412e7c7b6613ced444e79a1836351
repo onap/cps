@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b477d9c7_3fd63de1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 101
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-12T10:49:57Z",
+      "side": 1,
+      "message": "can import statically",
+      "range": {
+        "startLine": 101,
+        "startChar": 27,
+        "endLine": 101,
+        "endChar": 55
+      },
+      "revId": "8820c397f2d412e7c7b6613ced444e79a1836351",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
