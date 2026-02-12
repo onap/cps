@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d8f2ff5_14037829",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-12T15:27:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0707133_9d382a66",
+      "range": {
+        "startLine": 72,
+        "startChar": 20,
+        "endLine": 72,
+        "endChar": 39
+      },
+      "revId": "41e2a0864b39a07f9010996dd0ab0783c60f84f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e83da758_1b76a549",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-02-12T10:59:09Z",
       "side": 1,
       "message": "is this check really needed. it would mean NO cm handles exist?!\nDoe steh methis that is called fail with error if empty... (if not check here is definitly not needed)",
+      "range": {
+        "startLine": 134,
+        "startChar": 39,
+        "endLine": 134,
+        "endChar": 70
+      },
+      "revId": "41e2a0864b39a07f9010996dd0ab0783c60f84f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e38e7f5_13658c35",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-12T15:27:18Z",
+      "side": 1,
+      "message": "Correct, not needed",
+      "parentUuid": "e83da758_1b76a549",
       "range": {
         "startLine": 134,
         "startChar": 39,
@@ -100,6 +148,30 @@
       "writtenOn": "2026-02-12T10:59:09Z",
       "side": 1,
       "message": "interesting :-)",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "41e2a0864b39a07f9010996dd0ab0783c60f84f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1475f23_7537ac80",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-12T15:27:18Z",
+      "side": 1,
+      "message": "It\u0027s a handy little option for changing the value midtest",
+      "parentUuid": "65223828_5dfb31bf",
       "range": {
         "startLine": 42,
         "startChar": 12,
