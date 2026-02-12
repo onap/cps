@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "027e2380_cc9bd545",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-12T11:01:24Z",
+      "side": 1,
+      "message": "dont understand k8 yaml well enough to approve, it looks OK to me and I suppose it works :-) e\n but do have a slight issue with the wording in the readme",
+      "revId": "3f2538a3359482815d7502fd458f9223027eba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff705b21_684d0ef8",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-12T11:01:24Z",
+      "side": 1,
+      "message": "you dont really enable the stub. You enable NCMP to use Policy Checking",
+      "range": {
+        "startLine": 37,
+        "startChar": 32,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "3f2538a3359482815d7502fd458f9223027eba5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
