@@ -1,10 +1,10 @@
 {
 	"id": "a0df880f-ad98-482a-8725-ee4577cf224e",
-	"name": "CPS Environment k8s",
+	"name": "CPS Environment k8s-linux-minikube",
 	"values": [
 		{
 			"key": "CPS_HOST",
-			"value": "localhost",
+			"value": "192.168.49.2",
 			"type": "default",
 			"enabled": true
 		},
@@ -15,26 +15,26 @@
 			"enabled": true
 		},
 		{
-			"key": "DMI_HOST",
-			"value": "cps-ncmp-dmi-stub-1-service",
+			"key": "DMI_HOST_1",
+			"value": "192.168.49.2",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "DMI_PORT",
-			"value": "8092",
+			"key": "DMI_PORT_1",
+			"value": "30092",
 			"type": "default",
 			"enabled": true
 		},
 		{
 			"key": "DMI_HOST_2",
-			"value": "cps-ncmp-dmi-stub-2-service",
+			"value": "192.168.49.2",
 			"type": "default",
 			"enabled": true
 		},
 		{
 			"key": "DMI_PORT_2",
-			"value": "8093",
+			"value": "30094",
 			"type": "default",
 			"enabled": true
 		}
