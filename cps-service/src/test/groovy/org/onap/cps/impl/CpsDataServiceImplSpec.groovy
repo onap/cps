@@ -25,6 +25,7 @@ package org.onap.cps.impl
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.exceptions.ConcurrencyException
@@ -33,11 +34,14 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.SessionManagerException
 import org.onap.cps.api.exceptions.SessionTimeoutException
 import org.onap.cps.api.model.Anchor
+import org.onap.cps.api.model.DataNode
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.events.CpsDataUpdateEventsProducer
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
+import org.onap.cps.utils.DataMapper
+import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator
@@ -61,9 +65,11 @@ class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataUpdateEventsProducer = Mock(CpsDataUpdateEventsProducer)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
     def mockGroupedDeltaReportGenerator = Mock(GroupedDeltaReportGenerator)
+    def mockDataMapper = Mock(DataMapper)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService,
-            dataNodeFactory, mockCpsValidator, yangParser, mockGroupedDeltaReportGenerator)
+            dataNodeFactory, mockCpsValidator, yangParser, mockGroupedDeltaReportGenerator, mockDataMapper, jsonObjectMapper)
 
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
@@ -678,11 +684,17 @@ class CpsDataServiceImplSpec extends Specification {
             setupSchemaSetMocks('test-tree.yang')
             def jsonData = '{"branch": [ { "name" : "Left" }]}'
             def deltaReports = [new DeltaReportBuilder().withXpath('/test-tree/branch[@name=\'Left\']').actionReplace().withTargetData(['name': 'Left']).build()]
+        and: 'existing source data nodes that will be fetched for delta comparison'
+            def sourceDataNode = new DataNode(xpath: '/test-tree/branch[@name=\'Left\']', leaves: ['name': 'Left'])
         and: 'delta report in notifications is enabled'
             def deltaNotificationEnabled = (objectUnderTest.deltaNotificationEnabled = true)
         when: 'update data method is invoked with json data'
             objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp, ContentType.JSON)
-        then: 'the delta report generator returns delta reports'
+        then: 'source data nodes are fetched from persistence for delta comparison'
+            1 * mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, anchorName, ['/test-tree/branch[@name=\'Left\']'], _) >> [sourceDataNode]
+        and: 'dataMapper transforms source data nodes to flat map for rebuilding'
+            1 * mockDataMapper.toFlatDataMap(anchor, [sourceDataNode]) >> ['branch': [['name': 'Left']]]
+        and: 'the delta report generator returns delta reports'
             mockGroupedDeltaReportGenerator.createCondensedDeltaReports(*_) >> deltaReports
         and: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, _)
@@ -720,11 +732,17 @@ class CpsDataServiceImplSpec extends Specification {
             setupSchemaSetMocks('test-tree.yang')
             def jsonData = '{"branch": [ { "name" : "Left" }]}'
             def deltaReports = [new DeltaReportBuilder().withXpath('/test-tree/branch[@name=\'Left\']').actionReplace().withTargetData(['name': 'Left']).build()]
+        and: 'existing source data nodes that will be fetched for delta comparison'
+            def sourceDataNode = new DataNode(xpath: '/test-tree/branch[@name=\'Left\']', leaves: ['name': 'Left', 'status': 'active'])
         and: 'delta report in notifications is enabled'
             def deltaNotificationEnabled = (objectUnderTest.deltaNotificationEnabled = true)
         when: 'replace list content method is invoked with json data'
             objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp, ContentType.JSON)
-        then: 'the delta report generator returns delta reports'
+        then: 'source data nodes are fetched from persistence for delta comparison'
+            1 * mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, anchorName, ['/test-tree/branch[@name=\'Left\']'], _) >> [sourceDataNode]
+        and: 'dataMapper transforms source data nodes to flat map for rebuilding'
+            1 * mockDataMapper.toFlatDataMap(anchor, [sourceDataNode]) >> ['branch': [['name': 'Left']]]
+        and: 'the delta report generator returns delta reports'
             mockGroupedDeltaReportGenerator.createCondensedDeltaReports(*_) >> deltaReports
         and: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, '/test-tree', _)

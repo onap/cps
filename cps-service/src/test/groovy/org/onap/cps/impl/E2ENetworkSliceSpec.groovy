@@ -23,6 +23,7 @@
 
 package org.onap.cps.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.model.Anchor
@@ -31,8 +32,11 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
+import org.onap.cps.utils.DataMapper
+import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
+import org.onap.cps.utils.deltareport.DeltaReportHelper
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
@@ -50,7 +54,9 @@ class E2ENetworkSliceSpec extends Specification {
     def mockCpsDataUpdateEventsProducer = Mock(CpsDataUpdateEventsProducer)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
     def mockGroupedDeltaReportGenerator = Mock(GroupedDeltaReportGenerator)
-    def cpsDataServiceImpl = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService, dataNodeFactory, mockCpsValidator, yangParser, mockGroupedDeltaReportGenerator)
+    def dataMapper = Mock(DataMapper)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def cpsDataServiceImpl = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService, dataNodeFactory, mockCpsValidator, yangParser, mockGroupedDeltaReportGenerator, dataMapper, jsonObjectMapper)
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
     def schemaSetName = 'someSchemaSet'
