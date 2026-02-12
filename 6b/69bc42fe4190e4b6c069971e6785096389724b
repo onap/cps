@@ -1,0 +1,11 @@
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+1: Shivani Khare <shivani.khare@est.tech>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Verified+1: Gerard Nugent <gerard.nugent@est.tech>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Gerard Nugent <gerard.nugent@est.tech>
+Submitted-by: Gerard Nugent <gerard.nugent@est.tech>
+Submitted-at: Thu, 12 Feb 2026 10:40:45 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/143162
+Project: cps
+Branch: refs/heads/master
