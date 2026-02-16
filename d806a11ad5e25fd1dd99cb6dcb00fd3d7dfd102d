@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9132b02b_f630fde4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-16T13:10:55Z",
+      "side": 1,
+      "message": "1 blocking comment on test number , rest is NB \n\nalso adjusts license years :)",
+      "revId": "d806a11ad5e25fd1dd99cb6dcb00fd3d7dfd102d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffae5058_317ca4fb",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-16T13:10:55Z",
+      "side": 1,
+      "message": "you might need to adjust the kafka verification test to be test number 12 then",
+      "range": {
+        "startLine": 129,
+        "startChar": 3,
+        "endLine": 129,
+        "endChar": 24
+      },
+      "revId": "d806a11ad5e25fd1dd99cb6dcb00fd3d7dfd102d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5823c327_5f89d929",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-16T13:10:55Z",
+      "side": 1,
+      "message": "NB: just spacing between { and \u0027provMns\u0027.... on both ends",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 53
+      },
+      "revId": "d806a11ad5e25fd1dd99cb6dcb00fd3d7dfd102d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
