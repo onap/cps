@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f07f21_4d3eeb1f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-16T13:32:21Z",
+      "side": 1,
+      "message": "i think its better to keep the name and just update the description of its scope",
+      "range": {
+        "startLine": 58,
+        "startChar": 9,
+        "endLine": 58,
+        "endChar": 47
+      },
+      "revId": "e739e3e8a3219b11c67e2c0a23de55573bd36429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
