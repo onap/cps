@@ -22,6 +22,23 @@
       },
       "revId": "e4f5b4041f2a5e3681fcb00e3187134508ba940e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "580f52fe_7d35b132",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-02-16T14:55:34Z",
+      "side": 1,
+      "message": "NB: naming inconsistency. somewhere using \"provMns\" and somewhere \"provMnS\".",
+      "revId": "e4f5b4041f2a5e3681fcb00e3187134508ba940e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
