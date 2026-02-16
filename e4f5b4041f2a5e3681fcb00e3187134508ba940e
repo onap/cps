@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "518fa180_bdd69839",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-16T13:15:30Z",
+      "side": 1,
+      "message": "just @TestPropertySource does not work?",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 52
+      },
+      "revId": "e4f5b4041f2a5e3681fcb00e3187134508ba940e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
