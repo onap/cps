@@ -75,7 +75,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ProvMnSController implements ProvMnS {
 
-    private static final String NO_AUTHORIZATION = null;
     private static final String PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE =
         "Registered DMI does not support the ProvMnS interface.";
 
@@ -89,6 +88,9 @@ public class ProvMnSController implements ProvMnS {
 
     @Value("${app.ncmp.provmns.max-patch-operations:10}")
     private Integer maxNumberOfPatchOperations;
+
+    @Value("${ncmp.policy-executor.enabled:false}")
+    private boolean policyExecutorEnabled;
 
     @Override
     public ResponseEntity<Object> getMoi(final HttpServletRequest httpServletRequest,
@@ -120,8 +122,10 @@ public class ProvMnSController implements ProvMnS {
         final RequestParameters requestParameters = ParameterHelper.extractRequestParameters(httpServletRequest);
         try {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
-            checkPermissionForEachPatchItem(requestParameters.fdn(), patchItems,
-                yangModelCmHandle, requestParameters.authorization());
+            if (policyExecutorEnabled) {
+                checkPermissionForEachPatchItem(requestParameters.fdn(), patchItems,
+                    yangModelCmHandle, requestParameters.authorization());
+            }
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
             return dmiRestClient.synchronousPatchOperation(DATA, patchItems, urlTemplateParameters,
@@ -136,9 +140,11 @@ public class ProvMnSController implements ProvMnS {
         final RequestParameters requestParameters = ParameterHelper.extractRequestParameters(httpServletRequest);
         try {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
-            final OperationDetails operationDetails =
-                operationDetailsFactory.buildOperationDetails(CREATE, requestParameters, resource);
-            checkPermission(yangModelCmHandle, operationDetails, requestParameters);
+            if (policyExecutorEnabled) {
+                final OperationDetails operationDetails =
+                    operationDetailsFactory.buildOperationDetails(CREATE, requestParameters, resource);
+                checkPermission(yangModelCmHandle, operationDetails, requestParameters);
+            }
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
             return dmiRestClient.synchronousPutOperation(DATA, resource,
@@ -153,9 +159,11 @@ public class ProvMnSController implements ProvMnS {
         final RequestParameters requestParameters = ParameterHelper.extractRequestParameters(httpServletRequest);
         try {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
-            final OperationDetails operationDetails =
-                operationDetailsFactory.buildOperationDetailsForDelete(requestParameters.fdn());
-            checkPermission(yangModelCmHandle, operationDetails, requestParameters);
+            if (policyExecutorEnabled) {
+                final OperationDetails operationDetails =
+                    operationDetailsFactory.buildOperationDetailsForDelete(requestParameters.fdn());
+                checkPermission(yangModelCmHandle, operationDetails, requestParameters);
+            }
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
             return dmiRestClient.synchronousDeleteOperation(DATA,
