@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe94e00b_b56bb19e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/PayloadFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-16T13:52:58Z",
+      "side": 1,
+      "message": "can you not import java.util.Objects and use Object.equals here only?",
+      "range": {
+        "startLine": 79,
+        "startChar": 40,
+        "endLine": 79,
+        "endChar": 65
+      },
+      "revId": "c85cd10aebccfbd25ef9feeea9e4a4d98a74c676",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0f8177f_2ed4a09b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/PayloadFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-16T13:52:58Z",
+      "side": 1,
+      "message": "i like the format on lines 77-79 used the same here , i think its more readable",
+      "range": {
+        "startLine": 81,
+        "startChar": 36,
+        "endLine": 82,
+        "endChar": 80
+      },
+      "revId": "c85cd10aebccfbd25ef9feeea9e4a4d98a74c676",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6c7d7e3_68af7a8a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/PayloadFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-16T13:52:58Z",
+      "side": 1,
+      "message": "suggestion: would it not be easier to override the equals method here to return values that are not the same between the two cmHandles ?",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 69
+      },
+      "revId": "c85cd10aebccfbd25ef9feeea9e4a4d98a74c676",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
