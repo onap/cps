@@ -16,6 +16,91 @@
       "message": "recheck",
       "revId": "f8aa420344349019f5f142b2ebaac3c5b084bd18",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfaddb57_72d2f9f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-16T10:26:34Z",
+      "side": 1,
+      "message": "Looks good, just fix indentation in testware, otherwise good to go!",
+      "revId": "f8aa420344349019f5f142b2ebaac3c5b084bd18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec45de9_c8a0bc8f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-16T10:26:34Z",
+      "side": 1,
+      "message": "fix indentation",
+      "revId": "f8aa420344349019f5f142b2ebaac3c5b084bd18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "719c8cbd_b960a5cd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-16T10:26:34Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "f8aa420344349019f5f142b2ebaac3c5b084bd18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "777d8fa6_6ac1b571",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-16T10:26:34Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "f8aa420344349019f5f142b2ebaac3c5b084bd18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "395adc1d_188105db",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-16T10:26:34Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "f8aa420344349019f5f142b2ebaac3c5b084bd18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
