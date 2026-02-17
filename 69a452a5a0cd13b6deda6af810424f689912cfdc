@@ -50,6 +50,24 @@
       "message": "why are we using dmiStub.replicaCount instead of policyExecutorStub.replicaCount?",
       "revId": "69a452a5a0cd13b6deda6af810424f689912cfdc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2c26758_d25488dd",
+        "filename": "cps-charts/templates/policy-executor-stub-deployment.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-17T11:03:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "067ebdff_54219da1",
+      "revId": "69a452a5a0cd13b6deda6af810424f689912cfdc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
