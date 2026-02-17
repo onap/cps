@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a9ebc32_861f7787",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-17T12:13:34Z",
+      "side": 1,
+      "message": "Two very minor NB comments; otherwise looks good!",
+      "revId": "9fbcb13dcb27715feaadb70afbe1821cdb32b259",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cef8c511_cd53101c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerBaseSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-17T12:13:34Z",
+      "side": 1,
+      "message": "Just 2026",
+      "revId": "9fbcb13dcb27715feaadb70afbe1821cdb32b259",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ab240f2_417e6331",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-17T12:13:34Z",
+      "side": 1,
+      "message": "where",
+      "revId": "9fbcb13dcb27715feaadb70afbe1821cdb32b259",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
