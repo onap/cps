@@ -251,14 +251,12 @@ policyExecutorStub:
   image:
     repository: nexus3.onap.org:10003/onap/policy-executor-stub
     tag: "latest"
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   replicaCount: 1
   service:
     type: NodePort
     port: 8094
     nodePort: 30095
-  env:
-    POLICY_SERVICE_PORT: 8094
   resources:
     requests:
       cpu: "100m"
