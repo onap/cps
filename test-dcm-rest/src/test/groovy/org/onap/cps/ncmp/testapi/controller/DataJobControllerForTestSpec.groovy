@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.controller
+package org.onap.cps.ncmp.testapi.controller
 
 import org.onap.cps.ncmp.api.datajobs.DataJobService
 import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata
-import org.onap.cps.ncmp.api.datajobs.models.DataJobRequest
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
+import org.onap.cps.ncmp.testapi.controller.models.DataJobRequest
 import org.springframework.http.HttpStatus
 import spock.lang.Specification
 

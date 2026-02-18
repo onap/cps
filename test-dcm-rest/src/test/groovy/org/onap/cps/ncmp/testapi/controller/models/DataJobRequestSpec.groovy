@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,22 +18,22 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.datajobs.models
+package org.onap.cps.ncmp.testapi.controller.models
 
+import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata
+import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import spock.lang.Specification
 
 class DataJobRequestSpec extends Specification {
 
-    def dataJobMetaData = new DataJobMetadata('some destination', 'some accept type', 'some content type')
-    def writeOperation = new WriteOperation('some path', 'some operation', 'some id', 'some value')
-    def dataJobWriteRequest = new DataJobWriteRequest([writeOperation])
-
-    def objectUnderTest = new DataJobRequest(dataJobMetaData, dataJobWriteRequest)
-
-    //TODO This class is only used for a test Controller. Maybe it can be removed, see https://lf-onap.atlassian.net/browse/CPS-3062
-    def 'a Data Job Request.'() {
-        expect: 'a data job request consisting out of meta data and a write request'
-            assert objectUnderTest.dataJobMetadata == dataJobMetaData
-            assert  objectUnderTest.dataJobWriteRequest == dataJobWriteRequest
+    def 'Create DataJobRequest'() {
+        given: 'metadata and write request'
+            def metadata = new DataJobMetadata('destination', 'accept', 'content')
+            def writeRequest = new DataJobWriteRequest([])
+        when: 'DataJobRequest is created'
+            def result = new DataJobRequest(metadata, writeRequest)
+        then: 'the record contains the correct values'
+            result.dataJobMetadata() == metadata
+            result.dataJobWriteRequest() == writeRequest
     }
 }

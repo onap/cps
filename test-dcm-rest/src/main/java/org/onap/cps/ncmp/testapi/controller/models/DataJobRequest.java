@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,7 +18,10 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.datajobs.models;
+package org.onap.cps.ncmp.testapi.controller.models;
+
+import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata;
+import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 
 public record DataJobRequest(DataJobMetadata dataJobMetadata, DataJobWriteRequest dataJobWriteRequest) {
 }
