@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e82c0cad_d13f6b06",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-19T12:50:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "019fd56e_51d5c08c",
+      "range": {
+        "startLine": 58,
+        "startChar": 9,
+        "endLine": 58,
+        "endChar": 47
+      },
+      "revId": "e739e3e8a3219b11c67e2c0a23de55573bd36429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38584483_5f29c842",
@@ -71,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c938c09f_d5e6f0f1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-19T12:50:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38584483_5f29c842",
+      "range": {
+        "startLine": 72,
+        "startChar": 20,
+        "endLine": 72,
+        "endChar": 43
+      },
+      "revId": "e739e3e8a3219b11c67e2c0a23de55573bd36429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e860b8a8_0d5b92ce",
@@ -84,6 +132,30 @@
       "writtenOn": "2026-02-16T14:35:18Z",
       "side": 1,
       "message": "no needed",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 90
+      },
+      "revId": "e739e3e8a3219b11c67e2c0a23de55573bd36429",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8d5e6bc_3e1ca4b3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-19T12:50:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e860b8a8_0d5b92ce",
       "range": {
         "startLine": 237,
         "startChar": 0,
