@@ -79,6 +79,30 @@
       },
       "revId": "5be716cfec7b2a46f7650604473305829fd0a6a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "158995c3_0a663ac4",
+        "filename": "test-dcm-rest/src/test/groovy/org/onap/cps/ncmp/testapi/controller/models/DataJobRequestSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-02-19T16:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd3b4357_d2de9bef",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "5be716cfec7b2a46f7650604473305829fd0a6a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "274297df_f8eb7aab",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/TestDcmRestArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-02-19T16:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63e8c086_b33dcb30",
+      "revId": "f9fa967c70164e399016a4cb5b3fc0559a9648e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38d6c39c_fb51cbd5",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-02-18T14:04:42Z",
       "side": 1,
       "message": "use different packageame: testapi \n(to separate from production code objects)",
+      "range": {
+        "startLine": 21,
+        "startChar": 26,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "f9fa967c70164e399016a4cb5b3fc0559a9648e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88641c85_eed93add",
+        "filename": "test-dcm-rest/src/main/java/org/onap/cps/ncmp/rest/controller/models/DataJobRequest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-02-19T16:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38d6c39c_fb51cbd5",
       "range": {
         "startLine": 21,
         "startChar": 26,
