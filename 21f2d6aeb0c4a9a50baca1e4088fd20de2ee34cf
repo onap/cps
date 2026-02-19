@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff864624_807d55e2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/datajobs/models/DataJobRequestSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-19T09:59:52Z",
+      "side": 1,
+      "message": "I I see now, dont REMOVE it but MOVE it to the new module. YOu might also have to update something in the jacoco setup to make sure it adds any coverage from the new module to the overall stats I dont think that is done automatically",
+      "revId": "21f2d6aeb0c4a9a50baca1e4088fd20de2ee34cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
