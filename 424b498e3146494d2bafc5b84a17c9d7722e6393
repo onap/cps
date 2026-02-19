@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "878fb96d_1662825c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-19T14:33:08Z",
+      "side": 1,
+      "message": "some minor sugegstions",
+      "revId": "424b498e3146494d2bafc5b84a17c9d7722e6393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59e9f5ab_1b1c9117",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-19T14:33:08Z",
+      "side": 1,
+      "message": "could you use IGNORE_MODEL_R20250722 for consistency and would it automatically map to ..ignore.model.r20250722 in java?",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 26
+      },
+      "revId": "424b498e3146494d2bafc5b84a17c9d7722e6393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41bbd136_4b60d2ca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-19T14:33:08Z",
+      "side": 1,
+      "message": "update and this is why you should always try to say thing in plain English (instead of pseudo code) then you wouldn\u0027t have to update the wording...",
+      "range": {
+        "startLine": 89,
+        "startChar": 56,
+        "endLine": 89,
+        "endChar": 75
+      },
+      "revId": "424b498e3146494d2bafc5b84a17c9d7722e6393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8592adcd_4f058f46",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-19T14:33:08Z",
+      "side": 1,
+      "message": "put this in a given/and block\n\u0027the new performant model is enabled\u0027",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 88
+      },
+      "revId": "424b498e3146494d2bafc5b84a17c9d7722e6393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
