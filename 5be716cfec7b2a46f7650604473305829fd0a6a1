@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97bc9993_a6051096",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-19T14:39:16Z",
+      "side": 1,
+      "message": "very good, just remove the redundant data object test.\nI dont think the coverage will drop since you are using all properties in the  other test, if not simply add the missing property in that test...",
+      "revId": "5be716cfec7b2a46f7650604473305829fd0a6a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73c6a2a1_5c41f477",
+        "filename": "jacoco-report/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-19T14:39:16Z",
+      "side": 1,
+      "message": "you found it, well done:-)",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 21
+      },
+      "revId": "5be716cfec7b2a46f7650604473305829fd0a6a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e49f27_97ce029e",
+        "filename": "test-dcm-rest/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-19T14:39:16Z",
+      "side": 1,
+      "message": "nice!",
+      "revId": "5be716cfec7b2a46f7650604473305829fd0a6a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd3b4357_d2de9bef",
+        "filename": "test-dcm-rest/src/test/groovy/org/onap/cps/ncmp/testapi/controller/models/DataJobRequestSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-19T14:39:16Z",
+      "side": 1,
+      "message": "this is a simple data object, it should not need its own test. It should be already fully covered in DataJobControllerForTestSpec",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "5be716cfec7b2a46f7650604473305829fd0a6a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
