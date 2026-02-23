@@ -16,6 +16,40 @@
       "message": "I assume this is OK....",
       "revId": "b5ac17dd3c51c3ac24658c50312965137c439510",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f7ceff_14d0dedb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-23T16:32:54Z",
+      "side": 1,
+      "message": "Looks good, minor comment",
+      "revId": "b5ac17dd3c51c3ac24658c50312965137c439510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95366005_be6b6857",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/TransactionConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-23T16:32:54Z",
+      "side": 1,
+      "message": "NB: Expand on the JPA in brackets (Java Persistence API)",
+      "revId": "b5ac17dd3c51c3ac24658c50312965137c439510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
