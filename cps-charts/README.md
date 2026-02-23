@@ -22,21 +22,27 @@
 # CPS and NCMP Helm Chart
 This Helm chart deploys the **CPS** and **NCMP** ecosystem along with PostgreSQL, Kafka, Zookeeper, and dual DMI Stub services.
 ---
-## Prerequisites
-- Kubernetes cluster (tested on K8s 1.24+)
-- Helm 3.x
-- Access to the necessary Docker image registry (e.g., `nexus3.onap.org`)
+#### Prerequisites for Windows
+1. Docker Desktop
+2. Enable Kubernetes in Docker Desktop (Settings, Kubernetes, kubeadm). Known issue: it may hang on "starting kubernetes" for a few minutes. Resolution: click "Reset Cluster" then it starts.
+3. Helm 3.x  (see [installing helm on windows](https://helm.sh/docs/intro/install/). Recommended approach: install Helm with winget)
+
+
+#### Prerequisites for Linux
+1. Kubernetes cluster (tested on K8s 1.24+)
+   - k3s from Rancher (see) [installing k3s on linux](https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-cluster-setup/k3s-for-rancher))
+2. Helm 3.x (see [installing helm on linux](https://helm.sh/docs/intro/install/)) 
+
 ---
 ## Installation
 To install the chart into the **default namespace**:
 ```bash
-helm install cps ./<chart-directory>
+helm install cps ./cps-charts
 ```
-Replace <chart-directory> with the path to this Helm chart.
 
 To install with policy executor checking enabled
 ```bash
-helm install cps ./<chart-directory> --set cps.env.POLICY_SERVICE_ENABLED=true
+helm install cps ./cps-charts --set cps.env.POLICY_SERVICE_ENABLED=true
 ```
 ---
 
@@ -48,7 +54,9 @@ kubectl get pods
 ---
 
 # Port forwarding
-Required for local access to cluster services
+Required for local access to cluster services (keep running in separate terminal)
+
+CPS/NCMP service:
 ```bash
 kubectl port-forward service/cps-ncmp-service 8080:8080
 ```
