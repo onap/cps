@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d308a08_3a58d3c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:33:58Z",
+      "side": 1,
+      "message": "add point about reducing legacy load to 20% of its orginal",
+      "revId": "de4dc0928770a393d6d0ad14a2b63fb852d2b3f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3cd2fa1_c1765abe",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:33:58Z",
+      "side": 1,
+      "message": "actually I dont think DCM/DataJob is art of the \u0027legacy\u0027 we are suppose to reduce...",
+      "range": {
+        "startLine": 170,
+        "startChar": 19,
+        "endLine": 170,
+        "endChar": 21
+      },
+      "revId": "de4dc0928770a393d6d0ad14a2b63fb852d2b3f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc93338d_387604a1",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:33:58Z",
+      "side": 1,
+      "message": "to be decide (mayeb add comment until we have figues)",
+      "range": {
+        "startLine": 133,
+        "startChar": 27,
+        "endLine": 133,
+        "endChar": 31
+      },
+      "revId": "de4dc0928770a393d6d0ad14a2b63fb852d2b3f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
