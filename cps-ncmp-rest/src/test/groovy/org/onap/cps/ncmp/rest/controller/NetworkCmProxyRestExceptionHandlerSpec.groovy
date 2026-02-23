@@ -108,9 +108,6 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     NcmpPassthroughResourceRequestHandler StubbedNcmpPassthroughResourceRequestHandler = Stub()
 
     @SpringBean
-    DataJobControllerForTest stubbedDataJobControllerForTest = Stub()
-
-    @SpringBean
     RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
 
     @SpringBean

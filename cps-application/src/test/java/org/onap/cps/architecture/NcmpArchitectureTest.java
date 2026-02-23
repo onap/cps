@@ -35,6 +35,12 @@ public class NcmpArchitectureTest extends ArchitectureTestBase {
                     .resideInAPackage("org.onap.cps.ncmp.rest..");
 
     @ArchTest
+    static final ArchRule nothingDependsOnTestCpsNcmpRest =
+            classes().that().resideInAPackage("org.onap.cps.ncmp.testapi..").should().onlyHaveDependentClassesThat()
+                    .resideInAPackage("org.onap.cps.ncmp.testapi..")
+                    .allowEmptyShould(true);
+
+    @ArchTest
     static final ArchRule ncmpRestControllerShouldOnlyDependOnNcmpService =
             classes().that().resideInAPackage("org.onap.cps.ncmp.rest..")
                     .should()
