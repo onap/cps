@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45e945b2_48db4f9d",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:12:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e168cf02_9edc332f",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 26
+      },
+      "revId": "424b498e3146494d2bafc5b84a17c9d7722e6393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41bbd136_4b60d2ca",
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "Groovy won\u0027t allow a given here. Split up the field setting and method call with an and",
       "parentUuid": "8592adcd_4f058f46",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 88
+      },
+      "revId": "424b498e3146494d2bafc5b84a17c9d7722e6393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf67d392_8e076dfe",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:12:38Z",
+      "side": 1,
+      "message": "I misunderstood the purpose of the test. I get it now but It might need a bit of clarification I pushed up a patch with proposed new wording (just small clarification) in Nordix",
+      "parentUuid": "450ffddd_746af96e",
       "range": {
         "startLine": 53,
         "startChar": 0,
