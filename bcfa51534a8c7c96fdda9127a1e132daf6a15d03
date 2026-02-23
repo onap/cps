@@ -16,6 +16,69 @@
       "message": "recheck",
       "revId": "bcfa51534a8c7c96fdda9127a1e132daf6a15d03",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0e5e7c4_e79c4034",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-23T16:42:53Z",
+      "side": 1,
+      "message": "Looks good, minor comments",
+      "revId": "bcfa51534a8c7c96fdda9127a1e132daf6a15d03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63bb106d_ae75d076",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/EosKafkaConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-23T16:42:53Z",
+      "side": 1,
+      "message": "NB: can be removed",
+      "range": {
+        "startLine": 62,
+        "startChar": 3,
+        "endLine": 62,
+        "endChar": 6
+      },
+      "revId": "bcfa51534a8c7c96fdda9127a1e132daf6a15d03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1621eceb_1e444437",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/EosKafkaConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-23T16:42:53Z",
+      "side": 1,
+      "message": "NB: Avoid abbreviations say exactly one-semantics",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 19
+      },
+      "revId": "bcfa51534a8c7c96fdda9127a1e132daf6a15d03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
