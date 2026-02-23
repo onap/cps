@@ -109,7 +109,7 @@ cps:
     JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
     HAZELCAST_MODE_KUBERNETES_ENABLED: "true"
     IGNORE_R20250722_MODEL: "true"
-
+    APP_LCM_EVENTS_EVENT-SCHEMA-VERSION: "v1"
 kafka:
   enabled: true
   image:
