@@ -22,6 +22,30 @@
       },
       "revId": "eeadaacd7f1b63f99696720fdca4b43ea8f9e90e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a7524ba_87e61d24",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-23T10:44:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab2e9b3a_d45acbbf",
+      "range": {
+        "startLine": 76,
+        "startChar": 69,
+        "endLine": 76,
+        "endChar": 73
+      },
+      "revId": "eeadaacd7f1b63f99696720fdca4b43ea8f9e90e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
