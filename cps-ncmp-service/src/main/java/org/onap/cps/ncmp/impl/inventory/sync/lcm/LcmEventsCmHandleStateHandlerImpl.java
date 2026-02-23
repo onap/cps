@@ -102,8 +102,8 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
             if (isNew(cmHandleTransitionPair.currentYangModelCmHandle().getCompositeState())) {
                 newCmHandles.add(cmHandleTransitionPair.targetYangModelCmHandle());
             } else if (!isDeleted(cmHandleTransitionPair.targetYangModelCmHandle().getCompositeState())) {
-                compositeStatePerCmHandleId.put(cmHandleTransitionPair.targetYangModelCmHandle().getId(),
-                        cmHandleTransitionPair.targetYangModelCmHandle().getCompositeState());
+                final YangModelCmHandle targetCmHandle = cmHandleTransitionPair.targetYangModelCmHandle();
+                compositeStatePerCmHandleId.put(targetCmHandle.getId(), targetCmHandle.getCompositeState());
             }
         });
         inventoryPersistence.saveCmHandleBatch(newCmHandles);
