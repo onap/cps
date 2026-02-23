@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbe6adb4_d734d2bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:25:14Z",
+      "side": 1,
+      "message": "left a few suggestions",
+      "revId": "13c49eb13e7fbba72b1c9446e7bf370bbc847f54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9004f99_cf9ee7ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/EosKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:25:14Z",
+      "side": 1,
+      "message": "NB: maybe use static imports to improve readability",
+      "range": {
+        "startLine": 110,
+        "startChar": 37,
+        "endLine": 110,
+        "endChar": 53
+      },
+      "revId": "13c49eb13e7fbba72b1c9446e7bf370bbc847f54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a73ac086_035c5753",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/EosKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:25:14Z",
+      "side": 1,
+      "message": "is thsi 30 seconds? Maybe use TimeUnit to make tshi mro readable\nand then on line 177 too",
+      "range": {
+        "startLine": 179,
+        "startChar": 56,
+        "endLine": 179,
+        "endChar": 63
+      },
+      "revId": "13c49eb13e7fbba72b1c9446e7bf370bbc847f54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "299f1a10_d69df629",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/EosKafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:25:14Z",
+      "side": 1,
+      "message": "that\u0027s very precise (AI generated \u003e) n expression for twh whol UUID wil suffice",
+      "range": {
+        "startLine": 76,
+        "startChar": 89,
+        "endLine": 76,
+        "endChar": 149
+      },
+      "revId": "13c49eb13e7fbba72b1c9446e7bf370bbc847f54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
