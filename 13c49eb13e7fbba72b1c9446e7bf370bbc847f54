@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89f5ece6_c482fc0f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/EosKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-23T10:35:49Z",
+      "side": 1,
+      "message": "is this ned, is it not implied for a boolean",
+      "range": {
+        "startLine": 61,
+        "startChar": 56,
+        "endLine": 61,
+        "endChar": 76
+      },
+      "revId": "13c49eb13e7fbba72b1c9446e7bf370bbc847f54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9004f99_cf9ee7ef",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/EosKafkaConfig.java",
         "patchSetId": 2
