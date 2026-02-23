@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89898e20_1173fb15",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-23T10:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffae5058_317ca4fb",
+      "range": {
+        "startLine": 129,
+        "startChar": 3,
+        "endLine": 129,
+        "endChar": 24
+      },
+      "revId": "d806a11ad5e25fd1dd99cb6dcb00fd3d7dfd102d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5823c327_5f89d929",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-02-16T13:10:55Z",
       "side": 1,
       "message": "NB: just spacing between { and \u0027provMns\u0027.... on both ends",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 53
+      },
+      "revId": "d806a11ad5e25fd1dd99cb6dcb00fd3d7dfd102d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00dc1b6f_d77b0268",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-23T10:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5823c327_5f89d929",
       "range": {
         "startLine": 45,
         "startChar": 6,
