@@ -284,6 +284,11 @@
                     <groupId>${project.groupId}</groupId>
                     <artifactId>cps-ri</artifactId>
                 </dependency>
+                <dependency>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>test-dcm-rest</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
