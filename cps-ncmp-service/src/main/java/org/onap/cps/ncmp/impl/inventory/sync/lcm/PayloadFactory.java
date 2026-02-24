@@ -26,9 +26,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.PayloadV1;
 import org.onap.cps.ncmp.events.lcm.PayloadV2;
@@ -37,8 +37,12 @@ import org.onap.cps.ncmp.events.lcm.Values;
 /**
  * Utility class for examining and identifying changes in CM handle properties.
  */
+@SuppressWarnings("java:S1192")  // Ignore repetition warning for string literals like "alternateId"
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PayloadFactory {
+
+    private static final Set<String> PROPERTIES_HANDLED_SEPERATELY_FOR_V1 =
+        Set.of("dataSyncEnabled", "cmHandleState", "alternateId", "moduleSetTag", "dataProducerIdentifier");
 
     static PayloadV1 createPayloadV1(final LcmEventType lcmEventType,
                                      final NcmpServiceCmHandle currentNcmpServiceCmHandle,
@@ -69,6 +73,9 @@ public class PayloadFactory {
         final Map<String, Object> newProperties = new HashMap<>();
         newProperties.put("dataSyncEnabled", ncmpServiceCmHandle.getCompositeState().getDataSyncEnabled());
         newProperties.put("cmHandleState", ncmpServiceCmHandle.getCompositeState().getCmHandleState().name());
+        newProperties.put("alternateId", ncmpServiceCmHandle.getAlternateId());
+        newProperties.put("moduleSetTag", ncmpServiceCmHandle.getModuleSetTag());
+        newProperties.put("dataProducerIdentifier", ncmpServiceCmHandle.getDataProducerIdentifier());
         newProperties.putAll(ncmpServiceCmHandle.getPublicProperties());
         payload.setNewValues(newProperties);
         return payload;
@@ -76,53 +83,32 @@ public class PayloadFactory {
 
     static PayloadV2 identifyChanges(final NcmpServiceCmHandle currentNcmpServiceCmHandle,
                                      final NcmpServiceCmHandle targetNcmpServiceCmHandle) {
-        final Boolean currentDataSync = currentNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled();
-        final Boolean targetDataSync = targetNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled();
-        final boolean dataSyncEnabledChanged = !Objects.equals(currentDataSync, targetDataSync);
-
-        final CmHandleState currentCmHandleState = currentNcmpServiceCmHandle.getCompositeState().getCmHandleState();
-        final CmHandleState targetCmHandleState = targetNcmpServiceCmHandle.getCompositeState().getCmHandleState();
-        final boolean cmHandleStateChanged = !Objects.equals(currentCmHandleState, targetCmHandleState);
-
-        final Map<String, String> currentPublicProperties = currentNcmpServiceCmHandle.getPublicProperties();
-        final Map<String, String> targetPublicProperties = targetNcmpServiceCmHandle.getPublicProperties();
-        final boolean publicPropertiesChanged = !Objects.equals(currentPublicProperties, targetPublicProperties);
-
-        final PayloadV2 payload = new PayloadV2();
-        if (!dataSyncEnabledChanged && !cmHandleStateChanged && !publicPropertiesChanged) {
-            return payload;
-        }
-
         final Map<String, Object> oldProperties = new HashMap<>();
         final Map<String, Object> newProperties = new HashMap<>();
 
-        if (dataSyncEnabledChanged) {
-            oldProperties.put("dataSyncEnabled", currentDataSync);
-            newProperties.put("dataSyncEnabled", targetDataSync);
-        }
-
-        if (cmHandleStateChanged) {
-            oldProperties.put("cmHandleState",
-                currentNcmpServiceCmHandle.getCompositeState().getCmHandleState().name());
-            newProperties.put("cmHandleState",
+        trackChange(oldProperties, newProperties, "dataSyncEnabled",
+                currentNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled(),
+                targetNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled());
+        trackChange(oldProperties, newProperties, "cmHandleState",
+                currentNcmpServiceCmHandle.getCompositeState().getCmHandleState().name(),
                 targetNcmpServiceCmHandle.getCompositeState().getCmHandleState().name());
+        trackChange(oldProperties, newProperties, "alternateId",
+            currentNcmpServiceCmHandle.getAlternateId(), targetNcmpServiceCmHandle.getAlternateId());
+        trackChange(oldProperties, newProperties, "moduleSetTag",
+            currentNcmpServiceCmHandle.getModuleSetTag(), targetNcmpServiceCmHandle.getModuleSetTag());
+        trackChange(oldProperties, newProperties, "dataProducerIdentifier",
+            currentNcmpServiceCmHandle.getDataProducerIdentifier(),
+            targetNcmpServiceCmHandle.getDataProducerIdentifier());
+
+        final Map<String, String> currentPublicProperties = currentNcmpServiceCmHandle.getPublicProperties();
+        final Map<String, String> targetPublicProperties = targetNcmpServiceCmHandle.getPublicProperties();
+        trackPublicPropertiesChanges(oldProperties, newProperties, currentPublicProperties, targetPublicProperties);
+
+        final PayloadV2 payload = new PayloadV2();
+        if (!oldProperties.isEmpty()) {
+            payload.setOldValues(oldProperties);
+            payload.setNewValues(newProperties);
         }
-
-        if (publicPropertiesChanged) {
-            final MapDifference<String, String> mapDifference = Maps.difference(
-                targetNcmpServiceCmHandle.getPublicProperties(),
-                currentNcmpServiceCmHandle.getPublicProperties());
-
-            oldProperties.putAll(mapDifference.entriesOnlyOnRight());
-            newProperties.putAll(mapDifference.entriesOnlyOnLeft());
-
-            mapDifference.entriesDiffering().forEach((key, valueDifference) -> {
-                oldProperties.put(key, valueDifference.rightValue());
-                newProperties.put(key, valueDifference.leftValue());
-            });
-        }
-        payload.setOldValues(oldProperties);
-        payload.setNewValues(newProperties);
         return payload;
     }
 
@@ -147,15 +133,42 @@ public class PayloadFactory {
             values.setCmHandleState(Values.CmHandleState.fromValue((String) properties.get("cmHandleState")));
         }
         final Map<String, String> publicProperties = new HashMap<>();
-        properties.forEach((key, value) -> {
-            if (!"dataSyncEnabled".equals(key) && !"cmHandleState".equals(key)) {
-                publicProperties.put(key, (String) value);
+        for (final Map.Entry<String, Object> entry : properties.entrySet()) {
+            if (!PROPERTIES_HANDLED_SEPERATELY_FOR_V1.contains(entry.getKey())) {
+                publicProperties.put(entry.getKey(), (String) entry.getValue());
             }
-        });
+        }
         if (!publicProperties.isEmpty()) {
             values.setCmHandleProperties(List.of(publicProperties));
         }
         return values;
+    }
+
+    private static void trackChange(final Map<String, Object> oldProperties,
+                                    final Map<String, Object> newProperties,
+                                    final String propertyName,
+                                    final Object oldValue,
+                                    final Object newValue) {
+        if (!Objects.equals(oldValue, newValue)) {
+            oldProperties.put(propertyName, oldValue);
+            newProperties.put(propertyName, newValue);
+        }
+    }
+
+    private static void trackPublicPropertiesChanges(final Map<String, Object> oldProperties,
+                                                     final Map<String, Object> newProperties,
+                                                     final Map<String, String> currentPublicProperties,
+                                                     final Map<String, String> targetPublicProperties) {
+        if (!Objects.equals(currentPublicProperties, targetPublicProperties)) {
+            final MapDifference<String, String> mapDifference = Maps.difference(
+                    targetPublicProperties, currentPublicProperties);
+            oldProperties.putAll(mapDifference.entriesOnlyOnRight());
+            newProperties.putAll(mapDifference.entriesOnlyOnLeft());
+            mapDifference.entriesDiffering().forEach((key, valueDifference) -> {
+                oldProperties.put(key, valueDifference.rightValue());
+                newProperties.put(key, valueDifference.leftValue());
+            });
+        }
     }
 
 }
