@@ -29,7 +29,11 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.LcmEventV1
+import org.onap.cps.ncmp.events.lcm.LcmEventV2
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
+import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventProducer
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.util.ReflectionTestUtils
 
 import java.time.Duration
 
@@ -39,6 +43,8 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
 
     KafkaConsumer<String, LegacyEvent> kafkaConsumer
 
+    @Autowired
+    LcmEventProducer lcmEventProducer
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
@@ -122,6 +128,43 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             assert notificationMessages[0].event.cmHandleId.contains(cmHandleId)
             assert notificationMessages[0].event.dataProducerIdentifier == 'my-data-producer-id'
         cleanup: 'deregister CM handle'
+            deregisterCmHandle(DMI1_URL, cmHandleId)
+    }
+
+    def 'CM Handle registration to verify changes in data producer identifier using V2 events'() {
+        given: 'event schema version is set to v2'
+            def originalEventSchemaVersion = ReflectionTestUtils.getField(lcmEventProducer, 'eventSchemaVersion')
+            ReflectionTestUtils.setField(lcmEventProducer, 'eventSchemaVersion', 'v2')
+        and: 'DMI will return modules when requested'
+            def cmHandleId = 'ch-id-for-update-v2'
+            dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleId] = ['M1', 'M2']
+        when: 'a CM-handle is registered for creation'
+            def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId)
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
+        then: 'registration gives successful response'
+            assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
+        then: 'the module sync watchdog is triggered'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
+        and: 'flush and check there are 2 cm handle registration events (state transition from NONE to ADVISED and ADVISED to READY)'
+            assert getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2).size() == 2
+        and: 'cm handle updated with the data producer identifier'
+            def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'my-data-producer-id')
+            def dmiPluginRegistrationForUpdate = new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate])
+            def dmiPluginRegistrationResponseForUpdate = objectUnderTest.updateDmiRegistration(dmiPluginRegistrationForUpdate)
+        then: 'registration gives successful response'
+            assert dmiPluginRegistrationResponseForUpdate.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
+        and: 'get the latest message'
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
+        and: 'the V2 message has the updated data producer identifier in newValues'
+            def notificationMessages = []
+            for (def consumerRecord : consumerRecords) {
+                notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEventV2))
+            }
+            assert notificationMessages[0].event.cmHandleId.contains(cmHandleId)
+            assert notificationMessages[0].event.newValues['dataProducerIdentifier'] == 'my-data-producer-id'
+        cleanup: 'restore original event schema version and deregister CM handle'
+            ReflectionTestUtils.setField(lcmEventProducer, 'eventSchemaVersion', originalEventSchemaVersion)
             deregisterCmHandle(DMI1_URL, cmHandleId)
     }
 
