@@ -32,6 +32,7 @@ import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 
 class LcmEventObjectCreatorSpec extends Specification {
 
+    def defaultState = new CompositeState(dataSyncEnabled: true, cmHandleState: READY)
     def objectUnderTest = new LcmEventObjectCreator()
     def cmHandleId = 'test-cm-handle'
 
@@ -63,10 +64,8 @@ class LcmEventObjectCreatorSpec extends Specification {
     def 'Map the LcmEvent for all properties NO CHANGE'() {
         given: 'NCMP cm handle details without any changes'
             def publicProperties = ['publicProperty1': 'value3', 'publicProperty2': 'value4']
-            def currentNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: READY),
-                    publicProperties: publicProperties)
-            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: true, cmHandleState: READY),
-                    publicProperties: publicProperties)
+            def currentNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: defaultState, publicProperties: publicProperties)
+            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: defaultState, publicProperties: publicProperties)
         when: 'the lcm event is created'
             def result = objectUnderTest.createLcmEventV1(currentNcmpServiceCmHandle, targetNcmpServiceCmHandle)
         then: 'Properties are just the one which are same'
@@ -76,9 +75,8 @@ class LcmEventObjectCreatorSpec extends Specification {
 
     def 'Map the LcmEvent for operation CREATE'() {
         given: 'NCMP cm handle details'
-            def targetNcmpServiceCmhandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: false, cmHandleState: READY),
-                publicProperties: ['publicProperty1': 'value11', 'publicProperty2': 'value22'])
             def currentNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProperty1': 'value1', 'publicProperty2': 'value2'])
+            def targetNcmpServiceCmhandle  = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: defaultState, publicProperties: ['publicProperty1': 'value11', 'publicProperty2': 'value22'])
         when: 'the lcm event is created'
             def result = objectUnderTest.createLcmEventV1(currentNcmpServiceCmHandle, targetNcmpServiceCmhandle)
         then: 'event header is mapped correctly'
@@ -88,7 +86,7 @@ class LcmEventObjectCreatorSpec extends Specification {
         and: 'event payload is mapped correctly'
             assert result.event.cmHandleId == cmHandleId
             assert result.event.newValues.cmHandleState == Values.CmHandleState.READY
-            assert result.event.newValues.dataSyncEnabled == false
+            assert result.event.newValues.dataSyncEnabled == true
             assert result.event.newValues.cmHandleProperties == [['publicProperty1': 'value11', 'publicProperty2': 'value22']]
         and: 'it should not have any old values'
             assert result.event.oldValues == null
@@ -158,8 +156,8 @@ class LcmEventObjectCreatorSpec extends Specification {
 
     def 'Map the LcmEvent for alternate ID, data producer identifier, and module set tag when they contain #scenario'() {
         given: 'NCMP cm handle details with current and old values for alternate ID, module set tag, and data producer identifier'
-            def currentNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: currentAlternateId, moduleSetTag: currentModuleSetTag, dataProducerIdentifier: currentDataProducerIdentifier, compositeState: new CompositeState(dataSyncEnabled: false))
-            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: targetAlternateId, moduleSetTag: targetModuleSetTag, dataProducerIdentifier: targetDataProducerIdentifier, compositeState: new CompositeState(dataSyncEnabled: false))
+            def currentNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: currentAlternateId, moduleSetTag: currentModuleSetTag, dataProducerIdentifier: currentDataProducerIdentifier, compositeState: defaultState)
+            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: targetAlternateId, moduleSetTag: targetModuleSetTag, dataProducerIdentifier: targetDataProducerIdentifier, compositeState: defaultState)
         when: 'the lcm event is created'
             def result = objectUnderTest.createLcmEventV1(currentNcmpServiceCmHandle, targetNcmpServiceCmHandle)
         then: 'the alternate ID, module set tag, and data producer identifier are present or are an empty string in the payload'

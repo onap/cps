@@ -31,7 +31,11 @@ import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.LcmEventV1
+import org.onap.cps.ncmp.events.lcm.LcmEventV2
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
+import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventProducer
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.util.ReflectionTestUtils
 import spock.util.concurrent.PollingConditions
 
 import java.time.Duration
@@ -42,6 +46,9 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
     def uniqueId = 'my-new-cm-handle'
 
     KafkaConsumer<String, LegacyEvent> kafkaConsumer
+
+    @Autowired
+    LcmEventProducer lcmEventProducer
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
@@ -99,7 +106,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
                 assert oldValues == null
                 assert newValues.cmHandleState.value() == 'ADVISED'
                 assert newValues.dataSyncEnabled == null
-                assert newValues.cmHandleProperties[0] == [color:'green']
+                assert newValues.cmHandleProperties == [[color:'green']]
             }
         and: 'the next event is about update to READY state (new value), the old value for state is ADVISED'
             assert messages[1].event.oldValues.cmHandleState.value() == 'ADVISED'
@@ -122,6 +129,70 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             new PollingConditions().within(5) {
                 assert countLcmEventTimerInvocations() == 2 + 2
             }
+    }
+
+    def 'CM Handle registration using V2 events.'() {
+        given: 'event schema version is set to v2'
+            def originalEventSchemaVersion = ReflectionTestUtils.getField(lcmEventProducer, 'eventSchemaVersion')
+            ReflectionTestUtils.setField(lcmEventProducer, 'eventSchemaVersion', 'v2')
+        and: 'DMI will return modules when requested'
+            def uniqueIdV2 = 'my-new-cm-handle-v2'
+            dmiDispatcher1.moduleNamesPerCmHandleId[uniqueIdV2] = ['M1', 'M2']
+        when: 'a CM-handle is registered for creation'
+            def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: uniqueIdV2,
+                                                           alternateId: 'fdn1',
+                                                           moduleSetTag: 'tag1',
+                                                           dataProducerIdentifier: 'prod1',
+                                                           publicProperties: [color:'green'])
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
+        then: 'registration gives successful response'
+            assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(uniqueIdV2)]
+        and: 'CM-handle is initially in ADVISED state'
+            assert CmHandleState.ADVISED == objectUnderTest.getCmHandleCompositeState(uniqueIdV2).cmHandleState
+        then: 'the module sync watchdog is triggered'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
+        then: 'CM-handle goes to READY state after module sync'
+            assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(uniqueIdV2).cmHandleState
+        and: 'the CM-handle has expected modules'
+            assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(uniqueIdV2).moduleName.sort()
+        then: 'get the last 2 messages'
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2)
+            def messages = []
+            consumerRecords.each { consumerRecord ->
+                messages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEventV2))
+            }
+        and: 'both messages have the correct cmHandleId'
+            assert messages.event.every { it.cmHandleId == uniqueIdV2 }
+        and: 'the first lcm event has no old values and the initial attributes as new values state ADVISED'
+            with(messages[0].event) {
+                assert oldValues == null
+                assert newValues['cmHandleState'] == 'ADVISED'
+                assert newValues['dataSyncEnabled'] == null
+                assert newValues['cmHandleProperties'] == [color:'green']
+                assert newValues['alternateId'] == 'fdn1'
+                assert newValues['moduleSetTag'] == 'tag1'
+                assert newValues['dataProducerIdentifier'] == 'prod1'
+            }
+        and: 'the next event is about update to READY state (new value), the old value for state is ADVISED'
+            assert messages[1].event.oldValues['cmHandleState'] == 'ADVISED'
+            assert messages[1].event.newValues['cmHandleState'] == 'READY'
+        and: 'the cm handle (public) properties have not changed and are therefore null for old and new values'
+            assert messages[1].event.oldValues['cmHandleProperties'] == null
+            assert messages[1].event.newValues['cmHandleProperties'] == null
+        and: 'the data sync flag goes from undefined to false'
+            assert messages[1].event.oldValues['dataSyncEnabled'] == null
+            assert messages[1].event.newValues['dataSyncEnabled'] == false
+        and: 'alternateId, moduleSetTag, dataProducerIdentifier have not changed and are therefore null for old and new values'
+            assert messages[1].event.oldValues['alternateId'] == null
+            assert messages[1].event.newValues['alternateId'] == null
+            assert messages[1].event.oldValues['moduleSetTag'] == null
+            assert messages[1].event.newValues['moduleSetTag'] == null
+            assert messages[1].event.oldValues['dataProducerIdentifier'] == null
+            assert messages[1].event.newValues['dataProducerIdentifier'] == null
+        cleanup: 'restore original event schema version and deregister CM handle'
+            ReflectionTestUtils.setField(lcmEventProducer, 'eventSchemaVersion', originalEventSchemaVersion)
+            deregisterCmHandle(DMI1_URL, uniqueIdV2)
     }
 
     def 'CM Handle registration with DMI error during module sync.'() {

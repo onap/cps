@@ -52,7 +52,7 @@ cps:
   image:
     repository: "nexus3.onap.org:10003/onap/cps-and-ncmp"
     tag: "latest"
-    pullPolicy: Always
+    pullPolicy: Never
   replicas: 2
   servicePort: 8080
   service:
@@ -198,8 +198,8 @@ dmiStub:
   enabled: true
   image:
     repository: nexus3.onap.org:10003/onap/dmi-stub
-    tag: "1.8.0-SNAPSHOT"
-    pullPolicy: IfNotPresent
+    tag: "latest"
+    pullPolicy: Never
   replicaCount: 1
   deployment1:
     containerPort: 8092
@@ -251,7 +251,7 @@ policyExecutorStub:
   image:
     repository: nexus3.onap.org:10003/onap/policy-executor-stub
     tag: "latest"
-    pullPolicy: Always
+    pullPolicy: Never
   replicaCount: 1
   service:
     type: NodePort
