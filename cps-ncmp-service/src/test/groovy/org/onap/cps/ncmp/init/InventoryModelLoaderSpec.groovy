@@ -70,7 +70,7 @@ class InventoryModelLoaderSpec extends Specification {
 
     void setup() {
         objectUnderTest.isMaster = true
-        expectedPreviousYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
+        expectedPreviousYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2026-01-28.yang')
         expectedNewYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2025-07-22.yang')
         objectUnderTest.ignoreModelR20250722 = false
         logger.setLevel(Level.DEBUG)
@@ -91,20 +91,25 @@ class InventoryModelLoaderSpec extends Specification {
             mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         and: 'module revision does not exist'
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
+        and: 'no schema sets exist in the dataspace'
+            mockCpsModuleService.getSchemaSets(_) >> []
+        and: 'anchor does not exist'
+            mockCpsAnchorService.getAnchor(_, _) >> { throw new AnchorNotFoundException('dataspace', 'anchor') }
         when: 'the application is ready'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
+            objectUnderTest.onApplicationEvent(new ApplicationReadyEvent(Mock(org.springframework.boot.SpringApplication), null, applicationContext, null))
         then: 'the module service is used to create the new schema set from the correct resource'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedPreviousYangResourceToContentMap)
-        and: 'No schema sets are being removed by the module service (yet)'
-            0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2026-01-28', expectedPreviousYangResourceToContentMap)
         and: 'application event publisher is called once'
             1 * mockApplicationEventPublisher.publishEvent(_)
     }
 
+
     def 'Install new model revision'() {
         given: 'the anchor and module revision does not exist'
-            mockCpsAnchorService.getAnchor(_, _) >> { throw new AnchorNotFoundException('', '') }
+            mockCpsAnchorService.getAnchor(_, _) >> { throw new AnchorNotFoundException('dataspace', 'anchor') }
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
+        and: 'no schema sets exist in the dataspace'
+            mockCpsModuleService.getSchemaSets(_) >> []
         when: 'the inventory model loader is triggered'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'a new schema set for the 2025-07-22 revision is installed'
@@ -112,15 +117,23 @@ class InventoryModelLoaderSpec extends Specification {
     }
 
     def 'Upgrade model revision'() {
-        given: 'the anchor exists and new module revision is not installed'
-            mockCpsAnchorService.getAnchor(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> {}
+        given: 'the anchor exists with old schema set and new module revision is not installed'
+            def mockAnchor = Mock(org.onap.cps.api.model.Anchor) { getSchemaSetName() >> 'dmi-registry-2024-02-23' }
+            mockCpsAnchorService.getAnchor(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> mockAnchor
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
+        and: 'dataspace has the old schema set'
+            def oldSchemaSet = Mock(org.onap.cps.api.model.SchemaSet) { getName() >> 'dmi-registry-2024-02-23' }
+            mockCpsModuleService.getSchemaSets(_) >>> [[oldSchemaSet], [oldSchemaSet]]
         when: 'the inventory model loader is triggered'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'the new schema set for the 2025-07-22 revision is created'
             1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2025-07-22', expectedNewYangResourceToContentMap)
         and: 'the anchor is updated to point to the new schema set'
             1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2025-07-22')
+        and: 'the old schema set is kept (not deleted) as it is the previous version'
+            0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', _)
+        and: 'data migration is performed'
+            1 * mockDataMigration.migrateInventoryToModelRelease20250722(_)
         and: 'log messages confirm successful upgrade'
             assert loggingListAppender.list.any { it.message.contains("Inventory upgraded successfully") }
     }
@@ -148,12 +161,57 @@ class InventoryModelLoaderSpec extends Specification {
     }
 
     def "Perform inventory data migration to Release20250722"() {
+        given: 'the anchor exists with old schema set'
+            def mockAnchor = Mock(org.onap.cps.api.model.Anchor) { getSchemaSetName() >> 'dmi-registry-2024-02-23' }
+            mockCpsAnchorService.getAnchor(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> mockAnchor
+        and: 'dataspace has the old schema set'
+            def oldSchemaSet = Mock(org.onap.cps.api.model.SchemaSet) { getName() >> 'dmi-registry-2024-02-23' }
+            mockCpsModuleService.getSchemaSets(_) >>> [[oldSchemaSet], [oldSchemaSet]]
         when: 'the migration is performed'
             objectUnderTest.upgradeAndMigrateInventoryModel()
         then: 'the call is delegated to the Data Migration service'
             1 * mockDataMigration.migrateInventoryToModelRelease20250722(_)
     }
 
+    def 'Upgrade model revision without migration when ignoreModelR20250722 is true'() {
+        given: 'ignoreModelR20250722 is set to true'
+            objectUnderTest.ignoreModelR20250722 = true
+        and: 'the anchor exists with old schema set and new module revision is not installed'
+            def mockAnchor = Mock(org.onap.cps.api.model.Anchor) { getSchemaSetName() >> 'dmi-registry-2025-07-22' }
+            mockCpsAnchorService.getAnchor(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> mockAnchor
+            mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
+        and: 'dataspace has the old schema set'
+            def oldSchemaSet = Mock(org.onap.cps.api.model.SchemaSet) { getName() >> 'dmi-registry-2025-07-22' }
+            mockCpsModuleService.getSchemaSets(_) >>> [[oldSchemaSet], [oldSchemaSet]]
+        when: 'the inventory model loader is triggered'
+            objectUnderTest.onboardOrUpgradeModel()
+        then: 'the new schema set for the 2026-01-28 revision is created'
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2026-01-28', expectedPreviousYangResourceToContentMap)
+        and: 'the anchor is updated to point to the new schema set'
+            1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2026-01-28')
+        and: 'no data migration is performed'
+            0 * mockDataMigration.migrateInventoryToModelRelease20250722(_)
+        and: 'log messages confirm successful upgrade'
+            assert loggingListAppender.list.any { it.message.contains("Inventory upgraded successfully") }
+    }
 
-
+    def 'Skip upgrade when anchor already points to target schema set'() {
+        given: 'ignoreModelR20250722 is set to true'
+            objectUnderTest.ignoreModelR20250722 = true
+        and: 'the anchor already points to the target schema set'
+            def mockAnchor = Mock(org.onap.cps.api.model.Anchor) { getSchemaSetName() >> 'dmi-registry-2026-01-28' }
+            mockCpsAnchorService.getAnchor(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> mockAnchor
+            mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
+        when: 'the inventory model loader is triggered'
+            objectUnderTest.onboardOrUpgradeModel()
+        then: 'no new schema set is created'
+            0 * mockCpsModuleService.createSchemaSet(*_)
+        and: 'the anchor is not updated'
+            0 * mockCpsAnchorService.updateAnchorSchemaSet(*_)
+        and: 'no schema sets are deleted'
+            0 * mockCpsModuleService.deleteSchemaSet(*_)
+        and: 'log message confirms upgrade was skipped'
+            assert loggingListAppender.list.any { it.message.contains("skipping upgrade") }
+    }
 }
+
