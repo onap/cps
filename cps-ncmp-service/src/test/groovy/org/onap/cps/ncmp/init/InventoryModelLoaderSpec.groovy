@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ import org.onap.cps.init.ModelLoaderLock
 import org.onap.cps.init.actuator.ReadinessManager
 import org.onap.cps.impl.CpsServicesBundle
 import org.slf4j.LoggerFactory
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -68,7 +69,7 @@ class InventoryModelLoaderSpec extends Specification {
 
     void setup() {
         objectUnderTest.isMaster = true
-        expectedNewYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
+        expectedNewYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2026-01-28.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -86,12 +87,14 @@ class InventoryModelLoaderSpec extends Specification {
             mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         and: 'module revision does not exist'
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
+        and: 'no schema sets exist in the dataspace'
+            mockCpsModuleService.getSchemaSets(_) >> []
+        and: 'anchor does not exist'
+            mockCpsAnchorService.getAnchor(_, _) >> { throw new AnchorNotFoundException('dataspace', 'anchor') }
         when: 'the application is ready'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
+            objectUnderTest.onApplicationEvent(new ApplicationReadyEvent(Mock(SpringApplication), null, applicationContext, null))
         then: 'the module service is used to create the new schema set from the correct resource'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedNewYangResourceToContentMap)
-        and: 'No schema sets are being removed by the module service (yet)'
-            0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2026-01-28', expectedNewYangResourceToContentMap)
         and: 'application event publisher is called once'
             1 * mockApplicationEventPublisher.publishEvent(_)
     }
@@ -100,10 +103,12 @@ class InventoryModelLoaderSpec extends Specification {
         given: 'the anchor and module revision does not exist'
             mockCpsAnchorService.getAnchor(_, _) >> { throw new AnchorNotFoundException('', '') }
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
+        and: 'no schema sets exist in the dataspace'
+            mockCpsModuleService.getSchemaSets(_) >> []
         when: 'the inventory model loader is triggered'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'a new schema set for the 2025-07-22 revision is installed'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedNewYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2026-01-28', expectedNewYangResourceToContentMap)
     }
 
     def 'Upgrade model revision'() {
@@ -113,9 +118,9 @@ class InventoryModelLoaderSpec extends Specification {
         when: 'the inventory model loader is triggered'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'the new schema set for the 2025-07-22 revision is created'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedNewYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2026-01-28', expectedNewYangResourceToContentMap)
         and: 'the anchor is updated to point to the new schema set'
-            1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2024-02-23')
+            1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2026-01-28')
         and: 'log messages confirm successful upgrade'
             assert loggingListAppender.list.any { it.message.contains("Inventory upgraded successfully") }
     }
@@ -142,3 +147,4 @@ class InventoryModelLoaderSpec extends Specification {
     }
 
 }
+
