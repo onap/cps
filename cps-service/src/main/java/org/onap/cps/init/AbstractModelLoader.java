@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,6 +40,7 @@ import org.onap.cps.api.exceptions.DataspaceNotFoundException;
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.exceptions.ModelOnboardingException;
 import org.onap.cps.api.model.ModuleDefinition;
+import org.onap.cps.api.model.SchemaSet;
 import org.onap.cps.api.parameters.CascadeDeleteAllowed;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -168,17 +169,26 @@ public abstract class AbstractModelLoader implements ModelLoader {
     }
 
     /**
-     * Delete unused schema set.
+     * Delete unused schema sets.
      * @param dataspaceName dataspace name
-     * @param schemaSetNames schema set names
+     * @param currentSchemaSetName current schema set name to keep
+     * @param previousSchemaSetName previous schema set name to keep (can be null)
      */
-    public void deleteUnusedSchemaSets(final String dataspaceName, final String... schemaSetNames) {
-        for (final String schemaSetName : schemaSetNames) {
-            try {
-                cpsModuleService.deleteSchemaSet(
-                        dataspaceName, schemaSetName, CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED);
-            } catch (final Exception exception) {
-                log.warn("Deleting schema set failed: {} ", exception.getMessage());
+    public void deleteUnusedSchemaSets(final String dataspaceName, final String currentSchemaSetName,
+                                       final String previousSchemaSetName) {
+        final Collection<SchemaSet> allSchemaSets = cpsModuleService.getSchemaSets(dataspaceName);
+        for (final SchemaSet schemaSet : allSchemaSets) {
+            final String schemaSetName = schemaSet.getName();
+            if (schemaSetName.startsWith("dmi-registry")
+                    && !schemaSetName.equals(currentSchemaSetName) 
+                    && !schemaSetName.equals(previousSchemaSetName)) {
+                try {
+                    log.info("Model Loader #2: Deleting schema {}", schemaSetName);
+                    cpsModuleService.deleteSchemaSet(
+                            dataspaceName, schemaSetName, CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED);
+                } catch (final Exception exception) {
+                    log.warn("Deleting schema set {} failed: {}", schemaSetName, exception.getMessage());
+                }
             }
         }
     }
