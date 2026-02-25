@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01e6fc0f_3b488d26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-25T17:25:02Z",
+      "side": 1,
+      "message": "Just remove chart changes, otherwise looks good",
+      "revId": "fe0b56091845a6a08a4a2435753c8716dfcf7941",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afc75df9_1f42ba24",
