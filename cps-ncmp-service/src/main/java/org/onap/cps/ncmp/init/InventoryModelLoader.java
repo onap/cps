@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -41,7 +41,8 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    private static final String CURRENT_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
+    private static final String PREVIOUS_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
+    private static final String CURRENT_SCHEMA_SET_NAME = "dmi-registry-2026-01-28";
     private static final String INVENTORY_YANG_MODULE_NAME = "dmi-registry";
 
     /**
@@ -87,7 +88,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
     private void installInventoryModel() {
         createDataspace(NCMP_DATASPACE_NAME);
         createDataspace(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
-        final String yangFileName = toYangFileName(CURRENT_SCHEMA_SET_NAME);
+        final String yangFileName = toYangFileName();
         createSchemaSet(NCMP_DATASPACE_NAME, CURRENT_SCHEMA_SET_NAME, yangFileName);
         createAnchor(NCMP_DATASPACE_NAME, CURRENT_SCHEMA_SET_NAME, NCMP_DMI_REGISTRY_ANCHOR);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME);
@@ -96,26 +97,24 @@ public class InventoryModelLoader extends AbstractModelLoader {
     }
 
     private void deleteOldButNotThePreviousSchemaSets() {
-        //No schema sets passed in yet, but wil be required for future updates
-        deleteUnusedSchemaSets(NCMP_DATASPACE_NAME);
-        deleteUnusedSchemaSets(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
+        deleteUnusedSchemaSets(NCMP_DATASPACE_NAME, CURRENT_SCHEMA_SET_NAME, PREVIOUS_SCHEMA_SET_NAME);
     }
 
     private void upgradeInventoryModel() {
-        final String yangFileName = toYangFileName(CURRENT_SCHEMA_SET_NAME);
+        final String yangFileName = toYangFileName();
         createSchemaSet(NCMP_DATASPACE_NAME, CURRENT_SCHEMA_SET_NAME, yangFileName);
         cpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 CURRENT_SCHEMA_SET_NAME);
         log.info("Model Loader #2: Inventory upgraded successfully to model {}", CURRENT_SCHEMA_SET_NAME);
     }
 
-    private static String toYangFileName(final String schemaSetName) {
-        return INVENTORY_YANG_MODULE_NAME + "@" + getModuleRevision(schemaSetName) + ".yang";
+    private static String toYangFileName() {
+        return INVENTORY_YANG_MODULE_NAME + "@" + getModuleRevision() + ".yang";
     }
 
-    private static String getModuleRevision(final String schemaSetName) {
+    private static String getModuleRevision() {
         // Extract the revision part ( for example: 2024-02-23)
-        return schemaSetName.substring(INVENTORY_YANG_MODULE_NAME.length() + 1);
+        return CURRENT_SCHEMA_SET_NAME.substring(INVENTORY_YANG_MODULE_NAME.length() + 1);
     }
 
 }
