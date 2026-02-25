@@ -63,6 +63,12 @@ public class YangModelCmHandle {
     @JsonProperty("dmi-model-service-name")
     private String dmiModelServiceName;
 
+    @JsonProperty("dmi-datajobs-read-service")
+    private String dmiDatajobsReadService;
+
+    @JsonProperty("dmi-datajobs-write-service")
+    private String dmiDatajobsWriteService;
+
     @JsonProperty("module-set-tag")
     private String moduleSetTag;
 
