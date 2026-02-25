@@ -43,7 +43,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
     private final DataMigration dataMigration;
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    private static final String SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
+    private static final String SCHEMA_SET_NAME = "dmi-registry-2026-01-28";
     private static final String NEW_INVENTORY_SCHEMA_SET_NAME = "dmi-registry-2025-07-22";
     private static final String INVENTORY_YANG_MODULE_NAME = "dmi-registry";
     private static final int MIGRATION_BATCH_SIZE = 300;
@@ -83,8 +83,12 @@ public class InventoryModelLoader extends AbstractModelLoader {
                 moduleRevision)) {
                 log.info("Model Loader #2: Revision {} is already installed.", moduleRevision);
             } else if (!ignoreModelR20250722 && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
-                log.info("Model Loader #2: Upgrading already installed inventory to revision {}.", moduleRevision);
+                log.info("Model Loader #2: Upgrading already installed inventory to revision {} and "
+                        + "migrating data", moduleRevision);
                 upgradeAndMigrateInventoryModel();
+            } else if (doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
+                log.info("Model Loader #2: Upgrading already installed inventory to revision {}.", moduleRevision);
+                upgradeInventoryModel(schemaToInstall);
             } else {
                 log.info("Model Loader #2: New installation using inventory model revision {}.", moduleRevision);
                 installInventoryModel(schemaToInstall);
@@ -103,22 +107,24 @@ public class InventoryModelLoader extends AbstractModelLoader {
         createSchemaSet(NCMP_DATASPACE_NAME, schemaSetName, yangFileName);
         createAnchor(NCMP_DATASPACE_NAME, schemaSetName, NCMP_DMI_REGISTRY_ANCHOR);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME);
-        deleteOldButNotThePreviousSchemaSets();
+        deleteOldButNotThePreviousSchemaSets(schemaSetName, null);
         log.info("Model Loader #2: Inventory model {} installed successfully,", schemaSetName);
     }
 
-    private void deleteOldButNotThePreviousSchemaSets() {
-        //No schema sets passed in yet, but wil be required for future updates
-        deleteUnusedSchemaSets(NCMP_DATASPACE_NAME);
-        deleteUnusedSchemaSets(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
+    private void deleteOldButNotThePreviousSchemaSets(final String currentSchemaSetName, 
+                                                              final String previousSchemaSetName) {
+        deleteUnusedSchemaSets(NCMP_DATASPACE_NAME, currentSchemaSetName, previousSchemaSetName);
     }
 
-    private void upgradeInventoryModel() {
-        final String yangFileName = toYangFileName(NEW_INVENTORY_SCHEMA_SET_NAME);
-        createSchemaSet(NCMP_DATASPACE_NAME, NEW_INVENTORY_SCHEMA_SET_NAME, yangFileName);
+    private void upgradeInventoryModel(final String schemaSetName) {
+        final String currentSchemaSetName = cpsAnchorService.getAnchor(NCMP_DATASPACE_NAME, 
+                NCMP_DMI_REGISTRY_ANCHOR).getSchemaSetName();
+        final String yangFileName = toYangFileName(schemaSetName);
+        createSchemaSet(NCMP_DATASPACE_NAME, schemaSetName, yangFileName);
         cpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                NEW_INVENTORY_SCHEMA_SET_NAME);
-        log.info("Model Loader #2: Inventory upgraded successfully to model {}", NEW_INVENTORY_SCHEMA_SET_NAME);
+                schemaSetName);
+        deleteOldButNotThePreviousSchemaSets(schemaSetName, currentSchemaSetName);
+        log.info("Model Loader #2: Inventory upgraded successfully to model {}", schemaSetName);
     }
 
     private static String toYangFileName(final String schemaSetName) {
@@ -131,7 +137,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
     }
 
     private void upgradeAndMigrateInventoryModel() {
-        upgradeInventoryModel();
+        upgradeInventoryModel(NEW_INVENTORY_SCHEMA_SET_NAME);
         dataMigration.migrateInventoryToModelRelease20250722(MIGRATION_BATCH_SIZE);
     }
 }

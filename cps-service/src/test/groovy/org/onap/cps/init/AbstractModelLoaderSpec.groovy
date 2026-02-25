@@ -34,6 +34,7 @@ import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelOnboardingException
 import org.onap.cps.api.model.ModuleDefinition
+import org.onap.cps.api.model.SchemaSet
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
@@ -210,24 +211,35 @@ class AbstractModelLoaderSpec extends Specification {
     }
 
     def 'Delete unused schema sets.'() {
-        when: 'unused schema sets get deleted'
-            objectUnderTest.deleteUnusedSchemaSets('some dataspace','schema set 1', 'schema set 2')
-        then: 'a request to delete each (without cascade) is delegated to the module service'
+        given: 'dataspace has 3 schema sets'
+            def schemaSet1 = Mock(SchemaSet) { getName() >> 'schema set 1' }
+            def schemaSet2 = Mock(SchemaSet) { getName() >> 'schema set 2' }
+            def schemaSet3 = Mock(SchemaSet) { getName() >> 'schema set 3' }
+            mockCpsModuleService.getSchemaSets('some dataspace') >> [schemaSet1, schemaSet2, schemaSet3, schemaSet4]
+        when: 'deleting unused schema sets keeping schema set 2 and schema set 3'
+            objectUnderTest.deleteUnusedSchemaSets('some dataspace', 'schema set 2', 'schema set 3')
+        then: 'only schema set 1 is deleted'
             1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 1', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
-            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 2', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
+            0 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 2', _)
+            0 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 3', _)
     }
 
     def 'Delete unused schema sets with exception.'() {
-        given: 'deleting the first schemaset causes an exception'
+        given: 'dataspace has 3 schema sets'
+            def schemaSet1 = Mock(SchemaSet) { getName() >> 'schema set 1' }
+            def schemaSet2 = Mock(SchemaSet) { getName() >> 'schema set 2' }
+            def schemaSet3 = Mock(SchemaSet) { getName() >> 'schema set 3' }
+            mockCpsModuleService.getSchemaSets('some dataspace') >> [schemaSet1, schemaSet2, schemaSet3]
+        and: 'deleting schema set 1 causes an exception'
             mockCpsModuleService.deleteSchemaSet(_, 'schema set 1', _) >> { throw new RuntimeException('test message')}
-        when: 'several unused schemas are deleted '
-            objectUnderTest.deleteUnusedSchemaSets('some dataspace','schema set 1', 'schema set 2')
+        when: 'deleting unused schemas keeping only schema set 2'
+            objectUnderTest.deleteUnusedSchemaSets('some dataspace', 'schema set 2', null)
         then: 'the exception message is logged'
             def logs = loggingListAppender.list.toString()
-            assert logs.contains('Deleting schema set failed')
+            assert logs.contains('Deleting schema set')
             assert logs.contains('test message')
-        and: 'the second schema set is still deleted'
-            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 2', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
+        and: 'schema set 3 is still deleted'
+            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 3', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
     }
 
     def 'Update anchor schema set.'() {
