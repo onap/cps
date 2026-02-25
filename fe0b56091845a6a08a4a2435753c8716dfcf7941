@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc75df9_1f42ba24",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-02-25T13:52:15Z",
+      "side": 1,
+      "message": "for seperate commit please",
+      "range": {
+        "startLine": 55,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 21
+      },
+      "revId": "fe0b56091845a6a08a4a2435753c8716dfcf7941",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
