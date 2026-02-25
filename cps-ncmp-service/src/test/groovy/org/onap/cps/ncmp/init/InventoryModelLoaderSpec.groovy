@@ -70,7 +70,7 @@ class InventoryModelLoaderSpec extends Specification {
 
     void setup() {
         objectUnderTest.isMaster = true
-        expectedPreviousYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
+        expectedPreviousYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2026-01-28.yang')
         expectedNewYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2025-07-22.yang')
         objectUnderTest.ignoreModelR20250722 = false
         logger.setLevel(Level.DEBUG)
@@ -94,7 +94,7 @@ class InventoryModelLoaderSpec extends Specification {
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service is used to create the new schema set from the correct resource'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedPreviousYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2026-01-28', expectedPreviousYangResourceToContentMap)
         and: 'No schema sets are being removed by the module service (yet)'
             0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
         and: 'application event publisher is called once'
