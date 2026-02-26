@@ -16,6 +16,63 @@
       "message": "Looks good",
       "revId": "a64a3ea03ae24bd315838262f25ab6a570d3a118",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08d6e4d1_3d5283a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-26T11:00:45Z",
+      "side": 1,
+      "message": "Minor issue with method naming",
+      "revId": "a64a3ea03ae24bd315838262f25ab6a570d3a118",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa313322_f17bbb30",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-26T11:00:45Z",
+      "side": 1,
+      "message": "double cm?",
+      "range": {
+        "startLine": 187,
+        "startChar": 45,
+        "endLine": 187,
+        "endChar": 49
+      },
+      "revId": "a64a3ea03ae24bd315838262f25ab6a570d3a118",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c3f955_d1403d8b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-02-26T11:00:45Z",
+      "side": 1,
+      "message": "cmHandleAsJson",
+      "revId": "a64a3ea03ae24bd315838262f25ab6a570d3a118",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
