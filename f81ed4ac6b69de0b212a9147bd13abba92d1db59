@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "623f3f6b_fb4281f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-26T09:00:59Z",
+      "side": 1,
+      "message": "main issue is the correct use of the constant names for schemas during upgrade, I did not review test code yet because of issue with the production code",
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f03883b_e4f135bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandle.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-26T09:00:59Z",
+      "side": 1,
+      "message": "NB: slight inconsistency with legacy properties: the new ones do not end in ..Name\nBut I know these names have been agreed so maybe leave the json as is but change the java name for consistency",
+      "range": {
+        "startLine": 67,
+        "startChar": 34,
+        "endLine": 67,
+        "endChar": 41
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08dac004_3a26194f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-26T09:00:59Z",
+      "side": 1,
+      "message": "I think the idea is that you change these names like so\n\nSCHEMA_SET_NAME \u003d \"Dmi-registry-2025-07-22\";\nNEW_INVENTORY_SCHEMA_SET_NAME \u003d \"dmi-registry-2026-01-28\";\n \n \n For more clarity maybe rename then like so:\n \nCURRENT_SCHEMA_SET_NAME \u003d \"mi-registry-2025-07-22\";\nNEW_SCHEMA_SET_NAME \u003d \"dmi-registry-2026-01-28\";\n \nno need to use \u0027inventory\u0027 since the class context is InventoryModelLoader",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 90
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ef5cee0_ba2a39e2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-26T09:00:59Z",
+      "side": 1,
+      "message": "NB legacy issue: strange sentence please reword",
+      "range": {
+        "startLine": 86,
+        "startChar": 43,
+        "endLine": 86,
+        "endChar": 70
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3be2958_c97a321f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-26T09:00:59Z",
+      "side": 1,
+      "message": "not sure why you pass this in, use the correct constants instead",
+      "range": {
+        "startLine": 119,
+        "startChar": 52,
+        "endLine": 119,
+        "endChar": 65
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d24ef3a2_105f444c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-26T09:00:59Z",
+      "side": 1,
+      "message": "use the constant names as explained above ten ehis method will make more sense",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 5
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b7fd1bb_f71fe5d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-26T09:00:59Z",
+      "side": 1,
+      "message": "NB: order, put this method just above or under upgradeInventoryModel",
+      "range": {
+        "startLine": 139,
+        "startChar": 17,
+        "endLine": 139,
+        "endChar": 48
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0066456_67e97908",
+        "filename": "cps-ncmp-service/src/main/resources/models/dmi-registry@2026-01-28.yang",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-02-26T09:00:59Z",
+      "side": 1,
+      "message": "2026",
+      "range": {
+        "startLine": 11,
+        "startChar": 12,
+        "endLine": 11,
+        "endChar": 16
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
