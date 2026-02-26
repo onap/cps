@@ -22,12 +22,13 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
+import static java.time.OffsetDateTime.now;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
+import static org.onap.cps.utils.ContentType.JSON;
 
 import com.google.common.collect.Lists;
 import com.hazelcast.map.IMap;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -51,7 +52,6 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.CmHandleMigrationDetail;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -116,8 +116,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
             final String cmHandleId = entry.getKey();
             final CompositeState compositeState = entry.getValue();
             if (exists(cmHandleId)) {
-                cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId),
-                        createStateJsonData(jsonObjectMapper.asJsonString(compositeState)));
+                cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId), compositeStateAsJson(compositeState));
                 if (!ignoreModelR20250722) {
                     final Map<String, String> topLevelUpdate = new HashMap<>();
                     topLevelUpdate.put("id", cmHandleId);
@@ -130,12 +129,10 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         }
         if (!cmHandlesJsonDataMap.isEmpty()) {
             cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    cmHandlesJsonDataMap, OffsetDateTime.now(), ContentType.JSON);
+                                                         cmHandlesJsonDataMap, now(), JSON);
             if (!ignoreModelR20250722) {
-                cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                        NCMP_DMI_REGISTRY_PARENT,
-                        jsonObjectMapper.asJsonString(Map.of("cm-handles", topLevelStateUpdates)),
-                        OffsetDateTime.now(), ContentType.JSON);
+                cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                                                cmHandleUpdatesAsJson(topLevelStateUpdates),  now(), JSON);
             }
         }
     }
@@ -187,9 +184,9 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     public void saveCmHandleBatch(final List<YangModelCmHandle> yangModelCmHandles) {
         for (final List<YangModelCmHandle> yangModelCmHandleBatch :
                 Lists.partition(yangModelCmHandles, CM_HANDLE_BATCH_SIZE)) {
-            final String cmHandlesJsonData = createCmHandlesJsonData(yangModelCmHandleBatch);
-            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP, ContentType.JSON);
+            final String cmHandlesJsonData = cmHandlesAsJson(yangModelCmHandleBatch);
+            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                                            cmHandlesJsonData, NO_TIMESTAMP, JSON);
         }
     }
 
@@ -236,21 +233,16 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public void updateCmHandleFields(final String fieldName, final Map<String, String> newValuePerCmHandleId) {
         if (!newValuePerCmHandleId.isEmpty()) {
-            final List<Map<String, String>> targetCmHandleFieldChangesPerCmHandleIds = new ArrayList<>();
+            final List<Map<String, String>> cmHandleFieldChangesPerCmHandleId = new ArrayList<>();
             for (final Map.Entry<String, String> entry : newValuePerCmHandleId.entrySet()) {
                 final Map<String, String> cmHandleData = new HashMap<>();
                 cmHandleData.put("id", entry.getKey());
                 cmHandleData.put(fieldName, entry.getValue());
-                targetCmHandleFieldChangesPerCmHandleIds.add(cmHandleData);
+                cmHandleFieldChangesPerCmHandleId.add(cmHandleData);
                 log.debug("Updating {} for cmHandle {} to {}", fieldName, entry.getKey(), entry.getValue());
             }
-            cpsDataService.updateNodeLeaves(
-                    NCMP_DATASPACE_NAME,
-                    NCMP_DMI_REGISTRY_ANCHOR,
-                    NCMP_DMI_REGISTRY_PARENT,
-                    jsonObjectMapper.asJsonString(Map.of("cm-handles", targetCmHandleFieldChangesPerCmHandleIds)),
-                    OffsetDateTime.now(),
-                    ContentType.JSON);
+            cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                                            cmHandleUpdatesAsJson(cmHandleFieldChangesPerCmHandleId), now(), JSON);
 
         }
     }
@@ -272,25 +264,24 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
             }
             cmHandleMigrationDetailAsMaps.add(cmHandleMigrationDetailAsMap);
         }
-        cpsDataService.updateNodeLeaves(
-                NCMP_DATASPACE_NAME,
-                NCMP_DMI_REGISTRY_ANCHOR,
-                NCMP_DMI_REGISTRY_PARENT,
-                jsonObjectMapper.asJsonString(Map.of("cm-handles", cmHandleMigrationDetailAsMaps)),
-                OffsetDateTime.now(),
-                ContentType.JSON);
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                                        cmHandleUpdatesAsJson(cmHandleMigrationDetailAsMaps), now(), JSON);
     }
 
     private static String getXPathForCmHandleById(final String cmHandleId) {
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']";
     }
 
-    private static String createStateJsonData(final String state) {
-        return "{\"state\":" + state + "}";
+    private String compositeStateAsJson(final CompositeState compositeState) {
+        return jsonObjectMapper.asJsonString(Map.of("state", compositeState));
     }
 
-    private String createCmHandlesJsonData(final List<YangModelCmHandle> yangModelCmHandles) {
-        return "{\"cm-handles\":" + jsonObjectMapper.asJsonString(yangModelCmHandles) + "}";
+    private String cmHandlesAsJson(final List<YangModelCmHandle> yangModelCmHandles) {
+        return jsonObjectMapper.asJsonString(Map.of("cm-handles", yangModelCmHandles));
+    }
+
+    private String cmHandleUpdatesAsJson(final List<Map<String, String>> cmHandleUpdates) {
+        return jsonObjectMapper.asJsonString(Map.of("cm-handles", cmHandleUpdates));
     }
 
     private Collection<String> getAlternateIdsForCmHandleIds(final Collection<String> cmHandleIds) {
