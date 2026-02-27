@@ -22,6 +22,30 @@
       },
       "revId": "ac18933832b066377f87e6142c5d4625ff7d3e79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a9e748d_3c5f353f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-27T15:41:27Z",
+      "side": 1,
+      "message": "In line 117 it is FUTURE_SCHEMA_SET_NAME but in line 89 it would be  CURRENT_SCHEMA_SET_NAME",
+      "parentUuid": "bf5eb042_6ce1d7d5",
+      "range": {
+        "startLine": 121,
+        "startChar": 52,
+        "endLine": 121,
+        "endChar": 65
+      },
+      "revId": "ac18933832b066377f87e6142c5d4625ff7d3e79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
