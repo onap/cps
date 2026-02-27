@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "641d97fc_b797ef36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandle.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-27T15:32:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f03883b_e4f135bb",
+      "range": {
+        "startLine": 67,
+        "startChar": 34,
+        "endLine": 67,
+        "endChar": 41
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08dac004_3a26194f",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c11a31a9_802d41c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-27T15:32:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "08dac004_3a26194f",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 90
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ef5cee0_ba2a39e2",
@@ -94,6 +142,30 @@
       "writtenOn": "2026-02-26T09:00:59Z",
       "side": 1,
       "message": "NB legacy issue: strange sentence please reword",
+      "range": {
+        "startLine": 86,
+        "startChar": 43,
+        "endLine": 86,
+        "endChar": 70
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0cde555_9df710a6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-27T15:32:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef5cee0_ba2a39e2",
       "range": {
         "startLine": 86,
         "startChar": 43,
@@ -129,6 +201,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eddda4e5_fc95d0ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-27T15:32:50Z",
+      "side": 1,
+      "message": "upgradeInventoryModel can be called with either current or future model revision",
+      "parentUuid": "a3be2958_c97a321f",
+      "range": {
+        "startLine": 119,
+        "startChar": 52,
+        "endLine": 119,
+        "endChar": 65
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d24ef3a2_105f444c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
         "patchSetId": 4
@@ -140,6 +236,30 @@
       "writtenOn": "2026-02-26T09:00:59Z",
       "side": 1,
       "message": "use the constant names as explained above ten ehis method will make more sense",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 5
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5be38b0_32e248f5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-27T15:32:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d24ef3a2_105f444c",
       "range": {
         "startLine": 119,
         "startChar": 0,
@@ -163,6 +283,30 @@
       "writtenOn": "2026-02-26T09:00:59Z",
       "side": 1,
       "message": "NB: order, put this method just above or under upgradeInventoryModel",
+      "range": {
+        "startLine": 139,
+        "startChar": 17,
+        "endLine": 139,
+        "endChar": 48
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eb69fa7_54379006",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-02-27T15:32:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b7fd1bb_f71fe5d5",
       "range": {
         "startLine": 139,
         "startChar": 17,
