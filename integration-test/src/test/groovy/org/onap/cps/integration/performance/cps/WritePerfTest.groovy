@@ -97,7 +97,7 @@ class WritePerfTest extends CpsPerfTestBase {
             50         || 1.5
             100        || 3.0
             200        || 6.4
-            400        || 14.0
+            400        || 13.0
     }
 
 }

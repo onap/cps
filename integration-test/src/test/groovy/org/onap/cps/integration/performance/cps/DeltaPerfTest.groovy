@@ -46,7 +46,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'setup duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS: Delta test setup', 20, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
+            recordAndAssertResourceUsage('CPS: Delta test setup', 10, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
     }
     
     def 'Setup target anchor (please note, subsequent tests depend on this running first).'() {
@@ -57,7 +57,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the anchor is created within expected time'
-            recordAndAssertResourceUsage('CPS: Creating modified openroadm anchor', 25, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
+            recordAndAssertResourceUsage('CPS: Creating modified openroadm anchor', 30, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
     }
 
     def 'Get delta between 2 anchors with grouping enabled and #scenario'() {

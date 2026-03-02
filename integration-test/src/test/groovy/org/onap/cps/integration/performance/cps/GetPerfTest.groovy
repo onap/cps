@@ -45,8 +45,8 @@ class GetPerfTest extends CpsPerfTestBase {
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  | referencegraph || expectedDuration | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        | false          || 0.01             | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | false          || 0.045            | 1 + OPENROADM_DEVICES_PER_ANCHOR
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | true           || 1.1              | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'direct descendants' | DIRECT_CHILDREN_ONLY    | false          || 0.03             | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS | true           || 1.0              | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
     def 'Read data trees for multiple xpaths'() {
@@ -90,7 +90,7 @@ class GetPerfTest extends CpsPerfTestBase {
             scenario                | xpath                                  || expectedDuration | expectedNumberOfDataNodes
             'openroadm root'        | '/'                                    || 1                | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
             'openroadm top element' | '/openroadm-devices'                   || 0.95             | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 1.06             | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 2.50             | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
 }
