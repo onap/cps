@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
- *  Modifications Copyright (C) 2024 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2024-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -97,7 +97,7 @@ class WritePerfTest extends CpsPerfTestBase {
             50         || 1.5
             100        || 3.0
             200        || 6.4
-            400        || 14.0
+            400        || 10.0
     }
 
 }

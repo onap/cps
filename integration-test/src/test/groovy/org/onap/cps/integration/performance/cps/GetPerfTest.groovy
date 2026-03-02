@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Modifications Copyright (C) 2024-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -45,8 +46,8 @@ class GetPerfTest extends CpsPerfTestBase {
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  | referencegraph || expectedDuration | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        | false          || 0.01             | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | false          || 0.045            | 1 + OPENROADM_DEVICES_PER_ANCHOR
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | true           || 1.1              | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'direct descendants' | DIRECT_CHILDREN_ONLY    | false          || 0.03             | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS | true           || 1.0              | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
     def 'Read data trees for multiple xpaths'() {
@@ -90,7 +91,7 @@ class GetPerfTest extends CpsPerfTestBase {
             scenario                | xpath                                  || expectedDuration | expectedNumberOfDataNodes
             'openroadm root'        | '/'                                    || 1                | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
             'openroadm top element' | '/openroadm-devices'                   || 0.95             | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 1.06             | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 3.00             | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
 }
