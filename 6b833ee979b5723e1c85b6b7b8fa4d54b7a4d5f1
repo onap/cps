@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86cf4c13_93f40f14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-02T08:34:08Z",
+      "side": 1,
+      "message": "lets have a chat today about the previous/current/future schemaset logic",
+      "revId": "6b833ee979b5723e1c85b6b7b8fa4d54b7a4d5f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

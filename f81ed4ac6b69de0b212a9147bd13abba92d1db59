@@ -338,6 +338,30 @@
       },
       "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f5ebbfc_d9529ea1",
+        "filename": "cps-ncmp-service/src/main/resources/models/dmi-registry@2026-01-28.yang",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-02T08:34:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0066456_67e97908",
+      "range": {
+        "startLine": 11,
+        "startChar": 12,
+        "endLine": 11,
+        "endChar": 16
+      },
+      "revId": "f81ed4ac6b69de0b212a9147bd13abba92d1db59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
