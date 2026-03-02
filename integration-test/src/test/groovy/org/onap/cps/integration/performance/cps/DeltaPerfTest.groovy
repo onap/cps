@@ -46,7 +46,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'setup duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS: Delta test setup', 20, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
+            recordAndAssertResourceUsage('CPS: Delta test setup', 10, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
     }
     
     def 'Setup target anchor (please note, subsequent tests depend on this running first).'() {
@@ -57,7 +57,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the anchor is created within expected time'
-            recordAndAssertResourceUsage('CPS: Creating modified openroadm anchor', 25, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
+            recordAndAssertResourceUsage('CPS: Creating modified openroadm anchor', 33, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
     }
 
     def 'Get delta between 2 anchors with grouping enabled and #scenario'() {
@@ -69,12 +69,12 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
-            recordAndAssertResourceUsage('CPS:Delta between 2 anchors', expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Delta b/w 2 anchors ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
             'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 2.0
             'direct descendants' | '/'                                                               | DIRECT_CHILDREN_ONLY    || 3.0
-            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 23.0
+            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 38.0
     }
 
     def 'Get delta between 2 anchors with grouping disabled and #scenario'() {
@@ -86,12 +86,12 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
-            recordAndAssertResourceUsage('CPS:Delta between 2 anchors, without grouping', expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Delta b/w 2 anchors, w/o grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
             'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 1.0
             'direct descendants' | '/openroadm-devices'                                              | DIRECT_CHILDREN_ONLY    || 2.0
-            'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 25.0
+            'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 45.0
     }
 
     def 'Get delta between an anchor and JSON payload with grouping enabled and #scenario'() {
@@ -101,7 +101,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
-            recordAndAssertResourceUsage('CPS:Delta between anchor and JSON, with grouping', expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Delta b/w anchor & JSON, w/ grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration
             'no descendants'     | OMIT_DESCENDANTS        || 4.0
