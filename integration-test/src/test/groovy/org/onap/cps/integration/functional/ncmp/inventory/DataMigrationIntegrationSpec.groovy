@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.init.InventoryModelLoader
 import org.onap.cps.utils.ContentType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.util.ReflectionTestUtils
+import spock.lang.Ignore
 
 class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
 
@@ -35,6 +36,8 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
     @Autowired
     InventoryPersistence inventoryPersistence
 
+    // Ignored: Migration logic removed from InventoryModelLoader until resumption of CPS-2874
+    @Ignore
     def 'Migrate inventory with batch processing.'() {
         given: 'start with the old models (ignore upgrade)'
             ReflectionTestUtils.setField(inventoryPersistence, 'ignoreModelR20250722', true)

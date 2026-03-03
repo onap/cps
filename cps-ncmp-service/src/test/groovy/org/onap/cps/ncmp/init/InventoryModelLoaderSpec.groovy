@@ -58,21 +58,17 @@ class InventoryModelLoaderSpec extends Specification {
 
     def mockApplicationEventPublisher = Mock(ApplicationEventPublisher)
     def mockReadinessManager = Mock(ReadinessManager)
-    def mockDataMigration = Mock(DataMigration)
-    def objectUnderTest = new InventoryModelLoader(mockModelLoaderLock, cpsServices, mockApplicationEventPublisher, mockReadinessManager, mockDataMigration)
+    def objectUnderTest = new InventoryModelLoader(mockModelLoaderLock, cpsServices, mockApplicationEventPublisher, mockReadinessManager)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
-    def expectedPreviousYangResourceToContentMap
     def expectedNewYangResourceToContentMap
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
 
     void setup() {
         objectUnderTest.isMaster = true
-        expectedPreviousYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
-        expectedNewYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2025-07-22.yang')
-        objectUnderTest.ignoreModelR20250722 = false
+        expectedNewYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -87,14 +83,13 @@ class InventoryModelLoaderSpec extends Specification {
 
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use with current model'
-            objectUnderTest.ignoreModelR20250722 = true
             mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         and: 'module revision does not exist'
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service is used to create the new schema set from the correct resource'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedPreviousYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedNewYangResourceToContentMap)
         and: 'No schema sets are being removed by the module service (yet)'
             0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
         and: 'application event publisher is called once'
@@ -108,7 +103,7 @@ class InventoryModelLoaderSpec extends Specification {
         when: 'the inventory model loader is triggered'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'a new schema set for the 2025-07-22 revision is installed'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2025-07-22', expectedNewYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedNewYangResourceToContentMap)
     }
 
     def 'Upgrade model revision'() {
@@ -118,9 +113,9 @@ class InventoryModelLoaderSpec extends Specification {
         when: 'the inventory model loader is triggered'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'the new schema set for the 2025-07-22 revision is created'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2025-07-22', expectedNewYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedNewYangResourceToContentMap)
         and: 'the anchor is updated to point to the new schema set'
-            1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2025-07-22')
+            1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2024-02-23')
         and: 'log messages confirm successful upgrade'
             assert loggingListAppender.list.any { it.message.contains("Inventory upgraded successfully") }
     }
@@ -134,7 +129,6 @@ class InventoryModelLoaderSpec extends Specification {
             0 * mockCpsModuleService.createSchemaSet(*_)
     }
 
-
     def 'Skip upgrade model revision when new revision already installed'() {
         given: 'the anchor exists and the new model revision is already installed'
             mockCpsAnchorService.getAnchor(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> {}
@@ -146,14 +140,5 @@ class InventoryModelLoaderSpec extends Specification {
         and: 'a log message confirms the revision is already installed'
             assert loggingListAppender.list.any { it.message.contains("already installed") }
     }
-
-    def "Perform inventory data migration to Release20250722"() {
-        when: 'the migration is performed'
-            objectUnderTest.upgradeAndMigrateInventoryModel()
-        then: 'the call is delegated to the Data Migration service'
-            1 * mockDataMigration.migrateInventoryToModelRelease20250722(_)
-    }
-
-
 
 }
