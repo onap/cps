@@ -31,6 +31,8 @@ import org.onap.cps.api.exceptions.DataInUseException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.api.model.DeltaReport
+import org.onap.cps.spi.CpsDeltaPersistenceService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.DataMapper
@@ -60,6 +62,7 @@ class CpsDeltaServiceImplSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsValidator = Mock(CpsValidator)
     def mockDeltaReportExecutor = Mock(DeltaReportExecutor)
+    def mockCpsDeltaPersistenceService = Mock(CpsDeltaPersistenceService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
@@ -70,7 +73,7 @@ class CpsDeltaServiceImplSpec extends Specification {
     def deltaReportHelper = new DeltaReportHelper()
     def deltaReportGenerator = new DeltaReportGenerator(deltaReportHelper)
     def groupedDeltaReportGenerator = new GroupedDeltaReportGenerator(deltaReportHelper)
-    def objectUnderTest = new CpsDeltaServiceImpl(mockDeltaReportExecutor, mockCpsAnchorService, mockCpsValidator, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportGenerator, groupedDeltaReportGenerator)
+    def objectUnderTest = new CpsDeltaServiceImpl(mockDeltaReportExecutor, mockCpsAnchorService, mockCpsValidator, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportGenerator, groupedDeltaReportGenerator, mockCpsDeltaPersistenceService)
 
     static def bookstoreDataNodeWithParentXpath = [new DataNode(xpath: '/bookstore', leaves: ['bookstore-name': 'Easons'])]
     static def bookstoreDataNodeWithChildXpath = [new DataNode(xpath: '/bookstore/categories[@code=\'02\']', leaves: ['code': '02', 'name': 'Kids'])]
@@ -119,11 +122,11 @@ class CpsDeltaServiceImplSpec extends Specification {
         applicationContext.close()
     }
 
-    def 'Get Delta between 2 anchors where data node is #scenario'() {
+    def 'Get Delta between 2 anchors where data node is #scenario with grouping enabled'() {
         given: 'xpath to get delta'
             def xpath = '/'
         when: 'attempt to get delta between 2 anchors'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS, groupDataNodes)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS, GROUPING_ENABLED)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], OMIT_DESCENDANTS) >> sourceDataNodes
         and: 'cps data service is invoked again to return target data nodes'
@@ -135,13 +138,48 @@ class CpsDeltaServiceImplSpec extends Specification {
             deltaReport[0].sourceData == expectedSourceData
             deltaReport[0].targetData == expectedTargetData
         where: 'following data was used'
-            scenario                         | sourceDataNodes          | targetDataNodes         | groupDataNodes    || expectedAction | expectedSourceData                                                                                            | expectedTargetData
-            'added with grouping disabled'   | []                       | targetDataNode          | GROUPING_DISABLED || 'create'       | null                                                                                                          | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
-            'removed with grouping disabled' | sourceDataNode           | []                      | GROUPING_DISABLED || 'remove'       | ['parent':['parent-leaf':'parent-leaf-as-source-data']]                                                       | null
-            'updated with grouping disabled' | sourceDataNode           | targetDataNode          | GROUPING_DISABLED || 'replace'      | ['parent':['parent-leaf':'parent-leaf-as-source-data']]                                                       | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
-            'added with grouping enabled'    | []                       | targetDataNodeWithChild | GROUPING_ENABLED  || 'create'       | null                                                                                                          | ['parent':['parent-leaf': 'parent-leaf-as-target-data', 'child':['child-leaf': 'child-leaf-as-target-data']]]
-            'removed with grouping enabled'  | sourceDataNodeWithChild  | []                      | GROUPING_ENABLED  || 'remove'       | ['parent':['parent-leaf': 'parent-leaf-as-source-data', 'child':['child-leaf': 'child-leaf-as-source-data']]] | null
-            'updated with grouping enabled'  | sourceDataNode           | targetDataNode          | GROUPING_ENABLED  || 'replace'      | ['parent':['parent-leaf': 'parent-leaf-as-source-data']]                                                      | ['parent':['parent-leaf': 'parent-leaf-as-target-data']]
+            scenario  | sourceDataNodes         | targetDataNodes         || expectedAction | expectedSourceData                                                                                            | expectedTargetData
+            'added'   | []                       | targetDataNodeWithChild | 'create'       | null                                                                                                          | ['parent':['parent-leaf': 'parent-leaf-as-target-data', 'child':['child-leaf': 'child-leaf-as-target-data']]]
+            'removed' | sourceDataNodeWithChild  | []                      | 'remove'       | ['parent':['parent-leaf': 'parent-leaf-as-source-data', 'child':['child-leaf': 'child-leaf-as-source-data']]] | null
+            'updated' | sourceDataNode           | targetDataNode          | 'replace'      | ['parent':['parent-leaf': 'parent-leaf-as-source-data']]                                                      | ['parent':['parent-leaf': 'parent-leaf-as-target-data']]
+    }
+
+    def 'Get Delta between 2 anchors where data node is #scenario with grouping disabled using DB approach'() {
+        given: 'xpath to get delta and expected delta reports from persistence service'
+            def xpath = '/'
+        when: 'attempt to get delta between 2 anchors'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS, GROUPING_DISABLED)
+        then: 'the delta persistence service is invoked with OMIT_DESCENDANTS and returns delta reports'
+            1 * mockCpsDeltaPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS) >> [expectedDeltaReport]
+        and: 'the delta report contains the expected information'
+            deltaReport.size() == 1
+            deltaReport[0].action == expectedDeltaReport.action
+            deltaReport[0].xpath == expectedDeltaReport.xpath
+            deltaReport[0].sourceData == expectedDeltaReport.sourceData
+            deltaReport[0].targetData == expectedDeltaReport.targetData
+        where: 'following data was used'
+            scenario  || expectedDeltaReport
+            'added'   || createDeltaReport('create', '/parent', null, ['parent':['parent-leaf':'parent-leaf-as-target-data']])
+            'removed' || createDeltaReport('remove', '/parent', ['parent':['parent-leaf':'parent-leaf-as-source-data']], null)
+            'updated' || createDeltaReport('replace', '/parent', ['parent':['parent-leaf':'parent-leaf-as-source-data']], ['parent':['parent-leaf':'parent-leaf-as-target-data']])
+    }
+
+    def 'Get delta between 2 anchors where data node with children is #scenario without grouping using DB approach'() {
+        given: 'xpath to get delta and expected delta reports from persistence service'
+            def xpath = '/'
+        when: 'attempt to get delta between 2 anchors'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS, GROUPING_DISABLED)
+        then: 'the delta persistence service is invoked with OMIT_DESCENDANTS and returns delta reports'
+            1 * mockCpsDeltaPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS) >> expectedDeltaReports
+        and: 'the delta report contains expected number of entries'
+            deltaReport.size() == expectedDeltaReports.size()
+        and: 'the delta report entries have expected actions'
+            deltaReport[0].action == expectedParentAction
+            deltaReport[0].xpath == '/parent'
+        where: 'following data was used'
+            scenario  || expectedDeltaReports                                                                                                                                                                                                                   | expectedParentAction
+            'removed' || [createDeltaReport('remove', '/parent', ['parent':['parent-leaf':'parent-leaf-as-source-data']], null), createDeltaReport('remove', '/parent/child', ['child':['child-leaf':'child-leaf-as-source-data']], null)]                        | 'remove'
+            'added'   || [createDeltaReport('create', '/parent', null, ['parent':['parent-leaf':'parent-leaf-as-target-data']]), createDeltaReport('create', '/parent/child', null, ['child':['child-leaf':'child-leaf-as-target-data']])]                        | 'create'
     }
 
     def 'Get delta between 2 anchors with invalid xpath'() {
@@ -155,31 +193,21 @@ class CpsDeltaServiceImplSpec extends Specification {
     }
 
     def 'Delta Report between parent nodes with children where data node is #scenario without grouping of data nodes'() {
-        given: 'root node xpath and expected source and target data'
+        given: 'root node xpath and expected delta reports from persistence service'
             def xpath = '/'
         when: 'attempt to get delta between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
-        then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
-        and: 'cps data service is invoked again to return target data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+        then: 'the delta persistence service is invoked and returns delta reports'
+            1 * mockCpsDeltaPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS) >> expectedDeltaReports
         and: 'delta report contains correct number of entries'
-            deltaReport.size() == 2
-        and: 'the delta report contains expected details for parent node'
-            assert deltaReport[0].action == expectedAction
-            assert deltaReport[0].xpath == '/parent'
-            assert deltaReport[0].sourceData == expectedSourceDataForParent
-            assert deltaReport[0].targetData == expectedTargetDataForParent
-        and: 'the delta report contains expected details for child node'
-            assert deltaReport[1].action == expectedAction
-            assert deltaReport[1].xpath == '/parent/child'
-            assert deltaReport[1].sourceData == expectedSourceDataForChild
-            assert deltaReport[1].targetData == expectedTargetDataForChild
+            deltaReport.size() == expectedDeltaReports.size()
+        and: 'the delta report matches expected results'
+            deltaReport == expectedDeltaReports
         where: 'the following data is used'
-            scenario  | sourceDataNodes           | targetDataNodes           || expectedAction | expectedSourceDataForParent | expectedTargetDataForParent | expectedSourceDataForChild                            | expectedTargetDataForChild
-            'added'   | []                        | targetDataNodeWithChild() || 'create'       | null                        | expectedParentTargetData    | null                                                  | ['child':['child-leaf': 'child-leaf-as-target-data']]
-            'removed' | sourceDataNodeWithChild() | []                        || 'remove'       | expectedParentSourceData    | null                        | ['child':['child-leaf': 'child-leaf-as-source-data']] | null
-            'updated' | sourceDataNodeWithChild() | targetDataNodeWithChild() || 'replace'      | expectedParentSourceData    | expectedParentTargetData    | ['child':['child-leaf': 'child-leaf-as-source-data']] | ['child':['child-leaf': 'child-leaf-as-target-data']]
+            scenario  || expectedDeltaReports
+            'added'   || [createDeltaReport('create', '/parent', null, expectedParentTargetData), createDeltaReport('create', '/parent/child', null, ['child':['child-leaf': 'child-leaf-as-target-data']])]
+            'removed' || [createDeltaReport('remove', '/parent', expectedParentSourceData, null), createDeltaReport('remove', '/parent/child', ['child':['child-leaf': 'child-leaf-as-source-data']], null)]
+            'updated' || [createDeltaReport('replace', '/parent', expectedParentSourceData, expectedParentTargetData), createDeltaReport('replace', '/parent/child', ['child':['child-leaf': 'child-leaf-as-source-data']], ['child':['child-leaf': 'child-leaf-as-target-data']])]
     }
 
     def 'Delta Report between parent nodes with children where parent is updated and child node is #scenario with grouping of data nodes'() {
@@ -215,10 +243,8 @@ class CpsDeltaServiceImplSpec extends Specification {
         def xpath = '/'
     when: 'attempt to get delta between 2 anchors'
         def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
-    then: 'cps data service is invoked and returns source data nodes'
-        mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
-    and: 'cps data service is invoked again to return target data nodes'
-        mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+    then: 'the delta persistence service is invoked and returns delta reports'
+        1 * mockCpsDeltaPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS) >> [createDeltaReport('replace', '/parent', expectedSourceData, expectedTargetData)]
     and: 'the delta report contains expected "replace" action'
         assert deltaReport[0].action.equals('replace')
     and: 'the delta report contains expected xpath'
@@ -227,11 +253,11 @@ class CpsDeltaServiceImplSpec extends Specification {
         assert deltaReport[0].sourceData == expectedSourceData
         assert deltaReport[0].targetData == expectedTargetData
     where: 'the following data was used'
-        scenario                                           | sourceDataNodes                  | targetDataNodes                  || expectedSourceData                                                    | expectedTargetData
-        'source and target data nodes have leaves'         | sourceDataNode                   | targetDataNode                   || ['parent':['parent-leaf':'parent-leaf-as-source-data']]               | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
-        'only source data node has leaves'                 | sourceDataNode                   | targetDataNodeWithoutLeafData    || ['parent':['parent-leaf':'parent-leaf-as-source-data']]               | null
-        'only target data node has leaves'                 | sourceDataNodeWithoutLeafData    | targetDataNode                   || null                                                                  | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
-        'source and target data node with multiple leaves' | sourceDataNodeWithMultipleLeaves | targetDataNodeWithMultipleLeaves || ['parent':['leaf-1':'leaf-1-in-source', 'leaf-2':'leaf-2-in-source']] | ['parent':['leaf-1':'leaf-1-in-target', 'leaf-2':'leaf-2-in-target']]
+        scenario                                           || expectedSourceData                                                    | expectedTargetData
+        'source and target data nodes have leaves'         || ['parent':['parent-leaf':'parent-leaf-as-source-data']]               | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
+        'only source data node has leaves'                 || ['parent':['parent-leaf':'parent-leaf-as-source-data']]               | null
+        'only target data node has leaves'                 || null                                                                  | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
+        'source and target data node with multiple leaves' || ['parent':['leaf-1':'leaf-1-in-source', 'leaf-2':'leaf-2-in-source']] | ['parent':['leaf-1':'leaf-1-in-target', 'leaf-2':'leaf-2-in-target']]
     }
 
     def 'Get delta between data nodes for updated data, where source and target data nodes have no leaves '() {
@@ -239,10 +265,8 @@ class CpsDeltaServiceImplSpec extends Specification {
             def xpath = '/'
         when: 'attempt to get delta between 2 data nodes'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
-        then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodeWithoutLeafData
-        and: 'cps data service is invoked again to return target data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodeWithoutLeafData
+        then: 'the delta persistence service is invoked and returns empty delta reports'
+            1 * mockCpsDeltaPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS) >> []
         then: 'the delta report is empty'
             assert deltaReport.isEmpty()
     }
@@ -311,21 +335,28 @@ class CpsDeltaServiceImplSpec extends Specification {
             'empty json data with xpath'               | '/bookstore/categories[@code=\'02\']' | '{}'
     }
 
-    def 'Delta Report between identical nodes, with grouping of data nodes #scenario'() {
+    def 'Delta Report between identical nodes, with grouping enabled'() {
         given: 'parent node xpath'
             def xpath = '/parent'
         when: 'attempt to get delta between 2 anchors'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, groupDataNodes)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_ENABLED)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodeWithoutLeafData
         and: 'cps data service is invoked again to return target data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodeWithoutLeafData
-        and: 'the delta report contains expected details for parent node and child node'
+        and: 'the delta report is empty'
             assert deltaReport.isEmpty()
-        where:
-            scenario   | groupDataNodes
-            'enabled'  | GROUPING_ENABLED
-            'disabled' | GROUPING_DISABLED
+    }
+
+    def 'Delta Report between identical nodes, with grouping disabled'() {
+        given: 'parent node xpath'
+            def xpath = '/parent'
+        when: 'attempt to get delta between 2 anchors'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
+        then: 'the delta persistence service is invoked and returns empty delta reports'
+            1 * mockCpsDeltaPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS) >> []
+        and: 'the delta report is empty'
+            assert deltaReport.isEmpty()
     }
 
     def 'Delta Report between data nodes with list node xpath where leaf data is #scenario with grouping of data nodes enabled'() {
@@ -400,6 +431,15 @@ class CpsDeltaServiceImplSpec extends Specification {
     def targetDataNodeWithChild() {
         [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-leaf-as-target-data'],
             childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-leaf-as-target-data'])])]
+    }
+
+    static DeltaReport createDeltaReport(String action, String xpath, Map sourceData, Map targetData) {
+        def deltaReport = new DeltaReport()
+        deltaReport.setAction(action)
+        deltaReport.setXpath(xpath)
+        deltaReport.setSourceData(sourceData)
+        deltaReport.setTargetData(targetData)
+        return deltaReport
     }
 
 }

@@ -43,6 +43,7 @@ import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
+import org.onap.cps.spi.CpsDeltaPersistenceService;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -66,6 +67,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
     private final JsonObjectMapper jsonObjectMapper;
     private final DeltaReportGenerator deltaReportGenerator;
     private final GroupedDeltaReportGenerator groupedDeltaReportGenerator;
+    private final CpsDeltaPersistenceService cpsDeltaPersistenceService;
 
     @Override
     @Timed(value = "cps.delta.service.get.delta",
@@ -78,6 +80,11 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                            final boolean groupDataNodes) {
 
         final String normalizedXpath = getNormalizedXpath(xpath);
+        cpsValidator.validateNameCharacters(dataspaceName, sourceAnchorName, targetAnchorName);
+        if (!groupDataNodes) {
+            return cpsDeltaPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName,
+                sourceAnchorName, targetAnchorName, normalizedXpath, fetchDescendantsOption);
+        }
         final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
             sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
         final Collection<DataNode> targetDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
