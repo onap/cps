@@ -106,4 +106,54 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND parent_id IS NULL", nativeQuery = true)
     List<FragmentEntity> findRootsByAnchorId(@Param("anchorId") long anchorId);
 
+    // --- Delta queries: removed, added, updated ---
+
+    @Query(value = "SELECT s.xpath AS xpath, s.attributes AS sourceAttributes, "
+            + "CAST(NULL AS TEXT) AS targetAttributes "
+            + "FROM fragment s "
+            + "LEFT JOIN fragment t ON s.xpath = t.xpath AND t.anchor_id = :targetAnchorId "
+            + "WHERE s.anchor_id = :sourceAnchorId AND t.id IS NULL "
+            + "AND (:escapedXpath = '/' OR s.xpath LIKE :escapedXpath || '%')",
+            nativeQuery = true)
+    List<DeltaProjection> findRemovedFragments(@Param("sourceAnchorId") long sourceAnchorId,
+                                               @Param("targetAnchorId") long targetAnchorId,
+                                               @Param("escapedXpath") String escapedXpath);
+
+    @Query(value = "SELECT t.xpath AS xpath, CAST(NULL AS TEXT) AS sourceAttributes, "
+            + "t.attributes AS targetAttributes "
+            + "FROM fragment t "
+            + "LEFT JOIN fragment s ON t.xpath = s.xpath AND s.anchor_id = :sourceAnchorId "
+            + "WHERE t.anchor_id = :targetAnchorId AND s.id IS NULL "
+            + "AND (:escapedXpath = '/' OR t.xpath LIKE :escapedXpath || '%')",
+            nativeQuery = true)
+    List<DeltaProjection> findAddedFragments(@Param("sourceAnchorId") long sourceAnchorId,
+                                             @Param("targetAnchorId") long targetAnchorId,
+                                             @Param("escapedXpath") String escapedXpath);
+
+    @Query(value = "SELECT s.xpath AS xpath, s.attributes AS sourceAttributes, "
+            + "t.attributes AS targetAttributes "
+            + "FROM fragment s "
+            + "JOIN fragment t ON s.xpath = t.xpath AND t.anchor_id = :targetAnchorId "
+            + "WHERE s.anchor_id = :sourceAnchorId "
+            + "AND s.attributes IS DISTINCT FROM t.attributes "
+            + "AND (:escapedXpath = '/' OR s.xpath LIKE :escapedXpath || '%')",
+            nativeQuery = true)
+    List<DeltaProjection> findUpdatedFragments(@Param("sourceAnchorId") long sourceAnchorId,
+                                               @Param("targetAnchorId") long targetAnchorId,
+                                               @Param("escapedXpath") String escapedXpath);
+
+    default List<DeltaProjection> findDeltaRemovedFragments(final long sourceAnchorId, final long targetAnchorId,
+                                                            final String xpath) {
+        return findRemovedFragments(sourceAnchorId, targetAnchorId, EscapeUtils.escapeForSqlLike(xpath));
+    }
+
+    default List<DeltaProjection> findDeltaAddedFragments(final long sourceAnchorId, final long targetAnchorId,
+                                                          final String xpath) {
+        return findAddedFragments(sourceAnchorId, targetAnchorId, EscapeUtils.escapeForSqlLike(xpath));
+    }
+
+    default List<DeltaProjection> findDeltaUpdatedFragments(final long sourceAnchorId, final long targetAnchorId,
+                                                            final String xpath) {
+        return findUpdatedFragments(sourceAnchorId, targetAnchorId, EscapeUtils.escapeForSqlLike(xpath));
+    }
 }
