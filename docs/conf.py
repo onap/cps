@@ -39,8 +39,7 @@ html_static_path = ["_static"]
 html_show_sphinx = False
 
 extensions = [
-    'sphinx.ext.intersphinx', 'sphinxcontrib.blockdiag', 'sphinx.ext.autosummary',
-    'sphinxcontrib.seqdiag', 'sphinx.ext.graphviz',
+    'sphinx.ext.intersphinx', 'sphinxcontrib.mermaid', 'sphinx.ext.autosummary',
     'sphinxcontrib.spelling']
 
 #
