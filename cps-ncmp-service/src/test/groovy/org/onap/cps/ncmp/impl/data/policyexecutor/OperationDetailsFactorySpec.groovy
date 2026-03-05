@@ -23,8 +23,8 @@ package org.onap.cps.ncmp.impl.data.policyexecutor
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException
 import org.onap.cps.ncmp.impl.provmns.RequestParameters
-import org.onap.cps.ncmp.impl.provmns.model.PatchItem
-import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
+import org.onap.cps.ncmp.provmns.model.PatchItem
+import org.onap.cps.ncmp.provmns.model.ResourceOneOf
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
