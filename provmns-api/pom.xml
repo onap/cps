@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============LICENSE_START=======================================================
+  Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
+  ================================================================================
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  SPDX-License-Identifier: Apache-2.0
+  ============LICENSE_END=========================================================
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.onap.cps</groupId>
+        <artifactId>cps-parent</artifactId>
+        <version>3.7.7-SNAPSHOT</version>
+        <relativePath>../cps-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>provmns-api</artifactId>
+
+    <!--
+        This module is part of the regular aggregator build and compiles normally.
+        Hand-written sources are in src/main/java/. Generated sources are only produced
+        when the generate-provmns-api profile is explicitly activated (requires network).
+
+        To regenerate sources from the upstream spec:
+            mvn generate-sources -Pgenerate-provmns-api -pl provmns-api
+
+        To deploy the JAR to Nexus:
+            mvn deploy -pl provmns-api
+
+        See docs/provmns-api.md for full instructions.
+    -->
+
+    <properties>
+        <!-- ProvMnS spec version: 18.6.0 (3GPP TS28532, tag Rel18_SA110).
+             Update this tag when regenerating. -->
+        <provmns.spec.version>Rel18_SA110</provmns.spec.version>
+        <provmns.spec.url>https://forge.3gpp.org/rep/sa5/MnS/-/raw/Tag_${provmns.spec.version}/OpenAPI/TS28532_ProvMnS.yaml</provmns.spec.url>
+        <provmns.generated.sources>${project.build.directory}/generated-sources/openapi</provmns.generated.sources>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.artifactId}</artifactId>
+            <version>18.6.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/provmns-api-18.6.0.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-18.6.0</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>merge-lib-jar</id>
+                        <phase>package</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                                <!-- Merge lib JAR with compiled hand-written classes into final JAR -->
+                                <jar destfile="${project.build.directory}/${project.build.finalName}.jar">
+                                    <zipfileset src="${project.basedir}/lib/provmns-api-18.6.0.jar"
+                                                excludes="**/Resource.class,**/ClassNameIdGetDataNodeSelectorParameter.class"/>
+                                    <fileset dir="${project.build.outputDirectory}"/>
+                                </jar>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-install</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>install-merged-jar</id>
+                        <phase>install</phase>
+                        <goals><goal>install-file</goal></goals>
+                        <configuration>
+                            <file>${project.build.directory}/${project.build.finalName}.jar</file>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${project.artifactId}</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>jar</packaging>
+                            <pomFile>${project.basedir}/pom.xml</pomFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!--
+            Run this profile manually to (re)generate sources from the upstream 3GPP spec:
+                mvn generate-sources -Pgenerate-provmns-api -pl provmns-api
+            Then build and deploy the JAR. Do NOT commit the generated sources.
+        -->
+        <profile>
+            <id>generate-provmns-api</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.openapitools</groupId>
+                        <artifactId>openapi-generator-maven-plugin</artifactId>
+                        <version>7.12.0</version>
+                        <executions>
+                            <execution>
+                                <id>generate-provmns-api</id>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <inputSpec>${provmns.spec.url}</inputSpec>
+                                    <generatorName>spring</generatorName>
+                                    <output>${project.build.directory}/generated-sources/openapi</output>
+                                    <invokerPackage>org.onap.cps.ncmp.provmns.controller</invokerPackage>
+                                    <modelPackage>org.onap.cps.ncmp.provmns.model</modelPackage>
+                                    <apiPackage>org.onap.cps.ncmp.provmns.api</apiPackage>
+                                    <generateSupportingFiles>false</generateSupportingFiles>
+                                    <generateApis>false</generateApis>
+                                    <configOptions>
+                                        <sourceFolder>src/main/java</sourceFolder>
+                                        <dateLibrary>java11</dateLibrary>
+                                        <interfaceOnly>true</interfaceOnly>
+                                        <useSpringBoot3>true</useSpringBoot3>
+                                        <useTags>true</useTags>
+                                        <openApiNullable>false</openApiNullable>
+                                        <skipDefaultInterface>true</skipDefaultInterface>
+                                    </configOptions>
+                                    <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>delete-broken-generated-files</id>
+                                <phase>generate-sources</phase>
+                                <goals><goal>run</goal></goals>
+                                <configuration>
+                                    <target>
+                                        <delete>
+                                            <fileset dir="${provmns.generated.sources}/src/main/java/org/onap/cps/ncmp/provmns/model">
+                                                <include name="AreaOfInterest.java"/>
+                                                <include name="AreaScope.java"/>
+                                                <include name="AreaScopeOneOf.java"/>
+                                                <include name="BackhaulAddress.java"/>
+                                                <include name="ExternalGnbCuCpFunctionSingleAllOfAttributes.java"/>
+                                                <include name="ExternalGnbCuUpFunctionSingleAllOfAttributes.java"/>
+                                                <include name="ExternalGnbDuFunctionSingleAllOfAttributes.java"/>
+                                                <include name="GnbCuCpFunctionSingleAllOfAttributes.java"/>
+                                                <include name="GnbCuUpFunctionSingleAllOfAttributes.java"/>
+                                                <include name="GnbDuFunctionSingleAllOfAttributes.java"/>
+                                                <include name="Model5GCNfConnEcmInfo.java"/>
+                                                <include name="NTNGlobalRanNodeID.java"/>
+                                                <include name="NullValue.java"/>
+                                                <include name="OperatorDuSingle.java"/>
+                                                <include name="Orbital.java"/>
+                                                <include name="ResourceOneOf1.java"/>
+                                                <include name="ThresholdLevelInd.java"/>
+                                                <include name="ThresholdLevelIndOneOf.java"/>
+                                                <include name="ThresholdLevelIndOneOf1.java"/>
+                                                <include name="TrpInfo.java"/>
+                                            </fileset>
+                                        </delete>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

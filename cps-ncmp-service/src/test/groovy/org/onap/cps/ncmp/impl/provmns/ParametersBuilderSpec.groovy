@@ -20,8 +20,8 @@
 package org.onap.cps.ncmp.impl.provmns
 
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParameter
-import org.onap.cps.ncmp.impl.provmns.model.Scope
+import org.onap.cps.ncmp.provmns.model.ClassNameIdGetDataNodeSelectorParameter
+import org.onap.cps.ncmp.provmns.model.Scope
 import spock.lang.Specification
 
 class ParametersBuilderSpec extends Specification{
