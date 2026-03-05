@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modification Copyright (C) 2024 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,6 +34,7 @@ import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelOnboardingException
 import org.onap.cps.api.model.ModuleDefinition
+import org.onap.cps.api.model.SchemaSet
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
@@ -210,24 +211,35 @@ class AbstractModelLoaderSpec extends Specification {
     }
 
     def 'Delete unused schema sets.'() {
-        when: 'unused schema sets get deleted'
-            objectUnderTest.deleteUnusedSchemaSets('some dataspace','schema set 1', 'schema set 2')
-        then: 'a request to delete each (without cascade) is delegated to the module service'
-            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 1', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
-            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 2', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
+        given: 'dataspace has 3 schema sets'
+            def schemaSet1 = Mock(SchemaSet) { getName() >> 'dmi-registry-2024-01-01' }
+            def schemaSet2 = Mock(SchemaSet) { getName() >> 'dmi-registry-2024-02-01' }
+            def schemaSet3 = Mock(SchemaSet) { getName() >> 'dmi-registry-2024-03-01' }
+            mockCpsModuleService.getSchemaSets('some dataspace') >> [schemaSet1, schemaSet2, schemaSet3]
+        when: 'deleting unused schema sets keeping schema set 2 and schema set 3'
+            objectUnderTest.deleteUnusedSchemaSets('some dataspace', 'dmi-registry-2024-02-01', 'dmi-registry-2024-03-01')
+        then: 'only schema set 1 is deleted'
+            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'dmi-registry-2024-01-01', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
+            0 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'dmi-registry-2024-02-01', _)
+            0 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'dmi-registry-2024-03-01', _)
     }
 
     def 'Delete unused schema sets with exception.'() {
-        given: 'deleting the first schemaset causes an exception'
-            mockCpsModuleService.deleteSchemaSet(_, 'schema set 1', _) >> { throw new RuntimeException('test message')}
-        when: 'several unused schemas are deleted '
-            objectUnderTest.deleteUnusedSchemaSets('some dataspace','schema set 1', 'schema set 2')
+        given: 'dataspace has 3 schema sets'
+            def schemaSet1 = Mock(SchemaSet) { getName() >> 'dmi-registry-2024-01-01' }
+            def schemaSet2 = Mock(SchemaSet) { getName() >> 'dmi-registry-2024-02-01' }
+            def schemaSet3 = Mock(SchemaSet) { getName() >> 'dmi-registry-2024-03-01' }
+            mockCpsModuleService.getSchemaSets('some dataspace') >> [schemaSet1, schemaSet2, schemaSet3]
+        and: 'deleting schema set 1 causes an exception'
+            mockCpsModuleService.deleteSchemaSet(_, 'dmi-registry-2024-01-01', _) >> { throw new RuntimeException('test message')}
+        when: 'deleting unused schemas keeping only schema set 2'
+            objectUnderTest.deleteUnusedSchemaSets('some dataspace', 'dmi-registry-2024-02-01', null)
         then: 'the exception message is logged'
             def logs = loggingListAppender.list.toString()
-            assert logs.contains('Deleting schema set failed')
+            assert logs.contains('Deleting schema set')
             assert logs.contains('test message')
-        and: 'the second schema set is still deleted'
-            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 2', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
+        and: 'schema set 3 is still deleted'
+            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'dmi-registry-2024-03-01', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
     }
 
     def 'Update anchor schema set.'() {
