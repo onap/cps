@@ -78,6 +78,13 @@
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>provmns-api-local</id>
+            <url>file://${maven.multiModuleProjectDirectory}/provmns-api/local-repo</url>
+        </repository>
+    </repositories>
+
     <distributionManagement>
         <repository>
             <id>ecomp-releases</id>
@@ -451,7 +458,7 @@
                         <exclude>org/onap/cps/**/*MapperImpl.class</exclude>
                         <exclude>org/onap/cps/ncmp/rest/stub/*</exclude>
                         <exclude>org/onap/cps/policyexecutor/stub/model/*</exclude>
-                        <exclude>org/onap/cps/ncmp/impl/provmns/model/*</exclude>
+                        <exclude>org/onap/cps/ncmp/provmns/model/*</exclude>
                         <exclude>**/pom.xml</exclude>
                     </excludes>
                 </configuration>

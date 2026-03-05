@@ -60,6 +60,10 @@
             <version>5.4.4</version>
         </dependency>
         <dependency>
+            <groupId>org.onap.cps</groupId>
+            <artifactId>provmns-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>cps-service</artifactId>
         </dependency>
@@ -132,44 +136,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <!-- Swagger code generation. -->
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.12.0</version>
-                <executions>
-                    <execution>
-                        <id>ncmp-code-gen-provmns</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>https://forge.3gpp.org/rep/sa5/MnS/-/raw/Tag_Rel18_SA110/OpenAPI/TS28532_ProvMnS.yaml</inputSpec>
-                            <invokerPackage>org.onap.cps.ncmp.impl.provmns.controller</invokerPackage>
-                            <modelPackage>org.onap.cps.ncmp.impl.provmns.model</modelPackage>
-                            <apiPackage>org.onap.cps.ncmp.impl.provmns.api</apiPackage>
-                            <generatorName>spring</generatorName>
-                            <generateSupportingFiles>false</generateSupportingFiles>
-                            <configOptions>
-                                <sourceFolder>src/gen/java</sourceFolder>
-                                <dateLibrary>java11</dateLibrary>
-                                <interfaceOnly>true</interfaceOnly>
-                                <useSpringBoot3>true</useSpringBoot3>
-                                <useTags>true</useTags>
-                                <openApiNullable>false</openApiNullable>
-                                <skipDefaultInterface>true</skipDefaultInterface>
-                            </configOptions>
-                            <importMappings>
-                                <importMapping>Resource=org.onap.cps.ncmp.impl.provmns.model.Resource</importMapping>
-                                <importMapping>ClassNameIdGetDataNodeSelectorParameter=org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParameter</importMapping>
-                            </importMappings>
-                            <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore-provmns</ignoreFileOverride>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

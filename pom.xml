@@ -69,6 +69,13 @@
         <module>test-dcm-rest</module>
     </modules>
 
+    <repositories>
+        <repository>
+            <id>provmns-api-local</id>
+            <url>file://${maven.multiModuleProjectDirectory}/provmns-api/local-repo</url>
+        </repository>
+    </repositories>
+
     <distributionManagement>
         <repository>
             <id>ecomp-releases</id>
