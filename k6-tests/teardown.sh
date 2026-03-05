@@ -22,28 +22,39 @@ deploymentType=${2:-dockerHosts}
 # Function to clean Docker images based on CLEAN_DOCKER_IMAGES environment variable
 clean_docker_images_if_needed() {
   if [[ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]]; then
-    echo "Also cleaning up all CPS images"
-    remove_cps_images
+    echo "Also cleaning up CPS images"
+    remove_cps_images "$deploymentType"
   fi
 }
 
 # All CPS docker images:
-# nexus3.onap.org:10003/onap/cps-and-ncmp:latest
-# nexus3.onap.org:10003/onap/dmi-stub:1.8.0-SNAPSHOT
-# nexus3.onap.org:10003/onap/policy-executor-stub:latest
+# nexus3.onap.org:10003/onap/cps-and-ncmp:SNAPSHOT-*
+# nexus3.onap.org:10003/onap/policy-executor-stub:SNAPSHOT-*
+# Note: DMI stub is pulled from Nexus, not built, so we don't clean it
 remove_cps_images() {
+  local deployment_type=$1
   local cps_image_names=(cps-and-ncmp policy-executor-stub)
+  
+  echo "Cleaning up Docker images..."
   for cps_image_name in "${cps_image_names[@]}"; do
     local image_path="nexus3.onap.org:10003/onap/$cps_image_name"
-    # list all images for all tags except 'latest' since it would be in use
-    # result will store in snapshot_tags[0], snapshot_tags[1]
-    local snapshot_tags=( $(docker images "$image_path" --format '{{.Tag}}' | grep -v '^latest$') )
+    
+    # List all images for all tags except 'latest' since it would be in use
+    # For k8sHosts: remove SNAPSHOT-* tags (timestamp-based from Jenkins)
+    # For dockerHosts: remove all non-latest tags
+    if [[ "$deployment_type" == "k8sHosts" ]]; then
+      local snapshot_tags=( $(docker images "$image_path" --format '{{.Tag}}' | grep 'SNAPSHOT-' || true) )
+    else
+      local snapshot_tags=( $(docker images "$image_path" --format '{{.Tag}}' | grep -v '^latest$' || true) )
+    fi
+    
     if [ ${#snapshot_tags[@]} -gt 0 ]; then
-      echo "Removing snapshot images for tags $image_path: ${snapshot_tags[*]}"
-      # remove each snapshot image explicitly
+      echo "Removing images for $image_path: ${snapshot_tags[*]}"
       for tag in "${snapshot_tags[@]}"; do
-        docker rmi "$image_path:$tag"
+        docker rmi "$image_path:$tag" || echo "  Warning: Failed to remove $image_path:$tag"
       done
+    else
+      echo "No images to remove for $image_path"
     fi
   done
 }
