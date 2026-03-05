@@ -26,7 +26,7 @@ import org.onap.cps.ncmp.api.data.models.OperationType
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.provmns.ParameterHelper
-import org.onap.cps.ncmp.impl.provmns.model.PatchItem
+import org.onap.cps.ncmp.provmns.model.PatchItem
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.TestPropertySource
