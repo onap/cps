@@ -71,6 +71,16 @@
         <sonar.coverage.jacoco.xmlReportPaths>
             ../jacoco-report/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.exclusions>
+            **/events/model/**,
+            **/rest/model/**,
+            **/cpspath/parser/antlr4/**,
+            **/ncmp/rest/model/**,
+            **/*MapperImpl.java,
+            **/ncmp/rest/stub/**,
+            **/policyexecutor/stub/model/**,
+            **/ncmp/provmns/model/**
+        </sonar.coverage.exclusions>
 
         <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
@@ -451,7 +461,7 @@
                         <exclude>org/onap/cps/**/*MapperImpl.class</exclude>
                         <exclude>org/onap/cps/ncmp/rest/stub/*</exclude>
                         <exclude>org/onap/cps/policyexecutor/stub/model/*</exclude>
-                        <exclude>org/onap/cps/ncmp/impl/provmns/model/*</exclude>
+                        <exclude>org/onap/cps/ncmp/provmns/model/*</exclude>
                         <exclude>**/pom.xml</exclude>
                     </excludes>
                 </configuration>
