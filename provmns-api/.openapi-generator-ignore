@@ -1,0 +1,17 @@
+# Ignore all generated models and apis by default
+src/main/java/org/onap/cps/ncmp/provmns/model/
+src/main/java/org/onap/cps/ncmp/provmns/api/
+
+# Allow generation of the models actually used by CPS
+!src/main/java/org/onap/cps/ncmp/provmns/model/ClassNameIdPatchDefaultResponse.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/ErrorResponseDefault.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/ErrorResponseDefaultOtherProblemsInner.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/ErrorResponseGet.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/ErrorResponseGetOtherProblemsInner.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/ErrorResponsePatch.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/ErrorResponsePatchOtherProblemsInner.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/PatchItem.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/PatchOperation.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/ResourceOneOf.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/Scope.java
+!src/main/java/org/onap/cps/ncmp/provmns/model/ScopeType.java

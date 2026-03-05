@@ -1,0 +1,6 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.onap.cps</groupId>
+  <artifactId>provmns-api</artifactId>
+  <version>18.6.0</version>
+</project>

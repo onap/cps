@@ -48,6 +48,7 @@
     </properties>
 
     <modules>
+        <module>provmns-api</module>
         <module>cps-dependencies</module>
         <module>cps-bom</module>
         <module>cps-parent</module>
@@ -68,6 +69,13 @@
         <module>policy-executor-stub</module>
         <module>test-dcm-rest</module>
     </modules>
+
+    <repositories>
+        <repository>
+            <id>provmns-api-local</id>
+            <url>file://${maven.multiModuleProjectDirectory}/provmns-api/local-repo</url>
+        </repository>
+    </repositories>
 
     <distributionManagement>
         <repository>

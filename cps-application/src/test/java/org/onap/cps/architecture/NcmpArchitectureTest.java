@@ -47,6 +47,7 @@ public class NcmpArchitectureTest extends ArchitectureTestBase {
                     .onlyDependOnClassesThat()
                     .resideInAnyPackage(commonAndListedPackages("org.onap.cps.ncmp.api..",
                                                                 "org.onap.cps.ncmp.rest..",
+                                                                "org.onap.cps.ncmp.provmns..",
                                                                 "org.onap.cps.api..",
                                                                 // Below packages are breaking the agreed dependencies
                                                                 // and need to be removed from this rule.
@@ -72,6 +73,7 @@ public class NcmpArchitectureTest extends ArchitectureTestBase {
                     .resideInAnyPackage(commonAndListedPackages("org.onap.cps.api..",
                                                                 "org.onap.cps.ncmp.api..",
                                                                 "org.onap.cps.ncmp.impl..",
+                                                                "org.onap.cps.ncmp.provmns..",
                                                                 "org.onap.cps.ncmp.event..",
                                                                 "org.onap.cps.ncmp.events..",
                                                                 "org.onap.cps.ncmp.utils..",
