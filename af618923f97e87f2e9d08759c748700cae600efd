@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56351953_2caef598",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-03-05T17:01:27Z",
+      "side": 1,
+      "message": "so yeah i can change it to latest if need",
+      "parentUuid": "79c26250_4e67ab5c",
+      "range": {
+        "startLine": 201,
+        "startChar": 9,
+        "endLine": 201,
+        "endChar": 25
+      },
+      "revId": "af618923f97e87f2e9d08759c748700cae600efd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5acf6db1_7f870984",
         "filename": "cps-charts/values.yaml",
         "patchSetId": 1
