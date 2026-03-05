@@ -21,8 +21,8 @@
 package org.onap.cps.integration.functional.ncmp.provmns
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.impl.provmns.model.PatchItem
-import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
+import org.onap.cps.ncmp.provmns.model.PatchItem
+import org.onap.cps.ncmp.provmns.model.ResourceOneOf
 import org.springframework.http.MediaType
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
