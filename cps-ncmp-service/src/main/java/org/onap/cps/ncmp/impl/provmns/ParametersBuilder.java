@@ -25,10 +25,10 @@ import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
-import org.onap.cps.ncmp.impl.provmns.model.Scope;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
+import org.onap.cps.ncmp.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
+import org.onap.cps.ncmp.provmns.model.Scope;
 import org.springframework.stereotype.Service;
 
 @Service

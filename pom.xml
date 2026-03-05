@@ -48,6 +48,7 @@
     </properties>
 
     <modules>
+        <module>provmns-api</module>
         <module>cps-dependencies</module>
         <module>cps-bom</module>
         <module>cps-parent</module>
