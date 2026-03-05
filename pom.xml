@@ -55,6 +55,7 @@
         <module>cps-service</module>
         <module>cps-rest</module>
         <module>cps-ncmp-events</module>
+        <module>provmns-api</module>
         <module>cps-ncmp-service</module>
         <module>cps-ncmp-rest</module>
         <module>cps-ncmp-rest-stub</module>
