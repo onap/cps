@@ -51,8 +51,8 @@ postgresql:
 cps:
   image:
     repository: "nexus3.onap.org:10003/onap/cps-and-ncmp"
-    tag: "latest"
-    pullPolicy: Always
+    tag: ""
+    pullPolicy: Never
   replicas: 2
   servicePort: 8080
   service:
@@ -250,8 +250,8 @@ policyExecutorStub:
   enabled: true
   image:
     repository: nexus3.onap.org:10003/onap/policy-executor-stub
-    tag: "latest"
-    pullPolicy: Always
+    tag: ""
+    pullPolicy: Never
   replicaCount: 1
   service:
     type: NodePort

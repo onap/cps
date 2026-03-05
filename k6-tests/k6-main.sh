@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+# Copyright 2024-2026 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -53,12 +53,48 @@ if [[ "$deploymentType" == "dockerHosts" ]]; then
 elif [[ "$deploymentType" == "k8sHosts" ]]; then
     echo "Test profile: $testProfile, and deployment type: $deploymentType provided for k8s cluster"
 
+    # Set default values for local development if not provided by Jenkins
+    IMAGE_TAG="${IMAGE_TAG:-latest}"
+    DMI_STUB_VERSION="${DMI_STUB_VERSION:-1.8.0-SNAPSHOT}"
+    POLICY_EXECUTOR_STUB_VERSION="${POLICY_EXECUTOR_STUB_VERSION:-latest}"
+    IMAGE_PULL_POLICY="${IMAGE_PULL_POLICY:-IfNotPresent}"
+
+    # Display image configuration for verification
+    cat << EOF
+==========================================
+IMAGE CONFIGURATION FOR K6 TESTS:
+==========================================
+CPS Image Tag:                ${IMAGE_TAG}
+DMI Stub Version:             ${DMI_STUB_VERSION}
+Policy Executor Stub Version: ${POLICY_EXECUTOR_STUB_VERSION}
+Image Pull Policy:            ${IMAGE_PULL_POLICY}
+==========================================
+EOF
+
     # Deploy cps charts for k8s
-    helm install cps ../cps-charts
+    helm install cps ../cps-charts \
+      --set cps.image.tag="${IMAGE_TAG}" \
+      --set cps.image.pullPolicy="${IMAGE_PULL_POLICY}" \
+      --set dmiStub.image.tag="${DMI_STUB_VERSION}" \
+      --set dmiStub.image.pullPolicy="IfNotPresent" \
+      --set policyExecutorStub.image.tag="${POLICY_EXECUTOR_STUB_VERSION}" \
+      --set policyExecutorStub.image.pullPolicy="${IMAGE_PULL_POLICY}"
 
     # Wait for pods and services until becomes ready
     echo "Waiting for cps and ncmp pods to be ready..."
     kubectl wait --for=condition=available deploy -l app=ncmp --timeout=300s
+
+    # Verify actual images running in pods
+    cat << EOF
+==========================================
+VERIFYING ACTUAL IMAGES IN RUNNING PODS:
+==========================================
+EOF
+    kubectl get pods -l app=ncmp -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.containers[*].image}{"\n"}{end}' | while read -r pod_name images; do
+      echo "Pod: $pod_name"
+      echo "  Images: $images"
+    done
+    echo "=========================================="
 
 else
     echo "Error: Unsupported deployment type: $deploymentType"
