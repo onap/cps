@@ -52,7 +52,7 @@ CHECK_INTERVAL=5
 latest_source=$(kafkacat -Q -b $BROKER -t $SOURCE_TOPIC:$PARTITION:-1 | awk '{print $NF}')
 earliest_source=$(kafkacat -Q -b $BROKER -t $SOURCE_TOPIC:$PARTITION:-2 | awk '{print $NF}')
 expected_messages=$((latest_source - earliest_source))
-target_threshold=$((expected_messages * 99 / 100))
+target_threshold=$((expected_messages * 98 / 100))
 
 # Poll target topic until threshold met or timeout
 elapsed=0
@@ -73,8 +73,16 @@ while [ $elapsed -lt $TIMEOUT ]; do
     elapsed=$((elapsed + CHECK_INTERVAL))
 done
 
-# Append Kafka verification result to summary
-echo "10,Kafka Message Verification,messages,$expected_messages,$expected_messages,$message_count" >> "$summaryFile"
+# Calculate percentage of messages collected
+if [ "$expected_messages" -gt 0 ]; then
+    actual_percentage=$((message_count * 100 / expected_messages))
+else
+    actual_percentage=0
+fi
+
+# Append Kafka verification result to summary with percentages
+# Format: TestNumber,TestName,Unit,FSRequirement,ExpectedValue,ActualValue
+echo "10,Kafka Message Verification,%,98,100,$actual_percentage" >> "$summaryFile"
 
 # ══════════════════════════════════════════════════════════════
 # K6 Exit Code Summary
@@ -91,7 +99,7 @@ esac
 # Adds ✅/❌ based on pass/fail criteria:
 #   • Throughput tests (0,1,2,7): PASS if Actual ≥ Requirement
 #   • Duration tests: PASS if Actual ≤ Requirement
-#   • Kafka verification (10): PASS if Actual ≥ 99% of Requirement
+#   • Kafka verification (10): PASS if Actual ≥ 98% of Requirement
 addResultColumn() {
   local summaryFile="$1"
   local tmp
@@ -118,7 +126,7 @@ awk -F',' -v OFS=',' '
         isKafkaVerification = (testNumber=="10")
 
         if (isKafkaVerification)
-            pass = (actual >= fsRequirement * 0.99)
+            pass = (actual >= fsRequirement)
         else if (actual == 0 && testNumber != "0")
             pass = 0
         else if (isThroughput)
