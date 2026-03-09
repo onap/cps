@@ -16,6 +16,24 @@
       "message": "why do we still have\ncps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/",
       "revId": "f8795f8eaee9929d503dc85acb458daa9d6cea63",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eab229d_1a92be16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-09T11:20:49Z",
+      "side": 1,
+      "message": "impl/provmns/ still exists because it contains CPS implementation classes that are specific to CPS business logic. Only the model classes (generated from the 3GPP spec) were extracted to provmns-api. The model/ subdirectory has been removed.",
+      "parentUuid": "d608d7db_c8fab795",
+      "revId": "f8795f8eaee9929d503dc85acb458daa9d6cea63",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
