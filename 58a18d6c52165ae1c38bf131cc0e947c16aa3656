@@ -50,6 +50,46 @@
       "message": "recheck",
       "revId": "58a18d6c52165ae1c38bf131cc0e947c16aa3656",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61bd2adc_bef32748",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-09T10:47:42Z",
+      "side": 1,
+      "message": "Just a warning, see below...",
+      "revId": "58a18d6c52165ae1c38bf131cc0e947c16aa3656",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48dc3ad6_6a14b8a5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-09T10:47:42Z",
+      "side": 1,
+      "message": "are you sure you want to change the title(s). This will change the graphs, I think you loose historical data and numbering will also change.\nIst OK as long as you are aware of it...",
+      "range": {
+        "startLine": 72,
+        "startChar": 42,
+        "endLine": 72,
+        "endChar": 77
+      },
+      "revId": "58a18d6c52165ae1c38bf131cc0e947c16aa3656",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
