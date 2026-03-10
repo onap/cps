@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (c) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (c) 2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -9,7 +9,7 @@
  *        http://www.apache.org/licenses/LICENSE-2.0
  *
  *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an 'AS IS' BASIS,
+ *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
@@ -45,10 +45,10 @@ import java.time.Duration
 import static org.onap.cps.ncmp.utils.TestUtils.getResourceFileContent
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
-@SpringBootTest(classes = [EventProducer, CmAvcEventConsumer, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [EventProducer, CmAvcEventSingleConsumer, ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
-class CmAvcEventConsumerSpec extends MessagingBaseSpec {
+class CmAvcEventSingleConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
     EventProducer eventProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
@@ -57,7 +57,7 @@ class CmAvcEventConsumerSpec extends MessagingBaseSpec {
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
     @SpringBean
-    CmAvcEventConsumer objectUnderTest = new CmAvcEventConsumer(eventProducer, mockCmAvcEventService, mockInventoryPersistence)
+    CmAvcEventSingleConsumer objectUnderTest = new CmAvcEventSingleConsumer(eventProducer, mockCmAvcEventService, mockInventoryPersistence)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper

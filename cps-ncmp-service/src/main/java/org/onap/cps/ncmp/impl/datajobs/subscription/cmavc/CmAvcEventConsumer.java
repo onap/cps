@@ -24,7 +24,6 @@ import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent;
 
 import io.cloudevents.CloudEvent;
 import io.cloudevents.kafka.impl.KafkaHeaders;
-import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -33,50 +32,31 @@ import org.onap.cps.events.EventProducer;
 import org.onap.cps.ncmp.events.avc1_0_0.AvcEvent;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Component;
 
 /**
- * Listener for AVC events based on CM Subscriptions.
+ * Abstract base class for AVC event consumers.
+ * Provides common functionality for processing and forwarding CM AVC events.
  */
-@Component
 @Slf4j
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
-public class CmAvcEventConsumer {
+public abstract class CmAvcEventConsumer {
 
     private static final String CLOUD_EVENT_SOURCE_SYSTEM_HEADER_KEY = "ce_source";
+    private static final String ONAP_DMI_PLUGIN_SOURCE = "ONAP-DMI-PLUGIN";
 
     @Value("${app.ncmp.avc.cm-events-topic}")
-    private String cmEventsTopicName;
+    protected String cmEventsTopicName;
 
-    private final EventProducer eventProducer;
-    private final CmAvcEventService cmAvcEventService;
-    private final InventoryPersistence inventoryPersistence;
+    protected final EventProducer eventProducer;
+    protected final CmAvcEventService cmAvcEventService;
+    protected final InventoryPersistence inventoryPersistence;
 
     /**
-     * Incoming Cm AvcEvent in the form of Consumer Record, it will be forwarded as is to a target topic.
-     * The key from incoming record will be used as key for the target topic as well to preserve the message ordering.
-     * If event is coming from ONAP-DMI-PLUGIN then the event will also be processed by NCMP and the cps cache/database
-     * will be updated.
+     * Process CM AVC event changes if the event is from ONAP-DMI-PLUGIN and data sync is enabled.
      *
-     * @param cmAvcEventAsConsumerRecord Incoming raw consumer record
+     * @param cmAvcEventAsConsumerRecord the consumer record containing the event
      */
-    @KafkaListener(topics = "${app.dmi.cm-events.topic}",
-        containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
-    @Timed(value = "cps.ncmp.cm.notifications.consume.and.forward", description = "Time taken to forward CM AVC events")
-    public void consumeAndForward(final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
-        if (isEventFromOnapDmiPlugin(cmAvcEventAsConsumerRecord.headers())) {
-            processCmAvcEventChanges(cmAvcEventAsConsumerRecord);
-        }
-        final CloudEvent outgoingAvcEvent = cmAvcEventAsConsumerRecord.value();
-        final String outgoingAvcEventKey = cmAvcEventAsConsumerRecord.key();
-        log.debug("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
-        eventProducer.sendCloudEvent(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
-    }
-
-    private void processCmAvcEventChanges(final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
+    protected void processCmAvcEventChanges(final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
         final String cmHandleId = cmAvcEventAsConsumerRecord.key();
         final Boolean dataSyncEnabled = inventoryPersistence.getCmHandleState(cmHandleId).getDataSyncEnabled();
         if (Boolean.TRUE.equals(dataSyncEnabled)) {
@@ -88,8 +68,14 @@ public class CmAvcEventConsumer {
         }
     }
 
-    private boolean isEventFromOnapDmiPlugin(final Headers headers) {
+    /**
+     * Check if the event is from ONAP-DMI-PLUGIN based on the ce_source header.
+     *
+     * @param headers the Kafka headers
+     * @return true if the event is from ONAP-DMI-PLUGIN, false otherwise
+     */
+    protected boolean isEventFromOnapDmiPlugin(final Headers headers) {
         final String sourceSystem = KafkaHeaders.getParsedKafkaHeader(headers, CLOUD_EVENT_SOURCE_SYSTEM_HEADER_KEY);
-        return sourceSystem != null && sourceSystem.equals("ONAP-DMI-PLUGIN");
+        return ONAP_DMI_PLUGIN_SOURCE.equals(sourceSystem);
     }
 }
