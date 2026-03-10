@@ -102,6 +102,8 @@ public class YangModelCmHandle {
         copy.dmiServiceName = original.getDmiServiceName();
         copy.dmiDataServiceName = original.getDmiDataServiceName();
         copy.dmiModelServiceName = original.getDmiModelServiceName();
+        copy.dmiDatajobsReadServiceName = original.getDmiDatajobsReadServiceName();
+        copy.dmiDatajobsWriteServiceName = original.getDmiDatajobsWriteServiceName();
         copy.compositeState =
                 original.getCompositeState() == null ? null : new CompositeState(original.getCompositeState());
         copy.additionalProperties = original.getAdditionalProperties()
@@ -140,6 +142,8 @@ public class YangModelCmHandle {
         yangModelCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
         yangModelCmHandle.setDmiDataServiceName(dmiPluginRegistration.getDmiDataPlugin());
         yangModelCmHandle.setDmiModelServiceName(dmiPluginRegistration.getDmiModelPlugin());
+        yangModelCmHandle.setDmiDatajobsReadServiceName(dmiPluginRegistration.getDmiDatajobsReadPlugin());
+        yangModelCmHandle.setDmiDatajobsWriteServiceName(dmiPluginRegistration.getDmiDatajobsWritePlugin());
         yangModelCmHandle.setModuleSetTag(StringUtils.trimToEmpty(moduleSetTag));
         yangModelCmHandle.setAlternateId(StringUtils.trimToEmpty(alternateId));
         yangModelCmHandle.setDataProducerIdentifier(StringUtils.trimToEmpty(dataProducerIdentifier));

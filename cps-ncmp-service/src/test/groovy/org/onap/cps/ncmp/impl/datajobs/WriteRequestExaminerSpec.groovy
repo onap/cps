@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -92,16 +92,16 @@ class WriteRequestExaminerSpec extends Specification {
     }
 
     def 'Validate the creation of a ProducerKey with correct dmiservicename.'() {
-        given: 'yangModelCmHandles with service name: "#dmiServiceName" and data service name: "#dataServiceName"'
-            def yangModelCmHandle = new YangModelCmHandle(dmiServiceName: dmiServiceName, dmiDataServiceName: dataServiceName, dataProducerIdentifier: 'dpi1')
+        given: 'yangModelCmHandles with service name: "#dmiServiceName" and datajobs write service name: "#datajobsWriteServiceName"'
+            def yangModelCmHandle = new YangModelCmHandle(dmiServiceName: dmiServiceName, dmiDatajobsWriteServiceName: datajobsWriteServiceName, dataProducerIdentifier: 'dpi1')
         when: 'the ProducerKey is created'
             def result = objectUnderTest.createProducerKey(yangModelCmHandle).toString()
         then: 'we get the ProducerKey with the correct service name'
             assert result == expectedProducerKey
         where: 'the following services are registered'
-            dmiServiceName     | dataServiceName          || expectedProducerKey
-            'dmi-service-name' | ''                       || 'dmi-service-name#dpi1'
-            ''                 | 'dmi-data-service-name'  || 'dmi-data-service-name#dpi1'
-            'dmi-service-name' | 'dmi-data-service-name'  || 'dmi-service-name#dpi1'
+            dmiServiceName     | datajobsWriteServiceName        || expectedProducerKey
+            'dmi-service-name' | ''                              || 'dmi-service-name#dpi1'
+            ''                 | 'dmi-datajobs-write-service'    || 'dmi-datajobs-write-service#dpi1'
+            'dmi-service-name' | 'dmi-datajobs-write-service'    || 'dmi-datajobs-write-service#dpi1'
     }
 }
