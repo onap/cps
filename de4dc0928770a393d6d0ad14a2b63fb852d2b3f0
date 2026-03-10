@@ -128,6 +128,30 @@
       },
       "revId": "de4dc0928770a393d6d0ad14a2b63fb852d2b3f0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a91e170_a6847660",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-03-10T12:46:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b8ac3758_89f5467f",
+      "range": {
+        "startLine": 133,
+        "startChar": 27,
+        "endLine": 133,
+        "endChar": 31
+      },
+      "revId": "de4dc0928770a393d6d0ad14a2b63fb852d2b3f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
