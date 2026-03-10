@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d24d14_247d6122",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-10T15:13:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7a35e22_9dfe1d53",
+      "range": {
+        "startLine": 252,
+        "startChar": 37,
+        "endLine": 252,
+        "endChar": 55
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5e8e305_4da13c0b",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0208f811_ca68b6af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceNameResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-10T15:13:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5e8e305_4da13c0b",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 31
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f26225c_9da63d9e",
@@ -77,6 +125,30 @@
       "writtenOn": "2026-03-10T14:00:06Z",
       "side": 1,
       "message": "I think you can use a static import for the isNotBlank() method too here...",
+      "range": {
+        "startLine": 98,
+        "startChar": 72,
+        "endLine": 98,
+        "endChar": 94
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41d58cb4_5674475c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceNameResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-10T15:13:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f26225c_9da63d9e",
       "range": {
         "startLine": 98,
         "startChar": 72,
@@ -112,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6799e7e_385c9eaf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-10T15:13:29Z",
+      "side": 1,
+      "message": "You are correct the test above already thoroughly tests initiateStateAdvised with parameter validation",
+      "parentUuid": "2e7a2e13_d0093e6d",
+      "range": {
+        "startLine": 202,
+        "startChar": 3,
+        "endLine": 203,
+        "endChar": 73
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef7ef9f1_81df3e90",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
         "patchSetId": 2
@@ -123,6 +219,30 @@
       "writtenOn": "2026-03-10T14:00:06Z",
       "side": 1,
       "message": "NB: alignment",
+      "range": {
+        "startLine": 205,
+        "startChar": 126,
+        "endLine": 206,
+        "endChar": 127
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7450d24a_342bb6fb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-10T15:13:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef7ef9f1_81df3e90",
       "range": {
         "startLine": 205,
         "startChar": 126,
@@ -146,6 +266,30 @@
       "writtenOn": "2026-03-10T14:00:06Z",
       "side": 1,
       "message": "i would ask AI if we can rationalise these scenarios and still get 100% coverage... It seem to many.",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 54
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "939da474_3ec23d13",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandleSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-10T15:13:29Z",
+      "side": 1,
+      "message": "AI tidied it up a bit alright",
+      "parentUuid": "3d4e1081_42f1a2c5",
       "range": {
         "startLine": 88,
         "startChar": 12,
