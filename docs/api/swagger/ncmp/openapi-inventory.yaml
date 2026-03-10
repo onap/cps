@@ -312,6 +312,7 @@ components:
   schemas:
     RestDmiPluginRegistration:
       example:
+        dmiDatajobsReadPlugin: my-dmi-datajobs-read-plugin
         updatedCmHandles:
         - cmHandle: my-cm-handle
           alternateId: "Subnetwork=Europe,ManagedElement=X123"
@@ -359,6 +360,7 @@ components:
           trustLevel: COMPLETE
           dmiProperties: my-dmi-property
         dmiPlugin: my-dmi-plugin
+        dmiDatajobsWritePlugin: my-dmi-datajobs-write-plugin
         dmiModelPlugin: my-dmi-model-plugin
         upgradedCmHandles:
           cmHandles:
@@ -383,6 +385,14 @@ components:
         dmiModelPlugin:
           default: ""
           example: my-dmi-model-plugin
+          type: string
+        dmiDatajobsReadPlugin:
+          default: ""
+          example: my-dmi-datajobs-read-plugin
+          type: string
+        dmiDatajobsWritePlugin:
+          default: ""
+          example: my-dmi-datajobs-write-plugin
           type: string
         createdCmHandles:
           items:

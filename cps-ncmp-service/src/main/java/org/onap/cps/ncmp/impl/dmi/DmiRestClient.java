@@ -25,7 +25,7 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDIN
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR;
 import static org.onap.cps.ncmp.api.data.models.OperationType.READ;
-import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.REQUEST_TIMEOUT;
 
@@ -250,7 +250,7 @@ public class DmiRestClient {
     }
 
     private WebClient getWebClient(final RequiredDmiService requiredDmiService) {
-        return DATA.equals(requiredDmiService) ? dataServicesWebClient : modelServicesWebClient;
+        return requiredDmiService == MODEL ? modelServicesWebClient : dataServicesWebClient;
     }
 
     private void configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {

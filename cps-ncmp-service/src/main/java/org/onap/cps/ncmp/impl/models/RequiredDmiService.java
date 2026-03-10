@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.impl.models;
 
 /**
- * Enum to determine if the required service is for a data or model operation.
+ * Enum to determine if the required service is for a data, model, or data job operation.
  */
 public enum RequiredDmiService {
-    DATA, MODEL
+    DATA, MODEL, DATAJOBS_READ, DATAJOBS_WRITE
 }
