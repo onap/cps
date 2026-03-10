@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,11 @@
 
 package org.onap.cps.ncmp.impl.dmi;
 
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATAJOBS_READ;
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATAJOBS_WRITE;
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +33,12 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 
+/**
+ * Resolves DMI service names based on the required service type.
+ * Resolution follows a priority order: specific service name first, then falls back to the combined service name.
+ * For example, if DATA service is required and dmiDataServiceName is set, it will be used;
+ * otherwise, the combined dmiServiceName will be returned.
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DmiServiceNameResolver {
 
@@ -43,7 +54,9 @@ public class DmiServiceNameResolver {
         return resolveDmiServiceName(requiredService,
                 yangModelCmHandle.getDmiServiceName(),
                 yangModelCmHandle.getDmiDataServiceName(),
-                yangModelCmHandle.getDmiModelServiceName());
+                yangModelCmHandle.getDmiModelServiceName(),
+                yangModelCmHandle.getDmiDatajobsReadServiceName(),
+                yangModelCmHandle.getDmiDatajobsWriteServiceName());
     }
 
     /**
@@ -58,7 +71,9 @@ public class DmiServiceNameResolver {
         return resolveDmiServiceName(requiredService,
                 ncmpServiceCmHandle.getDmiServiceName(),
                 ncmpServiceCmHandle.getDmiDataServiceName(),
-                ncmpServiceCmHandle.getDmiModelServiceName());
+                ncmpServiceCmHandle.getDmiModelServiceName(),
+                ncmpServiceCmHandle.getDmiDatajobsReadServiceName(),
+                ncmpServiceCmHandle.getDmiDatajobsWriteServiceName());
     }
 
     /**
@@ -73,18 +88,28 @@ public class DmiServiceNameResolver {
         return resolveDmiServiceName(requiredService,
                 dmiPluginRegistration.getDmiPlugin(),
                 dmiPluginRegistration.getDmiDataPlugin(),
-                dmiPluginRegistration.getDmiModelPlugin());
+                dmiPluginRegistration.getDmiModelPlugin(),
+                dmiPluginRegistration.getDmiDatajobsReadPlugin(),
+                dmiPluginRegistration.getDmiDatajobsWritePlugin());
     }
 
     private static String resolveDmiServiceName(final RequiredDmiService requiredService,
                                                 final String dmiServiceName,
                                                 final String dmiDataServiceName,
-                                                final String dmiModelServiceName) {
-        if (StringUtils.isBlank(dmiServiceName)) {
-            if (RequiredDmiService.DATA.equals(requiredService)) {
-                return dmiDataServiceName;
-            }
+                                                final String dmiModelServiceName,
+                                                final String dmiDatajobsReadServiceName,
+                                                final String dmiDatajobsWriteServiceName) {
+        if (DATA.equals(requiredService) && StringUtils.isNotBlank(dmiDataServiceName)) {
+            return dmiDataServiceName;
+        }
+        if (MODEL.equals(requiredService) && StringUtils.isNotBlank(dmiModelServiceName)) {
             return dmiModelServiceName;
+        }
+        if (DATAJOBS_READ.equals(requiredService) && StringUtils.isNotBlank(dmiDatajobsReadServiceName)) {
+            return dmiDatajobsReadServiceName;
+        }
+        if (DATAJOBS_WRITE.equals(requiredService) && StringUtils.isNotBlank(dmiDatajobsWriteServiceName)) {
+            return dmiDatajobsWriteServiceName;
         }
         return dmiServiceName;
     }
