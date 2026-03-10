@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,20 +40,23 @@ class EventProducerSpec extends Specification {
 
     def mockLegacyKafkaTemplate = Mock(KafkaTemplate)
     def mockCloudEventKafkaTemplate = Mock(KafkaTemplate)
+    def mockCloudEventKafkaTemplateForExactlyOnceSemantics = Mock(KafkaTemplate)
+    def mockCloudEvent = Mock(CloudEvent)
     def logger = Spy(ListAppender<ILoggingEvent>)
-
-    void setup() {
-        def setupLogger = ((Logger) LoggerFactory.getLogger(EventProducer.class))
-        setupLogger.setLevel(Level.DEBUG)
-        setupLogger.addAppender(logger)
-        logger.start()
-    }
 
     void cleanup() {
         ((Logger) LoggerFactory.getLogger(EventProducer.class)).detachAndStopAllAppenders()
     }
 
     def objectUnderTest = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate)
+
+    void setup() {
+        def setupLogger = ((Logger) LoggerFactory.getLogger(EventProducer.class))
+        setupLogger.setLevel(Level.DEBUG)
+        setupLogger.addAppender(logger)
+        logger.start()
+        objectUnderTest.setCloudEventKafkaTemplateForExactlyOnceSemantics(mockCloudEventKafkaTemplateForExactlyOnceSemantics)
+    }
 
     def 'Send Cloud Event'() {
         given: 'a successfully sent event'
@@ -73,8 +76,7 @@ class EventProducerSpec extends Specification {
 
     def 'Send Cloud Event with Exception'() {
         given: 'a failed event'
-            def eventFutureWithFailure = new CompletableFuture<SendResult<String, String>>()
-            eventFutureWithFailure.completeExceptionally(new RuntimeException('some exception'))
+            def eventFutureWithFailure = createFailedSendResult('some exception')
             def someCloudEvent = Mock(CloudEvent)
             1 * mockCloudEventKafkaTemplate.send('some-topic', 'some-event-key', someCloudEvent) >> eventFutureWithFailure
         when: 'sending the cloud event'
@@ -85,12 +87,7 @@ class EventProducerSpec extends Specification {
 
     def 'Send Legacy Event'() {
         given: 'a successfully sent event'
-            def eventFuture = CompletableFuture.completedFuture(
-                new SendResult(
-                    new ProducerRecord('some-topic', 'some-value'),
-                    new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
-                )
-            )
+            def eventFuture = createSuccessfulSendResult('some-topic', null, 'some-value')
             def someLegacyEvent = Mock(LegacyEvent)
             1 * mockLegacyKafkaTemplate.send('some-topic', 'some-event-key', someLegacyEvent) >> eventFuture
         when: 'sending the cloud event'
@@ -102,12 +99,7 @@ class EventProducerSpec extends Specification {
     def 'Send Legacy Event with Headers as Map'() {
         given: 'a successfully sent event'
             def sampleEventHeaders = ['k1': 'v1', 'k2': 'v2']
-            def eventFuture = CompletableFuture.completedFuture(
-                new SendResult(
-                    new ProducerRecord('some-topic', 'some-value'),
-                    new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
-                )
-            )
+            def eventFuture = createSuccessfulSendResult('some-topic', null, 'some-value')
             def someLegacyEvent = Mock(LegacyEvent)
         when: 'sending the legacy event'
             objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', sampleEventHeaders, someLegacyEvent)
@@ -119,12 +111,7 @@ class EventProducerSpec extends Specification {
 
     def 'Handle Legacy Event Callback'() {
         given: 'an event is successfully sent'
-            def eventFuture = CompletableFuture.completedFuture(
-                new SendResult(
-                    new ProducerRecord('some-topic', 'some-value'),
-                    new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
-                )
-            )
+            def eventFuture = createSuccessfulSendResult('some-topic', null, 'some-value')
         when: 'handling legacy event callback'
             objectUnderTest.handleLegacyEventCallback('some-topic', eventFuture)
         then: 'the correct debug message is logged'
@@ -133,8 +120,7 @@ class EventProducerSpec extends Specification {
 
     def 'Handle Legacy Event Callback with Exception'() {
         given: 'a failure to send an event'
-            def eventFutureWithFailure = new CompletableFuture<SendResult<String, String>>()
-            eventFutureWithFailure.completeExceptionally(new RuntimeException('some exception'))
+            def eventFutureWithFailure = createFailedSendResult('some exception')
         when: 'handling legacy event callback'
             objectUnderTest.handleLegacyEventCallback('some-topic', eventFutureWithFailure)
         then: 'the correct error message is logged'
@@ -167,9 +153,80 @@ class EventProducerSpec extends Specification {
             assert headers[1].key() == 'key2'
     }
 
-    def verifyLoggingEvent(expectedLevel, expectedFormattedMessage) {
+    def 'Send Cloud Event Batch when ExactlyOnceSemantics template is not configured'() {
+        given: 'an EventProducer without ExactlyOnceSemantics template'
+            def objectUnderTestWithoutExactlyOnceSemantics = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate)
+        and: 'a batch of events'
+            def events = [key1:  mockCloudEvent].collect { new MapEntry(it.key, it.value) }
+        when: 'sending the batch'
+            objectUnderTestWithoutExactlyOnceSemantics.sendCloudEventBatch('some-topic', events)
+        then: 'an IllegalStateException is thrown'
+            def exception = thrown(IllegalStateException)
+            exception.message.contains('ExactlyOnceSemantics Kafka template is not configured')
+    }
+
+    def 'Send Cloud Event Batch successfully'() {
+        given: 'a batch of cloud events'
+            def events = [key1: mockCloudEvent, key2: mockCloudEvent].collect { new MapEntry(it.key, it.value) }
+        and: 'successful futures for each event'
+            def eventFuture1 = createSuccessfulSendResult('some-topic', 'key1', mockCloudEvent)
+            def eventFuture2 = createSuccessfulSendResult('some-topic', 'key2', mockCloudEvent)
+            1 * mockCloudEventKafkaTemplateForExactlyOnceSemantics.send('some-topic', 'key1', mockCloudEvent) >> eventFuture1
+            1 * mockCloudEventKafkaTemplateForExactlyOnceSemantics.send('some-topic', 'key2', mockCloudEvent) >> eventFuture2
+        when: 'sending the batch'
+            objectUnderTest.sendCloudEventBatch('some-topic', events)
+        then: 'the correct debug message is logged'
+            assert verifyLoggingEvent(Level.DEBUG, 'Successfully sent batch', true)
+    }
+
+    def 'Send Cloud Event Batch with failure'() {
+        given: 'a batch of cloud events'
+            def events = [key1: mockCloudEvent, key2: mockCloudEvent].collect { new MapEntry(it.key, it.value) }
+        and: 'one successful and one failed future'
+            def eventFuture1 = createSuccessfulSendResult('some-topic', 'key1', mockCloudEvent)
+            def eventFuture2 = createFailedSendResult()
+            1 * mockCloudEventKafkaTemplateForExactlyOnceSemantics.send('some-topic', 'key1', mockCloudEvent) >> eventFuture1
+            1 * mockCloudEventKafkaTemplateForExactlyOnceSemantics.send('some-topic', 'key2', mockCloudEvent) >> eventFuture2
+        when: 'sending the batch'
+            objectUnderTest.sendCloudEventBatch('some-topic', events)
+        then: 'an EventBatchSendException is thrown'
+            thrown(EventBatchSendException)
+        and: 'the correct error message is logged'
+            assert verifyLoggingEvent(Level.ERROR, 'Batch send failed', true)
+    }
+
+    def 'Send Cloud Event Batch with empty list'() {
+        given: 'an empty list of events'
+            def events = []
+        when: 'sending the batch'
+            objectUnderTest.sendCloudEventBatch('some-topic', events)
+        then: 'no kafka template calls are made'
+            0 * mockCloudEventKafkaTemplateForExactlyOnceSemantics.send(_, _, _)
+        and: 'the correct debug message is logged'
+            assert verifyLoggingEvent(Level.DEBUG, 'No events to send', true)
+    }
+
+    def verifyLoggingEvent(expectedLevel, expectedFormattedMessage, checkAny = false) {
+        if (checkAny) {
+            return logger.list.any { it.level == expectedLevel && it.formattedMessage.contains(expectedFormattedMessage) }
+        }
         def lastLoggingEvent = logger.list[0]
         lastLoggingEvent.level == expectedLevel && lastLoggingEvent.formattedMessage.contains(expectedFormattedMessage)
+    }
+
+    def createSuccessfulSendResult(topic, key = null, value = null) {
+        CompletableFuture.completedFuture(
+            new SendResult(
+                new ProducerRecord(topic, key, value),
+                new RecordMetadata(new TopicPartition(topic, 0), 0, 0, 0, 0, 0)
+            )
+        )
+    }
+
+    def createFailedSendResult(exceptionMessage = 'send failed') {
+        def future = new CompletableFuture<SendResult<String, CloudEvent>>()
+        future.completeExceptionally(new RuntimeException(exceptionMessage))
+        future
     }
 
 }

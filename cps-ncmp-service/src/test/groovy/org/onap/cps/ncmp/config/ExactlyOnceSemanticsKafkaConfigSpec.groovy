@@ -36,7 +36,7 @@ import org.springframework.test.context.TestPropertySource
 import spock.lang.Shared
 import spock.lang.Specification
 
-@SpringBootTest(classes = [KafkaProperties, EosKafkaConfig])
+@SpringBootTest(classes = [KafkaProperties, ExactlyOnceSemanticsKafkaConfig])
 @EnableSharedInjection
 @EnableConfigurationProperties
 @TestPropertySource(properties = [
@@ -45,36 +45,36 @@ import spock.lang.Specification
         "ncmp.notifications.avc-event-consumer.concurrency=2",
         "ncmp.notifications.avc-event-consumer.max-poll-records=500"
 ])
-class EosKafkaConfigSpec extends Specification {
+class ExactlyOnceSemanticsKafkaConfigSpec extends Specification {
 
     @Shared
     @Autowired
-    ConsumerFactory<String, CloudEvent> cloudEventConsumerFactoryForEos
+    ConsumerFactory<String, CloudEvent> cloudEventConsumerFactoryForExactlyOnceSemantics
 
     @Shared
     @Autowired
-    ProducerFactory<String, CloudEvent> cloudEventProducerFactoryForEos
+    ProducerFactory<String, CloudEvent> cloudEventProducerFactoryForExactlyOnceSemantics
 
     @Shared
     @Autowired
-    ConcurrentKafkaListenerContainerFactory<String, CloudEvent> cloudEventConcurrentKafkaListenerContainerFactoryForEos
+    ConcurrentKafkaListenerContainerFactory<String, CloudEvent> cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics
 
-    def 'Verify EOS kafka configuration'() {
+    def 'Verify ExactlyOnceSemantics kafka configuration'() {
         expect: 'consumer has read_committed isolation level'
-            cloudEventConsumerFactoryForEos.configurationProperties[ConsumerConfig.ISOLATION_LEVEL_CONFIG] == 'read_committed'
+            cloudEventConsumerFactoryForExactlyOnceSemantics.configurationProperties[ConsumerConfig.ISOLATION_LEVEL_CONFIG] == 'read_committed'
         and: 'consumer has auto commit disabled'
-            cloudEventConsumerFactoryForEos.configurationProperties[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] == false
+            cloudEventConsumerFactoryForExactlyOnceSemantics.configurationProperties[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] == false
         and: 'consumer has max poll records configured'
-            cloudEventConsumerFactoryForEos.configurationProperties[ConsumerConfig.MAX_POLL_RECORDS_CONFIG] == '500'
+            cloudEventConsumerFactoryForExactlyOnceSemantics.configurationProperties[ConsumerConfig.MAX_POLL_RECORDS_CONFIG] == '500'
         and: 'listener uses BATCH ack mode'
-            cloudEventConcurrentKafkaListenerContainerFactoryForEos.containerProperties.ackMode == ContainerProperties.AckMode.BATCH
+            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics.containerProperties.ackMode == ContainerProperties.AckMode.BATCH
         and: 'listener is batch listener'
-            cloudEventConcurrentKafkaListenerContainerFactoryForEos.batchListener == true
+            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics.batchListener == true
         and: 'concurrency is configured'
-            cloudEventConcurrentKafkaListenerContainerFactoryForEos.concurrency == 2
+            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics.concurrency == 2
         and: 'producer transaction ID prefix is as expected'
-            cloudEventProducerFactoryForEos.transactionIdPrefix.startsWith('cps-tx-myPrefix-')
+            cloudEventProducerFactoryForExactlyOnceSemantics.transactionIdPrefix.startsWith('cps-tx-myPrefix-')
         and: 'KafkaTransactionManager is used instead of primary transaction manager'
-            cloudEventConcurrentKafkaListenerContainerFactoryForEos.containerProperties.kafkaAwareTransactionManager instanceof KafkaTransactionManager
+            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics.containerProperties.kafkaAwareTransactionManager instanceof KafkaTransactionManager
     }
 }
