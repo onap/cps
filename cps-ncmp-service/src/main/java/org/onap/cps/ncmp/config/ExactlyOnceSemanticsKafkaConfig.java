@@ -66,7 +66,7 @@ import org.springframework.kafka.transaction.KafkaTransactionManager;
 @EnableKafka
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "ncmp.kafka.eos.enabled")
-public class EosKafkaConfig {
+public class ExactlyOnceSemanticsKafkaConfig {
 
     private final KafkaProperties kafkaProperties;
 
@@ -91,7 +91,7 @@ public class EosKafkaConfig {
      * @return producer factory instance
      */
     @Bean
-    public ProducerFactory<String, CloudEvent> cloudEventProducerFactoryForEos() {
+    public ProducerFactory<String, CloudEvent> cloudEventProducerFactoryForExactlyOnceSemantics() {
         final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
         producerConfigProperties.put(ENABLE_IDEMPOTENCE_CONFIG, true);
         producerConfigProperties.put(ACKS_CONFIG, "all");
@@ -112,7 +112,7 @@ public class EosKafkaConfig {
      * @return consumer factory instance
      */
     @Bean
-    public ConsumerFactory<String, CloudEvent> cloudEventConsumerFactoryForEos() {
+    public ConsumerFactory<String, CloudEvent> cloudEventConsumerFactoryForExactlyOnceSemantics() {
         final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
         consumerConfigProperties.put(ISOLATION_LEVEL_CONFIG, "read_committed");
         consumerConfigProperties.put(ENABLE_AUTO_COMMIT_CONFIG, false);
@@ -130,11 +130,11 @@ public class EosKafkaConfig {
      *
      * @return kafka template instance
      */
-    @Bean(name = "cloudEventKafkaTemplateForEos")
-    public KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplateForEos(
-            @Qualifier("cloudEventProducerFactoryForEos")
+    @Bean(name = "cloudEventKafkaTemplateForExactlyOnceSemantics")
+    public KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplateForExactlyOnceSemantics(
+            @Qualifier("cloudEventProducerFactoryForExactlyOnceSemantics")
             final ProducerFactory<String, CloudEvent> producerFactory,
-            @Qualifier("cloudEventConsumerFactoryForEos")
+            @Qualifier("cloudEventConsumerFactoryForExactlyOnceSemantics")
             final ConsumerFactory<String, CloudEvent> consumerFactory) {
         final KafkaTemplate<String, CloudEvent> kafkaTemplate = new KafkaTemplate<>(producerFactory);
         kafkaTemplate.setConsumerFactory(consumerFactory);
@@ -151,10 +151,10 @@ public class EosKafkaConfig {
      */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, CloudEvent>
-            cloudEventConcurrentKafkaListenerContainerFactoryForEos(
-                    @Qualifier("cloudEventConsumerFactoryForEos")
+            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics(
+                    @Qualifier("cloudEventConsumerFactoryForExactlyOnceSemantics")
                     final ConsumerFactory<String, CloudEvent> consumerFactory,
-                    @Qualifier("kafkaEosTransactionManager")
+                    @Qualifier("kafkaExactlyOnceSemanticsTransactionManager")
                     final KafkaTransactionManager<String, CloudEvent> transactionManager) {
         final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
@@ -164,21 +164,21 @@ public class EosKafkaConfig {
         containerFactory.getContainerProperties().setAuthExceptionRetryInterval(Duration.ofSeconds(10));
         containerFactory.getContainerProperties().setAckMode(BATCH);
         containerFactory.getContainerProperties().setKafkaAwareTransactionManager(transactionManager);
-        containerFactory.setCommonErrorHandler(kafkaErrorHandlerForEos());
+        containerFactory.setCommonErrorHandler(kafkaErrorHandlerForExactlyOnceSemantics());
         if (tracingEnabled) {
             containerFactory.getContainerProperties().setObservationEnabled(true);
         }
         return containerFactory;
     }
 
-    @Bean(name = "kafkaEosTransactionManager")
-    public KafkaTransactionManager<String, CloudEvent> kafkaTransactionManagerForEos(
-            @Qualifier("cloudEventProducerFactoryForEos")
+    @Bean(name = "kafkaExactlyOnceSemanticsTransactionManager")
+    public KafkaTransactionManager<String, CloudEvent> kafkaTransactionManagerForExactlyOnceSemantics(
+            @Qualifier("cloudEventProducerFactoryForExactlyOnceSemantics")
             final ProducerFactory<String, CloudEvent> producerFactory) {
         return new KafkaTransactionManager<>(producerFactory);
     }
 
-    private DefaultErrorHandler kafkaErrorHandlerForEos() {
+    private DefaultErrorHandler kafkaErrorHandlerForExactlyOnceSemantics() {
         final ExponentialBackOffWithMaxRetries exponentialBackOffWithMaxRetries =
                 new ExponentialBackOffWithMaxRetries(Integer.MAX_VALUE);
         exponentialBackOffWithMaxRetries.setInitialInterval(TimeUnit.SECONDS.toMillis(1));

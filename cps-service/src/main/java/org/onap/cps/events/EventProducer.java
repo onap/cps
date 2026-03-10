@@ -21,13 +21,14 @@
 package org.onap.cps.events;
 
 import io.cloudevents.CloudEvent;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Headers;
 import org.apache.kafka.common.header.internals.RecordHeaders;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -40,7 +41,6 @@ import org.springframework.util.SerializationUtils;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class EventProducer {
 
     /**
@@ -53,6 +53,28 @@ public class EventProducer {
 
     @Qualifier("cloudEventKafkaTemplate")
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
+
+    private KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplateForExactlyOnceSemantics;
+
+    public EventProducer(@Qualifier("legacyEventKafkaTemplate")
+                         final KafkaTemplate<String, LegacyEvent> legacyEventKafkaTemplate,
+                         @Qualifier("cloudEventKafkaTemplate")
+                         final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate) {
+        this.legacyEventKafkaTemplate = legacyEventKafkaTemplate;
+        this.cloudEventKafkaTemplate = cloudEventKafkaTemplate;
+    }
+
+    /**
+     * Setter for optional ExactlyOnceSemantics Kafka template (used when ExactlyOnceSemantics is enabled).
+     *
+     * @param cloudEventKafkaTemplateForExactlyOnceSemantics the ExactlyOnceSemantics-enabled Kafka template
+     */
+    @Autowired(required = false)
+    public void setCloudEventKafkaTemplateForExactlyOnceSemantics(
+            @Qualifier("cloudEventKafkaTemplateForExactlyOnceSemantics")
+            final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplateForExactlyOnceSemantics) {
+        this.cloudEventKafkaTemplateForExactlyOnceSemantics = cloudEventKafkaTemplateForExactlyOnceSemantics;
+    }
 
     /**
      * Generic CloudEvent sender.
@@ -119,6 +141,47 @@ public class EventProducer {
             log.debug("Successfully sent event to topic : {} , Event : {}", topicName, event);
         } else {
             log.error("Unable to send event to topic : {} due to {}", topicName, e.getMessage());
+        }
+    }
+
+    /**
+     * Send a batch of CloudEvents in parallel using the transactional Kafka template.
+     * If any event fails to send, an exception is thrown to trigger batch retry.
+     *
+     * @param topicName valid topic name
+     * @param events    list of event key-value pairs to send
+     * @throws EventBatchSendException if any event fails to send
+     * @throws IllegalStateException if ExactlyOnceSemantics Kafka template is not configured
+     */
+    public void sendCloudEventBatch(final String topicName, final List<Map.Entry<String, CloudEvent>> events) {
+        if (cloudEventKafkaTemplateForExactlyOnceSemantics == null) {
+            throw new IllegalStateException("ExactlyOnceSemantics Kafka template is not configured. "
+                    + "Enable it by setting ncmp.kafka.eos.enabled=true");
+        }
+
+        if (events == null || events.isEmpty()) {
+            log.debug("No events to send in batch");
+            return;
+        }
+
+        log.debug("Sending batch of {} events to topic: {}", events.size(), topicName);
+
+        final List<CompletableFuture<SendResult<String, CloudEvent>>> futures = events.stream()
+                .map(entry ->
+                        cloudEventKafkaTemplateForExactlyOnceSemantics.send(
+                        topicName,
+                        entry.getKey(),
+                        entry.getValue())).toList();
+
+        try {
+            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+            log.debug("Successfully sent batch of {} events to topic: {}", events.size(), topicName);
+        } catch (final Exception exception) {
+            log.error("Batch send failed for topic: {} with error: {}", topicName, exception.getMessage());
+            throw new EventBatchSendException(
+                    "Failed to send batch of events",
+                    String.format("Topic: %s, Batch size: %d", topicName, events.size()),
+                    exception);
         }
     }
 
