@@ -2,7 +2,7 @@
 #  Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021-2022 Bell Canada
 #  Modifications Copyright (C) 2024 Deutsche Telekom AG
-#  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+#  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -191,6 +191,16 @@ logging:
             onap:
                 cps: INFO
 ncmp:
+    notifications:
+        avc-event-producer:
+            transaction-id-prefix: tx-
+        avc-event-consumer:
+            batch-enabled: false
+            concurrency: 2
+            max-poll-records: 500
+    kafka:
+        eos:
+            enabled: ${ncmp.notifications.avc-event-consumer.batch-enabled}
     policy-executor:
         enabled: ${POLICY_SERVICE_ENABLED:false}
         defaultDecision: ${POLICY_SERVICE_DEFAULT_DECISION:"allow"}
