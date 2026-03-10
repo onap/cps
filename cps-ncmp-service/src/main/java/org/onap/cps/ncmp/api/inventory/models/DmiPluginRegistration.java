@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,13 +22,10 @@ package org.onap.cps.ncmp.api.inventory.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.google.common.base.Strings;
 import java.util.Collections;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import org.onap.cps.ncmp.api.exceptions.DmiRequestException;
-import org.onap.cps.ncmp.api.exceptions.NcmpException;
 
 /**
  * Dmi Registry request object.
@@ -44,6 +41,10 @@ public class DmiPluginRegistration {
 
     private String dmiModelPlugin;
 
+    private String dmiDatajobsReadPlugin;
+
+    private String dmiDatajobsWritePlugin;
+
     private List<NcmpServiceCmHandle> createdCmHandles = Collections.emptyList();
 
     private List<NcmpServiceCmHandle> updatedCmHandles = Collections.emptyList();
@@ -51,39 +52,5 @@ public class DmiPluginRegistration {
     private List<String> removedCmHandles = Collections.emptyList();
 
     private UpgradedCmHandles upgradedCmHandles = new UpgradedCmHandles();
-
-    /**
-     * Validates plugin service names.
-     * @throws NcmpException if validation fails.
-     */
-    public void validateDmiPluginRegistration() throws NcmpException {
-        final String combinedServiceName = dmiPlugin;
-        final String dataServiceName = dmiDataPlugin;
-        final String modelsServiceName = dmiModelPlugin;
-
-        String errorMessage = null;
-
-        if (isNullEmptyOrBlank(combinedServiceName)) {
-            if ((isNullEmptyOrBlank(dataServiceName) && isNullEmptyOrBlank(modelsServiceName))) {
-                errorMessage = "No DMI plugin service names";
-            } else {
-                if (isNullEmptyOrBlank(dataServiceName) || isNullEmptyOrBlank(modelsServiceName)) {
-                    errorMessage = "Cannot register just a Data or Model plugin service name";
-                }
-            }
-        } else {
-            if (!isNullEmptyOrBlank(dataServiceName) || !isNullEmptyOrBlank(modelsServiceName)) {
-                errorMessage = "Cannot register combined plugin service name and other service names";
-            }
-        }
-
-        if (errorMessage != null) {
-            throw new DmiRequestException(errorMessage, "Please supply correct plugin information.");
-        }
-    }
-
-    public static boolean isNullEmptyOrBlank(final String serviceName) {
-        return Strings.isNullOrEmpty(serviceName) || serviceName.isBlank();
-    }
 
 }

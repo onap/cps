@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2026 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -49,6 +49,12 @@ public class NcmpServiceCmHandle {
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String dmiModelServiceName;
+
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String dmiDatajobsReadServiceName;
+
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String dmiDatajobsWriteServiceName;
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private Map<String, String> additionalProperties = Collections.emptyMap();

@@ -8,6 +8,7 @@ import org.onap.cps.ncmp.api.datajobs.models.ProducerKey
 import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.models.RequiredDmiService
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -31,7 +32,7 @@ class DmiSubJobRequestHandlerSpec extends Specification {
             def responseAsKeyValuePairs = [subJobId:'my-sub-job-id']
             def responseEntity = new ResponseEntity<>(responseAsKeyValuePairs, HttpStatus.OK)
             def expectedJson = '{"destination":"d1","dataAcceptType":"t1","dataContentType":"t2","dataProducerId":"prod1","dataJobId":"some-job-id","data":[{"path":"p","op":"operation","moduleSetTag":"tag","value":null,"operationId":"o1"}]}'
-            mockDmiRestClient.synchronousPostOperation(RequiredDmiService.DATA, _, expectedJson, OperationType.CREATE, authorization) >> responseEntity
+            mockDmiRestClient.synchronousPostOperation(RequiredDmiService.DATAJOBS_WRITE, _ as UrlTemplateParameters, expectedJson, OperationType.CREATE, authorization) >> responseEntity
         when: 'sending request to DMI invoked'
             objectUnderTest.sendRequestsToDmi(authorization, dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey)
         then: 'the result contains the expected sub-job id'

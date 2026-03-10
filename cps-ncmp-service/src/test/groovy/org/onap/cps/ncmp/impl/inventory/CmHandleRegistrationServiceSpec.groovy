@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,6 @@ import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.CpsException
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
-import org.onap.cps.ncmp.api.exceptions.DmiRequestException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
@@ -157,46 +156,6 @@ class CmHandleRegistrationServiceSpec extends Specification {
             assert result.upgradedCmHandles[0].ncmpResponseStatus == UNKNOWN_ERROR
     }
 
-    def 'Create CM-handle Validation: Registration with valid Service names: #scenario'() {
-        given: 'a registration '
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: dmiPlugin, dmiModelPlugin: dmiModelPlugin,
-                dmiDataPlugin: dmiDataPlugin)
-            dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
-        when: 'update registration and sync module is called with correct DMI plugin information'
-            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
-        then: 'create cm handles registration and sync modules is called with the correct plugin information'
-            1 * objectUnderTest.processCreatedCmHandles(dmiPluginRegistration, _)
-        where:
-            scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin || expectedDmiPluginRegisteredName
-            'combined DMI plugin'             | 'service1' | ''             | ''            || 'service1'
-            'data & model DMI plugins'        | ''         | 'service1'     | 'service2'    || 'service2'
-            'data & model using same service' | ''         | 'service1'     | 'service1'    || 'service1'
-    }
-
-    def 'Create CM-handle Validation: Invalid DMI plugin service name with #scenario'() {
-        given: 'a registration '
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: dmiPlugin, dmiModelPlugin: dmiModelPlugin,
-                dmiDataPlugin: dmiDataPlugin)
-            dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
-        when: 'registration is called with incorrect DMI plugin information'
-            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
-        then: 'a DMI Request Exception is thrown with correct message details'
-            def exceptionThrown = thrown(DmiRequestException.class)
-            assert exceptionThrown.getMessage().contains(expectedMessageDetails)
-        and: 'registration is not called'
-            0 * objectUnderTest.processCreatedCmHandles(*_)
-        where:
-            scenario                         | dmiPlugin  | dmiModelPlugin | dmiDataPlugin || expectedMessageDetails
-            'empty DMI plugins'              | ''         | ''             | ''            || 'No DMI plugin service names'
-            'blank DMI plugins'              | ' '        | ' '            | ' '           || 'No DMI plugin service names'
-            'null DMI plugins'               | null       | null           | null          || 'No DMI plugin service names'
-            'all DMI plugins'                | 'service1' | 'service2'     | 'service3'    || 'Cannot register combined plugin service name and other service names'
-            '(combined)DMI and Data Plugin'  | 'service1' | ''             | 'service2'    || 'Cannot register combined plugin service name and other service names'
-            '(combined)DMI and model Plugin' | 'service1' | 'service2'     | ''            || 'Cannot register combined plugin service name and other service names'
-            'only model DMI plugin'          | ''         | 'service1'     | ''            || 'Cannot register just a Data or Model plugin service name'
-            'only data DMI plugin'           | ''         | ''             | 'service1'    || 'Cannot register just a Data or Model plugin service name'
-    }
-
     def 'Create CM-Handle Successfully: #scenario.'() {
         given: 'a registration without cm-handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
@@ -223,6 +182,32 @@ class CmHandleRegistrationServiceSpec extends Specification {
             'with only public properties'            | [:]                      | ['public-key': 'public-value'] || [:]                                        | '[{"name":"public-key","value":"public-value"}]'
             'with only dmi properties'               | ['dmi-key': 'dmi-value'] | [:]                            || '[{"name":"dmi-key","value":"dmi-value"}]' | [:]
             'without additional & public properties' | [:]                      | [:]                            || [:]                                        | [:]
+    }
+
+    def 'Create CM-handle with data jobs plugins: #scenario'() {
+        given: 'a registration with data jobs plugins'
+            def dmiPluginRegistration = new DmiPluginRegistration(
+                dmiPlugin: dmiPlugin,
+                dmiDataPlugin: dmiDataPlugin,
+                dmiModelPlugin: dmiModelPlugin,
+                dmiDatajobsReadPlugin: dmiDatajobsReadPlugin,
+                dmiDatajobsWritePlugin: dmiDatajobsWritePlugin
+            )
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle')]
+        when: 'registration is updated'
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
+        then: 'a successful response is received'
+            response.createdCmHandles.size() == 1
+            response.createdCmHandles[0].status == Status.SUCCESS
+        and: 'state handler is invoked'
+            1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_)
+        where:
+            scenario                                    | dmiPlugin  | dmiDataPlugin | dmiModelPlugin | dmiDatajobsReadPlugin | dmiDatajobsWritePlugin
+            'only data jobs write plugin'               | ''         | ''            | ''             | ''                    | 'datajobs-write-service'
+            'only data jobs read plugin'                | ''         | ''            | ''             | 'datajobs-read-service' | ''
+            'both data jobs plugins'                    | ''         | ''            | ''             | 'datajobs-read-service' | 'datajobs-write-service'
+            'combined with data jobs plugins'           | 'combined' | ''            | ''             | 'datajobs-read-service' | 'datajobs-write-service'
+            'all plugins including data jobs'           | ''         | 'data-svc'    | 'model-svc'    | 'datajobs-read-service' | 'datajobs-write-service'
     }
 
     def 'Add CM-Handle #scenario.'() {

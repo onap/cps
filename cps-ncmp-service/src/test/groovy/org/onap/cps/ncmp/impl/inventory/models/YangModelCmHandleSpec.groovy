@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@ import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATAJOBS_READ
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATAJOBS_WRITE
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL
 
 class YangModelCmHandleSpec extends Specification {
@@ -73,26 +75,35 @@ class YangModelCmHandleSpec extends Specification {
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
         given: 'a yang model cm handle'
-            def dmiPluginRegistration = new DmiPluginRegistration(
-                    dmiPlugin: dmiServiceName,
-                    dmiDataPlugin: dmiDataServiceName,
-                    dmiModelPlugin: dmiModelServiceName
+            def yangModelCmHandle = new YangModelCmHandle(
+                    dmiServiceName: dmiServiceName,
+                    dmiDataServiceName: dmiDataServiceName,
+                    dmiModelServiceName: dmiModelServiceName,
+                    dmiDatajobsReadServiceName: dmiDatajobsReadServiceName,
+                    dmiDatajobsWriteServiceName: dmiDatajobsWriteServiceName
             )
-            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'),'', '', '', '', '')
         expect:
-            assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
+            assert yangModelCmHandle.resolveDmiServiceName(requiredService) == expectedService
         where:
-            scenario                        | dmiServiceName     | dmiDataServiceName | dmiModelServiceName | requiredService || expectedService
-            'common service registered'     | 'common service'   | 'does not matter'  | 'does not matter'   | DATA            || 'common service'
-            'common service registered'     | 'common service'   | 'does not matter'  | 'does not matter'   | MODEL           || 'common service'
-            'common service empty'          | ''                 | 'data service'     | 'does not matter'   | DATA            || 'data service'
-            'common service empty'          | ''                 | 'does not matter'  | 'model service'     | MODEL           || 'model service'
-            'common service blank'          | '   '              | 'data service'     | 'does not matter'   | DATA            || 'data service'
-            'common service blank'          | '   '              | 'does not matter'  | 'model service'     | MODEL           || 'model service'
-            'common service null '          | null               | 'data service'     | 'does not matter'   | DATA            || 'data service'
-            'common service null'           | null               | 'does not matter'  | 'model service'     | MODEL           || 'model service'
-            'only model service registered' | null               | null               | 'does not matter'   | DATA            || null
-            'only data service registered'  | null               | 'does not matter'  | null                | MODEL           || null
+            scenario                                  | dmiServiceName     | dmiDataServiceName | dmiModelServiceName | dmiDatajobsReadServiceName | dmiDatajobsWriteServiceName | requiredService  || expectedService
+            'specific data service registered'        | 'common service'   | 'data service'     | 'does not matter'   | null                       | null                        | DATA             || 'data service'
+            'specific model service registered'       | 'common service'   | 'does not matter'  | 'model service'     | null                       | null                        | MODEL            || 'model service'
+            'specific datajobs read service'          | 'common service'   | 'does not matter'  | 'does not matter'   | 'datajobs-read'            | null                        | DATAJOBS_READ    || 'datajobs-read'
+            'specific datajobs write service'         | 'common service'   | 'does not matter'  | 'does not matter'   | null                       | 'datajobs-write'            | DATAJOBS_WRITE   || 'datajobs-write'
+            'only common service for data'            | 'common service'   | null               | 'does not matter'   | null                       | null                        | DATA             || 'common service'
+            'only common service for model'           | 'common service'   | 'does not matter'  | null                | null                       | null                        | MODEL            || 'common service'
+            'only common for datajobs read'           | 'common service'   | 'does not matter'  | 'does not matter'   | null                       | null                        | DATAJOBS_READ    || 'common service'
+            'only common for datajobs write'          | 'common service'   | 'does not matter'  | 'does not matter'   | null                       | null                        | DATAJOBS_WRITE   || 'common service'
+            'specific data service, empty common'     | ''                 | 'data service'     | 'does not matter'   | null                       | null                        | DATA             || 'data service'
+            'specific model service, empty common'    | ''                 | 'does not matter'  | 'model service'     | null                       | null                        | MODEL            || 'model service'
+            'specific data service, blank common'     | '   '              | 'data service'     | 'does not matter'   | null                       | null                        | DATA             || 'data service'
+            'specific model service, blank common'    | '   '              | 'does not matter'  | 'model service'     | null                       | null                        | MODEL            || 'model service'
+            'specific data service, null common'      | null               | 'data service'     | 'does not matter'   | null                       | null                        | DATA             || 'data service'
+            'specific model service, null common'     | null               | 'does not matter'  | 'model service'     | null                       | null                        | MODEL            || 'model service'
+            'fallback to common for data'             | 'common service'   | null               | 'does not matter'   | null                       | null                        | DATA             || 'common service'
+            'fallback to common for model'            | 'common service'   | 'does not matter'  | null                | null                       | null                        | MODEL            || 'common service'
+            'only model service, data request'        | null               | null               | 'model service'     | null                       | null                        | DATA             || null
+            'only data service, model request'        | null               | 'data service'     | null                | null                       | null                        | MODEL            || null
     }
 
     def 'Yang Model Cm Handle Deep Copy.'() {
