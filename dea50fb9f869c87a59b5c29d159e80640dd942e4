@@ -206,6 +206,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a01f905_2df41236",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-10T15:17:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6799e7e_385c9eaf",
+      "range": {
+        "startLine": 202,
+        "startChar": 3,
+        "endLine": 203,
+        "endChar": 73
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef7ef9f1_81df3e90",
@@ -290,6 +314,30 @@
       "side": 1,
       "message": "AI tidied it up a bit alright",
       "parentUuid": "3d4e1081_42f1a2c5",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 54
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e383336_0955c67a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandleSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-10T15:17:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "939da474_3ec23d13",
       "range": {
         "startLine": 88,
         "startChar": 12,
