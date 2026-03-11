@@ -67,6 +67,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5e92202_8530cac2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceNameResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-03-11T11:22:16Z",
+      "side": 1,
+      "message": "suggestion: instead of this and line 107 comment , can this be described in the public java doc of the class since its \u0027dmiResolver\u0027? or its own doc",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 91,
+        "endChar": 74
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5e8e305_4da13c0b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceNameResolver.java",
         "patchSetId": 2
@@ -154,6 +177,29 @@
         "startChar": 72,
         "endLine": 98,
         "endChar": 94
+      },
+      "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c207981_44d97928",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-03-11T11:22:16Z",
+      "side": 1,
+      "message": "NB: would be easier to spot the difference with \u0027scenarios\u0027",
+      "range": {
+        "startLine": 102,
+        "startChar": 9,
+        "endLine": 105,
+        "endChar": 65
       },
       "revId": "dea50fb9f869c87a59b5c29d159e80640dd942e4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
