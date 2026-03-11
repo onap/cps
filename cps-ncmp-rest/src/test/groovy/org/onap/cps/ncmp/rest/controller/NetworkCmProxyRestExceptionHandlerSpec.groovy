@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -115,6 +115,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     ProvMnSController mockProvMnsController = Mock()
+
+    @SpringBean
+    ProvMnSExtensionController mockProvMnSExtensionController = Mock()
 
     @SpringBean
     AlternateIdMatcher alternateIdMatcher = Mock()
