@@ -49,6 +49,23 @@ class ParameterHelperSpec extends Specification {
             'no slash'          | 'ProvMnS/v1/myClass=id'                                     || ''
     }
 
+    def 'Extract action request parameters with fdn with #scenario.'() {
+        given: 'a http request with all the required parts'
+            mockHttpServletRequest.getAttribute(uriPathAttributeName) >> path
+        when: 'the request parameters are extracted'
+            def result = objectUnderTest.extractActionRequestParameters(mockHttpServletRequest)
+        then: 'the fdn is as expected'
+            assert result.fdn() == expectedFDN
+        and: 'the action is mapped correctly'
+            assert result.action() == 'myAction'
+        where: 'The following URIs are used'
+            scenario            | path                                                               || expectedFDN
+            '1 segment'         | 'ProvMnSExtensions/v1/segment1/myAction'                            || '/segment1'
+            '2 segments'        | 'ProvMnSExtensions/v1/segment1/segment2/myAction'                   || '/segment1/segment2'
+            'multiple segments' | 'ProvMnSExtensions/v1/segment1/segment2/segment3/segment4/myAction' || '/segment1/segment2/segment3/segment4'
+            'no slash'          | 'ProvMnSExtensions/v1/myAction'                                     || ''
+    }
+
     def 'Extract request parameters for Patch Path with attributes.'() {
         when: 'the request parameters are extracted from the path'
             def result = objectUnderTest.createRequestParametersForPatch(path, 'some authorization')
@@ -83,6 +100,24 @@ class ParameterHelperSpec extends Specification {
             'missing ProvMnS prefix'       | 'v1/segment1/myClass=id'            || 'v1/segment1/myClass=id'
             'wrong version'                | 'ProvMnS/wrongVersion/myClass=id'   || 'ProvMnS/wrongVersion/myClass=id'
             'empty path'                   | ''                                  ||  ''
+    }
+
+    def 'Attempt to extract action request parameters with #scenario.'() {
+        given: 'a http request with invalid path'
+            mockHttpServletRequest.getAttribute(uriPathAttributeName) >> path
+            mockHttpServletRequest.getMethod() >> 'POST'
+        when: 'attempt to extract the request parameters'
+            objectUnderTest.extractActionRequestParameters(mockHttpServletRequest)
+        then: 'a ProvMnS exception is thrown'
+            def thrown = thrown(ProvMnSException)
+            assert thrown.message == 'POST failed'
+        and: 'the title contains the expected error message'
+            assert thrown.title == expectedPathInError + ' not a valid path'
+        where: 'the following invalid paths are used'
+            scenario                          | path                                     || expectedPathInError
+            'missing ProvMnSExtension prefix' | 'v1/segment1/myAction'                   || 'v1/segment1/myAction'
+            'wrong version'                   | 'ProvMnSExtension/wrongVersion/myAction' || 'ProvMnSExtension/wrongVersion/myAction'
+            'empty path'                      | ''                                       ||  ''
     }
 
     def 'Extract Fdn.'() {
