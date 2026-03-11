@@ -1,0 +1,1 @@
+Follow all AI agent development standards and guidelines documented in /AGENTS.md
