@@ -1,0 +1,177 @@
+#  ============LICENSE_START==============================================================
+#  Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
+#  =======================================================================================
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+#  SPDX-License-Identifier: Apache-2.0
+#  ============LICENSE_END================================================================
+openapi: 3.0.1
+info:
+  title: Provisioning MnS Extensions API
+  version: 1.0.0-alpha.1+1
+  description: >-
+    This API provides additional vendor specific features on top of the Provisioning MnS standard API.
+  x-api-id: 4b6ec993-ac1d-4c4c-8000-50e9892e1cc6
+  x-audience: external-public
+  contact:
+    name: CPS team
+    url: https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16442177/Configuration+Persistence+Service+Developer+s+Landing+Page
+    email: cpsteam@est.tech
+servers:
+  - url: 'https://{host}/prov-mns-extensions/v1alpha1'
+    variables:
+      host:
+        description: Service host name
+        default: localhost
+tags:
+  - name: action
+    description: APIs for executing Managed Object actions
+paths:
+  '/actions/{distinguishedName}/{actionName}':
+    post:
+      operationId: executeAction
+      tags:
+        - action
+      summary: Execute a Managed Object action
+      description: Execute a Managed Object action identified by the URI path with supplied input parameters if there are any.
+      parameters:
+        - name: distinguishedName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Slash separated DN to the Managed Object where the action is defined. This parameter must not be URL encoded.
+          example: /SubNetwork=SN1/MeContext=XY/ManagedElement=Z/SystemFunctions=1/HealthCheckM=1/HcJob=test01
+        - name: actionName
+          in: path
+          required: true
+          schema:
+            type: string
+            description: The name of the action defined in the Managed Object identified by the distinguishedName. It identifies the action to be executed together with the distinguishedName.
+          example: execute
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionRequest'
+      responses:
+        '200':
+          description: >-
+            Ok - This status code is returned when the action has been successfully executed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResponse'
+        '204':
+          description: >-
+            No content - This status code may be returned only when the action response has no message body.
+        '400':
+          description: >-
+            Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDefault'
+        '404':
+          description: >-
+            Not Found - The Managed Object does not exist in the path or there is no action with given Action Name.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDefault'
+        '406':
+          description: >-
+            Not Acceptable - Server is not yet ready to accept requests towards given Managed Object.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDefault'
+        '500':
+          description: >-
+            Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDefault'
+        '504':
+          description:
+            Gateway Timeout - Southbound System is unavailable.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDefault'
+        default:
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDefault'
+components:
+  schemas:
+    ErrorResponseDefault:
+      type: object
+      properties:
+        otherProblems:
+          type: array
+          items:
+            type: object
+      required:
+        - type
+    ActionRequest:
+      type: object
+      properties:
+        customProperties:
+          type: object
+          nullable: true
+          additionalProperties: true
+          description: A dynamic set of custom properties provided by client
+        value:
+          type: object
+          properties:
+            input:
+              type: object
+      additionalProperties: true
+      example:
+        customProperties:
+          technology-type: LTE
+          location: Dublin
+        value:
+          input:
+            exportUri: http://example.com/export-location
+            exportPassword: test123
+    ActionResponse:
+      type: object
+      properties:
+        customProperties:
+          type: object
+          nullable: true
+          additionalProperties: true
+          description: A dynamic set of custom properties provided by client
+        value:
+          type: object
+          properties:
+            input:
+              type: object
+            output:
+              type: object
+      additionalProperties: true
+      example:
+        customProperties:
+          technology-type: LTE
+          location: Dublin
+        value:
+          input:
+            exportUri: http://example.com/export-location
+            exportPassword: test123
+          output: 123
