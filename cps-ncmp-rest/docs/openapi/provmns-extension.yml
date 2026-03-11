@@ -1,0 +1,73 @@
+openapi: 3.0.1
+info:
+  title: Provisioning MnS Extension
+  version: 1.0.0
+servers:
+  - url: '{MnSRoot}/ProvMnSExtensions'
+    variables:
+      MnSRoot:
+        description: See clause 4.4.2 of TS 32.158
+        default: http://example.com/3GPPManagement
+paths:
+  '/v1/{fdn}/{action}':
+    post:
+      summary: Execute an action on a network resource
+      description: >-
+        Executes a specified action on a network resource identified by its FDN (Fully Distinguished Name).
+        The action and input parameters are provided in the request.
+      tags:
+        - provmns-extension
+      operationId: provmnsExtensionAction
+      parameters:
+        - name: fdn
+          description: String containing the Fully Distinguished Name of the target network resource
+          in: path
+          required: true
+          schema:
+            type: string
+          style: simple
+          allowReserved: true
+        - name: action
+          description: Name of the action to execute on the resource
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                title: input
+                type: object
+      responses:
+        '200':
+          description: >-
+            Success case ("200 OK").
+            The action was executed successfully and the result is returned in the response body.
+          content:
+            application/json:
+              schema:
+                title: output
+                type: object
+        '204':
+          description: >-
+            Success case ("204 No Content").
+            The action was executed successfully with no result to return.
+        default:
+          description: Error case. The action execution failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDefault'
+components:
+  schemas:
+    ErrorResponseDefault:
+      type: object
+      properties:
+        otherProblems:
+          type: array
+          items:
+            type: object
+      required:
+        - type
