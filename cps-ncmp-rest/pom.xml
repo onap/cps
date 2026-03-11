@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   ============LICENSE_START=======================================================
-  Copyright (C) 2021-2025 OpenInfra Foundation Europe
+  Copyright (C) 2021-2026 OpenInfra Foundation Europe
   Modifications Copyright (C) 2021 Bell Canada
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -158,6 +158,30 @@
                         </goals>
                         <configuration>
                             <inputSpec>${project.basedir}/docs/openapi/openapi-inventory.yml</inputSpec>
+                            <invokerPackage>org.onap.cps.ncmp.rest.controller</invokerPackage>
+                            <modelPackage>org.onap.cps.ncmp.rest.model</modelPackage>
+                            <apiPackage>org.onap.cps.ncmp.rest.api</apiPackage>
+                            <generatorName>spring</generatorName>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <generateAliasAsModel>true</generateAliasAsModel>
+                            <configOptions>
+                                <sourceFolder>src/gen/java</sourceFolder>
+                                <dateLibrary>java11</dateLibrary>
+                                <interfaceOnly>true</interfaceOnly>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <useTags>true</useTags>
+                                <openApiNullable>false</openApiNullable>
+                                <skipDefaultInterface>true</skipDefaultInterface>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>prov-mns-extensions-code-gen</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/docs/openapi/prov-mns-extensions.yml</inputSpec>
                             <invokerPackage>org.onap.cps.ncmp.rest.controller</invokerPackage>
                             <modelPackage>org.onap.cps.ncmp.rest.model</modelPackage>
                             <apiPackage>org.onap.cps.ncmp.rest.api</apiPackage>
