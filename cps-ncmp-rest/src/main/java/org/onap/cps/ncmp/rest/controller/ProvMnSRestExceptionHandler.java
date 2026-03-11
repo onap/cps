@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Exception handler for ProvMns Controller only.
  */
 @Slf4j
-@RestControllerAdvice(assignableTypes = { ProvMnSController.class})
+@RestControllerAdvice(assignableTypes = { ProvMnSController.class, ProvMnSExtensionsController.class})
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class ProvMnSRestExceptionHandler {
 
