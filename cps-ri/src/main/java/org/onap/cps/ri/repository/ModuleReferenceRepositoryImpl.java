@@ -65,6 +65,7 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
         return identifyNewModuleReferencesForCmHandle(tempTableName);
     }
 
+    @SuppressWarnings("squid:S2077") // tempTableName is generated internally, not from user input
     private Collection<ModuleReference> identifyNewModuleReferencesForCmHandle(final String tempTableName) {
         final String sql = """
                 SELECT %1$s.module_name, %1$s.revision
