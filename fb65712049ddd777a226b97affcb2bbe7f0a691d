@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c82640cb_18e8b26f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-11T17:52:35Z",
+      "side": 1,
+      "message": "looks liek you are well on the way...",
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86111bd9_3b58606e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-11T17:52:35Z",
+      "side": 1,
+      "message": "lot of duplication with teh method above; can you extract out common code?",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 65
+      },
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be939ebc_612c46da",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParameterHelperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-11T17:52:35Z",
+      "side": 1,
+      "message": "id the common code is extract you probbaly dont need to test so many variation again here...",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 66
+      },
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fefee662_599fd0aa",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSExtensionRestApiSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-11T17:52:35Z",
+      "side": 1,
+      "message": ":-)",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 44
+      },
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4783e4fc_15dbdd9d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSExtensionRestApiSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-11T17:52:35Z",
+      "side": 1,
+      "message": "NB: prefer to assert this separately (as we normally do I assume)\nie store teh result and assert what it is",
+      "range": {
+        "startLine": 38,
+        "startChar": 36,
+        "endLine": 38,
+        "endChar": 73
+      },
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de7b0f70_d3cad8aa",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSExtensionRestApiSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-11T17:52:35Z",
+      "side": 1,
+      "message": "NB: i prefer one-liners in Groovy (limit does not apply) unless they are really long",
+      "range": {
+        "startLine": 38,
+        "startChar": 20,
+        "endLine": 38,
+        "endChar": 74
+      },
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
