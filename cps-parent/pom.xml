@@ -54,13 +54,13 @@
         <maven.failsafe.plugin.version>3.5.2</maven.failsafe.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven.site.plugin.version>4.0.0-M13</maven.site.plugin.version>
-        <maven.surefire.plugin.version>3.3.1</maven.surefire.plugin.version>
-        <postgres.version>42.7.8</postgres.version>
+        <maven.surefire.plugin.version>3.5.2</maven.surefire.plugin.version>
+        <postgres.version>42.7.9</postgres.version>
         <slf4j.simple.version>2.0.6</slf4j.simple.version>
         <sonar.version>4.0.0.4121</sonar.version>
-        <spotbugs.plugin.version>4.8.6.4</spotbugs.plugin.version>
+        <spotbugs.plugin.version>4.8.6.6</spotbugs.plugin.version>
         <spotbugs.version>4.8.6</spotbugs.version>
-        <spring.boot.maven.plugin.version>3.4.4</spring.boot.maven.plugin.version>
+        <spring.boot.maven.plugin.version>3.5.11</spring.boot.maven.plugin.version>
         <swagger.codegen.version>1.2.1</swagger.codegen.version>
 
         <!-- Reporting paths and coverage -->
