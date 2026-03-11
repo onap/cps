@@ -28,6 +28,7 @@ rest:
         ncmp-base-path: /ncmp
         ncmp-inventory-base-path: /ncmpInventory
         provmns-base-path: /ProvMnS
+        provmns-extension-base-path: /ProvMnSExtension
 
 spring:
     main:

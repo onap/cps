@@ -31,6 +31,7 @@ public class ParameterHelper {
 
     public static final String NO_OP = null;
     private static final String PROVMNS_BASE_PATH = "ProvMnS/v\\d+/";
+    private static final String PROVMNS_EXTENSION_BASE_PATH = "ProvMnSExtension/v\\d+/";
     private static final String INVALID_PATH_DETAILS_TEMPLATE = "%s not a valid path";
     private static final int PATH_VARIABLES_EXPECTED_LENGTH = 2;
     private static final int REQUEST_FDN_INDEX = 1;
@@ -51,6 +52,26 @@ public class ParameterHelper {
         final String fdn = "/" + pathVariables[REQUEST_FDN_INDEX];
         return createRequestParameters(httpServletRequest.getMethod(),
             httpServletRequest.getHeader("Authorization"), fdn);
+    }
+
+    /**
+     * Converts HttpServletRequest to RequestParameters.
+     *
+     * @param httpServletRequest HttpServletRequest object containing the path
+     * @return RequestParameters object containing action and FDN parameters
+     */
+    public static ActionRequestParameters extractActionRequestParameters(final HttpServletRequest httpServletRequest) {
+        final String uriPath = (String) httpServletRequest.getAttribute(
+            "org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping");
+        final String[] pathVariables = uriPath.split(PROVMNS_EXTENSION_BASE_PATH);
+        if (pathVariables.length != PATH_VARIABLES_EXPECTED_LENGTH) {
+            throw createProvMnSException(httpServletRequest.getMethod(), uriPath);
+        }
+        final String fullPath = "/" + pathVariables[REQUEST_FDN_INDEX];
+        final int lastSlashIndex = fullPath.lastIndexOf('/');
+        final String fdn = fullPath.substring(0, lastSlashIndex);
+        final String action = fullPath.substring(lastSlashIndex + 1);
+        return new ActionRequestParameters(fdn, action);
     }
 
     /**
