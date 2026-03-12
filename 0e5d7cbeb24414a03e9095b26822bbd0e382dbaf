@@ -110,6 +110,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d189f172_5734379f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventSingleConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-03-12T15:24:38Z",
+      "side": 1,
+      "message": "yes i dont mind removing it and i suppose only max-poll-records (currently at 500) would be needed to be configured",
+      "parentUuid": "7d32252b_bc634cb2",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a0cad947_d25d749e",
