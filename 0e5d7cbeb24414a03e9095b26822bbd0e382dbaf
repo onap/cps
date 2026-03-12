@@ -134,6 +134,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "920b257d_9fed7c74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventSingleConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-12T15:53:01Z",
+      "side": 1,
+      "message": "for the sake of keeping it simple I would remove the SIngle version for now. We can always re-add later if needed. I am sure they way it works with MaxPoll that is if there are no new message for a little whiel it will send whatever it has batch so far even if only one....",
+      "parentUuid": "d189f172_5734379f",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a0cad947_d25d749e",
