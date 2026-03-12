@@ -69,7 +69,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
-            recordAndAssertResourceUsage("CPS:Delta b/w 2 anchors ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Delta of 2 anchors ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
             'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 2.0
@@ -86,7 +86,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
-            recordAndAssertResourceUsage("CPS:Delta b/w 2 anchors, w/o grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Delta of 2 anchors no grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
             'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 1.0
@@ -101,7 +101,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
-            recordAndAssertResourceUsage("CPS:Delta b/w anchor & JSON, w/ grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Delta of anchor-JSON no grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration
             'no descendants'     | OMIT_DESCENDANTS        || 4.0
