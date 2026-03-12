@@ -1,3 +1,24 @@
+/*
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
+ */
+
+
 package org.onap.cps.ncmp.impl.datajobs
 
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -8,6 +29,7 @@ import org.onap.cps.ncmp.api.datajobs.models.ProducerKey
 import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.models.RequiredDmiService
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -31,7 +53,7 @@ class DmiSubJobRequestHandlerSpec extends Specification {
             def responseAsKeyValuePairs = [subJobId:'my-sub-job-id']
             def responseEntity = new ResponseEntity<>(responseAsKeyValuePairs, HttpStatus.OK)
             def expectedJson = '{"destination":"d1","dataAcceptType":"t1","dataContentType":"t2","dataProducerId":"prod1","dataJobId":"some-job-id","data":[{"path":"p","op":"operation","moduleSetTag":"tag","value":null,"operationId":"o1"}]}'
-            mockDmiRestClient.synchronousPostOperation(RequiredDmiService.DATA, _, expectedJson, OperationType.CREATE, authorization) >> responseEntity
+            mockDmiRestClient.synchronousPostOperation(RequiredDmiService.DATAJOBS_WRITE, _ as UrlTemplateParameters, expectedJson, OperationType.CREATE, authorization) >> responseEntity
         when: 'sending request to DMI invoked'
             objectUnderTest.sendRequestsToDmi(authorization, dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey)
         then: 'the result contains the expected sub-job id'

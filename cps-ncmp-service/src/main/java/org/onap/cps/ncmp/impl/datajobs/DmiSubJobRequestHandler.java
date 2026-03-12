@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -74,7 +74,7 @@ public class DmiSubJobRequestHandler {
             final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(dataJobMetadata.destination(),
                                                                                          producerKey);
             final ResponseEntity<Object> responseEntity = dmiRestClient.synchronousPostOperation(
-                    RequiredDmiService.DATA,
+                    RequiredDmiService.DATAJOBS_WRITE,
                     urlTemplateParameters,
                     jsonObjectMapper.asJsonString(subJobWriteRequest),
                     OperationType.CREATE,

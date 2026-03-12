@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -56,6 +56,8 @@ public class YangDataConverter {
         ncmpServiceCmHandle.setDmiServiceName(yangModelCmHandle.getDmiServiceName());
         ncmpServiceCmHandle.setDmiDataServiceName(yangModelCmHandle.getDmiDataServiceName());
         ncmpServiceCmHandle.setDmiModelServiceName(yangModelCmHandle.getDmiModelServiceName());
+        ncmpServiceCmHandle.setDmiDatajobsReadServiceName(yangModelCmHandle.getDmiDatajobsReadServiceName());
+        ncmpServiceCmHandle.setDmiDatajobsWriteServiceName(yangModelCmHandle.getDmiDatajobsWriteServiceName());
         ncmpServiceCmHandle.setCompositeState(yangModelCmHandle.getCompositeState());
         ncmpServiceCmHandle.setModuleSetTag(yangModelCmHandle.getModuleSetTag());
         ncmpServiceCmHandle.setAlternateId(yangModelCmHandle.getAlternateId());
@@ -95,6 +97,10 @@ public class YangDataConverter {
         dmiPluginRegistration.setDmiPlugin(safeGetLeafValue(cmHandleDataNode, "dmi-service-name"));
         dmiPluginRegistration.setDmiDataPlugin(safeGetLeafValue(cmHandleDataNode, "dmi-data-service-name"));
         dmiPluginRegistration.setDmiModelPlugin(safeGetLeafValue(cmHandleDataNode, "dmi-model-service-name"));
+        dmiPluginRegistration.setDmiDatajobsReadPlugin(safeGetLeafValue(
+                cmHandleDataNode, "dmi-datajobs-read-service"));
+        dmiPluginRegistration.setDmiDatajobsWritePlugin(safeGetLeafValue(
+                cmHandleDataNode, "dmi-datajobs-write-service"));
         return YangModelCmHandle.toYangModelCmHandle(
                 dmiPluginRegistration,
                 ncmpServiceCmHandle,

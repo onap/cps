@@ -103,7 +103,7 @@ public class WriteRequestExaminer {
 
     private ProducerKey createProducerKey(final YangModelCmHandle yangModelCmHandle) {
         final String dmiDataServiceName =
-                DmiServiceNameResolver.resolveDmiServiceName(RequiredDmiService.DATA, yangModelCmHandle);
+                DmiServiceNameResolver.resolveDmiServiceName(RequiredDmiService.DATAJOBS_WRITE, yangModelCmHandle);
         return new ProducerKey(dmiDataServiceName, yangModelCmHandle.getDataProducerIdentifier());
     }
 

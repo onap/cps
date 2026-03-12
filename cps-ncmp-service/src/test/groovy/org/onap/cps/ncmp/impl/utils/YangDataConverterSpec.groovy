@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
  */
 
 package org.onap.cps.ncmp.impl.utils
+
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
 
@@ -52,6 +54,29 @@ class YangDataConverterSpec extends Specification{
         and: 'the composite state is set'
             assert yangModelCmHandle.compositeState.lastUpdateTime == 'now'
             assert yangModelCmHandle.compositeState.cmHandleState == ADVISED
+    }
+
+    def 'Convert a cm handle data node with data jobs service names.'() {
+        given: 'a datanode with data jobs service names'
+            def dataNodeCmHandle = new DataNode(leaves:['id':'ch-1', 'dmi-service-name': 'dmi1', 
+                'dmi-datajobs-read-service': 'dmi-read', 'dmi-datajobs-write-service': 'dmi-write'])
+        when: 'the dataNode is converted'
+            def yangModelCmHandle = YangDataConverter.toYangModelCmHandle(dataNodeCmHandle)
+        then: 'the data jobs service names are set'
+            assert yangModelCmHandle.dmiDatajobsReadServiceName == 'dmi-read'
+            assert yangModelCmHandle.dmiDatajobsWriteServiceName == 'dmi-write'
+    }
+
+    def 'Convert yang model cm handle to ncmp service cm handle with data jobs service names.'() {
+        given: 'a yang model cm handle with data jobs service names'
+            def yangModelCmHandle = new YangModelCmHandle(id: 'ch-1', dmiServiceName: 'dmi1',
+                dmiDatajobsReadServiceName: 'dmi-read', dmiDatajobsWriteServiceName: 'dmi-write',
+                additionalProperties: [], publicProperties: [])
+        when: 'converted to ncmp service cm handle'
+            def ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(yangModelCmHandle)
+        then: 'the data jobs service names are preserved'
+            assert ncmpServiceCmHandle.dmiDatajobsReadServiceName == 'dmi-read'
+            assert ncmpServiceCmHandle.dmiDatajobsWriteServiceName == 'dmi-write'
     }
 
     def 'Convert multiple cm handle data nodes'(){
