@@ -33,6 +33,69 @@
       "message": "recheck",
       "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0927b636_cb5b02ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-12T13:31:52Z",
+      "side": 1,
+      "message": "just some suggestions for test",
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad2b6d9b_4e12bfef",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-12T13:31:52Z",
+      "side": 1,
+      "message": "NB: use *_\nI think I saw AI generate even something like\n 0 * mockCloudEventKafkaTemplateForExactlyOnceSemantics.*\n or similar to show there are no interactions at all",
+      "range": {
+        "startLine": 204,
+        "startChar": 72,
+        "endLine": 204,
+        "endChar": 79
+      },
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea3c8897_77eea92c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-12T13:31:52Z",
+      "side": 1,
+      "message": "NB: probably would certae 2 separate methods for clarity:\nverifyAnyLogEntry()\nverifyLastLogEnrty()",
+      "range": {
+        "startLine": 209,
+        "startChar": 68,
+        "endLine": 209,
+        "endChar": 84
+      },
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
