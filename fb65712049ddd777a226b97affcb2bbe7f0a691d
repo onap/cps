@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6a4c049_782bd28e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-03-13T19:19:28Z",
+      "side": 1,
+      "message": "Despite some overlap (5 lines) I think it is cleaner to make it two methods as the return object on both is different which would add complexity to the test ware and could impact future changes",
+      "parentUuid": "86111bd9_3b58606e",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 65
+      },
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be939ebc_612c46da",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParameterHelperSpec.groovy",
         "patchSetId": 2
@@ -128,6 +152,54 @@
         "startChar": 20,
         "endLine": 38,
         "endChar": 74
+      },
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "accb817e_16bf9a6b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSExtensionRestApiSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-03-13T19:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de7b0f70_d3cad8aa",
+      "range": {
+        "startLine": 38,
+        "startChar": 20,
+        "endLine": 38,
+        "endChar": 74
+      },
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df1146c9_53f71c83",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSExtensionRestApiSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-03-13T19:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4783e4fc_15dbdd9d",
+      "range": {
+        "startLine": 38,
+        "startChar": 36,
+        "endLine": 38,
+        "endChar": 73
       },
       "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
