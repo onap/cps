@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d7070f_91203824",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-03-13T13:09:03Z",
+      "side": 1,
+      "message": "there was some important note description in the deleted classes\n\ncps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/model/ClassNameIdGetDataNodeSelectorParameter.java \n\ncps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/model/Resource.java \n\ni think this should be in the provmns api?",
+      "revId": "3eed43668ed652ac41c87f89ab9b442220bc63df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "124b17e0_dd44ba5a",
