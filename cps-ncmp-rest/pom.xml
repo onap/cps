@@ -81,10 +81,6 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-        </dependency>
         <!-- T E S T   D E P E N D E N C I E S -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>

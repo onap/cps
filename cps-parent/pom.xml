@@ -51,12 +51,10 @@
         <maven.checkstyle.plugin.version>3.3.1</maven.checkstyle.plugin.version>
         <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
         <maven.compiler.release>17</maven.compiler.release>
-        <maven.failsafe.plugin.version>3.5.2</maven.failsafe.plugin.version>
-        <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven.site.plugin.version>4.0.0-M13</maven.site.plugin.version>
         <maven.surefire.plugin.version>3.5.2</maven.surefire.plugin.version>
         <postgres.version>42.7.9</postgres.version>
-        <slf4j.simple.version>2.0.6</slf4j.simple.version>
+        <slf4j.simple.version>2.0.17</slf4j.simple.version>
         <sonar.version>4.0.0.4121</sonar.version>
         <spotbugs.plugin.version>4.8.6.6</spotbugs.plugin.version>
         <spotbugs.version>4.8.6</spotbugs.version>
@@ -166,7 +164,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven.failsafe.plugin.version}</version>
                         <configuration>
                             <includes>
                                 <include>**/*PerfTest.java</include>
@@ -528,7 +525,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.1.2</version>
             </plugin>
         </plugins>
     </build>
