@@ -57,13 +57,13 @@ class ModuleUpgradeServiceIntegrationSpec extends FunctionalSpecBase {
         then: 'After module sync, the CM-handle transitions to READY state'
             assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState
         when: 'A new version of the dmi-registry module (upgrade) is available'
-            def newYangContent = readResourceDataFile('inventory/dmi-registry@2025-07-22.yang')
-            def newYangResourceContentPerName = ["dmi-registry@2025-07-22.yang": newYangContent]
-        then: 'Install the latest version of inventory model dmi-registry-2025-07-22'
-            if (!cpsModulePersistenceService.schemaSetExists('NCMP-Admin', 'dmi-registry-2025-07-22')) {
-                    cpsModulePersistenceService.createSchemaSet('NCMP-Admin', 'dmi-registry-2025-07-22', newYangResourceContentPerName)
+            def newYangContent = readResourceDataFile('inventory/dmi-registry@2026-01-28.yang')
+            def newYangResourceContentPerName = ["dmi-registry@2026-01-28.yang": newYangContent]
+        then: 'Install the latest version of inventory model dmi-registry-2026-01-28'
+            if (!cpsModulePersistenceService.schemaSetExists('NCMP-Admin', 'dmi-registry-2026-01-28')) {
+                    cpsModulePersistenceService.createSchemaSet('NCMP-Admin', 'dmi-registry-2026-01-28', newYangResourceContentPerName)
             }
-            cpsAnchorService.updateAnchorSchemaSet('NCMP-Admin','ncmp-dmi-registry','dmi-registry-2025-07-22')
+            cpsAnchorService.updateAnchorSchemaSet('NCMP-Admin','ncmp-dmi-registry','dmi-registry-2026-01-28')
         when: 'that state gets updated to a different value'
             final Collection<DataNode> cmHandleDataNodes = inventoryPersistence.getCmHandleDataNodeByCmHandleId('ch-1', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
             YangModelCmHandle yangModelCmHandle= YangDataConverter.toYangModelCmHandle(cmHandleDataNodes[0])
