@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91defa4e_5c8c6ad9",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-16T08:25:37Z",
+      "side": 1,
+      "message": "add comments in the Yaml file for any variable that is set (overridden) in the main script",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 58
+      },
+      "revId": "625df13cf81e831fd55b8929b343251ea2a01233",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7570c99_a02281d6",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-16T08:25:37Z",
+      "side": 1,
+      "message": "since this one is NOT overriden by a env varibale it can just be hardcoded in teh yaml file and remvoe from this section",
+      "range": {
+        "startLine": 79,
+        "startChar": 6,
+        "endLine": 79,
+        "endChar": 52
+      },
+      "revId": "625df13cf81e831fd55b8929b343251ea2a01233",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
