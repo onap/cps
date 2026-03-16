@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09868346_5ba2ba4c",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-03-16T08:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91defa4e_5c8c6ad9",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 58
+      },
+      "revId": "625df13cf81e831fd55b8929b343251ea2a01233",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7570c99_a02281d6",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-03-16T08:25:37Z",
       "side": 1,
       "message": "since this one is NOT overriden by a env varibale it can just be hardcoded in teh yaml file and remvoe from this section",
+      "range": {
+        "startLine": 79,
+        "startChar": 6,
+        "endLine": 79,
+        "endChar": 52
+      },
+      "revId": "625df13cf81e831fd55b8929b343251ea2a01233",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89a7032e_a558648e",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-03-16T08:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7570c99_a02281d6",
       "range": {
         "startLine": 79,
         "startChar": 6,
