@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4eb31c10_454c37e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-16T08:19:03Z",
+      "side": 1,
+      "message": "yes 2 methods as fine, but lines 64-70 are identical to 46-52 and can easily be extracted into getFullPath() then in this method I think you should rename fdn to parentFdn",
+      "parentUuid": "a6a4c049_782bd28e",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 65
+      },
+      "revId": "fb65712049ddd777a226b97affcb2bbe7f0a691d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be939ebc_612c46da",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParameterHelperSpec.groovy",
         "patchSetId": 2
