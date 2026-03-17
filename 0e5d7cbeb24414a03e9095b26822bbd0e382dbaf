@@ -64,6 +64,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad510f4_4bc7b922",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8559
+      },
+      "writtenOn": "2026-03-17T11:26:19Z",
+      "side": 1,
+      "message": "shouldn\u0027t we also check for the value of ncmp.kafka.eos.enabled property? Because to make this code work both ncmp.kafka.eos.enabled and ncmp.notifications.avc-event-consumer.batch-enabled should be set to true",
+      "range": {
+        "startLine": 47,
+        "startChar": 31,
+        "endLine": 47,
+        "endChar": 82
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3a8b7b7f_e492f5c7",
