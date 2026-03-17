@@ -158,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c04d5285_611bde5e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventSingleConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8559
+      },
+      "writtenOn": "2026-03-17T09:50:54Z",
+      "side": 1,
+      "message": "if you remove the single consumer and keep only the batch consumer with max-poll-records set to 1, wouldn\u0027t we again hit the issue with the forwarding performance drop? So in that way still a transaction would be created for each event. Also if you set the max-poll-records to 1 what would happen if the currently running instance have more then 1 thread that reads the topic? In that way I assume only 1 thread would get the event batch that contains only 1 event and the other thread(s) would be idle for some time which may slow down processing further. What do you think about this?",
+      "parentUuid": "920b257d_9fed7c74",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a0cad947_d25d749e",
