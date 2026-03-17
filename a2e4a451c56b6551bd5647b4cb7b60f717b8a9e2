@@ -54,6 +54,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "baea0f33_08e45318",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 8559
+      },
+      "writtenOn": "2026-03-17T15:13:00Z",
+      "side": 1,
+      "message": "I know it wasn\u0027t an initial requirement in the epic you created, but we often measure end to end througput of cm events, and one metric that we usually assert is the latency. The time difference between the actual event that happened on the node and the time when someone can consume that very same event from the final topic. Would it be a huge request to introduce a new gauge metric which propagates the elapsed time between the input cloudevent\u0027s time field and the current time?",
+      "range": {
+        "startLine": 171,
+        "startChar": 24,
+        "endLine": 171,
+        "endChar": 75
+      },
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c31188ef_2c4e4b6b",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 8559
+      },
+      "writtenOn": "2026-03-17T15:13:00Z",
+      "side": 1,
+      "message": "wouldn\u0027t it worth to add a metric here that counts the number of outsent cm events? So it is incremented with the number of events in the batch. Because so far we sort of had this metric with the single event consumer, the @Timed annotation gave us the exact number of processed events, but with batch processing, this exact number is lost and we only have the information about the processed batches, and not the processed cm events. What do you think?",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 86
+      },
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad2b6d9b_4e12bfef",
         "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
         "patchSetId": 2
