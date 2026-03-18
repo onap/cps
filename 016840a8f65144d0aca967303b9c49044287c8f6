@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ad273dc6_93c92732",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-03-18T14:46:46Z",
+      "side": 1,
+      "message": "reviewed. no further comments.",
+      "revId": "016840a8f65144d0aca967303b9c49044287c8f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f67ed356_dfcc781c",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSExtensionsRestApiSpec.groovy",
         "patchSetId": 4
