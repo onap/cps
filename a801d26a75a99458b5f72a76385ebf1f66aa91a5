@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15746263_2a7199d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-18T13:11:11Z",
+      "side": 1,
+      "message": "looking good, a quick demo might be useful to the team",
+      "revId": "a801d26a75a99458b5f72a76385ebf1f66aa91a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86337904_22ef2f0b",
+        "filename": "provmns-api/docs/provmns-api.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-18T13:11:11Z",
+      "side": 1,
+      "message": "NB expand to: the maven antrun plugin merges...",
+      "range": {
+        "startLine": 16,
+        "startChar": 25,
+        "endLine": 16,
+        "endChar": 31
+      },
+      "revId": "a801d26a75a99458b5f72a76385ebf1f66aa91a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "907af9a7_dcbf0fa1",
+        "filename": "provmns-api/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-18T13:11:11Z",
+      "side": 1,
+      "message": "NB mayeb \u003cprovMnSjarName\u003e or just \u003cjarName\u003e",
+      "range": {
+        "startLine": 89,
+        "startChar": 9,
+        "endLine": 89,
+        "endChar": 18
+      },
+      "revId": "a801d26a75a99458b5f72a76385ebf1f66aa91a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e14bc3_51e3f9f7",
+        "filename": "provmns-api/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-18T13:11:11Z",
+      "side": 1,
+      "message": "NB: just checking is this command still correct?",
+      "range": {
+        "startLine": 142,
+        "startChar": 16,
+        "endLine": 142,
+        "endChar": 75
+      },
+      "revId": "a801d26a75a99458b5f72a76385ebf1f66aa91a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
