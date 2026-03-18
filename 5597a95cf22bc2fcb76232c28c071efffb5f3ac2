@@ -33,6 +33,46 @@
       "message": "recheck",
       "revId": "5597a95cf22bc2fcb76232c28c071efffb5f3ac2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ed6bb37_0439fe05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-03-18T06:32:04Z",
+      "side": 1,
+      "message": "One comment",
+      "revId": "5597a95cf22bc2fcb76232c28c071efffb5f3ac2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58203437_8ff39f28",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-03-18T06:32:04Z",
+      "side": 1,
+      "message": "CPS:Delta of anchor-JSON no grouping ${scenario}",
+      "range": {
+        "startLine": 119,
+        "startChar": 46,
+        "endLine": 119,
+        "endChar": 93
+      },
+      "revId": "5597a95cf22bc2fcb76232c28c071efffb5f3ac2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
