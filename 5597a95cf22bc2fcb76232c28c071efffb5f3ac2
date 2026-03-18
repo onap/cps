@@ -73,6 +73,30 @@
       },
       "revId": "5597a95cf22bc2fcb76232c28c071efffb5f3ac2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0342f93_b1150efb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-03-18T12:45:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58203437_8ff39f28",
+      "range": {
+        "startLine": 119,
+        "startChar": 46,
+        "endLine": 119,
+        "endChar": 93
+      },
+      "revId": "5597a95cf22bc2fcb76232c28c071efffb5f3ac2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
