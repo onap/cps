@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fab573a_e3ef6ed7",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-18T09:28:48Z",
+      "side": 1,
+      "message": "reply this was never needed before, all exclusions are below form line #457",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 36
+      },
+      "revId": "8a82c89d74029d6600f7bcb8f114cc32800b9e33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40d12907_14979923",
+        "filename": "provmns-api/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-18T09:28:48Z",
+      "side": 1,
+      "message": "stll not inherreting from cps-parent?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "8a82c89d74029d6600f7bcb8f114cc32800b9e33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "438d0b94_43c987cb",
+        "filename": "provmns-api/src/main/java/org/onap/cps/ncmp/provmns/model/ResourceOneOf.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-18T09:28:48Z",
+      "side": 1,
+      "message": "as discussed, should not have to manually include this file...",
+      "revId": "8a82c89d74029d6600f7bcb8f114cc32800b9e33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
