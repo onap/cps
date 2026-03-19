@@ -205,6 +205,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f6e6c01_32b75b5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventSingleConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-19T11:32:01Z",
+      "side": 1,
+      "message": "Hi daniel, we are aware of that, Lee Anjella is trying to make a custom annotation that will allow a batch processing but WITHOUT transactions (when EOS feature is disabled)\nBatchsize 1 or small wont make a practical difference (for the consumer) as long as we can turn off teh transactions....",
+      "parentUuid": "c04d5285_611bde5e",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a0cad947_d25d749e",
