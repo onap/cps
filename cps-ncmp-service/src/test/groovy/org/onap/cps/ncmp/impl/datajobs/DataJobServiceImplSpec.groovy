@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import ch.qos.logback.core.read.ListAppender
 import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata
 import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
-import org.onap.cps.ncmp.api.datajobs.models.ReadOperation
+import org.onap.cps.ncmp.api.datajobs.models.ReadProperties
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
@@ -35,8 +35,8 @@ import spock.lang.Specification
 
 class DataJobServiceImplSpec extends Specification {
 
-    def mockWriteRequestExaminer = Mock(WriteRequestExaminer)
     def mockDmiSubJobRequestHandler = Mock(DmiSubJobRequestHandler)
+    def mockWriteRequestExaminer = Mock(WriteRequestExaminer)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
 
     def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer, mockJsonObjectMapper)
@@ -54,14 +54,16 @@ class DataJobServiceImplSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(DataJobServiceImpl.class)).detachAndStopAllAppenders()
     }
 
-    def 'Read data job request.'() {
-        when: 'read data job request is processed'
-            def readOperation = new ReadOperation('', '', '', [], [], '', '', 1)
-            objectUnderTest.readDataJob(authorization, 'my-job-id', myDataJobMetadata, new DataJobReadRequest([readOperation]))
-        then: 'the data job id is correctly logged'
-            def loggingEvent = logger.list[0]
-            assert loggingEvent.level == Level.INFO
-            assert loggingEvent.formattedMessage.contains('Data Job ID: my-job-id')
+    def 'Read data job request'() {
+        given: 'a read data job request with two selectors'
+            def dataJobReadRequest = new DataJobReadRequest('job-name', 'job-id', 'description',
+                new ReadProperties('selector1\nselector2', 'some-type'), [:])
+        when: 'the read data job request is processed'
+            objectUnderTest.readDataJob(dataJobReadRequest)
+        then: 'the total number of selectors is logged'
+            with(logger.list.find { it.formattedMessage.contains('Total selectors') }) {
+                assert it.formattedMessage.contains('Total selectors: 2')
+            }
     }
 
     def 'Write data-job request and verify logging when info enabled.'() {

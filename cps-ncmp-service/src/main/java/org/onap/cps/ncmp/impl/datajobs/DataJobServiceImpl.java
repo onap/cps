@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation;
 import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
 import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
+import org.onap.cps.ncmp.impl.utils.JexParser;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 
@@ -44,13 +45,11 @@ public class DataJobServiceImpl implements DataJobService {
     private final JsonObjectMapper jsonObjectMapper;
 
     @Override
-    public void readDataJob(final String authorization,
-                            final String dataJobId,
-                            final DataJobMetadata dataJobMetadata,
-                            final DataJobReadRequest dataJobReadRequest) {
-        logJobIdAndSize(dataJobId, dataJobReadRequest.data().size());
-        log.info("Destination: {}", dataJobMetadata.destination());
-        log.info("authorization: {}", authorization);
+    public void readDataJob(final DataJobReadRequest dataJobReadRequest) {
+        log.info("DataJobId: {}", dataJobReadRequest.jobId());
+        final List<String> selectors =
+                JexParser.toXpaths(dataJobReadRequest.readProperties().dataNodeSelector());
+        log.info("DataJobId: {} - Total selectors: {}", dataJobReadRequest.jobId(), selectors.size());
     }
 
     @Override
