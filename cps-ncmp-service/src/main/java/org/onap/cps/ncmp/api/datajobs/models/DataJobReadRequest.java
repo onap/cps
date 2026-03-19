@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,11 +20,18 @@
 
 package org.onap.cps.ncmp.api.datajobs.models;
 
-import java.util.List;
+import java.util.Map;
 
 /**
- * Describes the read data job operation to be forwarded to dmi.
+ * Represents a read data job request to be forwarded to a DMI plugin.
+ * Contains metadata and configuration for executing read operations on network elements.
  *
- * @param data List of read operations to be executed.
+ * @param name              the name of the data job
+ * @param jobId             the unique identifier for the data job
+ * @param description       a description of the data job purpose
+ * @param readProperties    the read operation properties including targets and data specifications
+ * @param customProperties  additional custom properties for the data job
  */
-public record DataJobReadRequest(List<ReadOperation> data) {}
+public record DataJobReadRequest(String name, String jobId, String description,
+                                 ReadProperties readProperties,
+                                 Map<String, String> customProperties) {}

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -35,15 +35,20 @@ class JexParserSpec extends Specification {
             'xpath with spaces'        | '  /SubNetwork[id="SN1"]  '
             'duplicate xpaths'         | '/SubNetwork[id="SN1"]\n/SubNetwork[id="SN1"]'
             'preceding commented line' | '&&ignore this\n/SubNetwork[id="SN1"]'
+            'OR delimiter'             | '/SubNetwork[id="SN1"] OR '
+            'OR with preceding spaces' | '  /SubNetwork[id="SN1"]  OR  '
     }
 
-    def 'Parsing multi-line json expressions with multiple xpaths.'() {
-        given: 'multi-line json expressions'
-            def jsonExpressions = '/SubNetwork[id="SN1"]\n/ManagedElement[id="ME1"]'
+    def 'Parsing json expressions with multiple xpaths using #scenario'() {
         when: 'convert it to xpaths'
             def result = JexParser.toXpaths(jsonExpressions)
         then: 'the expected xpaths are returned'
             assert result == ['/SubNetwork[id="SN1"]','/ManagedElement[id="ME1"]']
+        where: 'following expressions are used'
+            scenario             | jsonExpressions
+            'newline delimiter'  | '/SubNetwork[id="SN1"]\n/ManagedElement[id="ME1"]'
+            'OR delimiter'       | '/SubNetwork[id="SN1"] OR /ManagedElement[id="ME1"]'
+            'mixed delimiters'   | '/SubNetwork[id="SN1"]\n/ManagedElement[id="ME1"]'
     }
 
     def 'Extracts xpaths from json expressions, ignored expressions: #scenario.'() {
