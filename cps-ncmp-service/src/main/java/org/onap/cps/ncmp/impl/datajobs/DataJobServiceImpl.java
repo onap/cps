@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,17 +40,14 @@ import org.springframework.stereotype.Service;
 public class DataJobServiceImpl implements DataJobService {
 
     private final DmiSubJobRequestHandler dmiSubJobClient;
+    private final ReadRequestExaminer readRequestExaminer;
     private final WriteRequestExaminer writeRequestExaminer;
     private final JsonObjectMapper jsonObjectMapper;
 
     @Override
-    public void readDataJob(final String authorization,
-                            final String dataJobId,
-                            final DataJobMetadata dataJobMetadata,
-                            final DataJobReadRequest dataJobReadRequest) {
-        logJobIdAndSize(dataJobId, dataJobReadRequest.data().size());
-        log.info("Destination: {}", dataJobMetadata.destination());
-        log.info("authorization: {}", authorization);
+    public void readDataJob(final DataJobReadRequest dataJobReadRequest) {
+        log.info("DataJobId: {}", dataJobReadRequest.jobId());
+        readRequestExaminer.splitDataNodeSelector(dataJobReadRequest.readProperties().dataNodeSelector());
     }
 
     @Override
