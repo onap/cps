@@ -220,6 +220,29 @@
       "message": "good tests!",
       "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e16092e_7998e96a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8559
+      },
+      "writtenOn": "2026-03-19T09:18:56Z",
+      "side": 1,
+      "message": "I am not very familiar with tests written in groovy, so I am not sure if it is possible to implement such test in this way what I am about to describe, but I know that we definitely have similar tests to validate that any exception in the batch sending will be handled correctly and eventually it will be sent out correctly. I believe it would be a valid end-to-end test to assert the following scenario:\n\n- Event batch of 500 arrivives to the input topic\n- sending the 251st event would throw an exception so the whole batch is rolled back\n- For second try, the batch propagation passes, and assert that on the final topic there are exactly 500 events and no more\n\nNext to spring boot test we also use EmbeddedKafka which starts an in memory kafka instance so we can validate the functionality better than using mocks\n\nWhat do you think about this?",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
