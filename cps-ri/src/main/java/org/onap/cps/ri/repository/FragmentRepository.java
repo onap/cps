@@ -106,4 +106,80 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND parent_id IS NULL", nativeQuery = true)
     List<FragmentEntity> findRootsByAnchorId(@Param("anchorId") long anchorId);
 
+    @Query(value = "SELECT COALESCE(s.xpath, t.xpath) AS xpath, "
+        + "s.id AS sourceId, t.id AS targetId, "
+        + "s.attributes AS sourceAttributes, t.attributes AS targetAttributes "
+        + "FROM (SELECT id, xpath, attributes FROM fragment WHERE anchor_id = :sourceAnchorId) s "
+        + "FULL OUTER JOIN (SELECT id, xpath, attributes FROM fragment WHERE anchor_id = :targetAnchorId) t "
+        + "ON s.xpath = t.xpath "
+        + "WHERE (s.id IS NULL OR t.id IS NULL OR s.attributes IS DISTINCT FROM t.attributes) "
+        + "AND (:escapedXpath = '/' OR COALESCE(s.xpath, t.xpath) LIKE :escapedXpath || '%')",
+        nativeQuery = true)
+    List<DeltaProjection> findCompositeDeltaFragments(@Param("sourceAnchorId") long sourceAnchorId,
+                                                      @Param("targetAnchorId") long targetAnchorId,
+                                                      @Param("escapedXpath") String escapedXpath);
+
+    @Query(value = "SELECT COALESCE(s.xpath, t.xpath) AS xpath, "
+        + "s.id AS sourceId, t.id AS targetId, "
+        + "s.attributes AS sourceAttributes, t.attributes AS targetAttributes "
+        + "FROM (SELECT id, xpath, attributes, parent_id FROM fragment WHERE anchor_id = :sourceAnchorId) s "
+        + "FULL OUTER JOIN (SELECT id, xpath, attributes, parent_id FROM fragment WHERE anchor_id = :targetAnchorId) t "
+        + "ON s.xpath = t.xpath "
+        + "WHERE (s.id IS NULL OR t.id IS NULL OR s.attributes IS DISTINCT FROM t.attributes) "
+        + "AND ((:xpath = '/' AND COALESCE(s.parent_id, t.parent_id) IS NULL) "
+        + "  OR (:xpath <> '/' AND COALESCE(s.xpath, t.xpath) = :xpath))",
+        nativeQuery = true)
+    List<DeltaProjection> findCompositeDeltaFragmentsExactXpath(@Param("sourceAnchorId") long sourceAnchorId,
+                                                                @Param("targetAnchorId") long targetAnchorId,
+                                                                @Param("xpath") String xpath);
+
+    @Query(value = "SELECT COALESCE(s.xpath, t.xpath) AS xpath, "
+        + "s.id AS sourceId, t.id AS targetId, "
+        + "s.attributes AS sourceAttributes, t.attributes AS targetAttributes "
+        + "FROM (SELECT id, xpath, attributes, parent_id FROM fragment WHERE anchor_id = :sourceAnchorId) s "
+        + "FULL OUTER JOIN (SELECT id, xpath, attributes, parent_id FROM fragment WHERE anchor_id = :targetAnchorId) t "
+        + "ON s.xpath = t.xpath "
+        + "WHERE (s.id IS NULL OR t.id IS NULL OR s.attributes IS DISTINCT FROM t.attributes) "
+        + "AND ("
+        + "  (:xpath = '/' AND COALESCE(s.parent_id, t.parent_id) IS NULL)"
+        + "  OR (:xpath <> '/' AND (COALESCE(s.xpath, t.xpath) = :xpath "
+        + "    OR COALESCE(s.xpath, t.xpath) LIKE :escapedXpath || '[@%]'"
+        + "    AND COALESCE(s.xpath, t.xpath) NOT LIKE :escapedXpath || '[@%]/%[@%]'))"
+        + "  OR COALESCE(s.parent_id, t.parent_id) IN ("
+        + "    SELECT f.id FROM fragment f WHERE f.anchor_id IN (:sourceAnchorId, :targetAnchorId) "
+        + "    AND ((:xpath = '/' AND f.parent_id IS NULL)"
+        + "      OR (:xpath <> '/' AND (f.xpath = :xpath OR f.xpath LIKE :escapedXpath || '[@%]'"
+        + "        AND f.xpath NOT LIKE :escapedXpath || '[@%]/%[@%]')))"
+        + "  )"
+        + ")",
+        nativeQuery = true)
+    List<DeltaProjection> findCompositeDeltaFragmentsWithDirectChildren(
+        @Param("sourceAnchorId") long sourceAnchorId,
+        @Param("targetAnchorId") long targetAnchorId,
+        @Param("xpath") String xpath,
+        @Param("escapedXpath") String escapedXpath);
+
+
+
+    default List<DeltaProjectionDto> findAllDeltaFragments(final long sourceAnchorId, final long targetAnchorId,
+                                                           final String xpath) {
+        return findCompositeDeltaFragments(sourceAnchorId, targetAnchorId, EscapeUtils.escapeForSqlLike(xpath))
+            .stream().map(DeltaProjectionDto::from).toList();
+    }
+
+    default List<DeltaProjectionDto> findAllDeltaFragmentsExactXpath(final long sourceAnchorId,
+                                                                     final long targetAnchorId,
+                                                                     final String xpath) {
+        return findCompositeDeltaFragmentsExactXpath(sourceAnchorId, targetAnchorId, xpath)
+            .stream().map(DeltaProjectionDto::from).toList();
+    }
+
+    default List<DeltaProjectionDto> findAllDeltaFragmentsWithDirectChildren(final long sourceAnchorId,
+                                                                             final long targetAnchorId,
+                                                                             final String xpath) {
+        return findCompositeDeltaFragmentsWithDirectChildren(sourceAnchorId, targetAnchorId,
+            xpath, EscapeUtils.escapeForSqlLike(xpath))
+            .stream().map(DeltaProjectionDto::from).toList();
+    }
+
 }
