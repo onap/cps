@@ -22,6 +22,30 @@
       },
       "revId": "3ac4b588f10690e1aac9d772d271a2132bef0cda",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e11d7a74_98dfe5bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T14:23:58Z",
+      "side": 1,
+      "message": "fair point btu not blocking for me...\nMaybe just rename it to PROVMNS_ACTIONS_PATH",
+      "parentUuid": "96490c5d_55419d65",
+      "range": {
+        "startLine": 34,
+        "startChar": 31,
+        "endLine": 34,
+        "endChar": 60
+      },
+      "revId": "3ac4b588f10690e1aac9d772d271a2132bef0cda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
