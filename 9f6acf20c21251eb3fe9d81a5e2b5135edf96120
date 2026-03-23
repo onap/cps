@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "573f2788_9cda584f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm/lcm-event-v2.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T16:00:34Z",
+      "side": 1,
+      "message": "the whole point was to have only one ID here (as proposed by Csaba K) and have all other properties in old and new values...\nBut yes it could be added I can see why that useful for you...",
+      "parentUuid": "d6a312bd_1cd333fb",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 9
+      },
+      "revId": "9f6acf20c21251eb3fe9d81a5e2b5135edf96120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c59b07a2_f7b78569",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventObjectCreator.java",
         "patchSetId": 4
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75f03449_bdd47db8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventObjectCreator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T16:00:34Z",
+      "side": 1,
+      "message": "I agree it is confusing but we have to DIFFERENT event definitions.\nlcm-event-v2.json is a NEW definition and we are still at version 1.0 of this event.\nActually, if I add \u0027alternateId\u0027 it could become version 1.1 of that file...\n(but not needed if 1.0 did not go into production ie not used by clients)",
+      "parentUuid": "c59b07a2_f7b78569",
+      "range": {
+        "startLine": 108,
+        "startChar": 43,
+        "endLine": 108,
+        "endChar": 48
+      },
+      "revId": "9f6acf20c21251eb3fe9d81a5e2b5135edf96120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ae60850_578a633f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/PayloadFactory.java",
         "patchSetId": 4
@@ -77,6 +125,30 @@
       "writtenOn": "2026-03-23T15:44:00Z",
       "side": 1,
       "message": "As I see this part got refactored a bit in a separate commit: https://gerrit.onap.org/r/c/cps/+/143376/3/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/PayloadFactory.java, but the problem is still there, in the v1 schema the cmHandleProperties is a List of Map of String-String, however the type of public properties in the NcmpServiceCmHandle is Map of String-String, this causes a deserialization issue for create events",
+      "range": {
+        "startLine": 72,
+        "startChar": 29,
+        "endLine": 72,
+        "endChar": 70
+      },
+      "revId": "9f6acf20c21251eb3fe9d81a5e2b5135edf96120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9ad28ad_a136c6f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/PayloadFactory.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T16:00:34Z",
+      "side": 1,
+      "message": "i am very aware of this the List of Maps, this was a mistake in the original event definition, I discussed with SCaba K. we dont know why or how it happened. This version correct this unnecessary wrapping. As I argued before I DO expect client side changes for the new version unless very flexible coding was used on the client side. Csaba K thought it was quite flexible but I always expected some small changes on the client were needed! (remember I am not allowed to see the client side code)",
+      "parentUuid": "9ae60850_578a633f",
       "range": {
         "startLine": 72,
         "startChar": 29,
