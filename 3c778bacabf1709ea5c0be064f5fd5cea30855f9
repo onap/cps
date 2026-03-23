@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "427f9f89_f5429a2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T14:37:43Z",
+      "side": 1,
+      "message": "few minor comments while waiting for grooming...",
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c756f7d7_05405217",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/DataJobReadRequest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T14:37:43Z",
+      "side": 1,
+      "message": "Q: no more list of jobs?!\n(now part of targets I assume)",
+      "range": {
+        "startLine": 30,
+        "startChar": 10,
+        "endLine": 30,
+        "endChar": 16
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "855135b2_b433f727",
@@ -14,6 +54,30 @@
       "writtenOn": "2026-03-23T11:23:54Z",
       "side": 1,
       "message": "OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "227d39fb_52ae754e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/ReadProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T14:37:43Z",
+      "side": 1,
+      "message": "did you try to apply the AmazonQ rules for copy rights",
+      "parentUuid": "855135b2_b433f727",
       "range": {
         "startLine": 3,
         "startChar": 23,
@@ -49,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b744ee7a_1fd34f78",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/ReadProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T14:37:43Z",
+      "side": 1,
+      "message": "NB: \u0027how to format\u0027 is OK for me too.",
+      "parentUuid": "cdb513f3_26195d65",
+      "range": {
+        "startLine": 25,
+        "startChar": 33,
+        "endLine": 25,
+        "endChar": 40
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce78a96d_650d57c2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
         "patchSetId": 1
@@ -72,6 +160,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d26017dc_00e2e5bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T14:37:43Z",
+      "side": 1,
+      "message": "I suppose it is a WiP: return object not handled here. Could at least log the size...",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5acf6bc8_2183e36e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminer.java",
         "patchSetId": 1
@@ -88,6 +199,29 @@
         "startChar": 13,
         "endLine": 29,
         "endChar": 33
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16837ccc_8bb37728",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T14:37:43Z",
+      "side": 1,
+      "message": "if you keeping this extract out well named constant \neg. REGEX_FOR_SPLITTING_DATA_NODE_SELECTORS_ON_LINE_OR_OR\n(you probably cna do better)",
+      "range": {
+        "startLine": 38,
+        "startChar": 47,
+        "endLine": 38,
+        "endChar": 59
       },
       "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -141,6 +275,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ae88b60_979af4c5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T14:37:43Z",
+      "side": 1,
+      "message": "its just a delegation tet so the least it should do is verify the parameter: \u0027my_selector\u0027 is correct",
+      "parentUuid": "ab9312a5_35a58af0",
+      "range": {
+        "startLine": 61,
+        "startChar": 53,
+        "endLine": 61,
+        "endChar": 62
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03cf10f2_a3750b8a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
         "patchSetId": 1
@@ -157,6 +315,29 @@
         "startChar": 18,
         "endLine": 3,
         "endChar": 23
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d3f56b7_7bb7aac4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-23T14:37:43Z",
+      "side": 1,
+      "message": "nB: alignment and redundnant spaces",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 97
       },
       "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
