@@ -139,18 +139,19 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Get delta between anchors when child data nodes under existing parent data nodes are updated: #scenario'() {
         when: 'attempt to get delta between leaves of existing data nodes'
-            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, DIRECT_CHILDREN_ONLY, NO_GROUPING)
-        then: 'expected action is "replace"'
-            assert result[0].getAction() == 'replace'
-        and: 'the delta report has expected child node xpaths'
-            def deltaReportEntities = getDeltaReportEntities(result)
-            def childNodeXpathsInDeltaReport = deltaReportEntities.get('xpaths')
-            assert childNodeXpathsInDeltaReport.contains(expectedChildNodeXpath)
+        def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, DIRECT_CHILDREN_ONLY, NO_GROUPING)
+        then: 'the delta report has expected child node xpaths'
+        def deltaReportEntities = getDeltaReportEntities(result)
+        def childNodeXpathsInDeltaReport = deltaReportEntities.get('xpaths')
+        assert childNodeXpathsInDeltaReport.contains(expectedChildNodeXpath)
+        and: 'the expected xpath has the correct action'
+        def matchingReport = result.find { it.xpath == expectedChildNodeXpath }
+        assert matchingReport.getAction() == expectedAction
         where: 'following data was used'
-            scenario                                          | sourceAnchor       | targetAnchor       | xpath                 || expectedChildNodeXpath
-            'source and target anchors have child data nodes' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore/premises' || '/bookstore/premises/addresses[@house-number=\'2\' and @street=\'Main Street\']'
-            'removed child data nodes in target anchor'       | BOOKSTORE_ANCHOR_5 | BOOKSTORE_ANCHOR_3 | '/bookstore'          || '/bookstore/support-info'
-            'added  child data nodes in target anchor'        | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore'          || '/bookstore/support-info'
+        scenario                                          | sourceAnchor       | targetAnchor       | xpath                 || expectedChildNodeXpath                                                           | expectedAction
+        'source and target anchors have child data nodes' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore/premises' || '/bookstore/premises/addresses[@house-number=\'2\' and @street=\'Main Street\']' | 'replace'
+        'removed child data nodes in target anchor'       | BOOKSTORE_ANCHOR_5 | BOOKSTORE_ANCHOR_3 | '/bookstore'          || '/bookstore/support-info'                                                        | 'remove'
+        'added  child data nodes in target anchor'        | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore'          || '/bookstore/support-info'                                                        | 'create'
     }
 
     def 'Get delta between anchors where source and target data nodes have leaves and child data nodes'() {
