@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec3c4c0_01f2696c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-24T18:21:56Z",
+      "side": 1,
+      "message": "legacy; none of these test are for multi-line really. Just remove this word it is a bit misleading. It really applies to the next test only",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "92ac8196049836b9ace67a25e619cf9f8d4d1fed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bceeb0a6_36b16575",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-24T18:21:56Z",
+      "side": 1,
+      "message": "i dont think tehse tets make sense here and OR without  a second condition? I think you only need to add these to the next test (as you already did for one)",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 72
+      },
+      "revId": "92ac8196049836b9ace67a25e619cf9f8d4d1fed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "272515ff_f89cafb4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-24T18:21:56Z",
+      "side": 1,
+      "message": "add another variation with additional spaces (as you intended on line #39)",
+      "range": {
+        "startLine": 50,
+        "startChar": 57,
+        "endLine": 50,
+        "endChar": 61
+      },
+      "revId": "92ac8196049836b9ace67a25e619cf9f8d4d1fed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47c98d97_4242371d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-24T18:21:56Z",
+      "side": 1,
+      "message": "nothing mixe hered?! did you mean:\n \u0027/SubNetwork[id\u003d\"SN1\"] OR\\n/ManagedElement[id\u003d\"ME1\"]\u0027\nmayeb also test  \n  \u0027/SubNetwork[id\u003d\"SN1\"]\\nOR/ManagedElement[id\u003d\"ME1\"]\u0027",
+      "range": {
+        "startLine": 51,
+        "startChar": 35,
+        "endLine": 51,
+        "endChar": 85
+      },
+      "revId": "92ac8196049836b9ace67a25e619cf9f8d4d1fed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
