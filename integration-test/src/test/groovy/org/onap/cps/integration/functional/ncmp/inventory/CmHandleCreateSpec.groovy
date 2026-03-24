@@ -319,7 +319,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert headerAsMap.get('eventSource') == eventSource
             assert eventType == 'org.onap.ncmp.cmhandle-lcm-event.'+expectedEventType
             assert headerAsMap.get('eventType') == eventType
-            assert eventSchema == 'org.onap.ncmp:cmhandle-lcm-event'
+            assert eventSchema == 'org.onap.ncmp:cmhandle-lcm-event.v1'
             assert headerAsMap.get('eventSchema') == eventSchema
             assert eventSchemaVersion == '1.0'
             assert headerAsMap.get('eventSchemaVersion') == eventSchemaVersion
