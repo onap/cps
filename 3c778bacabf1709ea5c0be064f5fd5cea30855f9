@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d7f6423_4031f979",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/ReadProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-24T13:59:06Z",
+      "side": 1,
+      "message": "Used the rules now",
+      "parentUuid": "227d39fb_52ae754e",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cdb513f3_26195d65",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/ReadProperties.java",
         "patchSetId": 1
@@ -135,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76142a40_e63afe17",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/ReadProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-24T13:59:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b744ee7a_1fd34f78",
+      "range": {
+        "startLine": 25,
+        "startChar": 33,
+        "endLine": 25,
+        "endChar": 40
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce78a96d_650d57c2",
@@ -160,6 +208,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d30f8f01_0514bb18",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-24T13:59:06Z",
+      "side": 1,
+      "message": "Not really. The request size should always be one. The split of dataNodeSelector is what determines the number of subjobs",
+      "parentUuid": "ce78a96d_650d57c2",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d26017dc_00e2e5bc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
         "patchSetId": 1
@@ -171,6 +243,30 @@
       "writtenOn": "2026-03-23T14:37:43Z",
       "side": 1,
       "message": "I suppose it is a WiP: return object not handled here. Could at least log the size...",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5753bba5_916dd2e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-24T13:59:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d26017dc_00e2e5bc",
       "range": {
         "startLine": 50,
         "startChar": 8,
@@ -217,6 +313,30 @@
       "writtenOn": "2026-03-23T14:37:43Z",
       "side": 1,
       "message": "if you keeping this extract out well named constant \neg. REGEX_FOR_SPLITTING_DATA_NODE_SELECTORS_ON_LINE_OR_OR\n(you probably cna do better)",
+      "range": {
+        "startLine": 38,
+        "startChar": 47,
+        "endLine": 38,
+        "endChar": 59
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0528c5a1_50b3a251",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-24T13:59:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "16837ccc_8bb37728",
       "range": {
         "startLine": 38,
         "startChar": 47,
@@ -287,6 +407,54 @@
       "side": 1,
       "message": "its just a delegation tet so the least it should do is verify the parameter: \u0027my_selector\u0027 is correct",
       "parentUuid": "ab9312a5_35a58af0",
+      "range": {
+        "startLine": 61,
+        "startChar": 53,
+        "endLine": 61,
+        "endChar": 62
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f912d6a_37f4b332",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-24T13:59:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3ced6d84_0db4a8af",
+      "range": {
+        "startLine": 61,
+        "startChar": 36,
+        "endLine": 61,
+        "endChar": 49
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4a989e4_a66bc2f2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-24T13:59:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3ae88b60_979af4c5",
       "range": {
         "startLine": 61,
         "startChar": 53,
