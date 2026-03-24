@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f307825f_f26b392d",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/18.6.0/provmns-api-18.6.0.pom",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:55:14Z",
+      "side": 1,
+      "message": "yes this is generated one.",
+      "parentUuid": "9bb4e7fb_407c6006",
+      "revId": "2ab90104d500405692aab7d90fef72ec131bbe0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d036a90_2b85417f",
         "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/maven-metadata-local.xml",
         "patchSetId": 9
@@ -48,6 +66,24 @@
       "writtenOn": "2026-03-23T09:34:19Z",
       "side": 1,
       "message": "is this generated during the custom mvn install command for the API?",
+      "revId": "2ab90104d500405692aab7d90fef72ec131bbe0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0fba897_c6a431a8",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/maven-metadata-local.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:55:14Z",
+      "side": 1,
+      "message": "yes, it is generated during the install step. It\u0027s what tells Maven that version 10.6.0 exists in the repository.",
+      "parentUuid": "9d036a90_2b85417f",
       "revId": "2ab90104d500405692aab7d90fef72ec131bbe0a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },

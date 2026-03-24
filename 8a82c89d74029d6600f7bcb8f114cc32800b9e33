@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20b5a1e7_4a099bed",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:55:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0fab573a_e3ef6ed7",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 36
+      },
+      "revId": "8a82c89d74029d6600f7bcb8f114cc32800b9e33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40d12907_14979923",
@@ -71,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f0dec29_517181f0",
+        "filename": "provmns-api/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:55:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "40d12907_14979923",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "8a82c89d74029d6600f7bcb8f114cc32800b9e33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "438d0b94_43c987cb",
@@ -84,6 +132,24 @@
       "writtenOn": "2026-03-18T09:28:48Z",
       "side": 1,
       "message": "as discussed, should not have to manually include this file...",
+      "revId": "8a82c89d74029d6600f7bcb8f114cc32800b9e33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77e84988_9570785d",
+        "filename": "provmns-api/src/main/java/org/onap/cps/ncmp/provmns/model/ResourceOneOf.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:55:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "438d0b94_43c987cb",
       "revId": "8a82c89d74029d6600f7bcb8f114cc32800b9e33",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
