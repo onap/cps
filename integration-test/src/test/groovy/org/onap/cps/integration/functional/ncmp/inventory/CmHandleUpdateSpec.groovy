@@ -154,14 +154,16 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             def dmiPluginRegistrationResponseForUpdate = objectUnderTest.updateDmiRegistration(dmiPluginRegistrationForUpdate)
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponseForUpdate.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
-        and: 'get the latest message'
+        and: 'the latest message is for the correct cm handle'
             def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
-        and: 'the V2 message has the updated data producer identifier in newValues'
             def notificationMessages = []
             for (def consumerRecord : consumerRecords) {
                 notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEventV2))
             }
             assert notificationMessages[0].event.cmHandleId.contains(cmHandleId)
+        and: 'the message has the v2 schema'
+            assert notificationMessages[0].eventSchema == 'org.onap.ncmp:cmhandle-lcm-event.v2'
+        and: 'the V2 message has the updated data producer identifier in newValues'
             assert notificationMessages[0].event.newValues['dataProducerIdentifier'] == 'my-data-producer-id'
         cleanup: 'restore original event schema version and deregister CM handle'
             ReflectionTestUtils.setField(lcmEventProducer, 'eventSchemaVersion', originalEventSchemaVersion)
