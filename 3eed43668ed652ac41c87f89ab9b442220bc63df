@@ -105,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65100d3b_9964cfd6",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09dc73ba_2b01bcd0",
+      "range": {
+        "startLine": 84,
+        "startChar": 26,
+        "endLine": 84,
+        "endChar": 59
+      },
+      "revId": "3eed43668ed652ac41c87f89ab9b442220bc63df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fdb0bca_afbdda49",
@@ -236,6 +260,30 @@
       "writtenOn": "2026-03-18T17:00:38Z",
       "side": 1,
       "message": "once this module is a child under parent you can directly create the jar in the correct place:\n${project.basedir}/local-repo/.../provmns-api-${project.version}.jar\u003c\n\nNo need to copy and end up with a duplicate",
+      "range": {
+        "startLine": 112,
+        "startChar": 28,
+        "endLine": 112,
+        "endChar": 98
+      },
+      "revId": "3eed43668ed652ac41c87f89ab9b442220bc63df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a95193f_d825440c",
+        "filename": "provmns-api/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b94e6ce_cbb134af",
       "range": {
         "startLine": 112,
         "startChar": 28,

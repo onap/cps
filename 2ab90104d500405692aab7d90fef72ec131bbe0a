@@ -53,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "803fb150_b1a409dd",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/18.6.0/provmns-api-18.6.0.pom",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f307825f_f26b392d",
+      "revId": "2ab90104d500405692aab7d90fef72ec131bbe0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d036a90_2b85417f",
@@ -88,6 +106,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3584afb_09c364ed",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/maven-metadata-local.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0fba897_c6a431a8",
+      "revId": "2ab90104d500405692aab7d90fef72ec131bbe0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e30a2cec_02447836",
@@ -101,6 +137,30 @@
       "writtenOn": "2026-03-23T09:34:19Z",
       "side": 1,
       "message": "maybe just refer to rteh readme?",
+      "range": {
+        "startLine": 148,
+        "startChar": 12,
+        "endLine": 149,
+        "endChar": 75
+      },
+      "revId": "2ab90104d500405692aab7d90fef72ec131bbe0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e400a0a_0fd17499",
+        "filename": "provmns-api/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-24T12:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e30a2cec_02447836",
       "range": {
         "startLine": 148,
         "startChar": 12,
