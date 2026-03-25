@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1d3a00_c49746be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-03-25T07:15:49Z",
+      "side": 1,
+      "message": "Apply delta report to an anchor",
+      "range": {
+        "startLine": 9,
+        "startChar": 34,
+        "endLine": 9,
+        "endChar": 101
+      },
+      "revId": "3fdeb307b56db3a9c331fec541a56b8428f72fc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
