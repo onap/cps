@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab849c9c_42dc6e79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-25T09:30:35Z",
+      "side": 1,
+      "message": "N.B. Couple of licences need update. Found Toines agent works well",
+      "revId": "6aaa4a2498ab805c21a482dcdabaccaf497eb021",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
