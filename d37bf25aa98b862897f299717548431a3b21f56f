@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0645307_6ae9e4e2",
+        "filename": "provmns-api/generate.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-25T10:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bf9b8b1_0554df0d",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 107
+      },
+      "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b38c4df2_3338f2e4",
@@ -118,6 +142,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "867569f2_afc3bf47",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/18.6.0/provmns-api-18.6.0.pom",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-25T10:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b22e172b_7ce07077",
+      "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1d32dbe_5cb29bff",
@@ -167,6 +209,24 @@
       "side": 1,
       "message": "sorry, Build works without them because Maven resolves the 18.6.0 dependency directly from the JAR in the local-repo — the .pom and maven-metadata-local.xml are only needed when using install:install-file. They\u0027re no longer needed with the current approach. I will push another patch to resolve this.",
       "parentUuid": "73a5a746_73e0aca5",
+      "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a2732ba_09dc2f3e",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/maven-metadata-local.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-25T10:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37bebefa_1c08eb3c",
       "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
