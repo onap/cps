@@ -47,7 +47,7 @@ import org.springframework.stereotype.Service;
 public class LcmEventObjectCreator {
 
     /**
-     * Create Lifecycle Management Event.
+     * Create Lifecycle Management Event Version 1.
      *
      * @param currentNcmpServiceCmHandle  current ncmp service cmhandle
      * @param targetNcmpServiceCmHandle   target ncmp service cmhandle
@@ -59,7 +59,7 @@ public class LcmEventObjectCreator {
         final LcmEventType lcmEventType =
             determineEventType(currentNcmpServiceCmHandle, targetNcmpServiceCmHandle);
         final LcmEventV1 lcmEventV1 = new LcmEventV1();
-        populateHeaderDetails(lcmEventV1, cmHandleId, lcmEventType);
+        populateHeaderDetails(lcmEventV1, "v1", cmHandleId, lcmEventType);
         final PayloadV1 payloadV1 = PayloadFactory.createPayloadV1(lcmEventType, currentNcmpServiceCmHandle,
                                                                                  targetNcmpServiceCmHandle);
         lcmEventV1.setEvent(payloadV1);
@@ -79,7 +79,7 @@ public class LcmEventObjectCreator {
         final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
         final LcmEventType lcmEventType =
             determineEventType(currentNcmpServiceCmHandle, targetNcmpServiceCmHandle);
-        populateHeaderDetails(lcmEventV2, cmHandleId, lcmEventType);
+        populateHeaderDetails(lcmEventV2, "v2", cmHandleId, lcmEventType);
         final PayloadV2 payloadV2 = PayloadFactory.createPayloadV2(lcmEventType, currentNcmpServiceCmHandle,
             targetNcmpServiceCmHandle);
         lcmEventV2.setEvent(payloadV2);
@@ -97,6 +97,7 @@ public class LcmEventObjectCreator {
     }
 
     private void populateHeaderDetails(final LcmEventBase lcmEventBase,
+                                       final String eventSchemaVersion,
                                        final String eventCorrelationId,
                                        final LcmEventType lcmEventType) {
         lcmEventBase.setEventId(UUID.randomUUID().toString());
@@ -104,7 +105,7 @@ public class LcmEventObjectCreator {
         lcmEventBase.setEventTime(EventDateTimeFormatter.getCurrentIsoFormattedDateTime());
         lcmEventBase.setEventSource("org.onap.ncmp");
         lcmEventBase.setEventType(lcmEventType.getEventType());
-        lcmEventBase.setEventSchema("org.onap.ncmp:cmhandle-lcm-event");
+        lcmEventBase.setEventSchema("org.onap.ncmp:cmhandle-lcm-event." + eventSchemaVersion);
         lcmEventBase.setEventSchemaVersion("1.0");
     }
 

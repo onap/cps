@@ -49,13 +49,14 @@ class LcmEventProducerSpec extends Specification {
             objectUnderTest.eventSchemaVersion = eventVersion
         when: 'event send for (batch of) 1 cm handle transition pair (new cm handle going to READY)'
             objectUnderTest.sendLcmEventBatchAsynchronously([cmHandleTransitionPair])
-        then: 'producer is called #expectedTimesMethodCalled times with correct identifiers'
+        then: 'producer is called #expectedTimesMethodCalled times with correct identifiers and schema name'
             expectedTimesMethodCalled * mockEventProducer.sendLegacyEvent(_, 'ch-1', _, _) >> {
                 args -> {
                     def eventHeaders = args[2]
                     def event = args[3]
                     assert UUID.fromString(eventHeaders.get('eventId')) != null
                     assert eventHeaders.get('eventCorrelationId') == 'ch-1'
+                    assert eventHeaders.get('eventSchema') == "org.onap.ncmp:cmhandle-lcm-event.${eventVersion}"
                     assert event.class.simpleName == expectedEventClass
                 }
             }
