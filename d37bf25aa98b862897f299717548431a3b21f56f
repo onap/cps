@@ -102,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b22e172b_7ce07077",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/18.6.0/provmns-api-18.6.0.pom",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-25T09:31:48Z",
+      "side": 1,
+      "message": "sorry, Build works without them because Maven resolves the 18.6.0 dependency directly from the JAR in the local-repo — the .pom and maven-metadata-local.xml are only needed when using install:install-file. They\u0027re no longer needed with the current approach. I will push another patch to resolve this.",
+      "parentUuid": "c6b7e97c_a7fdb7ec",
+      "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1d32dbe_5cb29bff",
         "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/maven-metadata-local.xml",
         "patchSetId": 11
@@ -131,6 +149,24 @@
       "side": 1,
       "message": "it is needed and generated but now it is inside the jar.",
       "parentUuid": "c1d32dbe_5cb29bff",
+      "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37bebefa_1c08eb3c",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/maven-metadata-local.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-25T09:31:48Z",
+      "side": 1,
+      "message": "sorry, Build works without them because Maven resolves the 18.6.0 dependency directly from the JAR in the local-repo — the .pom and maven-metadata-local.xml are only needed when using install:install-file. They\u0027re no longer needed with the current approach. I will push another patch to resolve this.",
+      "parentUuid": "73a5a746_73e0aca5",
       "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
