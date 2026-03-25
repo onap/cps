@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9bf9b8b1_0554df0d",
+        "filename": "provmns-api/generate.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-25T09:23:22Z",
+      "side": 1,
+      "message": "Extract the ProvMnS spec version from the module pom.xml (provmns.lib.version property)- not generated.\ncan you please suggest the good name?",
+      "parentUuid": "24ae0b8b_9fb9d702",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 107
+      },
+      "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b38c4df2_3338f2e4",
         "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/18.6.0/provmns-api-18.6.0.pom",
         "patchSetId": 11
@@ -60,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6b7e97c_a7fdb7ec",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/18.6.0/provmns-api-18.6.0.pom",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-25T09:23:22Z",
+      "side": 1,
+      "message": "it is needed and generated but now it is inside the jar.",
+      "parentUuid": "b38c4df2_3338f2e4",
+      "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1d32dbe_5cb29bff",
         "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/maven-metadata-local.xml",
         "patchSetId": 11
@@ -71,6 +113,24 @@
       "writtenOn": "2026-03-24T18:14:34Z",
       "side": 1,
       "message": "you remove this file, is it no longer generated/needed?!",
+      "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73a5a746_73e0aca5",
+        "filename": "provmns-api/local-repo/org/onap/cps/provmns-api/maven-metadata-local.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-25T09:23:22Z",
+      "side": 1,
+      "message": "it is needed and generated but now it is inside the jar.",
+      "parentUuid": "c1d32dbe_5cb29bff",
       "revId": "d37bf25aa98b862897f299717548431a3b21f56f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
