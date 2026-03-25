@@ -22,7 +22,6 @@ package org.onap.cps.integration.performance.cps
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 import org.onap.cps.utils.ContentType
-import spock.lang.Ignore
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -124,7 +123,6 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 7.0
     }
 
-    @Ignore
     def 'Apply delta report to an anchor'() {
         given: 'a delta report between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(CPS_PERFORMANCE_TEST_DATASPACE, 'target-anchor1', 'source-anchor1', '/openroadm-devices', INCLUDE_ALL_DESCENDANTS, true)
