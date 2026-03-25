@@ -348,6 +348,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52e6170b_2378425a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-25T09:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5acf6bc8_2183e36e",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 33
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16837ccc_8bb37728",
@@ -536,6 +560,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "946ce260_ffe50a79",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-25T09:54:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "03cf10f2_a3750b8a",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d3f56b7_7bb7aac4",
@@ -549,6 +597,30 @@
       "writtenOn": "2026-03-23T14:37:43Z",
       "side": 1,
       "message": "nB: alignment and redundnant spaces",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 97
+      },
+      "revId": "3c778bacabf1709ea5c0be064f5fd5cea30855f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59da178c_66346ec8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-25T09:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d3f56b7_7bb7aac4",
       "range": {
         "startLine": 34,
         "startChar": 0,

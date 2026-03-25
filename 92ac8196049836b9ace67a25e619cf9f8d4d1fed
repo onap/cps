@@ -163,6 +163,30 @@
       },
       "revId": "92ac8196049836b9ace67a25e619cf9f8d4d1fed",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91a0bdc0_02bc3e8c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-03-25T09:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47c98d97_4242371d",
+      "range": {
+        "startLine": 51,
+        "startChar": 35,
+        "endLine": 51,
+        "endChar": 85
+      },
+      "revId": "92ac8196049836b9ace67a25e619cf9f8d4d1fed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
