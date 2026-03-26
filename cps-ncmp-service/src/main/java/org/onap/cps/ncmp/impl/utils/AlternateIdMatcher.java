@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.impl.utils;
 
 import com.hazelcast.map.IMap;
+import com.hazelcast.query.Predicates;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -132,6 +133,16 @@ public class AlternateIdMatcher {
             }
         }
         return cmHandleId;
+    }
+
+    /**
+     * Get cm handle ids whose alternate id contains the given search term.
+     *
+     * @param searchTerm the substring to search for in alternate ids
+     * @return collection of matching cm handle ids
+     */
+    public Collection<String> getCmHandleIds(final String searchTerm) {
+        return cmHandleIdPerAlternateId.values(Predicates.like("__key", "%" + searchTerm + "%"));
     }
 
     private String getParentPath(final String path, final String separator) {
