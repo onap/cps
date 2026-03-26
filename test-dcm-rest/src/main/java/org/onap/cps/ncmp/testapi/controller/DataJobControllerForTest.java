@@ -26,8 +26,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.datajobs.DataJobService;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata;
+import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
+import org.onap.cps.ncmp.impl.datajobs.ReadRequestExaminer.ClassifiedSelectors;
 import org.onap.cps.ncmp.testapi.controller.models.DataJobRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,8 +40,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Controller responsible for handling data job write operations.
- * This class exposes an API endpoint that accepts a write request for a data job and processes it.
+ * Controller responsible for handling data job operations for testing purposes.
+ * This class exposes API endpoints that accept read and write requests for data jobs.
  */
 @Slf4j
 @RestController
@@ -50,17 +52,27 @@ public class DataJobControllerForTest {
     private final DataJobService dataJobService;
 
     /**
-     * Handles POST requests to write a data job. This endpoint is unsupported and intended for testing purposes only.
-     * This internal endpoint processes a data job write request by extracting necessary metadata and data
-     * from the request body and delegating the operation to the {@link DataJobService}.
-     * <p><b>Note:</b> The {@link DataJobRequest} parameter is created and used for testing purposes only.
-     * In a production environment, data job write operations are not triggered through internal workflows.</p>
+     * Handles POST requests to read a data job. Intended for testing purposes only.
      *
-     * @param authorization  The optional authorization token sent in the request header.
-     * @param dataJobId      The unique identifier for the data job, extracted from the URL path.
-     * @param dataJobRequest The request payload containing metadata and data for the data job write operation.
-     * @return A {@link ResponseEntity} containing a list of {@link SubJobWriteResponse} objects representing the
-     *     status of each sub-job within the data job, or an error response with an appropriate HTTP status code.
+     * @param dataJobReadRequest the read request payload
+     * @return classified selectors
+     */
+    @PostMapping("/read")
+    @Hidden
+    public ResponseEntity<ClassifiedSelectors> readDataJob(
+            @RequestBody final DataJobReadRequest dataJobReadRequest) {
+        log.info("Internal API: readDataJob invoked for {}", dataJobReadRequest.jobId());
+        final ClassifiedSelectors classifiedSelectors = dataJobService.readDataJob(dataJobReadRequest);
+        return ResponseEntity.ok(classifiedSelectors);
+    }
+
+    /**
+     * Handles POST requests to write a data job. Intended for testing purposes only.
+     *
+     * @param authorization  the optional authorization token
+     * @param dataJobId      the unique identifier for the data job
+     * @param dataJobRequest the request payload containing metadata and write data
+     * @return a list of sub-job write responses
      */
     @PostMapping("/{dataJobId}/write")
     @Hidden

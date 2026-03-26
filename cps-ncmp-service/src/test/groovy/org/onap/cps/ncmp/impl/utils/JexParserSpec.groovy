@@ -99,8 +99,19 @@ class JexParserSpec extends Specification {
             'Segments without IDs'     | '/SubNetwork/attributes'
             'First segment without ID' | '/SubNetwork/ManagedElement[id="1"]'
     }
+
+    def 'Extract contains value for #scenario'() {
+        when: 'the parser extracts the contains value'
+            def result = JexParser.extractSearchTerm(selector)
+        then: 'the expected value is returned'
+            assert result.orElse(null) == expectedValue
+        where: 'the following selectors are used'
+            scenario                        | selector                                                        || expectedValue
+            'ManagedElement contains'       | '/ManagedElement[contains(id, "Ireland")]'                      || 'ManagedElement=Ireland'
+            'MeContext contains'            | '/MeContext[contains(id, "Dublin")]'                            || 'MeContext=Dublin'
+            'with SubNetwork prefix'        | '/SubNetwork[id="SN1"]/ManagedElement[contains(id, "Ireland")]' || 'ManagedElement=Ireland'
+            'exact id (not contains)'       | '/ManagedElement[id="ME1"]'                                     || null
+            'no ManagedElement or MeContext'| '/SubNetwork[contains(id, "Europe")]'                           || null
+            'deep search with contains'     | '//ManagedElement[contains(id, "Ireland")]'                     || 'ManagedElement=Ireland'
+    }
 }
-
-
-
-
