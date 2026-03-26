@@ -33,6 +33,46 @@
       "message": "Resolved",
       "revId": "3673d894c318f94bf4478307e41d99aed35d6d07",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23aefff2_0cacac84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-03-26T05:47:34Z",
+      "side": 1,
+      "message": "Update copyright year",
+      "revId": "3673d894c318f94bf4478307e41d99aed35d6d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "266cd445_4be14d9d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-03-26T05:47:34Z",
+      "side": 1,
+      "message": "2025-2026",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "3673d894c318f94bf4478307e41d99aed35d6d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
