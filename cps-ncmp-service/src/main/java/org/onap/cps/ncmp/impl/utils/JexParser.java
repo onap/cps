@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class JexParser {
 
     private static final Pattern XPATH_SEGMENT_PATTERN = Pattern.compile("^([^]]*)\\[id=\\\"([^\\\"]*)\\\"]");
     private static final String JEX_COMMENT_PREFIX = "&&";
-    private static final String LINE_SEPARATOR_REGEX = "\\R";
+    private static final String LINE_OR_LOGICAL_OR_REGEX = "\\R|\\bOR\\b";
     private static final String LINE_JOINER_DELIMITER = "\n";
     private static final String SEGMENT_SEPARATOR = "/";
 
@@ -50,9 +50,10 @@ public class JexParser {
         if (jsonExpressionsAsString == null) {
             return Collections.emptyList();
         }
-        final String[] lines = jsonExpressionsAsString.split(LINE_SEPARATOR_REGEX);
+        final String[] lines = jsonExpressionsAsString.split(LINE_OR_LOGICAL_OR_REGEX);
         return Arrays.stream(lines)
                 .map(String::trim)
+                .filter(xpath -> !xpath.isEmpty())
                 .filter(xpath -> !xpath.startsWith(JEX_COMMENT_PREFIX))
                 .distinct()
                 .toList();

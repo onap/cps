@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import spock.lang.Specification
 
 class JexParserSpec extends Specification {
 
-    def 'Parsing multi-line json expressions with #scenario.'() {
+    def 'Parsing json expressions with #scenario.'() {
         when: 'the parser gets a (multi-line) json expressions'
             def result = JexParser.toXpaths(jsonExpressions)
         then: 'the expected xpaths are returned'
@@ -37,13 +37,18 @@ class JexParserSpec extends Specification {
             'preceding commented line' | '&&ignore this\n/SubNetwork[id="SN1"]'
     }
 
-    def 'Parsing multi-line json expressions with multiple xpaths.'() {
-        given: 'multi-line json expressions'
-            def jsonExpressions = '/SubNetwork[id="SN1"]\n/ManagedElement[id="ME1"]'
+    def 'Parsing json expressions with multiple xpaths using #scenario'() {
         when: 'convert it to xpaths'
             def result = JexParser.toXpaths(jsonExpressions)
         then: 'the expected xpaths are returned'
             assert result == ['/SubNetwork[id="SN1"]','/ManagedElement[id="ME1"]']
+        where: 'following expressions are used'
+            scenario                         | jsonExpressions
+            'newline delimiter'              | '/SubNetwork[id="SN1"]\n/ManagedElement[id="ME1"]'
+            'OR delimiter'                   | '/SubNetwork[id="SN1"] OR /ManagedElement[id="ME1"]'
+            'mixed delimiters'               | '/SubNetwork[id="SN1"] OR\n/ManagedElement[id="ME1"]'
+            'reverse mixed delimiters'       | '/SubNetwork[id="SN1"]\nOR/ManagedElement[id="ME1"]'
+            'OR delimiter with extra spacing'| '/SubNetwork[id="SN1"]   OR    /ManagedElement[id="ME1"]'
     }
 
     def 'Extracts xpaths from json expressions, ignored expressions: #scenario.'() {

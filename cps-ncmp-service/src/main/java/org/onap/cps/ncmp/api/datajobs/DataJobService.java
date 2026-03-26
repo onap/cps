@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,15 +31,9 @@ public interface DataJobService {
     /**
      * process read data job operations.
      *
-     * @param authorization      the authorization header from the REST request
-     * @param dataJobId          unique identifier of the job within the request
-     * @param dataJobMetadata    data job request headers
      * @param dataJobReadRequest read data job request
      */
-    void readDataJob(String authorization,
-                     String dataJobId,
-                     DataJobMetadata dataJobMetadata,
-                     DataJobReadRequest dataJobReadRequest);
+    void readDataJob(DataJobReadRequest dataJobReadRequest);
 
     /**
      * process write data job operations.
