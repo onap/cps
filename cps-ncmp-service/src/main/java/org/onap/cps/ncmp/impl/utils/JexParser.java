@@ -35,6 +35,8 @@ import lombok.NoArgsConstructor;
 public class JexParser {
 
     private static final Pattern XPATH_SEGMENT_PATTERN = Pattern.compile("^([^]]*)\\[id=\\\"([^\\\"]*)\\\"]");
+    private static final Pattern CONTAINS_PATTERN = Pattern.compile(
+            "(?:ManagedElement|MeContext)\\[contains\\(id,\\s*\"([^\"]*)\"\\)]");
     private static final String JEX_COMMENT_PREFIX = "&&";
     private static final String LINE_OR_LOGICAL_OR_REGEX = "\\R|\\bOR\\b";
     private static final String LINE_JOINER_DELIMITER = "\n";
@@ -97,6 +99,18 @@ public class JexParser {
      */
     public static String toJsonExpressionsAsString(final Collection<String> xpaths) {
         return String.join(LINE_JOINER_DELIMITER, xpaths);
+    }
+
+    /**
+     * Extracts the contains value from a selector with a contains(id, "...") expression
+     * on ManagedElement or MeContext.
+     *
+     * @param selector a single selector expression
+     * @return Optional containing the contains value if found; empty otherwise
+     */
+    public static Optional<String> extractSearchTerm(final String selector) {
+        final Matcher matcher = CONTAINS_PATTERN.matcher(selector);
+        return matcher.find() ? Optional.of(matcher.group(1)) : Optional.empty();
     }
 
     private static List<String> splitIntoXpaths(final String xpath) {
