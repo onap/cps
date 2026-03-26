@@ -37,9 +37,10 @@ class DataJobServiceImplSpec extends Specification {
 
     def mockDmiSubJobRequestHandler = Mock(DmiSubJobRequestHandler)
     def mockWriteRequestExaminer = Mock(WriteRequestExaminer)
+    def mockReadRequestExaminer = Mock(ReadRequestExaminer)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
 
-    def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer, mockJsonObjectMapper)
+    def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer, mockReadRequestExaminer, mockJsonObjectMapper)
 
     def myDataJobMetadata = new DataJobMetadata('', '', '')
     def authorization = 'my authorization header'
@@ -55,15 +56,17 @@ class DataJobServiceImplSpec extends Specification {
     }
 
     def 'Read data job request'() {
-        given: 'a read data job request with two selectors'
+        given: 'a read data job request'
             def dataJobReadRequest = new DataJobReadRequest('job-name', 'job-id', 'description',
                 new ReadProperties('selector1\nselector2', 'some-type'), [:])
+        and: 'the read request examiner returns a classified result'
+            def classifiedSelectors = new ReadRequestExaminer.ClassifiedSelectors(['selector1'], [:], [])
         when: 'the read data job request is processed'
-            objectUnderTest.readDataJob(dataJobReadRequest)
-        then: 'the total number of selectors is logged'
-            with(logger.list.find { it.formattedMessage.contains('Total selectors') }) {
-                assert it.formattedMessage.contains('Total selectors: 2')
-            }
+            def result = objectUnderTest.readDataJob(dataJobReadRequest)
+        then: 'the examiner is called with the data node selector'
+            1 * mockReadRequestExaminer.classifySelectors('selector1\nselector2') >> classifiedSelectors
+        and: 'the classified selectors are returned'
+            assert result == classifiedSelectors
     }
 
     def 'Write data-job request and verify logging when info enabled.'() {

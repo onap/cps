@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -132,6 +132,19 @@ public class AlternateIdMatcher {
             }
         }
         return cmHandleId;
+    }
+
+    /**
+     * Get cm handle ids whose alternate id contains the given search term.
+     *
+     * @param searchTerm the substring to search for in alternate ids
+     * @return collection of matching cm handle ids
+     */
+    public Collection<String> getCmHandleIdsByAlternateIdContaining(final String searchTerm) {
+        return cmHandleIdPerAlternateId.entrySet().stream()
+                .filter(entry -> entry.getKey().contains(searchTerm))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
     }
 
     private String getParentPath(final String path, final String separator) {
