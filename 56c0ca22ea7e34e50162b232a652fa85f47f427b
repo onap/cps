@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f53f2aab_e2d11e71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-03-29T21:04:00Z",
+      "side": 1,
+      "message": "Few Comments.\nI still have to review more files.",
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8db42787_d6777417",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-03-29T21:04:00Z",
+      "side": 1,
+      "message": "@Getter can be used on the requiresAllConditions field and this can be removed",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 42
+      },
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0845107f_9ba55c85",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-03-29T21:04:00Z",
+      "side": 1,
+      "message": "conditionEvaluator",
+      "range": {
+        "startLine": 94,
+        "startChar": 65,
+        "endLine": 94,
+        "endChar": 74
+      },
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d83d69c1_a4caffb3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-03-29T21:04:00Z",
+      "side": 1,
+      "message": "This is expectation.\nSo not needed in label",
+      "range": {
+        "startLine": 53,
+        "startChar": 52,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c0c4a1b_c0dfd803",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-03-29T21:04:00Z",
+      "side": 1,
+      "message": "add #scenario to the label",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac3179bb_886aa7e6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-03-29T21:04:00Z",
+      "side": 1,
+      "message": "add description to and",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 11
+      },
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bca6236_74d60d43",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-03-29T21:04:00Z",
+      "side": 1,
+      "message": "Commented Code",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 7
+      },
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
