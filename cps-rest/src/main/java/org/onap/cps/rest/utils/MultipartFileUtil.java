@@ -39,7 +39,9 @@ import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.CpsException;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.exceptions.ModelValidationException;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.XmlUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -92,6 +94,45 @@ public class MultipartFileUtil {
         } catch (final IOException exception) {
             throw new DataValidationException("Failed to read JSON file", exception.getMessage());
         }
+    }
+
+    /**
+     * Extracts xml content from multipart file instance.
+     *
+     * @param multipartFile the xml file uploaded
+     * @return the string representation of the XML content
+     * @throws DataValidationException if the file is null or empty
+     */
+
+    public static String extractXmlContent(final MultipartFile multipartFile) {
+        try {
+            if (multipartFile.isEmpty()) {
+                throw new IOException("XML file is required");
+            }
+            final String xmlContent = new String(multipartFile.getBytes(), StandardCharsets.UTF_8);
+            XmlUtils.validateXml(xmlContent);
+            return xmlContent;
+        } catch (final Exception exception) {
+            throw new DataValidationException("Failed to read XML file", exception.getMessage());
+        }
+    }
+
+    /**
+     * Extracts xml content from multipart file instance.
+     *
+     * @param multipartFile the uploaded file containing XML or JSON content
+     * @param contentType   JSON/XML content type
+     * @param jsonObjectMapper the JSON object mapper used to parse JSON content
+     * @return the string representation of the XML content
+     * @throws DataValidationException if the file is null or empty
+     */
+
+    public static String extractContent(final MultipartFile multipartFile, final ContentType contentType,
+                                        final JsonObjectMapper jsonObjectMapper) {
+        if (ContentType.XML.equals(contentType)) {
+            return extractXmlContent(multipartFile);
+        }
+        return extractJsonContent(multipartFile, jsonObjectMapper);
     }
 
     private static Map<String, String> extractYangResourcesMapFromZipArchive(final MultipartFile multipartFile) {

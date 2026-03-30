@@ -133,4 +133,40 @@ class XmlUtilsSpec extends Specification {
 
     }
 
+    def 'should throw exception for malformed XML structure.'() {
+        given :'a malformed XML payload missing closing root element'
+            String malformedXml = '<deltaReports><deltaReport><action>create</action><xpath>some xpath</xpath></deltaReport>'
+        when: 'XML validation is performed'
+            XmlUtils.validateXml(malformedXml)
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+    }
+
+    def 'should pass for valid XML content.'() {
+        given :' valid XML payload'
+            String validXml = '<deltaReports><deltaReport><action>create</action><xpath>some xpath</xpath></deltaReport></deltaReports>'
+        when: 'XML validation is performed'
+            XmlUtils.validateXml(validXml)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'should throw exception for invalid Xml content.'() {
+        given :'an invalid XML payload with malformed structure'
+            String validXml = '<deltaReports><deltaReport><action>create</action><xpath>some xpath'
+        when: 'XML validation is performed'
+            XmlUtils.validateXml(validXml)
+        then: 'an exception is thrown'
+            def ex =thrown(DataValidationException)
+            ex.message.contains ("Invalid or corrupted XML content")
+    }
+
+    def 'should throw exception for empty XML.'() {
+        given :'an empty XML payload'
+            String validXml = ''
+        when: 'XML validation is performed'
+            XmlUtils.validateXml(validXml)
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+    }
 }
