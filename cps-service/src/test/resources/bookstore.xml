@@ -8,9 +8,7 @@
         <books>
             <title>2001: A Space Odyssey</title>
             <lang>en</lang>
-            <authors>
-                Iain M. Banks
-            </authors>
+            <authors>Iain M. Banks </authors>
             <pub_year>1994</pub_year>
             <price>895</price>
         </books>

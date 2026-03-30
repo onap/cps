@@ -22,14 +22,17 @@ package org.onap.cps.utils;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @NoArgsConstructor
 @Component
 public class XmlObjectMapper {
 
     private final XmlMapper xmlMapper = new XmlMapper();
+
 
     /**
      * Serializing generic java object to XML using Jackson.
