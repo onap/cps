@@ -3,7 +3,7 @@
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
- *  Modifications Copyright (C) 2025 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +39,9 @@ import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.CpsException;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.exceptions.ModelValidationException;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.XmlObjectMapper;
 import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -73,24 +75,31 @@ public class MultipartFileUtil {
     }
 
     /**
-     * Extracts json content from multipart file instance.
+     * Extracts content from multipart file instance.
      *
-     * @param multipartFile the json file uploaded
-     * @return the string representation of the JSON content
-     * @throws DataValidationException if the file is null or empty
+     * @param multipartFile     the uploaded file containing XML or JSON content
+     * @param contentType       JSON/XML content type
+     * @param jsonObjectMapper  the JSON object mapper used to parse JSON content
+     * @param xmlObjectMapper   the XML object mapper used to parse XML content
+     * @return the string representation of the JSON/XML content
      */
 
-    public static String extractJsonContent(final MultipartFile multipartFile, final JsonObjectMapper
-        jsonObjectMapper) {
+    public static String extractFileContent(final MultipartFile multipartFile, final ContentType contentType,
+                                            final JsonObjectMapper jsonObjectMapper,
+                                            final XmlObjectMapper xmlObjectMapper) {
         try {
             if (multipartFile.isEmpty()) {
-                throw new IOException("JSON file is required");
+                throw new IOException("file is empty");
             }
-            final String jsonContent = new String(multipartFile.getBytes(), StandardCharsets.UTF_8);
-            final JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonContent);
+            final String fileContent  = new String(multipartFile.getBytes(), StandardCharsets.UTF_8);
+            if (ContentType.XML.equals(contentType)) {
+                xmlObjectMapper.convertToJsonNode(fileContent);
+                return fileContent;
+            }
+            final JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(fileContent);
             return jsonNode.toString();
         } catch (final IOException exception) {
-            throw new DataValidationException("Failed to read JSON file", exception.getMessage());
+            throw new DataValidationException("Failed to read data file", exception.getMessage());
         }
     }
 
