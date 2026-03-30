@@ -27,23 +27,20 @@ import {performPostRequest, getRandomAlternateId, NCMP_BASE_URL} from './utils.j
  * @returns {*} The HTTP response from the POST request.
  */
 export function executeWriteDataJob(numberOfOperations) {
-    const jobId = crypto.randomUUID();
-    const requestPayload = buildDataJobRequestPayload(numberOfOperations);
-
-    console.debug(`[WriteJob] Starting job → ID: ${jobId}, Operations: ${numberOfOperations}`);
-    return sendWriteDataJobRequest(jobId, requestPayload);
+    const serializedPayload = JSON.stringify(buildDataJobRequestPayload(numberOfOperations));
+    return executeWriteDataJobWithPayload(serializedPayload);
 }
 
 /**
- * Sends a write data job request to the NCMP API endpoint.
+ * Executes a write data job using a pre-serialized JSON payload.
  *
- * @param {string} jobId - The unique identifier for this write job.
- * @param {Object} payload - The complete request body for the write operation.
- * @returns {*} The response from the HTTP POST request.
+ * @param {string} serializedPayload - The pre-serialized JSON string of the request payload.
+ * @returns {*} The HTTP response from the POST request.
  */
-function sendWriteDataJobRequest(jobId, payload) {
+export function executeWriteDataJobWithPayload(serializedPayload) {
+    const jobId = crypto.randomUUID();
     const targetUrl = `${NCMP_BASE_URL}/do-not-use/dataJobs/${jobId}/write`;
-    const serializedPayload = JSON.stringify(payload);
+    console.debug(`[WriteJob] Starting job → ID: ${jobId}`);
     return performPostRequest(targetUrl, serializedPayload, 'WriteDataJob');
 }
 
@@ -82,7 +79,7 @@ function sendWriteDataJobRequest(jobId, payload) {
  *   }
  * }} Fully-formed data job request payload.
  */
-function buildDataJobRequestPayload(numberOfWriteOperations) {
+export function buildDataJobRequestPayload(numberOfWriteOperations) {
     const operations = [];
     for (let i = 1; i <= numberOfWriteOperations / 2; i++) {
         const basePath = getRandomAlternateId();

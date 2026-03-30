@@ -51,7 +51,7 @@ postgresql:
 cps:
   image:
     repository: "nexus3.onap.org:10003/onap/cps-and-ncmp"
-    tag: "" # Overridden by IMAGE_TAG in k6-main.sh (default: latest)
+    tag: "latest" # Overridden by IMAGE_TAG in k6-main.sh (default: latest)
     pullPolicy: Never # Overridden by IMAGE_PULL_POLICY in k6-main.sh (default: IfNotPresent)
   replicas: 2
   servicePort: 8080
@@ -198,7 +198,7 @@ dmiStub:
   enabled: true
   image:
     repository: nexus3.onap.org:10003/onap/dmi-stub
-    tag: "1.8.0-SNAPSHOT" # Overridden by DMI_STUB_VERSION in k6-main.sh (default: 1.8.0-SNAPSHOT)
+    tag: "1.8.1-SNAPSHOT" # Overridden by DMI_STUB_VERSION in k6-main.sh (default: 1.8.1-SNAPSHOT)
     pullPolicy: IfNotPresent
   replicaCount: 1
   deployment1:
@@ -250,7 +250,7 @@ policyExecutorStub:
   enabled: true
   image:
     repository: nexus3.onap.org:10003/onap/policy-executor-stub
-    tag: "" # Overridden by POLICY_EXECUTOR_STUB_VERSION in k6-main.sh (default: latest)
+    tag: "latest" # Overridden by POLICY_EXECUTOR_STUB_VERSION in k6-main.sh (default: latest)
     pullPolicy: Never # Overridden by IMAGE_PULL_POLICY in k6-main.sh (default: IfNotPresent)
   replicaCount: 1
   service:

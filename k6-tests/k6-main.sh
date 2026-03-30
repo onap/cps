@@ -55,7 +55,7 @@ elif [[ "$deploymentType" == "k8sHosts" ]]; then
 
     # Set default values for local development if not provided by Jenkins
     IMAGE_TAG="${IMAGE_TAG:-latest}"
-    DMI_STUB_VERSION="${DMI_STUB_VERSION:-1.8.0-SNAPSHOT}"
+    DMI_STUB_VERSION="${DMI_STUB_VERSION:-1.8.1-SNAPSHOT}"
     POLICY_EXECUTOR_STUB_VERSION="${POLICY_EXECUTOR_STUB_VERSION:-latest}"
     IMAGE_PULL_POLICY="${IMAGE_PULL_POLICY:-IfNotPresent}"
 

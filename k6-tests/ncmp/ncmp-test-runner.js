@@ -41,7 +41,7 @@ import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from '
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
-import { executeWriteDataJob } from "./common/write-data-job.js";
+import { executeWriteDataJob, executeWriteDataJobWithPayload, buildDataJobRequestPayload } from "./common/write-data-job.js";
 
 
 const throughputTrends = ['cm_handles_created', 'cm_handles_deleted', 'legacy_batch_read'];
@@ -76,6 +76,8 @@ export function setup() {
         const response = createCmHandles(nextBatchOfCmHandleIds);
         check(response, { 'create CM-handles status equals 200': (response) => response.status === 200 });
     }
+    // Generate DCM Write large payload while waiting for node to be ready anyway
+    const largeWriteJobPayload = JSON.stringify(buildDataJobRequestPayload(100000));
 
     waitForAllCmHandlesToBeReady();
 
@@ -83,6 +85,8 @@ export function setup() {
     const totalRegistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
 
     kpiTrendDeclarations.cm_handles_created.add(TOTAL_CM_HANDLES / totalRegistrationTimeInSeconds);
+
+    return { largeWriteJobPayload };
 }
 
 export function teardown() {
@@ -188,8 +192,8 @@ export function legacyBatchConsumeScenario() {
     }
 }
 
-export function writeDataJobLargeScenario() {
-    const response = executeWriteDataJob(100000);
+export function writeDataJobLargeScenario(data) {
+    const response = executeWriteDataJobWithPayload(data.largeWriteJobPayload);
     validateResponseAndRecordMetric(response, 200, 'Large writeDataJob', EXPECTED_WRITE_RESPONSE_COUNT, kpiTrendDeclarations.dcm_write_data_job_large);
 }
 
