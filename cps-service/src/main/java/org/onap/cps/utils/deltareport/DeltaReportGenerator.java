@@ -29,8 +29,11 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.exceptions.CpsException;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.impl.DeltaReportBuilder;
@@ -42,40 +45,62 @@ import org.springframework.stereotype.Service;
 public class DeltaReportGenerator {
     private final DeltaReportHelper deltaReportHelper;
 
-    /**`
-     * Generate delta reports between the given source and target data nodes.
-     *
-     * @param sourceDataNodes the source data nodes
-     * @param targetDataNodes the target data nodes
-     * @return                a list of delta reports
-     */
     public List<DeltaReport> createDeltaReports(final Collection<DataNode> sourceDataNodes,
                                                 final Collection<DataNode> targetDataNodes) {
-        final List<DeltaReport> deltaReport = new ArrayList<>();
-        final Map<String, DataNode> xpathToSourceDataNodes = convertToXPathToDataNodesMap(sourceDataNodes);
-        final Map<String, DataNode> xpathToTargetDataNodes = convertToXPathToDataNodesMap(targetDataNodes);
-        deltaReport.addAll(getRemovedAndUpdatedDeltaReports(xpathToSourceDataNodes, xpathToTargetDataNodes));
-        deltaReport.addAll(getAddedDeltaReports(xpathToSourceDataNodes, xpathToTargetDataNodes));
-        return deltaReport;
+        final CompletableFuture<Map<String, DataNode>> sourceFuture =
+            CompletableFuture.supplyAsync(() -> convertToXPathToDataNodesMap(sourceDataNodes));
+        final CompletableFuture<Map<String, DataNode>> targetFuture =
+            CompletableFuture.supplyAsync(() -> convertToXPathToDataNodesMap(targetDataNodes));
+        try {
+            final Map<String, DataNode> xpathToSourceDataNodes = sourceFuture.join();
+            final Map<String, DataNode> xpathToTargetDataNodes = targetFuture.join();
+
+            final CompletableFuture<List<DeltaReport>> removedAndUpdatedFuture =
+                CompletableFuture.supplyAsync(() ->
+                    getRemovedAndUpdatedDeltaReports(xpathToSourceDataNodes, xpathToTargetDataNodes));
+            final CompletableFuture<List<DeltaReport>> addedFuture =
+                CompletableFuture.supplyAsync(() ->
+                    getAddedDeltaReports(xpathToSourceDataNodes, xpathToTargetDataNodes));
+
+            final List<DeltaReport> deltaReport =
+                new ArrayList<>(xpathToSourceDataNodes.size() + xpathToTargetDataNodes.size());
+            deltaReport.addAll(removedAndUpdatedFuture.join());
+            deltaReport.addAll(addedFuture.join());
+            return deltaReport;
+        } catch (final CompletionException completionException) {
+            if (completionException.getCause() instanceof RuntimeException runtimeException) {
+                throw runtimeException;
+            }
+            throw new CpsException("Failed to generate delta report",
+                "Unexpected error during delta report generation", completionException.getCause());
+        }
     }
 
     private static Map<String, DataNode> convertToXPathToDataNodesMap(final Collection<DataNode> dataNodes) {
         final Map<String, DataNode> xpathToDataNode = new LinkedHashMap<>();
-        for (final DataNode dataNode : dataNodes) {
-            xpathToDataNode.put(dataNode.getXpath(), dataNode);
-            final Collection<DataNode> childDataNodes = dataNode.getChildDataNodes();
-            if (!childDataNodes.isEmpty()) {
-                xpathToDataNode.putAll(convertToXPathToDataNodesMap(childDataNodes));
-            }
-        }
-        return clearChildDataNodes(xpathToDataNode);
+        flattenDataNodes(dataNodes, xpathToDataNode);
+        return xpathToDataNode;
     }
 
-    private static Map<String, DataNode> clearChildDataNodes(final Map<String, DataNode> xpathToDataNodes) {
-        for (final DataNode dataNode : xpathToDataNodes.values()) {
-            dataNode.setChildDataNodes(Collections.emptyList());
+    private static void flattenDataNodes(final Collection<DataNode> dataNodes,
+                                         final Map<String, DataNode> xpathToDataNode) {
+        for (final DataNode dataNode : dataNodes) {
+            final DataNode dataNodeWithoutChild = dataNodeWithoutChildren(dataNode);
+            xpathToDataNode.put(dataNodeWithoutChild.getXpath(), dataNodeWithoutChild);
+            final Collection<DataNode> childDataNodes = dataNode.getChildDataNodes();
+            if (!childDataNodes.isEmpty()) {
+                flattenDataNodes(childDataNodes, xpathToDataNode);
+            }
         }
-        return xpathToDataNodes;
+    }
+
+    private static DataNode dataNodeWithoutChildren(final DataNode dataNode) {
+        final DataNode dataNodeWithoutChild = new DataNode();
+        dataNodeWithoutChild.setXpath(dataNode.getXpath());
+        dataNodeWithoutChild.setModuleNamePrefix(dataNode.getModuleNamePrefix());
+        dataNodeWithoutChild.setLeaves(dataNode.getLeaves());
+        dataNodeWithoutChild.setChildDataNodes(Collections.emptyList());
+        return dataNodeWithoutChild;
     }
 
     private List<DeltaReport> getRemovedAndUpdatedDeltaReports(final Map<String, DataNode> xpathToSourceDataNodes,
@@ -97,29 +122,27 @@ public class DeltaReportGenerator {
     }
 
     private static List<DeltaReport> getDeltaReportsForRemove(final String xpath, final DataNode sourceDataNode) {
-        final List<DeltaReport> deltaReportEntriesForRemove = new ArrayList<>();
         final Map<String, Serializable> sourceDataNodeRemoved =
             getNodeNameToDataForDeltaReport(Collections.singletonList(sourceDataNode));
         final DeltaReport removedDeltaReportEntry = new DeltaReportBuilder().actionRemove().withXpath(xpath)
             .withSourceData(sourceDataNodeRemoved).build();
-        deltaReportEntriesForRemove.add(removedDeltaReportEntry);
-        return deltaReportEntriesForRemove;
+        return Collections.singletonList(removedDeltaReportEntry);
     }
 
     private static List<DeltaReport> getAddedDeltaReports(final Map<String, DataNode> xpathToSourceDataNodes,
                                                           final Map<String, DataNode> xpathToTargetDataNodes) {
 
         final List<DeltaReport> addedDeltaReportEntries = new ArrayList<>();
-        final Map<String, DataNode> xpathToAddedNodes = new LinkedHashMap<>(xpathToTargetDataNodes);
-        xpathToAddedNodes.keySet().removeAll(xpathToSourceDataNodes.keySet());
-        for (final Map.Entry<String, DataNode> entry: xpathToAddedNodes.entrySet()) {
+        for (final Map.Entry<String, DataNode> entry : xpathToTargetDataNodes.entrySet()) {
             final String xpath = entry.getKey();
-            final DataNode dataNode = entry.getValue();
-            final Map<String, Serializable> targetData =
-                getNodeNameToDataForDeltaReport(Collections.singletonList(dataNode));
-            final DeltaReport addedDataForDeltaReport = new DeltaReportBuilder().actionCreate().withXpath(xpath)
-                .withTargetData(targetData).build();
-            addedDeltaReportEntries.add(addedDataForDeltaReport);
+            if (!xpathToSourceDataNodes.containsKey(xpath)) {
+                final DataNode dataNode = entry.getValue();
+                final Map<String, Serializable> targetData =
+                    getNodeNameToDataForDeltaReport(Collections.singletonList(dataNode));
+                final DeltaReport addedDataForDeltaReport = new DeltaReportBuilder().actionCreate().withXpath(xpath)
+                    .withTargetData(targetData).build();
+                addedDeltaReportEntries.add(addedDataForDeltaReport);
+            }
         }
         return addedDeltaReportEntries;
     }
