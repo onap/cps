@@ -94,6 +94,25 @@ public class MultipartFileUtil {
         }
     }
 
+    /**
+     * Extracts xml content from multipart file instance.
+     *
+     * @param multipartFile the xml file uploaded
+     * @return the string representation of the XML content
+     * @throws DataValidationException if the file is null or empty
+     */
+
+    public static String extractXmlContent(final MultipartFile multipartFile) {
+        try {
+            if (multipartFile.isEmpty()) {
+                throw new IOException("XML file is required");
+            }
+            return new String(multipartFile.getBytes(), StandardCharsets.UTF_8);
+        } catch (final IOException exception) {
+            throw new DataValidationException("Failed to read XML file", exception.getMessage());
+        }
+    }
+
     private static Map<String, String> extractYangResourcesMapFromZipArchive(final MultipartFile multipartFile) {
         final ImmutableMap.Builder<String, String> yangResourceMapBuilder = ImmutableMap.builder();
         final var zipFileSizeValidator = new ZipFileSizeValidator();

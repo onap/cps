@@ -76,11 +76,29 @@ public class DataMapper {
      * @param dataNodes     the data nodes to convert
      * @return a list of maps representing the data nodes
      */
+
     public List<Map<String, Object>> toDataMaps(final Anchor anchor, final Collection<DataNode> dataNodes) {
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
         for (final DataNode dataNode : dataNodes) {
             final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+            dataMaps.add(dataMap);
+        }
+        return dataMaps;
+    }
+    /**
+     * Convert a collection of data nodes to a list of data maps.
+     *
+     * @param anchor        the anchor
+     * @param dataNodes     the data nodes to convert
+     * @return a list of maps representing the data nodes
+     */
+
+    public List<Map<String, Object>> toDataMapsWithoutPrefix(final Anchor anchor,
+                                                             final Collection<DataNode> dataNodes) {
+        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        for (final DataNode dataNode : dataNodes) {
+            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithoutIdentifier(dataNode);
             dataMaps.add(dataMap);
         }
         return dataMaps;
@@ -93,6 +111,8 @@ public class DataMapper {
      * @param dataNodes     the data nodes to convert
      * @return a list of maps representing the data nodes
      */
+
+    @SuppressWarnings("checkstyle:OverloadMethodsDeclarationOrder")
     public List<Map<String, Object>> toDataMaps(final String dataspaceName, final Collection<DataNode> dataNodes) {
         final List<Map<String, Object>> dataNodesAsMaps = new ArrayList<>(dataNodes.size());
         final Map<String, List<DataNode>> dataNodesPerAnchor = groupDataNodesPerAnchor(dataNodes);
@@ -152,6 +172,11 @@ public class DataMapper {
      */
     public Map<String, Object> toFlatDataMap(final Anchor anchor, final Collection<DataNode> dataNodes) {
         final List<Map<String, Object>> dataNodesAsMaps = toDataMaps(anchor, dataNodes);
+        return flattenDataNodesMaps(dataNodesAsMaps);
+    }
+
+    public Map<String, Object> toFlatDataMapWithoutPrefix(final Anchor anchor, final Collection<DataNode> dataNodes) {
+        final List<Map<String, Object>> dataNodesAsMaps = toDataMapsWithoutPrefix(anchor, dataNodes);
         return flattenDataNodesMaps(dataNodesAsMaps);
     }
 

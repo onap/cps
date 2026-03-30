@@ -53,6 +53,11 @@ public class DataMapUtils {
         return ImmutableMap.<String, Object>builder().put(nodeIdentifierWithPrefix, toDataMap(dataNode)).build();
     }
 
+    public static Map<String, Object> toDataMapWithoutIdentifier(final DataNode dataNode) {
+        final String nodeIdentifierWithPrefix = getNodeIdentifierWithoutPrefix(dataNode.getXpath());
+        return ImmutableMap.<String, Object>builder().put(nodeIdentifierWithPrefix, toDataMap(dataNode)).build();
+    }
+
     /**
      * Converts list of DataNode structure into a map including the root node identifier for a JSON response.
      * @param dataNodeList list of data nodes for a given anchor name
@@ -135,6 +140,11 @@ public class DataMapUtils {
         return getNodeIdentifier(xpath);
     }
 
+    private static String getNodeIdentifierWithoutPrefix(final String xpath) {
+        return getNodeIdentifier(xpath);
+    }
+
+    @SuppressWarnings("checkstyle:OverloadMethodsDeclarationOrder")
     private static String getNodeIdentifierWithPrefix(final DataNode dataNode) {
         return getNodeIdentifierWithPrefix(dataNode.getXpath(), dataNode.getModuleNamePrefix());
     }
