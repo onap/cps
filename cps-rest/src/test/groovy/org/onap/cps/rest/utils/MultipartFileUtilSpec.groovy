@@ -117,5 +117,4 @@ class MultipartFileUtilSpec extends Specification {
         multipartFile.getInputStream() >> { throw new IOException() }
         return multipartFile
     }
-
 }

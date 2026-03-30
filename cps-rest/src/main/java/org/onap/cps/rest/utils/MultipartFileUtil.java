@@ -3,7 +3,7 @@
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
- *  Modifications Copyright (C) 2025 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +39,9 @@ import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.CpsException;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.exceptions.ModelValidationException;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.XmlObjectMapper;
 import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -72,15 +74,7 @@ public class MultipartFileUtil {
                 Arrays.asList(YANG_FILE_EXTENSION, ZIP_FILE_EXTENSION)));
     }
 
-    /**
-     * Extracts json content from multipart file instance.
-     *
-     * @param multipartFile the json file uploaded
-     * @return the string representation of the JSON content
-     * @throws DataValidationException if the file is null or empty
-     */
-
-    public static String extractJsonContent(final MultipartFile multipartFile, final JsonObjectMapper
+    private static String extractJsonContent(final MultipartFile multipartFile, final JsonObjectMapper
         jsonObjectMapper) {
         try {
             if (multipartFile.isEmpty()) {
@@ -92,6 +86,36 @@ public class MultipartFileUtil {
         } catch (final IOException exception) {
             throw new DataValidationException("Failed to read JSON file", exception.getMessage());
         }
+    }
+
+    private static String extractXmlContent(final MultipartFile multipartFile, final XmlObjectMapper xmlObjectMapper) {
+        try {
+            if (multipartFile.isEmpty()) {
+                throw new IOException("XML file is required");
+            }
+            return new String(multipartFile.getBytes(), StandardCharsets.UTF_8);
+        } catch (final IOException exception) {
+            throw new DataValidationException("Failed to read XML file", exception.getMessage());
+        }
+    }
+
+    /**
+     * Extracts xml content from multipart file instance.
+     *
+     * @param multipartFile the uploaded file containing XML or JSON content
+     * @param contentType   JSON/XML content type
+     * @param jsonObjectMapper the JSON object mapper used to parse JSON content
+     * @return the string representation of the XML content
+     * @throws DataValidationException if the file is null or empty
+     */
+
+    public static String extractFileContent(final MultipartFile multipartFile, final ContentType contentType,
+                                            final JsonObjectMapper jsonObjectMapper,
+                                            final XmlObjectMapper xmlObjectMapper) {
+        if (ContentType.XML.equals(contentType)) {
+            return extractXmlContent(multipartFile, xmlObjectMapper);
+        }
+        return extractJsonContent(multipartFile, jsonObjectMapper);
     }
 
     private static Map<String, String> extractYangResourcesMapFromZipArchive(final MultipartFile multipartFile) {
