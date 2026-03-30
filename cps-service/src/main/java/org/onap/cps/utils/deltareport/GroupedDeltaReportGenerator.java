@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,11 +53,23 @@ public class GroupedDeltaReportGenerator {
     public List<DeltaReport> createCondensedDeltaReports(final Collection<DataNode> sourceDataNodes,
                                                          final Collection<DataNode> targetDataNodes) {
 
-        final List<DeltaReport> deltaReportEntries = new ArrayList<>();
+        final Map<String, DataNode> xpathToSourceDataNodes = flattenToXpathToFirstLevelDataNodeMap(sourceDataNodes);
         final Map<String, DataNode> xpathToTargetDataNodes = flattenToXpathToFirstLevelDataNodeMap(targetDataNodes);
-        deltaReportEntries.addAll(getCondensedRemovedDeltaReports(sourceDataNodes, xpathToTargetDataNodes));
-        deltaReportEntries.addAll(getCondensedUpdatedDeltaReports(sourceDataNodes, xpathToTargetDataNodes));
-        deltaReportEntries.addAll(getCondensedAddedDeltaReports(sourceDataNodes, targetDataNodes));
+
+        final CompletableFuture<List<DeltaReport>> removedFuture =
+            CompletableFuture.supplyAsync(() ->
+                getCondensedRemovedDeltaReports(sourceDataNodes, xpathToTargetDataNodes));
+        final CompletableFuture<List<DeltaReport>> addedFuture =
+            CompletableFuture.supplyAsync(() ->
+                getCondensedAddedDeltaReports(targetDataNodes, xpathToSourceDataNodes));
+
+        final List<DeltaReport> updatedReports =
+            getCondensedUpdatedDeltaReports(sourceDataNodes, xpathToTargetDataNodes);
+
+        final List<DeltaReport> deltaReportEntries = new ArrayList<>();
+        deltaReportEntries.addAll(removedFuture.join());
+        deltaReportEntries.addAll(updatedReports);
+        deltaReportEntries.addAll(addedFuture.join());
         return deltaReportEntries;
     }
 
@@ -101,12 +114,12 @@ public class GroupedDeltaReportGenerator {
         }
     }
 
-    private static List<DeltaReport> getCondensedAddedDeltaReports(final Collection<DataNode> sourceDataNodes,
-                                                                   final Collection<DataNode> targetDataNodes) {
+    private static List<DeltaReport> getCondensedAddedDeltaReports(final Collection<DataNode> targetDataNodes,
+                                                                   final Map<String, DataNode> xpathToSourceDataNodes) {
 
         final List<DeltaReport> addedDeltaReportEntries = new ArrayList<>();
         final Collection<DataNode> addedDataNodes =
-            getDataNodesForDeltaReport(targetDataNodes, flattenToXpathToFirstLevelDataNodeMap(sourceDataNodes));
+            getDataNodesForDeltaReport(targetDataNodes, xpathToSourceDataNodes);
         if (!addedDataNodes.isEmpty()) {
             final String xpath = getXpathForDeltaReport(addedDataNodes);
             addedDeltaReportEntries.add(new DeltaReportBuilder().actionCreate().withXpath(xpath)
