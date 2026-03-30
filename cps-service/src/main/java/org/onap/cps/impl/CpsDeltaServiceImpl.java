@@ -22,6 +22,7 @@ package org.onap.cps.impl;
 
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
 import static org.onap.cps.utils.ContentType.JSON;
+import static org.onap.cps.utils.ContentType.XML;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
@@ -160,6 +161,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         if (yangResourceContentPerName.isEmpty()) {
             return dataNodeFactory
                 .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, JSON);
+
         } else {
             return dataNodeFactory
                 .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, targetData, JSON);
