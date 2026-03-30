@@ -51,6 +51,8 @@ import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Shared
 import spock.lang.Specification
 
+import java.util.concurrent.CompletionException
+
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -152,6 +154,33 @@ class CpsDeltaServiceImplSpec extends Specification {
         then: 'DataValidationException is thrown'
             def exception = thrown(DataValidationException)
             assert exception.message == 'Invalid xpath: /test[invalid'
+    }
+
+    def 'Get delta between 2 anchors when CompletionException wraps a RuntimeException'() {
+        given: 'xpath to get delta'
+            def xpath = '/'
+        when: 'attempt to get delta between 2 anchors'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS, GROUPING_DISABLED)
+        then: 'cps data service throws a RuntimeException wrapped in CompletionException'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], OMIT_DESCENDANTS) >> { throw new RuntimeException('some runtime exception') }
+        and: 'the expected exception is thrown'
+            def thrownException = thrown(RuntimeException)
+            thrownException.message == 'some runtime exception'
+    }
+
+    def 'Get delta between 2 anchors when CompletionException wraps a checked Exception'() {
+        given: 'xpath to get delta'
+            def xpath = '/'
+        and: 'a CompletionException with a checked exception cause'
+            def checkedException = new Exception('some checked exception')
+            def completionException = new CompletionException(checkedException)
+        when: 'attempt to get delta between 2 anchors'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS, GROUPING_DISABLED)
+        then: 'cps data service throws a CompletionException wrapping a checked exception'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], OMIT_DESCENDANTS) >> { throw completionException }
+        and: 'the expected exception is thrown'
+            def thrownException = thrown(CompletionException)
+            thrownException.cause.message == 'some checked exception'
     }
 
     def 'Delta Report between parent nodes with children where data node is #scenario without grouping of data nodes'() {
