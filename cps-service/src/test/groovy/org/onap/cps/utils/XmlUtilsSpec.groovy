@@ -130,7 +130,5 @@ class XmlUtilsSpec extends Specification {
             def exception = thrown(DataValidationException)
         and: 'the cause is a document object model exception'
             assert exception.cause instanceof DOMException
-
     }
-
 }
