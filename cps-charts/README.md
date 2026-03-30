@@ -51,15 +51,102 @@ You can verify the deployment using:
 ```bash
 kubectl get pods
 ```
+Wait until all pods show `Running` and `READY` before proceeding.
+
 ---
 
-# Port forwarding
-Required for local access to cluster services (keep running in separate terminal)
+## Accessing CPS
 
 CPS/NCMP service:
 ```bash
-kubectl port-forward service/cps-ncmp-service 8080:8080
+kubectl port-forward service/cps-ncmp-service 30080:8080
 ```
+> **Note:** Port forwarding is only required for Linux users(keep running in a separate terminal). On Windows (Docker Desktop), services are accessible directly via NodePort without port forwarding.
+
+Then check:
+```
+http://localhost:30080/actuator/health
+```
+---
+
+## Liveness and Readiness Checks
+CPS exposes Spring Boot Actuator health endpoints. You can check them from **outside the pod** using port forwarding, or from **within the pod** using `wget`.
+
+**From outside (recommended)** — ensure port forwarding is running, then from your local terminal:
+```bash
+curl http://localhost:30080/actuator/health/liveness
+curl http://localhost:30080/actuator/health/readiness
+```
+
+**From within the pod** — useful when port forwarding is not running. First find a running CPS pod:
+```bash
+kubectl get pods -l component=cps
+```
+Then exec into it and check the health endpoints:
+```bash
+kubectl exec -it <cps-pod-name> -- wget -qO- http://localhost:8080/actuator/health/liveness
+kubectl exec -it <cps-pod-name> -- wget -qO- http://localhost:8080/actuator/health/readiness
+```
+
+Expected response when healthy:
+```json
+{"status":"UP"}
+```
+
+You can also check the DMI Stub instances the same way:
+```bash
+kubectl get pods -l component=dmi-stub
+kubectl exec -it <dmi-stub-pod-name> -- wget -qO- http://localhost:8092/actuator/health/liveness
+kubectl exec -it <dmi-stub-pod-name> -- wget -qO- http://localhost:8092/actuator/health/readiness
+```
+
+> **Note:** `curl` is not available inside the CPS container image. Use `wget -qO-` as the equivalent.
+
+---
+
+## Viewing and Filtering Logs
+
+View logs for a specific pod:
+```bash
+kubectl logs <pod-name>
+```
+
+Follow (tail) logs in real time:
+```bash
+kubectl logs -f <pod-name>
+```
+
+Filter logs using `grep` (Linux) or `Select-String` (Windows PowerShell):
+
+**Linux:**
+```bash
+kubectl logs <pod-name> --tail=-1 | grep ERROR
+kubectl logs <pod-name> --tail=-1 | grep -i "exception\|error\|warn"
+```
+
+**Windows (PowerShell):**
+```powershell
+kubectl logs <pod-name> --tail=-1 | Select-String "ERROR"
+kubectl logs <pod-name> --tail=-1 | Select-String -Pattern "exception|error|warn"
+```
+
+View logs from **all CPS pods at once** using a label selector:
+
+**Linux:**
+```bash
+kubectl logs -l component=cps --prefix --tail=-1 | grep ERROR
+```
+
+**Windows (PowerShell):**
+```powershell
+kubectl logs -l component=cps --prefix --tail=-1 | Select-String "ERROR"
+```
+
+View previous (crashed/restarted) container logs:
+```bash
+kubectl logs <pod-name> --previous
+```
+
 ---
 
 ## Uninstallation
