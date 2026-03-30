@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.utils.ContentType;
 
 public interface CpsDeltaService {
 
@@ -48,7 +49,7 @@ public interface CpsDeltaService {
                                                     boolean groupDataNodes);
 
     /**
-     * Retrieves the delta between an anchor and JSON payload by xpath, using dataspace name and anchor name.
+     * Retrieves the delta between an anchor and an XML or JSON payload by xpath, using dataspace name and anchor name.
      * Returns a List of {@link DeltaReport}. Each Delta Report contains following information: action, xpath,
      * source-payload and/or target-payload.
      *
@@ -56,11 +57,12 @@ public interface CpsDeltaService {
      * @param sourceAnchorName             source anchor name
      * @param xpath                        xpath
      * @param yangResourceContentPerName   YANG resources (files) map where key is a name and value is content
-     * @param targetData                   target data to be compared in JSON string format
+     * @param targetData                   target data to be compared in XMl/JSON string format
      * @param fetchDescendantsOption       defines the scope of data to fetch: defaulted to INCLUDE_ALL_DESCENDANTS
      * @param groupDataNodes               boolean flag to enable or disable grouping of data nodes in delta report.
      *                                     If enabled, data nodes are grouped based on parent-child relationship,
      *                                     providing a condensed version of delta report.
+     * @param contentType                  the type of the node data (JSON or XML)
      *
      * @return                             list containing {@link DeltaReport} objects
      */
@@ -68,7 +70,7 @@ public interface CpsDeltaService {
                                                           Map<String, String> yangResourceContentPerName,
                                                           String targetData,
                                                           FetchDescendantsOption fetchDescendantsOption,
-                                                          boolean groupDataNodes);
+                                                          boolean groupDataNodes, ContentType contentType);
 
     /**
      * Apply the changes in the given delta report to an anchor. The delta report contains the difference between two

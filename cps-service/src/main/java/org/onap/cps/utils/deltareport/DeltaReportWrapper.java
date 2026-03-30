@@ -22,7 +22,7 @@ package org.onap.cps.utils.deltareport;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import java.util.List;
+import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,5 +35,5 @@ import lombok.Setter;
 public class DeltaReportWrapper<T> {
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "deltaReport")
-    private List<T> deltaReports;
+    private Collection<T> deltaReports;
 }
