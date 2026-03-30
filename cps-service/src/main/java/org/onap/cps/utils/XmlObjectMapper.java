@@ -20,11 +20,14 @@
 
 package org.onap.cps.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.springframework.stereotype.Component;
-
+@Slf4j
 @NoArgsConstructor
 @Component
 public class XmlObjectMapper {
@@ -49,4 +52,31 @@ public class XmlObjectMapper {
             );
         }
     }
+
+
+    public JsonNode convertToXmlNode(final String xmlContent) {
+        try {
+            return xmlMapper.readTree(xmlContent);
+        } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting XML content to Json Node.");
+            throw new DataValidationException(
+                    String.format(
+                            "XML parsing error at line: %d, column: %d",
+                            e.getLocation().getLineNr(),
+                            e.getLocation().getColumnNr()
+                    ),
+                    e.getOriginalMessage()
+            );
+        }
+    }
+public String convertXmlNodeToString(final Object xmlNode)
+{
+    try {return xmlMapper.writeValueAsString(xmlNode);
+    }catch (final Exception exception) {
+        throw new DataValidationException("Data Validation Failed",
+                "Failed to build XML: " + exception.getMessage(),
+                exception
+        );
+    }
+}
 }

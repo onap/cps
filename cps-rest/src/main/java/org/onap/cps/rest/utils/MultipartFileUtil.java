@@ -40,6 +40,7 @@ import org.onap.cps.api.exceptions.CpsException;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.exceptions.ModelValidationException;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.XmlObjectMapper;
 import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -91,6 +92,22 @@ public class MultipartFileUtil {
             return jsonNode.toString();
         } catch (final IOException exception) {
             throw new DataValidationException("Failed to read JSON file", exception.getMessage());
+        }
+    }
+
+    public static String extractXmlContent(final MultipartFile multipartFile, final XmlObjectMapper
+            xmlObjectMapper) {
+        try {
+
+            if (multipartFile.isEmpty()) {
+                throw new IOException("XML file is required");
+            }
+            final String xmlContent = new String(multipartFile.getBytes(), StandardCharsets.UTF_8);
+            final JsonNode xmlNode = xmlObjectMapper.convertToXmlNode(xmlContent);
+            return xmlObjectMapper.convertXmlNodeToString(xmlNode);
+
+        } catch (final IOException exception) {
+            throw new DataValidationException("Failed to read XML file", exception.getMessage());
         }
     }
 
