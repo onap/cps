@@ -202,4 +202,26 @@ class DeltaRestControllerSpec extends Specification {
         then: 'expected response code is returned'
             assert response.status == HttpStatus.CREATED.value()
     }
+
+    def 'Get delta between anchor and XML payload with yangResourceFile'() {
+        given: 'sample delta report, xpath, yang model file and xml payload'
+            def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
+            def xpath = 'some xpath'
+        and: 'the service layer returns a list containing delta reports'
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS, NO_GROUPING) >> [deltaReports]
+         when: 'get delta request is performed using REST API'
+            def response =
+                mvc.perform(multipart(dataNodeBaseEndpointV2)
+                        .file(multipartYangFile)
+                        .file(multipartTargetDataAsJsonFile)
+                        .param('xpath', xpath)
+                        .contentType(MediaType.MULTIPART_FORM_DATA)
+                        .accept(MediaType.APPLICATION_XML))
+                        .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains('<deltaReports><deltaReport><action>create</action><xpath>some xpath</xpath></deltaReport></deltaReports>')
+    }
+
 }

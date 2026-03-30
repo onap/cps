@@ -20,16 +20,21 @@
 
 package org.onap.cps.utils;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @NoArgsConstructor
 @Component
 public class XmlObjectMapper {
 
     private final XmlMapper xmlMapper = new XmlMapper();
+
 
     /**
      * Serializing generic java object to XML using Jackson.
@@ -42,6 +47,38 @@ public class XmlObjectMapper {
     public String asXmlString(final Object object, final String rootName) {
         try {
             return xmlMapper.writer().withRootName(rootName).writeValueAsString(object);
+        } catch (final Exception exception) {
+            throw new DataValidationException("Data Validation Failed",
+                    "Failed to build XML: " + exception.getMessage(),
+                    exception
+            );
+        }
+    }
+
+    /**
+     * Serializing generic java object to XML using Jackson.
+     *
+     * @param jsonString any java object value
+     * @param rootName the name of the XML root name
+     * @param namespaceUri the name of the XML root name
+     * @return the generated XML as a string.
+     */
+
+    public String convertJsonToXml(final String jsonString, final String rootName, final String namespaceUri) {
+        try {
+            final ObjectMapper objectMapper = new ObjectMapper();
+            final JsonNode jsonNode = objectMapper.readTree(jsonString);
+            final XmlMapper xmlMapper = new XmlMapper();
+            xmlMapper.setDefaultUseWrapper(false);
+            final String xml = xmlMapper.writer()
+                    .withRootName(rootName)
+                    .writeValueAsString(jsonNode);
+
+            // Inject namespace into root element
+            return xml.replaceFirst(
+                    "<" + rootName + ">",
+                    "<" + rootName + " xmlns=\"" + namespaceUri + "\">"
+            );
         } catch (final Exception exception) {
             throw new DataValidationException("Data Validation Failed",
                     "Failed to build XML: " + exception.getMessage(),

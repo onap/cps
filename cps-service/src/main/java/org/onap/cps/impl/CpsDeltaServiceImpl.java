@@ -22,6 +22,7 @@ package org.onap.cps.impl;
 
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
 import static org.onap.cps.utils.ContentType.JSON;
+import static org.onap.cps.utils.ContentType.XML;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
@@ -43,9 +44,11 @@ import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.XmlObjectMapper;
 import org.onap.cps.utils.deltareport.DeltaReportExecutor;
 import org.onap.cps.utils.deltareport.DeltaReportGenerator;
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator;
@@ -64,6 +67,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
     private final DataNodeFactory dataNodeFactory;
     private final DataMapper dataMapper;
     private final JsonObjectMapper jsonObjectMapper;
+    private final XmlObjectMapper xmlObjectMapper;
     private final DeltaReportGenerator deltaReportGenerator;
     private final GroupedDeltaReportGenerator groupedDeltaReportGenerator;
 
@@ -94,16 +98,17 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                                  final Map<String, String> yangResourceContentPerName,
                                                                  final String targetData,
                                                                  final FetchDescendantsOption fetchDescendantsOption,
-                                                                 final boolean groupDataNodes) {
+                                                                 final boolean groupDataNodes,
+                                                                 final ContentType contentType) {
 
         final String normalizedXpath = getNormalizedXpath(xpath);
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
         final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
             sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
         final Collection<DataNode> sourceDataNodesRebuilt =
-            rebuildSourceDataNodes(normalizedXpath, sourceAnchor, sourceDataNodes);
+            rebuildSourceDataNodes(normalizedXpath, sourceAnchor, sourceDataNodes, contentType);
         final Collection<DataNode> targetDataNodes = new ArrayList<>(
-            buildTargetDataNodes(sourceAnchor, normalizedXpath, yangResourceContentPerName, targetData));
+            buildTargetDataNodes(sourceAnchor, normalizedXpath, yangResourceContentPerName, targetData, contentType));
         return getDeltaReports(sourceDataNodesRebuilt, targetDataNodes, groupDataNodes);
     }
 
@@ -142,27 +147,50 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
 
     private Collection<DataNode> rebuildSourceDataNodes(final String xpath,
                                                         final Anchor sourceAnchor,
-                                                        final Collection<DataNode> sourceDataNodes) {
+                                                        final Collection<DataNode> sourceDataNodes,
+                                                        final ContentType contentType) {
         final Collection<DataNode> sourceDataNodesRebuilt = new ArrayList<>();
         if (sourceDataNodes != null) {
-            final Map<String, Object> sourceDataNodesAsMap = dataMapper.toFlatDataMap(sourceAnchor, sourceDataNodes);
-            final String sourceDataNodesAsJson = jsonObjectMapper.asJsonString(sourceDataNodesAsMap);
-            final Collection<DataNode> dataNodes = dataNodeFactory
-                .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, sourceDataNodesAsJson, JSON);
-            sourceDataNodesRebuilt.addAll(dataNodes);
+            if (XML.equals(contentType)) {
+                final Map<String, Object> sourceDataNodesAsMap =
+                        dataMapper.toFlatDataMapWithoutPrefix(sourceAnchor, sourceDataNodes);
+                final String sourceDataNodesAsJson = jsonObjectMapper.asJsonString(sourceDataNodesAsMap);
+                final String sourceDataAsXml =
+                        xmlObjectMapper.convertJsonToXml(sourceDataNodesAsJson, "stores", "org:onap:ccsdk:sample");
+                final Collection<DataNode> dataNodes = dataNodeFactory
+                        .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, sourceDataAsXml, XML);
+                sourceDataNodesRebuilt.addAll(dataNodes);
+            } else {
+                final Map<String, Object> sourceDataNodesAsMap =
+                        dataMapper.toFlatDataMap(sourceAnchor, sourceDataNodes);
+                final String sourceDataNodesAsJson = jsonObjectMapper.asJsonString(sourceDataNodesAsMap);
+                final Collection<DataNode> dataNodes = dataNodeFactory
+                        .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, sourceDataNodesAsJson, JSON);
+                sourceDataNodesRebuilt.addAll(dataNodes);
+            }
         }
         return sourceDataNodesRebuilt;
     }
 
     private Collection<DataNode> buildTargetDataNodes(final Anchor sourceAnchor, final String xpath,
                                                       final Map<String, String> yangResourceContentPerName,
-                                                      final String targetData) {
-        if (yangResourceContentPerName.isEmpty()) {
-            return dataNodeFactory
-                .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, JSON);
+                                                      final String targetData, final ContentType contentType) {
+        if (XML.equals(contentType)) {
+            if (yangResourceContentPerName.isEmpty()) {
+                return dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, XML);
+            } else  {
+                return dataNodeFactory.createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName,
+                        xpath, targetData, XML);
+            }
         } else {
-            return dataNodeFactory
-                .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, targetData, JSON);
+            if (yangResourceContentPerName.isEmpty()) {
+                return dataNodeFactory
+                        .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, JSON);
+            } else {
+                return dataNodeFactory
+                        .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName,
+                        xpath, targetData, JSON);
+            }
         }
     }
 
