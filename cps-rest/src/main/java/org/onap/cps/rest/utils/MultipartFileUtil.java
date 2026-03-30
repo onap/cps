@@ -28,19 +28,24 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableMap;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.CpsException;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.exceptions.ModelValidationException;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.web.multipart.MultipartFile;
+import org.xml.sax.InputSource;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MultipartFileUtil {
@@ -48,7 +53,6 @@ public class MultipartFileUtil {
     private static final String ZIP_FILE_EXTENSION = ".zip";
     private static final String YANG_FILE_EXTENSION = RFC6020_YANG_FILE_EXTENSION;
     private static final int READ_BUFFER_SIZE = 1024;
-
     /**
      * Extracts yang resources from multipart file instance.
      *
@@ -92,6 +96,65 @@ public class MultipartFileUtil {
         } catch (final IOException exception) {
             throw new DataValidationException("Failed to read JSON file", exception.getMessage());
         }
+    }
+
+    /**
+     * Extracts xml content from multipart file instance.
+     *
+     * @param multipartFile the xml file uploaded
+     * @return the string representation of the XML content
+     * @throws DataValidationException if the file is null or empty
+     */
+
+    public static String extractXmlContent(final MultipartFile multipartFile) {
+        try {
+            if (multipartFile.isEmpty()) {
+                throw new IOException("XML file is required");
+            }
+            final String xmlContent = new String(multipartFile.getBytes(), StandardCharsets.UTF_8);
+            validateXml(xmlContent);
+            return xmlContent;
+        } catch (final Exception exception) {
+            throw new DataValidationException("Failed to read XML file", exception.getMessage());
+        }
+    }
+
+    /**
+     * Validates the provided XML content.
+     *
+     * @param xmlContent the XML content as a string
+     * @throws DataValidationException if the XML content is null, empty, or invalid
+     */
+
+    public static void validateXml(final String xmlContent) {
+        try {
+            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            factory.setIgnoringComments(true);
+            factory.setExpandEntityReferences(false);
+            final DocumentBuilder builder = factory.newDocumentBuilder();
+            builder.parse(new InputSource((new StringReader(xmlContent))));
+        } catch (final Exception exception) {
+            throw new DataValidationException("Invalid or corrupted XML content", exception.getMessage());
+        }
+    }
+
+    /**
+     * Extracts xml content from multipart file instance.
+     *
+     * @param multipartFile the uploaded file containing XML or JSON content
+     * @param contentType   JSON/XML content type
+     * @param jsonObjectMapper the JSON object mapper used to parse JSON content
+     * @return the string representation of the XML content
+     * @throws DataValidationException if the file is null or empty
+     */
+
+    public static String extractContent(final MultipartFile multipartFile, final ContentType contentType,
+                                        final JsonObjectMapper jsonObjectMapper) {
+        if (ContentType.XML.equals(contentType)) {
+            return extractXmlContent(multipartFile);
+        }
+        return extractJsonContent(multipartFile, jsonObjectMapper);
     }
 
     private static Map<String, String> extractYangResourcesMapFromZipArchive(final MultipartFile multipartFile) {

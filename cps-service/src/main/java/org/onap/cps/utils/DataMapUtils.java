@@ -135,6 +135,7 @@ public class DataMapUtils {
         return getNodeIdentifier(xpath);
     }
 
+    @SuppressWarnings("checkstyle:OverloadMethodsDeclarationOrder")
     private static String getNodeIdentifierWithPrefix(final DataNode dataNode) {
         return getNodeIdentifierWithPrefix(dataNode.getXpath(), dataNode.getModuleNamePrefix());
     }
