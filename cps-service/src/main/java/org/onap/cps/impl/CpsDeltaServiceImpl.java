@@ -129,15 +129,10 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
     private List<DeltaReport> getDeltaReports(final Collection<DataNode> sourceDataNodes,
                                               final Collection<DataNode> targetDataNodes,
                                               final boolean groupDataNodes) {
-
-        final List<DeltaReport> deltaReport = new ArrayList<>();
         if (groupDataNodes) {
-            deltaReport
-                .addAll(groupedDeltaReportGenerator.createCondensedDeltaReports(sourceDataNodes, targetDataNodes));
-        } else {
-            deltaReport.addAll(deltaReportGenerator.createDeltaReports(sourceDataNodes, targetDataNodes));
+            return groupedDeltaReportGenerator.createCondensedDeltaReports(sourceDataNodes, targetDataNodes);
         }
-        return Collections.unmodifiableList(deltaReport);
+        return deltaReportGenerator.createDeltaReports(sourceDataNodes, targetDataNodes);
     }
 
     private Collection<DataNode> rebuildSourceDataNodes(final String xpath,

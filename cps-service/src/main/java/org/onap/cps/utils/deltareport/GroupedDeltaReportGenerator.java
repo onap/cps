@@ -53,10 +53,11 @@ public class GroupedDeltaReportGenerator {
                                                          final Collection<DataNode> targetDataNodes) {
 
         final List<DeltaReport> deltaReportEntries = new ArrayList<>();
+        final Map<String, DataNode> xpathToSourceDataNodes = flattenToXpathToFirstLevelDataNodeMap(sourceDataNodes);
         final Map<String, DataNode> xpathToTargetDataNodes = flattenToXpathToFirstLevelDataNodeMap(targetDataNodes);
         deltaReportEntries.addAll(getCondensedRemovedDeltaReports(sourceDataNodes, xpathToTargetDataNodes));
         deltaReportEntries.addAll(getCondensedUpdatedDeltaReports(sourceDataNodes, xpathToTargetDataNodes));
-        deltaReportEntries.addAll(getCondensedAddedDeltaReports(sourceDataNodes, targetDataNodes));
+        deltaReportEntries.addAll(getCondensedAddedDeltaReports(targetDataNodes, xpathToSourceDataNodes));
         return deltaReportEntries;
     }
 
@@ -101,12 +102,12 @@ public class GroupedDeltaReportGenerator {
         }
     }
 
-    private static List<DeltaReport> getCondensedAddedDeltaReports(final Collection<DataNode> sourceDataNodes,
-                                                                   final Collection<DataNode> targetDataNodes) {
+    private static List<DeltaReport> getCondensedAddedDeltaReports(final Collection<DataNode> targetDataNodes,
+                                                                   final Map<String, DataNode> xpathToSourceDataNodes) {
 
         final List<DeltaReport> addedDeltaReportEntries = new ArrayList<>();
         final Collection<DataNode> addedDataNodes =
-            getDataNodesForDeltaReport(targetDataNodes, flattenToXpathToFirstLevelDataNodeMap(sourceDataNodes));
+            getDataNodesForDeltaReport(targetDataNodes, xpathToSourceDataNodes);
         if (!addedDataNodes.isEmpty()) {
             final String xpath = getXpathForDeltaReport(addedDataNodes);
             addedDeltaReportEntries.add(new DeltaReportBuilder().actionCreate().withXpath(xpath)
