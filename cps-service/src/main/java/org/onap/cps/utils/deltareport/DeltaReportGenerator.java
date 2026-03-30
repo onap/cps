@@ -42,7 +42,7 @@ import org.springframework.stereotype.Service;
 public class DeltaReportGenerator {
     private final DeltaReportHelper deltaReportHelper;
 
-    /**`
+    /**
      * Generate delta reports between the given source and target data nodes.
      *
      * @param sourceDataNodes the source data nodes
@@ -51,9 +51,10 @@ public class DeltaReportGenerator {
      */
     public List<DeltaReport> createDeltaReports(final Collection<DataNode> sourceDataNodes,
                                                 final Collection<DataNode> targetDataNodes) {
-        final List<DeltaReport> deltaReport = new ArrayList<>();
         final Map<String, DataNode> xpathToSourceDataNodes = convertToXPathToDataNodesMap(sourceDataNodes);
         final Map<String, DataNode> xpathToTargetDataNodes = convertToXPathToDataNodesMap(targetDataNodes);
+        final List<DeltaReport> deltaReport =
+            new ArrayList<>(xpathToSourceDataNodes.size() + xpathToTargetDataNodes.size());
         deltaReport.addAll(getRemovedAndUpdatedDeltaReports(xpathToSourceDataNodes, xpathToTargetDataNodes));
         deltaReport.addAll(getAddedDeltaReports(xpathToSourceDataNodes, xpathToTargetDataNodes));
         return deltaReport;
@@ -61,21 +62,29 @@ public class DeltaReportGenerator {
 
     private static Map<String, DataNode> convertToXPathToDataNodesMap(final Collection<DataNode> dataNodes) {
         final Map<String, DataNode> xpathToDataNode = new LinkedHashMap<>();
-        for (final DataNode dataNode : dataNodes) {
-            xpathToDataNode.put(dataNode.getXpath(), dataNode);
-            final Collection<DataNode> childDataNodes = dataNode.getChildDataNodes();
-            if (!childDataNodes.isEmpty()) {
-                xpathToDataNode.putAll(convertToXPathToDataNodesMap(childDataNodes));
-            }
-        }
-        return clearChildDataNodes(xpathToDataNode);
+        flattenDataNodes(dataNodes, xpathToDataNode);
+        return xpathToDataNode;
     }
 
-    private static Map<String, DataNode> clearChildDataNodes(final Map<String, DataNode> xpathToDataNodes) {
-        for (final DataNode dataNode : xpathToDataNodes.values()) {
-            dataNode.setChildDataNodes(Collections.emptyList());
+    private static void flattenDataNodes(final Collection<DataNode> dataNodes,
+                                         final Map<String, DataNode> xpathToDataNode) {
+        for (final DataNode dataNode : dataNodes) {
+            final DataNode shallowCopy = createShallowCopyWithoutChildren(dataNode);
+            xpathToDataNode.put(shallowCopy.getXpath(), shallowCopy);
+            final Collection<DataNode> childDataNodes = dataNode.getChildDataNodes();
+            if (!childDataNodes.isEmpty()) {
+                flattenDataNodes(childDataNodes, xpathToDataNode);
+            }
         }
-        return xpathToDataNodes;
+    }
+
+    private static DataNode createShallowCopyWithoutChildren(final DataNode dataNode) {
+        final DataNode copy = new DataNode();
+        copy.setXpath(dataNode.getXpath());
+        copy.setModuleNamePrefix(dataNode.getModuleNamePrefix());
+        copy.setLeaves(dataNode.getLeaves());
+        copy.setChildDataNodes(Collections.emptyList());
+        return copy;
     }
 
     private List<DeltaReport> getRemovedAndUpdatedDeltaReports(final Map<String, DataNode> xpathToSourceDataNodes,
@@ -97,13 +106,11 @@ public class DeltaReportGenerator {
     }
 
     private static List<DeltaReport> getDeltaReportsForRemove(final String xpath, final DataNode sourceDataNode) {
-        final List<DeltaReport> deltaReportEntriesForRemove = new ArrayList<>();
         final Map<String, Serializable> sourceDataNodeRemoved =
             getNodeNameToDataForDeltaReport(Collections.singletonList(sourceDataNode));
         final DeltaReport removedDeltaReportEntry = new DeltaReportBuilder().actionRemove().withXpath(xpath)
             .withSourceData(sourceDataNodeRemoved).build();
-        deltaReportEntriesForRemove.add(removedDeltaReportEntry);
-        return deltaReportEntriesForRemove;
+        return Collections.singletonList(removedDeltaReportEntry);
     }
 
     private static List<DeltaReport> getAddedDeltaReports(final Map<String, DataNode> xpathToSourceDataNodes,
