@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.exceptions.CpsException
 import org.onap.cps.api.exceptions.DataInUseException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
@@ -51,6 +52,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Shared
 import spock.lang.Specification
+
+import java.util.concurrent.CompletionException
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -154,6 +157,18 @@ class CpsDeltaServiceImplSpec extends Specification {
         then: 'DataValidationException is thrown'
             def exception = thrown(DataValidationException)
             assert exception.message == 'Invalid xpath: /test[invalid'
+    }
+
+    def 'Get delta between 2 anchors with a failing async data fetch'() {
+        given: 'xpath to get delta'
+            def xpath = '/'
+        when: 'attempt to get delta between 2 anchors'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS, GROUPING_DISABLED)
+        then: 'cps data service throws a RuntimeException wrapped in CompletionException'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], OMIT_DESCENDANTS) >> { throw new RuntimeException('some runtime exception') }
+        and: 'the expected exception is thrown'
+            def thrownException = thrown(RuntimeException)
+            assert thrownException.message == 'some runtime exception'
     }
 
     def 'Delta Report between parent nodes with children where data node is #scenario without grouping of data nodes'() {
