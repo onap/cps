@@ -43,9 +43,11 @@ import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.XmlObjectMapper;
 import org.onap.cps.utils.deltareport.DeltaReportExecutor;
 import org.onap.cps.utils.deltareport.DeltaReportGenerator;
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator;
@@ -64,6 +66,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
     private final DataNodeFactory dataNodeFactory;
     private final DataMapper dataMapper;
     private final JsonObjectMapper jsonObjectMapper;
+    private final XmlObjectMapper xmlObjectMapper;
     private final DeltaReportGenerator deltaReportGenerator;
     private final GroupedDeltaReportGenerator groupedDeltaReportGenerator;
 
@@ -94,7 +97,8 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                                  final Map<String, String> yangResourceContentPerName,
                                                                  final String targetData,
                                                                  final FetchDescendantsOption fetchDescendantsOption,
-                                                                 final boolean groupDataNodes) {
+                                                                 final boolean groupDataNodes,
+                                                                 final ContentType contentType) {
 
         final String normalizedXpath = getNormalizedXpath(xpath);
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
@@ -103,7 +107,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         final Collection<DataNode> sourceDataNodesRebuilt =
             rebuildSourceDataNodes(normalizedXpath, sourceAnchor, sourceDataNodes);
         final Collection<DataNode> targetDataNodes = new ArrayList<>(
-            buildTargetDataNodes(sourceAnchor, normalizedXpath, yangResourceContentPerName, targetData));
+            buildTargetDataNodes(sourceAnchor, normalizedXpath, yangResourceContentPerName, targetData, contentType));
         return getDeltaReports(sourceDataNodesRebuilt, targetDataNodes, groupDataNodes);
     }
 
@@ -156,13 +160,14 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
 
     private Collection<DataNode> buildTargetDataNodes(final Anchor sourceAnchor, final String xpath,
                                                       final Map<String, String> yangResourceContentPerName,
-                                                      final String targetData) {
+                                                      final String targetData, final ContentType contentType) {
         if (yangResourceContentPerName.isEmpty()) {
             return dataNodeFactory
-                .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, JSON);
+                .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, contentType);
         } else {
             return dataNodeFactory
-                .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, targetData, JSON);
+                .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName,
+                            xpath, targetData, contentType);
         }
     }
 
