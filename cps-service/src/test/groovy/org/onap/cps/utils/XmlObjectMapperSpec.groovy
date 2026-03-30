@@ -53,5 +53,23 @@ class XmlObjectMapperSpec extends Specification {
             def thrownException = thrown(DataValidationException)
             thrownException.message == 'Data Validation Failed'
     }
+
+    def 'Convert valid XML content to JsonNode'() {
+        given: 'a valid XML content'
+            def validXmlContent = '<stores><bookstore><bookstore-name>Chapters</bookstore-name></bookstore></stores>'
+        when: 'the XML content is converted to JsonNode'
+            objectUnderTest.convertToJsonNode(validXmlContent)
+        then: 'no exception is thrown and result is not null'
+    }
+
+    def 'Throw exception for invalid XML content'() {
+        given: 'an invalid XML content'
+            def invalidXmlContent = '<stores><bookstore><bookstore-name>Chapters</bookstore-name>'
+        when: 'the XML content is converted to JsonNode'
+            objectUnderTest.convertToJsonNode(invalidXmlContent)
+        then: 'a DataValidationException is thrown'
+            def thrownException = thrown(DataValidationException)
+        thrownException.message.contains('XML parsing error at line')
+    }
 }
 
