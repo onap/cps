@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 Deutsche Telekom AG
+ *  Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,12 +54,36 @@ public class GroupedDeltaReportGenerator {
     public List<DeltaReport> createCondensedDeltaReports(final Collection<DataNode> sourceDataNodes,
                                                          final Collection<DataNode> targetDataNodes) {
 
-        final List<DeltaReport> deltaReportEntries = new ArrayList<>();
+        final Map<String, DataNode> xpathToSourceDataNodes = flattenToXpathToFirstLevelDataNodeMap(sourceDataNodes);
         final Map<String, DataNode> xpathToTargetDataNodes = flattenToXpathToFirstLevelDataNodeMap(targetDataNodes);
-        deltaReportEntries.addAll(getCondensedRemovedDeltaReports(sourceDataNodes, xpathToTargetDataNodes));
-        deltaReportEntries.addAll(getCondensedUpdatedDeltaReports(sourceDataNodes, xpathToTargetDataNodes));
-        deltaReportEntries.addAll(getCondensedAddedDeltaReports(sourceDataNodes, targetDataNodes));
-        return deltaReportEntries;
+
+        final CompletableFuture<List<DeltaReport>> removedFuture =
+            CompletableFuture.supplyAsync(() ->
+                getCondensedRemovedDeltaReports(sourceDataNodes, xpathToTargetDataNodes));
+        final CompletableFuture<List<DeltaReport>> addedFuture =
+            CompletableFuture.supplyAsync(() ->
+                getCondensedAddedDeltaReports(xpathToSourceDataNodes, targetDataNodes));
+
+        final List<DeltaReport> updatedReports =
+            getCondensedUpdatedDeltaReports(sourceDataNodes, xpathToTargetDataNodes);
+
+        return collectDeltaReports(removedFuture, updatedReports, addedFuture);
+    }
+
+    private List<DeltaReport> collectDeltaReports(final CompletableFuture<List<DeltaReport>> removedFuture,
+                                          final List<DeltaReport> updatedReports,
+                                          final CompletableFuture<List<DeltaReport>> addedFuture) {
+        try {
+            final List<DeltaReport> deltaReportEntries = new ArrayList<>();
+            deltaReportEntries.addAll(removedFuture.join());
+            deltaReportEntries.addAll(updatedReports);
+            deltaReportEntries.addAll(addedFuture.join());
+            return deltaReportEntries;
+        } catch (final CompletionException completionException) {
+            throw CompletionExceptionConverter.convertCompletionException(completionException,
+                "Failed to generate grouped delta report",
+                "Unexpected error during condensed delta report generation");
+        }
     }
 
     private static List<DeltaReport> getCondensedRemovedDeltaReports(final Collection<DataNode> sourceDataNodes,
@@ -101,12 +127,12 @@ public class GroupedDeltaReportGenerator {
         }
     }
 
-    private static List<DeltaReport> getCondensedAddedDeltaReports(final Collection<DataNode> sourceDataNodes,
+    private static List<DeltaReport> getCondensedAddedDeltaReports(final Map<String, DataNode> xpathToSourceDataNodes,
                                                                    final Collection<DataNode> targetDataNodes) {
 
         final List<DeltaReport> addedDeltaReportEntries = new ArrayList<>();
         final Collection<DataNode> addedDataNodes =
-            getDataNodesForDeltaReport(targetDataNodes, flattenToXpathToFirstLevelDataNodeMap(sourceDataNodes));
+            getDataNodesForDeltaReport(targetDataNodes, xpathToSourceDataNodes);
         if (!addedDataNodes.isEmpty()) {
             final String xpath = getXpathForDeltaReport(addedDataNodes);
             addedDeltaReportEntries.add(new DeltaReportBuilder().actionCreate().withXpath(xpath)
