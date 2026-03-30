@@ -21,6 +21,7 @@
 package org.onap.cps.rest.utils
 
 import org.onap.cps.api.exceptions.CpsException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.ModelValidationException
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.web.multipart.MultipartFile
@@ -118,4 +119,52 @@ class MultipartFileUtilSpec extends Specification {
         return multipartFile
     }
 
+    def "extractXmlContent should throw DataValidationException when getBytes throws IOException"() {
+        given: "a MultipartFile that fails during read"
+            MultipartFile multipartFile = Mock(MultipartFile)
+            multipartFile.isEmpty() >> false
+            multipartFile.getBytes() >> { throw new IOException("Read failed") }
+        when: "extractXmlContent is called"
+            MultipartFileUtil.extractXmlContent(multipartFile)
+        then: "IOException is caught and wrapped in DataValidationException"
+            DataValidationException ex = thrown()
+            ex.message == "Failed to read XML file"
+    }
+
+    def 'should pass for valid XML content.'() {
+        given :' valid XML payload'
+            String validXml = '<deltaReports><deltaReport><action>create</action><xpath>some xpath</xpath></deltaReport></deltaReports>'
+        when: 'XML validation is performed'
+            MultipartFileUtil.validateXml(validXml)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'should throw exception for invalid Xml content.'() {
+        given :'an invalid XML payload with malformed structure'
+            String validXml = '<deltaReports><deltaReport><action>create</action><xpath>some xpath'
+        when: 'XML validation is performed'
+            MultipartFileUtil.validateXml(validXml)
+        then: 'an exception is thrown'
+            def ex =thrown(DataValidationException)
+            ex.message.contains ("Invalid or corrupted XML content")
+    }
+
+    def 'should throw exception for empty XML.'() {
+        given :'an empty XML payload'
+            String validXml = ''
+        when: 'XML validation is performed'
+            MultipartFileUtil.validateXml(validXml)
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+    }
+
+    def 'should throw exception for malformed XML structure.'() {
+        given :'a malformed XML payload missing closing root element'
+            String malformedXml = '<deltaReports><deltaReport><action>create</action><xpath>some xpath</xpath></deltaReport>'
+        when: 'XML validation is performed'
+            MultipartFileUtil.validateXml(malformedXml)
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+    }
 }
