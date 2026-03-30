@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.utils.ContentType;
 
 public interface CpsDeltaService {
 
@@ -68,7 +69,7 @@ public interface CpsDeltaService {
                                                           Map<String, String> yangResourceContentPerName,
                                                           String targetData,
                                                           FetchDescendantsOption fetchDescendantsOption,
-                                                          boolean groupDataNodes);
+                                                          boolean groupDataNodes, ContentType contentType);
 
     /**
      * Apply the changes in the given delta report to an anchor. The delta report contains the difference between two
