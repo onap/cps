@@ -20,6 +20,7 @@
 
 package org.onap.cps.impl
 
+import static org.onap.cps.utils.ContentType.JSON;
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
@@ -31,11 +32,11 @@ import org.onap.cps.api.exceptions.DataInUseException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
-import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.DataMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
+import org.onap.cps.utils.XmlObjectMapper
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.utils.deltareport.DeltaReportExecutor
@@ -67,10 +68,11 @@ class CpsDeltaServiceImplSpec extends Specification {
     def mockPrefixResolver = Mock(PrefixResolver)
     def dataMapper = new DataMapper(mockCpsAnchorService, mockPrefixResolver)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def xmlObjectMapper = new XmlObjectMapper()
     def deltaReportHelper = new DeltaReportHelper()
     def deltaReportGenerator = new DeltaReportGenerator(deltaReportHelper)
     def groupedDeltaReportGenerator = new GroupedDeltaReportGenerator(deltaReportHelper)
-    def objectUnderTest = new CpsDeltaServiceImpl(mockDeltaReportExecutor, mockCpsAnchorService, mockCpsValidator, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportGenerator, groupedDeltaReportGenerator)
+    def objectUnderTest = new CpsDeltaServiceImpl(mockDeltaReportExecutor, mockCpsAnchorService, mockCpsValidator, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper,xmlObjectMapper, deltaReportGenerator, groupedDeltaReportGenerator)
 
     static def bookstoreDataNodeWithParentXpath = [new DataNode(xpath: '/bookstore', leaves: ['bookstore-name': 'Easons'])]
     static def bookstoreDataNodeWithChildXpath = [new DataNode(xpath: '/bookstore/categories[@code=\'02\']', leaves: ['code': '02', 'name': 'Kids'])]
@@ -252,13 +254,13 @@ class CpsDeltaServiceImplSpec extends Specification {
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
             setupSchemaSetMocksForDelta(yangResourceContentPerName)
         when: 'attempt to get delta between an anchor and a JSON payload'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED, JSON)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
-            dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonObjectMapper.asJsonString(sourceDataNodesAsMap), ContentType.JSON)
+            dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonObjectMapper.asJsonString(sourceDataNodesAsMap), JSON)
         and: 'data node factory method is invoked to build target data nodes using user provided schema'
-            dataNodeFactory.createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, jsonData, ContentType.JSON)
+            dataNodeFactory.createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, jsonData, JSON)
         and: 'delta report contains expected xpath, action, source and target data'
             deltaReport[0].getXpath() == expectedNodeXpath
             deltaReport[0].getAction().equals('replace')
@@ -275,13 +277,13 @@ class CpsDeltaServiceImplSpec extends Specification {
         given: 'schema set for a given dataspace and anchor'
             setupSchemaSetMocks('bookstore.yang')
         when: 'attempt to get delta between an anchor and a JSON payload'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, [:], jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, [:], jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED, JSON)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
-            dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonObjectMapper.asJsonString(sourceDataNodesAsMap), ContentType.JSON)
+            dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonObjectMapper.asJsonString(sourceDataNodesAsMap), JSON)
         and: 'data node factory method is invoked to build target data nodes using schema details fetched from anchor name'
-            dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonData, ContentType.JSON)
+            dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonData, JSON)
         and: 'delta report contains expected xpath, action, source and target data'
             deltaReport[0].getXpath() == expectedNodeXpath
             deltaReport[0].getAction().equals('replace')
@@ -299,7 +301,7 @@ class CpsDeltaServiceImplSpec extends Specification {
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
             setupSchemaSetMocksForDelta(yangResourceContentPerName)
         when: 'attempt to get delta between anchor and payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED, JSON)
         then: 'expected exception is thrown'
             thrown(DataValidationException)
         where: 'following parameters were used'

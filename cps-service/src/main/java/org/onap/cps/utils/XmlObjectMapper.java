@@ -20,6 +20,7 @@
 
 package org.onap.cps.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.DataValidationException;
@@ -47,6 +48,22 @@ public class XmlObjectMapper {
                     "Failed to build XML: " + exception.getMessage(),
                     exception
             );
+        }
+    }
+
+    /**
+     * Converts XML content to a JsonNode using Jackson.
+     *
+     * @param validateXmlString the XML content as a string
+     * @throws DataValidationException if the XML content cannot be parsed, including line and column information
+     */
+
+    public void convertToJsonNode(final String validateXmlString) {
+        try {
+            xmlMapper.readTree(validateXmlString);
+        } catch (final JsonProcessingException e) {
+            throw new DataValidationException(String.format("XML parsing error at line: %d, column: %d",
+                    e.getLocation().getLineNr(), e.getLocation().getColumnNr()), e.getOriginalMessage());
         }
     }
 }
