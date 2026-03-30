@@ -76,6 +76,7 @@ public class DataMapper {
      * @param dataNodes     the data nodes to convert
      * @return a list of maps representing the data nodes
      */
+
     public List<Map<String, Object>> toDataMaps(final Anchor anchor, final Collection<DataNode> dataNodes) {
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
         for (final DataNode dataNode : dataNodes) {
@@ -86,6 +87,8 @@ public class DataMapper {
         return dataMaps;
     }
 
+
+
     /**
      * Convert a collection of data nodes (belonging to multiple anchors) to a list of data maps.
      *
@@ -93,6 +96,8 @@ public class DataMapper {
      * @param dataNodes     the data nodes to convert
      * @return a list of maps representing the data nodes
      */
+
+    @SuppressWarnings("checkstyle:OverloadMethodsDeclarationOrder")
     public List<Map<String, Object>> toDataMaps(final String dataspaceName, final Collection<DataNode> dataNodes) {
         final List<Map<String, Object>> dataNodesAsMaps = new ArrayList<>(dataNodes.size());
         final Map<String, List<DataNode>> dataNodesPerAnchor = groupDataNodesPerAnchor(dataNodes);
