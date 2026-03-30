@@ -133,4 +133,40 @@ class XmlUtilsSpec extends Specification {
 
     }
 
+    def 'Attempt to validate XML throws exception.'() {
+        given :'a malformed XML'
+            String malformedXml = '<deltaReports><deltaReport><action>create</action><xpath>some xpath</xpath></deltaReport>'
+        when: 'attempt to validate XML'
+            XmlUtils.validateXml(malformedXml)
+        then: 'expected exception is thrown'
+            thrown(DataValidationException)
+    }
+
+    def 'should pass for valid XML content.'() {
+        given :' valid XML payload'
+            String validXml = '<deltaReports><deltaReport><action>create</action><xpath>some xpath</xpath></deltaReport></deltaReports>'
+        when: 'attempt to validate XML'
+            XmlUtils.validateXml(validXml)
+        then: 'expected exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'should throw exception for invalid Xml content.'() {
+        given :'an invalid XML'
+            String validXml = '<deltaReports><deltaReport><action>create</action><xpath>some xpath'
+        when: 'attempt to validate XML'
+            XmlUtils.validateXml(validXml)
+        then: 'expected exception is thrown'
+            def ex =thrown(DataValidationException)
+            ex.message.contains ("Invalid XML data")
+    }
+
+    def 'should throw exception for empty XML.'() {
+        given :'an empty XML'
+            String validXml = ''
+        when: 'attempt to validate XML'
+            XmlUtils.validateXml(validXml)
+        then: 'expected exception is thrown'
+            thrown(DataValidationException)
+    }
 }

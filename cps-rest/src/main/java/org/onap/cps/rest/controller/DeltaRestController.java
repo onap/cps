@@ -20,10 +20,13 @@
 
 package org.onap.cps.rest.controller;
 
+import static org.onap.cps.rest.utils.MultipartFileUtil.extractFileContent;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.utils.ContentType.XML;
+import static org.onap.cps.utils.ContentType.fromString;
 
 import io.micrometer.core.annotation.Timed;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -33,7 +36,6 @@ import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDeltaApi;
-import org.onap.cps.rest.utils.MultipartFileUtil;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.XmlObjectMapper;
@@ -82,9 +84,11 @@ public class DeltaRestController implements CpsDeltaApi {
                                                                       final MultipartFile targetDataAsJsonFile,
                                                                       final String xpath,
                                                                       final Boolean groupDataNodes,
+                                                                      final String acceptMediaType,
                                                                       final MultipartFile yangResourceFile) {
+        final ContentType contentType = fromString(acceptMediaType);
         final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-        final String targetData = MultipartFileUtil.extractJsonContent(targetDataAsJsonFile, jsonObjectMapper);
+        final String  targetData = extractFileContent(targetDataAsJsonFile, contentType, jsonObjectMapper);
         final Map<String, String> yangResourceMap;
         if (yangResourceFile == null) {
             yangResourceMap = Collections.emptyMap();
@@ -93,8 +97,9 @@ public class DeltaRestController implements CpsDeltaApi {
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
             cpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, targetData, fetchDescendantsOption, groupDataNodes));
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
+                xpath, yangResourceMap, targetData, fetchDescendantsOption, groupDataNodes, contentType));
+
+        return buildDeltaResponseEntity(new ArrayList<>(deltaReports), contentType);
     }
 
     public ResponseEntity<String> applyChangesInDeltaReport(final String dataspaceName,
