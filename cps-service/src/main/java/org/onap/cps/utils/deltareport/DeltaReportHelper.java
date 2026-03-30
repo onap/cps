@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 Deutsche Telekom AG
+ *  Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
 package org.onap.cps.utils.deltareport;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,6 +43,19 @@ import org.springframework.stereotype.Service;
 public class DeltaReportHelper {
 
     /**
+     * Holds the updated source and target data for a delta report entry.
+     *
+     * @param sourceData the updated source data (may be empty)
+     * @param targetData the updated target data (may be empty)
+     */
+    record UpdatedData(Map<String, Serializable> sourceData, Map<String, Serializable> targetData) {
+
+        boolean isEmpty() {
+            return sourceData.isEmpty() && targetData.isEmpty();
+        }
+    }
+
+    /**
      * Get delta report entries for updates.
      *
      * @param xpath          the xpath of the data node
@@ -53,110 +65,73 @@ public class DeltaReportHelper {
      */
     public List<DeltaReport> createDeltaReportsForUpdates(final String xpath, final DataNode sourceDataNode,
                                                           final DataNode targetDataNode) {
-        final List<DeltaReport> deltaReportEntriesForUpdates = new ArrayList<>();
-        final Map<Map<String, Serializable>, Map<String, Serializable>> updatedSourceDataToTargetData =
-            getUpdatedSourceAndTargetDataNode(sourceDataNode, targetDataNode);
-        if (!updatedSourceDataToTargetData.isEmpty()) {
-            addUpdatedDataToDeltaReport(xpath, updatedSourceDataToTargetData, deltaReportEntriesForUpdates);
+        final UpdatedData updatedData = getUpdatedSourceAndTargetData(sourceDataNode, targetDataNode);
+        if (!updatedData.isEmpty()) {
+            final DeltaReport deltaReport = new DeltaReportBuilder().actionReplace().withXpath(xpath)
+                .withSourceData(updatedData.sourceData()).withTargetData(updatedData.targetData()).build();
+            return Collections.singletonList(deltaReport);
         }
-        return deltaReportEntriesForUpdates;
+        return Collections.emptyList();
     }
 
-    private static Map<Map<String, Serializable>, Map<String, Serializable>> getUpdatedSourceAndTargetDataNode(
-        final DataNode sourceDataNode,
-        final DataNode targetDataNode) {
+    private static UpdatedData getUpdatedSourceAndTargetData(final DataNode sourceDataNode,
+                                                             final DataNode targetDataNode) {
         final Map<String, Serializable> updatedLeavesInSourceData = new HashMap<>();
         final Map<String, Serializable> updatedLeavesInTargetData = new HashMap<>();
-        processSourceAndTargetDataNode(sourceDataNode, targetDataNode,
+        processLeafDifferences(sourceDataNode, targetDataNode,
             updatedLeavesInSourceData, updatedLeavesInTargetData);
-        processUniqueDataInTargetDataNode(sourceDataNode, targetDataNode, updatedLeavesInTargetData);
         final Map<String, Serializable> updatedSourceData =
             getUpdatedNodeData(sourceDataNode, updatedLeavesInSourceData);
         final Map<String, Serializable> updatedTargetData =
             getUpdatedNodeData(targetDataNode, updatedLeavesInTargetData);
-        if (updatedSourceData.isEmpty() && updatedTargetData.isEmpty()) {
-            return Collections.emptyMap();
-        }
-        return Collections.singletonMap(updatedSourceData, updatedTargetData);
+        return new UpdatedData(updatedSourceData, updatedTargetData);
     }
 
-    private static void addUpdatedDataToDeltaReport(final String xpath,
-                                                    final Map<Map<String, Serializable>,
-                                                        Map<String, Serializable>> updatedSourceDataToTargetData,
-                                                    final List<DeltaReport> deltaReportEntriesForUpdates) {
-        for (final Map.Entry<Map<String, Serializable>, Map<String, Serializable>> entry:
-            updatedSourceDataToTargetData.entrySet()) {
-            final DeltaReport updatedDataForDeltaReport = new DeltaReportBuilder().actionReplace().withXpath(xpath)
-                .withSourceData(entry.getKey()).withTargetData(entry.getValue()).build();
-            deltaReportEntriesForUpdates.add(updatedDataForDeltaReport);
-        }
-    }
-
-    private static void processSourceAndTargetDataNode(
-        final DataNode sourceDataNode,
-        final DataNode targetDataNode,
-        final Map<String, Serializable> sourceDataInDeltaReport,
-        final Map<String, Serializable> targetDataInDeltaReport) {
+    private static void processLeafDifferences(final DataNode sourceDataNode,
+                                               final DataNode targetDataNode,
+                                               final Map<String, Serializable> sourceDataInDeltaReport,
+                                               final Map<String, Serializable> targetDataInDeltaReport) {
         final Map<String, Serializable> leavesOfSourceDataNode = sourceDataNode.getLeaves();
         final Map<String, Serializable> leavesOfTargetDataNode = targetDataNode.getLeaves();
-        for (final Map.Entry<String, Serializable> entry: leavesOfSourceDataNode.entrySet()) {
+        for (final Map.Entry<String, Serializable> entry : leavesOfSourceDataNode.entrySet()) {
             final String key = entry.getKey();
             final Serializable sourceLeaf = entry.getValue();
             final Serializable targetLeaf = leavesOfTargetDataNode.get(key);
-            compareLeaves(key, sourceLeaf, targetLeaf, sourceDataInDeltaReport, targetDataInDeltaReport);
-        }
-    }
-
-    private static void processUniqueDataInTargetDataNode(
-        final DataNode sourceDataNode,
-        final DataNode targetDataNode,
-        final Map<String, Serializable> targetDataInDeltaReport) {
-        final Map<String, Serializable> leavesOfSourceDataNode = sourceDataNode.getLeaves();
-        final Map<String, Serializable> uniqueLeavesOfTargetDataNode =
-            new HashMap<>(targetDataNode.getLeaves());
-        uniqueLeavesOfTargetDataNode.keySet().removeAll(leavesOfSourceDataNode.keySet());
-        targetDataInDeltaReport.putAll(uniqueLeavesOfTargetDataNode);
-    }
-
-    private static void compareLeaves(final String key,
-                                      final Serializable sourceLeaf,
-                                      final Serializable targetLeaf,
-                                      final Map<String, Serializable> sourceDataInDeltaReport,
-                                      final Map<String, Serializable> targetDataInDeltaReport) {
-        if (targetLeaf != null) {
-            if (!Objects.equals(sourceLeaf, targetLeaf)) {
+            if (targetLeaf == null) {
+                sourceDataInDeltaReport.put(key, sourceLeaf);
+            } else if (!Objects.equals(sourceLeaf, targetLeaf)) {
                 sourceDataInDeltaReport.put(key, sourceLeaf);
                 targetDataInDeltaReport.put(key, targetLeaf);
             }
-        } else {
-            sourceDataInDeltaReport.put(key, sourceLeaf);
+        }
+        for (final Map.Entry<String, Serializable> entry : leavesOfTargetDataNode.entrySet()) {
+            if (!leavesOfSourceDataNode.containsKey(entry.getKey())) {
+                targetDataInDeltaReport.put(entry.getKey(), entry.getValue());
+            }
         }
     }
 
     private static Map<String, Serializable> getUpdatedNodeData(final DataNode dataNode,
                                                                 final Map<String, Serializable> updatedLeaves) {
-        final Map<String, Serializable> updatedSourceData = new HashMap<>();
-        if (!updatedLeaves.isEmpty()) {
-            final String xpath = dataNode.getXpath();
-            if (CpsPathUtil.isPathToListElement(xpath)) {
-                addKeyLeavesToUpdatedData(xpath, updatedLeaves);
-            }
-            final Collection<DataNode> updatedDataNode = buildUpdatedDataNode(dataNode, updatedLeaves);
-            updatedSourceData.putAll(getNodeNameToDataForDeltaReport(updatedDataNode));
+        if (updatedLeaves.isEmpty()) {
+            return Collections.emptyMap();
         }
-        return updatedSourceData;
+        final String xpath = dataNode.getXpath();
+        if (xpath.endsWith("]")) {
+            final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(xpath);
+            if (cpsPathQuery.isPathToListElement()) {
+                addKeyLeavesToUpdatedData(cpsPathQuery, updatedLeaves);
+            }
+        }
+        final Collection<DataNode> updatedDataNode = buildUpdatedDataNode(dataNode, updatedLeaves);
+        return getNodeNameToDataForDeltaReport(updatedDataNode);
     }
 
-    private static void addKeyLeavesToUpdatedData(final String xpath,
+    private static void addKeyLeavesToUpdatedData(final CpsPathQuery cpsPathQuery,
                                                   final Map<String, Serializable> updatedLeaves) {
-        final Map<String, Serializable> keyLeaves = new HashMap<>();
-        final List<CpsPathQuery.LeafCondition> leafConditions = CpsPathUtil.getCpsPathQuery(xpath).getLeafConditions();
-        for (final CpsPathQuery.LeafCondition leafCondition: leafConditions) {
-            final String leafName = leafCondition.name();
-            final Serializable leafValue = (Serializable) leafCondition.value();
-            keyLeaves.put(leafName, leafValue);
+        for (final CpsPathQuery.LeafCondition leafCondition : cpsPathQuery.getLeafConditions()) {
+            updatedLeaves.put(leafCondition.name(), (Serializable) leafCondition.value());
         }
-        updatedLeaves.putAll(keyLeaves);
     }
 
     private static Collection<DataNode> buildUpdatedDataNode(final DataNode dataNode,
