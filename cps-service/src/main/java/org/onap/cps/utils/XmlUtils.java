@@ -25,6 +25,7 @@ package org.onap.cps.utils;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -52,6 +53,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -292,5 +294,25 @@ public class XmlUtils {
             isNewTransformerFactoryInstance = false;
         }
         return transformerFactory;
+    }
+
+    /**
+     * Validates the provided XML content.
+     *
+     * @param xmlContent the XML content as a string
+     * @throws DataValidationException if the XML content is null, empty, or invalid
+     */
+
+    public static void validateXml(final String xmlContent) {
+        try {
+            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            factory.setIgnoringComments(true);
+            factory.setExpandEntityReferences(false);
+            final DocumentBuilder builder = factory.newDocumentBuilder();
+            builder.parse(new InputSource((new StringReader(xmlContent))));
+        } catch (final Exception exception) {
+            throw new DataValidationException("Invalid or corrupted XML content", exception.getMessage());
+        }
     }
 }

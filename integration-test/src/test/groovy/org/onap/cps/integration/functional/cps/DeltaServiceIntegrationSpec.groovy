@@ -27,6 +27,7 @@ import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.model.DeltaReport
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.integration.base.FunctionalSpecBase
+import org.onap.cps.utils.ContentType
 
 class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
     CpsDeltaService objectUnderTest
@@ -180,7 +181,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get delta between anchor and JSON payload'() {
         when: 'attempt to get delta report between anchor and JSON payload'
             def jsonPayload = '{\"book-store:bookstore\":{\"bookstore-name\":\"Crossword Bookstores\"},\"book-store:bookstore-address\":{\"address\":\"Bangalore, India\",\"postal-code\":\"560062\",\"bookstore-name\":\"Crossword Bookstores\"}}'
-            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, OMIT_DESCENDANTS, NO_GROUPING)
+            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, OMIT_DESCENDANTS, NO_GROUPING, ContentType.JSON)
         then: 'delta report contains expected number of changes'
             result.size() == 3
         and: 'delta report contains "replace" action with expected xpath'
@@ -197,14 +198,14 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get delta between anchor and payload returns empty response when JSON payload is identical to anchor data'() {
         when: 'attempt to get delta report between anchor and JSON payload (replacing the string Easons with Easons-1 because the data in JSON file is modified, to append anchor number, during the setup process of the integration tests)'
             def jsonPayload = readResourceDataFile('bookstore/bookstoreData.json').replace('Easons', 'Easons-1')
-            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
+            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, INCLUDE_ALL_DESCENDANTS, NO_GROUPING, ContentType.JSON)
         then: 'delta report is empty'
             assert result.isEmpty()
     }
 
     def 'Get delta between anchor and payload error scenario: #scenario'() {
         when: 'attempt to get delta between anchor and json payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchor, xpath, [:], jsonPayload, INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchor, xpath, [:], jsonPayload, INCLUDE_ALL_DESCENDANTS, NO_GROUPING, ContentType.JSON)
         then: 'expected exception is thrown'
             thrown(expectedException)
         where: 'following data was used'

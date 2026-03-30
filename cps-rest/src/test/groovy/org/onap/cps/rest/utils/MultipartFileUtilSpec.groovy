@@ -21,6 +21,7 @@
 package org.onap.cps.rest.utils
 
 import org.onap.cps.api.exceptions.CpsException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.ModelValidationException
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.web.multipart.MultipartFile
@@ -118,4 +119,15 @@ class MultipartFileUtilSpec extends Specification {
         return multipartFile
     }
 
+    def "extractXmlContent should throw DataValidationException when getBytes throws IOException"() {
+        given: "a MultipartFile that fails during read"
+            MultipartFile multipartFile = Mock(MultipartFile)
+            multipartFile.isEmpty() >> false
+            multipartFile.getBytes() >> { throw new IOException("Read failed") }
+        when: "extractXmlContent is called"
+            MultipartFileUtil.extractXmlContent(multipartFile)
+        then: "IOException is caught and wrapped in DataValidationException"
+            DataValidationException ex = thrown()
+            ex.message == "Failed to read XML file"
+    }
 }
