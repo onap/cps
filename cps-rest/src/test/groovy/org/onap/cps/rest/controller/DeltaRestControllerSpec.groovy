@@ -23,6 +23,7 @@ package org.onap.cps.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.impl.DeltaReportBuilder
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.XmlObjectMapper
 import org.spockframework.spring.SpringBean
@@ -85,7 +86,7 @@ class DeltaRestControllerSpec extends Specification {
         dataNodeBaseEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName/anchors/$anchorName/delta"
         targetDataAsJsonFile = Files.createTempFile('requestBody', '.json')
         Files.write(targetDataAsJsonFile, requestBodyJson.getBytes(StandardCharsets.UTF_8), StandardOpenOption.WRITE)
-        multipartTargetDataAsJsonFile = new MockMultipartFile('targetDataAsJsonFile', targetDataAsJsonFile.fileName.toString(), 'application/json', Files.readAllBytes(targetDataAsJsonFile))
+        multipartTargetDataAsJsonFile = new MockMultipartFile('targetData', targetDataAsJsonFile.fileName.toString(), 'application/json', Files.readAllBytes(targetDataAsJsonFile))
     }
 
     def cleanup() {
@@ -110,9 +111,9 @@ class DeltaRestControllerSpec extends Specification {
         and: 'the response contains expected value'
             assert response.contentAsString.contains(expectedResponse)
         where:
-            scenario  | contentType                   || expectedResponse
-            'JSON'    | MediaType.APPLICATION_JSON    || '[{"action":"replace","xpath":"some xpath","sourceData":{"some_key":"some value"},"targetData":{"some_key":"some value"}}]'
-            'XML'     | MediaType.APPLICATION_XML     || '<deltaReports><deltaReport><action>replace</action><xpath>some xpath</xpath><sourceData><some_key>some value</some_key></sourceData><targetData><some_key>some value</some_key></targetData></deltaReport></deltaReports>'
+        scenario  | contentType                   || expectedResponse
+        'JSON'    | MediaType.APPLICATION_JSON    || '[{"action":"replace","xpath":"some xpath","sourceData":{"some_key":"some value"},"targetData":{"some_key":"some value"}}]'
+        'XML'     | MediaType.APPLICATION_XML     || '<deltaReports><deltaReport><action>replace</action><xpath>some xpath</xpath><sourceData><some_key>some value</some_key></sourceData><targetData><some_key>some value</some_key></targetData></deltaReport></deltaReports>'
     }
 
     def 'Get delta between anchor and JSON payload with yangResourceFile'() {
@@ -120,15 +121,15 @@ class DeltaRestControllerSpec extends Specification {
             def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
             def xpath = 'some xpath'
         and: 'the service layer returns a list containing delta reports'
-            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS, NO_GROUPING) >> [deltaReports]
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS, NO_GROUPING, ContentType.JSON) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
                 mvc.perform(multipart(dataNodeBaseEndpointV2)
-                    .file(multipartYangFile)
-                    .file(multipartTargetDataAsJsonFile)
-                    .param('xpath', xpath)
-                    .contentType(MediaType.MULTIPART_FORM_DATA))
-                    .andReturn().response
+                        .file(multipartYangFile)
+                        .file(multipartTargetDataAsJsonFile)
+                        .param('xpath', xpath)
+                        .contentType(MediaType.MULTIPART_FORM_DATA))
+                        .andReturn().response
         then: 'expected response code is returned'
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
@@ -140,14 +141,14 @@ class DeltaRestControllerSpec extends Specification {
             def deltaReports = new DeltaReportBuilder().actionRemove().withXpath('some xpath').build()
             def xpath = 'some xpath'
         and: 'the service layer returns a list containing delta reports'
-            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS, NO_GROUPING) >> [deltaReports]
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS, NO_GROUPING, ContentType.JSON) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
                 mvc.perform(multipart(dataNodeBaseEndpointV2)
-                    .file(multipartTargetDataAsJsonFile)
-                    .param('xpath', xpath)
-                    .contentType(MediaType.MULTIPART_FORM_DATA))
-                    .andReturn().response
+                        .file(multipartTargetDataAsJsonFile)
+                        .param('xpath', xpath)
+                        .contentType(MediaType.MULTIPART_FORM_DATA))
+                        .andReturn().response
         then: 'expected response code is returned'
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
@@ -157,7 +158,7 @@ class DeltaRestControllerSpec extends Specification {
     def 'Attempt to get delta between anchor and JSON payload with an Empty File'() {
         given: 'xpath, yang model file and empty json payload'
             def xpath = 'some xpath'
-            def emptyTargetDataAsJsonFile = new MockMultipartFile('targetDataAsJsonFile', 'empty.json', 'application/json', new byte[0])
+            def emptyTargetDataAsJsonFile = new MockMultipartFile('targetData', 'empty.json', 'application/json', new byte[0])
         when: 'get delta request is performed using REST API'
             def response = mvc.perform(multipart(dataNodeBaseEndpointV2)
                 .file(emptyTargetDataAsJsonFile)
@@ -168,14 +169,14 @@ class DeltaRestControllerSpec extends Specification {
         then: 'expected response code is returned'
             assert response.status == HttpStatus.BAD_REQUEST.value()
         then: 'the response contains expected error message'
-           assert response.contentAsString.contains("JSON file is required")
+            assert response.contentAsString.contains("JSON file is required")
     }
 
     def 'Get delta between anchor and JSON payload with an invalid data'() {
         given: 'xpath, yang model file and empty json payload'
             def xpath = 'some xpath'
             def invalidJsonContent = '{'
-            def invalidTargetDataAsJsonFile = new MockMultipartFile('targetDataAsJsonFile', 'invalid.json', 'application/json', invalidJsonContent.getBytes())
+            def invalidTargetDataAsJsonFile = new MockMultipartFile('targetData', 'invalid.json', 'application/json', invalidJsonContent.getBytes())
         when: 'get delta request is performed using REST API'
             def response = mvc.perform(multipart(dataNodeBaseEndpointV2)
                 .file(invalidTargetDataAsJsonFile)
@@ -196,10 +197,57 @@ class DeltaRestControllerSpec extends Specification {
         when: 'request to apply delta report to an anchor is performed using REST API'
             def response =
                 mvc.perform(post(applyDeltaEndpointV2)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(deltaReports)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(deltaReports)
                 ).andReturn().response
         then: 'expected response code is returned'
             assert response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'Get delta between anchor and XML payload with yangResourceFile'() {
+        given: 'sample delta report, xpath, yang model file and xml payload'
+            def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
+            def xpath = 'some xpath'
+            def xmlPayload = '<root><some-key>some-value</some-key></root>'
+            def multipartTargetDataAsXmlFile = new MockMultipartFile('targetData', 'requestBody.xml', 'application/xml', xmlPayload.getBytes(StandardCharsets.UTF_8))
+        and: 'the service layer returns a list containing delta reports'
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], xmlPayload, INCLUDE_ALL_DESCENDANTS, NO_GROUPING, ContentType.XML) >> [deltaReports]
+        when: 'get delta request is performed using REST API'
+            def response =
+                mvc.perform(multipart(dataNodeBaseEndpointV2)
+                        .file(multipartYangFile)
+                        .file(multipartTargetDataAsXmlFile)
+                        .param('xpath', xpath)
+                        .contentType(MediaType.MULTIPART_FORM_DATA)
+                        .accept(MediaType.APPLICATION_XML))
+                        .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected XML value'
+            assert response.contentAsString.contains('<deltaReports><deltaReport><action>create</action><xpath>some xpath</xpath></deltaReport></deltaReports>')
+    }q
+    
+
+    @Override
+    boolean equals(Object obj) {
+        return super.equals(obj)
+    }
+
+    def 'Attempt to get delta between anchor and XML payload with an Empty File'() {
+        given: 'xpath, yang model file and empty xml payload'
+            def xpath = 'some xpath'
+            def emptyTargetDataAsXmlFile = new MockMultipartFile('targetData', 'empty.xml', 'application/xml', new byte[0])
+        when: 'get delta request is performed using REST API'
+            def response = mvc.perform(multipart(dataNodeBaseEndpointV2)
+                .file(emptyTargetDataAsXmlFile)
+                .param('xpath', xpath)
+                .header('Accept', 'application/xml')
+                .contentType(MediaType.MULTIPART_FORM_DATA))
+                .andReturn()
+                .response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+        then: 'the response contains expected error message'
+            assert response.contentAsString.contains("XML file is required")
     }
 }
