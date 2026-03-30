@@ -30,6 +30,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
@@ -49,6 +51,7 @@ import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.XmlObjectMapper;
+import org.onap.cps.utils.deltareport.CompletionExceptionConverter;
 import org.onap.cps.utils.deltareport.DeltaReportExecutor;
 import org.onap.cps.utils.deltareport.DeltaReportGenerator;
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator;
@@ -82,11 +85,22 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                            final boolean groupDataNodes) {
 
         final String normalizedXpath = getNormalizedXpath(xpath);
-        final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
-        final Collection<DataNode> targetDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            targetAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
-        return getDeltaReports(sourceDataNodes, targetDataNodes, groupDataNodes);
+        final CompletableFuture<Collection<DataNode>> sourceFuture = CompletableFuture.supplyAsync(() ->
+            cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+                sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption));
+        final CompletableFuture<Collection<DataNode>> targetFuture = CompletableFuture.supplyAsync(() ->
+            cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+                targetAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption));
+        try {
+            final Collection<DataNode> sourceDataNodes = sourceFuture.join();
+            final Collection<DataNode> targetDataNodes = targetFuture.join();
+            return getDeltaReports(sourceDataNodes, targetDataNodes, groupDataNodes);
+        } catch (final CompletionException completionException) {
+            throw CompletionExceptionConverter.convertCompletionException(completionException,
+                "Failed to compute delta between anchors",
+                String.format("Unexpected error during delta computation for dataspace %s between anchors %s and %s "
+                    + "using xpath %s", dataspaceName, sourceAnchorName, targetAnchorName, normalizedXpath));
+        }
     }
 
     @Timed(value = "cps.delta.service.get.delta",
@@ -133,15 +147,10 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
     private List<DeltaReport> getDeltaReports(final Collection<DataNode> sourceDataNodes,
                                               final Collection<DataNode> targetDataNodes,
                                               final boolean groupDataNodes) {
-
-        final List<DeltaReport> deltaReport = new ArrayList<>();
         if (groupDataNodes) {
-            deltaReport
-                .addAll(groupedDeltaReportGenerator.createCondensedDeltaReports(sourceDataNodes, targetDataNodes));
-        } else {
-            deltaReport.addAll(deltaReportGenerator.createDeltaReports(sourceDataNodes, targetDataNodes));
+            return groupedDeltaReportGenerator.createCondensedDeltaReports(sourceDataNodes, targetDataNodes);
         }
-        return Collections.unmodifiableList(deltaReport);
+        return deltaReportGenerator.createDeltaReports(sourceDataNodes, targetDataNodes);
     }
 
     private Collection<DataNode> rebuildSourceDataNodes(final String xpath,
