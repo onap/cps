@@ -119,10 +119,11 @@ public class DataMapUtils {
             .collect(toUnmodifiableMap(DataMapUtils::getNodeIdentifierWithPrefix, DataMapUtils::toDataMap));
     }
 
-    private static String getNodeIdentifier(String xpath) {
-        final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(xpath);
-        if (cpsPathQuery.isPathToListElement()) {
-            xpath = cpsPathQuery.getXpathPrefix();
+    private static String getNodeIdentifier(final String xpath) {
+        if (isListElement(xpath)) {
+            final String xpathPrefix = CpsPathUtil.getCpsPathQuery(xpath).getXpathPrefix();
+            final int fromIndex = xpathPrefix.lastIndexOf('/') + 1;
+            return xpathPrefix.substring(fromIndex);
         }
         final int fromIndex = xpath.lastIndexOf('/') + 1;
         return xpath.substring(fromIndex);
