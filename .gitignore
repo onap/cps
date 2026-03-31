@@ -44,3 +44,5 @@ csit/archives/
 
 /k6-tests/logs/
 /k6-tests/image/
+
+provmns-api/.openapi-generator/

@@ -33,7 +33,7 @@ import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.impl.provmns.ParameterHelper;
 import org.onap.cps.ncmp.impl.provmns.RequestParameters;
-import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
+import org.onap.cps.ncmp.provmns.model.PatchItem;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
