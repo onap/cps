@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e535490_3d35f1a1",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-31T13:38:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dc7f6747_c5f79cf7",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "60f89e855216af90879dece555e57a2c72afeaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4f1cb53_6632ff23",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-03-31T08:27:46Z",
       "side": 1,
       "message": "use (CPS Core) URL to get all dataspaces instead",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 38
+      },
+      "revId": "60f89e855216af90879dece555e57a2c72afeaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2c4bc46_76dcc572",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-31T13:38:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a4f1cb53_6632ff23",
       "range": {
         "startLine": 68,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cbccf3f_de1c6609",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-31T13:38:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e179c380_b2a1f3f4",
+      "revId": "60f89e855216af90879dece555e57a2c72afeaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ea7a859_8d31bc63",
@@ -77,6 +143,30 @@
       "writtenOn": "2026-03-31T08:32:09Z",
       "side": 1,
       "message": "NB: remove dash",
+      "range": {
+        "startLine": 3,
+        "startChar": 29,
+        "endLine": 3,
+        "endChar": 30
+      },
+      "revId": "60f89e855216af90879dece555e57a2c72afeaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fcd7e5f_a3342716",
+        "filename": "postman-collections/Env_k8s.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-31T13:38:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5ea7a859_8d31bc63",
       "range": {
         "startLine": 3,
         "startChar": 29,
