@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "365e478e_11ce8e02",
+        "filename": "postman-collections/Env_k8s.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-03-31T13:12:33Z",
+      "side": 1,
+      "message": "Testing locally on windows, this only works with 30092; May need to compare setup to Toines to confirm",
+      "revId": "fe99a74769d6e856e2a5ee4c3ea82d136c7883eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
