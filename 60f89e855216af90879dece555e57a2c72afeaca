@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc7f6747_c5f79cf7",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-31T08:27:46Z",
+      "side": 1,
+      "message": "tssi command should be part of the note belwo, not the other way around.\nJust show accessing CPS witha  sampel URL ie to get all dataspaces (not health check)\nThen sho wteh note that on Linux (minikube) you need to enable port forwading first",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "60f89e855216af90879dece555e57a2c72afeaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f1cb53_6632ff23",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-31T08:27:46Z",
+      "side": 1,
+      "message": "use (CPS Core) URL to get all dataspaces instead",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 38
+      },
+      "revId": "60f89e855216af90879dece555e57a2c72afeaca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
