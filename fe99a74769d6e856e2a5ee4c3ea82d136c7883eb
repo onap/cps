@@ -72,6 +72,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e938ea5b_8bf2a3bf",
+        "filename": "postman-collections/Env_k8s.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-31T13:53:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4f68ee80_e302ddf5",
+      "revId": "fe99a74769d6e856e2a5ee4c3ea82d136c7883eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a4ef135_335d8686",
@@ -85,6 +103,30 @@
       "writtenOn": "2026-03-31T13:47:39Z",
       "side": 1,
       "message": "8092 (it is a unique server and can/is using the same port as the othr DMI server)",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 17
+      },
+      "revId": "fe99a74769d6e856e2a5ee4c3ea82d136c7883eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a11651b_a68e4073",
+        "filename": "postman-collections/Env_k8s.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-03-31T13:53:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5a4ef135_335d8686",
       "range": {
         "startLine": 37,
         "startChar": 13,
