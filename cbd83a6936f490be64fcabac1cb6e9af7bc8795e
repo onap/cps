@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fd8b1d8_3652bee5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-03-31T12:54:29Z",
+      "side": 1,
+      "message": "Looks good, minor comment",
+      "revId": "cbd83a6936f490be64fcabac1cb6e9af7bc8795e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0f81e48_001015e7",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-03-31T12:54:29Z",
+      "side": 1,
+      "message": "NB: Impact would probably be minor but we could add the small datajob here as well to maintain parity between the two tests",
+      "revId": "cbd83a6936f490be64fcabac1cb6e9af7bc8795e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
