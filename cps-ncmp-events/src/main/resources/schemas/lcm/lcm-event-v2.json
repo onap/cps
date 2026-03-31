@@ -22,6 +22,10 @@
           "description": "cmHandle id",
           "type": "string"
         },
+        "alternateId": {
+          "description": "alternative id for cmHandle (e.g. 3GPP FDN)",
+          "type": "string"
+        },
         "oldValues": {
           "description": "the old cmHandle properties(values) that have changed or been deleted",
           "type": "object",

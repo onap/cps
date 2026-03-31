@@ -59,6 +59,7 @@ public class PayloadFactory {
             default -> new PayloadV2();
         };
         payloadV2.setCmHandleId(targetNcmpServiceCmHandle.getCmHandleId());
+        payloadV2.setAlternateId(targetNcmpServiceCmHandle.getAlternateId());
         return payloadV2;
     }
 

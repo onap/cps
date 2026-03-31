@@ -40,11 +40,12 @@ class PayloadFactorySpec extends Specification {
 
     def 'Create payload for create operation.'() {
         given: 'a new cm handle'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch1', compositeState: defaultState, publicProperties: [prop1: 'value1'] )
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch1', alternateId: 'alt1', compositeState: defaultState, publicProperties: [prop1: 'value1'] )
         when: 'payload is created for create'
             def result = PayloadFactory.createPayloadV1(CREATE, null, ncmpServiceCmHandle)
         then: 'new values are populated'
             assert result.cmHandleId == 'ch1'
+            assert result.alternateId == 'alt1'
             assert result.newValues.dataSyncEnabled == true
             assert result.newValues.cmHandleState == LCM_READY
         and: 'the public properties are store as a list (fluke in old schema) of maps as cm handle properties (legacy name)'
@@ -133,27 +134,33 @@ class PayloadFactorySpec extends Specification {
 
     def 'Create V2 payload when #scenario changes.'() {
         given: 'current and target cm handles'
-            def currentCmHandle = new NcmpServiceCmHandle(compositeState: defaultState, publicProperties: [:],(propertyName):currentValue)
-            def targetCmHandle  = new NcmpServiceCmHandle(compositeState: defaultState, publicProperties: [:],(propertyName):targetValue)
+            def currentCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch1', compositeState: defaultState, publicProperties: [:],(propertyName):currentValue)
+            def targetCmHandle  = new NcmpServiceCmHandle(cmHandleId: 'ch1', compositeState: defaultState, publicProperties: [:],(propertyName):targetValue)
         when: 'V2 payload is created'
             def result = PayloadFactory.createPayloadV2(UPDATE, currentCmHandle, targetCmHandle)
-        then: 'changes are detected in V2 payload'
+        then: 'the IDs are set correctly'
+            assert result.cmHandleId == 'ch1'
+            assert result.alternateId == expectedAlternateId
+        and: 'changes are detected in V2 payload'
             assert result.oldValues[propertyName] == currentValue
             assert result.newValues[propertyName] == targetValue
-        where:
-            scenario                 | propertyName             | currentValue | targetValue
-            'alternateId'            | 'alternateId'            | 'old-alt-id' | 'new-alt-id'
-            'moduleSetTag'           | 'moduleSetTag'           | 'old-tag'    | 'new-tag'
-            'dataProducerIdentifier' | 'dataProducerIdentifier' | 'old-dpi'    | 'new-dpi'
+        where: 'following property changes are made'
+            scenario                 | propertyName             | currentValue | targetValue   || expectedAlternateId
+            'alternateId'            | 'alternateId'            | 'old-alt-id' | 'new-alt-id'  || 'new-alt-id'
+            'moduleSetTag'           | 'moduleSetTag'           | 'old-tag'    | 'new-tag'     || null
+            'dataProducerIdentifier' | 'dataProducerIdentifier' | 'old-dpi'    | 'new-dpi'     || null
     }
 
     def 'Create V2 payload when public properties change.'() {
         given: 'current and target cm handles with different properties'
-            def currentCmHandle = new NcmpServiceCmHandle(compositeState: defaultState, publicProperties: [oldProp:'oldValue'])
-            def targetCmHandle  = new NcmpServiceCmHandle(compositeState: defaultState, publicProperties: [newProp:'newValue'])
+            def currentCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch1', alternateId: 'alt1', compositeState: defaultState, publicProperties: [oldProp:'oldValue'])
+            def targetCmHandle  = new NcmpServiceCmHandle(cmHandleId: 'ch1', alternateId: 'alt1', compositeState: defaultState, publicProperties: [newProp:'newValue'])
         when: 'V2 payload is created'
             def result = PayloadFactory.createPayloadV2(UPDATE, currentCmHandle, targetCmHandle)
-        then: 'property changes are detected in V2 payload as "chHandleProperties"'
+        then: 'the IDs are set correctly'
+            assert result.cmHandleId == 'ch1'
+            assert result.alternateId == 'alt1'
+        and: 'property changes are detected in V2 payload as "chHandleProperties"'
             assert result.oldValues['cmHandleProperties'] == [oldProp:'oldValue']
             assert result.newValues['cmHandleProperties'] == [newProp:'newValue']
     }
@@ -170,7 +177,7 @@ class PayloadFactorySpec extends Specification {
         and: 'dataSyncEnabled is handled correctly'
             assert result.oldValues['dataSyncEnabled'] == expectedOldDataSync
             assert result.newValues['dataSyncEnabled'] == expectedNewDataSync
-        where:
+        where: 'the following scenario is applied'
             dataSyncScenario | targetDataSync | expectedOldDataSync | expectedNewDataSync
             'changes'        | false          | true                | false
             'does not change'| true           | null                | null
