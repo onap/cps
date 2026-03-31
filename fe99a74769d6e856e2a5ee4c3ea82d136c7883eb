@@ -52,6 +52,47 @@
       "parentUuid": "22d08cb9_faa299b3",
       "revId": "fe99a74769d6e856e2a5ee4c3ea82d136c7883eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f68ee80_e302ddf5",
+        "filename": "postman-collections/Env_k8s.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-31T13:47:39Z",
+      "side": 1,
+      "message": "8092 is correct, but it need to be applied to BOTh DMIs actually",
+      "parentUuid": "365e478e_11ce8e02",
+      "revId": "fe99a74769d6e856e2a5ee4c3ea82d136c7883eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a4ef135_335d8686",
+        "filename": "postman-collections/Env_k8s.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-03-31T13:47:39Z",
+      "side": 1,
+      "message": "8092 (it is a unique server and can/is using the same port as the othr DMI server)",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 17
+      },
+      "revId": "fe99a74769d6e856e2a5ee4c3ea82d136c7883eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
