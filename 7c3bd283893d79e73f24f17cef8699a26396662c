@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e61c59_fb511aa7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-01T09:27:15Z",
+      "side": 1,
+      "message": "on small blocking issue,see below",
+      "revId": "7c3bd283893d79e73f24f17cef8699a26396662c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f82fa369_96c4ff07",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSExtensionsControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-01T09:27:15Z",
+      "side": 1,
+      "message": "ist a stupid version, but then again the guild have to get their way sometimes 😊",
+      "range": {
+        "startLine": 44,
+        "startChar": 67,
+        "endLine": 44,
+        "endChar": 74
+      },
+      "revId": "7c3bd283893d79e73f24f17cef8699a26396662c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fd50bd6_214ce87f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-01T09:27:15Z",
+      "side": 1,
+      "message": "this could easily be somewhere else in the \u0027normal\u0027 path. It should be stricter!\nActually, can you check it contains PROVMNS-ACTIONS_PATH ?!",
+      "range": {
+        "startLine": 139,
+        "startChar": 30,
+        "endLine": 139,
+        "endChar": 41
+      },
+      "revId": "7c3bd283893d79e73f24f17cef8699a26396662c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
