@@ -1200,7 +1200,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"cmHandleWithDmiPlugin\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"dmiPluginName\": \"http://{{DMI_HOST}}:{{DMI_PORT}}\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+											"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"cmHandleWithDmiPlugin\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"dmiPluginName\": \"http://{{DMI_HOST_1}}:{{DMI_PORT_1}}\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
