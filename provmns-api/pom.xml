@@ -105,23 +105,43 @@
     <build>
         <finalName>${project.artifactId}-${provmns.lib.version}</finalName>
         <plugins>
+            <!--
+                Merges the pre-built generated-only JAR from local-repo with the hand-written compiled classes
+                into the final JAR during the package phase. The hand-written classes (Resource,
+                ClassNameIdGetDataNodeSelectorParameter) override any stale versions from the lib JAR.
+                After install, the merged JAR is copied back to local-repo so it stays up to date
+                for subsequent builds (e.g. IntelliJ), avoiding the 'missing classes' issue.
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>3.1.0</version>
                 <executions>
+                    <!-- Merges generated classes from local-repo lib JAR with hand-written compiled classes into the final JAR -->
                     <execution>
                         <id>merge-lib-jar</id>
                         <phase>package</phase>
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                                <!-- Merge lib JAR with compiled hand-written classes into final JAR -->
                                 <jar destfile="${project.build.directory}/${project.build.finalName}.jar">
                                     <zipfileset src="${project.basedir}/local-repo/org/onap/cps/provmns-api/${provmns.lib.version}/provmns-api-${provmns.lib.version}.jar"
                                                 excludes="**/Resource.class,**/ClassNameIdGetDataNodeSelectorParameter.class"/>
                                     <fileset dir="${project.build.outputDirectory}"/>
                                 </jar>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <!-- Syncs the merged JAR back to local-repo so IntelliJ and subsequent builds see the full jar -->
+                    <execution>
+                        <id>update-local-repo-jar</id>
+                        <phase>install</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                                <copy file="${project.build.directory}/${project.build.finalName}.jar"
+                                      tofile="${project.basedir}/local-repo/org/onap/cps/provmns-api/${provmns.lib.version}/provmns-api-${provmns.lib.version}.jar"
+                                      overwrite="true"/>
                             </target>
                         </configuration>
                     </execution>
