@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 Deutsche Telekom AG
+ *  Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ package org.onap.cps.integration.performance.cps
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 import org.onap.cps.utils.ContentType
-import spock.lang.Ignore
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -124,7 +123,6 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 7.0
     }
 
-    @Ignore
     def 'Apply delta report to an anchor'() {
         given: 'a delta report between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(CPS_PERFORMANCE_TEST_DATASPACE, 'target-anchor1', 'source-anchor1', '/openroadm-devices', INCLUDE_ALL_DESCENDANTS, true)
