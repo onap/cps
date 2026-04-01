@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96185837_8aea925a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/PayloadFactorySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-01T16:24:54Z",
+      "side": 1,
+      "message": "NB: my-ch1 is checked later",
+      "revId": "f1c356dc55f0b865d8792cf5db2f9dbfdff34916",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
