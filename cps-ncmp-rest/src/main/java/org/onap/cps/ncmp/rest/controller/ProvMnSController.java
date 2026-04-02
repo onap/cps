@@ -136,18 +136,19 @@ public class ProvMnSController implements ProvMnS {
     }
 
     @Override
-    public ResponseEntity<Object> putMoi(final HttpServletRequest httpServletRequest, final Resource resource) {
+    public ResponseEntity<Object> putMoi(final HttpServletRequest httpServletRequest, final String requestBody) {
         final RequestParameters requestParameters = ParameterHelper.extractRequestParameters(httpServletRequest);
         try {
             final YangModelCmHandle yangModelCmHandle = getAndValidateYangModelCmHandle(requestParameters);
             if (policyExecutorEnabled) {
+                final Resource resource = jsonObjectMapper.convertJsonString(requestBody, Resource.class);
                 final OperationDetails operationDetails =
                     operationDetailsFactory.buildOperationDetails(CREATE, requestParameters, resource);
                 checkPermission(yangModelCmHandle, operationDetails, requestParameters);
             }
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestParameters.fdn());
-            return dmiRestClient.synchronousPutOperation(DATA, resource,
+            return dmiRestClient.synchronousPutOperation(DATA, requestBody,
                 urlTemplateParameters, requestParameters.authorization());
         } catch (final Exception exception) {
             throw toProvMnSException(httpServletRequest.getMethod(), exception, NO_OP);
