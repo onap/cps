@@ -76,4 +76,13 @@ class ParametersBuilderSpec extends Specification{
             assert result.urlVariables.isEmpty()
     }
 
+    def 'Create url template parameters for provmns extensions action operations.'() {
+        when: 'Creating URL parameters for POST'
+            def result = objectUnderTest.createUrlTemplateParametersForAction(new YangModelCmHandle(dmiServiceName: 'myDmiService'),'/target/fdn', 'myAction')
+        then: 'the template has the correct correct'
+            assert result.urlTemplate.toString().startsWith('myDmiService/prov-mns-extensions/v1alpha1/actions/target/fdn/myAction')
+        and: 'no url variables have been set'
+            assert result.urlVariables.isEmpty()
+    }
+
 }

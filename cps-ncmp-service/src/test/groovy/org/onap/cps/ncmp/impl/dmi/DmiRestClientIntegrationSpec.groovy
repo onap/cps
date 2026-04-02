@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -71,6 +71,9 @@ class DmiRestClientIntegrationSpec extends Specification {
                 case 'post':
                     result = objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters, 'body', CREATE, '')
                     break
+                case 'passthroughPost':
+                    result = objectUnderTest.synchronousPostOperationWithPassthroughReturn(DATA, 'body', urlTemplateParameters, 'my-authorization')
+                    break
                 case 'put':
                     result = objectUnderTest.synchronousPutOperation(DATA, 'body', urlTemplateParameters, 'my-authorization')
                     break
@@ -83,7 +86,7 @@ class DmiRestClientIntegrationSpec extends Specification {
         then: 'the result has the same status code of 200'
             assert result.statusCode.value() == 200
         where: 'the following http methods are used'
-            method << ['get', 'post', 'put', 'patch', 'delete']
+            method << ['get', 'post', 'passthroughPost', 'put', 'patch', 'delete']
     }
 
     def 'Synchronous DMI post request with invalid JSON.'() {

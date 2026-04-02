@@ -35,8 +35,8 @@ class ProvMnSExtensionsRestApiSpec extends CpsIntegrationSpecBase{
             registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/A=1/B=2')
         when: 'a POST request is sent'
             def result = mvc.perform(post("/prov-mns-extensions/v1alpha1/actions/A=1/B=2/update").contentType(MediaType.APPLICATION_JSON).content('{"customProperties":{}, "input":{}}')).andReturn().response
-        then: 'a NOT IMPLEMENTED is returned'
-            result.getStatus() == HttpStatus.NOT_IMPLEMENTED.value()
+        then: 'an OK is returned'
+            result.getStatus() == HttpStatus.OK.value()
         cleanup: 'deregister CM handles'
             deregisterCmHandle(DMI1_URL, 'ch-1')
     }

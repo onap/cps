@@ -94,6 +94,30 @@ public class DmiRestClient {
     }
 
     /**
+     * Sends a synchronous (blocking) POST operation to the DMI with a JSON body containing module references.
+     * Returns the DMI response exactly as received, without any modification.
+     *
+     * @param requiredDmiService      Determines if the required service is for a data or model operation.
+     * @param body                    object to be forwarded.
+     * @param urlTemplateParameters   The DMI resource URL template with variables.
+     * @param authorization           Contents of the Authorization header, or null if not present.
+     * @return                        ResponseEntity containing the response from the DMI.
+     */
+    public ResponseEntity<Object> synchronousPostOperationWithPassthroughReturn(
+                                                           final RequiredDmiService requiredDmiService,
+                                                           final Object body,
+                                                           final UrlTemplateParameters urlTemplateParameters,
+                                                           final String authorization) {
+        return getWebClient(requiredDmiService)
+            .post()
+            .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
+            .bodyValue(body)
+            .exchangeToMono(this::createIdenticalResponseForClient)
+            .block();
+    }
+
+    /**
      * Asynchronously performs an HTTP POST operation with the given JSON data.
      *
      * @param requiredDmiService      The service object required for retrieving or configuring the WebClient.

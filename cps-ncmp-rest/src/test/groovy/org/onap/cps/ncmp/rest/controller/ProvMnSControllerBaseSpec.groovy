@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.provmns.ParametersBuilder
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
+import org.onap.cps.ncmp.rest.util.ProvMnSHelper
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -41,8 +42,11 @@ import spock.lang.Specification
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 
-@WebMvcTest([ProvMnSController, OperationDetailsFactory])
+@WebMvcTest([ProvMnSController, ProvMnSExtensionsController, ProvMnSHelper, OperationDetailsFactory])
 abstract class ProvMnSControllerBaseSpec extends Specification {
+
+    @Autowired
+    ProvMnSHelper provMnSHelper
 
     @SpringBean
     ParametersBuilder parametersBuilder = new ParametersBuilder()
@@ -73,6 +77,9 @@ abstract class ProvMnSControllerBaseSpec extends Specification {
 
     @Value('${rest.api.provmns-base-path}')
     def provMnSBasePath
+
+    @Value('${rest.api.provmns-extensions-base-path}')
+    def provMnSExtensionsBasePath
 
     @Value('${app.ncmp.provmns.max-patch-operations:10}')
     int maxNumberOfPatchOperations
