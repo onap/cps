@@ -29,14 +29,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @SuppressWarnings('SpellCheckingInspection')
 class ProvMnSExtensionsRestApiSpec extends CpsIntegrationSpecBase{
 
+    def actionResponseAsJson = '{customProperties:{colour: "blue"}, value:{size: "medium"}}'
+
     def 'Send Post request to ProvMnS Extensions interface'() {
         given: 'a registered cm handle'
             dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
             registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/A=1/B=2')
         when: 'a POST request is sent'
             def result = mvc.perform(post("/prov-mns-extensions/v1alpha1/actions/A=1/B=2/update").contentType(MediaType.APPLICATION_JSON).content('{"customProperties":{}, "input":{}}')).andReturn().response
-        then: 'a NOT IMPLEMENTED is returned'
-            result.getStatus() == HttpStatus.NOT_IMPLEMENTED.value()
+        then: 'an OK is returned'
+            result.getStatus() == HttpStatus.OK.value()
+        and: 'the response is identical to response for dmi'
+            result.getContentAsString().contains(actionResponseAsJson)
         cleanup: 'deregister CM handles'
             deregisterCmHandle(DMI1_URL, 'ch-1')
     }

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -68,8 +68,11 @@ class DmiRestClientIntegrationSpec extends Specification {
                 case 'get':
                     result = objectUnderTest.synchronousGetOperation(DATA, urlTemplateParameters, 'my-authorization')
                     break
-                case 'post':
-                    result = objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters, 'body', CREATE, '')
+                case 'postPassthrough':
+                    result = objectUnderTest.synchronousPostOperation(DATA, 'body', urlTemplateParameters, 'my-authorization')
+                    break
+                case 'postWithErrorMapping':
+                    result = objectUnderTest.synchronousPostOperationWithErrorMapping(DATA, urlTemplateParameters, 'body', CREATE, '')
                     break
                 case 'put':
                     result = objectUnderTest.synchronousPutOperation(DATA, 'body', urlTemplateParameters, 'my-authorization')
@@ -83,7 +86,7 @@ class DmiRestClientIntegrationSpec extends Specification {
         then: 'the result has the same status code of 200'
             assert result.statusCode.value() == 200
         where: 'the following http methods are used'
-            method << ['get', 'post', 'put', 'patch', 'delete']
+            method << ['get', 'postPassthrough', 'postWithErrorMapping', 'put', 'patch', 'delete']
     }
 
     def 'Synchronous DMI post request with invalid JSON.'() {
@@ -92,7 +95,7 @@ class DmiRestClientIntegrationSpec extends Specification {
                 .setBody('invalid-json:!!')
                 .addHeader('Content-Type', 'application/json'))
         when: 'synchronous post request is attempted (on Model service this time for coverage on service selector)'
-            objectUnderTest.synchronousPostOperation(MODEL, urlTemplateParameters, 'body', READ, 'some authorization')
+            objectUnderTest.synchronousPostOperationWithErrorMapping(MODEL, urlTemplateParameters, 'body', READ, 'some authorization')
         then: 'a dmi client request exception is thrown with the correct error codes'
             def thrown = thrown(DmiClientRequestException)
             assert thrown.getHttpStatusCode() == 500
@@ -103,7 +106,7 @@ class DmiRestClientIntegrationSpec extends Specification {
         given: 'the web server is shut down'
             mockWebServer.shutdown()
         when: 'a synchronous post request is attempted'
-            objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters,'body', CREATE, '' )
+            objectUnderTest.synchronousPostOperationWithErrorMapping(DATA, urlTemplateParameters,'body', CREATE, '' )
         then: 'a dmi client request exception is thrown with status code of 503 Service Unavailable'
             def thrown = thrown(DmiClientRequestException)
             assert thrown.getHttpStatusCode() == 503
@@ -113,7 +116,7 @@ class DmiRestClientIntegrationSpec extends Specification {
         given: 'the mock server or exception setup'
             mockWebServer.enqueue(new MockResponse().setResponseCode(responseCode.value))
         when: 'a synchronous post request is attempted'
-            objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters,'body', CREATE, '')
+            objectUnderTest.synchronousPostOperationWithErrorMapping(DATA, urlTemplateParameters,'body', CREATE, '')
         then: 'a DMI client request exception is thrown with the right status'
             def thrown = thrown(DmiClientRequestException)
             assert thrown.httpStatusCode == expectedStatus

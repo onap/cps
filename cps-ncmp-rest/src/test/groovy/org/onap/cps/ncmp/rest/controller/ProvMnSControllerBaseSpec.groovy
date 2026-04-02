@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.provmns.ParametersBuilder
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
+import org.onap.cps.ncmp.rest.util.ProvMnSCmHandleRetriever
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -41,7 +42,7 @@ import spock.lang.Specification
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 
-@WebMvcTest([ProvMnSController, OperationDetailsFactory])
+@WebMvcTest([ProvMnSController, ProvMnSExtensionsController, OperationDetailsFactory])
 abstract class ProvMnSControllerBaseSpec extends Specification {
 
     @SpringBean
@@ -70,6 +71,9 @@ abstract class ProvMnSControllerBaseSpec extends Specification {
 
     @SpringBean
     JsonObjectMapper spiedJsonObjectMapper = Spy(new JsonObjectMapper(objectMapper))
+
+    @SpringBean
+    ProvMnSCmHandleRetriever provMnSCmHandleRetriever = new ProvMnSCmHandleRetriever(mockAlternateIdMatcher, mockInventoryPersistence)
 
     @Value('${rest.api.provmns-base-path}')
     def provMnSBasePath

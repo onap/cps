@@ -52,7 +52,6 @@ public interface ProvMnSExtensions {
      *         given Action Name. (status code 404) or Not Acceptable - Server is not yet ready to accept requests
      *         towards given Managed Object. (status code 406) or Internal Server Error (status code 500)
      *         or Gateway Timeout - Southbound System is unavailable. (status code 504)
-     *         or Internal Server Error (status code 200)
      */
     @Operation(
         operationId = "executeAction",
@@ -61,14 +60,14 @@ public interface ProvMnSExtensions {
             + "if there are any.",
         tags = { "action" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "Ok - This status code is returned when the action has "
+            @ApiResponse(responseCode = "200", description = "OK - This status code is returned when the action has "
                 + "been successfully executed.", content = {
                     @Content(mediaType = "application/json",
                         schema = @Schema(implementation = ActionResponse.class)),
                     @Content(mediaType = "application/problem+json",
                         schema = @Schema(implementation = ActionResponse.class))
                 }),
-            @ApiResponse(responseCode = "204", description = "No content - This status code may be returned only when "
+            @ApiResponse(responseCode = "204", description = "No Content - This status code may be returned only when "
                 + "the action response has no message body."),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = {
                 @Content(mediaType = "application/json",
@@ -102,13 +101,7 @@ public interface ProvMnSExtensions {
                         schema = @Schema(implementation = ErrorResponseDefault.class)),
                     @Content(mediaType = "application/problem+json",
                         schema = @Schema(implementation = ErrorResponseDefault.class))
-                }),
-            @ApiResponse(responseCode = "default", description = "Internal Server Error", content = {
-                @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = ErrorResponseDefault.class)),
-                @Content(mediaType = "application/problem+json",
-                    schema = @Schema(implementation = ErrorResponseDefault.class))
-            })
+                })
         }
     )
     @RequestMapping(

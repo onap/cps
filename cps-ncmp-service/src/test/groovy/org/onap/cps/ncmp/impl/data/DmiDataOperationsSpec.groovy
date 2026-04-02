@@ -162,7 +162,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedTemplateWithVariables = new UrlTemplateParameters('myServiceName/dmi/v1/ch/{cmHandleId}/data/ds/{datastore}?resourceIdentifier={resourceIdentifier}&options={options}', ['resourceIdentifier': '/', 'datastore': 'ncmp-datastore:passthrough-operational', 'cmHandleId': cmHandleId, 'options': OPTIONS_PARAM])
             def expectedJson = '{"operation":"read","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":"my-module-set-tag"}'
-            mockDmiRestClient.synchronousPostOperation(DATA, expectedTemplateWithVariables, expectedJson, READ, null) >> responseFromDmi
+            mockDmiRestClient.synchronousPostOperationWithErrorMapping(DATA, expectedTemplateWithVariables, expectedJson, READ, null) >> responseFromDmi
         when: 'get resource data is invoked'
             def result = objectUnderTest.getAllResourceDataFromDmi(cmHandleId, NO_REQUEST_ID, OPTIONS_PARAM)
         then: 'the result is the response from the DMI service'
@@ -177,7 +177,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedUrlTemplateParameters = new UrlTemplateParameters('myServiceName/dmi/v1/ch/{cmHandleId}/data/ds/{datastore}?resourceIdentifier={resourceIdentifier}', ['resourceIdentifier': resourceIdentifier, 'datastore': 'ncmp-datastore:passthrough-running', 'cmHandleId': cmHandleId])
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
-            mockDmiRestClient.synchronousPostOperation(DATA, expectedUrlTemplateParameters, expectedJson, operation, NO_AUTH_HEADER) >> responseFromDmi
+            mockDmiRestClient.synchronousPostOperationWithErrorMapping(DATA, expectedUrlTemplateParameters, expectedJson, operation, NO_AUTH_HEADER) >> responseFromDmi
         when: 'write resource method is invoked'
             def result = objectUnderTest.writeResourceDataPassThroughRunningFromDmi(cmHandleId, 'parent/child', operation, 'requestData', 'some data type', NO_AUTH_HEADER)
         then: 'the result is the response from the DMI service'

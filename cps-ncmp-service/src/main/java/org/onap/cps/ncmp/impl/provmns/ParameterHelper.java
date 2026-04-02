@@ -52,25 +52,26 @@ public class ParameterHelper {
     }
 
     /**
-     * Converts HttpServletRequest to RequestParameters.
+     * Converts HttpServletRequest to ActionRequestParameters.
      *
      * @param httpServletRequest HttpServletRequest object containing the path
-     * @return RequestParameters object containing action and FDN parameters
+     * @return ActionRequestParameters object containing action and FDN parameters
      */
     public static ActionRequestParameters extractActionRequestParameters(final HttpServletRequest httpServletRequest) {
         final String fullPath = getFullPath(httpServletRequest);
-        validateProvMnSExtensionsPath(fullPath, httpServletRequest.getMethod());
+        validatePathStructure(fullPath, httpServletRequest.getMethod());
         final int lastSlashIndex = fullPath.lastIndexOf('/');
         final String parentFdn = fullPath.substring(0, lastSlashIndex);
         final String action = fullPath.substring(lastSlashIndex + 1);
-        return new ActionRequestParameters(parentFdn, action);
+        return new ActionRequestParameters(httpServletRequest.getMethod(),
+            httpServletRequest.getHeader("Authorization"), parentFdn, action);
     }
 
     /**
      * Create RequestParameters object for PATCH operations.
      *
      * @param pathWithAttributes the path a fdn possibly with containing attributes
-     * @param authorization HttpServletRequest object
+     * @param authorization the authorization header value
      * @return RequestParameters object for PATCH operation
      */
     public static RequestParameters createRequestParametersForPatch(
@@ -136,7 +137,7 @@ public class ParameterHelper {
         return new ProvMnSException(httpMethodName, HttpStatus.UNPROCESSABLE_ENTITY, title, NO_OP);
     }
 
-    private static void validateProvMnSExtensionsPath(final String path, final String httpMethodName) {
+    private static void validatePathStructure(final String path, final String httpMethodName) {
         if (StringUtils.countOccurrencesOf(path, "/") < 2) {
             throw createProvMnSException(httpMethodName, path);
         }
