@@ -285,7 +285,7 @@ public interface ProvMnS {
         HttpServletRequest httpServletRequest,
         @Parameter(name = "Resource",
             description = "The request body describes the resource that has been created or replaced", required = true)
-        @Valid @RequestBody Resource resource
+        @Valid @RequestBody String requestBody
     );
 
 }
