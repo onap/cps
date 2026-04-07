@@ -62,6 +62,30 @@
       },
       "revId": "7c3bd283893d79e73f24f17cef8699a26396662c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c296a71_e25f04bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-07T13:25:41Z",
+      "side": 1,
+      "message": "Introduced REGEX pattern matcher which performs same check",
+      "parentUuid": "8fd50bd6_214ce87f",
+      "range": {
+        "startLine": 139,
+        "startChar": 30,
+        "endLine": 139,
+        "endChar": 41
+      },
+      "revId": "7c3bd283893d79e73f24f17cef8699a26396662c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
