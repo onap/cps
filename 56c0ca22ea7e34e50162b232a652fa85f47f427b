@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d285de6_c8bd21fd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-08T07:16:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7085f066_039416a4",
+      "range": {
+        "startLine": 59,
+        "startChar": 44,
+        "endLine": 59,
+        "endChar": 63
+      },
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0845107f_9ba55c85",
@@ -136,6 +160,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b07dc125_65793ea1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-08T07:16:20Z",
+      "side": 1,
+      "message": "we can keep baseCpsPath to indicate it holds the first CPS Path of the composite query",
+      "parentUuid": "d005ecac_40fe8141",
+      "range": {
+        "startLine": 69,
+        "startChar": 27,
+        "endLine": 69,
+        "endChar": 38
+      },
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e5750b7_0fc09f5a",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
         "patchSetId": 5
@@ -147,6 +195,30 @@
       "writtenOn": "2026-03-31T04:39:20Z",
       "side": 1,
       "message": "anchorEntity",
+      "range": {
+        "startLine": 124,
+        "startChar": 66,
+        "endLine": 124,
+        "endChar": 72
+      },
+      "revId": "56c0ca22ea7e34e50162b232a652fa85f47f427b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3df4f69_8b6d4ff1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-08T07:16:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e5750b7_0fc09f5a",
       "range": {
         "startLine": 124,
         "startChar": 66,
