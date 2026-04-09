@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff7b6b27_5e68f53a",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-09T15:14:50Z",
+      "side": 1,
+      "message": "inconsistent but if thats agreed thats fine.",
+      "range": {
+        "startLine": 31,
+        "startChar": 38,
+        "endLine": 31,
+        "endChar": 47
+      },
+      "revId": "89500c976cafd79c7b999b377c98ee8a71ac9972",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
