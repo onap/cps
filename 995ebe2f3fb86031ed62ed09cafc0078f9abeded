@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87203829_eeb5a6b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a91f7a8e_4aee9aea",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 122,
+        "endChar": 98
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3516f6e5_19328e5f",
@@ -71,6 +95,30 @@
       "writtenOn": "2026-03-30T08:07:51Z",
       "side": 1,
       "message": "just wondering should we distinquish between \u0027errors\u0027 and \u0027not ready\u0027. It\u0027s easy anyway, just another collection...",
+      "range": {
+        "startLine": 123,
+        "startChar": 12,
+        "endLine": 123,
+        "endChar": 26
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfb9192d_99f538c9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3516f6e5_19328e5f",
       "range": {
         "startLine": 123,
         "startChar": 12,
@@ -127,6 +175,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec279a95_d949ea10",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b0e0988_b88750a7",
+      "range": {
+        "startLine": 111,
+        "startChar": 42,
+        "endLine": 111,
+        "endChar": 55
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f72eeca0_57e18cbc",
@@ -140,6 +212,30 @@
       "writtenOn": "2026-03-30T08:07:51Z",
       "side": 1,
       "message": "not needed if this is the 2nd test (se comment on order below)",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df352612_c386324c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f72eeca0_57e18cbc",
       "range": {
         "startLine": 42,
         "startChar": 12,
@@ -173,6 +269,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfd3ddb0_8d1fdb9a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "642d614b_02294d45",
+      "range": {
+        "startLine": 45,
+        "startChar": 97,
+        "endLine": 45,
+        "endChar": 108
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc75f593_f59c5d87",
@@ -186,6 +306,30 @@
       "writtenOn": "2026-03-30T08:07:51Z",
       "side": 1,
       "message": "NB: not needed",
+      "range": {
+        "startLine": 49,
+        "startChar": 41,
+        "endLine": 49,
+        "endChar": 48
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "256434e1_0363e912",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc75f593_f59c5d87",
       "range": {
         "startLine": 49,
         "startChar": 41,
@@ -219,6 +363,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf0bef2a_dbb1637b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3aade23_32f67fd1",
+      "range": {
+        "startLine": 52,
+        "startChar": 9,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29a1cede_5d486c95",
@@ -232,6 +400,30 @@
       "writtenOn": "2026-03-30T08:07:51Z",
       "side": 1,
       "message": "use Groovy euth producerKeyMap.values[0] \u003d\u003d  ...  OR even\nproducerKeyMap \u003d\u003d [ \u003cexpectedKey\u003e: \u0027/ManagedElement[id\u003d\"ME1\"]\u0027 ]",
+      "range": {
+        "startLine": 64,
+        "startChar": 40,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb27349d_432ae023",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29a1cede_5d486c95",
       "range": {
         "startLine": 64,
         "startChar": 40,
@@ -265,6 +457,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6abb1d7d_6752833c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90b31ce9_c061d85a",
+      "range": {
+        "startLine": 79,
+        "startChar": 42,
+        "endLine": 79,
+        "endChar": 64
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c18e13d1_e07dd3ce",
@@ -278,6 +494,30 @@
       "writtenOn": "2026-03-30T08:07:51Z",
       "side": 1,
       "message": "not sure if size check is needed.\nI would just use .containsInAnyOrder(...)",
+      "range": {
+        "startLine": 93,
+        "startChar": 40,
+        "endLine": 93,
+        "endChar": 52
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05e86911_b57f7d57",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c18e13d1_e07dd3ce",
       "range": {
         "startLine": 93,
         "startChar": 40,
@@ -311,6 +551,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed221f39_e62f6bd4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66279731_38dad29d",
+      "range": {
+        "startLine": 113,
+        "startChar": 34,
+        "endLine": 113,
+        "endChar": 40
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2fb60b9_736d217b",
@@ -324,6 +588,30 @@
       "writtenOn": "2026-03-30T08:07:51Z",
       "side": 1,
       "message": "not needed to repeat this",
+      "range": {
+        "startLine": 130,
+        "startChar": 9,
+        "endLine": 130,
+        "endChar": 43
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d227f0f8_aad9bb06",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2fb60b9_736d217b",
       "range": {
         "startLine": 130,
         "startChar": 9,
@@ -357,6 +645,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da3f38cd_5c6f75c1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3db64b07_8474ec47",
+      "range": {
+        "startLine": 145,
+        "startChar": 78,
+        "endLine": 145,
+        "endChar": 88
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c4a2f47_6f8f18e8",
@@ -370,6 +682,30 @@
       "writtenOn": "2026-03-30T08:07:51Z",
       "side": 1,
       "message": "I have seen AI written test adding teh mix but I dont think it adds value...\n(but it does add maintenance cost)",
+      "range": {
+        "startLine": 179,
+        "startChar": 1,
+        "endLine": 192,
+        "endChar": 5
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "058ba67b_cba05e78",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2c4a2f47_6f8f18e8",
       "range": {
         "startLine": 179,
         "startChar": 1,
@@ -426,6 +762,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e1e2417_c04731b4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e587f1eb_b239dd11",
+      "range": {
+        "startLine": 109,
+        "startChar": 47,
+        "endLine": 109,
+        "endChar": 54
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12f826a8_7d67531a",
@@ -439,6 +799,30 @@
       "writtenOn": "2026-03-30T08:07:51Z",
       "side": 1,
       "message": "NB: Remove redundant spacing",
+      "range": {
+        "startLine": 112,
+        "startChar": 117,
+        "endLine": 112,
+        "endChar": 121
+      },
+      "revId": "995ebe2f3fb86031ed62ed09cafc0078f9abeded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f18832b_b3c62f45",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-10T10:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12f826a8_7d67531a",
       "range": {
         "startLine": 112,
         "startChar": 117,
