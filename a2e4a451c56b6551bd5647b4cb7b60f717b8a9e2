@@ -52,6 +52,40 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e27fdf11_d9776f4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-10T09:14:42Z",
+      "side": 1,
+      "message": "Looks good, one NB",
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34557a6f_83196b84",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-10T09:14:42Z",
+      "side": 1,
+      "message": "NB: separate words in description",
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baea0f33_08e45318",
