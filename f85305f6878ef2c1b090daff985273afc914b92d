@@ -223,6 +223,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e426c6fb_a86d826f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-13T14:23:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8e00270f_ac14fa0a",
+      "range": {
+        "startLine": 144,
+        "startChar": 30,
+        "endLine": 144,
+        "endChar": 67
+      },
+      "revId": "f85305f6878ef2c1b090daff985273afc914b92d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73cad005_2d4010fa",

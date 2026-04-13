@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d9390ee_5dad7813",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-13T14:23:00Z",
+      "side": 1,
+      "message": "NB: resolveSearchTerm or resolveSelectorWithSearchTerm",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 35
+      },
+      "revId": "e37e3174362f333de41a08cede81bba368b0d9b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0cf7093_15435f10",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-13T14:23:00Z",
+      "side": 1,
+      "message": "NB: fits on 1 line now I think",
+      "range": {
+        "startLine": 108,
+        "startChar": 33,
+        "endLine": 109,
+        "endChar": 62
+      },
+      "revId": "e37e3174362f333de41a08cede81bba368b0d9b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd4f637_7d191dab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-13T14:23:00Z",
+      "side": 1,
+      "message": "ah, very interesting, the aem selector appear in two list now... \nDidn\u0027t realize that but this improved test made it clear...\nI am sure this will be a contentious item when they start using it for real, they probably will want more info on the not-ready ones... But no need to address that now...",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 67
+      },
+      "revId": "e37e3174362f333de41a08cede81bba368b0d9b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
