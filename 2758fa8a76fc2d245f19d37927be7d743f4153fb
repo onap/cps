@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "2758fa8a76fc2d245f19d37927be7d743f4153fb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "717dca64_060db7da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-13T07:59:45Z",
+      "side": 1,
+      "message": "just have a  question",
+      "revId": "2758fa8a76fc2d245f19d37927be7d743f4153fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2f687cc_48bf0a27",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-13T07:59:45Z",
+      "side": 1,
+      "message": "does this mean we are deviating from the origininal 3GPP interface?!",
+      "range": {
+        "startLine": 234,
+        "startChar": 14,
+        "endLine": 234,
+        "endChar": 25
+      },
+      "revId": "2758fa8a76fc2d245f19d37927be7d743f4153fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
