@@ -86,6 +86,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe3fd6cd_541c54c2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34557a6f_83196b84",
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baea0f33_08e45318",
@@ -99,6 +117,30 @@
       "writtenOn": "2026-03-17T15:13:00Z",
       "side": 1,
       "message": "I know it wasn\u0027t an initial requirement in the epic you created, but we often measure end to end througput of cm events, and one metric that we usually assert is the latency. The time difference between the actual event that happened on the node and the time when someone can consume that very same event from the final topic. Would it be a huge request to introduce a new gauge metric which propagates the elapsed time between the input cloudevent\u0027s time field and the current time?",
+      "range": {
+        "startLine": 171,
+        "startChar": 24,
+        "endLine": 171,
+        "endChar": 75
+      },
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94849f40_68980c80",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:35Z",
+      "side": 1,
+      "message": "will be on seperate story",
+      "parentUuid": "baea0f33_08e45318",
       "range": {
         "startLine": 171,
         "startChar": 24,
@@ -132,6 +174,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0175382d_3730c850",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:35Z",
+      "side": 1,
+      "message": "will be on separate story",
+      "parentUuid": "c31188ef_2c4e4b6b",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 86
+      },
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad2b6d9b_4e12bfef",
@@ -155,6 +221,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b40f240e_68f38314",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad2b6d9b_4e12bfef",
+      "range": {
+        "startLine": 204,
+        "startChar": 72,
+        "endLine": 204,
+        "endChar": 79
+      },
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea3c8897_77eea92c",
@@ -168,6 +258,30 @@
       "writtenOn": "2026-03-12T13:31:52Z",
       "side": 1,
       "message": "NB: probably would certae 2 separate methods for clarity:\nverifyAnyLogEntry()\nverifyLastLogEnrty()",
+      "range": {
+        "startLine": 209,
+        "startChar": 68,
+        "endLine": 209,
+        "endChar": 84
+      },
+      "revId": "a2e4a451c56b6551bd5647b4cb7b60f717b8a9e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69bfe67f_b5131b5f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea3c8897_77eea92c",
       "range": {
         "startLine": 209,
         "startChar": 68,
