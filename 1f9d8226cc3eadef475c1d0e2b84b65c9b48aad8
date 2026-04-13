@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddcd1a4b_bdf36104",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-04-13T04:09:01Z",
+      "side": 1,
+      "message": "for every id a new Hashset is created.\nThis can be avoided and a single hashset can be used and cleared upon entering the loop everytime.",
+      "range": {
+        "startLine": 95,
+        "startChar": 12,
+        "endLine": 95,
+        "endChar": 54
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b636f492_4a32b3cd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-04-13T04:09:01Z",
+      "side": 1,
+      "message": "This is repeated a few times. \nSuggestion to have a method whcih returns boolean for the presence of child conditions",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 93
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c68069ce_e04ddedc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-04-13T04:09:01Z",
+      "side": 1,
+      "message": "This iterates through the flattenFragmentEntities.\nIt can be better if we use descendantIds Set for lookup\n\n    for (Long id : descendantIds) {\n        FragmentEntity entity \u003d flattenFragmentEntities.get(id);\n        if (entity !\u003d null) {\n            scoped.put(id, entity);\n        }\n    }",
+      "range": {
+        "startLine": 284,
+        "startChar": 7,
+        "endLine": 286,
+        "endChar": 79
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
