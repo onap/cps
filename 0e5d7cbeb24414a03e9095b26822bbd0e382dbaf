@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b13cbd_df774f64",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7d95502_c2e02eb6",
+      "range": {
+        "startLine": 199,
+        "startChar": 27,
+        "endLine": 199,
+        "endChar": 47
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2215cd6c_0590857a",
@@ -111,6 +135,54 @@
       "writtenOn": "2026-03-17T11:26:19Z",
       "side": 1,
       "message": "shouldn\u0027t we also check for the value of ncmp.kafka.eos.enabled property? Because to make this code work both ncmp.kafka.eos.enabled and ncmp.notifications.avc-event-consumer.batch-enabled should be set to true",
+      "range": {
+        "startLine": 47,
+        "startChar": 31,
+        "endLine": 47,
+        "endChar": 82
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfb08dd9_04699df3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2215cd6c_0590857a",
+      "range": {
+        "startLine": 47,
+        "startChar": 85,
+        "endLine": 47,
+        "endChar": 105
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "107e3aa5_a6d637dc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:45Z",
+      "side": 1,
+      "message": "eos.enabled is a mirror of enabling batch so not needed here.",
+      "parentUuid": "1ad510f4_4bc7b922",
       "range": {
         "startLine": 47,
         "startChar": 31,
@@ -289,6 +361,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4f26bed4_1fd638d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventSingleConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:45Z",
+      "side": 1,
+      "message": "will be in new story",
+      "parentUuid": "f5fe2d10_74bd43d2",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a0cad947_d25d749e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerSpec.groovy",
         "patchSetId": 1
@@ -317,6 +413,30 @@
       "writtenOn": "2026-03-19T09:18:56Z",
       "side": 1,
       "message": "I am not very familiar with tests written in groovy, so I am not sure if it is possible to implement such test in this way what I am about to describe, but I know that we definitely have similar tests to validate that any exception in the batch sending will be handled correctly and eventually it will be sent out correctly. I believe it would be a valid end-to-end test to assert the following scenario:\n\n- Event batch of 500 arrivives to the input topic\n- sending the 251st event would throw an exception so the whole batch is rolled back\n- For second try, the batch propagation passes, and assert that on the final topic there are exactly 500 events and no more\n\nNext to spring boot test we also use EmbeddedKafka which starts an in memory kafka instance so we can validate the functionality better than using mocks\n\nWhat do you think about this?",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "0e5d7cbeb24414a03e9095b26822bbd0e382dbaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf29460f_74c54566",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-13T08:36:45Z",
+      "side": 1,
+      "message": "will be in new user story",
+      "parentUuid": "2e16092e_7998e96a",
       "range": {
         "startLine": 43,
         "startChar": 6,
