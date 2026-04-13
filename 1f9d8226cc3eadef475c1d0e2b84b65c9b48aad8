@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9602c12e_7f4284de",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-13T12:46:38Z",
+      "side": 1,
+      "message": "In the current file it is used only inline 127. I did a Ctrl+F to check. Can you let me know the line Where this repeated?",
+      "parentUuid": "b636f492_4a32b3cd",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 93
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c68069ce_e04ddedc",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
         "patchSetId": 8
@@ -60,6 +84,30 @@
       "writtenOn": "2026-04-13T04:09:01Z",
       "side": 1,
       "message": "This iterates through the flattenFragmentEntities.\nIt can be better if we use descendantIds Set for lookup\n\n    for (Long id : descendantIds) {\n        FragmentEntity entity \u003d flattenFragmentEntities.get(id);\n        if (entity !\u003d null) {\n            scoped.put(id, entity);\n        }\n    }",
+      "range": {
+        "startLine": 284,
+        "startChar": 7,
+        "endLine": 286,
+        "endChar": 79
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e498a6_be6d0139",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-13T12:46:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c68069ce_e04ddedc",
       "range": {
         "startLine": 284,
         "startChar": 7,
