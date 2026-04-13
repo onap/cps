@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2201c831_fb899162",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-04-13T14:37:57Z",
+      "side": 1,
+      "message": "it is there in 154 with not.\nBut it is only 2 places so can be avoided.\n\nI think I confused this with\nfragmentEntity.getChildFragments() !\u003d null\n\nThis is present in multiple places 118,191 213,244,295",
+      "parentUuid": "9602c12e_7f4284de",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 93
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c68069ce_e04ddedc",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
         "patchSetId": 8
@@ -113,6 +137,98 @@
         "startChar": 7,
         "endLine": 286,
         "endChar": 79
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3a6ef59_a7b2cbb0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-04-13T14:37:57Z",
+      "side": 1,
+      "message": "Heading of this test say it will return all fragments intersection and it is returning empty set. This is creating confusion.\n\nAlso, the next testcase \"AND operator returns empty set when #scenario\" also returns empty sets and only conditions are changes , so can these two be combined?",
+      "range": {
+        "startLine": 113,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 5
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ba90b21_f01da7c5",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-04-13T14:37:57Z",
+      "side": 1,
+      "message": "In this test case can other Descendant options be added i.e Direct and Omit\n\nFor OMIT , a testcase is there at line 126 but for Direct Children it is mising",
+      "range": {
+        "startLine": 65,
+        "startChar": 107,
+        "endLine": 65,
+        "endChar": 130
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08ab53af_090c00a0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-04-13T14:37:57Z",
+      "side": 1,
+      "message": "Process composite query when base cpsPath matches nothing",
+      "range": {
+        "startLine": 74,
+        "startChar": 9,
+        "endLine": 74,
+        "endChar": 87
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ccb7447_da6fb821",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-04-13T14:37:57Z",
+      "side": 1,
+      "message": "This can be added in \u0027then\u0027 label",
+      "range": {
+        "startLine": 85,
+        "startChar": 51,
+        "endLine": 85,
+        "endChar": 95
       },
       "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
