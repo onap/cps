@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9a8ad0df_e99eb59e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-04-13T09:24:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7a5059d1_e8040cc0",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "a2d327eb34eec55e12fa668eacf43ce8b0c5eeac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "53dfd439_71e1bd46",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2026-04-01T15:17:36Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 65,
+        "endChar": 37
+      },
+      "revId": "a2d327eb34eec55e12fa668eacf43ce8b0c5eeac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69ed7467_be8db46a",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-04-13T09:24:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "40681e15_fd10fa1d",
       "range": {
         "startLine": 65,
         "startChar": 12,
