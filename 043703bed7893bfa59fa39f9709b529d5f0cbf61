@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61e4dc74_8338f002",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-14T13:59:42Z",
+      "side": 1,
+      "message": "looks good, just format the reference to the API a bit clearer. \n(seems that gerrit comment follow MD...)",
+      "revId": "043703bed7893bfa59fa39f9709b529d5f0cbf61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc427b6a_a8aae509",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-14T13:59:42Z",
+      "side": 1,
+      "message": "reformat this a bit like so:\n\n## InteliJ setup for ProvMnS API Dependencies\n[Resolving provmns-api classes in IntelliJ](provmns-api/README.md#accessing-provmns-api-in-intellij).",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 157
+      },
+      "revId": "043703bed7893bfa59fa39f9709b529d5f0cbf61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
