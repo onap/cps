@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0622a3b_4be33460",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-14T09:48:07Z",
+      "side": 1,
+      "message": "small issue with test",
+      "revId": "295620f0307480b6a9b8d7670e8b7ba5c4ba22c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b49ff3_721c1474",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-14T09:48:07Z",
+      "side": 1,
+      "message": "* is missing so you could get false positives!\nuse 0 * mockCloudEventKafkaTemplateForExactlyOnceSemantics.send(*_)\nor even 0 * mockCloudEventKafkaTemplateForExactlyOnceSemantics._ (NEW, checks no interactions with mock at all)",
+      "range": {
+        "startLine": 204,
+        "startChar": 72,
+        "endLine": 204,
+        "endChar": 73
+      },
+      "revId": "295620f0307480b6a9b8d7670e8b7ba5c4ba22c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
