@@ -29,6 +29,6 @@ If IntelliJ cannot resolve classes from `provmns-api`, manually add the JAR to t
 1. Navigate to **File > Project Structure > Project Settings > Libraries**
 2. Scroll down to `Maven: org.onap.cps:provmns-api:18.6.0`
 3. Right-click and select **Add to Modules**
-4. Add to both `cps-ncmp-rest` and `cps-ncmp-service` (use CTRL+click to select multiple)
+4. Add `cps-ncmp-rest` , `cps-ncmp-service` and `integration-test` (use CTRL+click to select multiple)
 
 > **Note:** A Maven reload (not a clean install) will reset these settings. Repeat the steps above if that happens.
