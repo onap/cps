@@ -1,6 +1,6 @@
 <!--
   ============LICENSE_START=======================================================
-   Copyright (C) 2021 Nordix Foundation.
+   Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -25,5 +25,20 @@
 
 ## For Developers
 * [Developer Wiki](https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16442177/Configuration+Persistence+Service+Developer+s+Landing+Page)
-* [Building and running CPS locally](docker-compose/README.md)
+* [Building and running CPS using Docker](docker-compose/README.md#building-and-running-cps-locally)
+* [Running CPS locally using Kubernetes](cps-charts/README.md#cps-and-ncmp-helm-chart)
+
+## Compile & Build Project
+
+```bash
+mvn clean install
+```
+
+Use `-DskipTests` to speed up the build:
+
+```bash
+mvn clean install -DskipTests
+```
+
+For IntelliJ: if classes from `provmns-api` are unresolved, see [Accessing provmns-api in IntelliJ](provmns-api/README.md#accessing-provmns-api-in-intellij).
 
