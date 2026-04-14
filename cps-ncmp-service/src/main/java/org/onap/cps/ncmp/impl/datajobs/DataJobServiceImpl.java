@@ -31,7 +31,7 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation;
 import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
 import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
-import org.onap.cps.ncmp.impl.utils.JexParser;
+import org.onap.cps.ncmp.impl.datajobs.ReadRequestExaminer.ClassifiedSelectors;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 
@@ -42,14 +42,20 @@ public class DataJobServiceImpl implements DataJobService {
 
     private final DmiSubJobRequestHandler dmiSubJobClient;
     private final WriteRequestExaminer writeRequestExaminer;
+    private final ReadRequestExaminer readRequestExaminer;
     private final JsonObjectMapper jsonObjectMapper;
 
     @Override
-    public void readDataJob(final DataJobReadRequest dataJobReadRequest) {
+    public ClassifiedSelectors readDataJob(final DataJobReadRequest dataJobReadRequest) {
         log.info("DataJobId: {}", dataJobReadRequest.jobId());
-        final List<String> selectors =
-                JexParser.toXpaths(dataJobReadRequest.readProperties().dataNodeSelector());
-        log.info("DataJobId: {} - Total selectors: {}", dataJobReadRequest.jobId(), selectors.size());
+        final ClassifiedSelectors classifiedSelectors =
+                readRequestExaminer.classifySelectors(dataJobReadRequest.readProperties().dataNodeSelector());
+        log.info("DataJobId: {} - broadcast: {}, dmi groups: {}, not ready: {}, errors: {}", dataJobReadRequest.jobId(),
+                classifiedSelectors.broadcastSelectors().size(),
+                classifiedSelectors.dmiSelectors().size(),
+                classifiedSelectors.notReadySelectors().size(),
+                classifiedSelectors.errorSelectors().size());
+        return classifiedSelectors;
     }
 
     @Override

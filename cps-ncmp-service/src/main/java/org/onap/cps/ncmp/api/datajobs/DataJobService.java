@@ -25,6 +25,7 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
+import org.onap.cps.ncmp.impl.datajobs.ReadRequestExaminer.ClassifiedSelectors;
 
 public interface DataJobService {
 
@@ -32,8 +33,9 @@ public interface DataJobService {
      * process read data job operations.
      *
      * @param dataJobReadRequest read data job request
+     * @return classified selectors grouped into broadcast, per-DMI, and error
      */
-    void readDataJob(DataJobReadRequest dataJobReadRequest);
+    ClassifiedSelectors readDataJob(DataJobReadRequest dataJobReadRequest);
 
     /**
      * process write data job operations.

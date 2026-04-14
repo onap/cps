@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -134,5 +134,15 @@ class AlternateIdMatcherSpec extends Specification {
         then: 'an exception is thrown'
             def thrownException = thrown(CmHandleNotFoundException)
             assert thrownException.getMessage().contains('Cm handle not found')
+    }
+
+    def 'Get cm handle ids whose alternate id contains a search term.'() {
+        given: 'the cache returns matching values via server-side predicate'
+            mockCmHandleIdPerAlternateId.values(_) >> ['ch-1', 'ch-2']
+        when: 'searching for alternate ids containing "Ireland"'
+            def result = objectUnderTest.getCmHandleIds('Ireland')
+        then: 'only the matching cm handle ids are returned'
+            assert result.size() == 2
+            assert result.containsAll(['ch-1', 'ch-2'])
     }
 }
