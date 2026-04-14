@@ -45,6 +45,30 @@
       },
       "revId": "dac410ff5efd13bd345eb1503382ca2e39342a8d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5196b9cc_977ab22a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParameterHelperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-14T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2df74e50_557d41b9",
+      "range": {
+        "startLine": 121,
+        "startChar": 36,
+        "endLine": 121,
+        "endChar": 49
+      },
+      "revId": "dac410ff5efd13bd345eb1503382ca2e39342a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
