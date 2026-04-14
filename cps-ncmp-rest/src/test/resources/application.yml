@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2022 Nordix Foundation
+#  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
 #  Modifications Copyright (C) 2021 Bell Canada.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,7 @@ rest:
         ncmp-base-path: /ncmp
         ncmp-inventory-base-path: /ncmpInventory
         provmns-base-path: /ProvMnS
+        provmns-extensions-base-path: /prov-mns-extensions
 
 notification:
     enabled: true
