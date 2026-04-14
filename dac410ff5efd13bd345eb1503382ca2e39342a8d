@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e36bf6a7_5f5bb3b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-14T14:20:55Z",
+      "side": 1,
+      "message": "since you are not returning a boolean you should not use \"is...\"\nuse this instead:\nvalidateProvMnSExtensionsPath\n\n(my original suggestion was just to extract out the condition but its OK to include the thwowing of exception too , it just changes the name)",
+      "range": {
+        "startLine": 139,
+        "startChar": 24,
+        "endLine": 139,
+        "endChar": 31
+      },
+      "revId": "dac410ff5efd13bd345eb1503382ca2e39342a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2df74e50_557d41b9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParameterHelperSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-14T14:20:55Z",
+      "side": 1,
+      "message": "NB: now you \u0027actionWithFdn\u0027 in teh path is clear this is not relay needed..",
+      "range": {
+        "startLine": 121,
+        "startChar": 36,
+        "endLine": 121,
+        "endChar": 49
+      },
+      "revId": "dac410ff5efd13bd345eb1503382ca2e39342a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
