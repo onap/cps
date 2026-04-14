@@ -39,6 +39,30 @@
       },
       "revId": "295620f0307480b6a9b8d7670e8b7ba5c4ba22c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "601af817_3319d5a7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-14T10:25:26Z",
+      "side": 1,
+      "message": "use 0 mockCloudEventKafkaTemplateForExactlyOnceSemantics.send(*_)\nor even 0 * mockCloudEventKafkaTemplateForExactlyOnceSemantics._ (NEW, checks no interactions with mock at all)",
+      "parentUuid": "d9b49ff3_721c1474",
+      "range": {
+        "startLine": 204,
+        "startChar": 72,
+        "endLine": 204,
+        "endChar": 73
+      },
+      "revId": "295620f0307480b6a9b8d7670e8b7ba5c4ba22c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
