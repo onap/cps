@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1787ce43_232695fc",
+        "filename": "cps-ncmp-rest/docs/openapi/prov-mns-extensions.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-14T14:18:47Z",
+      "side": 1,
+      "message": "Was removed in revised api",
+      "parentUuid": "e0e5d768_63f79368",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 10
+      },
+      "revId": "7c3bd283893d79e73f24f17cef8699a26396662c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f82fa369_96c4ff07",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSExtensionsControllerSpec.groovy",
         "patchSetId": 8
