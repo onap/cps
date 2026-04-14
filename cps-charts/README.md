@@ -17,9 +17,9 @@
   SPDX-License-Identifier: Apache-2.0
   ============LICENSE_END=========================================================
 -->
+# Running CPS locally using Kubernetes
 
-
-# CPS and NCMP Helm Chart
+## CPS and NCMP Helm Chart
 This Helm chart deploys the **CPS** and **NCMP** ecosystem along with PostgreSQL, Kafka, Zookeeper, and dual DMI Stub services.
 ---
 #### Prerequisites for Windows
