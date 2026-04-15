@@ -1,6 +1,6 @@
 <!--
   ============LICENSE_START=======================================================
-   Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
+   Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -18,28 +18,17 @@
   ============LICENSE_END=========================================================
 -->
 
-# Configuration Persistence Service
 
-## General Information
-* [CPS Project Wiki](https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16398157/Configuration+Persistence+Service+Project)
 
-## For Developers
-* [Developer Wiki](https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16442177/Configuration+Persistence+Service+Developer+s+Landing+Page)
-* [Building and running CPS using Docker](docker-compose/README.md)
-* [Running CPS locally using Kubernetes](cps-charts/README.md)
+# provmns-api
 
-## Compile & Build Project
+## Resolving provmns-api classes in IntelliJ
 
-```bash
-mvn clean install
-```
+If IntelliJ cannot resolve classes from `provmns-api`, manually add the JAR to the project modules:
 
-Use `-DskipTests` to speed up the build:
+1. Navigate to **File > Project Structure > Project Settings > Libraries**
+2. Scroll down to `Maven: org.onap.cps:provmns-api:18.6.0`
+3. Right-click and select **Add to Modules**
+4. Add to both `cps-ncmp-rest` and `cps-ncmp-service` (use CTRL+click to select multiple)
 
-```bash
-mvn clean install -DskipTests
-```
-
-# IntelliJ setup for ProvMnS API Dependencies
-* [Resolving provmns-api classes in IntelliJ](provmns-api/README.md)
-
+> **Note:** A Maven reload (not a clean install) will reset these settings. Repeat the steps above if that happens.
