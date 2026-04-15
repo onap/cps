@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "336bfce1_8f617263",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "might be useful to have a little chat about some of the comments",
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c17fe02_187de335",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "NB suggestion, you called it a helper because you combined 2 different methods into one class, maybe better to keep them separated for better naming:\n\n\nProvMnSValidator\nProvMnSExceptionBuilder",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 27
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac0680a_b3b5769f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSExtensionsControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "good test, jus use more end user language then develop language...",
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb70016f_7fe4aa1d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSExtensionsControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "to generic/technical, a user does not \u0027post data\u0027 a user \u0027executes an action\u0027\n(aplly troughout, I wont comment again)",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 18
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05146cd8_1d70ab74",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSExtensionsControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "for negative use case i always like to use the word \u0027attempt\u0027\neg. \u0027Attempt to execute action, #scenario\u0027",
+      "range": {
+        "startLine": 51,
+        "startChar": 9,
+        "endLine": 51,
+        "endChar": 23
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d912fc9e_61f671a2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSExtensionsControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "use words like \u0027result\u0027 (body is no really end user terminilogy)",
+      "range": {
+        "startLine": 65,
+        "startChar": 18,
+        "endLine": 65,
+        "endChar": 23
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6c44a8e_974e0088",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSExtensionsControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "to diffrentiate from previous:\n\u0027Error during to execute action (attempt): #exception\u0027",
+      "range": {
+        "startLine": 75,
+        "startChar": 9,
+        "endLine": 75,
+        "endChar": 41
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a1c6f09_30e4dfff",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSExtensionsControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "NB: \u0027DuringProcessing\u0027 is superflous",
+      "range": {
+        "startLine": 90,
+        "startChar": 21,
+        "endLine": 90,
+        "endChar": 38
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63394559_af2858c4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "Copy \u0026 Paste error, or simply more generic now?",
+      "range": {
+        "startLine": 97,
+        "startChar": 81,
+        "endLine": 97,
+        "endChar": 109
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dad68eb3_7b39799d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "not quite sure what this part of the name implies...\nWhat exactly is teh diff with teh previos method, not clear from teh name....",
+      "range": {
+        "startLine": 106,
+        "startChar": 73,
+        "endLine": 106,
+        "endChar": 79
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "189ef213_9e6254df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-15T17:31:46Z",
+      "side": 1,
+      "message": "is this not covered by next lien too?!\n\"//\" \u003d 2 ocurrences of \"/\"  ?!",
+      "range": {
+        "startLine": 141,
+        "startChar": 12,
+        "endLine": 141,
+        "endChar": 31
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
