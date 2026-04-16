@@ -30,12 +30,13 @@ This Helm chart deploys the **CPS** and **NCMP** ecosystem along with PostgreSQL
 
 #### Prerequisites for Linux
 1. Kubernetes cluster (tested on K8s 1.24+)
-   - k3s from Rancher (see) [installing k3s on linux](https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-cluster-setup/k3s-for-rancher))
-2. Helm 3.x (see [installing helm on linux](https://helm.sh/docs/intro/install/)) 
+   - Minikube (see [minikube start](https://minikube.sigs.k8s.io/docs/start))
+2. Helm 3.x (see [installing helm on linux](https://helm.sh/docs/intro/install/))
 
 ---
 ## Installation
 To install the chart into the **default namespace**:
+(assuming you are in the root directory of this repository)
 ```bash
 helm install cps ./cps-charts
 ```
@@ -57,11 +58,14 @@ Wait until all pods show `Running` and `READY` before proceeding.
 
 ## Accessing CPS
 
+> **Note:** Execute all URLS below using your preferred tool in your environment e.g. curl, a web browser or Postman.
+FYI CPS Repo includes a comprehensive Postman collection for testing CPS and NCMP.
+
 The CPS/NCMP service is exposed on **NodePort 30080**.
 
 Sample request — get all dataspaces:
 ```bash
-curl http://localhost:30080/cps/api/v2/admin/dataspaces
+http://localhost:30080/cps/api/v2/admin/dataspaces
 ```
 Expected output:
 ```json
@@ -82,8 +86,13 @@ CPS exposes Spring Boot Actuator health endpoints. You can check them from **out
 
 **From outside (recommended)** — ensure port forwarding is running, then from your local terminal:
 ```bash
-curl http://localhost:30080/actuator/health/liveness
-curl http://localhost:30080/actuator/health/readiness
+http://localhost:30080/actuator/health/liveness
+http://localhost:30080/actuator/health/readiness
+``
+
+Expected response when healthy:
+```json
+{"status":"UP"}
 ```
 
 **From within the pod** — useful when port forwarding is not running. First find a running CPS pod:
@@ -91,14 +100,11 @@ curl http://localhost:30080/actuator/health/readiness
 kubectl get pods -l component=cps
 ```
 Then exec into it and check the health endpoints:
+> **Note:** `curl` is not available inside the CPS container image. Using `wget -qO-` instead.
+
 ```bash
 kubectl exec -it <cps-pod-name> -- wget -qO- http://localhost:8080/actuator/health/liveness
 kubectl exec -it <cps-pod-name> -- wget -qO- http://localhost:8080/actuator/health/readiness
-```
-
-Expected response when healthy:
-```json
-{"status":"UP"}
 ```
 
 You can also check the DMI Stub instances the same way:
@@ -107,8 +113,6 @@ kubectl get pods -l component=dmi-stub
 kubectl exec -it <dmi-stub-pod-name> -- wget -qO- http://localhost:8092/actuator/health/liveness
 kubectl exec -it <dmi-stub-pod-name> -- wget -qO- http://localhost:8092/actuator/health/readiness
 ```
-
-> **Note:** `curl` is not available inside the CPS container image. Use `wget -qO-` as the equivalent.
 
 ---
 
@@ -124,9 +128,8 @@ Follow (tail) logs in real time:
 kubectl logs -f <pod-name>
 ```
 
-Filter logs using `grep` (Linux):
+### Filter Logs Using `grep` on **Linux**:
 
-**Linux:**
 ```bash
 kubectl logs <pod-name> --tail=-1 | grep ERROR
 kubectl logs <pod-name> --tail=-1 | grep -i "exception\|error\|warn"
@@ -134,7 +137,6 @@ kubectl logs <pod-name> --tail=-1 | grep -i "exception\|error\|warn"
 
 View logs from **all CPS pods at once** using a label selector:
 
-**Linux:**
 ```bash
 kubectl logs -l component=cps --prefix --tail=-1 | grep ERROR
 ```
@@ -144,6 +146,10 @@ View previous (crashed/restarted) container logs:
 kubectl logs <pod-name> --previous
 ```
 ---
+
+### Filter Logs Using a Docker Desktop Extension on **Windows**
+
+Install an extension like [Maltus Docker Log Viewer](https://hub.docker.com/r/maltus/docker-logs-viewer)
 
 ## Uninstallation
 To uninstall the chart and delete all related resources:
