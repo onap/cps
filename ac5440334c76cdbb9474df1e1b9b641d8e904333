@@ -411,6 +411,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cfdb426_894224dc",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnSControllerBaseSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-16T14:00:03Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "331d8a54_629c6b45",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 23
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93ab71b8_3a6a8d83",
@@ -1119,6 +1143,30 @@
       "side": 1,
       "message": "Reduced to validatePathStructure, parent method can have \"/myAction\" without throwing error where fdn would be \"\". Changed method now checks for at least 2 / so fdn would be at least \"/\"\n\nnew behaviour\n\"//myAction\"    is valid\n\"/myAction\"     is invalid",
       "parentUuid": "a4a1d87c_2affdcbd",
+      "range": {
+        "startLine": 140,
+        "startChar": 24,
+        "endLine": 140,
+        "endChar": 53
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e221ffa_2009a004",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-16T14:00:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dae550d0_6a17461a",
       "range": {
         "startLine": 140,
         "startChar": 24,
