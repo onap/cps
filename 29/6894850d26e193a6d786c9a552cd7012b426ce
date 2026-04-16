@@ -1,0 +1,11 @@
+Code-Review+2: Gerard Nugent <gerard.nugent@est.tech>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Verified+1: Gerard Nugent <gerard.nugent@est.tech>
+Submitted-by: Gerard Nugent <gerard.nugent@est.tech>
+Submitted-at: Thu, 16 Apr 2026 15:38:16 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/144043
+Project: cps
+Branch: refs/heads/master
