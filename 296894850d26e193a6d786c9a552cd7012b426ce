@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3e273ae4_619dd9f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-16T14:04:29Z",
+      "side": 1,
+      "message": "looks good",
+      "revId": "296894850d26e193a6d786c9a552cd7012b426ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "68cce263_7a948b68",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnSExtensions.java",
         "patchSetId": 2
