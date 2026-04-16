@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "769e5a67_b90a00d3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "since it is in 2 places we can leave it as it is",
+      "parentUuid": "2201c831_fb899162",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 93
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c68069ce_e04ddedc",
@@ -165,6 +189,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc137690_45a60f4b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3a6ef59_a7b2cbb0",
+      "range": {
+        "startLine": 113,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 5
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ba90b21_f01da7c5",
@@ -178,6 +226,30 @@
       "writtenOn": "2026-04-13T14:37:57Z",
       "side": 1,
       "message": "In this test case can other Descendant options be added i.e Direct and Omit\n\nFor OMIT , a testcase is there at line 126 but for Direct Children it is mising",
+      "range": {
+        "startLine": 65,
+        "startChar": 107,
+        "endLine": 65,
+        "endChar": 130
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12db946f_8fb24e96",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "it does not test any unique branch so one scenario is sufficient",
+      "parentUuid": "6ba90b21_f01da7c5",
       "range": {
         "startLine": 65,
         "startChar": 107,
@@ -211,6 +283,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "688906c5_cd5def2a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08ab53af_090c00a0",
+      "range": {
+        "startLine": 74,
+        "startChar": 9,
+        "endLine": 74,
+        "endChar": 87
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ccb7447_da6fb821",
@@ -224,6 +320,30 @@
       "writtenOn": "2026-04-13T14:37:57Z",
       "side": 1,
       "message": "This can be added in \u0027then\u0027 label",
+      "range": {
+        "startLine": 85,
+        "startChar": 51,
+        "endLine": 85,
+        "endChar": 95
+      },
+      "revId": "1f9d8226cc3eadef475c1d0e2b84b65c9b48aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97ce2f35_4ab40d5a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "3ccb7447_da6fb821",
       "range": {
         "startLine": 85,
         "startChar": 51,

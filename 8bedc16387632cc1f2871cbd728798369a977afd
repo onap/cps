@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67f9f4e4_c67bf458",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1e2be13_5db66f39",
+      "range": {
+        "startLine": 98,
+        "startChar": 51,
+        "endLine": 98,
+        "endChar": 64
+      },
+      "revId": "8bedc16387632cc1f2871cbd728798369a977afd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2528d30_d0fbbf66",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-04-13T14:37:57Z",
       "side": 1,
       "message": "Not needed",
+      "range": {
+        "startLine": 110,
+        "startChar": 50,
+        "endLine": 110,
+        "endChar": 91
+      },
+      "revId": "8bedc16387632cc1f2871cbd728798369a977afd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c86b24bc_339fe68e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2528d30_d0fbbf66",
       "range": {
         "startLine": 110,
         "startChar": 50,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39af29bb_a017b68c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8ce2864_d133a11f",
+      "range": {
+        "startLine": 126,
+        "startChar": 55,
+        "endLine": 126,
+        "endChar": 88
+      },
+      "revId": "8bedc16387632cc1f2871cbd728798369a977afd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6366c37_e700ad0b",
@@ -110,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e84eb56b_8e97fe3a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "I checked some of those tests were redundant, so I have removed some of them and kept the ones needed",
+      "parentUuid": "c6366c37_e700ad0b",
+      "range": {
+        "startLine": 313,
+        "startChar": 4,
+        "endLine": 313,
+        "endChar": 81
+      },
+      "revId": "8bedc16387632cc1f2871cbd728798369a977afd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79781c91_7b47703a",
@@ -123,6 +219,30 @@
       "writtenOn": "2026-04-13T14:37:57Z",
       "side": 1,
       "message": "It is understandable but a bit confusing and lengthy.\nCan be it rephrased?",
+      "range": {
+        "startLine": 386,
+        "startChar": 16,
+        "endLine": 386,
+        "endChar": 183
+      },
+      "revId": "8bedc16387632cc1f2871cbd728798369a977afd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "942da840_0dd26a2f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-16T16:41:19Z",
+      "side": 1,
+      "message": "removed this test due to redundancy",
+      "parentUuid": "79781c91_7b47703a",
       "range": {
         "startLine": 386,
         "startChar": 16,
