@@ -20,6 +20,17 @@
 
 package org.onap.cps.ncmp.impl.provmns;
 
+/**
+ * Parameters extracted from an action request.
+ *
+ * @param httpMethodName the HTTP method name
+ * @param authorization  the authorization header value
+ * @param fdn            the fully distinguished name
+ * @param action         the action name
+ */
 public record ActionRequestParameters(
-    String fdn, String action) {}
+    String httpMethodName,
+    String authorization,
+    String fdn,
+    String action) {}
 

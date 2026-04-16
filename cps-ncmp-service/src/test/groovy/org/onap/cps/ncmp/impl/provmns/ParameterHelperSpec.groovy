@@ -114,11 +114,11 @@ class ParameterHelperSpec extends Specification {
         and: 'the title contains the expected error message'
             assert thrown.title == expectedPathInError + ' not a valid path'
         where: 'the following invalid paths are used'
-            scenario                          | path                                                    || expectedPathInError
-            'missing ProvMnSExtension prefix' | 'v1/segment1/myAction'                                  || 'v1/segment1/myAction'
-            'wrong version'                   | 'ProvMnSExtension/wrongVersion/myAction'                || 'ProvMnSExtension/wrongVersion/myAction'
-            'empty path'                      | ''                                                      ||  ''
-            'invalid path structure'          | 'prov-mns-extensions/v1alpha1/actions/actionWithoutFdn' || '/actionWithoutFdn'
+            scenario                          | path                                                             || expectedPathInError
+            'missing ProvMnSExtension prefix' | 'v1/segment1/myAction'                                           || 'v1/segment1/myAction'
+            'wrong version'                   | 'ProvMnSExtension/wrongVersion/myAction'                         || 'ProvMnSExtension/wrongVersion/myAction'
+            'empty path'                      | ''                                                               ||  ''
+            'invalid path structure'          | 'prov-mns-extensions/v1alpha1/actions/actionWithoutFdn'          || '/actionWithoutFdn'
     }
 
     def 'Extract Fdn.'() {

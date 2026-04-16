@@ -20,13 +20,21 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
+import static org.onap.cps.ncmp.impl.provmns.ParameterHelper.NO_OP;
+import static org.onap.cps.ncmp.rest.util.ProvMnSExceptionMapper.toProvMnSException;
+
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.ActionRequestParameters;
 import org.onap.cps.ncmp.impl.provmns.ParameterHelper;
+import org.onap.cps.ncmp.impl.provmns.ParametersBuilder;
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.ncmp.rest.model.ActionRequest;
-import org.springframework.http.HttpStatus;
+import org.onap.cps.ncmp.rest.util.ProvMnSCmHandleRetriever;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,13 +45,25 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ProvMnSExtensionsController implements ProvMnSExtensions {
 
+    private final DmiRestClient dmiRestClient;
+    private final ParametersBuilder parametersBuilder;
+    private final ProvMnSCmHandleRetriever provMnSCmHandleRetriever;
+
     @Override
     public ResponseEntity<Object> executeAction(final HttpServletRequest httpServletRequest,
                                                 final ActionRequest actionRequest) {
         final ActionRequestParameters actionRequestParameters =
             ParameterHelper.extractActionRequestParameters(httpServletRequest);
-        log.info("Provmns Extension Action called for FDN: {}, Action: {}",
-            actionRequestParameters.fdn(), actionRequestParameters.action());
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            final YangModelCmHandle yangModelCmHandle = provMnSCmHandleRetriever.getAndValidateYangModelCmHandle(
+                actionRequestParameters.fdn(), actionRequestParameters.httpMethodName());
+            final UrlTemplateParameters urlTemplateParameters =
+                parametersBuilder.createUrlTemplateParametersForAction(yangModelCmHandle,
+                    actionRequestParameters.fdn(), actionRequestParameters.action());
+            return dmiRestClient.synchronousPostOperation(DATA, actionRequest,
+                urlTemplateParameters, actionRequestParameters.authorization());
+        } catch (final Exception exception) {
+            throw toProvMnSException(exception, httpServletRequest.getMethod(), NO_OP);
+        }
     }
 }

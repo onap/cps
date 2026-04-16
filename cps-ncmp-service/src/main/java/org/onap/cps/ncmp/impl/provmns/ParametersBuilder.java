@@ -72,6 +72,7 @@ public class ParametersBuilder {
      * Creates a UrlTemplateParameters object containing the relevant fields for a write requests.
      *
      * @param yangModelCmHandle yangModelCmHandle object for resolved alternate ID
+     * @param targetFdn         the target FDN for the resource
      * @return UrlTemplateParameters object.
      */
     public UrlTemplateParameters createUrlTemplateParametersForWrite(final YangModelCmHandle yangModelCmHandle,
@@ -81,6 +82,26 @@ public class ParametersBuilder {
         return RestServiceUrlTemplateBuilder.newInstance()
             .fixedPathSegment(targetFdnWithoutPrecedingSlash)
             .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
+    }
+
+    /**
+     * Creates a UrlTemplateParameters object containing the relevant fields for action requests.
+     *
+     * @param yangModelCmHandle yangModelCmHandle object for resolved alternate ID
+     * @param targetFdn         the target FDN for the resource
+     * @param actionName        the name of the action to execute
+     * @return UrlTemplateParameters object.
+     */
+    public UrlTemplateParameters createUrlTemplateParametersForAction(final YangModelCmHandle yangModelCmHandle,
+                                                                     final String targetFdn,
+                                                                     final String actionName) {
+        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
+        final String targetFdnWithoutPrecedingSlash = targetFdn.substring(1);
+        return RestServiceUrlTemplateBuilder.newInstance()
+            .fixedPathSegment("actions")
+            .fixedPathSegment(targetFdnWithoutPrecedingSlash)
+            .fixedPathSegment(actionName)
+            .createUrlTemplateParameters(dmiServiceName, "prov-mns-extensions", "v1alpha1");
     }
 
 }

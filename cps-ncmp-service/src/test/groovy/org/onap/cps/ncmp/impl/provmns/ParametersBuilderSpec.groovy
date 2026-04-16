@@ -70,8 +70,17 @@ class ParametersBuilderSpec extends Specification{
     def 'Create url template parameters for write operations.'() {
         when: 'Creating URL parameters for PUT (or PATCH)'
             def result = objectUnderTest.createUrlTemplateParametersForWrite(new YangModelCmHandle(dmiServiceName: 'myDmiService'),'/target/fdn')
-        then: 'the template has the correct correct'
+        then: 'the template has the correct content'
             assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1/target/fdn')
+        and: 'no url variables have been set'
+            assert result.urlVariables.isEmpty()
+    }
+
+    def 'Create url template parameters for provmns extensions action operations.'() {
+        when: 'Creating URL parameters for POST'
+            def result = objectUnderTest.createUrlTemplateParametersForAction(new YangModelCmHandle(dmiServiceName: 'myDmiService'),'/target/fdn', 'myAction')
+        then: 'the template has the correct content'
+            assert result.urlTemplate.toString().startsWith('myDmiService/prov-mns-extensions/v1alpha1/actions/target/fdn/myAction')
         and: 'no url variables have been set'
             assert result.urlVariables.isEmpty()
     }

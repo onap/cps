@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ public class RestServiceUrlTemplateBuilder {
 
     private final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
     private static final String FIXED_PATH_SEGMENT = null;
-    private static final String VERSION_SEGMENT = "v1";
+    private static final String DEFAULT_VERSION_SEGMENT = "v1";
     private final Map<String, String> pathSegments = new LinkedHashMap<>();
     private final Map<String, String> queryParameters = new LinkedHashMap<>();
 
@@ -106,14 +106,28 @@ public class RestServiceUrlTemplateBuilder {
     }
 
     /**
-     * Constructs a URL template with variables based on the accumulated path segments and query parameters.
+     * Constructs a URL template using the default version segment.
      *
-     * @param serviceBaseUrl the base URL of the service, e.g., "<a href="http://dmi-service.com">...</a>".
+     * @param serviceBaseUrl the base URL of the service
      * @param basePath       the base path of the service
      * @return a UrlTemplateParameters instance containing the complete URL template and URL variables
      */
     public UrlTemplateParameters createUrlTemplateParameters(final String serviceBaseUrl, final String basePath) {
-        this.uriComponentsBuilder.pathSegment(basePath).pathSegment(VERSION_SEGMENT);
+        return createUrlTemplateParameters(serviceBaseUrl, basePath, DEFAULT_VERSION_SEGMENT);
+    }
+
+    /**
+     * Constructs a URL template with variables based on the accumulated path segments and query parameters.
+     *
+     * @param serviceBaseUrl the base URL of the service, e.g., "<a href="http://dmi-service.com">...</a>".
+     * @param basePath       the base path of the service
+     * @param versionSegment the version path segment
+     * @return a UrlTemplateParameters instance containing the complete URL template and URL variables
+     */
+    public UrlTemplateParameters createUrlTemplateParameters(final String serviceBaseUrl,
+                                                             final String basePath,
+                                                             final String versionSegment) {
+        this.uriComponentsBuilder.pathSegment(basePath).pathSegment(versionSegment);
         final Map<String, String> urlTemplateVariables = new HashMap<>();
 
         pathSegments.forEach((pathSegmentName, variablePathValue) ->  {

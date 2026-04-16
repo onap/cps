@@ -127,8 +127,8 @@ public class DmiDataOperations {
         final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(
                 PASSTHROUGH_OPERATIONAL.getDatastoreName(), yangModelCmHandle, "/", options,
                 null);
-        return dmiRestClient.synchronousPostOperation(DATA, urlTemplateParameters, jsonRequestBody, READ,
-                DmiRestClient.NO_AUTHORIZATION);
+        return dmiRestClient.synchronousPostOperationWithErrorMapping(DATA, urlTemplateParameters,
+            jsonRequestBody, READ, DmiRestClient.NO_AUTHORIZATION);
     }
 
     /**
@@ -192,7 +192,7 @@ public class DmiDataOperations {
         final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(
                 PASSTHROUGH_RUNNING.getDatastoreName(), yangModelCmHandle, resourceId, null,
                 null);
-        return dmiRestClient.synchronousPostOperation(DATA, urlTemplateParameters, jsonRequestBody,
+        return dmiRestClient.synchronousPostOperationWithErrorMapping(DATA, urlTemplateParameters, jsonRequestBody,
                 operationType, authorization);
     }
 

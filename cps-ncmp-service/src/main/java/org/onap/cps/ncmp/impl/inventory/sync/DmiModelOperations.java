@@ -121,8 +121,8 @@ public class DmiModelOperations {
                 .variablePathSegment("cmHandleId", cmHandle)
                 .fixedPathSegment(resourceName)
                 .createUrlTemplateParameters(dmiServiceName, dmiServiceAuthenticationProperties.getDmiBasePath());
-        return dmiRestClient.synchronousPostOperation(MODEL, urlTemplateParameters, jsonRequestBody, READ,
-                null);
+        return dmiRestClient.synchronousPostOperationWithErrorMapping(MODEL, urlTemplateParameters,
+            jsonRequestBody, READ, null);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,

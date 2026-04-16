@@ -51,14 +51,14 @@ paths:
           schema:
             type: string
           description: Slash separated DN to the Managed Object where the action is defined. This parameter must not be URL encoded.
-          example: /SubNetwork=SN1/MeContext=XY/ManagedElement=Z/SystemFunctions=1/HealthCheckM=1/HcJob=test01
+          example: /SubNetwork=SN1/MeContext=XY/ManagedElement=Z/ExampleFunction=1
         - name: actionName
           in: path
           required: true
           schema:
             type: string
             description: The name of the action defined in the Managed Object identified by the distinguishedName. It identifies the action to be executed together with the distinguishedName.
-          example: execute
+          example: reset
       requestBody:
         required: true
         content:
@@ -68,14 +68,14 @@ paths:
       responses:
         '200':
           description: >-
-            Ok - This status code is returned when the action has been successfully executed.
+            OK - This status code is returned when the action has been successfully executed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ActionResponse'
         '204':
           description: >-
-            No content - This status code may be returned only when the action response has no message body.
+            No Content - This status code may be returned only when the action response has no message body.
         '400':
           description: >-
             Bad Request
@@ -111,21 +111,50 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDefault'
-        default:
-          description: Internal Server Error
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDefault'
 components:
   schemas:
     ErrorResponseDefault:
       type: object
       properties:
+        status:
+          type: string
+        type:
+          type: string
+        reason:
+          type: string
+        title:
+          type: string
+        badAttributes:
+          type: array
+          items:
+            type: string
+        badObjects:
+          type: array
+          items:
+            type: string
         otherProblems:
           type: array
           items:
             type: object
+            properties:
+              status:
+                type: string
+              type:
+                type: string
+              reason:
+                type: string
+              title:
+                type: string
+              badAttributes:
+                type: array
+                items:
+                  type: string
+              badObjects:
+                type: array
+                items:
+                  type: string
+            required:
+              - type
       required:
         - type
     ActionRequest:
@@ -148,8 +177,7 @@ components:
           location: Dublin
         value:
           input:
-            exportUri: http://example.com/export-location
-            exportPassword: test123
+            delay: 10
     ActionResponse:
       type: object
       properties:
@@ -163,8 +191,7 @@ components:
           properties:
             input:
               type: object
-            output:
-              type: object
+            output: {}
       additionalProperties: true
       example:
         customProperties:
@@ -172,6 +199,5 @@ components:
           location: Dublin
         value:
           input:
-            exportUri: http://example.com/export-location
-            exportPassword: test123
-          output: 123
+            delay: 10
+          output: 1

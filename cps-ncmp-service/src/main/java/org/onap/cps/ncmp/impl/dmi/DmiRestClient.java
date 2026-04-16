@@ -71,6 +71,29 @@ public class DmiRestClient {
     private final WebClient healthChecksWebClient;
 
     /**
+     * Sends a synchronous (blocking) POST operation to the DMI with a JSON body.
+     * Returns the DMI response exactly as received, without any modification.
+     *
+     * @param requiredDmiService      Determines if the required service is for a data or model operation.
+     * @param body                    object to be forwarded.
+     * @param urlTemplateParameters   The DMI resource URL template with variables.
+     * @param authorization           Contents of the Authorization header, or null if not present.
+     * @return                        ResponseEntity containing the response from the DMI.
+     */
+    public ResponseEntity<Object> synchronousPostOperation(final RequiredDmiService requiredDmiService,
+                                                           final Object body,
+                                                           final UrlTemplateParameters urlTemplateParameters,
+                                                           final String authorization) {
+        return getWebClient(requiredDmiService)
+            .post()
+            .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
+            .bodyValue(body)
+            .exchangeToMono(this::createIdenticalResponseForClient)
+            .block();
+    }
+
+    /**
      * Sends a synchronous (blocking) POST operation to the DMI with a JSON body containing module references.
      *
      * @param requiredDmiService      Determines if the required service is for a data or model operation.
@@ -81,16 +104,16 @@ public class DmiRestClient {
      * @return                        ResponseEntity containing the response from the DMI.
      * @throws DmiClientRequestException If there is an error during the DMI request.
      */
-    public ResponseEntity<Object> synchronousPostOperation(final RequiredDmiService requiredDmiService,
-                                                           final UrlTemplateParameters urlTemplateParameters,
-                                                           final String requestBodyAsJsonString,
-                                                           final OperationType operationType,
-                                                           final String authorization) {
+    public ResponseEntity<Object> synchronousPostOperationWithErrorMapping(final RequiredDmiService requiredDmiService,
+                                                                   final UrlTemplateParameters urlTemplateParameters,
+                                                                   final String requestBodyAsJsonString,
+                                                                   final OperationType operationType,
+                                                                   final String authorization) {
         return asynchronousPostOperation(requiredDmiService,
-                                         urlTemplateParameters,
-                                         requestBodyAsJsonString,
-                                         operationType,
-                                         authorization).block();
+            urlTemplateParameters,
+            requestBodyAsJsonString,
+            operationType,
+            authorization).block();
     }
 
     /**
