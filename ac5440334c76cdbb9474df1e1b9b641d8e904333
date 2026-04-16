@@ -215,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f896cb8_666425b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-16T09:11:53Z",
+      "side": 1,
+      "message": "copy and paste error, will fix",
+      "parentUuid": "63394559_af2858c4",
+      "range": {
+        "startLine": 97,
+        "startChar": 81,
+        "endLine": 97,
+        "endChar": 109
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dad68eb3_7b39799d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
         "patchSetId": 1
@@ -238,6 +262,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e57c0283_9c3d44a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-16T09:11:53Z",
+      "side": 1,
+      "message": "it returns the response from the dmi as it was received, compared to the other method that does error handling on the dmi response",
+      "parentUuid": "dad68eb3_7b39799d",
+      "range": {
+        "startLine": 106,
+        "startChar": 73,
+        "endLine": 106,
+        "endChar": 79
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "189ef213_9e6254df",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
         "patchSetId": 1
@@ -249,6 +297,30 @@
       "writtenOn": "2026-04-15T17:31:46Z",
       "side": 1,
       "message": "is this not covered by next lien too?!\n\"//\" \u003d 2 ocurrences of \"/\"  ?!",
+      "range": {
+        "startLine": 141,
+        "startChar": 12,
+        "endLine": 141,
+        "endChar": 31
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44310d8b_9dc31cdd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-16T09:11:53Z",
+      "side": 1,
+      "message": "This resolves the base fdn path where / is the fdn, once it gets to the next line it requires both two // and an equals to be a valid fdn",
+      "parentUuid": "189ef213_9e6254df",
       "range": {
         "startLine": 141,
         "startChar": 12,
