@@ -379,6 +379,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0844db7f_759b2c01",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParametersBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-16T09:29:02Z",
+      "side": 1,
+      "message": "we check with that we also have PROVMNS_ACTIONS_PATH \u003d \"prov-mns-extensions/v\\\\d+alpha\\\\d+/actions/(.*)\" and this is hardcoded, would we not expect any future change in this ?",
+      "range": {
+        "startLine": 104,
+        "startChar": 81,
+        "endLine": 104,
+        "endChar": 89
+      },
+      "revId": "ac5440334c76cdbb9474df1e1b9b641d8e904333",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2eff55d_4cdc1e06",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParametersBuilderSpec.groovy",
         "patchSetId": 1
