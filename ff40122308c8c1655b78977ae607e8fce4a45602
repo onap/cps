@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c48eed6b_c96d4b29",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:53:57Z",
+      "side": 1,
+      "message": "This is something to document and discuss. Do we need separate headers for request and response? If user sends XML file as payload they will very likely expect a XML response so should we allow mixing JSON-XML request and responses?",
+      "range": {
+        "startLine": 521,
+        "startChar": 4,
+        "endLine": 521,
+        "endChar": 18
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "442e6d71_738b4f4e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:53:57Z",
+      "side": 1,
+      "message": "camel case and use static import",
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60fe5599_05d7bd1b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:53:57Z",
+      "side": 1,
+      "message": "This is not correct way to do it. Controller should not be validating your data. Handle this in MultipartFileUtils",
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16498b82_a8afa4d6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:53:57Z",
+      "side": 1,
+      "message": "extract it to a common method. See buildDeltaResponseEntity",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 9
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "830e95e0_a7f88906",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:53:57Z",
+      "side": 1,
+      "message": "validate the XML string, an xml file can have corrupted data. You validated the extension but it does not gurantee valid data inside",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 80
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ade444c8_2a374a0b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:53:57Z",
+      "side": 1,
+      "message": "just combine XML and JSON tests using scenarios",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 7
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
