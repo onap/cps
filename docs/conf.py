@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+#  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -76,12 +76,11 @@ linkcheck_ignore = [
 
 html_last_updated_fmt = '%d-%b-%y %H:%M'
 
+# Run test_ScrapeMetrics.py (enable line below for testing purposes)
+# subprocess.run(["python3", "test_ScrapeMetrics.py"], check=True)
+
 # Run ScrapeMetrics.py
 subprocess.run(["python3", "ScrapeMetrics.py"], check=True)
-
-# Run test_ScrapeMetrics.py
-subprocess.run(["python3", "test_ScrapeMetrics.py"], check=True)
-
 
 def setup(app):
     app.add_css_file("css/ribbon.css")
