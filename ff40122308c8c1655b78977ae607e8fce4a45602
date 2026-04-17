@@ -3,6 +3,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d236b4df_e73a24a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:56:27Z",
+      "side": 1,
+      "message": "Review",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 14
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "298ac630_f49acbae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:56:27Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 7,
+        "startChar": 44,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "decdf5be_61ae84f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:56:27Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 101
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd816da6_d7671a02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:56:27Z",
+      "side": 1,
+      "message": "not needed, tests are part of development process, not a feature or enhancement",
+      "range": {
+        "startLine": 14,
+        "startChar": 74,
+        "endLine": 15,
+        "endChar": 41
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76a3b639_4a1baa0c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-17T11:56:27Z",
+      "side": 1,
+      "message": "Add space",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 17
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c48eed6b_c96d4b29",
         "filename": "cps-rest/docs/openapi/components.yml",
         "patchSetId": 5
