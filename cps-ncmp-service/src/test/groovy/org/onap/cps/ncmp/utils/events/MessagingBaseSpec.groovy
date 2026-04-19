@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.utils.events
 
 import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventSerializer
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
 import org.onap.cps.events.LegacyEvent
@@ -48,6 +49,9 @@ class MessagingBaseSpec extends Specification {
     def legacyEventKafkaTemplate = new KafkaTemplate<String, LegacyEvent>(new DefaultKafkaProducerFactory<String, LegacyEvent>(eventProducerConfigProperties(JsonSerializer)))
 
     def cloudEventKafkaTemplate = new KafkaTemplate<String, CloudEvent>(new DefaultKafkaProducerFactory<String, CloudEvent>(eventProducerConfigProperties(CloudEventSerializer)))
+
+    def meterRegistry = new SimpleMeterRegistry()
+    
     @DynamicPropertySource
     static void registerKafkaProperties(DynamicPropertyRegistry dynamicPropertyRegistry) {
         dynamicPropertyRegistry.add('spring.kafka.bootstrap-servers', kafkaTestContainer::getBootstrapServers)

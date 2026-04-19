@@ -25,6 +25,7 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import io.cloudevents.CloudEvent
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.clients.producer.RecordMetadata
 import org.apache.kafka.common.TopicPartition
@@ -36,19 +37,24 @@ import spock.lang.Specification
 
 import java.util.concurrent.CompletableFuture
 
+import java.time.OffsetDateTime
+
 class EventProducerSpec extends Specification {
 
     def mockLegacyKafkaTemplate = Mock(KafkaTemplate)
     def mockCloudEventKafkaTemplate = Mock(KafkaTemplate)
     def mockCloudEventKafkaTemplateForExactlyOnceSemantics = Mock(KafkaTemplate)
-    def mockCloudEvent = Mock(CloudEvent)
+    def mockCloudEvent = Mock(CloudEvent) {
+        getTime() >> OffsetDateTime.now().minusSeconds(5)
+    }
     def logger = Spy(ListAppender<ILoggingEvent>)
+    def meterRegistry = new SimpleMeterRegistry()
 
     void cleanup() {
         ((Logger) LoggerFactory.getLogger(EventProducer.class)).detachAndStopAllAppenders()
     }
 
-    def objectUnderTest = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate)
+    def objectUnderTest = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate, meterRegistry)
 
     void setup() {
         def setupLogger = ((Logger) LoggerFactory.getLogger(EventProducer.class))
@@ -155,7 +161,7 @@ class EventProducerSpec extends Specification {
 
     def 'Send Cloud Event Batch when ExactlyOnceSemantics template is not configured'() {
         given: 'an EventProducer without ExactlyOnceSemantics template'
-            def objectUnderTestWithoutExactlyOnceSemantics = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate)
+            def objectUnderTestWithoutExactlyOnceSemantics = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate, meterRegistry)
         and: 'a batch of events'
             def events = [key1:  mockCloudEvent].collect { new MapEntry(it.key, it.value) }
         when: 'sending the batch'
@@ -177,6 +183,8 @@ class EventProducerSpec extends Specification {
             objectUnderTest.sendCloudEventBatch('some-topic', events)
         then: 'the correct debug message is logged'
             assert verifyAnyLogEntry(Level.DEBUG, 'Successfully sent batch')
+        and: 'the latency gauge is recorded with a positive value'
+            assert meterRegistry.find('cps.cloud.event.batch.send.latency').gauge().value() > 0
     }
 
     def 'Send Cloud Event Batch with failure'() {
@@ -204,6 +212,21 @@ class EventProducerSpec extends Specification {
             0 * mockCloudEventKafkaTemplateForExactlyOnceSemantics._
         and: 'the correct debug message is logged'
             assert verifyAnyLogEntry(Level.DEBUG, 'No events to send')
+    }
+
+    def 'Send Cloud Event Batch with no time field does not update latency gauge'() {
+        given: 'a cloud event without a time field'
+            def cloudEventWithoutTime = Mock(CloudEvent) {
+                getTime() >> null
+            }
+            def events = [key1: cloudEventWithoutTime].collect { new MapEntry(it.key, it.value) }
+        and: 'a successful future'
+            def eventFuture = createSuccessfulSendResult('some-topic', 'key1', cloudEventWithoutTime)
+            1 * mockCloudEventKafkaTemplateForExactlyOnceSemantics.send('some-topic', 'key1', cloudEventWithoutTime) >> eventFuture
+        when: 'sending the batch'
+            objectUnderTest.sendCloudEventBatch('some-topic', events)
+        then: 'the latency gauge remains at zero'
+            assert meterRegistry.find('cps.cloud.event.batch.send.latency').gauge().value() == 0
     }
 
     def verifyAnyLogEntry(expectedLevel, expectedFormattedMessage) {

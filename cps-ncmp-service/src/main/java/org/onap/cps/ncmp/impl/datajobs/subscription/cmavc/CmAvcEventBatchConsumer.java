@@ -6,7 +6,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,6 +22,8 @@ package org.onap.cps.ncmp.impl.datajobs.subscription.cmavc;
 
 import io.cloudevents.CloudEvent;
 import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +49,24 @@ import org.springframework.transaction.annotation.Transactional;
 @ConditionalOnProperty(name = "ncmp.notifications.avc-event-consumer.batch-enabled")
 public class CmAvcEventBatchConsumer extends CmAvcEventConsumer {
 
+    private final Counter cmEventsForwardedBatchCounter;
+
+    /**
+     * Constructor for CmAvcEventBatchConsumer.
+     *
+     * @param eventProducer        the event producer for forwarding events
+     * @param cmAvcEventService    the service for processing AVC events
+     * @param inventoryPersistence the inventory persistence layer
+     * @param meterRegistry        the meter registry for metrics
+     */
     public CmAvcEventBatchConsumer(final EventProducer eventProducer,
                                    final CmAvcEventService cmAvcEventService,
-                                   final InventoryPersistence inventoryPersistence) {
+                                   final InventoryPersistence inventoryPersistence,
+                                   final MeterRegistry meterRegistry) {
         super(eventProducer, cmAvcEventService, inventoryPersistence);
+        this.cmEventsForwardedBatchCounter = Counter.builder("cps.ncmp.cm.avc.events.forwarded.batch")
+                .description("Total number of individual CM AVC events forwarded via batch processing")
+                .register(meterRegistry);
     }
 
     /**
@@ -82,5 +98,6 @@ public class CmAvcEventBatchConsumer extends CmAvcEventConsumer {
         }
 
         eventProducer.sendCloudEventBatch(cmEventsTopicName, eventsToForward);
+        cmEventsForwardedBatchCounter.increment(eventsToForward.size());
     }
 }

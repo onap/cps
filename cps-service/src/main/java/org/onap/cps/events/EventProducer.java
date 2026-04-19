@@ -21,9 +21,14 @@
 package org.onap.cps.events;
 
 import io.cloudevents.CloudEvent;
+import io.micrometer.core.instrument.Gauge;
+import io.micrometer.core.instrument.MeterRegistry;
+import java.time.Duration;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicLong;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Headers;
@@ -54,14 +59,27 @@ public class EventProducer {
     @Qualifier("cloudEventKafkaTemplate")
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
 
+    private final AtomicLong batchEventLatencyInMs = new AtomicLong(0);
+
     private KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplateForExactlyOnceSemantics;
 
+    /**
+     * Constructor for EventProducer.
+     *
+     * @param legacyEventKafkaTemplate     the Kafka template for legacy events
+     * @param cloudEventKafkaTemplate      the Kafka template for cloud events
+     * @param meterRegistry                the meter registry for metrics
+     */
     public EventProducer(@Qualifier("legacyEventKafkaTemplate")
                          final KafkaTemplate<String, LegacyEvent> legacyEventKafkaTemplate,
                          @Qualifier("cloudEventKafkaTemplate")
-                         final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate) {
+                         final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate,
+                         final MeterRegistry meterRegistry) {
         this.legacyEventKafkaTemplate = legacyEventKafkaTemplate;
         this.cloudEventKafkaTemplate = cloudEventKafkaTemplate;
+        Gauge.builder("cps.cloud.event.batch.send.latency", batchEventLatencyInMs, AtomicLong::get)
+                .description("Latest maximum end-to-end latency in ms between CloudEvent time and send time")
+                .register(meterRegistry);
     }
 
     /**
@@ -167,11 +185,13 @@ public class EventProducer {
         log.debug("Sending batch of {} events to topic: {}", events.size(), topicName);
 
         final List<CompletableFuture<SendResult<String, CloudEvent>>> futures = events.stream()
-                .map(entry ->
-                        cloudEventKafkaTemplateForExactlyOnceSemantics.send(
+                .map(entry -> {
+                    recordEventLatency(entry.getValue());
+                    return cloudEventKafkaTemplateForExactlyOnceSemantics.send(
                         topicName,
                         entry.getKey(),
-                        entry.getValue())).toList();
+                        entry.getValue());
+                }).toList();
 
         try {
             CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
@@ -182,6 +202,14 @@ public class EventProducer {
                     "Failed to send batch of events",
                     String.format("Topic: %s, Batch size: %d", topicName, events.size()),
                     exception);
+        }
+    }
+
+    private void recordEventLatency(final CloudEvent event) {
+        final OffsetDateTime eventTime = event.getTime();
+        if (eventTime != null) {
+            final long latencyInMs = Duration.between(eventTime, OffsetDateTime.now()).toMillis();
+            batchEventLatencyInMs.set(latencyInMs);
         }
     }
 
