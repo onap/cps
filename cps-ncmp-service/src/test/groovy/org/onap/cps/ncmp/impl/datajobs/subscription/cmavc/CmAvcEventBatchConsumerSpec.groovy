@@ -25,6 +25,7 @@ import static org.onap.cps.ncmp.utils.TestUtils.getResourceFileContent
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import java.nio.charset.Charset
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.ConsumerRecords
@@ -46,8 +47,9 @@ class CmAvcEventBatchConsumerSpec extends Specification {
     def mockCmAvcEventService = Mock(CmAvcEventService)
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def meterRegistry = new SimpleMeterRegistry()
 
-    def objectUnderTest = new CmAvcEventBatchConsumer(mockEventProducer, mockCmAvcEventService, mockInventoryPersistence)
+    def objectUnderTest = new CmAvcEventBatchConsumer(mockEventProducer, mockCmAvcEventService, mockInventoryPersistence, meterRegistry)
 
     def validAvcEventAsJson
 
@@ -76,6 +78,8 @@ class CmAvcEventBatchConsumerSpec extends Specification {
                 assert eventsToForward[1].key == 'key2'
                 assert eventsToForward[1].value == testCloudEvent2
             }
+        and: 'the events forwarded counter is incremented by the batch size'
+            assert meterRegistry.counter('cps.ncmp.cm.avc.events.forwarded.batch').count() == 2
     }
 
     def 'Consume and process batch of CM Avc Events with #scenario.'() {

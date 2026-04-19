@@ -49,7 +49,7 @@ class EventProducerSpec extends MessagingBaseSpec {
     def testTopic = 'ncmp-events-test'
 
     @SpringBean
-    EventProducer eventProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
+    EventProducer eventProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, meterRegistry)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
