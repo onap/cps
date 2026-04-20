@@ -25,7 +25,7 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
 import org.onap.cps.ncmp.config.DmiHttpClientConfig
-import org.onap.cps.ncmp.impl.provmns.http.ClientRequestMetricsTagCustomizer
+import org.onap.cps.ncmp.impl.dmi.provmns.out.ClientRequestMetricsTagCustomizer
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
