@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.dmi;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.config.DmiHttpClientConfig;
 import org.onap.cps.ncmp.config.ServiceConfig;
-import org.onap.cps.ncmp.impl.provmns.http.ClientRequestMetricsTagCustomizer;
+import org.onap.cps.ncmp.impl.dmi.provmns.out.ClientRequestMetricsTagCustomizer;
 import org.onap.cps.ncmp.impl.utils.http.WebClientConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
