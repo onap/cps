@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbc6fd6f_84eb1beb",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-20T14:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9404cd4a_a9c548d7",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 41
+      },
+      "revId": "ac106b0d73610ea0ed693086dc947ec070014ec0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcce6efb_1d9f4638",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75585e24_94ad746e",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-20T14:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcce6efb_1d9f4638",
+      "range": {
+        "startLine": 208,
+        "startChar": 53,
+        "endLine": 208,
+        "endChar": 58
+      },
+      "revId": "ac106b0d73610ea0ed693086dc947ec070014ec0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5ec2705_a75bef24",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-04-20T13:37:48Z",
       "side": 1,
       "message": "nb: offsetDateTime",
+      "range": {
+        "startLine": 209,
+        "startChar": 29,
+        "endLine": 209,
+        "endChar": 39
+      },
+      "revId": "ac106b0d73610ea0ed693086dc947ec070014ec0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f980aef1_b580b0b4",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-20T14:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5ec2705_a75bef24",
       "range": {
         "startLine": 209,
         "startChar": 29,
