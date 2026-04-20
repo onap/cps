@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,6 +38,9 @@ public class ClientRequestMetricsTagCustomizer extends DefaultClientRequestObser
     @Value("${rest.api.provmns-base-path:/ProvMnS}")
     private String provMnsBasePath;
 
+    @Value("${rest.api.provmns-extensions-base-path:/prov-mns-extensions}")
+    private String provMnsExtensionsBasePath;
+
     @Override
     public KeyValues getLowCardinalityKeyValues(final ClientRequestObservationContext clientRequestObservationContext) {
         return super.getLowCardinalityKeyValues(clientRequestObservationContext).and(
@@ -53,14 +56,20 @@ public class ClientRequestMetricsTagCustomizer extends DefaultClientRequestObser
      */
     protected KeyValues additionalTags(final ClientRequestObservationContext clientRequestObservationContext) {
         final String uriTemplate = clientRequestObservationContext.getUriTemplate();
-        final String provMnsApiPath = provMnsBasePath + "/v1/";
-        if (uriTemplate != null && uriTemplate.contains(provMnsApiPath)) {
-            final String queryParameters = extractQueryParameters(uriTemplate);
-            final String maskedUri = provMnsApiPath + "{fdn}" + queryParameters;
-            return KeyValues.of("uri", maskedUri);
-        } else {
+        if (uriTemplate == null) {
             return KeyValues.empty();
         }
+        final String provMnsApiPath = provMnsBasePath + "/v1/";
+        if (uriTemplate.contains(provMnsApiPath)) {
+            final String queryParameters = extractQueryParameters(uriTemplate);
+            return KeyValues.of("uri", provMnsApiPath + "{fdn}" + queryParameters);
+        }
+        final String extensionsApiPath = provMnsExtensionsBasePath + "/v1alpha1/actions/";
+        if (uriTemplate.contains(extensionsApiPath)) {
+            final String queryParameters = extractQueryParameters(uriTemplate);
+            return KeyValues.of("uri", extensionsApiPath + "{fdn}/{actionName}" + queryParameters);
+        }
+        return KeyValues.empty();
     }
 
     /**

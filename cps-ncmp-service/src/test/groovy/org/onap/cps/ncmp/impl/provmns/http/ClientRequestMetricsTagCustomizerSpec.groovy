@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import org.springframework.web.reactive.function.client.ClientRequestObservation
 import spock.lang.Specification
 
 @SpringBootTest(classes = [ClientRequestMetricsTagCustomizer])
-@TestPropertySource(properties = ["rest.api.provmns-base-path=/ProvMnS"])
+@TestPropertySource(properties = ["rest.api.provmns-base-path=/ProvMnS", "rest.api.provmns-extensions-base-path=/prov-mns-extensions"])
 class ClientRequestMetricsTagCustomizerSpec extends Specification {
 
     @Autowired
@@ -72,5 +72,26 @@ class ClientRequestMetricsTagCustomizerSpec extends Specification {
             'with filters'    | 'http://some-service/ProvMnS/v1/parent=A/child=E?filter1=1&filter2=2'| '/ProvMnS/v1/{fdn}?filter1=1&filter2=2'
             'filters only'    | 'http://some-service/ProvMnS/v1/?filter1=1'                          | '/ProvMnS/v1/{fdn}?filter1=1'
             'non-matching URI'| 'http://some-service/other-api/v1/resource'                          | null
+    }
+
+    def 'Mask URIs for ProvMnS Extensions request: #scenario'() {
+        given: 'a request to a network device'
+            def context = Mock(ClientRequestObservationContext)
+            context.getUriTemplate() >> inputUri
+        when: 'the URL is processed for metrics'
+            def result = objectUnderTest.additionalTags(context)
+        then: 'device-specific parts are replaced with a template'
+            if (expectedUri) {
+                result.stream().anyMatch { keyValue ->
+                    keyValue.key == 'uri' && keyValue.value == expectedUri
+                }
+            } else {
+                result == KeyValues.empty()
+            }
+        where:
+            scenario              | inputUri                                                                                        | expectedUri
+            'action path'         | 'http://some-service/prov-mns-extensions/v1alpha1/actions/SubNetwork=SN1/MeContext=XY/reset'     | '/prov-mns-extensions/v1alpha1/actions/{fdn}/{actionName}'
+            'with query params'   | 'http://some-service/prov-mns-extensions/v1alpha1/actions/SubNetwork=SN1/reset?param=1'          | '/prov-mns-extensions/v1alpha1/actions/{fdn}/{actionName}?param=1'
+            'non-matching URI'    | 'http://some-service/other-api/v1/resource'                                                      | null
     }
 }
