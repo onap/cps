@@ -22,6 +22,30 @@
       },
       "revId": "2d823ce5d6c4550e96b381e5667d6b33f1d3aa31",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70dbe238_416e6f91",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/provmns/out/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-20T14:48:33Z",
+      "side": 1,
+      "message": "I think given the context of where the variable is being used adding path might be overly descriptive",
+      "parentUuid": "1da1f042_8e74d019",
+      "range": {
+        "startLine": 51,
+        "startChar": 21,
+        "endLine": 51,
+        "endChar": 52
+      },
+      "revId": "2d823ce5d6c4550e96b381e5667d6b33f1d3aa31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
