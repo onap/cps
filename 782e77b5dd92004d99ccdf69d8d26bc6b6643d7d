@@ -47,6 +47,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3450973_daf68139",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-20T14:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0851475_99aa98c4",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 97
+      },
+      "revId": "782e77b5dd92004d99ccdf69d8d26bc6b6643d7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc82cfc_76bcf30b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-20T14:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e761788_43bce3f8",
+      "range": {
+        "startLine": 60,
+        "startChar": 78,
+        "endLine": 60,
+        "endChar": 86
+      },
+      "revId": "782e77b5dd92004d99ccdf69d8d26bc6b6643d7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02caccbb_2cc5aa5a",
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f5dfb21_e9efa2e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-20T14:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02caccbb_2cc5aa5a",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 12
+      },
+      "revId": "782e77b5dd92004d99ccdf69d8d26bc6b6643d7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a52a343_218ed7e1",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-04-20T13:44:30Z",
       "side": 1,
       "message": "else not needed because of return above",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 68,
+        "endChar": 16
+      },
+      "revId": "782e77b5dd92004d99ccdf69d8d26bc6b6643d7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4124907a_bf9e58c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/http/ClientRequestMetricsTagCustomizer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-20T14:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a52a343_218ed7e1",
       "range": {
         "startLine": 68,
         "startChar": 10,
