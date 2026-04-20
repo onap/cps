@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.impl.dmi
 
 
 import org.onap.cps.ncmp.config.DmiHttpClientConfig
-import org.onap.cps.ncmp.impl.provmns.http.ClientRequestMetricsTagCustomizer
+import org.onap.cps.ncmp.impl.dmi.provmns.out.ClientRequestMetricsTagCustomizer
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,9 +18,10 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.provmns.http;
+package org.onap.cps.ncmp.impl.dmi.provmns.out;
 
 import io.micrometer.common.KeyValues;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientRequestObservationContext;
@@ -37,6 +38,19 @@ public class ClientRequestMetricsTagCustomizer extends DefaultClientRequestObser
 
     @Value("${rest.api.provmns-base-path:/ProvMnS}")
     private String provMnsBasePath;
+    private String provMnsApiPath;
+
+    @Value("${rest.api.provmns-extensions-base-path:/prov-mns-extensions}")
+    private String provMnsExtensionsBasePath;
+    private String provMnSExtensionsApiPath;
+
+    @PostConstruct
+    void init() {
+        String provMnSOutApiVersion = "/v1/";
+        provMnsApiPath = provMnsBasePath + provMnSOutApiVersion;
+        String provMnSExtensionsOutApiVersion = "/v1alpha1/";
+        provMnSExtensionsApiPath = provMnsExtensionsBasePath + provMnSExtensionsOutApiVersion + "actions/";
+    }
 
     @Override
     public KeyValues getLowCardinalityKeyValues(final ClientRequestObservationContext clientRequestObservationContext) {
@@ -53,14 +67,15 @@ public class ClientRequestMetricsTagCustomizer extends DefaultClientRequestObser
      */
     protected KeyValues additionalTags(final ClientRequestObservationContext clientRequestObservationContext) {
         final String uriTemplate = clientRequestObservationContext.getUriTemplate();
-        final String provMnsApiPath = provMnsBasePath + "/v1/";
         if (uriTemplate != null && uriTemplate.contains(provMnsApiPath)) {
             final String queryParameters = extractQueryParameters(uriTemplate);
-            final String maskedUri = provMnsApiPath + "{fdn}" + queryParameters;
-            return KeyValues.of("uri", maskedUri);
-        } else {
-            return KeyValues.empty();
+            return KeyValues.of("uri", provMnsApiPath + "{fdn}" + queryParameters);
         }
+        if (uriTemplate != null && uriTemplate.contains(provMnSExtensionsApiPath)) {
+            final String queryParameters = extractQueryParameters(uriTemplate);
+            return KeyValues.of("uri", provMnSExtensionsApiPath + "{fdn}/{actionName}" + queryParameters);
+        }
+        return KeyValues.empty();
     }
 
     /**
