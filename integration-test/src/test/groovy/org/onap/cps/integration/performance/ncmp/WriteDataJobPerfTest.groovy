@@ -49,7 +49,6 @@ class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
         deregisterSequenceOfCmHandles(DMI1_URL, NETWORK_SIZE, 1)
     }
 
-    @Ignore  // CPS-2691 / CPS-2692
     def 'Performance test Large cm write data job.'() {
         given: '3 large cm write data jobs'
             def dataJobWriteRequest1 = populateDataJobWriteRequests(NETWORK_SIZE, 0)
@@ -74,7 +73,6 @@ class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
             println "*** CPS-2691 (S) Execution time: ${executionResult.executionTime} seconds | Memory usage: ${executionResult.memoryUsage} MB"
     }
 
-    @Ignore  // CPS-2692
     def 'Performance test parallel small cm write data jobs.'() {
         when: 'sending 10 parallel write jobs to NCMP, execute test 3 times with some delay and different offsets'
             def executionResults1 = executeParallelWriteJobs(10, 100, 0)
