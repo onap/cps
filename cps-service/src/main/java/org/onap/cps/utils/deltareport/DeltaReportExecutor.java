@@ -25,6 +25,7 @@ import static org.onap.cps.api.model.DeltaReport.REMOVE_ACTION;
 import static org.onap.cps.api.model.DeltaReport.REPLACE_ACTION;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
 import static org.onap.cps.utils.ContentType.JSON;
+import static org.onap.cps.utils.ContentType.XML;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
@@ -40,7 +41,9 @@ import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.XmlObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,6 +58,7 @@ public class DeltaReportExecutor {
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final DataNodeFactory dataNodeFactory;
     private final JsonObjectMapper jsonObjectMapper;
+    private final XmlObjectMapper xmlObjectMapper;
 
     /**
      * Applies the delta report to the specified dataspace and anchor.
@@ -65,44 +69,66 @@ public class DeltaReportExecutor {
      */
     @Transactional
     public void applyChangesInDeltaReport(final String dataspaceName, final String anchorName,
-                                   final String deltaReportAsJsonString) {
-        final List<DeltaReport> deltaReports =
-            jsonObjectMapper.convertToJsonArray(deltaReportAsJsonString, DeltaReport.class);
-        for (final DeltaReport deltaReport: deltaReports) {
-            final String xpath = validateXpath(deltaReport.getXpath());
-            final String action = validateAction(deltaReport.getAction(), xpath);
-            if (REPLACE_ACTION.equals(action)) {
-                final String dataForUpdate = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
-                updateDataNodes(dataspaceName, anchorName, xpath, dataForUpdate);
-            } else if (REMOVE_ACTION.equals(action)) {
-                final String dataForDelete = jsonObjectMapper.asJsonString(deltaReport.getSourceData());
-                deleteDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForDelete);
-            } else {
-                final String dataForCreate = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
-                addDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForCreate);
+                                   final String deltaReportAsJsonString, final ContentType contentType) {
+        if (XML.equals(contentType)) {
+            final List<DeltaReport> deltaReports =
+                    xmlObjectMapper.convertToXmlArray(deltaReportAsJsonString, DeltaReport.class);
+            for (final DeltaReport deltaReport: deltaReports) {
+                final String xpath = validateXpath(deltaReport.getXpath());
+                final String action = validateAction(deltaReport.getAction(), xpath);
+                if (REPLACE_ACTION.equals(action)) {
+                    final String dataForUpdate = xmlObjectMapper.asXmlString(deltaReport.getTargetData());
+                    updateDataNodes(dataspaceName, anchorName, xpath, dataForUpdate, contentType);
+                } else if (REMOVE_ACTION.equals(action)) {
+                    final String dataForDelete = xmlObjectMapper.asXmlString(deltaReport.getSourceData());
+                    deleteDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForDelete, contentType);
+                } else {
+                    final String dataForCreate = xmlObjectMapper.asXmlStringWithRoot(deltaReport.getTargetData(),
+                            "stores", "org:onap:ccsdk:sample");
+                    addDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForCreate, contentType);
+                }
+            }
+        } else {
+            final List<DeltaReport> deltaReports = jsonObjectMapper
+                    .convertToJsonArray(deltaReportAsJsonString, DeltaReport.class);
+            for (final DeltaReport deltaReport: deltaReports) {
+                final String xpath = validateXpath(deltaReport.getXpath());
+                final String action = validateAction(deltaReport.getAction(), xpath);
+                if (REPLACE_ACTION.equals(action)) {
+                    final String dataForUpdate = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
+                    updateDataNodes(dataspaceName, anchorName, xpath, dataForUpdate, contentType);
+                } else if (REMOVE_ACTION.equals(action)) {
+                    final String dataForDelete = jsonObjectMapper.asJsonString(deltaReport.getSourceData());
+                    deleteDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForDelete,  contentType);
+                } else {
+                    final String dataForCreate = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
+                    addDataNodesUsingDelta(dataspaceName, anchorName, xpath, dataForCreate, contentType);
+                }
             }
         }
     }
 
     private void updateDataNodes(final String dataspaceName, final String anchorName, final String xpath,
-                                 final String updatedData) {
+                                 final String updatedData, final ContentType contentType) {
         final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
         final Collection<DataNode> dataNodesToUpdate =
-            createDataNodes(dataspaceName, anchorName, parentNodeXpath, updatedData);
+                createDataNodes(dataspaceName, anchorName, parentNodeXpath, updatedData, contentType);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodesToUpdate);
     }
 
     private void deleteDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
-                                           final String dataToDelete) {
-        final Collection<DataNode> dataNodesToDelete = createDataNodes(dataspaceName, anchorName, xpath, dataToDelete);
+                                           final String dataToDelete, final ContentType contentType) {
+        final Collection<DataNode> dataNodesToDelete = createDataNodes(dataspaceName, anchorName,
+                xpath, dataToDelete, contentType);
         final Collection<String> xpathsToDelete = dataNodesToDelete.stream().map(DataNode::getXpath).toList();
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName, xpathsToDelete);
     }
 
     private void addDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
-                                        final String dataToAdd) {
+                                        final String dataToAdd, final ContentType contentType) {
         final String xpathToAdd = isRootListNodeXpath(xpath) ? CpsPathUtil.ROOT_NODE_XPATH : xpath;
-        final Collection<DataNode> dataNodesToAdd = createDataNodes(dataspaceName, anchorName, xpathToAdd, dataToAdd);
+        final Collection<DataNode> dataNodesToAdd = createDataNodes(dataspaceName, anchorName,
+                                                                     xpathToAdd, dataToAdd, contentType);
         if (ROOT_NODE_XPATH.equals(xpathToAdd)) {
             cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, dataNodesToAdd);
         } else {
@@ -115,9 +141,14 @@ public class DeltaReportExecutor {
     }
 
     private Collection<DataNode> createDataNodes(final String datasapceName, final String anchorName,
-                                                 final String xpath, final String nodeData) {
+                                                 final String xpath, final String nodeData,
+                                                 final ContentType contentType) {
         final Anchor anchor = cpsAnchorService.getAnchor(datasapceName, anchorName);
-        return dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor, xpath, nodeData, JSON);
+        if (XML.equals(contentType)) {
+            return dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor, xpath, nodeData, XML);
+        } else {
+            return dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor, xpath, nodeData, JSON);
+        }
     }
 
     private String validateXpath(final String xpath) {

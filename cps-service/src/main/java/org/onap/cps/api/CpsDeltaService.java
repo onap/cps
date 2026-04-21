@@ -78,5 +78,6 @@ public interface CpsDeltaService {
      * @param anchorName              anchor name where the delta report is to be applied
      * @param deltaReportAsJsonString delta report in JSON string format
      */
-    void applyChangesInDeltaReport(String dataspaceName, String anchorName, String deltaReportAsJsonString);
+    void applyChangesInDeltaReport(String dataspaceName, String anchorName,
+                                   String deltaReportAsJsonString, String contentType);
 }

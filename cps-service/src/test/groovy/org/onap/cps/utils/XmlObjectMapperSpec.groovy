@@ -53,5 +53,42 @@ class XmlObjectMapperSpec extends Specification {
             def thrownException = thrown(DataValidationException)
             thrownException.message == 'Data Validation Failed'
     }
+    def 'Throw exception when XML content is invalid conversion'() {
+        given: 'An invalid XML string'
+            def xmlContent = '<key>value1</key><key>value2</key>'
+        when: 'an attempt to convert XML content to the target class type'
+            objectUnderTest.convertToXmlArray(xmlContent, Map)
+        then: 'a DataValidationException is thrown'
+            def thrown = thrown(DataValidationException)
+            thrown.message.contains('XML parsing error at line: 1, column: 20')
+    }
+     def 'Map a structured only object with exception during mapping.'() {
+        given: 'some object'
+            def object = new Object();
+        and: 'the XmlMapper chain throws an exception'
+            def spiedXmlMapper = Spy(XmlMapper)
+            def writer = Mock(ObjectWriter)
+            spiedXmlMapper.writer() >> writer
+            writer.writeValueAsString(_) >> { throw new Exception() }
+            when: 'attempt to build XML'
+            objectUnderTest.asXmlString(object)
+        then: 'the exception has correct message'
+            def thrownException = thrown(DataValidationException)
+            thrownException.message == 'Data Validation Failed'
+    }
+    def 'Map a structured object and root node with exception during mapping.'() {
+        given: 'some object'
+            def object = new Object();
+        and: 'the XmlMapper chain throws an exception'
+            def spiedXmlMapper = Spy(XmlMapper)
+            def writer = Mock(ObjectWriter)
+            spiedXmlMapper.writer() >> writer
+            writer.writeValueAsString(_) >> { throw new Exception() }
+        when: 'attempt to build XML'
+            objectUnderTest.asXmlStringWithRoot(object,"stores","org:onap:ccsdk:sample")
+        then: 'the exception has correct message'
+            def thrownException = thrown(DataValidationException)
+            thrownException.message == 'Data Validation Failed'
+    }
 }
 

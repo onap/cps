@@ -33,6 +33,7 @@ import org.onap.cps.impl.YangTextSchemaSourceSetCache
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.XmlObjectMapper
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
@@ -50,7 +51,8 @@ class DeltaReportExecutorSpec extends Specification {
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def objectUnderTest = new DeltaReportExecutor(mockCpsAnchorService, mockCpsDataPersistenceService, dataNodeFactory, jsonObjectMapper)
+    def xmlObjectMapper = new XmlObjectMapper()
+    def objectUnderTest = new DeltaReportExecutor(mockCpsAnchorService, mockCpsDataPersistenceService, dataNodeFactory, jsonObjectMapper, xmlObjectMapper)
 
     @Shared
     static def ANCHOR_NAME_1 = 'some-anchor-1'
@@ -77,7 +79,7 @@ class DeltaReportExecutorSpec extends Specification {
             def dataNodes = [new DataNode(xpath: '/bookstore/categories[@code=\'1\']', childDataNodes: [new DataNode(xpath: '/bookstore/categories[@code=\'1\']/books[@title=\'Matilda\']')])]
             def xpathsToDelete = dataNodes*.xpath
         when: 'attempt to apply delta using the delta report'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, ContentType.JSON)
         then: 'the delta report in JSON format is converted to a list of DeltaReport objects'
             jsonObjectMapper.convertToJsonArray(deltaReportJson, DeltaReport) >> [deltaReport]
         and: 'data nodes are built from the source data of delta report'
@@ -99,7 +101,7 @@ class DeltaReportExecutorSpec extends Specification {
         and: 'target data as JSON string from delta report'
             def targetData = jsonObjectMapper.asJsonString(deltaReport.getTargetData())
         when: 'attempt to apply delta using the delta report'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, ContentType.JSON)
         then: 'the delta report as JSON string is converted to a list of DeltaReport objects'
             jsonObjectMapper.convertToJsonArray(deltaReportJson, DeltaReport) >> [deltaReport]
         and: 'data nodes are built from the target data of delta report'
@@ -124,7 +126,7 @@ class DeltaReportExecutorSpec extends Specification {
         and: 'data nodes created from delta report'
             def dataNodesCreatedFromDeltaReport = [new DataNode(xpath: '/bookstore-address[@bookstore-name=\'Easons\']', leaves: ['bookstore-name':'Easons'])]
         when: 'attempt to apply delta using the delta report'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, ContentType.JSON)
         then: 'the delta report as JSON string is converted to a list of DeltaReport objects'
             jsonObjectMapper.convertToJsonArray(deltaReportJson, DeltaReport) >> [deltaReport]
         and: 'data nodes are built from the target data of delta report'
@@ -149,7 +151,7 @@ class DeltaReportExecutorSpec extends Specification {
         and: 'parent and child nodes to be updated'
          def dataNodesCreatedFromDeltaReport = [new DataNode(xpath: '/bookstore/categories[@code=\'1\']', leaves: ['code': '1', 'name': 'Children'], childDataNodes: [new DataNode(xpath: '/bookstore/categories[@code=\'1\']/books[@title=\'Matilda\']', leaves: ['price': 30, 'title': 'Matilda'])])]
         when: 'attempt to apply delta using the delta report'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, ContentType.JSON)
         then: 'the delta report as JSON string is converted to a list of DeltaReport objects'
             jsonObjectMapper.convertToJsonArray(deltaReportJson, DeltaReport) >> [deltaReport]
         and: 'data nodes are built from the target data of delta report'
@@ -174,7 +176,7 @@ class DeltaReportExecutorSpec extends Specification {
             def xpathForDeleteOperation = deltaReport[1].xpath
             def sourceDataForDeleteOperation = jsonObjectMapper.asJsonString(deltaReport[1].sourceData)
         when: 'attempt to apply delta using the delta report'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson,ContentType.JSON)
         then: 'the delta report in JSON format is converted to DeltaReport objects'
             jsonObjectMapper.convertToJsonArray(deltaReportJson, DeltaReport) >> deltaReport
         and: 'data nodes are built from the target data of create operation in delta report'
@@ -190,7 +192,7 @@ class DeltaReportExecutorSpec extends Specification {
         given: 'delta report as JSON string with an invalid xpath for #action action'
             def deltaReportJson = '[{"action":"create","xpath":"/invalid[","targetData":{"data":[{"key":"value"}]}}]'
         when: 'attempt to apply delta'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson,ContentType.JSON)
         then: 'expected exception is thrown'
             def thrownException = thrown(DataValidationException)
             assert thrownException.message == 'Error while parsing xpath expression \'/invalid[\'.'
@@ -201,7 +203,7 @@ class DeltaReportExecutorSpec extends Specification {
         given: 'delta report as JSON string'
             def deltaReportJson = '[{"action":"invalidAction","xpath":"/bookstore","targetData":{"categories":[{"code":"1"}]}}]'
         when: 'attempt to apply delta report'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, ContentType.JSON)
         then: 'expected exception is thrown with correct details'
             def thrownException = thrown(DataValidationException)
             assert thrownException.message == 'Invalid \'action\' in delta report.'
@@ -230,5 +232,74 @@ class DeltaReportExecutorSpec extends Specification {
             deltaReport: new DeltaReportBuilder().actionCreate().withXpath('/bookstore/categories[@code=\'1\']').withTargetData(['books': [['price': 20, 'title': 'Matilda']]]).build(),
             dataNodes: [new DataNode(xpath: '/bookstore/categories[@code=\'1\']/books[@title=\'Matilda\']', leaves: ['price':20, 'title':'Matilda'])]
         ]
+    }
+
+    def 'Perform delete operation on existing XML data under an anchor using delta report'() {
+        given: 'schema mocks and delta report as XML'
+            setupSchemaSetMocks('bookstore.yang')
+            def deltaReportXml = '<deltaReports><deltaReport><action>remove</action><xpath>/bookstore</xpath><sourceData><categories><code>1</code><name>Children</name><books><title>Matilda</title></books></categories></sourceData></deltaReport></deltaReports>'
+        and: 'delta report constructed from XML'
+            def deltaReport = new DeltaReportBuilder().actionRemove().withXpath('/bookstore').withSourceData('categories': [['code': '1', 'name': 'Children', 'books': [['title': 'Matilda']]]]).build()
+        and: 'source data as XML string from delta report'
+            def sourceData = xmlObjectMapper.asXmlString(deltaReport.sourceData)
+        and: 'expected data nodes to delete'
+            def dataNodes = [new DataNode(xpath: '/bookstore/categories[@code=\'1\']', childDataNodes: [new DataNode(xpath: '/bookstore/categories[@code=\'1\']/books[@title=\'Matilda\']')])]
+            def xpathsToDelete = dataNodes*.xpath
+        when: 'attempt to apply delta using the delta report'
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportXml, ContentType.XML)
+        then: 'the delta report in XML format is converted to a list of DeltaReport objects'
+            xmlObjectMapper.convertToXmlArray(deltaReportXml, DeltaReport) >> [deltaReport]
+        and: 'data nodes are built from the source data of delta report'
+            dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor1, deltaReport.getXpath(), sourceData, ContentType.XML) >> [dataNodes]
+        and: 'appropriate cps data service method is invoked with expected parameters to delete data nodes'
+            1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, ANCHOR_NAME_1, xpathsToDelete)
+    }
+
+    def 'Perform replace operation on existing data under an anchor using delta report with XML'() {
+        given: 'schema mocks'
+            setupSchemaSetMocks('bookstore.yang')
+        and: 'delta report as XML string with parent and child data nodes'
+            def deltaReportJson = '<deltaReports><deltaReport><action>replace</action><xpath>/bookstore/categories[@code=\'1\']</xpath><sourceData><categories><code>1</code><name>Children</name><books><title>Matilda</title></books></categories></sourceData><targetData><categories><code>1</code><name>Children</name><books><title>Matilda</title><price>70</price></books></categories></targetData></deltaReport></deltaReports>'
+        and: 'delta report constructed from XML'
+            def deltaReport = new DeltaReportBuilder().actionReplace().withXpath('/bookstore/categories[@code=\'1\']').withSourceData(['categories': [['code': '1', 'name': 'Children', 'books': [['title': 'Matilda', 'price': 20]]]]]).withTargetData(['categories': [['code': '1', 'name': 'Children', 'books': [['title': 'Matilda', 'price': 30]]]]]).build()
+        and: 'the parent node xpath is fetched from delta report'
+            def parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(deltaReport.getXpath())
+        and: 'target data as JSON string is fetched from delta report'
+            def targetData = xmlObjectMapper.asXmlString(deltaReport.getTargetData())
+        and: 'parent and child nodes to be updated'
+            def dataNodesCreatedFromDeltaReport = [new DataNode(xpath: '/bookstore/categories[@code=\'1\']', leaves: ['code': '1', 'name': 'Children'], childDataNodes: [new DataNode(xpath: '/bookstore/categories[@code=\'1\']/books[@title=\'Matilda\']', leaves: ['price': 30, 'title': 'Matilda'])])]
+        when: 'attempt to apply delta using the delta report'
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, ContentType.XML)
+        then: 'the delta report as XML is converted to a list of DeltaReport objects'
+            xmlObjectMapper.convertToXmlArray(deltaReportJson, DeltaReport) >> [deltaReport]
+        and: 'data nodes are built from the target data of delta report'
+            dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor1, parentNodeXpath, targetData, ContentType.XML) >> dataNodesCreatedFromDeltaReport
+        and: 'cps data service is invoked with expected parameters to update data nodes'
+            1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, ANCHOR_NAME_1, dataNodesToBeStored ->
+            { dataNodesToBeStored*.xpath == dataNodesCreatedFromDeltaReport*.xpath &&
+                dataNodesToBeStored*.leaves == dataNodesCreatedFromDeltaReport*.leaves })
+    }
+
+    def 'create Perform  create operation on existing data under an anchor using delta report to add a parent list node'() {
+        given: 'schema mocks and delta report in XML format'
+            setupSchemaSetMocks('bookstore.yang')
+        and: 'delta report as XML'
+            def deltaReportJson = '<deltaReports><deltaReport><action>create</action><xpath>/bookstore-address[@bookstore-name=\'Easons\']</xpath><targetData><bookstore-address><bookstore-name>Easons</bookstore-name></bookstore-address></targetData></deltaReport></deltaReports>'
+        and: 'delta report constructed from XML'
+            def deltaReport = new DeltaReportBuilder().actionCreate().withXpath('/bookstore-address[@bookstore-name=\'Easons\']').withTargetData(['bookstore-address': [['bookstore-name': 'Easons']]]).build()
+        and: 'target data as XML string from delta report'
+            def targetData = xmlObjectMapper.asXmlStringWithRoot(deltaReport.getTargetData(),"stores", "org:onap:ccsdk:sample")
+        and: 'data nodes created from delta report'
+            def dataNodesCreatedFromDeltaReport = [new DataNode(xpath: '/bookstore-address[@bookstore-name=\'Easons\']', leaves: ['bookstore-name':'Easons'])]
+        when: 'attempt to apply delta using the delta report'
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, ContentType.XML)
+        then: 'the delta report as XML is converted to a list of DeltaReport objects'
+            xmlObjectMapper.convertToXmlArray(deltaReportJson, DeltaReport) >> [deltaReport]
+        and: 'data nodes are built from the target data of delta report'
+            dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor1, '/', targetData, ContentType.XML) >> dataNodesCreatedFromDeltaReport
+        and: 'appropriate cps data service method is invoked with expected parameters to create data nodes'
+            1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, ANCHOR_NAME_1, dataNodesToBeStored ->
+            { dataNodesToBeStored*.xpath == dataNodesCreatedFromDeltaReport*.xpath &&
+                dataNodesToBeStored*.leaves == dataNodesCreatedFromDeltaReport*.leaves })
     }
 }
