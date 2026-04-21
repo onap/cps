@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.utils.ContentType;
 
 public interface CpsDeltaService {
 
@@ -74,9 +75,11 @@ public interface CpsDeltaService {
      * Apply the changes in the given delta report to an anchor. The delta report contains the difference between two
      * anchors or an anchor and a configuration.
      *
-     * @param dataspaceName           dataspace name
-     * @param anchorName              anchor name where the delta report is to be applied
-     * @param deltaReportAsJsonString delta report in JSON string format
+     * @param dataspaceName        dataspace name
+     * @param anchorName           anchor name
+     * @param deltaReportAsString  original delta report in XML or JSON string format
+     * @param contentType          JSON/XML content type
      */
-    void applyChangesInDeltaReport(String dataspaceName, String anchorName, String deltaReportAsJsonString);
+    void applyChangesInDeltaReport(String dataspaceName, String anchorName,
+                                   String deltaReportAsString, ContentType contentType);
 }
