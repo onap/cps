@@ -356,9 +356,9 @@ class CpsDeltaServiceImplSpec extends Specification {
         given: 'delta report as JSON string'
             def deltaReportJson = '[{"action":"replace","xpath":"/bookstore","sourceData":{"bookstore":{"bookstore-name":"Easons"}},"targetData":{"bookstore":{"bookstore-name":"My Store"}}}]'
         when: 'an attempt to apply the delta report to the anchor'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, JSON)
         then: 'utility class to apply the delta report is invoked with expected parameters'
-            1 * mockDeltaReportExecutor.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            1 * mockDeltaReportExecutor.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, JSON)
     }
 
     def 'Apply changes from the same delta report to an anchor more than once'() {
@@ -367,12 +367,12 @@ class CpsDeltaServiceImplSpec extends Specification {
             def rootCause = new RuntimeException('duplicate key')
             def dataIntegrityViolationException = new DataIntegrityViolationException('error', rootCause)
         and: 'mock to throw DataIntegrityViolationException on second call'
-            1 * mockDeltaReportExecutor.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
-            1 * mockDeltaReportExecutor.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson) >> { throw dataIntegrityViolationException }
+            1 * mockDeltaReportExecutor.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, JSON)
+            1 * mockDeltaReportExecutor.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, JSON) >> { throw dataIntegrityViolationException }
         when: 'first attempt to apply the delta report to the anchor'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, JSON)
         and: 'second attempt to apply the same delta report to the anchor'
-            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson, JSON)
         then: 'expected exception is thrown with message'
             def thrownException = thrown(DataInUseException)
             thrownException.message == 'Duplicate key error'
