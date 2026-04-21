@@ -71,7 +71,7 @@ public class DeltaRestController implements CpsDeltaApi {
         final List<DeltaReport> deltaReports =
             cpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
                 targetAnchorName, xpath, fetchDescendantsOption, groupDataNodes);
-        return buildDeltaResponseEntity(deltaReports, ContentType.fromString(contentTypeInHeader));
+        return buildDeltaResponseEntity(deltaReports, fromString(contentTypeInHeader));
 
     }
 
@@ -85,8 +85,7 @@ public class DeltaRestController implements CpsDeltaApi {
                                                                       final Boolean groupDataNodes,
                                                                       final String acceptMediaType,
                                                                       final MultipartFile yangResourceFile) {
-        final ContentType contentType = fromString(acceptMediaType);
-        final String  targetData = extractFileContent(targetDataAsFile, contentType,
+        final String  targetData = extractFileContent(targetDataAsFile, fromString(acceptMediaType),
                 jsonObjectMapper, xmlObjectMapper);
         final Map<String, String> yangResourceMap;
         if (yangResourceFile == null) {
@@ -96,14 +95,19 @@ public class DeltaRestController implements CpsDeltaApi {
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
             cpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, targetData, groupDataNodes, contentType));
-        return buildDeltaResponseEntity(deltaReports, contentType);
+              xpath, yangResourceMap, targetData, groupDataNodes, fromString(acceptMediaType)));
+        return buildDeltaResponseEntity(deltaReports, fromString(acceptMediaType));
     }
 
+    @Timed(value = "cps.delta.controller.apply.delta",
+        description = "Time taken to apply delta report to an anchor")
+    @Override
     public ResponseEntity<String> applyChangesInDeltaReport(final String dataspaceName,
                                                             final String anchorName,
-                                                            final String deltaReport) {
-        cpsDeltaService.applyChangesInDeltaReport(dataspaceName, anchorName, deltaReport);
+                                                            final String deltaReport,
+                                                            final String contentTypeInHeader) {
+        cpsDeltaService.applyChangesInDeltaReport(dataspaceName, anchorName, deltaReport,
+                fromString(contentTypeInHeader));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
