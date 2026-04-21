@@ -72,5 +72,14 @@ class XmlObjectMapperSpec extends Specification {
             def thrownException = thrown(DataValidationException)
             thrownException.message.contains('XML parsing error at line')
     }
-}
 
+    def 'throw exception when invalid xml content is converted'() {
+        given: 'An invalid XML string'
+            def xmlContent = '<key>value1</key><key>value2</key>'
+        when: 'an attempt to convert XML content to the target class type'
+            objectUnderTest.convertToXmlArray(xmlContent, Map)
+        then: 'a DataValidationException is thrown'
+            def thrown = thrown(DataValidationException)
+            thrown.message.contains('XML parsing error at line: 1, column: 20')
+    }
+}
