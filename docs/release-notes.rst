@@ -11,6 +11,29 @@ CPS Release Notes
 .. contents::
     :depth: 2
 
+Version: 3.7.8
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:3.7.8                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 3.7.8                                                  |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | Not yet released                                       |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Features
+--------
+
 Version: 3.7.7
 ==============
 
@@ -27,12 +50,24 @@ Release Data
 | **Release designation**              | 3.7.7                                                  |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not yet released                                       |
+| **Release date**                     | 2026 April 21                                          |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Features
 --------
+    - `CPS-2010 <https://lf-onap.atlassian.net/browse/CPS-2010>`_ NCMP to support datajob Read
+    - `CPS-2521 <https://lf-onap.atlassian.net/browse/CPS-2521>`_ Invoke YANG Modelled Synchronous Action on (extended) ProvMnS(3GPP) Interface
+    - `CPS-2902 <https://lf-onap.atlassian.net/browse/CPS-2902>`_ Refactor the ProvMnS code in a separate module for maintainability
+    - `CPS-2876 <https://lf-onap.atlassian.net/browse/CPS-2876>`_ Change DataProduceId During Inventory Update
+
+Bug Fixes
+---------
+    - `CPS-3162 <https://lf-onap.atlassian.net/browse/CPS-3162>`_ Create Batch Event Producer Method
+
+Notes
+-----
+Datajob read only supports a java interface for interactions. A rest interface does exist but is intended for testing purposes only.
 
 Version: 3.7.6
 ==============
