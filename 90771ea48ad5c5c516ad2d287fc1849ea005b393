@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da092934_c4721128",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-21T10:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "590d7da4_b3e4043c",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 132
+      },
+      "revId": "90771ea48ad5c5c516ad2d287fc1849ea005b393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ce4f715_6163ee7b",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-04-21T09:47:04Z",
       "side": 1,
       "message": "is the the Exactly One fix? Jira Slogans are ussualy no good for teh release notes. Need to describe end-user pov: \u0027Fix performance issues for Exactly-one-Semantics event feature\u0027 (check the exact terminolgoy)",
+      "range": {
+        "startLine": 66,
+        "startChar": 66,
+        "endLine": 66,
+        "endChar": 100
+      },
+      "revId": "90771ea48ad5c5c516ad2d287fc1849ea005b393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baaaf9c5_33a4607b",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-21T10:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ce4f715_6163ee7b",
       "range": {
         "startLine": 66,
         "startChar": 66,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abab1753_69ffcdf5",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-21T10:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b01b41e1_6156324d",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 5
+      },
+      "revId": "90771ea48ad5c5c516ad2d287fc1849ea005b393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90b7c823_2fb61db8",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-04-21T09:47:04Z",
       "side": 1,
       "message": "change title of sabov to \u0027Known limitations\u0027",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "90771ea48ad5c5c516ad2d287fc1849ea005b393",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da0f9f62_09f7c789",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-04-21T10:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90b7c823_2fb61db8",
       "range": {
         "startLine": 69,
         "startChar": 0,
