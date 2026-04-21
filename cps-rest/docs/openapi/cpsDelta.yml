@@ -112,6 +112,7 @@ applyChangesInDeltaReport:
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/sourceAnchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
     requestBody:
       required: true
       content:
@@ -121,6 +122,12 @@ applyChangesInDeltaReport:
           examples:
             dataSample:
               $ref: 'components.yml#/components/examples/deltaReportSample'
+        application/xml:
+          schema:
+            type: string
+          examples:
+            dataSample:
+              $ref: 'components.yml#/components/examples/deltaReportSampleXml'
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'

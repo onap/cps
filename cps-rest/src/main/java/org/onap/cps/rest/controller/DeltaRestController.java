@@ -99,8 +99,9 @@ public class DeltaRestController implements CpsDeltaApi {
 
     public ResponseEntity<String> applyChangesInDeltaReport(final String dataspaceName,
                                                             final String anchorName,
-                                                            final String deltaReport) {
-        cpsDeltaService.applyChangesInDeltaReport(dataspaceName, anchorName, deltaReport);
+                                                            final String deltaReport,
+                                                            final String contentType) {
+        cpsDeltaService.applyChangesInDeltaReport(dataspaceName, anchorName, deltaReport, contentType);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
