@@ -43,6 +43,7 @@ import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -116,10 +117,11 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
      */
     @Override
     public void applyChangesInDeltaReport(final String dataspaceName, final String anchorName,
-                                          final String deltaReportAsJsonString) {
+                                          final String deltaReportAsJsonString, final String contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         try {
-            deltaReportExecutor.applyChangesInDeltaReport(dataspaceName, anchorName, deltaReportAsJsonString);
+            deltaReportExecutor.applyChangesInDeltaReport(dataspaceName, anchorName,
+                    deltaReportAsJsonString, ContentType.fromString(contentType));
         } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
             throw new DataInUseException("Duplicate key error",
                 dataIntegrityViolationException.getRootCause().getMessage());
