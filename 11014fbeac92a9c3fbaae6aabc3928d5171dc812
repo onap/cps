@@ -16,6 +16,161 @@
       "message": "recheck",
       "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5cb316_c028fe4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-21T14:51:35Z",
+      "side": 1,
+      "message": "would like to discuss some question I have,\nNot sure how much time we need spent on ths unused future though, but let\u0027s have a quick call anyway...",
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d707cc53_8d5f1c89",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-21T14:51:35Z",
+      "side": 1,
+      "message": "90% I assume?",
+      "range": {
+        "startLine": 75,
+        "startChar": 50,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2b70931_d077df69",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-21T14:51:35Z",
+      "side": 1,
+      "message": "why 3? Why not a loop of more?",
+      "range": {
+        "startLine": 77,
+        "startChar": 41,
+        "endLine": 77,
+        "endChar": 42
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a3804c_d9f49f0c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-21T14:51:35Z",
+      "side": 1,
+      "message": "what is the actual expectation is it much faster?",
+      "range": {
+        "startLine": 88,
+        "startChar": 52,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3de3902_9c284d7a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-21T14:51:35Z",
+      "side": 1,
+      "message": "same question as above",
+      "range": {
+        "startLine": 92,
+        "startChar": 54,
+        "endLine": 92,
+        "endChar": 61
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88dc7413_e188d904",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-21T14:51:35Z",
+      "side": 1,
+      "message": "why teh delays?",
+      "range": {
+        "startLine": 94,
+        "startChar": 12,
+        "endLine": 94,
+        "endChar": 29
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b4a6510_d12c90c7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-21T14:51:35Z",
+      "side": 1,
+      "message": "you are not use the standard reorting as used by other test.\nDeiberatly maybe? because it is an usused feature? \nCan we discuss",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 5
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
