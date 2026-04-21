@@ -21,7 +21,9 @@
 package org.onap.cps.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import java.util.List;
 import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.springframework.stereotype.Component;
@@ -29,7 +31,6 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 public class XmlObjectMapper {
-
     private final XmlMapper xmlMapper = new XmlMapper();
 
     /**
@@ -64,6 +65,32 @@ public class XmlObjectMapper {
         } catch (final JsonProcessingException e) {
             throw new DataValidationException(String.format("XML parsing error at line: %d, column: %d",
                     e.getLocation().getLineNr(), e.getLocation().getColumnNr()), e.getOriginalMessage());
+        }
+    }
+
+    /**
+     * Deserialize XML content from given XML content String to List of specific class type.
+     *
+     * @param xmlContent          XML content
+     * @param collectionEntryType compatible Object class type
+     * @param <T>                 type parameter
+     * @return a list of specific class type 'T'
+     */
+
+    public <T> List<T> convertToXmlArray(final String xmlContent,
+                                         final Class<T> collectionEntryType) {
+        try {
+            final CollectionType collectionType =
+                    xmlMapper.getTypeFactory()
+                            .constructCollectionType(List.class, collectionEntryType);
+            return xmlMapper.readValue(xmlContent, collectionType);
+        } catch (final JsonProcessingException e) {
+            throw new DataValidationException(
+                    String.format("XML parsing error at line: %d, column: %d",
+                            e.getLocation().getLineNr(),
+                            e.getLocation().getColumnNr()),
+                    e.getOriginalMessage()
+            );
         }
     }
 }
