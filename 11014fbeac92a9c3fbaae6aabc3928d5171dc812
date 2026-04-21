@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8fc95218_3217b05d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-21T15:56:24Z",
+      "side": 1,
+      "message": "Characteristics says 99% but yes the test is 90%",
+      "parentUuid": "d707cc53_8d5f1c89",
+      "range": {
+        "startLine": 75,
+        "startChar": 50,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e2b70931_d077df69",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
         "patchSetId": 1
@@ -71,6 +95,30 @@
       "writtenOn": "2026-04-21T14:51:35Z",
       "side": 1,
       "message": "why 3? Why not a loop of more?",
+      "range": {
+        "startLine": 77,
+        "startChar": 41,
+        "endLine": 77,
+        "endChar": 42
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d663db1_8c7c69f2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-21T15:56:24Z",
+      "side": 1,
+      "message": "Inline with WriteDataJobPerfTest.",
+      "parentUuid": "e2b70931_d077df69",
       "range": {
         "startLine": 77,
         "startChar": 41,
@@ -106,6 +154,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d586ac5a_e1cd841c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-21T15:56:24Z",
+      "side": 1,
+      "message": "Below 0.1s",
+      "parentUuid": "d9a3804c_d9f49f0c",
+      "range": {
+        "startLine": 88,
+        "startChar": 52,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3de3902_9c284d7a",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
         "patchSetId": 1
@@ -117,6 +189,30 @@
       "writtenOn": "2026-04-21T14:51:35Z",
       "side": 1,
       "message": "same question as above",
+      "range": {
+        "startLine": 92,
+        "startChar": 54,
+        "endLine": 92,
+        "endChar": 61
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee478cf5_0cd9d07b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-21T15:56:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d3de3902_9c284d7a",
       "range": {
         "startLine": 92,
         "startChar": 54,
@@ -152,6 +248,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9348c63_8b677fd4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-21T15:56:24Z",
+      "side": 1,
+      "message": "Inline with WriteDataJobPerfTest. Probably a system cool down situation. Might be no need but no harm either.",
+      "parentUuid": "88dc7413_e188d904",
+      "range": {
+        "startLine": 94,
+        "startChar": 12,
+        "endLine": 94,
+        "endChar": 29
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b4a6510_d12c90c7",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
         "patchSetId": 1
@@ -163,6 +283,30 @@
       "writtenOn": "2026-04-21T14:51:35Z",
       "side": 1,
       "message": "you are not use the standard reorting as used by other test.\nDeiberatly maybe? because it is an usused feature? \nCan we discuss",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 5
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb277e3a_f757fea2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-21T15:56:24Z",
+      "side": 1,
+      "message": "Inline with WriteDataJobPerfTest. My thinking was to keep a none active piece of functionality completely independent.",
+      "parentUuid": "8b4a6510_d12c90c7",
       "range": {
         "startLine": 183,
         "startChar": 0,
