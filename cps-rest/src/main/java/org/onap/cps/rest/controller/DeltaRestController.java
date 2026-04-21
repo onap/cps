@@ -97,10 +97,15 @@ public class DeltaRestController implements CpsDeltaApi {
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
 
+    @Timed(value = "cps.delta.controller.apply.delta",
+        description = "Time taken to apply delta report to an anchor")
+    @Override
     public ResponseEntity<String> applyChangesInDeltaReport(final String dataspaceName,
                                                             final String anchorName,
-                                                            final String deltaReport) {
-        cpsDeltaService.applyChangesInDeltaReport(dataspaceName, anchorName, deltaReport);
+                                                            final String deltaReport,
+                                                            final String contentType) {
+        cpsDeltaService.applyChangesInDeltaReport(dataspaceName,
+                anchorName, deltaReport, ContentType.fromString(contentType));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
