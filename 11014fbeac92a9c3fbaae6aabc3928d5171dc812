@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a959cfe6_6c330fdd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-22T12:16:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fc95218_3217b05d",
+      "range": {
+        "startLine": 75,
+        "startChar": 50,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2b70931_d077df69",
@@ -129,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bc51a7f_23b8d1b7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-22T12:16:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6d663db1_8c7c69f2",
+      "range": {
+        "startLine": 77,
+        "startChar": 41,
+        "endLine": 77,
+        "endChar": 42
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9a3804c_d9f49f0c",
@@ -166,6 +214,30 @@
       "side": 1,
       "message": "Below 0.1s",
       "parentUuid": "d9a3804c_d9f49f0c",
+      "range": {
+        "startLine": 88,
+        "startChar": 52,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc8a3c9f_09c070d2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-22T12:16:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d586ac5a_e1cd841c",
       "range": {
         "startLine": 88,
         "startChar": 52,
@@ -270,6 +342,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce02354c_eafa50ad",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-22T12:16:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c9348c63_8b677fd4",
+      "range": {
+        "startLine": 94,
+        "startChar": 12,
+        "endLine": 94,
+        "endChar": 29
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b4a6510_d12c90c7",
@@ -307,6 +403,30 @@
       "side": 1,
       "message": "Inline with WriteDataJobPerfTest. My thinking was to keep a none active piece of functionality completely independent.",
       "parentUuid": "8b4a6510_d12c90c7",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 5
+      },
+      "revId": "11014fbeac92a9c3fbaae6aabc3928d5171dc812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5b289ca_eb4d229f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/ReadDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-22T12:16:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bb277e3a_f757fea2",
       "range": {
         "startLine": 183,
         "startChar": 0,
