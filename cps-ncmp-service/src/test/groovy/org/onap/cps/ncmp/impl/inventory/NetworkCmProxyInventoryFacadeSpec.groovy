@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 Deutsche Telekom AG
@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.impl.inventory
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
@@ -122,7 +123,6 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result == []
     }
 
-
     def 'Get a cm handle details using #scenario'() {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
@@ -133,27 +133,25 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                 dataStores: dataStores())
             def additionalProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
-            def moduleSetTag = 'some-module-set-tag'
-            def alternateId = 'some-alternate-id'
-            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName, additionalProperties: additionalProperties,
-                 publicProperties: publicProperties, compositeState: compositeState, moduleSetTag: moduleSetTag, alternateId: alternateId)
-            1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'some-cm-handle'
-            1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
+            def yangModelCmHandle = new YangModelCmHandle(id: 'cm-handle-from-persistence', dmiServiceName: dmiServiceName, additionalProperties: additionalProperties,
+                 publicProperties: publicProperties, compositeState: compositeState, moduleSetTag: 'my-module-set-tag', alternateId: 'my-alternate-id')
+            1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(cmHandleRef, '/') >> 'cm-handle-from-matcher'
+            1 * mockInventoryPersistence.getYangModelCmHandle('cm-handle-from-matcher') >> yangModelCmHandle
             1 * mockTrustLevelManager.applyEffectiveTrustLevel(_) >> { args -> args[0].currentTrustLevel = TrustLevel.COMPLETE }
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle(cmHandleRef)
         then: 'the result is a ncmpServiceCmHandle'
             assert result.class == NcmpServiceCmHandle.class
         and: 'the cm handle contains the cm handle id'
-            assert result.cmHandleId == 'some-cm-handle'
+            assert result.cmHandleId == 'cm-handle-from-persistence'
         and: 'the cm handle contains the alternate id'
-            assert result.alternateId == 'some-alternate-id'
+            assert result.alternateId == 'my-alternate-id'
         and: 'the cm handle contains the module-set-tag'
-            assert result.moduleSetTag == 'some-module-set-tag'
+            assert result.moduleSetTag == 'my-module-set-tag'
         and: 'the cm handle contains the additional Properties'
-            assert result.additionalProperties ==[Book:'Romance Novel' ]
+            assert result.additionalProperties ==[ Book:'Romance Novel' ]
         and: 'the cm handle contains the public Properties'
-            assert result.publicProperties == [ "Public Book":'Public Romance Novel' ]
+            assert result.publicProperties == [ 'Public Book':'Public Romance Novel' ]
         and: 'the cm handle contains the cm handle composite state'
             assert result.compositeState == compositeState
         and: 'the cm handle contains the trust level from the cache'
@@ -162,6 +160,20 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             scenario                              | cmHandleRef
             'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
+    }
+
+    def 'Get cm handle details by reference with cm-handle-id (fall back lookup).'() {
+        given: 'the longest match throws NoAlternateIdMatchFoundException'
+            1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('cm-handle-input', '/') >> { throw new NoAlternateIdMatchFoundException('some-cm-handle') }
+        and: 'the fallback getCmHandleId returns the a cm handle id'
+            1 * mockAlternateIdMatcher.getCmHandleId('cm-handle-input') >> 'cm-handle-from-matcher'
+        and: 'the persistence service returns a yang modelled cm handle'
+            def yangModelCmHandle = new YangModelCmHandle(id: 'cm-handle-from-persistence', publicProperties: [], additionalProperties: [])
+            1 * mockInventoryPersistence.getYangModelCmHandle('cm-handle-from-matcher') >> yangModelCmHandle
+        when: 'getting cm handle details'
+            def result = objectUnderTest.getNcmpServiceCmHandle('cm-handle-input')
+        then: 'the correct cm handle is returned'
+            assert result.cmHandleId == 'cm-handle-from-persistence'
     }
 
     def 'Get cm handle public properties using #scenario'() {
@@ -188,7 +200,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def 'Get cm handle composite state using #scenario'() {
         given: 'a yang modelled cm handle'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details("lock details").build(),
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details('lock details').build(),
                 lastUpdateTime: 'some-timestamp',
                 dataSyncEnabled: false,
                 dataStores: dataStores())
