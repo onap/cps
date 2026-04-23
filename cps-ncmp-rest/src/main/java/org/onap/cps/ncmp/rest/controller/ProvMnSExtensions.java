@@ -32,9 +32,8 @@ import org.onap.cps.ncmp.rest.model.ActionRequest;
 import org.onap.cps.ncmp.rest.model.ActionResponse;
 import org.onap.cps.ncmp.rest.model.ErrorResponseDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Tag(name = "action", description = "APIs for executing Managed Object actions")
 public interface ProvMnSExtensions {
@@ -104,8 +103,7 @@ public interface ProvMnSExtensions {
                 })
         }
     )
-    @RequestMapping(
-        method = RequestMethod.POST,
+    @PostMapping(
         value = "/v1alpha1/actions/**",
         produces = { "application/json", "application/problem+json" },
         consumes = { "application/json" }
