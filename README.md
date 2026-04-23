@@ -43,3 +43,13 @@ mvn clean install -DskipTests
 # IntelliJ setup for ProvMnS API Dependencies
 * [Resolving provmns-api classes in IntelliJ](provmns-api/README.md)
 
+## Local Git Setup for ProvMnS API JAR
+
+The `provmns-api-18.6.0.jar` file is committed to the repository for faster builds, but gets regenerated during `mvn clean install`. To prevent Git from tracking local changes to this file, run this command after cloning:
+
+```bash
+git update-index --skip-worktree provmns-api/local-repo/org/onap/cps/provmns-api/18.6.0/provmns-api-18.6.0.jar
+```
+
+**Note**: Each team member must run this command on their local machine after cloning the repository.
+

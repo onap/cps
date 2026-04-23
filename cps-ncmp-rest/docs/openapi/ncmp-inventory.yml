@@ -1,6 +1,6 @@
 #  ============LICENSE_START=======================================================
 #  Copyright (C) 2021 Bell Canada
-#  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+#  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -17,85 +17,61 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-updateDmiRegistration:
-  post:
-    description: Register a DMI Plugin with any new, updated or removed CM Handles.
-    tags:
-      - network-cm-proxy-inventory
-    summary: DMI notifies NCMP of new CM Handles
-    operationId: updateDmiPluginRegistration
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: 'components.yaml#/components/schemas/RestDmiPluginRegistration'
-    responses:
-      200:
-        $ref: 'components.yaml#/components/responses/NoContent'
-      400:
-        $ref: 'components.yaml#/components/responses/BadRequest'
-      403:
-        $ref: 'components.yaml#/components/responses/Forbidden'
-      500:
-        description: Partial or Complete failure. The error details are provided in the response body and all supported error codes are documented in the example.
+# Path definitions (for multiple operations on same path)
+paths:
+  # /ch path support 2 operations (post and get)
+  chPath:
+    post:
+      description: Register a DMI Plugin with any new, updated or removed CM Handles.
+      tags:
+        - network-cm-proxy-inventory
+      summary: DMI notifies NCMP of new CM Handles
+      operationId: updateDmiPluginRegistration
+      requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: 'components.yaml#/components/schemas/DmiPluginRegistrationErrorResponse'
-            example:
-              failedCreatedCmHandles: [
-                {
-                  "cmHandle": "my-cm-handle-01",
-                  "errorCode": "00",
-                  "errorText": "Unknown error. <error-details>"
-                },
-                {
-                  "cmHandle": "my-cm-handle-02",
-                  "errorCode": "01",
-                  "errorText": "cm-handle already exists"
-                },
-                {
-                  "cmHandle": "my-cm-handle-03",
-                  "errorCode": "03",
-                  "errorText": "cm-handle has an invalid character(s) in id"
-                }
-              ]
-              failedUpdatedCmHandles: [
-                {
-                  "cmHandle": "my-cm-handle-01",
-                  "errorCode": "00",
-                  "errorText": "Unknown error. <error-details>"
-                },
-                {
-                  "cmHandle": "my-cm-handle-02",
-                  "errorCode": "02",
-                  "errorText": "cm-handle does not exist"
-                },
-                {
-                  "cmHandle": "my-cm-handle-03",
-                  "errorCode": "03",
-                  "errorText": "cm-handle has an invalid character(s) in id"
-                }
-              ]
-              failedRemovedCmHandles: [
-                {
-                  "cmHandle": "my-cm-handle-01",
-                  "errorCode": "00",
-                  "errorText": "Unknown error. <error-details>"
-                },
-                {
-                  "cmHandle": "my-cm-handle-02",
-                  "errorCode": "02",
-                  "errorText": "cm-handle does not exists"
-                },
-                {
-                  "cmHandle": "my-cm-handle-03",
-                  "errorCode": "03",
-                  "errorText": "cm-handle has an invalid character(s) in id"
-                }
-              ]
+              $ref: 'components.yaml#/components/schemas/RestDmiPluginRegistration'
+      responses:
+        200:
+          $ref: 'components.yaml#/components/responses/Ok'
+        400:
+          $ref: 'components.yaml#/components/responses/BadRequest'
+        403:
+          $ref: 'components.yaml#/components/responses/Forbidden'
+        500:
+          description: Partial or Complete failure. The error details are provided in the response body and all supported error codes are documented in the example.
+          content:
+            application/json:
+              schema:
+                $ref: 'components.yaml#/components/schemas/DmiPluginRegistrationErrorResponse'
+    get:
+      description: Get CM handle details by distinguished name.
+      tags:
+        - network-cm-proxy-inventory
+      summary: Get CM handle details
+      operationId: getCmHandleByDistinguishedName
+      parameters:
+        - $ref: 'components.yaml#/components/parameters/distinguishedNameInQuery'
+        - $ref: 'components.yaml#/components/parameters/outputDmiPropertiesInQuery'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'components.yaml#/components/schemas/RestOutputCmHandle'
+        400:
+          $ref: 'components.yaml#/components/responses/BadRequest'
+        403:
+          $ref: 'components.yaml#/components/responses/Forbidden'
+        404:
+          $ref: 'components.yaml#/components/responses/NotFound'
+        500:
+          $ref: 'components.yaml#/components/responses/InternalServerError'
 
+# Operation definitions
 getAllCmHandleReferencesForRegisteredDmi:
   get:
     description: Get all cm handle references for a registered DMI plugin
@@ -157,12 +133,7 @@ searchCmHandles:
     summary: Query Cm Handles for a requested DMI Service
     operationId: searchCmHandles
     parameters:
-      - name: outputDmiProperties
-        in: query
-        description: Whether to include additional properties in the response.
-        required: false
-        schema:
-          type: boolean
+      - $ref: 'components.yaml#/components/parameters/outputDmiPropertiesInQuery'
     requestBody:
       required: true
       content:
