@@ -47,6 +47,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "602cceaa_820ee257",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "298ac630_f49acbae",
+      "range": {
+        "startLine": 7,
+        "startChar": 44,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fa22672_e8985a7f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d236b4df_e73a24a2",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 14
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "decdf5be_61ae84f6",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-04-17T11:56:27Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 101
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8f5ee7c_baeec974",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "decdf5be_61ae84f6",
       "range": {
         "startLine": 8,
         "startChar": 1,
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d59e123a_5ba566f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd816da6_d7671a02",
+      "range": {
+        "startLine": 14,
+        "startChar": 74,
+        "endLine": 15,
+        "endChar": 41
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76a3b639_4a1baa0c",
@@ -106,6 +202,30 @@
       "writtenOn": "2026-04-17T11:56:27Z",
       "side": 1,
       "message": "Add space",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 17
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "272c0950_709533f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76a3b639_4a1baa0c",
       "range": {
         "startLine": 17,
         "startChar": 9,
@@ -139,6 +259,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4f3bfe5_9cc7a971",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c48eed6b_c96d4b29",
+      "range": {
+        "startLine": 521,
+        "startChar": 4,
+        "endLine": 521,
+        "endChar": 18
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "442e6d71_738b4f4e",
@@ -156,6 +300,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d8cfcba_2b965a88",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "442e6d71_738b4f4e",
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60fe5599_05d7bd1b",
@@ -169,6 +331,24 @@
       "writtenOn": "2026-04-17T11:53:57Z",
       "side": 1,
       "message": "This is not correct way to do it. Controller should not be validating your data. Handle this in MultipartFileUtils",
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e7bbe26_6763d1d0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60fe5599_05d7bd1b",
       "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -196,6 +376,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aed04a6_9f4da808",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16498b82_a8afa4d6",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 9
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "830e95e0_a7f88906",
@@ -209,6 +413,30 @@
       "writtenOn": "2026-04-17T11:53:57Z",
       "side": 1,
       "message": "validate the XML string, an xml file can have corrupted data. You validated the extension but it does not gurantee valid data inside",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 80
+      },
+      "revId": "ff40122308c8c1655b78977ae607e8fce4a45602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6e832ee_d304a6af",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-04-23T15:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "830e95e0_a7f88906",
       "range": {
         "startLine": 110,
         "startChar": 12,
