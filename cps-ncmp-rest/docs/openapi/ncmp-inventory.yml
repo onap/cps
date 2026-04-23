@@ -1,6 +1,6 @@
 #  ============LICENSE_START=======================================================
 #  Copyright (C) 2021 Bell Canada
-#  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+#  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -146,6 +146,37 @@ searchCmHandleIds:
                 type: string
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+
+getCmHandleByReference:
+  get:
+    description: Get CM handle details by cm handle or alternate identifier.
+    tags:
+      - network-cm-proxy-inventory
+    summary: Get CM handle details
+    operationId: getCmHandleByReference
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
+      - name: outputDmiProperties
+        in: query
+        description: Whether to include additional properties in the response.
+        required: false
+        schema:
+          type: boolean
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yaml#/components/schemas/RestOutputCmHandle'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
 

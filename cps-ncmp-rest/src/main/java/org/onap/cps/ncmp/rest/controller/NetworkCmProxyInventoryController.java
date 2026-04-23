@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Modifications Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse.Status;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
@@ -57,6 +58,23 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final DeprecationHelper deprecationHelper;
     private final RestOutputCmHandleMapper restOutputCmHandleMapper;
+
+    /**
+     * Get CM handle details by cm handle or alternate identifier.
+     *
+     * @param cmHandleReference   cm handle or alternate identifier
+     * @param outputDmiProperties boolean to determine the inclusion of private(dmi) properties
+     * @return cm handle details
+     */
+    @Override
+    public ResponseEntity<RestOutputCmHandle> getCmHandleByReference(final String cmHandleReference,
+                                                                     final Boolean outputDmiProperties) {
+        final NcmpServiceCmHandle ncmpServiceCmHandle =
+                networkCmProxyInventoryFacade.getNcmpServiceCmHandle(cmHandleReference);
+        final RestOutputCmHandle restOutputCmHandle = restOutputCmHandleMapper
+                .toRestOutputCmHandle(ncmpServiceCmHandle, Boolean.TRUE.equals(outputDmiProperties));
+        return ResponseEntity.ok(restOutputCmHandle);
+    }
 
     /**
      * Get all cm handle references under a registered DMI plugin.

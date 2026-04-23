@@ -82,6 +82,76 @@ paths:
       summary: DMI notifies NCMP of new CM Handles
       tags:
       - network-cm-proxy-inventory
+  /v1/ch/{cm-handle}:
+    get:
+      description: Get CM handle details by cm handle or alternate identifier.
+      operationId: getCmHandleByReference
+      parameters:
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
+        in: path
+        name: cm-handle
+        required: true
+        schema:
+          example: my-cm-handle-reference
+          type: string
+      - description: Whether to include additional properties in the response.
+        in: query
+        name: outputDmiProperties
+        required: false
+        schema:
+          type: boolean
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestOutputCmHandle'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad request error message
+                details: Bad request error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Not found error message
+                details: Not found error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: The specified resource was not found
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get CM handle details
+      tags:
+      - network-cm-proxy-inventory
   /v1/ch/cmHandles:
     get:
       description: Get all cm handle references for a registered DMI plugin
@@ -258,6 +328,16 @@ paths:
       - network-cm-proxy-inventory
 components:
   parameters:
+    cmHandleReferenceInPath:
+      description: "The identifier (cmHandle or alternate) for a network function,\
+        \ network element, subnetwork or any other cm object by managed Network CM\
+        \ Proxy"
+      in: path
+      name: cm-handle
+      required: true
+      schema:
+        example: my-cm-handle-reference
+        type: string
     dmiPluginIdentifierInQuery:
       description: dmi-plugin-identifier
       in: query
@@ -299,6 +379,16 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
       description: Forbidden
+    NotFound:
+      content:
+        application/json:
+          example:
+            status: 400
+            message: Not found error message
+            details: Not found error details
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: The specified resource was not found
     InternalServerError:
       content:
         application/json:
@@ -565,75 +655,6 @@ components:
           example: Unknown error. <error-details>
           type: string
       type: object
-    CmHandleQueryParameters:
-      example:
-        cmHandleQueryParameters:
-        - conditionParameters:
-          - key: conditionParameters
-          - key: conditionParameters
-          conditionName: conditionName
-        - conditionParameters:
-          - key: conditionParameters
-          - key: conditionParameters
-          conditionName: conditionName
-        conditions:
-        - name: name
-          conditionParameters:
-          - moduleName: my-module
-          - moduleName: my-module
-        - name: name
-          conditionParameters:
-          - moduleName: my-module
-          - moduleName: my-module
-      properties:
-        cmHandleQueryParameters:
-          items:
-            $ref: '#/components/schemas/ConditionProperties'
-          type: array
-        conditions:
-          deprecated: true
-          description: "not necessary, it is just for backward compatibility"
-          items:
-            $ref: '#/components/schemas/OldConditionProperties'
-          type: array
-      title: Cm Handle query parameters for executing cm handle search
-      type: object
-    ConditionProperties:
-      example:
-        conditionParameters:
-        - key: conditionParameters
-        - key: conditionParameters
-        conditionName: conditionName
-      properties:
-        conditionName:
-          type: string
-        conditionParameters:
-          items:
-            additionalProperties:
-              type: string
-            type: object
-          type: array
-    OldConditionProperties:
-      deprecated: true
-      example:
-        name: name
-        conditionParameters:
-        - moduleName: my-module
-        - moduleName: my-module
-      properties:
-        name:
-          type: string
-        conditionParameters:
-          items:
-            $ref: '#/components/schemas/ModuleNameAsJsonObject'
-          type: array
-    ModuleNameAsJsonObject:
-      example:
-        moduleName: my-module
-      properties:
-        moduleName:
-          example: my-module
-          type: string
     RestOutputCmHandle:
       example:
         cmHandle: my-cm-handle1
@@ -774,3 +795,72 @@ components:
       description: Current trust level of the relevant CM handle ID.
       example: COMPLETE
       type: string
+    CmHandleQueryParameters:
+      example:
+        cmHandleQueryParameters:
+        - conditionParameters:
+          - key: conditionParameters
+          - key: conditionParameters
+          conditionName: conditionName
+        - conditionParameters:
+          - key: conditionParameters
+          - key: conditionParameters
+          conditionName: conditionName
+        conditions:
+        - name: name
+          conditionParameters:
+          - moduleName: my-module
+          - moduleName: my-module
+        - name: name
+          conditionParameters:
+          - moduleName: my-module
+          - moduleName: my-module
+      properties:
+        cmHandleQueryParameters:
+          items:
+            $ref: '#/components/schemas/ConditionProperties'
+          type: array
+        conditions:
+          deprecated: true
+          description: "not necessary, it is just for backward compatibility"
+          items:
+            $ref: '#/components/schemas/OldConditionProperties'
+          type: array
+      title: Cm Handle query parameters for executing cm handle search
+      type: object
+    ConditionProperties:
+      example:
+        conditionParameters:
+        - key: conditionParameters
+        - key: conditionParameters
+        conditionName: conditionName
+      properties:
+        conditionName:
+          type: string
+        conditionParameters:
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          type: array
+    OldConditionProperties:
+      deprecated: true
+      example:
+        name: name
+        conditionParameters:
+        - moduleName: my-module
+        - moduleName: my-module
+      properties:
+        name:
+          type: string
+        conditionParameters:
+          items:
+            $ref: '#/components/schemas/ModuleNameAsJsonObject'
+          type: array
+    ModuleNameAsJsonObject:
+      example:
+        moduleName: my-module
+      properties:
+        moduleName:
+          example: my-module
+          type: string

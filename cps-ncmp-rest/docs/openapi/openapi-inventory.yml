@@ -1,6 +1,6 @@
 #  ============LICENSE_START==============================================================
 #  Copyright (C) 2021 Bell Canada
-#  Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+#  Modifications Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
 #  =======================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -27,6 +27,9 @@ servers:
 paths:
   /v1/ch:
     $ref: 'ncmp-inventory.yml#/updateDmiRegistration'
+
+  /v1/ch/{cm-handle}:
+    $ref: 'ncmp-inventory.yml#/getCmHandleByReference'
 
   /v1/ch/cmHandles:
     $ref: 'ncmp-inventory.yml#/getAllCmHandleReferencesForRegisteredDmi'

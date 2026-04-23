@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -281,6 +281,29 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             def response = mvc.perform(post(postUrl).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response
         then: 'a response status is OK'
             assert response.status == 200
+    }
+
+    def 'Get cm handle details by reference when #scenario.'() {
+        given: 'a cm handle reference'
+            def cmHandleReference = 'input cm-handle-reference'
+        and: 'the service returns a cm handle'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id from service', alternateId: 'alternate-id from service')
+            mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle(cmHandleReference) >> ncmpServiceCmHandle
+        and: 'the mapper converts the cm handle to rest output'
+            def restOutputCmHandle = new RestOutputCmHandle(cmHandle: 'cm-handle-id from mapper', alternateId: 'alternate-id from mapper')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandle(ncmpServiceCmHandle, expectedIncludeAdditionalProperties) >> restOutputCmHandle
+        when: 'the endpoint is invoked'
+            def response = mvc.perform(get("$ncmpBasePathV1/ch/$cmHandleReference" + queryString).accept(MediaType.APPLICATION_JSON_VALUE)).andReturn().response
+        then: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains the expected cm handle details (from the mapper)'
+            assert response.contentAsString.contains('cm-handle-id from mapper')
+            assert response.contentAsString.contains('alternate-id from mapper')
+        where: 'the query strings are used'
+            scenario                                    | queryString                    || expectedIncludeAdditionalProperties
+            'additional properties are not requested'   | ''                             || false
+            'additional properties are requested'       | '?outputDmiProperties=true'    || true
+            'additional properties explicitly excluded' | '?outputDmiProperties=false'   || false
     }
 
     def expectedUnknownErrorResponse(cmHandle) {
