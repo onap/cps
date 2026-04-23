@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe
+ *  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 Deutsche Telekom AG
@@ -40,6 +40,7 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationService;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
@@ -159,7 +160,7 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
 
     @Override
     public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleReference) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+        final String cmHandleId = getCmHandleIdByReference(cmHandleReference);
         final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(
                 inventoryPersistence.getYangModelCmHandle(cmHandleId));
         trustLevelManager.applyEffectiveTrustLevel(ncmpServiceCmHandle);
@@ -177,6 +178,14 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     public CompositeState getCmHandleCompositeState(final String cmHandleReference) {
         final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         return inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState();
+    }
+
+    private String getCmHandleIdByReference(final String cmHandleReference) {
+        try {
+            return alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(cmHandleReference, "/");
+        } catch (final NoAlternateIdMatchFoundException ignored) {
+            return alternateIdMatcher.getCmHandleId(cmHandleReference);
+        }
     }
 
 }

@@ -116,6 +116,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+      example:
+        failedCreatedCmHandles:
+          - cmHandle: "my-cm-handle-01"
+            errorCode: "00"
+            errorText: "Unknown error. <error-details>"
+          - cmHandle: "my-cm-handle-02"
+            errorCode: "01"
+            errorText: "cm-handle already exists"
+          - cmHandle: "my-cm-handle-03"
+            errorCode: "03"
+            errorText: "cm-handle has an invalid character(s) in id"
+        failedUpdatedCmHandles:
+          - cmHandle: "my-cm-handle-01"
+            errorCode: "00"
+            errorText: "Unknown error. <error-details>"
+          - cmHandle: "my-cm-handle-02"
+            errorCode: "02"
+            errorText: "cm-handle does not exist"
+          - cmHandle: "my-cm-handle-03"
+            errorCode: "03"
+            errorText: "cm-handle has an invalid character(s) in id"
+        failedRemovedCmHandles:
+          - cmHandle: "my-cm-handle-01"
+            errorCode: "00"
+            errorText: "Unknown error. <error-details>"
+          - cmHandle: "my-cm-handle-02"
+            errorCode: "02"
+            errorText: "cm-handle does not exist"
+          - cmHandle: "my-cm-handle-03"
+            errorCode: "03"
+            errorText: "cm-handle has invalid character(s) in id"
     CmHandlerRegistrationErrorResponse:
       type: object
       properties:
@@ -621,6 +652,21 @@ components:
       schema:
         type: string
         example: my-dmi-plugin
+    distinguishedNameInQuery:
+      name: distinguishedName
+      in: query
+      description: The fully distinguished name for any cm object
+      required: true
+      schema:
+        type: string
+        example: /Subnetwork=Europe/ManagedElement=node1/GNBDUFunction=1
+    outputDmiPropertiesInQuery:
+      name: outputDmiProperties
+      in: query
+      description: Whether to include additional properties in the response.
+      required: false
+      schema:
+        type: boolean
     resourceIdentifierInQuery:
       name: resourceIdentifier
       in: query
