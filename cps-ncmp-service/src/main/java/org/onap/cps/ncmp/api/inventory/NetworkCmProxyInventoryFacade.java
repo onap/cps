@@ -123,7 +123,7 @@ public interface NetworkCmProxyInventoryFacade {
     /**
      * Retrieve cm handle details for a given cm handle reference.
      *
-     * @param cmHandleReference cm handle or alternate identifier
+     * @param cmHandleReference cm handle id, alternate identifier or fdn (child of alternate id)
      * @return cm handle details
      */
     NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleReference);
