@@ -3,7 +3,7 @@
   ============LICENSE_START=======================================================
   Copyright (c) 2021 Pantheon.tech.
   Modifications Copyright (C) 2021 Bell Canada.
-  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -411,7 +411,7 @@
                 <version>${maven.surefire.plugin.version}</version>
                 <configuration>
                     <!--suppress UnresolvedMavenProperty -->
-                    <argLine>${surefireArgLine}</argLine>
+                    <argLine>${surefireArgLine} --add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                     <useFile>false</useFile>
                     <includes>
                         <include>**/*Spec.java</include>
