@@ -30,6 +30,7 @@ import org.onap.cps.init.AbstractModelLoader;
 import org.onap.cps.init.ModelLoaderLock;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
@@ -39,11 +40,16 @@ import org.springframework.stereotype.Service;
 @Order(2)
 public class InventoryModelLoader extends AbstractModelLoader {
 
+    private final DataMigration dataMigration;
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    private static final String PREVIOUS_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
-    private static final String CURRENT_SCHEMA_SET_NAME = "dmi-registry-2026-01-28";
+    private static final String PREVIOUS_SCHEMA_SET_NAME = "dmi-registry-2026-01-28";
+    private static final String CURRENT_SCHEMA_SET_NAME = "dmi-registry-2026-04-23";
     private static final String INVENTORY_YANG_MODULE_NAME = "dmi-registry";
+    private static final int MIGRATION_BATCH_SIZE = 300;
+
+    @Value("${ignore.r20260423.model:true}")
+    private boolean ignoreR20260423Model;
 
     /**
      * Creates a new {@code InventoryModelLoader} instance responsible for onboarding or upgrading
@@ -52,7 +58,8 @@ public class InventoryModelLoader extends AbstractModelLoader {
     public InventoryModelLoader(final ModelLoaderLock modelLoaderLock,
                                 final CpsServicesBundle cpsServicesBundle,
                                 final ApplicationEventPublisher applicationEventPublisher,
-                                final ReadinessManager readinessManager) {
+                                final ReadinessManager readinessManager,
+                                final DataMigration dataMigration) {
         super(modelLoaderLock,
                 cpsServicesBundle.getDataspaceService(),
                 cpsServicesBundle.getModuleService(),
@@ -60,23 +67,26 @@ public class InventoryModelLoader extends AbstractModelLoader {
                 cpsServicesBundle.getDataService(),
             readinessManager);
         this.applicationEventPublisher = applicationEventPublisher;
+        this.dataMigration = dataMigration;
     }
 
     @Override
     public void onboardOrUpgradeModel() {
         if (isMaster) {
             log.info("Model Loader #2 Started: NCMP Inventory Models");
+            final String schemaToInstall =
+                    ignoreR20260423Model ? PREVIOUS_SCHEMA_SET_NAME : CURRENT_SCHEMA_SET_NAME;
+            final String moduleRevision = getModuleRevision(schemaToInstall);
             if (isModuleRevisionInstalled(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME,
-                    CURRENT_SCHEMA_SET_NAME)) {
-                log.info("Model Loader #2: Revision {} is already installed.", CURRENT_SCHEMA_SET_NAME);
-            } else if (doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
-                log.info("Model Loader #2: Upgrading already installed inventory to revision {}.",
-                        CURRENT_SCHEMA_SET_NAME);
-                upgradeInventoryModel();
+                    moduleRevision)) {
+                log.info("Model Loader #2: Revision {} is already installed.", moduleRevision);
+            } else if (!ignoreR20260423Model && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
+                log.info("Model Loader #2: Detected existing inventory model. Starting data migration.");
+                upgradeAndMigrateInventoryData();
             } else {
                 log.info("Model Loader #2: New installation using inventory model revision {}.",
-                        CURRENT_SCHEMA_SET_NAME);
-                installInventoryModel();
+                        moduleRevision);
+                installInventoryModel(schemaToInstall);
             }
             applicationEventPublisher.publishEvent(new NcmpInventoryModelOnboardingFinishedEvent(this));
             log.info("Model Loader #2 Completed");
@@ -85,15 +95,15 @@ public class InventoryModelLoader extends AbstractModelLoader {
         }
     }
 
-    private void installInventoryModel() {
+    private void installInventoryModel(final String schemaSetName) {
         createDataspace(NCMP_DATASPACE_NAME);
         createDataspace(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
-        final String yangFileName = toYangFileName();
-        createSchemaSet(NCMP_DATASPACE_NAME, CURRENT_SCHEMA_SET_NAME, yangFileName);
-        createAnchor(NCMP_DATASPACE_NAME, CURRENT_SCHEMA_SET_NAME, NCMP_DMI_REGISTRY_ANCHOR);
+        final String yangFileName = toYangFileName(schemaSetName);
+        createSchemaSet(NCMP_DATASPACE_NAME, schemaSetName, yangFileName);
+        createAnchor(NCMP_DATASPACE_NAME, schemaSetName, NCMP_DMI_REGISTRY_ANCHOR);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME);
         deleteOldButNotThePreviousSchemaSets();
-        log.info("Model Loader #2: Inventory model {} installed successfully,", CURRENT_SCHEMA_SET_NAME);
+        log.info("Model Loader #2: Inventory model {} installed successfully,", schemaSetName);
     }
 
     private void deleteOldButNotThePreviousSchemaSets() {
@@ -101,7 +111,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
     }
 
     private void upgradeInventoryModel() {
-        final String yangFileName = toYangFileName();
+        final String yangFileName = toYangFileName(CURRENT_SCHEMA_SET_NAME);
         createSchemaSet(NCMP_DATASPACE_NAME, CURRENT_SCHEMA_SET_NAME, yangFileName);
         cpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 CURRENT_SCHEMA_SET_NAME);
@@ -109,13 +119,18 @@ public class InventoryModelLoader extends AbstractModelLoader {
         deleteOldButNotThePreviousSchemaSets();
     }
 
-    private static String toYangFileName() {
-        return INVENTORY_YANG_MODULE_NAME + "@" + getModuleRevision() + ".yang";
+    private static String toYangFileName(final String schemaSetName) {
+        return INVENTORY_YANG_MODULE_NAME + "@" + getModuleRevision(schemaSetName) + ".yang";
     }
 
-    private static String getModuleRevision() {
-        // Extract the revision part ( for example: 2024-02-23)
-        return CURRENT_SCHEMA_SET_NAME.substring(INVENTORY_YANG_MODULE_NAME.length() + 1);
+    private static String getModuleRevision(final String schemaSetName) {
+        // Extract the revision part ( for example: 2026-01-28)
+        return schemaSetName.substring(INVENTORY_YANG_MODULE_NAME.length() + 1);
+    }
+
+    private void upgradeAndMigrateInventoryData() {
+        upgradeInventoryModel();
+        dataMigration.migrateInventoryToModelRelease20260423(MIGRATION_BATCH_SIZE);
     }
 
 }
