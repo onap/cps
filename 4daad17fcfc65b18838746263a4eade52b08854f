@@ -1,0 +1,268 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57269e16_f17d49d0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "extractFileContent",
+      "range": {
+        "startLine": 92,
+        "startChar": 17,
+        "endLine": 92,
+        "endChar": 31
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64cb4788_99ef688a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "This checks XML or JSON then buildDeltaResponseEntity does the same. Fix this",
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3400077f_0c2aaa9e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "This and extractXmlContent can be made final now as we have a common public method extractContent.",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 10
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e664cb0_4b23191f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "can use static import",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 20
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bd01e03_ae2a1bc5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "NB: extra line",
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87741b06_ba5ccfb9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "This is not needed if you are lot logging anything",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 7
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7c3ac76_9e846f7a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "XML data",
+      "range": {
+        "startLine": 315,
+        "startChar": 55,
+        "endLine": 315,
+        "endChar": 79
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c6018b_0c692f5f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "Attempt to validate XML throws exception.",
+      "range": {
+        "startLine": 136,
+        "startChar": 9,
+        "endLine": 136,
+        "endChar": 60
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95bf62dd_0289641c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 137,
+        "startChar": 32,
+        "endLine": 137,
+        "endChar": 68
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "941be1c5_36e7dc6c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "attempt to validate XML",
+      "range": {
+        "startLine": 139,
+        "startChar": 15,
+        "endLine": 139,
+        "endChar": 42
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27aac764_c371461b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "expected exception is thrown",
+      "range": {
+        "startLine": 141,
+        "startChar": 15,
+        "endLine": 141,
+        "endChar": 37
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0390a89_bc2c33b4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-27T12:36:09Z",
+      "side": 1,
+      "message": "Based on previous test comments fix the headings of all the following tests",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 7
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
