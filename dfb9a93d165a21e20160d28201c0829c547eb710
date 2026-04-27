@@ -33,6 +33,29 @@
       "message": "Looks good, was this based on Provmns Get?",
       "revId": "dfb9a93d165a21e20160d28201c0829c547eb710",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b2cb41a_30b86e5b",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8121
+      },
+      "writtenOn": "2026-04-27T08:22:55Z",
+      "side": 1,
+      "message": "even though the cm-handle path parameter is consistent with the rest of the api the background of the problem is that the cm-handle is not known. Only a DistinguishedName which was used on the ProvMnS API.\nSo the input of this endpoint should be a DistinguishedName and the output should be a cm-handle with its id, alternateId and cmHandleProperties.\n\nI suggest not using a path parameter at all to stay consistent with the rest of the api.\nhow about: /v1/ch?distinguishedName\u003d\u003cfdn\u003e",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 85,
+        "endChar": 20
+      },
+      "revId": "dfb9a93d165a21e20160d28201c0829c547eb710",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
