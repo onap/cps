@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d6e2d4_47c31dac",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "CmAvcEventExactlyOnceIntegrationSpec \n\nCmAvcEventExactlyOnceDisabledIntegrationSpec",
+      "range": {
+        "startLine": 77,
+        "startChar": 6,
+        "endLine": 77,
+        "endChar": 45
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc8fc0f8_f8f08b23",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "NB: to be clear should it be called failOnceEventProducer ?",
+      "range": {
+        "startLine": 90,
+        "startChar": 18,
+        "endLine": 90,
+        "endChar": 32
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e3f6613_93ba908b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "NB: feel free to use loner lines in Groovy :-) \nie combine this into 1 line",
+      "range": {
+        "startLine": 106,
+        "startChar": 63,
+        "endLine": 107,
+        "endChar": 83
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00387ab5_d72f3f7e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "move below test",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 5
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ced3a489_2457e075",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "Send a batch of event with failure",
+      "range": {
+        "startLine": 124,
+        "startChar": 9,
+        "endLine": 124,
+        "endChar": 74
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b64a86cc_5b980bed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "move to setup",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 56
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d1ce334_de051527",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "probaly not needed",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 59
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cb05b17_fb9419e5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "GIVEN: a batch of 500 event is send",
+      "range": {
+        "startLine": 128,
+        "startChar": 15,
+        "endLine": 128,
+        "endChar": 101
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05aee927_6d1d3cab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "re-order\nwhen: \u0027poll...\u0027\n   result \u003d \nthen: \u0027the client has received all events\u0027   \n\n(dont verify test code behavior)",
+      "range": {
+        "startLine": 133,
+        "startChar": 7,
+        "endLine": 133,
+        "endChar": 94
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36e1285a_66bc48f1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "add and: to describe this seperatly",
+      "range": {
+        "startLine": 135,
+        "startChar": 12,
+        "endLine": 135,
+        "endChar": 102
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47cb02f4_be76f73d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 76
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab6ba2e8_862a7a3e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "\u0027exactly one\u0027 behavior",
+      "range": {
+        "startLine": 140,
+        "startChar": 76,
+        "endLine": 140,
+        "endChar": 89
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a83e548a_fc3ca1d8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "EventProducerSImlatuingFailureOnFirstAttempt",
+      "range": {
+        "startLine": 183,
+        "startChar": 6,
+        "endLine": 183,
+        "endChar": 27
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1474352b_a3d7b469",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:36:45Z",
+      "side": 1,
+      "message": "use boolean\nsimulatedKafkaExpection \u003d false",
+      "range": {
+        "startLine": 185,
+        "startChar": 8,
+        "endLine": 185,
+        "endChar": 21
+      },
+      "revId": "370f98fc3f7e99c393c8c2ef2458c39c891ab14e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
