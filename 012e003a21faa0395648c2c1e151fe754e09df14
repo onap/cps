@@ -63,6 +63,30 @@
       },
       "revId": "012e003a21faa0395648c2c1e151fe754e09df14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4204156a_6942f75e",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T16:49:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "29c180e8_c1e945ae",
+      "range": {
+        "startLine": 414,
+        "startChar": 48,
+        "endLine": 414,
+        "endChar": 92
+      },
+      "revId": "012e003a21faa0395648c2c1e151fe754e09df14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
