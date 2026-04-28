@@ -56,6 +56,30 @@
       },
       "revId": "dfb9a93d165a21e20160d28201c0829c547eb710",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e1757e_f0035ec0",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T10:51:01Z",
+      "side": 1,
+      "message": "yeah I don\u0027t mind so much either way. I\u0027ll just remove support for alternateId",
+      "parentUuid": "1b2cb41a_30b86e5b",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 85,
+        "endChar": 20
+      },
+      "revId": "dfb9a93d165a21e20160d28201c0829c547eb710",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
