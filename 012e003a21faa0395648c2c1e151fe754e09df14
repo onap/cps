@@ -39,6 +39,30 @@
       },
       "revId": "012e003a21faa0395648c2c1e151fe754e09df14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29c180e8_c1e945ae",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-04-28T13:28:31Z",
+      "side": 1,
+      "message": "The CmHandleSearchesNorthBoundRestApiSpec test was failing with IllegalAccessException: class org.codehaus.groovy.runtime.DefaultGroovyMethods cannot access a member of class java.lang.String (in module java.base) with modifiers \"private final\".\nThis is normally a reflection issue in Java 17 with this standard fix. \nTurned out it was just a mismatch in my environment and is not needed.\nClassic overengineering an issue.",
+      "parentUuid": "9f65899b_3e769db5",
+      "range": {
+        "startLine": 414,
+        "startChar": 48,
+        "endLine": 414,
+        "endChar": 92
+      },
+      "revId": "012e003a21faa0395648c2c1e151fe754e09df14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
