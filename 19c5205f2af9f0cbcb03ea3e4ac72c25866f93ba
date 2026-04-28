@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f6ebe92_4df57e26",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T16:53:25Z",
+      "side": 1,
+      "message": "this is good it proof the retry by Kafka",
+      "range": {
+        "startLine": 124,
+        "startChar": 14,
+        "endLine": 124,
+        "endChar": 58
+      },
+      "revId": "19c5205f2af9f0cbcb03ea3e4ac72c25866f93ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
