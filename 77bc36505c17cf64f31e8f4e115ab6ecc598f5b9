@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf61c6a8_b3ec82f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T15:59:44Z",
+      "side": 1,
+      "message": "the jar has been included in an earlier commit I tried to ignore it (added it to .gitore which I think is the correct thing to do for this file)  or check it out from master",
+      "revId": "77bc36505c17cf64f31e8f4e115ab6ecc598f5b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
