@@ -1,0 +1,486 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee56f2f5_14b0d739",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "this is a serious piece of code, quality looks pretty good!\nBut to properly review I think we need to organise a walktrough as I mention below\nThanks!",
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "385f0468_ea302a9a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "since this support more advance queries why are you copying the old name+V2\nwhy not something like \ngetNodesByDataspaceAndAnchorAndCompositeQuery\n\nTo be honest I am not a fan of the \u0027bySomething\u0027 naming pattern when something is already a parameter ie part of the signature. I think it was a hibernate pattern that somebody started using every in the code :-( \nTo me it is duplicate information, leads to unnecessary long method names and is hard to maintain properly as signature evolves...\n\nthat said it can be difficult to have unique methos names if you have many simalar methods my tactic would be to start with a basic name fro teh most basic version and then extend it with just one, max two word to distinigh it from teh mehto befoer it e.g.\n\n\ngetNodes\ngetNodesV2\ngetNodesPaginated\ngetNodesCompositeQuery",
+      "range": {
+        "startLine": 99,
+        "startChar": 42,
+        "endLine": 99,
+        "endChar": 74
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f70409a_c2e2324d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "rename to sampleDataNodeAsMap and add\nexpectedDataNodeAsJson to be reused wherever you check the response for this",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43925c0a_9d24e53e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "since this is a \u0027delegation\u0027 test keep the data to the minimum needed (as long as it passes validation:\nI woudl prefer \u0027{myQuery}\u0027 but because of validation you might need somethign like \u0027{\"cpsPath\":\"myPath\"}\u0027",
+      "range": {
+        "startLine": 158,
+        "startChar": 31,
+        "endLine": 158,
+        "endChar": 93
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87a98f32_8ae78383",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "as mentioned above extract expectedDataNodeAsJson",
+      "range": {
+        "startLine": 170,
+        "startChar": 52,
+        "endLine": 170,
+        "endChar": 97
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817ca4d1_e2b2133d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "I dont see the point of this test. You mock the empty reponse and then verify the response is empty too. There is no special code path in the controller for empty responses.. This test adds no value, only maintenance cost...",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 56
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7212077d_6d86401d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "shoudl be same as class name",
+      "range": {
+        "startLine": 700,
+        "startChar": 69,
+        "endLine": 700,
+        "endChar": 80
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f44b8387_84e58096",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "add javaDoc so I can understabn what this method does, noe I have no idea, especialyl what the return is...",
+      "range": {
+        "startLine": 57,
+        "startChar": 21,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ca66f0_d5cdf236",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "method name is singular, but return type is plural?!",
+      "range": {
+        "startLine": 71,
+        "startChar": 42,
+        "endLine": 71,
+        "endChar": 63
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "726cedc7_19131249",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "do the user can have multiple conditiosn and if there is no operator you assume AND?!",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93a56fe4_84ae833a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "If you use UpperCase instead can can drop the name property and automatically convert a String to Enum without iterating",
+      "range": {
+        "startLine": 76,
+        "startChar": 58,
+        "endLine": 76,
+        "endChar": 69
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf305ee7_2b22fe6d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "at first glance it looks pretty good. But this code is complex and is hard to review properly without any prior knowledge.\nI think I stop here with in depth review, for somethign as complex like this we often call a team-walktrough review session. I suggest we do that here to, start with 1 hoor session, invite the whole team start with 1h. Somebody ELSE then the author should share screen and record the comments in gerrit, it might need more then one 1 hour session!\nI might glance over the remainder and give some naming tips etc.\nBut my ecommen",
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20317d04_3eb77f80",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "our normal patetrn woudl be baseFragmentEntities but given the context and the length of tehnames I think fragments is ok",
+      "range": {
+        "startLine": 72,
+        "startChar": 35,
+        "endLine": 72,
+        "endChar": 49
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22dfda9f_0a0f5543",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "it a real good test class, you build it up nicely but I still need some clarification especialy regarding the collection of Longs in the later test case!\nAS before, a walktrough would be useful here",
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b4768a3_89e1af84",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "NB: do complete (all!) where bloks with something like \u0027the following case-variations of operators operators are used\u0027",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 14
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e28be2d4_d4674d32",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "what are these numbers?!",
+      "range": {
+        "startLine": 128,
+        "startChar": 45,
+        "endLine": 128,
+        "endChar": 47
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9432a7bc_23b1f37b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "I think an integration test might be more appropriate (and easier) here",
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e14a5d1_006aa3df",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "NB: do start checking your copyrights",
+      "range": {
+        "startLine": 4,
+        "startChar": 37,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f88c7cc_534f9f07",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "compositeQuery",
+      "range": {
+        "startLine": 111,
+        "startChar": 56,
+        "endLine": 111,
+        "endChar": 67
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b530ae_484346c4",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "compositeQuery (wont repeat)",
+      "range": {
+        "startLine": 125,
+        "startChar": 29,
+        "endLine": 125,
+        "endChar": 41
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2399c0bd_fdceeb90",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "data nodes from query service are returned\n(since you are mocking the serive it important to describe it like that)",
+      "range": {
+        "startLine": 145,
+        "startChar": 15,
+        "endLine": 145,
+        "endChar": 35
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7b29f58_40a6fc63",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T17:45:56Z",
+      "side": 1,
+      "message": "perfer the full name",
+      "range": {
+        "startLine": 158,
+        "startChar": 37,
+        "endLine": 158,
+        "endChar": 38
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
