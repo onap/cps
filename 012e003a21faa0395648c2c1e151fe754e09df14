@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e92165f_69ef76f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:07:22Z",
+      "side": 1,
+      "message": "all good, just one question",
+      "revId": "012e003a21faa0395648c2c1e151fe754e09df14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f65899b_3e769db5",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-28T09:07:22Z",
+      "side": 1,
+      "message": "what is this about? \nCan you mention it in the commit message",
+      "range": {
+        "startLine": 414,
+        "startChar": 48,
+        "endLine": 414,
+        "endChar": 92
+      },
+      "revId": "012e003a21faa0395648c2c1e151fe754e09df14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
