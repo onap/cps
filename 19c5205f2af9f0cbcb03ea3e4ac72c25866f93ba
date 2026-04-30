@@ -45,6 +45,30 @@
       },
       "revId": "19c5205f2af9f0cbcb03ea3e4ac72c25866f93ba",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d223008_b2243b3b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T08:05:55Z",
+      "side": 1,
+      "message": "Hi Daniel, it might be possible, but does it really add value?! \nIt might be a lot of effort but whether the first batch fails or a later batch it should not matter for the recovery algorithm....\nThe integration test is to prove that we have configured the Kaka correctly, not the detail behavior of Kafka itself,  It would be like testing a java Array Sort algorithm or something like that with many variations, we should be able to trust our 3PPs, they have their own tests... If we don\u0027t, our testware would explode to an unmaintainable level...",
+      "parentUuid": "d90407a4_49d65dd2",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 193,
+        "endChar": 5
+      },
+      "revId": "19c5205f2af9f0cbcb03ea3e4ac72c25866f93ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
