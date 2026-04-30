@@ -86,6 +86,30 @@
       },
       "revId": "19c5205f2af9f0cbcb03ea3e4ac72c25866f93ba",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "626106c3_a8a39888",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 8559
+      },
+      "writtenOn": "2026-04-30T11:38:14Z",
+      "side": 1,
+      "message": "Well, I get your point, but in this scenario you are only testing that what happens with the consumer code when the producer code throws the exception, and you are not asserting that whether you cofigured the 3pp correctly on your end or not.\nMy original comment was about a following scenario:\n1. Send 500 events to dmi cm events topic\n2. Your consmer will read it in 1 batch\n3. The sending of 250th event fails (returns a failed completable future)\n4. Your consumer code rolls back every already outsent event and retries the batch\n5. Next time when processing happens, no failed completable future and at the end there are 500 events exactly on the final topic\n\nIn the above example you would call the cloudEventKafkaTemplateForExactlyOnceSemantics.send() 750 times but your testware consumer sdhould only consume 500 at the end.\n\nI get that it is a bit thorough, but I believe this is the nice way of testing whether you configue the 3PP correctly or not.",
+      "parentUuid": "8d223008_b2243b3b",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 193,
+        "endChar": 5
+      },
+      "revId": "19c5205f2af9f0cbcb03ea3e4ac72c25866f93ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
