@@ -56,7 +56,7 @@ class LcmEventProducerSpec extends Specification {
                     def event = args[3]
                     assert UUID.fromString(eventHeaders.get('eventId')) != null
                     assert eventHeaders.get('eventCorrelationId') == 'ch-1'
-                    assert eventHeaders.get('eventSchema') == "org.onap.ncmp:cmhandle-lcm-event.${eventVersion}"
+                    assert eventHeaders.get('eventSchema') == "org.onap.ncmp:${expectedSchemaHeader}"
                     assert event.class.simpleName == expectedEventClass
                 }
             }
@@ -69,10 +69,10 @@ class LcmEventProducerSpec extends Specification {
                 assert timer == null
             }
         where: 'the following values are used'
-            scenario   | eventVersion | notificationsEnabled || expectedTimesMethodCalled | expectedEventClass
-            'enabled'  | 'v1'         | true                 || 1                         | 'LcmEventV1'
-            'enabled'  | 'v2'         | true                 || 1                         | 'LcmEventV2'
-            'disabled' | 'v1'         | false                || 0                         | 'N/A'
+            scenario   | eventVersion | notificationsEnabled || expectedTimesMethodCalled | expectedSchemaHeader    | expectedEventClass
+            'enabled'  | 'v1'         | true                 || 1                         | 'cmhandle-lcm-event'    | 'LcmEventV1'
+            'enabled'  | 'v2'         | true                 || 1                         | 'cmhandle-lcm-event.v2' | 'LcmEventV2'
+            'disabled' | 'v1'         | false                || 0                         | 'cmhandle-lcm-event'    | 'N/A'
     }
 
     def 'Exception while sending message.'(){
