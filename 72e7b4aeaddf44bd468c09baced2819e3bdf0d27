@@ -46,6 +46,30 @@
       },
       "revId": "72e7b4aeaddf44bd468c09baced2819e3bdf0d27",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84a63efc_2d182a9c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventObjectCreator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-04-30T14:33:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "285f1a1f_82731257",
+      "range": {
+        "startLine": 109,
+        "startChar": 43,
+        "endLine": 109,
+        "endChar": 48
+      },
+      "revId": "72e7b4aeaddf44bd468c09baced2819e3bdf0d27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
