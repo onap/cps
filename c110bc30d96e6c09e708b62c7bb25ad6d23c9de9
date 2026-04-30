@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a8ab862_6667c953",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "Partially resolved comments, will resolve other by Monday 😊 Will plan on a code walk through when Lee Anjella is back",
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "385f0468_ea302a9a",
@@ -48,6 +65,30 @@
       "writtenOn": "2026-04-28T17:45:56Z",
       "side": 1,
       "message": "since this support more advance queries why are you copying the old name+V2\nwhy not something like \ngetNodesByDataspaceAndAnchorAndCompositeQuery\n\nTo be honest I am not a fan of the \u0027bySomething\u0027 naming pattern when something is already a parameter ie part of the signature. I think it was a hibernate pattern that somebody started using every in the code :-( \nTo me it is duplicate information, leads to unnecessary long method names and is hard to maintain properly as signature evolves...\n\nthat said it can be difficult to have unique methos names if you have many simalar methods my tactic would be to start with a basic name fro teh most basic version and then extend it with just one, max two word to distinigh it from teh mehto befoer it e.g.\n\n\ngetNodes\ngetNodesV2\ngetNodesPaginated\ngetNodesCompositeQuery",
+      "range": {
+        "startLine": 99,
+        "startChar": 42,
+        "endLine": 99,
+        "endChar": 74
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3639215_29af2eef",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "I copied old name + Payload + V2 to be consistent with current naming convention. But I do agree this convention can sometimes lead to lengthy names. I have renamed to getNodesCompositeQuery as it fits the use case here. \n\nFor future we can update the CPS Developers Guide with a simpler naming convention.",
+      "parentUuid": "385f0468_ea302a9a",
       "range": {
         "startLine": 99,
         "startChar": 42,
@@ -81,6 +122,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b034b8ba_409a46e3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f70409a_c2e2324d",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43925c0a_9d24e53e",
@@ -94,6 +159,30 @@
       "writtenOn": "2026-04-28T17:45:56Z",
       "side": 1,
       "message": "since this is a \u0027delegation\u0027 test keep the data to the minimum needed (as long as it passes validation:\nI woudl prefer \u0027{myQuery}\u0027 but because of validation you might need somethign like \u0027{\"cpsPath\":\"myPath\"}\u0027",
+      "range": {
+        "startLine": 158,
+        "startChar": 31,
+        "endLine": 158,
+        "endChar": 93
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d4d6a2b_4afe8da6",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43925c0a_9d24e53e",
       "range": {
         "startLine": 158,
         "startChar": 31,
@@ -127,6 +216,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbef75ca_a88f2a7a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87a98f32_8ae78383",
+      "range": {
+        "startLine": 170,
+        "startChar": 52,
+        "endLine": 170,
+        "endChar": 97
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "817ca4d1_e2b2133d",
@@ -150,6 +263,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d652a7d8_a8e6a5e6",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "817ca4d1_e2b2133d",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 56
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7212077d_6d86401d",
@@ -163,6 +300,30 @@
       "writtenOn": "2026-04-28T17:45:56Z",
       "side": 1,
       "message": "shoudl be same as class name",
+      "range": {
+        "startLine": 700,
+        "startChar": 69,
+        "endLine": 700,
+        "endChar": 80
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b32fda9_5a6b8abd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7212077d_6d86401d",
       "range": {
         "startLine": 700,
         "startChar": 69,
@@ -408,6 +569,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fc720ab_b3472680",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e14a5d1_006aa3df",
+      "range": {
+        "startLine": 4,
+        "startChar": 37,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f88c7cc_534f9f07",
@@ -431,6 +616,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa43dfb4_64ed29c6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f88c7cc_534f9f07",
+      "range": {
+        "startLine": 111,
+        "startChar": 56,
+        "endLine": 111,
+        "endChar": 67
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80b530ae_484346c4",
@@ -444,6 +653,30 @@
       "writtenOn": "2026-04-28T17:45:56Z",
       "side": 1,
       "message": "compositeQuery (wont repeat)",
+      "range": {
+        "startLine": 125,
+        "startChar": 29,
+        "endLine": 125,
+        "endChar": 41
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b49976ed_fb1008b6",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-04-30T11:55:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80b530ae_484346c4",
       "range": {
         "startLine": 125,
         "startChar": 29,
