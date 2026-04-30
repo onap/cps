@@ -63,6 +63,30 @@
       },
       "revId": "ca6407faec1c677ff301aae0566ecc2072526fe2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab05b059_a07423f9",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T12:38:55Z",
+      "side": 1,
+      "message": "See https://lf-onap.atlassian.net/wiki/spaces/DW/pages/218071051/KPI+Test+Offset+Timing",
+      "parentUuid": "5f9adaa8_bbc54f52",
+      "range": {
+        "startLine": 184,
+        "startChar": 20,
+        "endLine": 184,
+        "endChar": 25
+      },
+      "revId": "ca6407faec1c677ff301aae0566ecc2072526fe2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

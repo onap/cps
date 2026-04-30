@@ -16,6 +16,138 @@
       "message": "recheck",
       "revId": "2b4a75b04435c14740ef253a1c4fc4d74e8c6a1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27e2d3da_612397d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T12:38:55Z",
+      "side": 1,
+      "message": "mainly some question about #VUs ...\nNot suer what is best, maybe do a  little more research, but it is not blocking we can adjust later, not even sure if it makes a big difference...",
+      "revId": "2b4a75b04435c14740ef253a1c4fc4d74e8c6a1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f467fc1_a5657aed",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T12:38:55Z",
+      "side": 1,
+      "message": "should this be 5?",
+      "range": {
+        "startLine": 21,
+        "startChar": 16,
+        "endLine": 21,
+        "endChar": 18
+      },
+      "revId": "2b4a75b04435c14740ef253a1c4fc4d74e8c6a1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e39ad3be_4b765a47",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T12:38:55Z",
+      "side": 1,
+      "message": "should this be 5?",
+      "range": {
+        "startLine": 31,
+        "startChar": 16,
+        "endLine": 31,
+        "endChar": 18
+      },
+      "revId": "2b4a75b04435c14740ef253a1c4fc4d74e8c6a1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13f4fc06_25a06581",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T12:38:55Z",
+      "side": 1,
+      "message": "should this have a maxVUs of 1 too ?\nThere are many scenarios without maxVUs, what does Ai/dcoumentation say about this?",
+      "range": {
+        "startLine": 40,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 27
+      },
+      "revId": "2b4a75b04435c14740ef253a1c4fc4d74e8c6a1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4424ad26_ec9a27d9",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T12:38:55Z",
+      "side": 1,
+      "message": "can you adjust these based on latest K6 real findings",
+      "range": {
+        "startLine": 133,
+        "startChar": 27,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "2b4a75b04435c14740ef253a1c4fc4d74e8c6a1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f2d0a14_547a7d37",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T12:38:55Z",
+      "side": 1,
+      "message": "can you adjust these based on latest K6 real findings",
+      "range": {
+        "startLine": 140,
+        "startChar": 27,
+        "endLine": 140,
+        "endChar": 30
+      },
+      "revId": "2b4a75b04435c14740ef253a1c4fc4d74e8c6a1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
