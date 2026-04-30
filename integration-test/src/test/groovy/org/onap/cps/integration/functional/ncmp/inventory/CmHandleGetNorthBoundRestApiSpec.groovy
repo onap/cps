@@ -21,11 +21,7 @@
 package org.onap.cps.integration.functional.ncmp.inventory
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.springframework.http.MediaType
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.http.HttpStatus
 
 class CmHandleGetNorthBoundRestApiSpec extends CpsIntegrationSpecBase {
 
@@ -33,11 +29,13 @@ class CmHandleGetNorthBoundRestApiSpec extends CpsIntegrationSpecBase {
         given: 'a CM Handle is registered with an alternate ID'
             registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/alt=1/b=2')
         when: 'the get CM handle endpoint is called with the given reference'
-            def result = mvc.perform(get("/ncmpInventory/v1/ch?distinguishedName=${distinguishedName}").accept(MediaType.APPLICATION_JSON))
-        then: 'the response status and cm handle details are as expected'
-            result.andExpect(status().is(200))
-            result.andExpect(jsonPath('$.cmHandle').value('ch-1'))
-            result.andExpect(jsonPath('$.alternateId').value('/alt=1/b=2'))
+            def response = performGet('/ncmpInventory/v1/ch', [distinguishedName: distinguishedName])
+        then: 'the response status is OK'
+            assert response.statusCode == HttpStatus.OK
+        and: 'the response contains expected cm handle details'
+            def body = parseResponseBody(response)
+            assert body.cmHandle == 'ch-1'
+            assert body.alternateId == '/alt=1/b=2'
         cleanup: 'deregister the CM Handle'
             deregisterCmHandle(DMI1_URL, 'ch-1')
         where: 'the following references are used'

@@ -22,6 +22,7 @@
 package org.onap.cps.integration.base
 
 import com.hazelcast.map.IMap
+import groovy.json.JsonSlurper
 import io.micrometer.core.instrument.MeterRegistry
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
@@ -61,11 +62,15 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.domain.EntityScan
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
-import org.springframework.test.web.servlet.MockMvc
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpMethod
+import org.springframework.http.MediaType
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
@@ -75,10 +80,16 @@ import java.time.OffsetDateTime
 import java.time.ZonedDateTime
 import java.util.concurrent.BlockingQueue
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
+import static org.springframework.http.HttpMethod.DELETE
+import static org.springframework.http.HttpMethod.GET
+import static org.springframework.http.HttpMethod.PATCH
+import static org.springframework.http.HttpMethod.POST
+import static org.springframework.http.HttpMethod.PUT
+import static org.springframework.http.MediaType.APPLICATION_JSON
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = [CpsDataspaceService])
 @Testcontainers
 @EnableAutoConfiguration
-@AutoConfigureMockMvc
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
 @ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.ri.models')
@@ -90,8 +101,12 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Shared
     KafkaTestContainer kafkaTestContainer = KafkaTestContainer.getInstance()
 
+    @LocalServerPort
+    int port
+
     @Autowired
-    MockMvc mvc
+    TestRestTemplate restTemplate
+
 
     @Autowired
     NetworkCmProxyInventoryController networkCmProxyInventoryController
@@ -367,6 +382,65 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     def clearPreviousInstrumentation() {
         meterRegistry.clear()
+    }
+
+
+    // *** REST API Test Helpers ***
+
+    def performGet(String path, Map<String, String> queryParams = [:], String authorization = null) {
+        def uri = buildUri(path, queryParams)
+        def headers = buildHeaders(APPLICATION_JSON, authorization)
+        return restTemplate.exchange(uri, GET, new HttpEntity<>(headers), String)
+    }
+
+    def performPost(String path, String body, Map<String, String> queryParams = [:], String authorization = null) {
+        def uri = buildUri(path, queryParams)
+        def headers = buildHeaders(APPLICATION_JSON, authorization)
+        return restTemplate.exchange(uri, POST, new HttpEntity<>(body, headers), String)
+    }
+
+    def performPut(String path, String body, Map<String, String> queryParams = [:], String authorization = null) {
+        def uri = buildUri(path, queryParams)
+        def headers = buildHeaders(APPLICATION_JSON, authorization)
+        return restTemplate.exchange(uri, PUT, new HttpEntity<>(body, headers), String)
+    }
+
+    def performPatch(String path, String body, MediaType contentType = APPLICATION_JSON, Map<String, String> queryParams = [:]) {
+        def uri = buildUri(path, queryParams)
+        def headers = buildHeaders(contentType, null)
+        return restTemplate.exchange(uri, PATCH, new HttpEntity<>(body, headers), String)
+    }
+
+    def performDelete(String path, Map<String, String> queryParams = [:]) {
+        def uri = buildUri(path, queryParams)
+        def headers = buildHeaders(APPLICATION_JSON, null)
+        return restTemplate.exchange(uri, DELETE, new HttpEntity<>(headers), String)
+    }
+
+    def performRequest(HttpMethod method, String path, String body = null, Map<String, String> queryParams = [:], String authorization = null) {
+        def uri = buildUri(path, queryParams)
+        def headers = buildHeaders(APPLICATION_JSON, authorization)
+        def entity = body ? new HttpEntity<>(body, headers) : new HttpEntity<>(headers)
+        return restTemplate.exchange(uri, method, entity, String)
+    }
+
+    def parseResponseBody(response) {
+        return new JsonSlurper().parseText(response.body)
+    }
+
+    def buildUri(path, queryParams) {
+        def query = queryParams.collect { k, v -> "${URLEncoder.encode(k, 'UTF-8')}=${URLEncoder.encode(v, 'UTF-8')}" }.join('&')
+        def uriString = "http://localhost:${port}${path}" + (query ? "?${query}" : '')
+        return new URI(uriString)
+    }
+
+    def buildHeaders(contentType, authorization) {
+        def headers = new HttpHeaders()
+        headers.setContentType(contentType)
+        if (authorization) {
+            headers.set('Authorization', authorization)
+        }
+        return headers
     }
 
 }

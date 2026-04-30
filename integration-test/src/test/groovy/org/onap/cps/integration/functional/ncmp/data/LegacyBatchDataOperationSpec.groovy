@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -27,13 +27,9 @@ import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.events.async1_0_0.Data
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.events.async1_0_0.Response
-import org.springframework.http.MediaType
 import spock.util.concurrent.PollingConditions
 
 import java.time.Duration
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 class LegacyBatchDataOperationSpec extends CpsIntegrationSpecBase {
 
@@ -57,15 +53,11 @@ class LegacyBatchDataOperationSpec extends CpsIntegrationSpecBase {
     def 'Batch pass-through data operation is forwarded to DMI plugin.'() {
         given: 'a request body containing a data read operation for an existing and ready CM-handle'
             def dataOperationRequestBody = makeDataOperationRequestBody('ch-1')
-
-        when: 'a pass-through batch data request is sent to NCMP is successful'
-            mvc.perform(post('/ncmp/v1/data')
-                    .queryParam('topic', 'legacy-batch-topic')
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(dataOperationRequestBody)
-            ).andExpect(status().is2xxSuccessful())
-
-        then: 'DMI will receive the async request'
+        when: 'a pass-through batch data request is sent to NCMP'
+            def response = performPost('/ncmp/v1/data', dataOperationRequestBody, [topic: 'legacy-batch-topic'])
+        then: 'response is successful'
+            assert response.statusCode.is2xxSuccessful()
+        and: 'DMI will receive the async request'
             new PollingConditions().within(2, () -> {
                 assert dmiDispatcher1.receivedDataOperationRequest.isEmpty() == false
             })
@@ -81,21 +73,15 @@ class LegacyBatchDataOperationSpec extends CpsIntegrationSpecBase {
     def 'Batch pass-through data operation reports errors on kafka topic.'() {
         given: 'a request body containing a data read operation for #cmHandleId'
             def dataOperationRequestBody = makeDataOperationRequestBody(cmHandleId)
-
-        when: 'a pass-through batch data request is sent to NCMP specifying a kafka topic is successful'
-            mvc.perform(post('/ncmp/v1/data')
-                    .queryParam('topic', 'legacy-batch-topic')
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(dataOperationRequestBody))
-                    .andExpect(status().is2xxSuccessful())
-
-        then: 'there is one kafka message'
+        when: 'a pass-through batch data request is sent to NCMP specifying a kafka topic'
+            def response = performPost('/ncmp/v1/data', dataOperationRequestBody, [topic: 'legacy-batch-topic'])
+        then: 'response is successful'
+            assert response.statusCode.is2xxSuccessful()
+        and: 'there is one kafka message'
             def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
             assert consumerRecords.size() == 1
-
         and: 'it is a cloud event'
             assert consumerRecords[0].value() instanceof CloudEvent
-
         and: 'it contains the data operation event with the expected error status'
             def jsonData = new String(consumerRecords[0].value().data.toBytes())
             def dataOperationEvent = jsonObjectMapper.convertJsonString(jsonData, DataOperationEvent)
@@ -110,7 +96,6 @@ class LegacyBatchDataOperationSpec extends CpsIntegrationSpecBase {
                                 statusMessage: expectedStatusMessage,
                                 result: null),
                     ]))
-
         where:
             scenario              | cmHandleId     || expectedStatusCode | expectedStatusMessage
             'CM handle not ready' | 'not-ready-ch' || 101                | 'cm handle(s) not ready'
