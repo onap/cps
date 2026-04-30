@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f40eb8b_af4c0c49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T16:53:40Z",
+      "side": 1,
+      "message": "# Integration Test Migration: MockMvc to TestRestTemplate\n\n## Date: 2026-04-30\n\n## Problem\nMockMvc does not properly encode/decode URI path parameters containing `/` characters.\nThis prevented testing with realistic FDN alternate IDs (e.g., `/SubNetwork\u003dEurope/MeContext\u003dnode1`)\nwhich are used in production. Postman tests proved it works with a real server using `%2F` encoding.\n\n## Solution\nMigrated the entire integration test suite from MockMvc (WebEnvironment.MOCK) to\nTestRestTemplate (WebEnvironment.RANDOM_PORT) which starts a real embedded Jetty server.\n\n## Key Changes\n\n### New file: `JettyTestConfig.java`\nMirrors the production `JettyConfig` in `cps-application` to allow encoded slashes (`%2F`) in URI paths.\nPermits both `AMBIGUOUS_PATH_SEPARATOR` and `AMBIGUOUS_EMPTY_SEGMENT` Jetty URI compliance violations.\nThis is needed because `cps-application` is not a dependency of `integration-test`.\n\n### Modified: `CpsIntegrationSpecBase.groovy`\n- `@SpringBootTest(webEnvironment \u003d MOCK)` → `RANDOM_PORT`\n- Removed `@AutoConfigureMockMvc` and `MockMvc mvc`\n- Added `@LocalServerPort int port` and `TestRestTemplate restTemplate`\n- Added REST helper methods:\n  - `performGet(path, queryParams, authorization)`\n  - `performPost(path, body, queryParams, authorization)`\n  - `performPut(path, body, queryParams, authorization)`\n  - `performPatch(path, body, contentType, queryParams)`\n  - `performDelete(path, queryParams)`\n  - `performRequest(method, path, body, queryParams, authorization)`\n  - `parseResponseBody(response)` — replaces JsonSlurper/ObjectMapper boilerplate\n  - `buildUri(path, queryParams)` — constructs URI without double-encoding\n  - `buildHeaders(contentType, authorization)`\n\n### Pattern for FDN path variables\n```groovy\ndef encodedRef \u003d URLEncoder.encode(cmHandleReference, \u0027UTF-8\u0027)\ndef response \u003d performGet(\"/ncmp/v1/ch/${encodedRef}/data/ds/ncmp-datastore:passthrough-running\", [...])\n```\nThis keeps `%2F` encoded on the wire, matching how real HTTP clients (Postman, browsers) behave.\n\n### Migrated test specs (12 files)\n- `AlternateIdSpec` — now includes FDN with slashes test case\n- `BearerTokenPassthroughSpec`\n- `DmiUrlEncodingPassthroughSpec`\n- `LegacyBatchDataOperationSpec`\n- `DcmWriteSubJobSpec`\n- `CmHandleGetNorthBoundRestApiSpec`\n- `CmHandleSearchesNorthBoundRestApiSpec`\n- `CmHandleSearchesSouthBoundRestApiSpec`\n- `ModulesRestApiSpec`\n- `PolicyExecutorIntegrationSpec`\n- `ProvMnSRestApiSpec`\n- `ProvMnSExtensionsRestApiSpec`\n\n### Removed\n- `AlternateIdWithFdnSpec.groovy` (standalone proof-of-concept, no longer needed)\n\n## Migration Pattern (old → new)\n```groovy\n// OLD (MockMvc):\nmvc.perform(get(\u0027/path\u0027).queryParam(\u0027key\u0027, \u0027val\u0027).contentType(MediaType.APPLICATION_JSON))\n    .andExpect(status().isOk())\n    .andExpect(jsonPath(\u0027$.field\u0027).value(\u0027x\u0027))\n\n// NEW (TestRestTemplate):\ndef response \u003d performGet(\u0027/path\u0027, [key: \u0027val\u0027])\nassert response.statusCode \u003d\u003d HttpStatus.OK\nassert parseResponseBody(response).field \u003d\u003d \u0027x\u0027\n```\n\n## Notes\n- Performance tests (`/performance/`) don\u0027t use REST endpoints — no changes needed there\n- MockMvc is completely removed from the integration-test module\n- The singleton testcontainers (PostgreSQL, Kafka) are unaffected\n- Test execution time is similar (~55s for the REST API specs)",
+      "revId": "1751a349e7fe1df7958775b20a2dea85aea60e89",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
