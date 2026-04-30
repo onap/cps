@@ -22,6 +22,30 @@
       },
       "revId": "72e7b4aeaddf44bd468c09baced2819e3bdf0d27",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "285f1a1f_82731257",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventObjectCreator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-04-30T11:17:01Z",
+      "side": 1,
+      "message": "this is liek an \u0027internal\u0027 schema version and will remain 1.0 for both",
+      "parentUuid": "a5fac152_3f6a919c",
+      "range": {
+        "startLine": 109,
+        "startChar": 43,
+        "endLine": 109,
+        "endChar": 48
+      },
+      "revId": "72e7b4aeaddf44bd468c09baced2819e3bdf0d27",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
