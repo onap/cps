@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -36,11 +36,9 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
     @Autowired
     InventoryPersistence inventoryPersistence
 
-    // Ignored: Migration logic removed from InventoryModelLoader until resumption of CPS-2874
-    @Ignore
-    def 'Migrate inventory with batch processing.'() {
+     def 'Migrate inventory with batch processing.'() {
         given: 'start with the old models (ignore upgrade)'
-            ReflectionTestUtils.setField(inventoryPersistence, 'ignoreModelR20250722', true)
+            ReflectionTestUtils.setField(inventoryPersistence, 'ignoreR20260423Model', true)
         and: 'DMI will return modules when requested'
             dmiDispatcher1.moduleNamesPerCmHandleId = (1..2).collectEntries{ ['ch-'+it, ['M1']] }
         and: 'multiple CM handles registered with old model'
@@ -53,8 +51,8 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
                 assert someCmHandle.getCompositeState().getCmHandleState().name() == 'READY'
             }
         when: 'the new (more performant) model is enabled (no longer ignored)'
-            ReflectionTestUtils.setField(inventoryPersistence, 'ignoreModelR20250722', false)
-            ReflectionTestUtils.setField(objectUnderTest, 'ignoreModelR20250722', false)
+            ReflectionTestUtils.setField(inventoryPersistence, 'ignoreR20260423Model', false)
+            ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', false)
         and: 'inventory is upgraded to the new revision'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'all CM handles have top-level cm-handle-state populated'
@@ -63,7 +61,9 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
                 assert someCmHandle.getCmHandleStatus() == 'READY'
                 assert someCmHandle.getCompositeState().getCmHandleState().name() == 'READY'
             }
-        cleanup: 'deregister CM handles'
+        cleanup: 'deregister CM handles and restore flag'
+            ReflectionTestUtils.setField(inventoryPersistence, 'ignoreR20260423Model', true)
+            ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', true)
             deregisterCmHandles(DMI1_URL, (1..2).collect{ 'ch-'+it })
     }
 }
