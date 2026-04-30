@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -22,17 +22,6 @@ package org.onap.cps.integration.functional.ncmp.inventory
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 
-import static org.hamcrest.Matchers.containsInAnyOrder
-import static org.hamcrest.Matchers.emptyString
-import static org.hamcrest.Matchers.equalTo
-import static org.hamcrest.Matchers.everyItem
-import static org.hamcrest.Matchers.hasSize
-import static org.hamcrest.Matchers.is
-import static org.hamcrest.Matchers.not
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-
 class ModulesRestApiSpec extends CpsIntegrationSpecBase {
 
     def setup() {
@@ -42,7 +31,6 @@ class ModulesRestApiSpec extends CpsIntegrationSpecBase {
         registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'alt-1')
         registerCmHandle(DMI1_URL, 'ch-2', NO_MODULE_SET_TAG, 'alt-2')
         registerCmHandle(DMI1_URL, 'ch-3', 'my-module-set-tag', 'alt-3')
-        // Note DMI dispatcher is not configured to return modules for this handle, so module sync will fail
         registerCmHandleWithoutWaitForReady(DMI1_URL, 'not-ready-id', NO_MODULE_SET_TAG, NO_ALTERNATE_ID)
     }
 
@@ -51,12 +39,17 @@ class ModulesRestApiSpec extends CpsIntegrationSpecBase {
     }
 
     def 'Get yang module references returns expected modules with #scenario.'() {
-        expect: 'get module references API to return expected modules'
-            mvc.perform(get("/ncmp/v1/ch/${cmHandleReference}/modules"))
-                    .andExpect(status().is2xxSuccessful())
-                    .andExpect(jsonPath('$', hasSize(expectedModuleNames.size())))
-                    .andExpect(jsonPath('$[*].moduleName', containsInAnyOrder(expectedModuleNames.toArray())))
-                    .andExpect(jsonPath('$[*].revision', everyItem(equalTo('2024-01-01'))))
+        when: 'get module references API is called'
+            def response = performGet("/ncmp/v1/ch/${cmHandleReference}/modules")
+        then: 'response is successful'
+            assert response.statusCode.is2xxSuccessful()
+        and: 'expected modules are returned'
+            def modules = parseResponseBody(response) as List
+            assert modules.size() == expectedModuleNames.size()
+            assert modules*.moduleName.containsAll(expectedModuleNames)
+            if (!modules.isEmpty()) {
+                assert modules.every { it.revision == '2024-01-01' }
+            }
         where: 'following scenarios are applied'
             scenario                        | cmHandleReference || expectedModuleNames
             'cm-handle id'                  | 'ch-1'            || ['M1', 'M2']
@@ -67,13 +60,18 @@ class ModulesRestApiSpec extends CpsIntegrationSpecBase {
     }
 
     def 'Get yang module definitions returns expected modules with #scenario.'() {
-        expect: 'get module definitions API to return expected module definitions'
-            mvc.perform(get("/ncmp/v1/ch/${cmHandleReference}/modules/definitions"))
-                    .andExpect(status().is2xxSuccessful())
-                    .andExpect(jsonPath('$', hasSize(expectedModuleNames.size())))
-                    .andExpect(jsonPath('$[*].moduleName', containsInAnyOrder(expectedModuleNames.toArray())))
-                    .andExpect(jsonPath('$[*].revision', everyItem(equalTo('2024-01-01'))))
-                    .andExpect(jsonPath('$[*].content', not(is(emptyString()))))
+        when: 'get module definitions API is called'
+            def response = performGet("/ncmp/v1/ch/${cmHandleReference}/modules/definitions")
+        then: 'response is successful'
+            assert response.statusCode.is2xxSuccessful()
+        and: 'expected module definitions are returned'
+            def modules = parseResponseBody(response) as List
+            assert modules.size() == expectedModuleNames.size()
+            assert modules*.moduleName.containsAll(expectedModuleNames)
+            if (!modules.isEmpty()) {
+                assert modules.every { it.revision == '2024-01-01' }
+                assert modules.every { it.content }
+            }
         where: 'following scenarios are applied'
             scenario                        | cmHandleReference || expectedModuleNames
             'cm-handle id'                  | 'ch-1'            || ['M1', 'M2']
@@ -84,15 +82,19 @@ class ModulesRestApiSpec extends CpsIntegrationSpecBase {
     }
 
     def 'Get yang module definition for specific module with #scenario.'() {
-        expect: 'get module definition API to return definition of requested module name and revision'
-            mvc.perform(get("/ncmp/v1/ch/${cmHandleReference}/modules/definitions")
-                    .queryParam('module-name', requestedModuleName)
-                    .queryParam('revision', '2024-01-01'))
-                    .andExpect(status().is2xxSuccessful())
-                    .andExpect(jsonPath('$', hasSize(expectedModuleNames.size())))
-                    .andExpect(jsonPath('$[*].moduleName', containsInAnyOrder(expectedModuleNames.toArray())))
-                    .andExpect(jsonPath('$[*].revision', everyItem(equalTo('2024-01-01'))))
-                    .andExpect(jsonPath('$[*].content', not(is(emptyString()))))
+        when: 'get module definition API is called with specific module name and revision'
+            def response = performGet("/ncmp/v1/ch/${cmHandleReference}/modules/definitions",
+                    ['module-name': requestedModuleName, revision: '2024-01-01'])
+        then: 'response is successful'
+            assert response.statusCode.is2xxSuccessful()
+        and: 'expected module definitions are returned'
+            def modules = parseResponseBody(response) as List
+            assert modules.size() == expectedModuleNames.size()
+            assert modules*.moduleName.containsAll(expectedModuleNames)
+            if (!modules.isEmpty()) {
+                assert modules.every { it.revision == '2024-01-01' }
+                assert modules.every { it.content }
+            }
         where: 'following scenarios are applied'
             scenario                 | cmHandleReference | requestedModuleName || expectedModuleNames
             'cm-handle id'           | 'ch-1'            | 'M1'                || ['M1']
