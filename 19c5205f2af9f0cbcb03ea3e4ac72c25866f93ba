@@ -22,6 +22,29 @@
       },
       "revId": "19c5205f2af9f0cbcb03ea3e4ac72c25866f93ba",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d90407a4_49d65dd2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 8559
+      },
+      "writtenOn": "2026-04-30T07:35:18Z",
+      "side": 1,
+      "message": "can we simulate that not the first send throws the exception, but let\u0027s say the 250th event send throws the exception?\n\nSo not the whole sendCloudEventBatch is overriden, but with a mockitospybean you can listen to the invocation of cloudEventKafkaTemplateForExactlyOnceSemantics.send() calls in EventProducer class, and return with a failed CompletableFuture that contains a KafkaException.",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 193,
+        "endChar": 5
+      },
+      "revId": "19c5205f2af9f0cbcb03ea3e4ac72c25866f93ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
