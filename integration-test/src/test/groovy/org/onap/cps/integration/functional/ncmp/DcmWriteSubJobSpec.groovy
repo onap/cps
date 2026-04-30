@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -20,12 +20,7 @@
 
 package org.onap.cps.integration.functional.ncmp
 
-import groovy.json.JsonSlurper
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.springframework.http.MediaType
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 class DcmWriteSubJobSpec extends CpsIntegrationSpecBase {
 
@@ -78,14 +73,11 @@ class DcmWriteSubJobSpec extends CpsIntegrationSpecBase {
             }
             """
         when: 'a POST request is made to the write job test endpoint'
-            def mvcResult = mvc.perform(
-                    post('/do-not-use/dataJobs/some-job-id/write')
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(writeJobRequest)
-            ).andExpect(status().is2xxSuccessful())
-            .andReturn()
-        then: 'the sub jobs contains 2 sub-jobs, grouped by their DMI plugin'
-            def subJobs = parseJsonResponse(mvcResult.response.contentAsString)
+            def response = performPost('/do-not-use/dataJobs/some-job-id/write', writeJobRequest)
+        then: 'response is successful'
+            assert response.statusCode.is2xxSuccessful()
+        and: 'the sub jobs contains 2 sub-jobs, grouped by their DMI plugin'
+            def subJobs = parseResponseBody(response) as List<Map<String, Object>>
             assert subJobs.size() == 2
             subJobs.eachWithIndex { it, index ->
                 assert it.subJobId == 'some sub job id'
@@ -103,7 +95,4 @@ class DcmWriteSubJobSpec extends CpsIntegrationSpecBase {
             assert dmi2SubJobs[0].path == 'p3'
     }
 
-    def parseJsonResponse(jsonResponse) {
-        new JsonSlurper().parseText(jsonResponse) as List<Map<String, Object>>
-    }
 }

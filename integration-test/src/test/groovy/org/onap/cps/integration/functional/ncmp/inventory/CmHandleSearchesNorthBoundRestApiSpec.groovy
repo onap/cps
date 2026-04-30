@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -20,15 +20,8 @@
 
 package org.onap.cps.integration.functional.ncmp.inventory
 
-import static org.hamcrest.Matchers.containsInAnyOrder
-import static org.hamcrest.Matchers.hasSize
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.springframework.http.MediaType
+import org.springframework.http.HttpStatus
 
 class CmHandleSearchesNorthBoundRestApiSpec extends CpsIntegrationSpecBase {
 
@@ -41,14 +34,16 @@ class CmHandleSearchesNorthBoundRestApiSpec extends CpsIntegrationSpecBase {
             ]
         when: 'register the CM Handles'
             def requestBody = '{"dmiPlugin":"'+DMI1_URL+'","createdCmHandles":[{"cmHandle":"ch-1","alternateId":"alt-1"},{"cmHandle":"ch-2","alternateId":"alt-2"},{"cmHandle":"ch-3","alternateId":"alt-3"}]}'
-            mvc.perform(post('/ncmpInventory/v1/ch').contentType(MediaType.APPLICATION_JSON).content(requestBody)).andExpect(status().is2xxSuccessful())
-        and: 'the module sync watchdog is triggered'
+            def response = performPost('/ncmpInventory/v1/ch', requestBody)
+        then: 'registration is successful'
+            assert response.statusCode.is2xxSuccessful()
+        when: 'the module sync watchdog is triggered'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         then: 'CM-handles go to READY state'
             (1..3).each {
-                mvc.perform(get('/ncmp/v1/ch/ch-'+it))
-                        .andExpect(status().isOk())
-                        .andExpect(jsonPath('$.state.cmHandleState').value('READY'))
+                def getResponse = performGet("/ncmp/v1/ch/ch-${it}")
+                assert getResponse.statusCode == HttpStatus.OK
+                assert parseResponseBody(getResponse).state.cmHandleState == 'READY'
             }
     }
 
@@ -60,20 +55,24 @@ class CmHandleSearchesNorthBoundRestApiSpec extends CpsIntegrationSpecBase {
                                 "conditionParameters": [ {"moduleName": "%s"} ]
                             } ]
                 }""".formatted(moduleName)
-        expect: 'a search for module #moduleName returns expected CM handles'
-            mvc.perform(post('/ncmp/v1/ch/id-searches'+outputAlternateId).contentType(MediaType.APPLICATION_JSON).content(requestBodyWithModuleCondition))
-                    .andExpect(status().is2xxSuccessful())
-                    .andExpect(jsonPath('$[*]', containsInAnyOrder(expectedCmHandleReferences.toArray())))
-                    .andExpect(jsonPath('$', hasSize(expectedCmHandleReferences.size())));
+        when: 'a search is performed'
+            def queryParams = outputAlternateId ? [outputAlternateId: outputAlternateId] : [:]
+            def response = performPost('/ncmp/v1/ch/id-searches', requestBodyWithModuleCondition, queryParams)
+        then: 'response is successful with expected CM handles'
+            assert response.statusCode.is2xxSuccessful()
+            def results = parseResponseBody(response) as List
+            assert results.size() == expectedCmHandleReferences.size()
+            assert results.containsAll(expectedCmHandleReferences)
         where: 'the following parameters are used'
-            moduleName | outputAlternateId           || expectedCmHandleReferences
-            'M1'       | '?outputAlternateId=false'  || ['ch-1', 'ch-2', 'ch-3']
-            'M2'       | '?outputAlternateId=false'  || ['ch-1', 'ch-2']
-            'M3'       | '?outputAlternateId=false'  || ['ch-3']
-            'M1'       | '?outputAlternateId=true'   || ['alt-1', 'alt-2', 'alt-3']
-            'M2'       | '?outputAlternateId=true'   || ['alt-1', 'alt-2']
-            'M3'       | '?outputAlternateId=true'   || ['alt-3']
-            'M1'       | ''                          || ['ch-1', 'ch-2', 'ch-3']
+            moduleName | outputAlternateId || expectedCmHandleReferences
+            'M1'       | 'false'           || ['ch-1', 'ch-2', 'ch-3']
+            'M2'       | 'false'           || ['ch-1', 'ch-2']
+            'M3'       | 'false'           || ['ch-3']
+            'M1'       | 'true'            || ['alt-1', 'alt-2', 'alt-3']
+            'M2'       | 'true'            || ['alt-1', 'alt-2']
+            'M3'       | 'true'            || ['alt-3']
+            'M1'       | ''                || ['ch-1', 'ch-2', 'ch-3']
+            'M1'       | null              || ['ch-1', 'ch-2', 'ch-3']
     }
 
     def 'Search for CM Handles using Cps Path Query.'() {
@@ -84,25 +83,29 @@ class CmHandleSearchesNorthBoundRestApiSpec extends CpsIntegrationSpecBase {
                                 "conditionParameters": [ {"cpsPath" : "%s"} ]
                             } ]
                 }""".formatted(cpsPath)
-        expect: 'a search for cps path #cpsPath returns expected CM handles'
-            mvc.perform(post('/ncmp/v1/ch/id-searches').contentType(MediaType.APPLICATION_JSON).content(requestBodyWithSearchCondition))
-                    .andExpect(status().is2xxSuccessful())
-                    .andExpect(jsonPath('$[*]', containsInAnyOrder(expectedCmHandles.toArray())))
-                    .andExpect(jsonPath('$', hasSize(expectedCmHandles.size())));
+        when: 'a search is performed'
+            def response = performPost('/ncmp/v1/ch/id-searches', requestBodyWithSearchCondition)
+        then: 'response is successful with expected CM handles'
+            assert response.statusCode.is2xxSuccessful()
+            def results = parseResponseBody(response) as List
+            assert results.size() == expectedCmHandles.size()
+            assert results.containsAll(expectedCmHandles)
         where: 'the following parameters are used'
-            scenario                    | cpsPath                                 || expectedCmHandles
-            'All Ready CM handles'      | "//state[@cm-handle-state='READY']"     || ['ch-1', 'ch-2', 'ch-3']
-            'Having Alternate ID alt-3' | "//cm-handles[@alternate-id='alt-3']"   || ['ch-3']
+            scenario                    | cpsPath                               || expectedCmHandles
+            'All Ready CM handles'      | "//state[@cm-handle-state='READY']"   || ['ch-1', 'ch-2', 'ch-3']
+            'Having Alternate ID alt-3' | "//cm-handles[@alternate-id='alt-3']" || ['ch-3']
     }
 
     def 'De-register CM handles using REST API.'() {
         when: 'deregister the CM Handles'
             def requestBody = '{"dmiPlugin":"'+DMI1_URL+'", "removedCmHandles": ["ch-1", "ch-2", "ch-3"]}'
-            mvc.perform(post('/ncmpInventory/v1/ch').contentType(MediaType.APPLICATION_JSON).content(requestBody))
-                    .andExpect(status().is2xxSuccessful())
-        then: 'the CM handles are gone'
+            def response = performPost('/ncmpInventory/v1/ch', requestBody)
+        then: 'deregistration is successful'
+            assert response.statusCode.is2xxSuccessful()
+        and: 'the CM handles are gone'
             (1..3).each {
-                mvc.perform(get('/ncmp/v1/ch/ch-'+it)).andExpect(status().is4xxClientError())
+                def getResponse = performGet("/ncmp/v1/ch/ch-${it}")
+                assert getResponse.statusCode.is4xxClientError()
             }
     }
 }

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -22,9 +22,6 @@ package org.onap.cps.integration.functional.ncmp.data
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 class AlternateIdSpec extends CpsIntegrationSpecBase {
 
@@ -35,22 +32,20 @@ class AlternateIdSpec extends CpsIntegrationSpecBase {
     def 'Pass-through data operations using #scenario as reference.'() {
         given: 'a cm handle with an alternate id'
             registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, alternateId)
-        and: 'the URL for the pass-through data request'
-            def url = "/ncmp/v1/ch/${cmHandleReference}/data/ds/ncmp-datastore:passthrough-running"
         when: 'a pass-through data request is sent to NCMP'
-            def response = mvc.perform(get(url)
-                    .queryParam('resourceIdentifier', 'my-resource-id')
-                    .contentType(MediaType.APPLICATION_JSON))
-                    .andReturn().response
+            def encodedCmHandleReference = URLEncoder.encode(cmHandleReference, 'UTF-8')
+            def response = performGet("/ncmp/v1/ch/${encodedCmHandleReference}/data/ds/ncmp-datastore:passthrough-running",
+                    [resourceIdentifier: 'my-resource-id'])
         then: 'response status is Ok'
-            assert response.status == HttpStatus.OK.value()
+            assert response.statusCode == HttpStatus.OK
         cleanup: 'remove the test cm handle'
             deregisterCmHandle(DMI1_URL, 'ch-1')
         where: 'the following ids are used'
-            scenario           | alternateId | cmHandleReference
-            'standard id'      | 'dont care' | 'ch-1'
-            'alt-id with ='    | 'alt=1'     | 'alt=1'
-            'alt-id without =' | 'alt-1'     | 'alt-1'
+            scenario           | alternateId                          | cmHandleReference
+            'cm handle id'     | 'dont care'                          | 'ch-1'
+            'simple alt-id'    | 'alt-1'                              | 'alt-1'
+            'alt-id with ='    | 'alt=1'                              | 'alt=1'
+            'FDN with slashes' | '/SubNetwork=Europe/MeContext=node1' | '/SubNetwork=Europe/MeContext=node1'
     }
 
 }
