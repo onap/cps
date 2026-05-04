@@ -563,6 +563,30 @@
       },
       "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cee38fec_89e6b450",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlUtilsSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-04T05:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7a94207_67b3c203",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 7
+      },
+      "revId": "4daad17fcfc65b18838746263a4eade52b08854f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
