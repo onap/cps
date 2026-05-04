@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe830699_603cc12b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-04T13:10:23Z",
+      "side": 1,
+      "message": "Resolved some comments. Will work on integration tests in a separate patchset. Currently I am preparing for a code walk through as mentioned in few comments",
+      "revId": "1149a818cb8f7d2952aaf68500549b60dedfdd52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

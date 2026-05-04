@@ -357,6 +357,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "941ffea9_0dbbe85c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-04T13:10:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f44b8387_84e58096",
+      "range": {
+        "startLine": 57,
+        "startChar": 21,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13ca66f0_d5cdf236",
@@ -370,6 +394,30 @@
       "writtenOn": "2026-04-28T17:45:56Z",
       "side": 1,
       "message": "method name is singular, but return type is plural?!",
+      "range": {
+        "startLine": 71,
+        "startChar": 42,
+        "endLine": 71,
+        "endChar": 63
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ae77862_c267ac5b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-04T13:10:23Z",
+      "side": 1,
+      "message": "the return type is also singular, i.e. the Operator after it is resolved",
+      "parentUuid": "13ca66f0_d5cdf236",
       "range": {
         "startLine": 71,
         "startChar": 42,
@@ -405,6 +453,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99b502e4_1ec25794",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-04T13:10:23Z",
+      "side": 1,
+      "message": "yes user can have multiple conditions, and the default operator is set to AND.\n\nConditions are defined using cps path like /books[@price\u003e14], there can be multiple such cps path conditions combined.\n\nOperators hold AND/OR values.",
+      "parentUuid": "726cedc7_19131249",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93a56fe4_84ae833a",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
         "patchSetId": 19
@@ -416,6 +488,30 @@
       "writtenOn": "2026-04-28T17:45:56Z",
       "side": 1,
       "message": "If you use UpperCase instead can can drop the name property and automatically convert a String to Enum without iterating",
+      "range": {
+        "startLine": 76,
+        "startChar": 58,
+        "endLine": 76,
+        "endChar": 69
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "234ff6dd_1dd56cbd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-04T13:10:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93a56fe4_84ae833a",
       "range": {
         "startLine": 76,
         "startChar": 58,
@@ -506,6 +602,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34895f79_dea55eff",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-04T13:10:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b4768a3_89e1af84",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 14
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e28be2d4_d4674d32",
@@ -519,6 +639,30 @@
       "writtenOn": "2026-04-28T17:45:56Z",
       "side": 1,
       "message": "what are these numbers?!",
+      "range": {
+        "startLine": 128,
+        "startChar": 45,
+        "endLine": 128,
+        "endChar": 47
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0bcb326_9169d1cb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-04T13:10:23Z",
+      "side": 1,
+      "message": "so I am doing logical operations on fragment entities and using their fragment id as identifier. the fragment id\u0027s data type is Long represented as 1L, 2L in groovy. I replaced it with named variables like FRAGMENT_ID_1, FRAGMENT_ID_2, etc",
+      "parentUuid": "e28be2d4_d4674d32",
       "range": {
         "startLine": 128,
         "startChar": 45,
@@ -710,6 +854,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9e833ae_fc9a7d1d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-04T13:10:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2399c0bd_fdceeb90",
+      "range": {
+        "startLine": 145,
+        "startChar": 15,
+        "endLine": 145,
+        "endChar": 35
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7b29f58_40a6fc63",
@@ -723,6 +891,30 @@
       "writtenOn": "2026-04-28T17:45:56Z",
       "side": 1,
       "message": "perfer the full name",
+      "range": {
+        "startLine": 158,
+        "startChar": 37,
+        "endLine": 158,
+        "endChar": 38
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9d1e87f_f9867f60",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-04T13:10:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7b29f58_40a6fc63",
       "range": {
         "startLine": 158,
         "startChar": 37,
