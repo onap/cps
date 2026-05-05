@@ -198,7 +198,7 @@ dmiStub:
   enabled: true
   image:
     repository: nexus3.onap.org:10003/onap/dmi-stub
-    tag: "1.8.1-SNAPSHOT" # Overridden by DMI_STUB_VERSION in k6-main.sh (default: 1.8.1-SNAPSHOT)
+    tag: "1.8.0" # Overridden by DMI_STUB_VERSION in k6-main.sh (default: 1.8.0)
     pullPolicy: IfNotPresent
   replicaCount: 1
   deployment1:
