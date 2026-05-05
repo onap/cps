@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecafc3e9_dc8d7e96",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:17Z",
+      "side": 1,
+      "message": "The Javadoc is misleading. It states \u0027Extracts xml content\u0027 and \u0027the string representation of the XML content\u0027 but the method extracts either XML or JSON content based on the contentType parameter. The documentation should reflect that this method handles both content types.\n\n1. a multipart file, wither JSON or XML\n2. Add info about xml object mapper, \n3. remove the throws statement\n\nNB: put public method above private ones",
+      "range": {
+        "startLine": 105,
+        "startChar": 7,
+        "endLine": 105,
+        "endChar": 15
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f912bf2d_c7bc8294",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:17Z",
+      "side": 1,
+      "message": "NB: Nothing has been changed in this file, so revert it, there is one line removed at the end coming up as unnecessary change",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 5
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38068c9a_27bfcf4e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:17Z",
+      "side": 1,
+      "message": "update the javadoc",
+      "range": {
+        "startLine": 52,
+        "startChar": 49,
+        "endLine": 52,
+        "endChar": 61
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baa5c634_e3272ef1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:17Z",
+      "side": 1,
+      "message": "NB: upper case",
+      "range": {
+        "startLine": 65,
+        "startChar": 70,
+        "endLine": 65,
+        "endChar": 81
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e38489d_60fe5703",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:17Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 58,
+        "startChar": 10,
+        "endLine": 58,
+        "endChar": 17
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c22c4480_6006ac42",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:17Z",
+      "side": 1,
+      "message": "then: \nnoExceptionThrown()",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 12
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6be8bbe6_d413cd7e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:17Z",
+      "side": 1,
+      "message": "Attempt to validate XML string",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2f4b86e_9cd8e1a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:17Z",
+      "side": 1,
+      "message": "NB: indent",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 23
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9839ded0_070b0f4b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:17Z",
+      "side": 1,
+      "message": "File is identical. revert unnecessary change",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
