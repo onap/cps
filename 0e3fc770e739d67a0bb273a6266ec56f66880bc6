@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "348a7b00_47736650",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-05T17:20:08Z",
+      "side": 1,
+      "message": "weird, if we were using 1.8.1-Snapshot before, should you not have released 1.8.1 today and use that here? Maybe I misunderstand...",
+      "range": {
+        "startLine": 201,
+        "startChar": 10,
+        "endLine": 201,
+        "endChar": 15
+      },
+      "revId": "0e3fc770e739d67a0bb273a6266ec56f66880bc6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
