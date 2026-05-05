@@ -33,6 +33,46 @@
       "message": "Does exactly what it says on the tin",
       "revId": "cdde502b45012218d09282dd8781751609f3b994",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e390b67_55c2cff9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-05T09:19:27Z",
+      "side": 1,
+      "message": "just a little renaming required",
+      "revId": "cdde502b45012218d09282dd8781751609f3b994",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b226e0b_385bd321",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-05T09:19:27Z",
+      "side": 1,
+      "message": "should this be renamed no to onTenthEvent",
+      "range": {
+        "startLine": 91,
+        "startChar": 18,
+        "endLine": 91,
+        "endChar": 63
+      },
+      "revId": "cdde502b45012218d09282dd8781751609f3b994",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
