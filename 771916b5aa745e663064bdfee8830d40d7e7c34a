@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "791f835a_bf28d6d4",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-05T11:42:25Z",
+      "side": 1,
+      "message": "add MaxVUs",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 27
+      },
+      "revId": "771916b5aa745e663064bdfee8830d40d7e7c34a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69f06de0_4bbc3415",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-05T11:42:25Z",
+      "side": 1,
+      "message": "add MaxVUs",
+      "range": {
+        "startLine": 69,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "771916b5aa745e663064bdfee8830d40d7e7c34a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35fa06fc_35b5db92",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-05T11:42:25Z",
+      "side": 1,
+      "message": "add MaxVUs\n(wont repeat,just ensure all need have a maxVUs)",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 27
+      },
+      "revId": "771916b5aa745e663064bdfee8830d40d7e7c34a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
