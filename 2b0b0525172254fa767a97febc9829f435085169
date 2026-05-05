@@ -208,6 +208,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2569a9d5_f3a564f9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:36Z",
+      "side": 1,
+      "message": "not resolved",
+      "parentUuid": "2a539c78_8dc797f7",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 17
+      },
+      "revId": "2b0b0525172254fa767a97febc9829f435085169",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0be3c325_95b9fa63",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
         "patchSetId": 16
@@ -237,6 +261,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "0be3c325_95b9fa63",
+      "revId": "2b0b0525172254fa767a97febc9829f435085169",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6d92a42_edd737a9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-05T11:24:36Z",
+      "side": 1,
+      "message": "not resolved. As discussed over call you do not need separate test for XML just add a new where block in existing tests with JSON and XML scenario each",
+      "parentUuid": "7a83a22b_2dd38fea",
       "revId": "2b0b0525172254fa767a97febc9829f435085169",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
