@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b510e4b9_01e918dc",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-06T09:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecafc3e9_dc8d7e96",
+      "range": {
+        "startLine": 105,
+        "startChar": 7,
+        "endLine": 105,
+        "endChar": 15
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f912bf2d_c7bc8294",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-05-05T11:24:17Z",
       "side": 1,
       "message": "NB: Nothing has been changed in this file, so revert it, there is one line removed at the end coming up as unnecessary change",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 5
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb3cf46e_efb18edd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MultipartFileUtilSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-06T09:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f912bf2d_c7bc8294",
       "range": {
         "startLine": 28,
         "startChar": 1,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12a2abb0_64f878b8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-06T09:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38068c9a_27bfcf4e",
+      "range": {
+        "startLine": 52,
+        "startChar": 49,
+        "endLine": 52,
+        "endChar": 61
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baa5c634_e3272ef1",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-05-05T11:24:17Z",
       "side": 1,
       "message": "NB: upper case",
+      "range": {
+        "startLine": 65,
+        "startChar": 70,
+        "endLine": 65,
+        "endChar": 81
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "988a20e9_04d937c1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-06T09:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa5c634_e3272ef1",
       "range": {
         "startLine": 65,
         "startChar": 70,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15337729_75906237",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-06T09:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e38489d_60fe5703",
+      "range": {
+        "startLine": 58,
+        "startChar": 10,
+        "endLine": 58,
+        "endChar": 17
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c22c4480_6006ac42",
@@ -129,6 +249,30 @@
       "writtenOn": "2026-05-05T11:24:17Z",
       "side": 1,
       "message": "then: \nnoExceptionThrown()",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 12
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af2bcde6_8cf60a58",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-06T09:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c22c4480_6006ac42",
       "range": {
         "startLine": 62,
         "startChar": 8,
@@ -162,6 +306,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ce39ee0_2bcbd228",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-06T09:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6be8bbe6_d413cd7e",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2f4b86e_9cd8e1a2",
@@ -185,6 +353,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b7439fa_0230376b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-06T09:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2f4b86e_9cd8e1a2",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 23
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9839ded0_070b0f4b",
@@ -198,6 +390,30 @@
       "writtenOn": "2026-05-05T11:24:17Z",
       "side": 1,
       "message": "File is identical. revert unnecessary change",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "4ea97594ae70781156a4d86c5460b64146d0cf11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b1eff78_e8214871",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-06T09:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9839ded0_070b0f4b",
       "range": {
         "startLine": 33,
         "startChar": 6,
