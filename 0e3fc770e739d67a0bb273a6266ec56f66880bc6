@@ -22,6 +22,30 @@
       },
       "revId": "0e3fc770e739d67a0bb273a6266ec56f66880bc6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d825a263_1480c91d",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-05-06T14:49:18Z",
+      "side": 1,
+      "message": "1.8.0 is the latest release, 1.8.1-SNAPSHOT was used to avoid the stagnant image issue on kubernetes",
+      "parentUuid": "348a7b00_47736650",
+      "range": {
+        "startLine": 201,
+        "startChar": 10,
+        "endLine": 201,
+        "endChar": 15
+      },
+      "revId": "0e3fc770e739d67a0bb273a6266ec56f66880bc6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
