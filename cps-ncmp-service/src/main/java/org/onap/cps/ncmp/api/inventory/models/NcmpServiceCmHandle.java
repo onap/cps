@@ -56,8 +56,20 @@ public class NcmpServiceCmHandle {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String dmiDatajobsWriteServiceName;
 
+    /**
+     * DMI properties stored as individual key-value pairs (legacy format).
+     * These are persisted as child list nodes under the cm handle in the datastore.
+     */
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private Map<String, String> additionalProperties = Collections.emptyMap();
+
+    /**
+     * DMI properties stored as a single JSON string (new format).
+     * This is a top-level leaf on the cm handle, providing faster access without descendant traversal.
+     * When present (non-null), it indicates the new model is active and is kept in sync with additionalProperties.
+     */
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String dmiProperties;
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private Map<String, String> publicProperties = Collections.emptyMap();
@@ -82,8 +94,5 @@ public class NcmpServiceCmHandle {
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String cmHandleStatus;
-
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
-    private String dmiProperties;
 
 }

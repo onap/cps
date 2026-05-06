@@ -20,6 +20,10 @@
 
 package org.onap.cps.ncmp.impl.inventory.models
 
+import com.fasterxml.jackson.core.JsonProcessingException
+import com.fasterxml.jackson.databind.ObjectMapper
+import java.lang.reflect.Field
+import java.lang.reflect.Modifier
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
@@ -42,7 +46,7 @@ class YangModelCmHandleSpec extends Specification {
             ncmpServiceCmHandle.cmHandleId = 'cm-handle-id01'
             ncmpServiceCmHandle.additionalProperties = [myAdditionalProperty:'value1']
             ncmpServiceCmHandle.publicProperties = [myPublicProperty:'value2']
-            ncmpServiceCmHandle.dmiProperties = [myDmiProperty:'value3']
+            ncmpServiceCmHandle.dmiProperties = '{}'
         and: 'with a composite state'
             def compositeState = new CompositeStateBuilder()
                 .withCmHandleState(CmHandleState.LOCKED)
@@ -51,7 +55,7 @@ class YangModelCmHandleSpec extends Specification {
                 .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, 'some-sync-time').build()
             ncmpServiceCmHandle.setCompositeState(compositeState)
         when: 'it is converted to a yang model cm handle'
-            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(new DmiPluginRegistration(), ncmpServiceCmHandle,'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier', 'ADVISED', 'my-dmi-property')
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(new DmiPluginRegistration(), ncmpServiceCmHandle,'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier', 'ADVISED')
         then: 'the result has the right size'
             assert objectUnderTest.additionalProperties.size() == 1
         and: 'the result has the correct values for module set tag, alternate ID, and data producer identifier'
@@ -69,8 +73,26 @@ class YangModelCmHandleSpec extends Specification {
             objectUnderTest.getCompositeState() == ncmpServiceCmHandle.getCompositeState()
         and: 'the cm-handle-state is correct'
             assert objectUnderTest.cmHandleStatus == 'ADVISED'
-        and: 'the dmi-properties are correct'
-            assert objectUnderTest.dmiProperties == 'my-dmi-property'
+        and: 'the dmi-properties are derived from additional properties'
+            assert objectUnderTest.dmiProperties == '{"myAdditionalProperty":"value1"}'
+    }
+
+    def 'Resolving dmi-properties during conversion with #scenario.'() {
+        given: 'a cm handle with additional properties and dmi-properties'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+            ncmpServiceCmHandle.cmHandleId = 'cm-handle-id01'
+            ncmpServiceCmHandle.additionalProperties = additionalProperties
+            ncmpServiceCmHandle.dmiProperties = dmiProperties
+        when: 'it is converted to a yang model cm handle'
+            def result = YangModelCmHandle.toYangModelCmHandle(new DmiPluginRegistration(), ncmpServiceCmHandle, '', '', '', '')
+        then: 'dmi-properties is correctly resolved'
+            assert result.dmiProperties == expectedDmiProperties
+        where: 'the following combinations of additional properties and dmi-properties are used'
+            scenario                                               | additionalProperties | dmiProperties || expectedDmiProperties
+            'additional properties present, dmi-properties exists' | ['key1': 'val1']     | '{}'          || '{"key1":"val1"}'
+            'no additional properties, dmi-properties exists'      | [:]                  | '{}'          || '{}'
+            'additional properties present, dmi-properties null'   | ['key1': 'val1']     | null          || null
+            'no additional properties, dmi-properties null'        | [:]                  | null          || null
     }
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
@@ -138,6 +160,30 @@ class YangModelCmHandleSpec extends Specification {
         then: 'the objects are equal'
             assert original == copy
             assert original.equals(copy)
+    }
+
+    def 'Resolve dmi-properties throws IllegalStateException when serialization fails.'() {
+        given: 'a mock ObjectMapper that throws JsonProcessingException'
+            def mockObjectMapper = Spy(ObjectMapper)
+            mockObjectMapper.writeValueAsString(_) >> { throw new JsonProcessingException('test error') {} }
+        and: 'the static objectMapper field is replaced with the mock'
+            def objectMapperField = YangModelCmHandle.getDeclaredField('objectMapper')
+            objectMapperField.setAccessible(true)
+            def originalObjectMapper = objectMapperField.get(null)
+            objectMapperField.set(null, mockObjectMapper)
+        and: 'a cm handle with non-null dmi-properties'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+            ncmpServiceCmHandle.cmHandleId = 'cm-handle-id01'
+            ncmpServiceCmHandle.additionalProperties = ['key1': 'val1']
+            ncmpServiceCmHandle.dmiProperties = '{}'
+        when: 'it is converted to a yang model cm handle'
+            YangModelCmHandle.toYangModelCmHandle(new DmiPluginRegistration(), ncmpServiceCmHandle, '', '', '', '')
+        then: 'an IllegalStateException is thrown'
+            def exception = thrown(IllegalStateException)
+            assert exception.message == 'Failed to serialize additional properties to JSON'
+            assert exception.cause instanceof JsonProcessingException
+        cleanup: 'restore the original ObjectMapper'
+            objectMapperField.set(null, originalObjectMapper)
     }
 
 }
