@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.impl.inventory
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.exceptions.AlreadyDefinedException
@@ -38,6 +39,7 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
+import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
@@ -58,11 +60,12 @@ class CmHandleRegistrationServiceSpec extends Specification {
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockCmHandleIdPerAlternateId = Mock(IMap)
 
     def objectUnderTest = Spy(new CmHandleRegistrationService(
         mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsDataService, mockLcmEventsCmHandleStateHandler,
-        mockModuleSyncStartedOnCmHandles, mockTrustLevelManager, mockAlternateIdChecker, mockCmHandleIdPerAlternateId))
+        mockModuleSyncStartedOnCmHandles, mockTrustLevelManager, mockAlternateIdChecker, jsonObjectMapper, mockCmHandleIdPerAlternateId))
 
     def setup() {
         // always accept all cm handles
@@ -432,6 +435,27 @@ class CmHandleRegistrationServiceSpec extends Specification {
             'with alternate id'  | 'alt-1'     || 'alt-1'
             'blank alternate id' | ''          || 'ch-1'
             'no alternate id'    | null        || 'ch-1'
+    }
+
+    def 'Create CM-Handle with #scenario.'() {
+        given: 'a registration with cm handle properties'
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'cmhandle', additionalProperties: additionalProperties)
+            ncmpServiceCmHandle.dmiProperties = dmiProperties
+            dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
+        when: 'registration is updated'
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
+        then: 'dmi-properties is correctly derived from additional properties'
+            1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> { args ->
+                def yangModelCmHandles = args[0]
+                assert yangModelCmHandles[0].dmiProperties == expectedDmiProperties
+            }
+        where:
+            scenario                                               | additionalProperties      | dmiProperties || expectedDmiProperties
+            'additional properties present, dmi-properties exists' | ['key1': 'val1']          | '{}'          || '{"key1":"val1"}'
+            'no additional properties, dmi-properties exists'      | [:]                       | '{}'          || '{}'
+            'additional properties present, dmi-properties null'   | ['key1': 'val1']          | null          || null
+            'no additional properties, dmi-properties null'        | [:]                       | null          || null
     }
 
 }

@@ -64,6 +64,7 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleOperationsUtils;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -81,6 +82,7 @@ public class CmHandleRegistrationService {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final TrustLevelManager trustLevelManager;
     private final AlternateIdChecker alternateIdChecker;
+    private final JsonObjectMapper jsonObjectMapper;
 
     @Qualifier("cmHandleIdPerAlternateId")
     private final IMap<String, String> cmHandleIdPerAlternateId;
@@ -407,7 +409,14 @@ public class CmHandleRegistrationService {
             ncmpServiceCmHandle.getAlternateId(),
             ncmpServiceCmHandle.getDataProducerIdentifier(),
             ncmpServiceCmHandle.getCmHandleStatus(),
-            ncmpServiceCmHandle.getDmiProperties());
+            resolveDmiProperties(ncmpServiceCmHandle));
+    }
+
+    private String resolveDmiProperties(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        if (ncmpServiceCmHandle.getDmiProperties() != null) {
+            return jsonObjectMapper.asJsonString(ncmpServiceCmHandle.getAdditionalProperties());
+        }
+        return ncmpServiceCmHandle.getDmiProperties();
     }
 
     void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles,
