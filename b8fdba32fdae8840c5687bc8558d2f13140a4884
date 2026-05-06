@@ -16,6 +16,299 @@
       "message": "recheck",
       "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4f1a16c_ff7f0683",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "some food for thought...\nI suggest you put a few things on WIki about the overall algorithm before we continue again\nAnd maybe discuss the Wiki before implementing...",
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf152a5_2c159c78",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "use singular",
+      "range": {
+        "startLine": 42,
+        "startChar": 26,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df5f344c_cb82f81d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "extract out business logic into a spearet class\ne.g. CompositeQueryEvaluator",
+      "range": {
+        "startLine": 48,
+        "startChar": 19,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf618da_b1e1d524",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "dont think this is needed. even wth descendant on if there is nothing it will return nothing quickly...\nGoin to DB twice now for noe good reason",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 66
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54bde8b0_e900e165",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "do this check on baseFragmentsWithDescendants  instead",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 25
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be87b18a_a12a5475",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "flatFragmentEntitiesPerId\n\nConsider leaving it as a tree and use a tree-walker instead to avoid re-building tree later...",
+      "range": {
+        "startLine": 82,
+        "startChar": 40,
+        "endLine": 82,
+        "endChar": 61
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da4adf38_81d174de",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "do not at parameters in methods",
+      "range": {
+        "startLine": 124,
+        "startChar": 37,
+        "endLine": 124,
+        "endChar": 46
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82c53987_7d4a6ee4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "I dont think we need to get all the data for the node first and then intersect with the first query, just execute the first query , then intersect the next (for AND) or create Union for OR",
+      "range": {
+        "startLine": 124,
+        "startChar": 22,
+        "endLine": 124,
+        "endChar": 46
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a195e9e3_7ac6fae2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "constistent naming",
+      "range": {
+        "startLine": 125,
+        "startChar": 79,
+        "endLine": 125,
+        "endChar": 102
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53fc9540_b23140bc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "NB: theer might be a better/more obvious way of create an imutable copy..",
+      "range": {
+        "startLine": 128,
+        "startChar": 19,
+        "endLine": 128,
+        "endChar": 31
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9e34a9d_d45a9505",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "consistent naming, baseFragmentEntities",
+      "range": {
+        "startLine": 142,
+        "startChar": 63,
+        "endLine": 142,
+        "endChar": 86
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4298881_509b636d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "consider clear naming",
+      "range": {
+        "startLine": 146,
+        "startChar": 35,
+        "endLine": 146,
+        "endChar": 52
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "771b7f02_efe38900",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/CompositeQuery.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-06T12:21:21Z",
+      "side": 1,
+      "message": "add javadoc",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
