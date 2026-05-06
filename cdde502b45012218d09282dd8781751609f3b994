@@ -92,6 +92,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83c5c327_480497af",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-06T15:40:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b226e0b_385bd321",
+      "range": {
+        "startLine": 91,
+        "startChar": 18,
+        "endLine": 91,
+        "endChar": 63
+      },
+      "revId": "cdde502b45012218d09282dd8781751609f3b994",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5de8d623_7c07df27",
@@ -105,6 +129,24 @@
       "writtenOn": "2026-05-05T13:09:21Z",
       "side": 1,
       "message": "use def for this and next line if possible",
+      "revId": "cdde502b45012218d09282dd8781751609f3b994",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e417f88f_1eacd02b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-06T15:40:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5de8d623_7c07df27",
       "revId": "cdde502b45012218d09282dd8781751609f3b994",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
