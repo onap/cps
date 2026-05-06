@@ -85,8 +85,11 @@ paths:
         required: true
       responses:
         "200":
-          content: {}
-          description: No Content
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
         "400":
           content:
             application/json:
@@ -367,9 +370,12 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
       description: Internal Server Error
-    NoContent:
-      content: {}
-      description: No Content
+    Ok:
+      content:
+        application/json:
+          schema:
+            type: object
+      description: OK
   schemas:
     RestOutputCmHandle:
       example:
@@ -705,33 +711,35 @@ components:
     DmiPluginRegistrationErrorResponse:
       example:
         failedCreatedCmHandles:
-        - cmHandle: my-cm-handle
-          errorText: Unknown error. <error-details>
+        - cmHandle: my-cm-handle-01
           errorCode: "00"
-        - cmHandle: my-cm-handle
           errorText: Unknown error. <error-details>
-          errorCode: "00"
-        failedUpgradeCmHandles:
-        - cmHandle: my-cm-handle
-          errorText: Unknown error. <error-details>
-          errorCode: "00"
-        - cmHandle: my-cm-handle
-          errorText: Unknown error. <error-details>
-          errorCode: "00"
-        failedRemovedCmHandles:
-        - cmHandle: my-cm-handle
-          errorText: Unknown error. <error-details>
-          errorCode: "00"
-        - cmHandle: my-cm-handle
-          errorText: Unknown error. <error-details>
-          errorCode: "00"
+        - cmHandle: my-cm-handle-02
+          errorCode: "01"
+          errorText: cm-handle already exists
+        - cmHandle: my-cm-handle-03
+          errorCode: "03"
+          errorText: cm-handle has an invalid character(s) in id
         failedUpdatedCmHandles:
-        - cmHandle: my-cm-handle
-          errorText: Unknown error. <error-details>
+        - cmHandle: my-cm-handle-01
           errorCode: "00"
-        - cmHandle: my-cm-handle
           errorText: Unknown error. <error-details>
+        - cmHandle: my-cm-handle-02
+          errorCode: "02"
+          errorText: cm-handle does not exist
+        - cmHandle: my-cm-handle-03
+          errorCode: "03"
+          errorText: cm-handle has an invalid character(s) in id
+        failedRemovedCmHandles:
+        - cmHandle: my-cm-handle-01
           errorCode: "00"
+          errorText: Unknown error. <error-details>
+        - cmHandle: my-cm-handle-02
+          errorCode: "02"
+          errorText: cm-handle does not exist
+        - cmHandle: my-cm-handle-03
+          errorCode: "03"
+          errorText: cm-handle has invalid character(s) in id
       properties:
         failedCreatedCmHandles:
           items:
@@ -751,10 +759,6 @@ components:
           type: array
       type: object
     CmHandlerRegistrationErrorResponse:
-      example:
-        cmHandle: my-cm-handle
-        errorText: Unknown error. <error-details>
-        errorCode: "00"
       properties:
         cmHandle:
           example: my-cm-handle
