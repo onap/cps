@@ -41,7 +41,7 @@
         <sonar.skip>true</sonar.skip>
         <mapstruct.version>1.6.3</mapstruct.version>
         <jetty-version>11.0.26</jetty-version>
-        <version.opentelemetry-instrumentation-bom>2.11.0-alpha</version.opentelemetry-instrumentation-bom>
+        <version.opentelemetry-instrumentation-bom>2.26.1</version.opentelemetry-instrumentation-bom>
     </properties>
 
     <build>
@@ -172,7 +172,7 @@
             </dependency>
             <dependency>
                 <groupId>io.opentelemetry.instrumentation</groupId>
-                <artifactId>opentelemetry-instrumentation-bom-alpha</artifactId>
+                <artifactId>opentelemetry-instrumentation-bom</artifactId>
                 <version>${version.opentelemetry-instrumentation-bom}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -180,7 +180,7 @@
             <dependency>
                 <groupId>io.opentelemetry</groupId>
                 <artifactId>opentelemetry-bom</artifactId>
-                <version>1.54.0</version>
+                <version>1.61.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -197,7 +197,7 @@
             <dependency>
                 <groupId>net.logstash.logback</groupId>
                 <artifactId>logstash-logback-encoder</artifactId>
-                <version>7.1</version>
+                <version>8.1</version>
             </dependency>
             <dependency>
                 <groupId>org.antlr</groupId>

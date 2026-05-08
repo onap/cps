@@ -15,7 +15,7 @@
     <properties>
         <app>org.onap.cps.policyexecutor.stub.PolicyExecutorApplication</app>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
-        <base.image>${docker.pull.registry}/onap/integration-java17:12.0.0</base.image>
+        <base.image>${docker.pull.registry}/onap/policy-jre-alpine:5.0.1-SNAPSHOT</base.image>
         <image.name>policy-executor-stub</image.name>
         <image.tag>${project.version}-${maven.build.timestamp}</image.tag>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
