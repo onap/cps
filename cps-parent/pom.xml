@@ -46,11 +46,11 @@
         <git.commit.id.version>9.0.1</git.commit.id.version>
         <gmavenplus.plugin.version>4.0.1</gmavenplus.plugin.version>
         <jacoco.version>0.8.14</jacoco.version>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <jsonschema2pojo.maven.plugin.version>1.2.2</jsonschema2pojo.maven.plugin.version>
         <maven.checkstyle.plugin.version>3.3.1</maven.checkstyle.plugin.version>
         <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <maven.site.plugin.version>4.0.0-M13</maven.site.plugin.version>
         <maven.surefire.plugin.version>3.5.2</maven.surefire.plugin.version>
         <postgres.version>42.7.9</postgres.version>
