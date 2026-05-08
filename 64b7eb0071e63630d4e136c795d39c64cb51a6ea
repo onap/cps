@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53cab34f_5e99024d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-08T12:52:05Z",
+      "side": 1,
+      "message": "NB: we can start following new naming conventions as discussed in weekly call, targetDataXml and targetDataJson",
+      "range": {
+        "startLine": 88,
+        "startChar": 9,
+        "endLine": 88,
+        "endChar": 28
+      },
+      "revId": "64b7eb0071e63630d4e136c795d39c64cb51a6ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc2d7a66_78f4417c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-08T12:52:05Z",
+      "side": 1,
+      "message": "cleanup XML data in cleanupSpec",
+      "range": {
+        "startLine": 107,
+        "startChar": 8,
+        "endLine": 107,
+        "endChar": 15
+      },
+      "revId": "64b7eb0071e63630d4e136c795d39c64cb51a6ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c2de0c4_ef593fab",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-08T12:52:05Z",
+      "side": 1,
+      "message": "NB: Revert to original",
+      "range": {
+        "startLine": 138,
+        "startChar": 14,
+        "endLine": 138,
+        "endChar": 50
+      },
+      "revId": "64b7eb0071e63630d4e136c795d39c64cb51a6ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae1121fd_0deae040",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-08T12:52:05Z",
+      "side": 1,
+      "message": "Why grouped is added? since it is always false this can be removed",
+      "range": {
+        "startLine": 147,
+        "startChar": 32,
+        "endLine": 147,
+        "endChar": 46
+      },
+      "revId": "64b7eb0071e63630d4e136c795d39c64cb51a6ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9261a159_ddfc97f0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-08T12:52:05Z",
+      "side": 1,
+      "message": "NB: revert to original",
+      "range": {
+        "startLine": 151,
+        "startChar": 15,
+        "endLine": 151,
+        "endChar": 27
+      },
+      "revId": "64b7eb0071e63630d4e136c795d39c64cb51a6ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10671fbc_1668341f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-08T12:52:05Z",
+      "side": 1,
+      "message": "NB: revert to original",
+      "range": {
+        "startLine": 153,
+        "startChar": 14,
+        "endLine": 153,
+        "endChar": 46
+      },
+      "revId": "64b7eb0071e63630d4e136c795d39c64cb51a6ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d57e10ed_41676d5f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-08T12:52:05Z",
+      "side": 1,
+      "message": "remove grouping enabled",
+      "range": {
+        "startLine": 155,
+        "startChar": 41,
+        "endLine": 156,
+        "endChar": 169
+      },
+      "revId": "64b7eb0071e63630d4e136c795d39c64cb51a6ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69bf7f1c_47900a4c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-08T12:52:05Z",
+      "side": 1,
+      "message": "Double pipeline should seaprate expected values, followed by single pipelines.",
+      "range": {
+        "startLine": 156,
+        "startChar": 128,
+        "endLine": 156,
+        "endChar": 129
+      },
+      "revId": "64b7eb0071e63630d4e136c795d39c64cb51a6ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfa9c314_30184192",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-08T12:52:05Z",
+      "side": 1,
+      "message": "nothing changed so revert this",
+      "revId": "64b7eb0071e63630d4e136c795d39c64cb51a6ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
