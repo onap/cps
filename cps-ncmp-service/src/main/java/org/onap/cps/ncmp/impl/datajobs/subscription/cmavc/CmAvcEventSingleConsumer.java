@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.events.EventProducer;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -37,9 +38,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-@ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
-@ConditionalOnProperty(name = "ncmp.notifications.avc-event-consumer.batch-enabled", havingValue = "false",
-        matchIfMissing = true)
+@ConditionalOnProperties(value = {
+    @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true),
+    @ConditionalOnProperty(name = "ncmp.notifications.avc-event-consumer.batch-enabled", havingValue = "false",
+            matchIfMissing = true)
+})
 public class CmAvcEventSingleConsumer extends CmAvcEventConsumer {
 
     public CmAvcEventSingleConsumer(final EventProducer eventProducer,

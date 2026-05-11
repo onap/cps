@@ -47,8 +47,8 @@ public class ProvMnSExceptionMapper {
      */
     public static ProvMnSException toProvMnSException(final Exception exception, final String httpMethodName,
                                                final String badOp) {
-        if (exception instanceof ProvMnSException) {
-            return (ProvMnSException) exception;
+        if (exception instanceof ProvMnSException provMnSException) {
+            return provMnSException;
         }
         final HttpStatus httpStatus;
         if (exception instanceof PolicyExecutorException) {

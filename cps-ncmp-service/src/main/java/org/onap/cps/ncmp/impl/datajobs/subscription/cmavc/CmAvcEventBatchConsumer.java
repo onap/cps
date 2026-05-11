@@ -33,6 +33,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.onap.cps.events.EventProducer;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -45,8 +46,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Component
 @Slf4j
-@ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
-@ConditionalOnProperty(name = "ncmp.notifications.avc-event-consumer.batch-enabled")
+@ConditionalOnProperties(value = {
+    @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true),
+    @ConditionalOnProperty(name = "ncmp.notifications.avc-event-consumer.batch-enabled")
+})
 public class CmAvcEventBatchConsumer extends CmAvcEventConsumer {
 
     private final Counter cmEventsForwardedBatchCounter;

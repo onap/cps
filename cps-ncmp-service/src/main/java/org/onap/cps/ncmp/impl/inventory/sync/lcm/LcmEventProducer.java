@@ -137,8 +137,8 @@ public class LcmEventProducer {
         final List<Tag> tags = new ArrayList<>(4);
         tags.add(METRIC_TAG_CLASS);
         tags.add(METRIC_TAG_METHOD);
-        if (lcmEvent instanceof LcmEventV2) {
-            final PayloadV2 payloadV2 = ((LcmEventV2) lcmEvent).getEvent();
+        if (lcmEvent instanceof LcmEventV2 lcmEventV2) {
+            final PayloadV2 payloadV2 = lcmEventV2.getEvent();
             tags.add(createCmHandleStateTagForV2("oldCmHandleState", payloadV2.getOldValues()));
             tags.add(createCmHandleStateTagForV2("newCmHandleState", payloadV2.getNewValues()));
         } else {
