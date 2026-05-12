@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (c) 2026 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,12 +35,8 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.events.avc1_0_0.AvcEvent
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.utils.JsonObjectMapper
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.annotation.DirtiesContext
 import spock.lang.Specification
 
-@SpringBootTest(classes = [CmAvcEventBatchConsumer, ObjectMapper, JsonObjectMapper])
-@DirtiesContext
 class CmAvcEventBatchConsumerSpec extends Specification {
 
     def mockEventProducer = Mock(EventProducer)
@@ -49,7 +45,7 @@ class CmAvcEventBatchConsumerSpec extends Specification {
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def meterRegistry = new SimpleMeterRegistry()
 
-    def objectUnderTest = new CmAvcEventBatchConsumer(mockEventProducer, mockCmAvcEventService, mockInventoryPersistence, meterRegistry)
+    def objectUnderTest = new CmAvcEventConsumer(mockEventProducer, mockCmAvcEventService, mockInventoryPersistence, meterRegistry)
 
     def validAvcEventAsJson
 
@@ -68,7 +64,7 @@ class CmAvcEventBatchConsumerSpec extends Specification {
             def topicPartition = new TopicPartition('', 0)
             def consumerRecordsBatch = new ConsumerRecords<String, CloudEvent>([(topicPartition): [consumerRecord1, consumerRecord2]])
         when: 'the batch is consumed and forwarded to target topic'
-            objectUnderTest.consumeAndForwardBatch(consumerRecordsBatch)
+            objectUnderTest.consumeAndForward(consumerRecordsBatch)
         then: 'the batch is sent to the target topic with correct key-value pairs'
             1 * mockEventProducer.sendCloudEventBatch('my-topic', _) >> { args ->
                 def eventsToForward = args[1] as List<Map.Entry<String, CloudEvent>>
@@ -79,7 +75,7 @@ class CmAvcEventBatchConsumerSpec extends Specification {
                 assert eventsToForward[1].value == testCloudEvent2
             }
         and: 'the events forwarded counter is incremented by the batch size'
-            assert meterRegistry.counter('cps.ncmp.cm.avc.events.forwarded.batch').count() == 2
+            assert meterRegistry.counter('cps.ncmp.cm.avc.events.forwarded').count() == 2
     }
 
     def 'Consume and process batch of CM Avc Events with #scenario.'() {
@@ -97,7 +93,7 @@ class CmAvcEventBatchConsumerSpec extends Specification {
             def topicPartition = new TopicPartition('', 0)
             def consumerRecordsBatch = new ConsumerRecords<String, CloudEvent>([(topicPartition): [consumerRecord1, consumerRecord2]])
         when: 'the batch is consumed'
-            objectUnderTest.consumeAndForwardBatch(consumerRecordsBatch)
+            objectUnderTest.consumeAndForward(consumerRecordsBatch)
         then: 'cm avc events are processed based on cloud event source'
             expectedCallsToProcessCmAvcEvent * mockCmAvcEventService.processCmAvcEvent(_, _) >> { args ->
                 assert args[1] instanceof AvcEvent
