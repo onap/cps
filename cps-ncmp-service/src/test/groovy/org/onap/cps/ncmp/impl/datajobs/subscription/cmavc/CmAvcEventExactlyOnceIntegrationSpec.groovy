@@ -59,7 +59,7 @@ import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.TestPropertySource
 import org.testcontainers.spock.Testcontainers
 
-@SpringBootTest(classes = [CmAvcEventBatchConsumer, ExactlyOnceSemanticsKafkaConfig,
+@SpringBootTest(classes = [CmAvcEventConsumer, ExactlyOnceSemanticsKafkaConfig,
         KafkaProperties, ObjectMapper, JsonObjectMapper, SimpleMeterRegistry])
 @EnableConfigurationProperties
 @Testcontainers
@@ -106,7 +106,7 @@ class CmAvcEventExactlyOnceIntegrationSpec extends ConsumerBaseSpec {
         testOutputConsumer.subscribe([OUTPUT_TOPIC])
         eventProducerSimulatingFailureOnTenthAttempt.setCloudEventKafkaTemplateForExactlyOnceSemantics(eosKafkaTemplate)
         validAvcEventAsJson = jsonObjectMapper.convertJsonString(getResourceFileContent('sampleAvcInputEvent.json'), AvcEvent.class)
-        def batchConsumerLogger = (Logger) LoggerFactory.getLogger(CmAvcEventBatchConsumer)
+        def batchConsumerLogger = (Logger) LoggerFactory.getLogger(CmAvcEventConsumer)
         batchConsumerLogger.setLevel(Level.DEBUG)
         logAppender.start()
         batchConsumerLogger.addAppender(logAppender)
@@ -123,7 +123,7 @@ class CmAvcEventExactlyOnceIntegrationSpec extends ConsumerBaseSpec {
         then: 'the client has received all events'
             assert result.size() == BATCH_SIZE
         and: 'the batch event was processed more than once'
-            assert logAppender.list.count { it.formattedMessage.contains('Processing batch of') } > 1
+            assert logAppender.list.count { it.formattedMessage.contains('AVC event(s)') } > 1
         and: 'no additional events are produced after the batch (confirming exactly once behaviour)'
             def additionalEvents = testOutputConsumer.poll(Duration.ofMillis(3000))
             assert additionalEvents.count() == 0
@@ -166,7 +166,7 @@ class CmAvcEventExactlyOnceIntegrationSpec extends ConsumerBaseSpec {
         testProducer.flush()
         testProducer.close()
         testOutputConsumer.close()
-        ((Logger) LoggerFactory.getLogger(CmAvcEventBatchConsumer)).detachAndStopAllAppenders()
+        ((Logger) LoggerFactory.getLogger(CmAvcEventConsumer)).detachAndStopAllAppenders()
     }
 }
 
