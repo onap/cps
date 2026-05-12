@@ -166,9 +166,8 @@ class EventProducerSpec extends Specification {
             def events = [key1:  mockCloudEvent].collect { new MapEntry(it.key, it.value) }
         when: 'sending the batch'
             objectUnderTestWithoutExactlyOnceSemantics.sendCloudEventBatch('some-topic', events)
-        then: 'an IllegalStateException is thrown'
-            def exception = thrown(IllegalStateException)
-            exception.message.contains('ExactlyOnceSemantics Kafka template is not configured')
+        then: 'the standard cloud event template is used instead of the EOS template'
+            1 * mockCloudEventKafkaTemplate.send('some-topic', 'key1', mockCloudEvent)
     }
 
     def 'Send Cloud Event Batch successfully'() {
