@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,12 @@ import io.opentelemetry.instrumentation.kafkaclients.v2_6.TracingProducerInterce
 import java.time.Duration;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.onap.cps.events.LegacyEvent;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.boot.ssl.SslBundles;
 import org.springframework.context.annotation.Bean;
@@ -51,6 +53,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 @Configuration
 @EnableKafka
 @RequiredArgsConstructor
+@Slf4j
 public class KafkaConfig {
 
     private final KafkaProperties kafkaProperties;
@@ -187,6 +190,35 @@ public class KafkaConfig {
         final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(cloudEventConsumerFactory());
+        containerFactory.getContainerProperties().setAuthExceptionRetryInterval(Duration.ofSeconds(10));
+        if (tracingEnabled) {
+            containerFactory.getContainerProperties().setObservationEnabled(true);
+        }
+        return containerFactory;
+    }
+
+    /**
+     * Default AVC event listener container factory for single-record mode.
+     * Configured as a batch listener with max-poll-records=1, no transactions.
+     * Only created when ExactlyOnceSemanticsKafkaConfig does not provide its own.
+     *
+     * @return batch listener container factory for single-record processing
+     */
+    @Bean
+    @ConditionalOnMissingBean(name = "cmAvcEventListenerContainerFactory")
+    public ConcurrentKafkaListenerContainerFactory<String, CloudEvent>
+            cmAvcEventListenerContainerFactory() {
+        log.info("Configuring CM AVC event listener in single-record mode (no transactions, max-poll-records=1)");
+        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
+        consumerConfigProperties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 1);
+        if (tracingEnabled) {
+            consumerConfigProperties.put(ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG,
+                    TracingConsumerInterceptor.class.getName());
+        }
+        final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        containerFactory.setConsumerFactory(new DefaultKafkaConsumerFactory<>(consumerConfigProperties));
+        containerFactory.setBatchListener(true);
         containerFactory.getContainerProperties().setAuthExceptionRetryInterval(Duration.ofSeconds(10));
         if (tracingEnabled) {
             containerFactory.getContainerProperties().setObservationEnabled(true);

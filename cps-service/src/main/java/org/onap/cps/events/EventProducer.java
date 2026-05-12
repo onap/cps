@@ -170,11 +170,6 @@ public class EventProducer {
      * @throws IllegalStateException if ExactlyOnceSemantics Kafka template is not configured
      */
     public void sendCloudEventBatch(final String topicName, final List<Map.Entry<String, CloudEvent>> events) {
-        if (cloudEventKafkaTemplateForExactlyOnceSemantics == null) {
-            throw new IllegalStateException("ExactlyOnceSemantics Kafka template is not configured. "
-                    + "Enable it by setting ncmp.kafka.eos.enabled=true");
-        }
-
         if (events == null || events.isEmpty()) {
             log.debug("No events to send in batch");
             return;
@@ -182,10 +177,15 @@ public class EventProducer {
 
         log.debug("Sending batch of {} events to topic: {}", events.size(), topicName);
 
+        final KafkaTemplate<String, CloudEvent> templateToUse =
+                cloudEventKafkaTemplateForExactlyOnceSemantics != null
+                        ? cloudEventKafkaTemplateForExactlyOnceSemantics
+                        : cloudEventKafkaTemplate;
+
         final List<CompletableFuture<SendResult<String, CloudEvent>>> futures = events.stream()
                 .map(entry -> {
                     recordEventLatency(entry.getValue());
-                    return cloudEventKafkaTemplateForExactlyOnceSemantics.send(
+                    return templateToUse.send(
                         topicName,
                         entry.getKey(),
                         entry.getValue());
