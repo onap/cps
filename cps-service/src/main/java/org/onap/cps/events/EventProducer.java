@@ -53,15 +53,11 @@ public class EventProducer {
      * Note: Cloud events should be used. This will be addressed as part of
      * <a href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
      */
-    @Qualifier("legacyEventKafkaTemplate")
     private final KafkaTemplate<String, LegacyEvent> legacyEventKafkaTemplate;
 
-    @Qualifier("cloudEventKafkaTemplate")
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
-
-    private final AtomicLong batchEventLatencyInMs = new AtomicLong(0);
-
     private KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplateForExactlyOnceSemantics;
+    private final AtomicLong batchEventLatencyInMs = new AtomicLong(0);
 
     /**
      * Constructor for EventProducer.
@@ -161,20 +157,14 @@ public class EventProducer {
     }
 
     /**
-     * Send a batch of CloudEvents in parallel using the transactional Kafka template.
-     * If any event fails to send, an exception is thrown to trigger batch retry.
+     * Send a batch of CloudEvents in parallel using the transactional Kafka template if available,
+     * otherwise falls back to the standard cloud event template.
      *
      * @param topicName valid topic name
      * @param events    list of event key-value pairs to send
      * @throws EventBatchSendException if any event fails to send
-     * @throws IllegalStateException if ExactlyOnceSemantics Kafka template is not configured
      */
     public void sendCloudEventBatch(final String topicName, final List<Map.Entry<String, CloudEvent>> events) {
-        if (cloudEventKafkaTemplateForExactlyOnceSemantics == null) {
-            throw new IllegalStateException("ExactlyOnceSemantics Kafka template is not configured. "
-                    + "Enable it by setting ncmp.kafka.eos.enabled=true");
-        }
-
         if (events == null || events.isEmpty()) {
             log.debug("No events to send in batch");
             return;
@@ -182,10 +172,12 @@ public class EventProducer {
 
         log.debug("Sending batch of {} events to topic: {}", events.size(), topicName);
 
+        final KafkaTemplate<String, CloudEvent> kafkaTemplate = resolveKafkaTemplate();
+
         final List<CompletableFuture<SendResult<String, CloudEvent>>> futures = events.stream()
                 .map(entry -> {
                     recordEventLatency(entry.getValue());
-                    return cloudEventKafkaTemplateForExactlyOnceSemantics.send(
+                    return kafkaTemplate.send(
                         topicName,
                         entry.getKey(),
                         entry.getValue());
@@ -215,6 +207,12 @@ public class EventProducer {
             final long latencyInMs = Duration.between(offsetDateTime, OffsetDateTime.now()).toMillis();
             batchEventLatencyInMs.set(latencyInMs);
         }
+    }
+
+    private KafkaTemplate<String, CloudEvent> resolveKafkaTemplate() {
+        return cloudEventKafkaTemplateForExactlyOnceSemantics != null
+                ? cloudEventKafkaTemplateForExactlyOnceSemantics
+                : cloudEventKafkaTemplate;
     }
 
 }
