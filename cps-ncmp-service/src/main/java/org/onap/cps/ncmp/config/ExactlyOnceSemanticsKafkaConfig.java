@@ -37,6 +37,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -65,6 +66,7 @@ import org.springframework.kafka.transaction.KafkaTransactionManager;
 @Configuration
 @EnableKafka
 @RequiredArgsConstructor
+@Slf4j
 @ConditionalOnProperty(name = "ncmp.kafka.eos.enabled")
 public class ExactlyOnceSemanticsKafkaConfig {
 
@@ -151,11 +153,12 @@ public class ExactlyOnceSemanticsKafkaConfig {
      */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, CloudEvent>
-            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics(
+            cmAvcEventListenerContainerFactory(
                     @Qualifier("cloudEventConsumerFactoryForExactlyOnceSemantics")
                     final ConsumerFactory<String, CloudEvent> consumerFactory,
                     @Qualifier("kafkaExactlyOnceSemanticsTransactionManager")
                     final KafkaTransactionManager<String, CloudEvent> transactionManager) {
+        log.info("Configuring CM AVC event listener in batch mode (transactions enabled, exactly-once semantics)");
         final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(consumerFactory);
