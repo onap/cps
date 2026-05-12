@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8c5f44e_1f9e9874",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-12T11:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab44cb27_638966e5",
+      "range": {
+        "startLine": 412,
+        "startChar": 12,
+        "endLine": 412,
+        "endChar": 55
+      },
+      "revId": "b97f49ea14e0589e265440fa7ee52cc214cebb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2e23e9b_0e800d96",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-05-07T07:56:50Z",
       "side": 1,
       "message": "as per previous comment, move this to YangModelCmHandle class\nin NcmpServiceCmHandle I think we should also add some documentation that dmiProperties is a replacement for addtionalProperties (but dont deprecate it)\nPut the dmiPopertied directly under additionalPropeties and add some javadoc to both.",
+      "range": {
+        "startLine": 415,
+        "startChar": 19,
+        "endLine": 415,
+        "endChar": 39
+      },
+      "revId": "b97f49ea14e0589e265440fa7ee52cc214cebb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f77e30d_5c66de4a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-12T11:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2e23e9b_0e800d96",
       "range": {
         "startLine": 415,
         "startChar": 19,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51ffa393_167479df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-12T11:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96b09f0c_ffb750b0",
+      "range": {
+        "startLine": 416,
+        "startChar": 51,
+        "endLine": 416,
+        "endChar": 54
+      },
+      "revId": "b97f49ea14e0589e265440fa7ee52cc214cebb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b5d4750_9031cb78",
@@ -100,6 +172,30 @@
       "writtenOn": "2026-05-07T07:56:50Z",
       "side": 1,
       "message": "this is teh casue of my confusuion you are testing create. dmiProperties is not set during create only additonal properties are exposed on the interface...\n\n\nRelated to my privous comment in the other class if we move this (test) to \nyangModelCmHandle adn the you are just tetsign conversion and all scenario belwo do apply.\n\nThen is this test spec you add two basic tests for create and update and create where you check that both additional properties and dmiProperties are set correctly...",
+      "range": {
+        "startLine": 445,
+        "startChar": 34,
+        "endLine": 445,
+        "endChar": 51
+      },
+      "revId": "b97f49ea14e0589e265440fa7ee52cc214cebb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46b9a21e_14c6cfb5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-12T11:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b5d4750_9031cb78",
       "range": {
         "startLine": 445,
         "startChar": 34,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4818ed1_6eb44fcd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-12T11:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e40c9ea6_c21982ab",
+      "range": {
+        "startLine": 453,
+        "startChar": 8,
+        "endLine": 453,
+        "endChar": 14
+      },
+      "revId": "b97f49ea14e0589e265440fa7ee52cc214cebb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db2d2abc_3231b78a",
@@ -156,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c2ef616_e4333944",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-12T11:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db2d2abc_3231b78a",
+      "range": {
+        "startLine": 454,
+        "startChar": 89,
+        "endLine": 454,
+        "endChar": 95
+      },
+      "revId": "b97f49ea14e0589e265440fa7ee52cc214cebb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dc6491d_df3d5b80",
@@ -169,6 +313,30 @@
       "writtenOn": "2026-05-06T16:15:08Z",
       "side": 1,
       "message": "i dont understand these scenarios the client does NOT register both?!\nSo suting initial registration dmiProperties is always null...",
+      "range": {
+        "startLine": 457,
+        "startChar": 13,
+        "endLine": 457,
+        "endChar": 63
+      },
+      "revId": "b97f49ea14e0589e265440fa7ee52cc214cebb64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73d4608d_4035b0fb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-12T11:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dc6491d_df3d5b80",
       "range": {
         "startLine": 457,
         "startChar": 13,
