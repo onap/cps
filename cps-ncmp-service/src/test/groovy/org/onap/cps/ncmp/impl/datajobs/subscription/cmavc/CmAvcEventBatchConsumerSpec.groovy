@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (c) 2026 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
 import spock.lang.Specification
 
-@SpringBootTest(classes = [CmAvcEventBatchConsumer, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [CmAvcEventConsumer, ObjectMapper, JsonObjectMapper])
 @DirtiesContext
 class CmAvcEventBatchConsumerSpec extends Specification {
 
@@ -49,7 +49,7 @@ class CmAvcEventBatchConsumerSpec extends Specification {
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def meterRegistry = new SimpleMeterRegistry()
 
-    def objectUnderTest = new CmAvcEventBatchConsumer(mockEventProducer, mockCmAvcEventService, mockInventoryPersistence, meterRegistry)
+    def objectUnderTest = new CmAvcEventConsumer(mockEventProducer, mockCmAvcEventService, mockInventoryPersistence, meterRegistry)
 
     def validAvcEventAsJson
 

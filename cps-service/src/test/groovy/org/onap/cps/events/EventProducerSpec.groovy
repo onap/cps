@@ -164,11 +164,13 @@ class EventProducerSpec extends Specification {
             def objectUnderTestWithoutExactlyOnceSemantics = new EventProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate, meterRegistry)
         and: 'a batch of events'
             def events = [key1:  mockCloudEvent].collect { new MapEntry(it.key, it.value) }
+        and: 'the standard template returns a successful future'
+            def eventFuture = createSuccessfulSendResult('some-topic', 'key1', mockCloudEvent)
+            1 * mockCloudEventKafkaTemplate.send('some-topic', 'key1', mockCloudEvent) >> eventFuture
         when: 'sending the batch'
             objectUnderTestWithoutExactlyOnceSemantics.sendCloudEventBatch('some-topic', events)
-        then: 'an IllegalStateException is thrown'
-            def exception = thrown(IllegalStateException)
-            exception.message.contains('ExactlyOnceSemantics Kafka template is not configured')
+        then: 'the batch is sent using the standard cloud event template'
+            noExceptionThrown()
     }
 
     def 'Send Cloud Event Batch successfully'() {
