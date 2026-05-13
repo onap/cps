@@ -67,7 +67,7 @@ public class AdminRestController implements CpsAdminApi {
     /**
      * Create a dataspace.
      *
-     * @param dataspaceName dataspace name
+     * @param dataspaceName dataspace names.
      * @return a { {@code @Link}  ResponseEntity }  of created dataspace name & {@link HttpStatus} CREATED
      */
     @Override
