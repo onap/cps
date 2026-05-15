@@ -159,10 +159,13 @@ class InventoryModelLoaderSpec extends Specification {
     }
 
      def "Perform inventory data migration to Release20260423"() {
-        given: 'no schema sets exist in the dataspace'
+        given: 'the anchor exists and new module revision is not installed'
+            mockCpsAnchorService.getAnchor(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> {}
+            mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
+        and: 'no schema sets exist in the dataspace'
             mockCpsModuleService.getSchemaSets(_) >> []
-        when: 'the migration is performed'
-            objectUnderTest.upgradeAndMigrateInventoryData()
+        when: 'the inventory model loader is triggered'
+            objectUnderTest.onboardOrUpgradeModel()
         then: 'the call is delegated to the Data Migration service'
             1 * mockDataMigration.migrateInventoryToModelRelease20260423(_)
     }
