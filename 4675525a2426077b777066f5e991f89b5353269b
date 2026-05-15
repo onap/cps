@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d949260e_281584e9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-15T04:10:40Z",
+      "side": 1,
+      "message": "Not needed . should be as above methods.",
+      "range": {
+        "startLine": 86,
+        "startChar": 49,
+        "endLine": 87,
+        "endChar": 63
+      },
+      "revId": "4675525a2426077b777066f5e991f89b5353269b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
