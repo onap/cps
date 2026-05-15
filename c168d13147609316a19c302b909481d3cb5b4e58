@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf688ca2_15a0550e",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 26
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-15T11:01:44Z",
+      "side": 1,
+      "message": "revert to 100%",
+      "range": {
+        "startLine": 68,
+        "startChar": 26,
+        "endLine": 68,
+        "endChar": 30
+      },
+      "revId": "c168d13147609316a19c302b909481d3cb5b4e58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
