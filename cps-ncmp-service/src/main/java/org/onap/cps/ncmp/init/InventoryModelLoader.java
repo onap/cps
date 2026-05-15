@@ -43,8 +43,8 @@ public class InventoryModelLoader extends AbstractModelLoader {
     private final DataMigration dataMigration;
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    private static final String PREVIOUS_SCHEMA_SET_NAME = "dmi-registry-2026-01-28";
-    private static final String CURRENT_SCHEMA_SET_NAME = "dmi-registry-2026-04-23";
+    private static final String SCHEMA_N_MINUS_ONE = "dmi-registry-2026-01-28";
+    private static final String SCHEMA_N = "dmi-registry-2026-04-23";
     private static final String INVENTORY_YANG_MODULE_NAME = "dmi-registry";
     private static final int MIGRATION_BATCH_SIZE = 300;
 
@@ -75,14 +75,18 @@ public class InventoryModelLoader extends AbstractModelLoader {
         if (isMaster) {
             log.info("Model Loader #2 Started: NCMP Inventory Models");
             final String schemaToInstall =
-                    ignoreR20260423Model ? PREVIOUS_SCHEMA_SET_NAME : CURRENT_SCHEMA_SET_NAME;
+                    ignoreR20260423Model ? SCHEMA_N_MINUS_ONE : SCHEMA_N;
             final String moduleRevision = getModuleRevision(schemaToInstall);
             if (isModuleRevisionInstalled(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME,
                     moduleRevision)) {
                 log.info("Model Loader #2: Revision {} is already installed.", moduleRevision);
-            } else if (!ignoreR20260423Model && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
-                log.info("Model Loader #2: Detected existing inventory model. Starting data migration.");
-                upgradeAndMigrateInventoryData();
+            } else if (doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
+                log.info("Model Loader #2: Detected existing inventory model. Upgrading to {}.",
+                        schemaToInstall);
+                upgradeInventoryModel(schemaToInstall);
+                if (!ignoreR20260423Model) {
+                    dataMigration.migrateInventoryToModelRelease20260423(MIGRATION_BATCH_SIZE);
+                }
             } else {
                 log.info("Model Loader #2: New installation using inventory model revision {}.",
                         moduleRevision);
@@ -107,15 +111,14 @@ public class InventoryModelLoader extends AbstractModelLoader {
     }
 
     private void deleteOldButNotThePreviousSchemaSets() {
-        deleteUnusedSchemaSets(NCMP_DATASPACE_NAME, CURRENT_SCHEMA_SET_NAME, PREVIOUS_SCHEMA_SET_NAME);
+        deleteUnusedSchemaSets(NCMP_DATASPACE_NAME, SCHEMA_N, SCHEMA_N_MINUS_ONE);
     }
 
-    private void upgradeInventoryModel() {
-        final String yangFileName = toYangFileName(CURRENT_SCHEMA_SET_NAME);
-        createSchemaSet(NCMP_DATASPACE_NAME, CURRENT_SCHEMA_SET_NAME, yangFileName);
-        cpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                CURRENT_SCHEMA_SET_NAME);
-        log.info("Model Loader #2: Inventory upgraded successfully to model {}", CURRENT_SCHEMA_SET_NAME);
+    private void upgradeInventoryModel(final String schemaSetName) {
+        final String yangFileName = toYangFileName(schemaSetName);
+        createSchemaSet(NCMP_DATASPACE_NAME, schemaSetName, yangFileName);
+        cpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, schemaSetName);
+        log.info("Model Loader #2: Inventory upgraded successfully to model {}", schemaSetName);
         deleteOldButNotThePreviousSchemaSets();
     }
 
@@ -126,11 +129,6 @@ public class InventoryModelLoader extends AbstractModelLoader {
     private static String getModuleRevision(final String schemaSetName) {
         // Extract the revision part ( for example: 2026-01-28)
         return schemaSetName.substring(INVENTORY_YANG_MODULE_NAME.length() + 1);
-    }
-
-    private void upgradeAndMigrateInventoryData() {
-        upgradeInventoryModel();
-        dataMigration.migrateInventoryToModelRelease20260423(MIGRATION_BATCH_SIZE);
     }
 
 }
