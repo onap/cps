@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "328637a9_9079edd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-15T11:41:20Z",
+      "side": 1,
+      "message": "resolved",
+      "revId": "305b558d9bac4a6912c6ca114c25974b56f0af42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8c59cb4_7bf15de3",
@@ -24,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d07c9d0c_1a43fa9c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-15T11:41:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8c59cb4_7bf15de3",
+      "range": {
+        "startLine": 57,
+        "startChar": 9,
+        "endLine": 57,
+        "endChar": 63
+      },
+      "revId": "305b558d9bac4a6912c6ca114c25974b56f0af42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbf7df75_0a921ea8",
@@ -37,6 +78,30 @@
       "writtenOn": "2026-05-15T04:10:40Z",
       "side": 1,
       "message": "remove only",
+      "range": {
+        "startLine": 67,
+        "startChar": 27,
+        "endLine": 67,
+        "endChar": 32
+      },
+      "revId": "305b558d9bac4a6912c6ca114c25974b56f0af42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d52fe2b_f7415ad9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-15T11:41:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbf7df75_0a921ea8",
       "range": {
         "startLine": 67,
         "startChar": 27,
@@ -93,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28a25b71_c07098ba",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-15T11:41:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2343d8ec_188042d0",
+      "range": {
+        "startLine": 262,
+        "startChar": 16,
+        "endLine": 262,
+        "endChar": 31
+      },
+      "revId": "305b558d9bac4a6912c6ca114c25974b56f0af42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21310570_437e78e8",
@@ -106,6 +195,30 @@
       "writtenOn": "2026-05-15T04:10:40Z",
       "side": 1,
       "message": "This is picking up json test data and its incorrect.\nEither give it XML deltareport or use something like setupTestDataXml.",
+      "range": {
+        "startLine": 286,
+        "startChar": 12,
+        "endLine": 286,
+        "endChar": 50
+      },
+      "revId": "305b558d9bac4a6912c6ca114c25974b56f0af42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "995b53cd_21a0976c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-15T11:41:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21310570_437e78e8",
       "range": {
         "startLine": 286,
         "startChar": 12,
