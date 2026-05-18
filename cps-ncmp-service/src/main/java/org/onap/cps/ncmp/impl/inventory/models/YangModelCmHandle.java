@@ -23,6 +23,8 @@ package org.onap.cps.ncmp.impl.inventory.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -118,6 +120,8 @@ public class YangModelCmHandle {
         return copy;
     }
 
+    private static ObjectMapper objectMapper = new ObjectMapper();
+
     /**
      * Create a yangModelCmHandle.
      *
@@ -127,7 +131,6 @@ public class YangModelCmHandle {
      * @param alternateId alternateId
      * @param dataProducerIdentifier dataProducerIdentifier
      * @param cmHandleStatus cm handle status
-     * @param dmiProperties dmi properties
      * @return instance of yangModelCmHandle
      */
     public static YangModelCmHandle toYangModelCmHandle(final DmiPluginRegistration dmiPluginRegistration,
@@ -135,8 +138,7 @@ public class YangModelCmHandle {
                                                         final String moduleSetTag,
                                                         final String alternateId,
                                                         final String dataProducerIdentifier,
-                                                        final String cmHandleStatus,
-                                                        final String dmiProperties) {
+                                                        final String cmHandleStatus) {
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
         yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleId());
         yangModelCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
@@ -152,7 +154,7 @@ public class YangModelCmHandle {
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getPublicProperties()));
         yangModelCmHandle.setCompositeState(ncmpServiceCmHandle.getCompositeState());
         yangModelCmHandle.setCmHandleStatus(cmHandleStatus);
-        yangModelCmHandle.setDmiProperties(dmiProperties);
+        yangModelCmHandle.setDmiProperties(resolveDmiProperties(ncmpServiceCmHandle));
 
         return yangModelCmHandle;
     }
@@ -173,6 +175,18 @@ public class YangModelCmHandle {
             yangModelCmHandleProperties.add(new YangModelCmHandle.Property(entry.getKey(), entry.getValue()));
         }
         return yangModelCmHandleProperties;
+    }
+
+    private static String resolveDmiProperties(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        if (ncmpServiceCmHandle.getDmiProperties() == null) {
+            return null;
+        }
+        try {
+            return objectMapper.writeValueAsString(ncmpServiceCmHandle.getAdditionalProperties());
+        } catch (final JsonProcessingException jsonProcessingException) {
+            throw new IllegalStateException(
+                    "Failed to serialize additional properties to JSON", jsonProcessingException);
+        }
     }
 
     public record Property(@JsonProperty() String name, @JsonProperty() String value) { }

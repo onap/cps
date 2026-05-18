@@ -101,14 +101,14 @@ public class YangDataConverter {
                 cmHandleDataNode, "dmi-datajobs-read-service"));
         dmiPluginRegistration.setDmiDatajobsWritePlugin(safeGetLeafValue(
                 cmHandleDataNode, "dmi-datajobs-write-service"));
+        ncmpServiceCmHandle.setDmiProperties(safeGetLeafValue(cmHandleDataNode, "dmi-properties"));
         return YangModelCmHandle.toYangModelCmHandle(
                 dmiPluginRegistration,
                 ncmpServiceCmHandle,
                 safeGetLeafValue(cmHandleDataNode, "module-set-tag"),
                 safeGetLeafValue(cmHandleDataNode, "alternate-id"),
                 safeGetLeafValue(cmHandleDataNode, "data-producer-identifier"),
-                safeGetLeafValue(cmHandleDataNode, "cm-handle-state"),
-                safeGetLeafValue(cmHandleDataNode, "dmi-properties")
+                safeGetLeafValue(cmHandleDataNode, "cm-handle-state")
         );
     }
 

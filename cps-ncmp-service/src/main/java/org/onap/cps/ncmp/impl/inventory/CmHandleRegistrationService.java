@@ -65,6 +65,7 @@ import org.onap.cps.ncmp.impl.inventory.sync.ModuleOperationsUtils;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -73,6 +74,9 @@ import org.springframework.stereotype.Service;
 public class CmHandleRegistrationService {
 
     private static final int DELETE_BATCH_SIZE = 300;
+
+    @Value("${ignore.r20260423.model:true}")
+    private boolean ignoreR20260423Model;
 
     private final CmHandleRegistrationServicePropertyHandler cmHandleRegistrationServicePropertyHandler;
     private final InventoryPersistence inventoryPersistence;
@@ -400,14 +404,16 @@ public class CmHandleRegistrationService {
 
     private YangModelCmHandle getYangModelCmHandle(final DmiPluginRegistration dmiPluginRegistration,
                                                    final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        if (!ignoreR20260423Model && ncmpServiceCmHandle.getDmiProperties() == null) {
+            ncmpServiceCmHandle.setDmiProperties("");
+        }
         return YangModelCmHandle.toYangModelCmHandle(
                 dmiPluginRegistration,
             ncmpServiceCmHandle,
             ncmpServiceCmHandle.getModuleSetTag(),
             ncmpServiceCmHandle.getAlternateId(),
             ncmpServiceCmHandle.getDataProducerIdentifier(),
-            ncmpServiceCmHandle.getCmHandleStatus(),
-            ncmpServiceCmHandle.getDmiProperties());
+            ncmpServiceCmHandle.getCmHandleStatus());
     }
 
     void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles,

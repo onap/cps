@@ -434,4 +434,21 @@ class CmHandleRegistrationServiceSpec extends Specification {
             'no alternate id'    | null        || 'ch-1'
     }
 
+    def 'Create CM-Handle with dmi-properties derived from additional properties.'() {
+        given: 'a registration with cm handle properties'
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'cmhandle', additionalProperties: ['key1': 'val1'])
+            ncmpServiceCmHandle.dmiProperties = '{}'
+            dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
+        when: 'registration is updated'
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
+        then: 'state handler is invoked with correct additional properties and dmi-properties'
+            1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> { args ->
+                def yangModelCmHandles = args[0]
+                assert yangModelCmHandles[0].additionalProperties[0].name == 'key1'
+                assert yangModelCmHandles[0].additionalProperties[0].value == 'val1'
+                assert yangModelCmHandles[0].dmiProperties == '{"key1":"val1"}'
+            }
+    }
+
 }

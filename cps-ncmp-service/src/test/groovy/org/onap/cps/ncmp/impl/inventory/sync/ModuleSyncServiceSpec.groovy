@@ -141,7 +141,7 @@ class ModuleSyncServiceSpec extends Specification {
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'upgraded-ch'
         def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: dmiServiceName)
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration, ncmpServiceCmHandle,'', '', '', '', '')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration, ncmpServiceCmHandle,'', '', '', '')
         and: 'DMI operations returns some module references for upgraded cm handle'
             def moduleReferences =  [ new ModuleReference('module1','1') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle, NO_MODULE_SET_TAG) >> moduleReferences
@@ -162,7 +162,7 @@ class ModuleSyncServiceSpec extends Specification {
             ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withLockReason(MODULE_UPGRADE, 'Upgrade to ModuleSetTag: ' + tagTo).build())
             ncmpServiceCmHandle.setCmHandleId('cmHandleId-1')
         def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'some service name')
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration, ncmpServiceCmHandle, tagFrom, '', '', '', '')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration, ncmpServiceCmHandle, tagFrom, '', '', '')
             mockCmHandleQueries.cmHandleHasState('cmHandleId-1', CmHandleState.READY) >> true
         and: 'the module tag (schemaset) exists is #schemaExists'
             mockCpsModuleService.schemaSetExists(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, tagTo) >> schemaExists
@@ -190,7 +190,7 @@ class ModuleSyncServiceSpec extends Specification {
         ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED).build())
         ncmpServiceCmHandle.cmHandleId = 'ch-1'
         def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'some service name')
-        return YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration, ncmpServiceCmHandle, moduleSetTag, '', '', '', '')
+        return YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration, ncmpServiceCmHandle, moduleSetTag, '', '', '')
     }
 
 }
