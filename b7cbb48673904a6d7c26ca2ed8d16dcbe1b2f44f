@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e113532_bcfce4c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-18T13:38:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba64d762_ebb9110e",
+      "revId": "b7cbb48673904a6d7c26ca2ed8d16dcbe1b2f44f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73989b3b_19aefd1e",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-13T11:59:47Z",
       "side": 1,
       "message": "Do we need a rename for this and single consumer spec because the classes no longer exist?",
+      "revId": "b7cbb48673904a6d7c26ca2ed8d16dcbe1b2f44f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dfd60b1_9f7300f8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-18T13:38:19Z",
+      "side": 1,
+      "message": "i still kept it seperate as seperate configuration is still tested single vs batch. \n\n@everyone will i merge the tests or keep it seperate ?",
+      "parentUuid": "73989b3b_19aefd1e",
       "revId": "b7cbb48673904a6d7c26ca2ed8d16dcbe1b2f44f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
