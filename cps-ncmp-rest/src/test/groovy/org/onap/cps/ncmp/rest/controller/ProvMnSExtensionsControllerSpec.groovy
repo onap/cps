@@ -91,7 +91,7 @@ class ProvMnSExtensionsControllerSpec extends ProvMnSControllerBaseSpec {
         where: 'following exceptions occur'
             exception                           || expectedHttpStatus    | expectedType              | expectedTitle
             new NoAlternateIdMatchFoundException('myTarget')    || NOT_FOUND             | 'IE_NOT_FOUND'            | '/myClass=id1 not found'
-            new Exception("my message", new TimeoutException()) || GATEWAY_TIMEOUT       | 'APPLICATION_LAYER_ERROR' | 'my message'
+            new Exception("my message", new TimeoutException()) || GATEWAY_TIMEOUT       | 'APPLICATION_LAYER_ERROR' | 'Upstream server did not respond in a timely manner'
             new Exception("my message")                         || INTERNAL_SERVER_ERROR | 'APPLICATION_LAYER_ERROR' | 'my message'
     }
 

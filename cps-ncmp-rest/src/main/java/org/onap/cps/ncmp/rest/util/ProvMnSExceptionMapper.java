@@ -51,16 +51,18 @@ public class ProvMnSExceptionMapper {
             return provMnSException;
         }
         final HttpStatus httpStatus;
+        String exceptionMessage = exception.getMessage();
         if (exception instanceof PolicyExecutorException) {
             httpStatus = CONFLICT;
         } else if (exception instanceof DataValidationException) {
             httpStatus = BAD_REQUEST;
         } else if (exception.getCause() instanceof TimeoutException) {
             httpStatus = GATEWAY_TIMEOUT;
+            exceptionMessage = "Upstream server did not respond in a timely manner";
         } else {
             httpStatus = INTERNAL_SERVER_ERROR;
         }
-        log.warn("ProvMns Exception: {}", exception.getMessage());
-        return new ProvMnSException(httpMethodName, httpStatus, exception.getMessage(), badOp);
+        log.warn("ProvMns Exception: {}", exceptionMessage);
+        return new ProvMnSException(httpMethodName, httpStatus, exceptionMessage, badOp);
     }
 }
