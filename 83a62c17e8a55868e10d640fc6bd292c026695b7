@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cbe7990_89060a05",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-18T13:52:26Z",
+      "side": 1,
+      "message": "this must be documented",
+      "range": {
+        "startLine": 67,
+        "startChar": 3,
+        "endLine": 67,
+        "endChar": 15
+      },
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c95d9cc_124c7f2f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-18T13:52:26Z",
+      "side": 1,
+      "message": "not sure why do we need to wrap this .unmodifiableList in line 99 and then here to an ArrayList again ?",
+      "range": {
+        "startLine": 103,
+        "startChar": 39,
+        "endLine": 103,
+        "endChar": 69
+      },
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30b5be73_420b75d5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-18T13:52:26Z",
+      "side": 1,
+      "message": "should this be targetDataXml ?",
+      "range": {
+        "startLine": 104,
+        "startChar": 74,
+        "endLine": 104,
+        "endChar": 89
+      },
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f050c96c_a4dd481a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-18T13:52:26Z",
+      "side": 1,
+      "message": "convert suggests it has return but this is void and it seems line 62 only \u0027reads\u0027 ,.this method seems to be just validating",
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
