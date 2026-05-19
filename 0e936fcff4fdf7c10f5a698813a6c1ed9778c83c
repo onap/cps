@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4178096f_f18df0ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-19T10:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62d266a0_fa346089",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 86
+      },
+      "revId": "0e936fcff4fdf7c10f5a698813a6c1ed9778c83c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4a9f0ec_6c687729",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-05-19T08:37:49Z",
       "side": 1,
       "message": "*_",
+      "range": {
+        "startLine": 164,
+        "startChar": 71,
+        "endLine": 164,
+        "endChar": 81
+      },
+      "revId": "0e936fcff4fdf7c10f5a698813a6c1ed9778c83c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8b2f562_97bfc4fd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-19T10:06:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4a9f0ec_6c687729",
       "range": {
         "startLine": 164,
         "startChar": 71,
