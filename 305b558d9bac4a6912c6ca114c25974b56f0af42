@@ -137,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55b8044f_203bdb05",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-19T12:15:10Z",
+      "side": 1,
+      "message": "These testcases are related to two different methods convertToXmlArray and convertToJsonArray Both methods have separate functionally and validations, I think keeping separate testcase.",
+      "parentUuid": "11666238_56be2cf3",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 94
+      },
+      "revId": "305b558d9bac4a6912c6ca114c25974b56f0af42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2343d8ec_188042d0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
         "patchSetId": 5
