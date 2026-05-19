@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de0d0b4f_ef6e5f0a",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T09:47:05Z",
+      "side": 1,
+      "message": "discuss with stakeholders (depend on their configuration)\nAdd some documentation? (https://docs.onap.org/projects/onap-cps/en/latest/deployment.html)",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 44
+      },
+      "revId": "b66571ef52fbb91a5889cede528294c45c79de9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "455ab647_d9e32e64",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/KafkaConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T09:47:05Z",
+      "side": 1,
+      "message": "is disabled ie. ncmp.kafka.eos.enabled \u003d false",
+      "range": {
+        "startLine": 203,
+        "startChar": 57,
+        "endLine": 203,
+        "endChar": 81
+      },
+      "revId": "b66571ef52fbb91a5889cede528294c45c79de9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f83cdf_a66bcde4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T09:47:05Z",
+      "side": 1,
+      "message": "no needed",
+      "range": {
+        "startLine": 54,
+        "startChar": 54,
+        "endLine": 54,
+        "endChar": 74
+      },
+      "revId": "b66571ef52fbb91a5889cede528294c45c79de9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df7439cc_5aecdff2",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T09:47:05Z",
+      "side": 1,
+      "message": "are qualifiers needed here?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 41
+      },
+      "revId": "b66571ef52fbb91a5889cede528294c45c79de9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b20f221_8bbc0c0c",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T09:47:05Z",
+      "side": 1,
+      "message": "move below so all template are together",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 71
+      },
+      "revId": "b66571ef52fbb91a5889cede528294c45c79de9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a438aed2_c7533bbc",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T09:47:05Z",
+      "side": 1,
+      "message": "are these needed?",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 63
+      },
+      "revId": "b66571ef52fbb91a5889cede528294c45c79de9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9630b187_8c55cbf6",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/EventProducer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T09:47:05Z",
+      "side": 1,
+      "message": "research @qualifier use and simplify if possible",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 72
+      },
+      "revId": "b66571ef52fbb91a5889cede528294c45c79de9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf30324_7a4230dc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventProducerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T09:47:05Z",
+      "side": 1,
+      "message": "you are not assert what you describe...",
+      "range": {
+        "startLine": 172,
+        "startChar": 15,
+        "endLine": 172,
+        "endChar": 72
+      },
+      "revId": "b66571ef52fbb91a5889cede528294c45c79de9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
