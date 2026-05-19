@@ -16,6 +16,29 @@
       "message": "Looks good to me",
       "revId": "10d5cf13ce5b9f08a1a3a1918bb4667b8cc7d826",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68605e32_56f492ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T14:38:27Z",
+      "side": 1,
+      "message": "NB: probably fits on one line now",
+      "range": {
+        "startLine": 78,
+        "startChar": 20,
+        "endLine": 78,
+        "endChar": 73
+      },
+      "revId": "10d5cf13ce5b9f08a1a3a1918bb4667b8cc7d826",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
