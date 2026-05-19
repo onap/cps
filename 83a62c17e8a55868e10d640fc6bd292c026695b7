@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ced03e4_54e32eb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-19T12:06:12Z",
+      "side": 1,
+      "message": "Resolved",
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cbe7990_89060a05",
@@ -14,6 +31,30 @@
       "writtenOn": "2026-05-18T13:52:26Z",
       "side": 1,
       "message": "this must be documented",
+      "range": {
+        "startLine": 67,
+        "startChar": 3,
+        "endLine": 67,
+        "endChar": 15
+      },
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e42c438_9f35bc63",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-19T12:06:12Z",
+      "side": 1,
+      "message": "Noted",
+      "parentUuid": "5cbe7990_89060a05",
       "range": {
         "startLine": 67,
         "startChar": 3,
@@ -47,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8aadd41_a1ad5a24",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-19T12:06:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c95d9cc_124c7f2f",
+      "range": {
+        "startLine": 103,
+        "startChar": 39,
+        "endLine": 103,
+        "endChar": 69
+      },
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30b5be73_420b75d5",
@@ -70,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3a9a4b3_7ff7878e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-19T12:06:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30b5be73_420b75d5",
+      "range": {
+        "startLine": 104,
+        "startChar": 74,
+        "endLine": 104,
+        "endChar": 89
+      },
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f050c96c_a4dd481a",
@@ -83,6 +172,24 @@
       "writtenOn": "2026-05-18T13:52:26Z",
       "side": 1,
       "message": "convert suggests it has return but this is void and it seems line 62 only \u0027reads\u0027 ,.this method seems to be just validating",
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ac243d2_30bfc1f1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-19T12:06:12Z",
+      "side": 1,
+      "message": "Hi Lee,\nYes, you’re right. This method is only for validation, so it does not return anything. The convert suggestion is not needed here.\nIt is just reading and checking the data (around line 62).\nThanks! 👍",
+      "parentUuid": "f050c96c_a4dd481a",
       "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
