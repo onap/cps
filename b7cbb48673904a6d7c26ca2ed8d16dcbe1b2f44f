@@ -69,6 +69,24 @@
       "parentUuid": "73989b3b_19aefd1e",
       "revId": "b7cbb48673904a6d7c26ca2ed8d16dcbe1b2f44f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca57077_392eaaad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventBatchConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-19T07:54:12Z",
+      "side": 1,
+      "message": "separate is fine with me",
+      "parentUuid": "2dfd60b1_9f7300f8",
+      "revId": "b7cbb48673904a6d7c26ca2ed8d16dcbe1b2f44f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
