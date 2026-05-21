@@ -317,6 +317,42 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
             'blank value' | ''
     }
 
+    def 'Update Additional Properties syncs dmi-properties when it exists: #scenario'() {
+        given: 'a CM handle data node with dmi-properties and additional properties'
+            def cmHandleDataNode = new DataNode(xpath: cmHandleXpath,
+                leaves: ['id': cmHandleId, 'dmi-properties': '{"additionalProp1":"additionalValue1","additionalProp2":"additionalValue2"}'],
+                childDataNodes: propertyDataNodes)
+            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> [cmHandleDataNode]
+        and: 'an update cm handle request with additional properties updates'
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, additionalProperties: updatedAdditionalProperties)]
+        when: 'update cm handle properties is called'
+            objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
+        then: 'dmi-properties is updated with the merged result'
+            1 * mockInventoryPersistence.updateCmHandleField(cmHandleId, 'dmi-properties', _) >> { args ->
+                assert new ObjectMapper().readValue(args[2], Map) == expectedDmiPropertiesMap
+            }
+        where: 'the following scenarios are used'
+            scenario           | updatedAdditionalProperties                        || expectedDmiPropertiesMap
+            'property added'   | ['newProp': 'newVal']                              || ['additionalProp1': 'additionalValue1', 'additionalProp2': 'additionalValue2', 'newProp': 'newVal']
+            'property updated' | ['additionalProp1': 'newValue']                    || ['additionalProp1': 'newValue', 'additionalProp2': 'additionalValue2']
+            'property removed' | ['additionalProp1': null]                          || ['additionalProp2': 'additionalValue2']
+            'all removed'      | ['additionalProp1': null, 'additionalProp2': null] || [:]
+    }
+
+    def 'Update Additional Properties does not sync dmi-properties when it does not exist.'() {
+        given: 'a CM handle data node without dmi-properties'
+            def cmHandleDataNode = new DataNode(xpath: cmHandleXpath,
+                leaves: ['id': cmHandleId],
+                childDataNodes: propertyDataNodes)
+            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> [cmHandleDataNode]
+        and: 'an update cm handle request with additional properties updates'
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, additionalProperties: ['newProp': 'newVal'])]
+        when: 'update cm handle properties is called'
+            objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
+        then: 'dmi-properties is never updated'
+            0 * mockInventoryPersistence.updateCmHandleField(*_)
+    }
+
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
         def properties = [].withDefault { [:] }
         expectedPropertiesAfterUpdateAsMap.forEach(property ->
