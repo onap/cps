@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b68b7548_473f4f55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-21T14:49:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1c34a34_bb1dcf3e",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f92bc750_c0a858a7",
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05b5a1a5_37e248a1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-21T14:49:56Z",
+      "side": 1,
+      "message": "Added explanatory comment",
+      "parentUuid": "f92bc750_c0a858a7",
+      "range": {
+        "startLine": 184,
+        "startChar": 12,
+        "endLine": 184,
+        "endChar": 41
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e69a80ad_5ff2009a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
         "patchSetId": 1
@@ -77,6 +125,30 @@
       "writtenOn": "2026-05-21T13:47:36Z",
       "side": 1,
       "message": "Q: could this test be brittle because of order issues, or is the order guaranteed?",
+      "range": {
+        "startLine": 334,
+        "startChar": 87,
+        "endLine": 335,
+        "endChar": 156
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7653df7b_dadeabbf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-21T14:49:56Z",
+      "side": 1,
+      "message": "That\u0027s a very good shout",
+      "parentUuid": "e69a80ad_5ff2009a",
       "range": {
         "startLine": 334,
         "startChar": 87,
@@ -123,6 +195,30 @@
       "writtenOn": "2026-05-21T13:47:36Z",
       "side": 1,
       "message": "prefer _* when checking a method is NOT called (inless it IS called with something else then dmi-proeprties for the same test but I doubt that...",
+      "range": {
+        "startLine": 351,
+        "startChar": 61,
+        "endLine": 351,
+        "endChar": 83
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc8ee8ec_9f90ce15",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-21T14:49:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38e66f24_16282411",
       "range": {
         "startLine": 351,
         "startChar": 61,
