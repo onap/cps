@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af2b6ed5_39cadd99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-21T13:47:36Z",
+      "side": 1,
+      "message": "looks fine, just a few minor things",
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1c34a34_bb1dcf3e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-21T13:47:36Z",
+      "side": 1,
+      "message": "NB: update",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f92bc750_c0a858a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-21T13:47:36Z",
+      "side": 1,
+      "message": "if null represents no data, then we never would add new properties?\nMayb it is just empty and not null but then we don\u0027t need the null check?!",
+      "range": {
+        "startLine": 184,
+        "startChar": 12,
+        "endLine": 184,
+        "endChar": 41
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69a80ad_5ff2009a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-21T13:47:36Z",
+      "side": 1,
+      "message": "Q: could this test be brittle because of order issues, or is the order guaranteed?",
+      "range": {
+        "startLine": 334,
+        "startChar": 87,
+        "endLine": 335,
+        "endChar": 156
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92a2a90d_0d329edf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-21T13:47:36Z",
+      "side": 1,
+      "message": "No real a different use-case but maybe good to test edge case..",
+      "range": {
+        "startLine": 337,
+        "startChar": 13,
+        "endLine": 337,
+        "endChar": 91
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38e66f24_16282411",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-21T13:47:36Z",
+      "side": 1,
+      "message": "prefer _* when checking a method is NOT called (inless it IS called with something else then dmi-proeprties for the same test but I doubt that...",
+      "range": {
+        "startLine": 351,
+        "startChar": 61,
+        "endLine": 351,
+        "endChar": 83
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
