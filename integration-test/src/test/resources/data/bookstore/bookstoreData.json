@@ -14,13 +14,15 @@
           "house-number": 2,
           "street": "Main Street",
           "town": "Maynooth",
-          "county": "Kildare"
+          "county": "Kildare",
+          "pin-code": "D02HA23"
         },
         {
           "house-number": 24,
           "street": "Grafton Street",
           "town": "Dublin",
-          "county": "Dublin"
+          "county": "Dublin",
+          "pin-code": "D02HA44"
         }
       ]
     },
