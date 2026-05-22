@@ -114,4 +114,57 @@ class CpsPathUtilSpec extends Specification {
             thrown(PathParsingException)
     }
 
+    def 'Multi-key predicate conditions are sorted alphabetically in normalized xpath #scenario.'() {
+        when: 'a multi-key xpath is normalized'
+            def result = CpsPathUtil.getNormalizedXpath(xpath)
+        then: 'predicate conditions are sorted alphabetically'
+            assert result == expectedNormalizedXpath
+        where: 'the following xpaths are used'
+            scenario                                   | xpath                                          || expectedNormalizedXpath
+            'single key unchanged'                     | '/a[@CN=0]'                                    || "/a[@CN='0']"
+            'two keys already in order'                | '/a[@MCC=230 and @MNC=3]'                      || "/a[@MCC='230' and @MNC='3']"
+            'two keys out of order'                    | '/a[@SRN=61 and @CN=0]'                        || "/a[@CN='0' and @SRN='61']"
+            'three keys out of order'                  | '/a[@CN=0 and @SRN=61 and @SN=0]'             || "/a[@CN='0' and @SN='0' and @SRN='61']"
+            'multi-level with unsorted multi-key'      | '/p[@b=2 and @a=1]/c[@z=9 and @m=5]'          || "/p[@a='1' and @b='2']/c[@m='5' and @z='9']"
+            'exact bug report case'                    | '/SECTOREQMANTENNAREF[@CN=0 and @SRN=61 and @SN=0]' || "/SECTOREQMANTENNAREF[@CN='0' and @SN='0' and @SRN='61']"
+    }
+
+    def 'Normalized xpath keys are sorted alphabetically #scenario'() {
+        when: 'a given xpath is normalized'
+            def result = CpsPathUtil.getNormalizedXpathWithSortedKeys(xpath)
+        then: 'the result has sorted predicate keys'
+            assert result == expectedXpath
+        where: 'the following xpaths are used'
+            scenario                           | xpath                                                                                || expectedXpath
+            'single level'                     | '/addresses [@No=2 and @street="abc" and @pin-code=123]'                             || "/addresses[@No='2' and @pin-code='123' and @street='abc']"
+            'multiple levels'                  | '/premises [@num=1 and @code=2]/addresses[@No=2 and @street="abc" and @pin-code=123]'|| "/premises[@code='2' and @num='1']/addresses[@No='2' and @pin-code='123' and @street='abc']"
+            'root path is returned unchanged'  | '/'                                                                                  || '/'
+            'empty path is treated as root'    | ''                                                                                   || '/'
+    }
+
+    def "Invalid xpath inputs throw appropriate exceptions #scenario"() {
+        when: 'an invalid xpath is normalized'
+            CpsPathUtil.getNormalizedXpathWithSortedKeys(xpath)
+        then: 'a PathParsingException is thrown'
+            thrown(PathParsingException)
+        where: 'invalid xpath scenarios are tested'
+            scenario                             | xpath
+            'unsupported operator'               | '/bookstore/book[@No!=23]'
+            'attribute without value'            | '/bookstore/book[@id]'
+            'missing closing bracket'            | '/bookstore/book[@No=2'
+            'misplaced bracket'                  | '/bookstore/add[ress]/book[@No=2]'
+            'extra closing bracket'              | '/bookstore/book[@No=2]]'
+    }
+
+    def 'getNormalizedXpath and getNormalizedXpathWithSortedKeys return identical results for multi-key xpath.'() {
+        given: 'the exact xpath from the bug report with keys in non-alphabetical order'
+            def xpath = "/NE[@neid='Praha_Mezilesi-A-10313']/NodeModule/NODE/SECTOREQM[@SECTOREQMID='1']/SECTOREQMANTENNAREF[@CN=0 and @SRN=61 and @SN=0]"
+        when: 'both normalization methods are called'
+            def resultFromNormalizedXpath = CpsPathUtil.getNormalizedXpath(xpath)
+            def resultFromSortedKeys = CpsPathUtil.getNormalizedXpathWithSortedKeys(xpath)
+        then: 'both return identical sorted results'
+            assert resultFromNormalizedXpath == resultFromSortedKeys
+        and: 'the keys are in alphabetical order matching the stored xpath'
+            assert resultFromNormalizedXpath.contains("[@CN='0' and @SN='0' and @SRN='61']")
+    }
 }
