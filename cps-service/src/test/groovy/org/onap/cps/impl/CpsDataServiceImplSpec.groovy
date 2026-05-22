@@ -200,18 +200,19 @@ class CpsDataServiceImplSpec extends Specification {
             'JSON data' | '{"branch": []}'                           | ContentType.JSON
             'XML data'  | '<test-tree><branch></branch></test-tree>' | ContentType.XML
     }
-
+    
     def 'Get all data nodes #scenario.'() {
         given: 'persistence service returns data for GET request'
-            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, expectedXpath,
+                fetchDescendantsOption) >> dataNode
         expect: 'service returns same data if using same parameters'
             objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
         where: 'following parameters were used'
-            scenario                                   | xpath   | fetchDescendantsOption                         |   dataNode
-            'with root node xpath and descendants'     | '/'     | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
-            'with root node xpath and no descendants'  | '/'     | FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
-            'with valid xpath and descendants'         | '/xpath'| FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath').build()]
-            'with valid xpath and no descendants'      | '/xpath'| FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath').build()]
+            scenario                                   | xpath    | expectedXpath | fetchDescendantsOption                         | dataNode
+            'with root node xpath and descendants'     | '/'      | ''           | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
+            'with root node xpath and no descendants'  | '/'      | ''           | FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
+            'with valid xpath and descendants'         | '/xpath' | '/xpath'     | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath').build()]
+            'with valid xpath and no descendants'      | '/xpath' | '/xpath'     | FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath').build()]
     }
 
     def 'Get all data nodes over multiple xpaths with option #fetchDescendantsOption.'() {

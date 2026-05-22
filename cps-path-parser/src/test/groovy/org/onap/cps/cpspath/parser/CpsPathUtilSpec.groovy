@@ -113,5 +113,42 @@ class CpsPathUtilSpec extends Specification {
         then: 'a path parsing exception is thrown'
             thrown(PathParsingException)
     }
+    def 'Normalized XPath keys are sorted alphabetically.'() {
+        when: 'a given xpath is normalized'
+            def result = CpsPathUtil.normalizeXPathKeys(xpath)
 
+        then: 'the result has sorted predicate keys'
+            assert result == expectedXpath
+
+        where: 'the following xpaths are used'
+
+            scenario                | xpath                                 || expectedXpath
+            'no child'              | '/bookstore'                          || '/bookstore'
+            'child and parent'      | '/bookstore/premises'                 || '/bookstore/premises'
+            'grand child'           | '/bookstore/premises/addresses'       || '/bookstore/premises/addresses'
+            'sorted elements'       | '/bookstore/premises/addresses [@No=2 and @street="abc" and @pin-code=123]'
+                                                                            || "/bookstore/premises/addresses[@No='2' and @pin-code='123' and @street='abc']"
+    }
+    def "Invalid XPath inputs should throw appropriate exceptions"() {
+        when:
+            CpsPathUtil.normalizeXPathKeys(xpath)
+
+        then:
+            thrown(expectedException)
+
+        where:
+            xpath                                           || expectedException
+            ''                                              || PathParsingException
+            '/bookstore/book[@No!=23]'                      || PathParsingException
+            '/bookstore/book[@No>10]'                       || PathParsingException
+            '/bookstore/book[@No<10]'                       || PathParsingException
+            '/bookstore/book[@id]'                          || PathParsingException
+            '/bookstore/book[@No=2'                         || PathParsingException
+            "/bookstore/book[@No=2 or @name='abc']"         || PathParsingException
+            '/bookstore/book[No=2'                          || PathParsingException
+            '/bookstore/add[ress]/book[@No=2]'              || PathParsingException
+            '/bookstore/book[@No=2]]'                       || PathParsingException
+            '/book[store]/book[@No=2]'                      || PathParsingException
+            "/parent[@id=1 or @name='x']/child[@key='val']" || PathParsingException
+    }
 }
