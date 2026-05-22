@@ -113,5 +113,22 @@ class CpsPathUtilSpec extends Specification {
         then: 'a path parsing exception is thrown'
             thrown(PathParsingException)
     }
+    def 'Normalized XPath keys are sorted alphabetically.'() {
+        when: 'a given xpath is normalized'
+        def result = CpsPathUtil.normalizeXPathKeys(xpath)
 
+        then: 'the result has sorted predicate keys'
+        assert result == expectedXpath
+
+        where: 'the following xpaths are used'
+
+        scenario                         | xpath                                 || expectedXpath
+        'no child'                       | '/parent'                             || ["parent"]
+        'child and parent'               | '/parent/child'                       || ["parent","child"]
+        'grand child'                    | '/parent/child/grandChild'            || ["parent","child","grandChild"]
+        'parent is list element'         | '/parent/child[@id=1]/grandChild'     || ["parent","child","grandChild"]
+        'parent is list element with /'  | "/parent/child[@id='a/b']/grandChild" || ["parent","child","grandChild"]
+        'parent is list element with ['  | "/parent/child[@id='a[b']/grandChild" || ["parent","child","grandChild"]
+
+    }
 }
