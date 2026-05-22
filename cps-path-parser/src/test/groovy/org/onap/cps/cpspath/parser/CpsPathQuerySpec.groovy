@@ -93,6 +93,7 @@ class CpsPathQuerySpec extends Specification {
             'descendant with leaf condition has ">=" operator'            | '//cps-path[@key>=8]'                                          || "//cps-path[@key>=8]"
             'descendant with leaf condition has "<=" operator'            | '//cps-path[@key<=12]'                                         || "//cps-path[@key<=12]"
             'descendant with leaf value and ancestor'                     | '//cps-path[@key=1]/ancestor::parent[@key=1]'                  || "//cps-path[@key='1']/ancestor::parent[@key='1']"
+            'descendant with unsorted keys in leaf condition'             | '//cps-path[@key2="abc" and @key1=1]'                          || "//cps-path[@key1='1' and @key2='abc']"
             'parent & child'                                              | '/parent/child'                                                || '/parent/child'
             'parent leaf of type Integer & child'                         | '/parent/child[@code=1]/child2'                                || "/parent/child[@code='1']/child2"
             'parent leaf with double quotes'                              | '/parent/child[@code="1"]/child2'                              || "/parent/child[@code='1']/child2"
@@ -104,11 +105,17 @@ class CpsPathQuerySpec extends Specification {
             'parent & child with more than one attribute'                 | '/parent/child[@key1=1 and @key2="abc"]/child2'                || "/parent/child[@key1='1' and @key2='abc']/child2"
             'leaf with more than one attribute has OR operator'           | '/parent/child[@key1=1 or @key2="abc"]'                        || "/parent/child[@key1='1' or @key2='abc']"
             'parent & child with more than one attribute has OR operator' | '/parent/child[@key1=1 or @key2="abc"]/child2'                 || "/parent/child[@key1='1' or @key2='abc']/child2"
-            'parent & child with multiple AND  operators'                 | '/parent/child[@key1=1 and @key2="abc" and @key="xyz"]/child2' || "/parent/child[@key1='1' and @key2='abc' and @key='xyz']/child2"
+            'parent & child with multiple AND  operators'                 | '/parent/child[@key1=1 and @key2="abc" and @key="xyz"]/child2' || "/parent/child[@key='xyz' and @key1='1' and @key2='abc']/child2"
             'parent & child with multiple OR  operators'                  | '/parent/child[@key1=1 or @key2="abc" or @key="xyz"]/child2'   || "/parent/child[@key1='1' or @key2='abc' or @key='xyz']/child2"
             'parent & child with multiple AND/OR combination'             | '/parent/child[@key1=1 and @key2="abc" or @key="xyz"]/child2'  || "/parent/child[@key1='1' and @key2='abc' or @key='xyz']/child2"
             'parent & child with multiple OR/AND combination'             | '/parent/child[@key1=1 or @key2="abc" and @key="xyz"]/child2'  || "/parent/child[@key1='1' or @key2='abc' and @key='xyz']/child2"
             'attribute axis'                                              | '/parent/child/@key'                                           || '/parent/child/@key'
+            'parent with AND keys sorted alphabetically'                  | '/parent[@b=2 and @a=1]/child'                                 || "/parent[@a='1' and @b='2']/child"
+            'parent with OR keys not sorted'                              | '/parent[@b=2 or @a=1]/child'                                  || "/parent[@b='2' or @a='1']/child"
+            'AND keys at multiple levels sorted alphabetically'           | '/parent[@b=2 and @a=1]/child[@key1="abc" and @key2="xyz"]'    || "/parent[@a='1' and @b='2']/child[@key1='abc' and @key2='xyz']"
+            'OR keys at multiple levels not sorted'                       | '/parent[@b=2 or @a=1]/child[@key2="abc" or @key1="xyz"]'      || "/parent[@b='2' or @a='1']/child[@key2='abc' or @key1='xyz']"
+            'combination of AND and OR is unsorted'                       | '/parent[@b=2 and @a=1 or @c=3]'                               || "/parent[@b='2' and @a='1' or @c='3']"
+            'combination of AND and Or at multiple levels is unsorted'    | '/parent[@b=2 and @a=1 or @c=3]/child[@key2="a" and @key1="b"]'|| "/parent[@b='2' and @a='1' or @c='3']/child[@key1='b' and @key2='a']"
     }
 
     def 'Parse xpath to form the Normalized xpath containing #scenario.'() {
