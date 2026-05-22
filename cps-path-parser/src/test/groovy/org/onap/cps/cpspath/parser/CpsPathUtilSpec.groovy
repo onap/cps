@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022-2024 Nordix Foundation
- *  Modifications Copyright (C) 2025 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -112,6 +112,35 @@ class CpsPathUtilSpec extends Specification {
             CpsPathUtil.getNormalizedXpath('///')
         then: 'a path parsing exception is thrown'
             thrown(PathParsingException)
+    }
+
+    def 'Multi-key predicate conditions are sorted alphabetically in normalized xpath #scenario.'() {
+        when: 'a multi-key xpath is normalized'
+            def result = CpsPathUtil.getNormalizedXpath(xpath)
+        then: 'predicate conditions are sorted alphabetically'
+            assert result == expectedNormalizedXpath
+        where: 'the following xpaths are used'
+            scenario                                                  | xpath                                                           || expectedNormalizedXpath
+            'single key unchanged'                                    | '/addresses[@No=0]'                                             || "/addresses[@No='0']"
+            'two keys already in order'                               | '/addresses[@No=230 and @Num=3]'                                || "/addresses[@No='230' and @Num='3']"
+            'two keys out of order'                                   | '/addresses[@street="abc" and @pin-code=123]'                   || "/addresses[@pin-code='123' and @street='abc']"
+            'three keys out of order'                                 | '/addresses[@No=2 and @street="abc" and @pin-code=123]'         || "/addresses[@No='2' and @pin-code='123' and @street='abc']"
+            'multi-level with unsorted multi-key'                     | '/addresses[@street="abc" and @No=2]/book[@page=9 and @id=5]'   || "/addresses[@No='2' and @street='abc']/book[@id='5' and @page='9']"
+            'list element ref with non-equality operator keeps order' | '/addresses[@id>5]/book'                                        || '/addresses[@id>5]/book'
+    }
+
+    def "Invalid xpath inputs throw appropriate exceptions #scenario"() {
+        when: 'an invalid xpath is normalized'
+            CpsPathUtil.getNormalizedXpath(xpath)
+        then: 'a PathParsingException is thrown'
+            thrown(PathParsingException)
+        where: 'invalid xpath scenarios are tested'
+            scenario                             | xpath
+            'unsupported operator'               | '/book[@No!=23]'
+            'attribute without value'            | '/book[@id]'
+            'missing closing bracket'            | '/book[@No=2'
+            'misplaced bracket'                  | '/add[ress]/book[@No=2]'
+            'extra closing bracket'              | '/book[@No=2]]'
     }
 
 }
