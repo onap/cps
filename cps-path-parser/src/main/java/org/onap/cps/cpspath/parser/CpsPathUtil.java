@@ -109,4 +109,17 @@ public class CpsPathUtil {
         cpsPathParser.cpsPath();
         return cpsPathBuilder;
     }
+
+    /**
+     * Returns a normalized XPath string with predicate keys sorted alphabetically, separated by 'and' operator.
+     *
+     * @param xpathSource xpath
+     * @return a normalized xpath String.
+     */
+    public static String getNormalizedXpathWithSortedKeys(final String xpathSource) {
+        if (ROOT_NODE_XPATH.equals(xpathSource) || xpathSource.isEmpty()) {
+            return ROOT_NODE_XPATH;
+        }
+        return getNormalizedXpath(xpathSource);
+    }
 }

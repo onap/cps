@@ -198,6 +198,19 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             assert result.size() == 2
     }
 
+    def 'Retrieving data node with multi-key xpath where key order differs from stored order.'() {
+        given: 'a fragment stored with alphabetically sorted keys'
+            def storedXpath = "/node[@A='1' and @B='2']"
+            mockFragmentRepository.findByAnchorAndXpathIn(anchorEntity, [storedXpath] as Set) >> [
+                new FragmentEntity(1, storedXpath, null, '{"A":"1","B":"2"}', anchorEntity, [] as Set)
+            ]
+        when: 'getting data node with keys supplied in non-alphabetical order'
+            def result = objectUnderTest.getDataNodesForMultipleXpaths('some-dataspace', 'some-anchor',
+                ["/node[@B='2' and @A='1']"], FetchDescendantsOption.OMIT_DESCENDANTS)
+        then: 'the data node is returned'
+            assert result.size() == 1
+    }
+
     def 'start session'() {
         when: 'start session'
             objectUnderTest.startSession()
