@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fba1166_ad9350d9",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-22T13:23:27Z",
+      "side": 1,
+      "message": "Use imports individually, maybe the intellij checkstyle is not propely setup.",
+      "range": {
+        "startLine": 38,
+        "startChar": 17,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "23f2b5062defa27f4f76853f15a4decb64ea8666",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "665f784e_54286f95",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-22T13:23:27Z",
+      "side": 1,
+      "message": "normalizedXpath",
+      "range": {
+        "startLine": 104,
+        "startChar": 15,
+        "endLine": 104,
+        "endChar": 24
+      },
+      "revId": "23f2b5062defa27f4f76853f15a4decb64ea8666",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "debdba4e_78e4a4ff",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-22T13:23:27Z",
+      "side": 1,
+      "message": "use final keyword whereever possible, do it in all other places\neg: final String xpath",
+      "range": {
+        "startLine": 104,
+        "startChar": 8,
+        "endLine": 104,
+        "endChar": 14
+      },
+      "revId": "23f2b5062defa27f4f76853f15a4decb64ea8666",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae14bf29_24a6a837",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-22T13:23:27Z",
+      "side": 1,
+      "message": "we need to re-evaluate this approach\ndoes it cover multi-level lists like /level-1[...]/level-2[...]\ndoes it cover edge cases like @title\u003d\u0027a]b\u0027",
+      "range": {
+        "startLine": 390,
+        "startChar": 25,
+        "endLine": 390,
+        "endChar": 43
+      },
+      "revId": "23f2b5062defa27f4f76853f15a4decb64ea8666",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
