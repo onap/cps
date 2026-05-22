@@ -114,4 +114,32 @@ class CpsPathUtilSpec extends Specification {
             thrown(PathParsingException)
     }
 
+    def 'Normalized xpath keys are sorted alphabetically #scenario'() {
+        when: 'a given xpath is normalized'
+            def result = CpsPathUtil.getNormalizedXpathWithSortedKeys(xpath)
+        then: 'the result has sorted predicate keys'
+            assert result == expectedXpath
+        where: 'the following xpaths are used'
+            scenario                           | xpath                                                                                || expectedXpath
+            'single level'                     | '/addresses [@No=2 and @street="abc" and @pin-code=123]'                             || "/addresses[@No='2' and @pin-code='123' and @street='abc']"
+            'multiple levels'                  | '/premises [@num=1 and @code=2]/addresses[@No=2 and @street="abc" and @pin-code=123]'|| "/premises[@code='2' and @num='1']/addresses[@No='2' and @pin-code='123' and @street='abc']"
+            'root path is returned unchanged'  | '/'                                                                                  || '/'
+            'empty path is treated as root'    | ''                                                                                   || '/'
+    }
+
+    def "Invalid xpath inputs throw appropriate exceptions #scenario"() {
+        when: 'an invalid xpath is normalized'
+            CpsPathUtil.getNormalizedXpathWithSortedKeys(xpath)
+        then: 'a PathParsingException is thrown'
+            thrown(PathParsingException)
+        where: 'invalid xpath scenarios are tested'
+            scenario                             | xpath
+            'unsupported operator'               | '/bookstore/book[@No!=23]'
+            'attribute without value'            | '/bookstore/book[@id]'
+            'missing closing bracket'            | '/bookstore/book[@No=2'
+            'or operator not supported'          | "/bookstore/book[@No=2 or @name='abc']"
+            'mixed valid and invalid predicates' | "/bookstore[@id=1 or @name='x']/book[@key='val']"
+            'misplaced bracket'                  | '/bookstore/add[ress]/book[@No=2]'
+            'extra closing bracket'              | '/bookstore/book[@No=2]]'
+    }
 }
