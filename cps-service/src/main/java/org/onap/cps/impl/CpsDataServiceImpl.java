@@ -26,6 +26,7 @@ package org.onap.cps.impl;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.NO_PARENT_PATH;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
+import static org.onap.cps.cpspath.parser.CpsPathUtil.getNormalizedXpathWithSortedKeys;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.isPathToListElement;
 import static org.onap.cps.events.model.EventPayload.Action.CREATE;
 import static org.onap.cps.events.model.EventPayload.Action.REMOVE;
@@ -148,7 +149,8 @@ public class CpsDataServiceImpl implements CpsDataService {
                                              final String xpath,
                                              final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName,
+            getNormalizedXpathWithSortedKeys(xpath), fetchDescendantsOption);
     }
 
     @Override
