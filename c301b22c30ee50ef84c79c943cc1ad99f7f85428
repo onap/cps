@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c88cded2_98dbd477",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-05-22T13:35:13Z",
+      "side": 1,
+      "message": "looks good, just reply to Toine\u0027s comments",
+      "revId": "c301b22c30ee50ef84c79c943cc1ad99f7f85428",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
