@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "703dfe6a_22f15fc7",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-22T06:32:16Z",
+      "side": 1,
+      "message": "I tried this but implementing a dedicated executor is incereasing significant complexity without clear performance benefits.\nThe CompletableFuture tasks perform simple in-memory data transformations these are CPU-bound, short-lived.",
+      "parentUuid": "413b98d6_11f33814",
+      "range": {
+        "startLine": 83,
+        "startChar": 69,
+        "endLine": 83,
+        "endChar": 98
+      },
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b23f021_8f4cdb39",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 10
@@ -37,6 +61,30 @@
       "writtenOn": "2026-05-15T05:54:21Z",
       "side": 1,
       "message": "Here only runtime exception is unwrapped but if Completion Exception has checked exception it will propogate as is which can cause confusing or not so informative exception typs. So try to handle checked and unchecked exceptions here.",
+      "range": {
+        "startLine": 94,
+        "startChar": 12,
+        "endLine": 96,
+        "endChar": 13
+      },
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ec1915c_3c9cc480",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-22T06:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b23f021_8f4cdb39",
       "range": {
         "startLine": 94,
         "startChar": 12,
@@ -66,6 +114,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1880870f_d1ef207c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-22T06:32:16Z",
+      "side": 1,
+      "message": "On removing this, it is giving checkstyle violation",
+      "parentUuid": "879b94ea_15fd8f14",
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7db594b_ecd489bd",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
         "patchSetId": 10
@@ -77,6 +143,30 @@
       "writtenOn": "2026-05-15T05:54:21Z",
       "side": 1,
       "message": "Same as here we can inject a executor to avoid using common thread pool.",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c34de5b_753328f0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-22T06:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7db594b_ecd489bd",
       "range": {
         "startLine": 57,
         "startChar": 12,
@@ -110,6 +200,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aafa1ff_fff93704",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-22T06:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86b07898_1b8e20eb",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 38
+      },
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b3ce8f1_89b8fdae",
@@ -123,6 +237,30 @@
       "writtenOn": "2026-05-15T05:54:21Z",
       "side": 1,
       "message": "dataNodeWithoutChildren",
+      "range": {
+        "startLine": 102,
+        "startChar": 28,
+        "endLine": 102,
+        "endChar": 60
+      },
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c23c96a4_588afd4e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-22T06:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b3ce8f1_89b8fdae",
       "range": {
         "startLine": 102,
         "startChar": 28,
@@ -156,6 +294,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22806d11_2b936c3c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-22T06:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69700a1b_1f3b4ab2",
+      "range": {
+        "startLine": 53,
+        "startChar": 16,
+        "endLine": 53,
+        "endChar": 23
+      },
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68d04dab_76ccc396",
@@ -179,6 +341,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ea9be7_1c7396aa",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/GroupedDeltaReportGenerator.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-22T06:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68d04dab_76ccc396",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 44
+      },
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7f7ad80_0e47ebb5",
@@ -192,6 +378,30 @@
       "writtenOn": "2026-05-15T05:54:21Z",
       "side": 1,
       "message": "Same as before for exceptions",
+      "range": {
+        "startLine": 76,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 9
+      },
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4caeeeca_d5531d0c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/GroupedDeltaReportGenerator.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8522
+      },
+      "writtenOn": "2026-05-22T06:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7f7ad80_0e47ebb5",
       "range": {
         "startLine": 76,
         "startChar": 10,
