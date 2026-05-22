@@ -27,6 +27,7 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DES
 import static org.onap.cps.cpspath.parser.CpsPathUtil.NO_PARENT_PATH;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.isPathToListElement;
+import static org.onap.cps.cpspath.parser.CpsPathUtil.normalizeXpathKeys;
 import static org.onap.cps.events.model.EventPayload.Action.CREATE;
 import static org.onap.cps.events.model.EventPayload.Action.REMOVE;
 import static org.onap.cps.events.model.EventPayload.Action.REPLACE;
@@ -147,8 +148,10 @@ public class CpsDataServiceImpl implements CpsDataService {
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final String xpath,
                                              final FetchDescendantsOption fetchDescendantsOption) {
+        final String normalizedXpath = normalizeXpathKeys(xpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, normalizedXpath,
+                fetchDescendantsOption);
     }
 
     @Override
