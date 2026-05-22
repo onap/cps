@@ -35,10 +35,7 @@ import static org.onap.cps.utils.ContentType.JSON;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -104,7 +101,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                          final String nodeData, final OffsetDateTime observedTimestamp) {
-        saveData(dataspaceName, anchorName, parentNodeXpath, nodeData, observedTimestamp, JSON);
+        String nodeXpath = normalizeXPathKeys(parentNodeXpath);
+        saveData(dataspaceName, anchorName, nodeXpath, nodeData, observedTimestamp, JSON);
     }
 
     @Override
@@ -127,19 +125,20 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void saveListElements(final String dataspaceName, final String anchorName,
                                  final String parentNodeXpath, final String nodeData,
                                  final OffsetDateTime observedTimestamp, final ContentType contentType) {
+        String nodeXpath = normalizeXPathKeys(parentNodeXpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> listElementDataNodeCollection = dataNodeFactory
-                    .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, nodeData, contentType);
+                    .createDataNodesWithAnchorParentXpathAndNodeData(anchor, nodeXpath, nodeData, contentType);
         final List<DeltaReport> deltaReports =
-            generateDeltaReports(dataspaceName, anchorName, parentNodeXpath, listElementDataNodeCollection);
-        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
+            generateDeltaReports(dataspaceName, anchorName, nodeXpath, listElementDataNodeCollection);
+        if (ROOT_NODE_XPATH.equals(nodeXpath)) {
             cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, listElementDataNodeCollection);
         } else {
-            cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
+            cpsDataPersistenceService.addListElements(dataspaceName, anchorName, nodeXpath,
                                                       listElementDataNodeCollection);
         }
-        sendDataUpdatedEvent(anchor, parentNodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
+        sendDataUpdatedEvent(anchor, nodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
     }
 
     @Override
@@ -147,8 +146,9 @@ public class CpsDataServiceImpl implements CpsDataService {
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final String xpath,
                                              final FetchDescendantsOption fetchDescendantsOption) {
+        String nodeXpath = normalizeXPathKeys(xpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, nodeXpath, fetchDescendantsOption);
     }
 
     @Override
@@ -166,16 +166,17 @@ public class CpsDataServiceImpl implements CpsDataService {
         description = "Time taken to update a batch of leaf data nodes")
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
         final String nodeData, final OffsetDateTime observedTimestamp, final ContentType contentType) {
+        String nodeXpath = normalizeXPathKeys(parentNodeXpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodesInPatch = dataNodeFactory
-                .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, nodeData, contentType);
+                .createDataNodesWithAnchorParentXpathAndNodeData(anchor, nodeXpath, nodeData, contentType);
         final List<DeltaReport> deltaReports =
-            generateDeltaReports(dataspaceName, anchorName, parentNodeXpath, dataNodesInPatch);
+            generateDeltaReports(dataspaceName, anchorName, nodeXpath, dataNodesInPatch);
         final Map<String, Map<String, Serializable>> xpathToUpdatedLeaves = dataNodesInPatch.stream()
                 .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
         cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedLeaves);
-        sendDataUpdatedEvent(anchor, parentNodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
+        sendDataUpdatedEvent(anchor, nodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
     }
 
     @Override
@@ -186,16 +187,17 @@ public class CpsDataServiceImpl implements CpsDataService {
                                                             final String parentNodeXpath,
                                                             final String dataNodeUpdatesAsJson,
                                                             final OffsetDateTime observedTimestamp) {
+        String nodeXpath = normalizeXPathKeys(parentNodeXpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodeUpdates = dataNodeFactory
-                .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, dataNodeUpdatesAsJson, JSON);
+                .createDataNodesWithAnchorParentXpathAndNodeData(anchor, nodeXpath, dataNodeUpdatesAsJson, JSON);
         final List<DeltaReport> deltaReports =
-            generateDeltaReports(dataspaceName, anchorName, parentNodeXpath, dataNodeUpdates);
+            generateDeltaReports(dataspaceName, anchorName, nodeXpath, dataNodeUpdates);
         for (final DataNode dataNodeUpdate : dataNodeUpdates) {
             processDataNodeUpdate(anchor, dataNodeUpdate);
         }
-        sendDataUpdatedEvent(anchor, parentNodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
+        sendDataUpdatedEvent(anchor, nodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
     }
 
     @Override
@@ -225,18 +227,19 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
                                              final String parentNodeXpath, final String nodeData,
                                              final OffsetDateTime observedTimestamp, final ContentType contentType) {
+        String nodeXpath = normalizeXPathKeys(parentNodeXpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes = dataNodeFactory
-                .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, nodeData, contentType);
+                .createDataNodesWithAnchorParentXpathAndNodeData(anchor, nodeXpath, nodeData, contentType);
         final List<DeltaReport> deltaReports =
-            generateDeltaReports(dataspaceName, anchorName, parentNodeXpath, dataNodes);
-        if (ROOT_NODE_XPATH.equals(parentNodeXpath) || !isPathToListElement(parentNodeXpath)) {
+            generateDeltaReports(dataspaceName, anchorName, nodeXpath, dataNodes);
+        if (ROOT_NODE_XPATH.equals(nodeXpath) || !isPathToListElement(nodeXpath)) {
             cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
         } else {
-            cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+            cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, nodeXpath, dataNodes);
         }
-        sendDataUpdatedEvent(anchor, parentNodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
+        sendDataUpdatedEvent(anchor, nodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
     }
 
     @Override
@@ -258,35 +261,38 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Timed(value = "cps.data.service.list.update", description = "Time taken to update a list")
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final String nodeData, final OffsetDateTime observedTimestamp, final ContentType contentType) {
+        String nodeXpath = normalizeXPathKeys(parentNodeXpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> newListElements = dataNodeFactory
-                .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, nodeData, contentType);
-        replaceListContent(dataspaceName, anchorName, parentNodeXpath, newListElements, observedTimestamp);
+                .createDataNodesWithAnchorParentXpathAndNodeData(anchor, nodeXpath, nodeData, contentType);
+        replaceListContent(dataspaceName, anchorName, nodeXpath, newListElements, observedTimestamp);
     }
 
     @Override
     @Timed(value = "cps.data.service.list.batch.update", description = "Time taken to update a batch of lists")
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<DataNode> dataNodes, final OffsetDateTime observedTimestamp) {
+        String nodeXpath = normalizeXPathKeys(parentNodeXpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final List<DeltaReport> deltaReports =
-            generateDeltaReports(dataspaceName, anchorName, parentNodeXpath, dataNodes);
-        cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);
-        sendDataUpdatedEvent(anchor, parentNodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
+            generateDeltaReports(dataspaceName, anchorName, nodeXpath, dataNodes);
+        cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, nodeXpath, dataNodes);
+        sendDataUpdatedEvent(anchor, nodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
     }
 
     @Override
     @Timed(value = "cps.data.service.datanode.delete", description = "Time taken to delete a datanode")
     public void deleteDataNode(final String dataspaceName, final String anchorName, final String dataNodeXpath,
                                final OffsetDateTime observedTimestamp) {
+        String nodeXpath = normalizeXPathKeys(dataNodeXpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final List<DeltaReport> deltaReports = generateDeltaReports(dataspaceName, anchorName, dataNodeXpath,
+        final List<DeltaReport> deltaReports = generateDeltaReports(dataspaceName, anchorName, nodeXpath,
                 Collections.emptyList());
-        cpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath);
+        cpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, nodeXpath);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        sendDataUpdatedEvent(anchor, dataNodeXpath, REMOVE_ACTION, deltaReports, observedTimestamp);
+        sendDataUpdatedEvent(anchor, nodeXpath, REMOVE_ACTION, deltaReports, observedTimestamp);
     }
 
     @Override
@@ -331,20 +337,22 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Timed(value = "cps.data.service.list.delete", description = "Time taken to delete a list or list element")
     public void deleteListOrListElement(final String dataspaceName, final String anchorName, final String listNodeXpath,
         final OffsetDateTime observedTimestamp) {
+        String nodeXpath = normalizeXPathKeys(listNodeXpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final List<DeltaReport> deltaReports = generateDeltaReports(dataspaceName, anchorName, listNodeXpath,
+        final List<DeltaReport> deltaReports = generateDeltaReports(dataspaceName, anchorName, nodeXpath,
                 Collections.emptyList());
-        cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
+        cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, nodeXpath);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        sendDataUpdatedEvent(anchor, listNodeXpath, REMOVE_ACTION, deltaReports, observedTimestamp);
+        sendDataUpdatedEvent(anchor, nodeXpath, REMOVE_ACTION, deltaReports, observedTimestamp);
     }
 
     @Override
     public void validateData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                              final String nodeData, final ContentType contentType) {
+        String nodeXpath = normalizeXPathKeys(parentNodeXpath);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final String xpath = ROOT_NODE_XPATH.equals(parentNodeXpath) ? NO_PARENT_PATH :
-                CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+        final String xpath = ROOT_NODE_XPATH.equals(nodeXpath) ? NO_PARENT_PATH :
+                CpsPathUtil.getNormalizedXpath(nodeXpath);
         yangParser.validateData(contentType, nodeData, anchor, xpath);
     }
 
@@ -377,5 +385,24 @@ public class CpsDataServiceImpl implements CpsDataService {
         } catch (final Exception exception) {
             log.error("Failed to send message to notification service", exception);
         }
+    }
+
+    public static String normalizeXPathKeys(String xpath) {
+        int predicateStartIndex = xpath.indexOf('[');
+        int predicateEndIndex = xpath.indexOf(']');
+
+        if (predicateStartIndex == -1 || predicateEndIndex == -1 || predicateStartIndex > predicateEndIndex) {
+            return xpath;
+        }
+
+        String pathPrefix = xpath.substring(0, predicateStartIndex);
+        String predicateContent = xpath.substring(predicateStartIndex + 1, predicateEndIndex);
+        String pathSuffix = xpath.substring(predicateEndIndex + 1);
+
+        String[] conditions = predicateContent.split(" and ");
+        Arrays.sort(conditions);
+
+        String normalizedPredicate = "[" + String.join(" and ", conditions) + "]";
+        return pathPrefix + normalizedPredicate + pathSuffix;
     }
 }

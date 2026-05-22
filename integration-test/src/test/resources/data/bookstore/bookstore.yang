@@ -73,7 +73,7 @@ module stores {
 
         container premises {
             list addresses {
-                key "house-number street";
+                key "house-number street postal-code";
 
                 leaf house-number {
                     type uint16;
@@ -86,6 +86,9 @@ module stores {
                 }
                 leaf county {
                     type string;
+                }
+                leaf postal-code {
+                    type uint16;
                 }
             }
         }
