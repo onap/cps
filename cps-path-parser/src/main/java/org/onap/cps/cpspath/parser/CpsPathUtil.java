@@ -22,6 +22,10 @@
 package org.onap.cps.cpspath.parser;
 
 import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,6 +46,10 @@ public class CpsPathUtil {
 
     public static final String ROOT_NODE_XPATH = "/";
     public static final String NO_PARENT_PATH = "";
+    private static final String CONDITION_REGEX = "@[^=]+='[^']*(?:''[^']*)*'|@[^=]+=\\d+";
+    private static final Pattern CONDITION_PATTERN = Pattern.compile(CONDITION_REGEX);
+    private static final Pattern PREDICATE_PATTERN = Pattern.compile(
+            "\\[(?:" + CONDITION_REGEX + ")(?:\\s+and\\s+(?:" + CONDITION_REGEX + "))*\\]");
 
     /**
      * Returns a normalized xpath path query.
@@ -108,5 +116,47 @@ public class CpsPathUtil {
         cpsPathParser.addParseListener(cpsPathBuilder);
         cpsPathParser.cpsPath();
         return cpsPathBuilder;
+    }
+
+    /**
+     * Returns a normalized xpath path query with sorted keys.
+     *
+     * @param xpathSource xpath
+     * @return a normalized xpath String.
+     */
+    public static String normalizeXpathKeys(final String xpathSource) {
+
+        if (ROOT_NODE_XPATH.equals(xpathSource) || xpathSource.isEmpty()) {
+            return ROOT_NODE_XPATH;
+        }
+
+        final String normalizedXpath = getNormalizedXpath(xpathSource);
+
+        final Matcher matcher = PREDICATE_PATTERN.matcher(normalizedXpath);
+        final StringBuilder result = new StringBuilder();
+        int pos = 0;
+        while (matcher.find()) {
+            final String gap = normalizedXpath.substring(pos, matcher.start());
+            if (gap.contains("[")) {
+                throw new PathParsingException(
+                        "normalizeXPathKeys does not support non-equality operators in: " + normalizedXpath,
+                        "only '=' conditions are valid for list key predicates");
+            }
+            result.append(gap);
+            final String predicateBody = matcher.group().substring(1, matcher.group().length() - 1);
+            result.append(CONDITION_PATTERN.matcher(predicateBody)
+                    .results()
+                    .map(MatchResult::group)
+                    .sorted()
+                    .collect(Collectors.joining(" and ", "[", "]")));
+            pos = matcher.end();
+        }
+        final String tail = normalizedXpath.substring(pos);
+        if (tail.contains("[")) {
+            throw new PathParsingException(
+                    "normalizeXPathKeys does not support non-equality operators in: " + normalizedXpath,
+                    "only '=' conditions are valid for list key predicates");
+        }
+        return result.append(tail).toString();
     }
 }
