@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2024 Nordix Foundation
- *  Modifications Copyright (C) 2023 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2023-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@ package org.onap.cps.cpspath.parser;
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
@@ -55,6 +57,16 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     private final List<String> containerNames = new ArrayList<>();
 
     private final List<String> booleanOperators = new ArrayList<>();
+
+    private boolean hasOrOperator = false;
+
+    private static final String EQUALITY_OPERATOR = "=";
+
+    private static final String OR_OPERATOR = "or";
+
+    public static final String ATTRIBUTE_PREFIX = "@";
+
+    private static final String SPACE = " ";
 
     @Override
     public void exitSlash(final CpsPathParser.SlashContext ctx) {
@@ -89,12 +101,16 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         } else {
             throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
-        leafContext(leafName, operator, comparisonValue);
+        leafConditions.add(new CpsPathQuery.LeafCondition(leafName, operator, comparisonValue));
     }
 
     @Override
     public void exitBooleanOperators(final CpsPathParser.BooleanOperatorsContext ctx) {
-        booleanOperators.add(ctx.getText());
+        final String operator = ctx.getText();
+        booleanOperators.add(operator);
+        if (OR_OPERATOR.equals(operator)) {
+            hasOrOperator = true;
+        }
     }
 
     @Override
@@ -104,16 +120,23 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     @Override
+    public void enterListElementRef(final CpsPathParser.ListElementRefContext ctx) {
+        hasOrOperator = false;
+        leafConditions.clear();
+        booleanOperators.clear();
+    }
+
+    @Override
     public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx)  {
-        normalizedXpathBuilder.append(OPEN_BRACKET);
+        hasOrOperator = false;
         leafConditions.clear();
         booleanOperators.clear();
     }
 
     @Override
     public void exitMultipleLeafConditions(final MultipleLeafConditionsContext ctx) {
-        normalizedXpathBuilder.append(CLOSE_BRACKET);
-        cpsPathQuery.setLeafConditions(leafConditions);
+        cpsPathQuery.setLeafConditions(new ArrayList<>(leafConditions));
+        appendConditionsToNormalizedPathSortIfNeeded();
     }
 
     @Override
@@ -150,13 +173,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     @Override
-    public void enterListElementRef(final CpsPathParser.ListElementRefContext ctx) {
-        normalizedXpathBuilder.append(OPEN_BRACKET);
-    }
-
-    @Override
     public void exitListElementRef(final CpsPathParser.ListElementRefContext ctx) {
-        normalizedXpathBuilder.append(CLOSE_BRACKET);
+        appendConditionsToNormalizedPathSortIfNeeded();
     }
 
     CpsPathQuery build() {
@@ -175,28 +193,35 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         }
     }
 
-    private void leafContext(final String leafName, final String operator, final Object comparisonValue) {
-        leafConditions.add(new CpsPathQuery.LeafCondition(leafName, operator, comparisonValue));
-        appendCondition(normalizedXpathBuilder, leafName, operator, comparisonValue);
+    private void appendConditionsToNormalizedPathSortIfNeeded() {
+        if (!hasOrOperator && isAllEqualsOperators()) {
+            leafConditions.sort(Comparator.comparing(CpsPathQuery.LeafCondition::name));
+        }
+        normalizedXpathBuilder.append(OPEN_BRACKET);
+        boolean isStartOfExpression = true;
+        final Iterator<String> operatorIterator = booleanOperators.iterator();
+        for (final CpsPathQuery.LeafCondition leafCondition : leafConditions) {
+            if (!isStartOfExpression) {
+                normalizedXpathBuilder.append(SPACE).append(operatorIterator.next()).append(SPACE);
+            }
+            normalizedXpathBuilder.append(formatCondition(leafCondition));
+            isStartOfExpression = false;
+        }
+        normalizedXpathBuilder.append(CLOSE_BRACKET);
     }
 
-    private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
-                                 final String operator, final Object value) {
-        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
-        final boolean isStartOfExpression = lastCharacter == '[';
-        if (!isStartOfExpression) {
-            currentNormalizedPathBuilder.append(" ").append(getLastElement(booleanOperators)).append(" ");
-        }
-        currentNormalizedPathBuilder.append("@").append(name).append(operator);
-        if (operator.equals("=")) {
-            currentNormalizedPathBuilder.append(wrapValueInSingleQuotes(value));
+    private boolean isAllEqualsOperators() {
+        return leafConditions.stream().allMatch(lc -> EQUALITY_OPERATOR.equals(lc.operator()));
+    }
+
+    private static String formatCondition(final CpsPathQuery.LeafCondition leafCondition) {
+        final String formattedValue;
+        if (EQUALITY_OPERATOR.equals(leafCondition.operator())) {
+            formattedValue = wrapValueInSingleQuotes(leafCondition.value());
         } else {
-            currentNormalizedPathBuilder.append(value);
+            formattedValue = leafCondition.value().toString();
         }
-    }
-
-    private static String getLastElement(final List<String> listOfStrings) {
-        return listOfStrings.get(listOfStrings.size() - 1);
+        return ATTRIBUTE_PREFIX + leafCondition.name() + leafCondition.operator() + formattedValue;
     }
 
     private static String unwrapQuotedString(final String wrappedString) {
