@@ -28,12 +28,14 @@ import ch.qos.logback.core.read.ListAppender
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.exceptions.ConcurrencyException
+import org.onap.cps.api.exceptions.CpsPathException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.SessionManagerException
 import org.onap.cps.api.exceptions.SessionTimeoutException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.cpspath.parser.CpsPathUtil
 import org.onap.cps.events.CpsDataUpdateEventsProducer
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.utils.ContentType
@@ -203,7 +205,7 @@ class CpsDataServiceImplSpec extends Specification {
 
     def 'Get all data nodes #scenario.'() {
         given: 'persistence service returns data for GET request'
-            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, CpsPathUtil.getNormalizedXpath(xpath), fetchDescendantsOption) >> dataNode
         expect: 'service returns same data if using same parameters'
             objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
         where: 'following parameters were used'
@@ -212,6 +214,13 @@ class CpsDataServiceImplSpec extends Specification {
             'with root node xpath and no descendants'  | '/'     | FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
             'with valid xpath and descendants'         | '/xpath'| FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath').build()]
             'with valid xpath and no descendants'      | '/xpath'| FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath').build()]
+    }
+
+    def 'Get data nodes with an invalid xpath throws a CpsPathException.'() {
+        when: 'get data nodes is called with an invalid xpath'
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, 'invalid xpath', FetchDescendantsOption.OMIT_DESCENDANTS)
+        then: 'a CpsPathException is thrown'
+            thrown(CpsPathException)
     }
 
     def 'Get all data nodes over multiple xpaths with option #fetchDescendantsOption.'() {
