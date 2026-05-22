@@ -26,6 +26,7 @@ package org.onap.cps.impl;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.NO_PARENT_PATH;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
+import static org.onap.cps.cpspath.parser.CpsPathUtil.getNormalizedXpath;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.isPathToListElement;
 import static org.onap.cps.events.model.EventPayload.Action.CREATE;
 import static org.onap.cps.events.model.EventPayload.Action.REMOVE;
@@ -49,7 +50,6 @@ import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
-import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.events.CpsDataUpdateEventsProducer;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.ContentType;
@@ -344,7 +344,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                              final String nodeData, final ContentType contentType) {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final String xpath = ROOT_NODE_XPATH.equals(parentNodeXpath) ? NO_PARENT_PATH :
-                CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+                getNormalizedXpath(parentNodeXpath);
         yangParser.validateData(contentType, nodeData, anchor, xpath);
     }
 
