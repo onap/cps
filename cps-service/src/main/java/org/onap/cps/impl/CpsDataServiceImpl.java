@@ -147,8 +147,10 @@ public class CpsDataServiceImpl implements CpsDataService {
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final String xpath,
                                              final FetchDescendantsOption fetchDescendantsOption) {
+        final String normalizedXpath = CpsPathUtil.normalizeXPathKeys(xpath);
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, normalizedXpath,
+                fetchDescendantsOption);
     }
 
     @Override
@@ -373,7 +375,8 @@ public class CpsDataServiceImpl implements CpsDataService {
                                       final List<DeltaReport> deltaReports,
                                       final OffsetDateTime observedTimestamp) {
         try {
-            cpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor, xpath, action, deltaReports, observedTimestamp);
+            cpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor, xpath, action, deltaReports,
+                    observedTimestamp);
         } catch (final Exception exception) {
             log.error("Failed to send message to notification service", exception);
         }
