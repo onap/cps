@@ -32,6 +32,7 @@ import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.utils.ContentType
+import org.onap.cps.cpspath.parser.PathParsingException;
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -88,7 +89,7 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             thrown(expectedException)
         where:
             cpsPath              || expectedException
-            'invalid path'       || CpsPathException
+            'invalid path'       || PathParsingException
             '/non-existing-path' || DataNodeNotFoundException
     }
 

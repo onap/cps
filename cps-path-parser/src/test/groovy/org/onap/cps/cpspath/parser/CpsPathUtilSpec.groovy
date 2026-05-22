@@ -114,4 +114,47 @@ class CpsPathUtilSpec extends Specification {
             thrown(PathParsingException)
     }
 
+    def 'Multi-key predicate conditions are sorted alphabetically in normalized xpath #scenario.'() {
+        when: 'a multi-key xpath is normalized'
+            def result = CpsPathUtil.getNormalizedXpath(xpath)
+        then: 'predicate conditions are sorted alphabetically'
+            assert result == expectedNormalizedXpath
+        where: 'the following xpaths are used'
+            scenario                                                  | xpath                                                           || expectedNormalizedXpath
+            'single key unchanged'                                    | '/addresses[@No=0]'                                             || "/addresses[@No='0']"
+            'two keys already in order'                               | '/addresses[@No=230 and @Num=3]'                                || "/addresses[@No='230' and @Num='3']"
+            'two keys out of order'                                   | '/addresses[@street="abc" and @pin-code=123]'                   || "/addresses[@pin-code='123' and @street='abc']"
+            'three keys out of order'                                 | '/addresses[@No=2 and @street="abc" and @pin-code=123]'         || "/addresses[@No='2' and @pin-code='123' and @street='abc']"
+            'multi-level with unsorted multi-key'                     | '/addresses[@street="abc" and @No=2]/book[@page=9 and @id=5]'   || "/addresses[@No='2' and @street='abc']/book[@id='5' and @page='9']"
+            'exact bug report case'                                   | '/addresses[@No=2 and @street="abc" and @pin-code=123]'         || "/addresses[@No='2' and @pin-code='123' and @street='abc']"
+            'list element ref with non-equality operator keeps order' | '/addresses[@id>5]/book'                                        || '/addresses[@id>5]/book'
+    }
+
+    def 'Normalized xpath keys are sorted alphabetically #scenario'() {
+        when: 'a given xpath is normalized'
+            def result = CpsPathUtil.getNormalizedXpathWithSortedKeys(xpath)
+        then: 'the result has sorted predicate keys'
+            assert result == expectedXpath
+        where: 'the following xpaths are used'
+            scenario                           | xpath                                                                                || expectedXpath
+            'single level'                     | '/addresses [@No=2 and @street="abc" and @pin-code=123]'                             || "/addresses[@No='2' and @pin-code='123' and @street='abc']"
+            'multiple levels'                  | '/premises [@num=1 and @code=2]/addresses[@No=2 and @street="abc" and @pin-code=123]'|| "/premises[@code='2' and @num='1']/addresses[@No='2' and @pin-code='123' and @street='abc']"
+            'root path is returned unchanged'  | '/'                                                                                  || '/'
+            'empty path is treated as root'    | ''                                                                                   || '/'
+    }
+
+    def "Invalid xpath inputs throw appropriate exceptions #scenario"() {
+        when: 'an invalid xpath is normalized'
+            CpsPathUtil.getNormalizedXpathWithSortedKeys(xpath)
+        then: 'a PathParsingException is thrown'
+            thrown(PathParsingException)
+        where: 'invalid xpath scenarios are tested'
+            scenario                             | xpath
+            'unsupported operator'               | '/bookstore/book[@No!=23]'
+            'attribute without value'            | '/bookstore/book[@id]'
+            'missing closing bracket'            | '/bookstore/book[@No=2'
+            'misplaced bracket'                  | '/bookstore/add[ress]/book[@No=2]'
+            'extra closing bracket'              | '/bookstore/book[@No=2]]'
+    }
+
 }

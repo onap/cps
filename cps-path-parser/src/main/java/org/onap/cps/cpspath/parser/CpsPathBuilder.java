@@ -24,6 +24,7 @@ package org.onap.cps.cpspath.parser;
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
@@ -55,6 +56,16 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     private final List<String> containerNames = new ArrayList<>();
 
     private final List<String> booleanOperators = new ArrayList<>();
+
+    private int startIndexOfMultipleLeafConditions = 0;
+
+    private boolean insideListElementRef = false;
+
+    private final List<CpsPathQuery.LeafCondition> pendingListRefConditions = new ArrayList<>();
+
+    private final List<String> pendingListRefBooleanOperators = new ArrayList<>();
+
+    private int startIndexOfListElementRef = 0;
 
     @Override
     public void exitSlash(final CpsPathParser.SlashContext ctx) {
@@ -94,7 +105,11 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     @Override
     public void exitBooleanOperators(final CpsPathParser.BooleanOperatorsContext ctx) {
-        booleanOperators.add(ctx.getText());
+        if (insideListElementRef) {
+            pendingListRefBooleanOperators.add(ctx.getText());
+        } else {
+            booleanOperators.add(ctx.getText());
+        }
     }
 
     @Override
@@ -106,14 +121,47 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx)  {
         normalizedXpathBuilder.append(OPEN_BRACKET);
+        startIndexOfMultipleLeafConditions = normalizedXpathBuilder.length();
         leafConditions.clear();
         booleanOperators.clear();
     }
 
     @Override
     public void exitMultipleLeafConditions(final MultipleLeafConditionsContext ctx) {
+        final List<String> formattedConditions = new ArrayList<>(leafConditions.size());
+        for (final CpsPathQuery.LeafCondition leafCondition : leafConditions) {
+            formattedConditions.add(formatCondition(leafCondition.name(), leafCondition.operator(),
+                    leafCondition.value()));
+        }
+        if (isAllEqualityConditionsWithAndOperators(leafConditions, booleanOperators)) {
+            Collections.sort(formattedConditions);
+            normalizedXpathBuilder.replace(startIndexOfMultipleLeafConditions, normalizedXpathBuilder.length(),
+                    String.join(" and ", formattedConditions));
+        } else {
+            for (int i = 0; i < formattedConditions.size(); i++) {
+                if (i > 0) {
+                    normalizedXpathBuilder.append(" ").append(booleanOperators.get(i - 1)).append(" ");
+                }
+                normalizedXpathBuilder.append(formattedConditions.get(i));
+            }
+        }
         normalizedXpathBuilder.append(CLOSE_BRACKET);
         cpsPathQuery.setLeafConditions(leafConditions);
+    }
+
+    private static boolean isAllEqualityConditionsWithAndOperators(
+            final List<CpsPathQuery.LeafCondition> conditions, final List<String> operators) {
+        for (final CpsPathQuery.LeafCondition condition : conditions) {
+            if (!"=".equals(condition.operator())) {
+                return false;
+            }
+        }
+        for (final String operator : operators) {
+            if (!"and".equals(operator)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -152,10 +200,32 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void enterListElementRef(final CpsPathParser.ListElementRefContext ctx) {
         normalizedXpathBuilder.append(OPEN_BRACKET);
+        startIndexOfListElementRef = normalizedXpathBuilder.length();
+        insideListElementRef = true;
+        pendingListRefConditions.clear();
+        pendingListRefBooleanOperators.clear();
     }
 
     @Override
     public void exitListElementRef(final CpsPathParser.ListElementRefContext ctx) {
+        insideListElementRef = false;
+        final List<String> formattedConditions = new ArrayList<>(pendingListRefConditions.size());
+        for (final CpsPathQuery.LeafCondition leafCondition : pendingListRefConditions) {
+            formattedConditions.add(formatCondition(leafCondition.name(), leafCondition.operator(),
+                    leafCondition.value()));
+        }
+        if (isAllEqualityConditionsWithAndOperators(pendingListRefConditions, pendingListRefBooleanOperators)) {
+            Collections.sort(formattedConditions);
+            normalizedXpathBuilder.replace(startIndexOfListElementRef, normalizedXpathBuilder.length(),
+                    String.join(" and ", formattedConditions));
+        } else {
+            for (int i = 0; i < formattedConditions.size(); i++) {
+                if (i > 0) {
+                    normalizedXpathBuilder.append(" ").append(pendingListRefBooleanOperators.get(i - 1)).append(" ");
+                }
+                normalizedXpathBuilder.append(formattedConditions.get(i));
+            }
+        }
         normalizedXpathBuilder.append(CLOSE_BRACKET);
     }
 
@@ -176,27 +246,18 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     private void leafContext(final String leafName, final String operator, final Object comparisonValue) {
-        leafConditions.add(new CpsPathQuery.LeafCondition(leafName, operator, comparisonValue));
-        appendCondition(normalizedXpathBuilder, leafName, operator, comparisonValue);
-    }
-
-    private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
-                                 final String operator, final Object value) {
-        final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
-        final boolean isStartOfExpression = lastCharacter == '[';
-        if (!isStartOfExpression) {
-            currentNormalizedPathBuilder.append(" ").append(getLastElement(booleanOperators)).append(" ");
-        }
-        currentNormalizedPathBuilder.append("@").append(name).append(operator);
-        if (operator.equals("=")) {
-            currentNormalizedPathBuilder.append(wrapValueInSingleQuotes(value));
+        final CpsPathQuery.LeafCondition leafCondition = new CpsPathQuery.LeafCondition(leafName, operator,
+                comparisonValue);
+        if (insideListElementRef) {
+            pendingListRefConditions.add(leafCondition);
         } else {
-            currentNormalizedPathBuilder.append(value);
+            leafConditions.add(leafCondition);
         }
     }
 
-    private static String getLastElement(final List<String> listOfStrings) {
-        return listOfStrings.get(listOfStrings.size() - 1);
+    private static String formatCondition(final String name, final String operator, final Object value) {
+        final String formattedValue = operator.equals("=") ? wrapValueInSingleQuotes(value) : value.toString();
+        return "@" + name + operator + formattedValue;
     }
 
     private static String unwrapQuotedString(final String wrappedString) {
