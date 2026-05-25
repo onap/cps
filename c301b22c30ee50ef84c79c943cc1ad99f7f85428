@@ -16,6 +16,23 @@
       "message": "looks good, just reply to Toine\u0027s comments",
       "revId": "c301b22c30ee50ef84c79c943cc1ad99f7f85428",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5448e761_df9bdbdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:39:25Z",
+      "side": 1,
+      "message": "assuming doc update in new patch",
+      "revId": "c301b22c30ee50ef84c79c943cc1ad99f7f85428",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
