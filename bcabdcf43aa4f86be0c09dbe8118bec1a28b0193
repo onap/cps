@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9fdd3d9_c0a296e7",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 33
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-25T11:59:14Z",
+      "side": 1,
+      "message": "Is this backward compatible?",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cbe82cc_df8bf47f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-25T11:59:14Z",
+      "side": 1,
+      "message": "No longer needed",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ffcdca1_23027bb1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-25T11:59:14Z",
+      "side": 1,
+      "message": "We\u0027re sure this can\u0027t be null?",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68306be3_8b6ab69a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-25T11:59:14Z",
+      "side": 1,
+      "message": "Do you really want a failure for null here? Can be in given block if this is not what is being tested here",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6646902_6c219f3e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-25T11:59:14Z",
+      "side": 1,
+      "message": "Add the @throws to the Javadoc",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
