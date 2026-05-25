@@ -112,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ccd15cb_c1e8946a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:36:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "05b5a1a5_37e248a1",
+      "range": {
+        "startLine": 184,
+        "startChar": 12,
+        "endLine": 184,
+        "endChar": 41
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e69a80ad_5ff2009a",
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "That\u0027s a very good shout",
       "parentUuid": "e69a80ad_5ff2009a",
+      "range": {
+        "startLine": 334,
+        "startChar": 87,
+        "endLine": 335,
+        "endChar": 156
+      },
+      "revId": "108888dce180c3279fd8b6c3a4eed9feff7c4b29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8573d8ac_ab1e1d8c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:36:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7653df7b_dadeabbf",
       "range": {
         "startLine": 334,
         "startChar": 87,
