@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4099ee15_f93e7861",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "looks good a bit of tidying required",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9fdd3d9_c0a296e7",
@@ -37,6 +54,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67f76a43_52b334e6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "if preferred the old patterm, just drop json-bit\ntargetDataAsFile",
+      "range": {
+        "startLine": 82,
+        "startChar": 90,
+        "endLine": 82,
+        "endChar": 100
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ffcdca1_23027bb1",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
         "patchSetId": 33
@@ -48,6 +88,139 @@
       "writtenOn": "2026-05-25T11:59:14Z",
       "side": 1,
       "message": "We\u0027re sure this can\u0027t be null?",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4f15a5f_f255ccc9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "i think based on the defined 2 types (enum in OpenAPI) it cannot be null",
+      "parentUuid": "7ffcdca1_23027bb1",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f806494_04cd2388",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "as above; change back to targetData",
+      "range": {
+        "startLine": 89,
+        "startChar": 22,
+        "endLine": 89,
+        "endChar": 40
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ead5991_a4c62ae2",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "NB: colletion is more abstract and considered better.",
+      "range": {
+        "startLine": 97,
+        "startChar": 14,
+        "endLine": 97,
+        "endChar": 18
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fe057f7_345e29e6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "NB: not suer but maybe this could be Collection too",
+      "range": {
+        "startLine": 110,
+        "startChar": 66,
+        "endLine": 110,
+        "endChar": 70
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ef7b4a2_d0cef95e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "almost same in both I think this could be validated (once) BEFORE checking the type and just make the exception more generic like so \nthrow new IOException(\"file is empty\"); OR\nthrow new IOException(\"no file content\");",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 13
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f56abcba_e6134cd8",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "as above these methods can both throw IOException and catch in caller with more generic message:\nthrow new DataValidationException(\"Failed to read data file\", exception.getMessage());\n\n(thsi wil save you on test scenarios too)",
+      "range": {
+        "startLine": 119,
+        "startChar": 47,
+        "endLine": 119,
+        "endChar": 70
+      },
       "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -71,6 +244,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6162b4cd_09171948",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "assert test setup here, does not make sense...",
+      "parentUuid": "68306be3_8b6ab69a",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d6a3782_8c97be46",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "no needed if erro handling is combined befoer content type check",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 76
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6646902_6c219f3e",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
         "patchSetId": 33
@@ -82,6 +296,121 @@
       "writtenOn": "2026-05-25T11:59:14Z",
       "side": 1,
       "message": "Add the @throws to the Javadoc",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c72df7b6_23b928ad",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "NB: use static import to reduce to just JSON",
+      "range": {
+        "startLine": 281,
+        "startChar": 176,
+        "endLine": 281,
+        "endChar": 195
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75cdfd38_4a57b0fe",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "NB , use consistent spacing around commas (also an minor issue on line #258)\n(your IDE shoul dreally do this for you)",
+      "range": {
+        "startLine": 305,
+        "startChar": 181,
+        "endLine": 305,
+        "endChar": 183
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64225ea4_6dba4013",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "assert teh result!",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 29
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0853cff6_5a662b53",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "Attempt to convert invalid XML.",
+      "range": {
+        "startLine": 66,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 39
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9707be7_6607cd72",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DeltaServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-25T15:57:55Z",
+      "side": 1,
+      "message": "NB: use static imports",
+      "range": {
+        "startLine": 201,
+        "startChar": 187,
+        "endLine": 201,
+        "endChar": 199
+      },
       "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
