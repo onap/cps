@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eca10b45_75a7fcef",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-26T06:47:51Z",
+      "side": 1,
+      "message": "Done and moved the business logic to service layer as having this in ri layer is programmatically incorrect.",
+      "parentUuid": "2cf152a5_2c159c78",
+      "range": {
+        "startLine": 42,
+        "startChar": 26,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df5f344c_cb82f81d",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
         "patchSetId": 24
@@ -140,6 +164,30 @@
       "writtenOn": "2026-05-06T12:21:21Z",
       "side": 1,
       "message": "flatFragmentEntitiesPerId\n\nConsider leaving it as a tree and use a tree-walker instead to avoid re-building tree later...",
+      "range": {
+        "startLine": 82,
+        "startChar": 40,
+        "endLine": 82,
+        "endChar": 61
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "905c4039_32d51d5b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-26T06:47:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be87b18a_a12a5475",
       "range": {
         "startLine": 82,
         "startChar": 40,

@@ -651,6 +651,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc3a7b99_26aa1b0b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-26T06:47:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "22dfda9f_0a0f5543",
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b4768a3_89e1af84",
