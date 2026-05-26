@@ -20,20 +20,33 @@
 
 package org.onap.cps.impl.query;
 
+import static org.onap.cps.impl.query.CompositeQueryOperator.getNormalizedOperator;
+
 import java.util.Collection;
+import java.util.Collections;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.spi.CpsDataPersistenceService;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class CompositeQueryProcessor {
 
+    private static final int MAXIMUM_CONDITION_NESTING_DEPTH = 10;
+
+    private final CpsDataPersistenceService cpsDataPersistenceService;
+    private final CompositeQueryEvaluator compositeQueryEvaluator;
+
     /**
-     * Processes a composite query by executing the base cpsPath query, applying nested conditions
-     * using the configured operator logic, and returning matching DataNodes.
+     * Executes a composite query against the given dataspace and anchor.
+     * The query is first validated and normalized in a single upfront pass so that invalid input fails fast
+     * before any database access. A new {@link CompositeQueryExecution} then carries the per-query state
+     * through the three phases of the algorithm: fetch the candidate trees, compute the selected xpaths and
+     * build the filtered result trees.
      *
      * @param dataspaceName          the dataspace name
      * @param anchorName             the anchor name
@@ -45,6 +58,39 @@ public class CompositeQueryProcessor {
                                                       final String anchorName,
                                                       final CompositeQuery compositeQuery,
                                                       final FetchDescendantsOption fetchDescendantsOption) {
-        throw new UnsupportedOperationException("CompositeQueryProcessor is not yet implemented");
+        normalizeCompositeQuery(compositeQuery, 0);
+        final CompositeQueryExecution compositeQueryExecution = new CompositeQueryExecution(
+            cpsDataPersistenceService, compositeQueryEvaluator, dataspaceName, anchorName);
+        return compositeQueryExecution.execute(compositeQuery, fetchDescendantsOption);
+    }
+
+    /**
+     * Validates and normalizes the composite query and all its (nested) conditions in one upfront pass:
+     * every cps path must be present, every operator must parse to a supported value and the nesting of
+     * conditions may not exceed {@code MAXIMUM_CONDITION_NESTING_DEPTH}. A missing conditions collection
+     * (possible after Jackson deserialization which bypasses the builder default) is replaced by an empty
+     * collection so that later phases never need to check for null.
+     *
+     * @param compositeQuery the composite query (condition) to validate and normalize
+     * @param nestingDepth   the current nesting depth, starting at 0 for the top-level query
+     */
+    private static void normalizeCompositeQuery(final CompositeQuery compositeQuery, final int nestingDepth) {
+        if (nestingDepth > MAXIMUM_CONDITION_NESTING_DEPTH) {
+            throw new DataValidationException(
+                "Maximum nesting depth of " + MAXIMUM_CONDITION_NESTING_DEPTH + " exceeded",
+                "Reduce the nesting of composite query conditions");
+        }
+        if (compositeQuery.getCpsPath() == null || compositeQuery.getCpsPath().isBlank()) {
+            throw new DataValidationException("cps path is missing",
+                "Each composite query (condition) requires a cps path");
+        }
+        getNormalizedOperator(compositeQuery.getOperator());
+        if (compositeQuery.getConditions() == null) {
+            compositeQuery.setConditions(Collections.emptyList());
+            return;
+        }
+        for (final CompositeQuery compositeQueryCondition : compositeQuery.getConditions()) {
+            normalizeCompositeQuery(compositeQueryCondition, nestingDepth + 1);
+        }
     }
 }
