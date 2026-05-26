@@ -47,7 +47,7 @@ public class CompositeQueryProcessor {
 
     /**
      * Processes a composite query by executing the base cpsPath query, applying nested conditions
-     * using the configured operator logic, and returning matching DataNodes.
+     * using the configured operator logic, and returning matching DataNodes
      *
      * @param dataspaceName          the dataspace name
      * @param anchorName             the anchor name
