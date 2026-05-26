@@ -2349,6 +2349,16 @@ paths:
           default: false
           example: true
           type: boolean
+      - description: Content type in header
+        in: header
+        name: Accept
+        required: false
+        schema:
+          default: application/json
+          enum:
+          - application/json
+          - application/xml
+          type: string
       requestBody:
         content:
           multipart/form-data:
@@ -2361,6 +2371,12 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/deltaReportSample'
+              schema:
+                type: object
+            application/xml:
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/deltaReportSampleXml'
               schema:
                 type: object
           description: OK
@@ -2664,6 +2680,87 @@ paths:
       tags:
       - cps-query
       x-codegen-request-body-name: xpath
+    post:
+      description: Query data nodes for the given dataspace and anchor using CPS path
+        and JSON payload
+      operationId: getNodesCompositeQuery
+      parameters:
+      - description: dataspace-name
+        in: path
+        name: dataspace-name
+        required: true
+        schema:
+          example: my-dataspace
+          type: string
+      - description: anchor-name
+        in: path
+        name: anchor-name
+        required: true
+        schema:
+          example: my-anchor
+          type: string
+      - description: "Number of descendants to query. Allowed values are 'none', 'all',\
+          \ 'direct', 1 (for direct), -1 (for all), 0 (for none) and any positive\
+          \ number."
+        in: query
+        name: descendants
+        required: false
+        schema:
+          default: none
+          example: "3"
+          type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/dataSample'
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/dataSample'
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Query data nodes with JSON payload
+      tags:
+      - cps-query
   /v2/dataspaces/{dataspace-name}/nodes/query:
     get:
       description: Query data nodes for the given dataspace across anchors using CPS
@@ -3253,6 +3350,17 @@ components:
         default: false
         example: true
         type: boolean
+    acceptMediaType:
+      description: Content type in header
+      in: header
+      name: Accept
+      required: false
+      schema:
+        default: application/json
+        enum:
+        - application/json
+        - application/xml
+        type: string
     cpsPathInQuery:
       description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
       examples:
@@ -3465,8 +3573,8 @@ components:
     notificationSubscriptionResponseSample: {}
     getDeltaByDataspaceAnchorAndPayload_request:
       properties:
-        targetDataAsJsonFile:
-          example: "{$ref=components.yml#/components/schemas/TargetDataAsJsonFile}"
+        targetData:
+          example: "{$ref=components.yml#/components/schemas/targetData}"
           format: binary
           type: string
         yangResourceFile:
@@ -3474,5 +3582,5 @@ components:
           format: binary
           type: string
       required:
-      - targetDataAsJsonFile
+      - targetData
       type: object
