@@ -15,14 +15,14 @@
           "street": "Main Street",
           "town": "Maynooth",
           "county": "Kildare",
-          "postal-code": "D02HA22"
+          "pin-code": "D02HA23"
         },
         {
           "house-number": 24,
           "street": "Grafton Street",
           "town": "Dublin",
           "county": "Dublin",
-          "postal-code": "D02HA45"
+          "pin-code": "D02HA44"
         }
       ]
     },
