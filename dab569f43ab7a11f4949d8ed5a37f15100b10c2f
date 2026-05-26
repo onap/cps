@@ -16,6 +16,47 @@
       "message": "Did this part need coordination with Lee Anjella?",
       "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5c999e1_832cd4cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-26T15:47:31Z",
+      "side": 0,
+      "message": "did you discuss with Lee Anjella yet?!",
+      "parentUuid": "8653313b_bcf1a903",
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00c0fce9_8b49ed56",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/KafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-26T15:47:31Z",
+      "side": 0,
+      "message": "I see this many times now, want to have Lee Anjella\u0027s feedback!",
+      "range": {
+        "startLine": 76,
+        "startChar": 2,
+        "endLine": 79,
+        "endChar": 9
+      },
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
