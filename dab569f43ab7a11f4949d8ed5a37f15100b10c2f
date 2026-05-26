@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8653313b_bcf1a903",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-05-26T11:59:53Z",
+      "side": 0,
+      "message": "Did this part need coordination with Lee Anjella?",
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
