@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 Deutsche Telekom AG
  *  ================================================================================
@@ -123,6 +123,8 @@ public class CmHandleRegistrationServicePropertyHandler {
         if (!updatedNcmpServiceCmHandle.getAdditionalProperties().isEmpty()) {
             updateProperties(existingCmHandleDataNode, ADDITIONAL_PROPERTY,
                 updatedNcmpServiceCmHandle.getAdditionalProperties());
+            updateDmiPropertiesIfExists(existingCmHandleDataNode,
+                updatedNcmpServiceCmHandle);
         }
     }
 
@@ -173,6 +175,43 @@ public class CmHandleRegistrationServicePropertyHandler {
         final CmHandleTransitionPair cmHandleTransitionPair =
             new CmHandleTransitionPair(currentYangModelCmHandle, updatedYangModelCmHandle);
         lcmEventProducer.sendLcmEventBatchAsynchronously(List.of(cmHandleTransitionPair));
+    }
+
+    private void updateDmiPropertiesIfExists(final DataNode existingCmHandleDataNode,
+                                             final NcmpServiceCmHandle updatedNcmpServiceCmHandle) {
+        final String existingDmiProperties =
+                (String) existingCmHandleDataNode.getLeaves().get("dmi-properties");
+        if (existingDmiProperties != null) { // null means leaf not in schema (old model); empty string is valid
+            final Map<String, String> mergedProperties =
+                getMergedAdditionalProperties(existingCmHandleDataNode,
+                    updatedNcmpServiceCmHandle.getAdditionalProperties());
+            inventoryPersistence.updateCmHandleField(
+                updatedNcmpServiceCmHandle.getCmHandleId(),
+                "dmi-properties",
+                jsonObjectMapper.asJsonString(mergedProperties));
+        }
+    }
+
+    private Map<String, String> getMergedAdditionalProperties(
+            final DataNode existingCmHandleDataNode,
+            final Map<String, String> updatedProperties) {
+        final Map<String, String> merged = new LinkedHashMap<>();
+        for (final DataNode childDataNode : existingCmHandleDataNode.getChildDataNodes()) {
+            final Matcher matcher =
+                    ADDITIONAL_PROPERTY.propertyXpathPattern.matcher(childDataNode.getXpath());
+            if (matcher.find()) {
+                final String name = matcher.group(2);
+                merged.put(name, (String) childDataNode.getLeaves().get("value"));
+            }
+        }
+        for (final Map.Entry<String, String> entry : updatedProperties.entrySet()) {
+            if (entry.getValue() == null) {
+                merged.remove(entry.getKey());
+            } else {
+                merged.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return merged;
     }
 
     private void updateProperties(final DataNode existingCmHandleDataNode, final PropertyType propertyType,
