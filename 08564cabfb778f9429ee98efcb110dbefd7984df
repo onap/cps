@@ -16,6 +16,236 @@
       "message": "Resolved",
       "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41352f66_dcd78fd0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "you should extract this here being consistent with how you handled with other methods above, I see this is the only one passed as string to service layer",
+      "range": {
+        "startLine": 104,
+        "startChar": 90,
+        "endLine": 104,
+        "endChar": 101
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09769d64_9d6374ec",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "NB:indent",
+      "range": {
+        "startLine": 79,
+        "startChar": 34,
+        "endLine": 79,
+        "endChar": 39
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90309928_e6f77cf3",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "not needed you can directly pass parameter name",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 55
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c9df22c_068126d8",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "can you write a test showcasing this issue. So I can debug it",
+      "range": {
+        "startLine": 90,
+        "startChar": 18,
+        "endLine": 90,
+        "endChar": 29
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f7fad77_a2a85167",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "fix indentation",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 13
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d65fbf13_fcbbfb55",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "NB: or",
+      "range": {
+        "startLine": 67,
+        "startChar": 58,
+        "endLine": 67,
+        "endChar": 61
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c683c81_50af1a5d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "this block has severe code duplication and it can be simplified a lot.\nI recommend using lambda function here",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80278484_6b1f6431",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "NB: space",
+      "range": {
+        "startLine": 101,
+        "startChar": 95,
+        "endLine": 101,
+        "endChar": 96
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f003a541_0bf2549d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "dataspaceName",
+      "range": {
+        "startLine": 142,
+        "startChar": 62,
+        "endLine": 142,
+        "endChar": 75
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a9294da_e4bedac2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-27T06:20:30Z",
+      "side": 1,
+      "message": "Not sure if haiving separate tests for XML is needed, try to combine them with exisitng tests",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 29
+      },
+      "revId": "08564cabfb778f9429ee98efcb110dbefd7984df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
