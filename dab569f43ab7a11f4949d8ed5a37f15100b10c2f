@@ -36,6 +36,47 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31f0e148_cd23e0a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-27T08:24:50Z",
+      "side": 0,
+      "message": "covered by lines 132-134: if (tracingEnabled) { kafkaTemplate.setObservationEnabled(true); }",
+      "parentUuid": "a5c999e1_832cd4cd",
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2d37340_d6063740",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-27T08:24:50Z",
+      "side": 0,
+      "message": "covered by line 161-163",
+      "range": {
+        "startLine": 123,
+        "startChar": 6,
+        "endLine": 126,
+        "endChar": 9
+      },
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00c0fce9_8b49ed56",
@@ -53,6 +94,122 @@
         "startLine": 76,
         "startChar": 2,
         "endLine": 79,
+        "endChar": 9
+      },
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93585e20_97b268c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/KafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-27T08:24:50Z",
+      "side": 0,
+      "message": "covered by line 100-102",
+      "parentUuid": "00c0fce9_8b49ed56",
+      "range": {
+        "startLine": 76,
+        "startChar": 2,
+        "endLine": 79,
+        "endChar": 9
+      },
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba8e2528_a6fb0c78",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/KafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-27T08:24:50Z",
+      "side": 0,
+      "message": "cpvered by ine 119-121",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e1faae6_c2c3fc3c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/KafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-27T08:24:50Z",
+      "side": 0,
+      "message": "covered by line 159-161",
+      "range": {
+        "startLine": 143,
+        "startChar": 7,
+        "endLine": 146,
+        "endChar": 9
+      },
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "553364f3_bc36d1d1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/KafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-27T08:24:50Z",
+      "side": 0,
+      "message": "covered by line 177-179",
+      "range": {
+        "startLine": 159,
+        "startChar": 6,
+        "endLine": 162,
+        "endChar": 9
+      },
+      "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1541b5a_1098e08d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/KafkaConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-27T08:24:50Z",
+      "side": 0,
+      "message": "covered by line 202-204",
+      "range": {
+        "startLine": 214,
+        "startChar": 4,
+        "endLine": 217,
         "endChar": 9
       },
       "revId": "dab569f43ab7a11f4949d8ed5a37f15100b10c2f",

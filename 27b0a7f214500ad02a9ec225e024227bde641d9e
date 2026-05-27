@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8007491_570516b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-05-27T08:24:50Z",
+      "side": 1,
+      "message": "every removed lines (using OTel) already had a same spring equivalent , tracing will still work same way just uusing spring\u0027s built in. i.e. removed lines was actually redundant\nhttps://docs.spring.io/spring-kafka/reference/kafka/micrometer.html",
+      "revId": "27b0a7f214500ad02a9ec225e024227bde641d9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a01cb6c6_4bdb39ed",
