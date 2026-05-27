@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5cc7d9d_b4dd1bdd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-27T08:55:31Z",
+      "side": 1,
+      "message": "The static import is used to improve readability by avoiding repeated use of ContentType.XML. Alternatively, we can use ContentType.XML directly for better clarity.”",
+      "parentUuid": "8cbe82cc_df8bf47f",
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67f76a43_52b334e6",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
         "patchSetId": 33
@@ -316,6 +334,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49dbc195_55e6fd94",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-27T08:55:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef7b4a2_d0cef95e",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 13
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f56abcba_e6134cd8",
@@ -429,6 +471,30 @@
       "writtenOn": "2026-05-25T15:57:55Z",
       "side": 1,
       "message": "no needed if erro handling is combined befoer content type check",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 76
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "678dceab_db076d36",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-27T08:55:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d6a3782_8c97be46",
       "range": {
         "startLine": 228,
         "startChar": 0,
@@ -581,6 +647,30 @@
       "writtenOn": "2026-05-25T15:57:55Z",
       "side": 1,
       "message": "assert teh result!",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 29
+      },
+      "revId": "bcabdcf43aa4f86be0c09dbe8118bec1a28b0193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1458374f_4df57cbc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlObjectMapperSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-05-27T08:55:31Z",
+      "side": 1,
+      "message": "This convertToJsonNode method returns void, so there is no value to assert. The test validates behavior by ensuring no exception is thrown",
+      "parentUuid": "64225ea4_6dba4013",
       "range": {
         "startLine": 63,
         "startChar": 12,
