@@ -302,7 +302,7 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
     }
 
     def getAllConsumedCorrelationIds() {
-        def consumedEvents = getLatestConsumerRecordsWithMaxPollOf1Second(dmiInConsumer, 1)
+        def consumedEvents = getLatestConsumerRecordsWithMaxPollOf1Second(dmiInConsumer, 2)
         def headersMap = getAllHeaders(consumedEvents)
         return headersMap.get('ce_correlationid')
     }
