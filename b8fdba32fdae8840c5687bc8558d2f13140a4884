@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25cf7a7e_7bfa0540",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-28T03:09:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eca10b45_75a7fcef",
+      "range": {
+        "startLine": 42,
+        "startChar": 26,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df5f344c_cb82f81d",
@@ -105,6 +129,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29137bb5_5b5ddfab",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-28T03:09:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df5f344c_cb82f81d",
+      "range": {
+        "startLine": 48,
+        "startChar": 19,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cf618da_b1e1d524",
@@ -118,6 +166,30 @@
       "writtenOn": "2026-05-06T12:21:21Z",
       "side": 1,
       "message": "dont think this is needed. even wth descendant on if there is nothing it will return nothing quickly...\nGoin to DB twice now for noe good reason",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 66
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6d8c4f5_6e245736",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-28T03:09:05Z",
+      "side": 1,
+      "message": "this is removed and only one call is being made in service layer code",
+      "parentUuid": "8cf618da_b1e1d524",
       "range": {
         "startLine": 72,
         "startChar": 0,
@@ -234,6 +306,30 @@
       "writtenOn": "2026-05-06T12:21:21Z",
       "side": 1,
       "message": "I dont think we need to get all the data for the node first and then intersect with the first query, just execute the first query , then intersect the next (for AND) or create Union for OR",
+      "range": {
+        "startLine": 124,
+        "startChar": 22,
+        "endLine": 124,
+        "endChar": 46
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0436f282_22f4b2ff",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryProcessor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-28T03:09:05Z",
+      "side": 1,
+      "message": "removed the logic of flattening and now we are using a walking tree approach",
+      "parentUuid": "82c53987_7d4a6ee4",
       "range": {
         "startLine": 124,
         "startChar": 22,

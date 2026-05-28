@@ -476,6 +476,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9182ef3d_34c0bcd7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-28T03:09:05Z",
+      "side": 1,
+      "message": "removed the \u0027s\u0027 as it was confusing and incorrect",
+      "parentUuid": "d57fc153_c5c9fd99",
+      "range": {
+        "startLine": 71,
+        "startChar": 42,
+        "endLine": 71,
+        "endChar": 63
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "726cedc7_19131249",
@@ -777,6 +801,30 @@
       "side": 1,
       "message": "tha\u0027ts a good improvement, much clearer now. Thanks",
       "parentUuid": "f0bcb326_9169d1cb",
+      "range": {
+        "startLine": 128,
+        "startChar": 45,
+        "endLine": 128,
+        "endChar": 47
+      },
+      "revId": "c110bc30d96e6c09e708b62c7bb25ad6d23c9de9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98dab988_e2f72b81",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/query/CompositeQueryOperatorsSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-05-28T03:09:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "280eefd7_bcd79b36",
       "range": {
         "startLine": 128,
         "startChar": 45,
