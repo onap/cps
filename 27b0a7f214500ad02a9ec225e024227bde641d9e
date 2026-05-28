@@ -116,6 +116,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85fd72fd_50b2b7d2",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-05-28T09:00:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0a30732b_6282ca89",
+      "range": {
+        "startLine": 40,
+        "startChar": 49,
+        "endLine": 40,
+        "endChar": 55
+      },
+      "revId": "27b0a7f214500ad02a9ec225e024227bde641d9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d778734_5959fcee",
@@ -153,6 +177,30 @@
       "side": 1,
       "message": "Investigate more about this in CPS-3242",
       "parentUuid": "1d778734_5959fcee",
+      "range": {
+        "startLine": 18,
+        "startChar": 49,
+        "endLine": 18,
+        "endChar": 55
+      },
+      "revId": "27b0a7f214500ad02a9ec225e024227bde641d9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb0fc171_d392559d",
+        "filename": "policy-executor-stub/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-05-28T09:00:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e3d8279_8c9bf751",
       "range": {
         "startLine": 18,
         "startChar": 49,
