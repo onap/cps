@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dba1b083_a3e2763e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-28T07:28:33Z",
+      "side": 1,
+      "message": "small formatting fix required",
+      "revId": "b285422217c08ec2ab33dd38cd114929df2da70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b88dcec_cf9a41c6",
+        "filename": "docs/cm-notifications.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-28T07:28:33Z",
+      "side": 1,
+      "message": "extends the length of this line to match the above\n(I think this lead to a RTD failure)",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 29
+      },
+      "revId": "b285422217c08ec2ab33dd38cd114929df2da70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e3d5473_f6cd88a6",
+        "filename": "docs/cm-notifications.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-28T07:28:33Z",
+      "side": 1,
+      "message": "extends the length of this line to match the above\n(I think this lead to a RTD failure)",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 39
+      },
+      "revId": "b285422217c08ec2ab33dd38cd114929df2da70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

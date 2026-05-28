@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a21850c_a8f5ab2c",
+        "filename": "docs/cm-notifications.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-05-28T07:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a8fe01c_10928704",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 151
+      },
+      "revId": "a9f2021b74944f405a10283b16ade84c1cf9a73a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95831bf4_c63ab281",
