@@ -265,10 +265,15 @@ public class AdminRestController implements CpsAdminApi {
      */
     @Override
     public ResponseEntity<List<AnchorDetails>> getAnchors(final String apiVersion,
-            final String dataspaceName) {
-        final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName);
-        final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
-            .collect(Collectors.toList());
+            final String dataspaceName, final String schemaSetName) {
+        final List<AnchorDetails> anchorDetails;
+        if (schemaSetName == null || schemaSetName.isEmpty()) {
+            final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName);
+            anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+        } else {
+            final Collection<Anchor> anchors = cpsAnchorService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
+            anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+        }
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 
