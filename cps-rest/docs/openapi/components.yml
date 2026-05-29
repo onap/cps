@@ -518,6 +518,14 @@ components:
         type: boolean
         default: false
         example: true
+    schemaSetNameOptionalInQuery:
+      name: schema-set-name
+      in: query
+      description: schema-set-name
+      required: false
+      schema:
+        type: string
+        example: my-schema-set
 
   responses:
     NotFound:
