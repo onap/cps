@@ -190,9 +190,8 @@ public class KafkaConfig {
     @ConditionalOnMissingBean(name = "cmAvcEventListenerContainerFactory")
     public ConcurrentKafkaListenerContainerFactory<String, CloudEvent>
             cmAvcEventListenerContainerFactory() {
-        log.info("Configuring CM AVC event listener in single-record mode (no transactions, max-poll-records=1)");
+        log.info("Configuring CM AVC event listener in non-transactional mode");
         final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
-        consumerConfigProperties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 1);
         final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(new DefaultKafkaConsumerFactory<>(consumerConfigProperties));

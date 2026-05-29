@@ -67,7 +67,6 @@ import org.testcontainers.spock.Testcontainers
 @TestPropertySource(properties = [
         'ncmp.kafka.eos.enabled=true',
         'ncmp.notifications.avc-event-producer.transaction-id-prefix=tx-batch-int-test-',
-        'ncmp.notifications.avc-event-consumer.batch-enabled=true',
         'ncmp.notifications.avc-event-consumer.concurrency=1',
         'ncmp.notifications.avc-event-consumer.max-poll-records=500',
         'app.dmi.cm-events.topic=dmi-cm-events-batch-int',
