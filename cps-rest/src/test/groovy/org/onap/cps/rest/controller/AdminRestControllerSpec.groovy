@@ -94,6 +94,7 @@ class AdminRestControllerSpec extends Specification {
     def schemaSetName = 'my_schema_set'
     def anchor = new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
     def dataspace = new Dataspace(name: dataspaceName)
+    def schemaSetNames = ["my_schema_set1","my_schema_set2"]
 
     def 'Create new dataspace with #scenario.'() {
         when: 'post is invoked on endpoint for creating a dataspace'
@@ -365,6 +366,18 @@ class AdminRestControllerSpec extends Specification {
         and: 'the endpoint for getting all anchors'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'get all anchors API is invoked'
+            def response = mvc.perform(get(anchorEndpoint)).andReturn().response
+        then: 'the correct anchor is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(anchorName)
+    }
+
+    def 'Get existing anchors filtered by schema set names.'() {
+        given: 'service method returns a list of anchors'
+            mockCpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames) >> [anchor]
+        and: 'the endpoint for getting all anchors with multiple schema-set-name parameters'
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors?schema-set-names=my_schema_set1,my_schema_set2"
+        when: 'get anchors API is invoked'
             def response = mvc.perform(get(anchorEndpoint)).andReturn().response
         then: 'the correct anchor is returned'
             response.status == HttpStatus.OK.value()
