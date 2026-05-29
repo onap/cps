@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c80460fd_527385da",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-05-29T12:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "703dfe6a_22f15fc7",
+      "range": {
+        "startLine": 83,
+        "startChar": 69,
+        "endLine": 83,
+        "endChar": 98
+      },
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b23f021_8f4cdb39",
@@ -126,6 +150,24 @@
       "side": 1,
       "message": "On removing this, it is giving checkstyle violation",
       "parentUuid": "879b94ea_15fd8f14",
+      "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2fb1c42_a9909d25",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-05-29T12:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1880870f_d1ef207c",
       "revId": "e471a145168b0104920f99f98e57c8a5f3bad639",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
