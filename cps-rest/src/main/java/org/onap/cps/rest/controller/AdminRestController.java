@@ -29,6 +29,7 @@ import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -265,10 +266,18 @@ public class AdminRestController implements CpsAdminApi {
      */
     @Override
     public ResponseEntity<List<AnchorDetails>> getAnchors(final String apiVersion,
-            final String dataspaceName) {
-        final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName);
-        final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
-            .collect(Collectors.toList());
+             final String dataspaceName,final String schemaSetName){
+        List<AnchorDetails> anchorDetails = new ArrayList<AnchorDetails>();
+        if(schemaSetName==null || schemaSetName.isEmpty()){
+            final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName);
+                anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
+                    .collect(Collectors.toList());
+        }
+        else {
+            final Collection<Anchor> anchors = cpsAnchorService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
+            anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
+                    .collect(Collectors.toList());
+        }
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 
