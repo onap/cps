@@ -529,6 +529,17 @@ components:
           - application/json
           - application/xml
         default: application/json
+    schemaSetNamesInQuery:
+      name: schema-set-names
+      in: query
+      description: comma separated list of schema set names
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
 
   responses:
     NotFound:
