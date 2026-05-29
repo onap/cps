@@ -196,12 +196,11 @@ ncmp:
         avc-event-producer:
             transaction-id-prefix: tx-
         avc-event-consumer:
-            batch-enabled: false
             concurrency: 2
             max-poll-records: 500
     kafka:
         eos:
-            enabled: ${ncmp.notifications.avc-event-consumer.batch-enabled}
+            enabled: false
     policy-executor:
         enabled: ${POLICY_SERVICE_ENABLED:false}
         defaultDecision: ${POLICY_SERVICE_DEFAULT_DECISION:"allow"}

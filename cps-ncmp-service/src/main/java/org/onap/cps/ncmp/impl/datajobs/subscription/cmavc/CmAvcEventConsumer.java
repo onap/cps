@@ -45,9 +45,10 @@ import org.springframework.stereotype.Component;
 
 /**
  * Consumer for CM AVC (Attribute Value Change) events.
- * Supports two modes controlled by the batch-enabled property:
- * Single mode (default): processes one event at a time without transactions (max-poll-records=1).
- * Batch mode: processes multiple events in a single transaction with exactly-once semantics.
+ * Supports two modes controlled by ncmp.kafka.eos.enabled:
+ * Non-transactional mode (default): processes events in batches without transactions (at-least-once).
+ * EOS mode: processes events in batches within a single transaction with exactly-once semantics.
+ * The container factory determines the mode.
  */
 @Component
 @Slf4j
@@ -87,9 +88,6 @@ public class CmAvcEventConsumer {
 
     /**
      * Consume and forward CM AVC events.
-     * In single mode (default), receives a batch of 1 event without transactions.
-     * In batch mode, receives multiple events within a Kafka transaction (exactly-once semantics).
-     * The container factory determines the mode based on the batch-enabled property.
      *
      * @param cmAvcEventBatch the incoming batch of consumer records
      */
