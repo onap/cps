@@ -371,6 +371,18 @@ class AdminRestControllerSpec extends Specification {
             response.getContentAsString().contains(anchorName)
     }
 
+    def 'Get existing anchors filtered by schema set name.'() {
+        given: 'service method returns a list of (one) anchors'
+            mockCpsAnchorService.getAnchorsBySchemaSetName(dataspaceName,schemaSetName) >> [anchor]
+        and: 'the endpoint for getting all anchors'
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors?schema-set-name=$schemaSetName"
+        when: 'get anchors API is invoked'
+            def response = mvc.perform(get(anchorEndpoint)).andReturn().response
+        then: 'the correct anchor is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(anchorName)
+    }
+
     def 'Get existing anchor by dataspace and anchor name.'() {
         given: 'service method returns an anchor'
             mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >>
