@@ -561,6 +561,17 @@ paths:
         schema:
           example: my-dataspace
           type: string
+      - description: comma separated list of schema set names
+        example: "schema-set1,schema-set2,schema-set3"
+        explode: false
+        in: query
+        name: schema-set-names
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -2349,6 +2360,16 @@ paths:
           default: false
           example: true
           type: boolean
+      - description: Content type in header
+        in: header
+        name: Accept
+        required: false
+        schema:
+          default: application/json
+          enum:
+          - application/json
+          - application/xml
+          type: string
       requestBody:
         content:
           multipart/form-data:
@@ -2361,6 +2382,12 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/deltaReportSample'
+              schema:
+                type: object
+            application/xml:
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/deltaReportSampleXml'
               schema:
                 type: object
           description: OK
@@ -3138,6 +3165,18 @@ components:
       schema:
         example: my-anchor
         type: string
+    schemaSetNamesInQuery:
+      description: comma separated list of schema set names
+      example: "schema-set1,schema-set2,schema-set3"
+      explode: false
+      in: query
+      name: schema-set-names
+      required: false
+      schema:
+        items:
+          type: string
+        type: array
+      style: form
     anchorNameInPath:
       description: anchor-name
       in: path
@@ -3253,6 +3292,17 @@ components:
         default: false
         example: true
         type: boolean
+    acceptMediaType:
+      description: Content type in header
+      in: header
+      name: Accept
+      required: false
+      schema:
+        default: application/json
+        enum:
+        - application/json
+        - application/xml
+        type: string
     cpsPathInQuery:
       description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
       examples:
@@ -3465,8 +3515,8 @@ components:
     notificationSubscriptionResponseSample: {}
     getDeltaByDataspaceAnchorAndPayload_request:
       properties:
-        targetDataAsJsonFile:
-          example: "{$ref=components.yml#/components/schemas/TargetDataAsJsonFile}"
+        targetData:
+          example: "{$ref=components.yml#/components/schemas/targetData}"
           format: binary
           type: string
         yangResourceFile:
@@ -3474,5 +3524,5 @@ components:
           format: binary
           type: string
       required:
-      - targetDataAsJsonFile
+      - targetData
       type: object
