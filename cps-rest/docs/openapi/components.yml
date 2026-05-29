@@ -529,6 +529,14 @@ components:
           - application/json
           - application/xml
         default: application/json
+    schemaSetNameOptionalInQuery:
+      name: schema-set-name
+      in: query
+      description: schema-set-name
+      required: false
+      schema:
+        type: string
+        example: my-schema-set
 
   responses:
     NotFound:

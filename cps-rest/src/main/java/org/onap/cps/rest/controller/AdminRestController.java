@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
@@ -265,10 +266,15 @@ public class AdminRestController implements CpsAdminApi {
      */
     @Override
     public ResponseEntity<List<AnchorDetails>> getAnchors(final String apiVersion,
-            final String dataspaceName) {
-        final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName);
-        final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
-            .collect(Collectors.toList());
+            final String dataspaceName, final String schemaSetName) {
+        final List<AnchorDetails> anchorDetails;
+        if (StringUtils.isBlank(schemaSetName)) {
+            final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName);
+            anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+        } else {
+            final Collection<Anchor> anchors = cpsAnchorService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
+            anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+        }
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 
