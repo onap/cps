@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9933c217_583a36a9",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T11:00:13Z",
+      "side": 1,
+      "message": "add condition to check for root node xpath",
+      "revId": "a02ffcbe35be20265da8e60356c65840152d28ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "459c6ba6_f5500356",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T11:00:13Z",
+      "side": 1,
+      "message": "remove spaces",
+      "revId": "a02ffcbe35be20265da8e60356c65840152d28ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4283093a_12d5d326",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T11:00:13Z",
+      "side": 1,
+      "message": "first 3 cases are not required as they do not test sorting",
+      "range": {
+        "startLine": 126,
+        "startChar": 13,
+        "endLine": 128,
+        "endChar": 28
+      },
+      "revId": "a02ffcbe35be20265da8e60356c65840152d28ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b0a9ec8_a9cc9f24",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T11:00:13Z",
+      "side": 1,
+      "message": "add the headings",
+      "revId": "a02ffcbe35be20265da8e60356c65840152d28ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21bc78e2_8a895de9",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T11:00:13Z",
+      "side": 1,
+      "message": "add scenario, remove individual exception checks and reduce the redundant scenarios",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 17
+      },
+      "revId": "a02ffcbe35be20265da8e60356c65840152d28ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e618784_26b1a496",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T11:00:13Z",
+      "side": 1,
+      "message": "can use static import",
+      "range": {
+        "startLine": 150,
+        "startChar": 39,
+        "endLine": 150,
+        "endChar": 50
+      },
+      "revId": "a02ffcbe35be20265da8e60356c65840152d28ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
