@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "731edf1c_e333ba9b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T12:52:49Z",
+      "side": 1,
+      "message": "fix this too",
+      "range": {
+        "startLine": 74,
+        "startChar": 54,
+        "endLine": 74,
+        "endChar": 76
+      },
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2fdfd9b_60bdcf14",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T12:52:49Z",
+      "side": 1,
+      "message": "you can directly call fromString",
+      "range": {
+        "startLine": 110,
+        "startChar": 41,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8546949e_c8e01b21",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T12:52:49Z",
+      "side": 1,
+      "message": "NB: indentation not fixed",
+      "range": {
+        "startLine": 114,
+        "startChar": 33,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b108a4c6_d2eb6586",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T12:52:49Z",
+      "side": 1,
+      "message": "revert to original delta report in XML or JSON string format",
+      "range": {
+        "startLine": 116,
+        "startChar": 35,
+        "endLine": 116,
+        "endChar": 84
+      },
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9283466c_b222f9a7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-01T12:52:49Z",
+      "side": 1,
+      "message": "why did you remove the test?",
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
