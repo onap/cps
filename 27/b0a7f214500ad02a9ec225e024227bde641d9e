@@ -1,0 +1,12 @@
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+2: Sean Beirne <sean.beirne@est.tech>
+Verified+1: ONAP Bypass GHA <releng+onap.bypass.gha@linuxfoundation.org>
+Verified+1: Sean Beirne <sean.beirne@est.tech>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Code-Review+1: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Code-Review+2: Gerard Nugent <gerard.nugent@est.tech>
+Submitted-by: Sean Beirne <sean.beirne@est.tech>
+Submitted-at: Tue, 02 Jun 2026 08:52:00 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/144272
+Project: cps
+Branch: refs/heads/master
