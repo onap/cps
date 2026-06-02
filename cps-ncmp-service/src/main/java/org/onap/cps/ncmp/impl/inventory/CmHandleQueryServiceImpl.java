@@ -69,8 +69,8 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
     private final CpsValidator cpsValidator;
 
-    @Value("${ignore.r20260423.model:true}")
-    private boolean ignoreR20260423Model;
+    @Value("#{!${ignore.r20260423.model:true}}")
+    private boolean useOptimizedModel;
 
     @Override
     public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> additionalPropertyQueryPairs,
@@ -94,7 +94,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
     @Override
     public Collection<String> queryCmHandleIdsByState(final CmHandleState cmHandleState) {
-        if (!ignoreR20260423Model) {
+        if (useOptimizedModel) {
             final String cpsPath = NCMP_DMI_REGISTRY_PARENT
                     + "/cm-handles[@cm-handle-state='" + cmHandleState + "']/@id";
             return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
@@ -119,7 +119,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
     @Override
     public boolean cmHandleHasState(final String cmHandleId, final CmHandleState requiredCmHandleState) {
-        if (!ignoreR20260423Model) {
+        if (useOptimizedModel) {
             cpsValidator.validateNameCharacters(cmHandleId);
             final String cpsPath = NCMP_DMI_REGISTRY_PARENT
                     + "/cm-handles[@id='" + cmHandleId + "']/@cm-handle-state";
