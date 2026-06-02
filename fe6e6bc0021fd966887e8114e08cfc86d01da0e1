@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01c7ede7_bb15ca5f",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-02T06:22:15Z",
+      "side": 1,
+      "message": "normalizeXpathKeys can be directly called here",
+      "range": {
+        "startLine": 153,
+        "startChar": 81,
+        "endLine": 153,
+        "endChar": 96
+      },
+      "revId": "fe6e6bc0021fd966887e8114e08cfc86d01da0e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef1dd942_1a33c886",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-02T06:22:15Z",
+      "side": 1,
+      "message": "revert",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 20
+      },
+      "revId": "fe6e6bc0021fd966887e8114e08cfc86d01da0e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
