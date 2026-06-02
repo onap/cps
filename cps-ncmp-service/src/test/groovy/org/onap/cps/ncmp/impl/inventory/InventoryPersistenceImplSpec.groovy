@@ -72,7 +72,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def objectUnderTest = Spy(new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleIdPerAlternateId))
 
     def setup() {
-        ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', true)
+        ReflectionTestUtils.setField(objectUnderTest, 'useOptimizedModel', true)
     }
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
@@ -194,6 +194,8 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
         then: 'update data nodes and descendants is invoked with the correct params'
             1 * mockCpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['/dmi-registry/cm-handles[@id=\'ch-1\']': expectedJsonData], _ as OffsetDateTime, ContentType.JSON)
+        and: 'update node leaves is invoked for top-level cm-handle-state'
+            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
         where: 'the following states are used'
             scenario    | cmHandleState          || expectedJsonData
             'READY'     | CmHandleState.READY    || '{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
@@ -201,21 +203,18 @@ class InventoryPersistenceImplSpec extends Specification {
             'DELETING'  | CmHandleState.DELETING || '{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}'}
 
 
-    def 'Update Cm Handle State when model upgrade is enabled.'() {
+    def 'Update Cm Handle State when using the optimized model.'() {
         given: 'a cm handle and a composite state'
             def cmHandleId = 'ch-1'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.READY, lastUpdateTime: formattedDateAndTime)
         and: 'alternate id cache contains the given cm handle reference'
             mockCmHandleIdPerAlternateId.containsKey(_) >> true
-        and: 'the new model is active'
-            ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', false)
         when: 'update cm handle state is invoked'
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
-        then: 'update data nodes and descendants is invoked for state container'
+        then: 'update data nodes and descendants is invoked'
             1 * mockCpsDataService.updateDataNodesAndDescendants(*_)
-        and: 'update node leaves is invoked for top-level cm-handle-state'
-            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
+        and: 'update node leaves is also invoked for top-level state'
+            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
     }
 
     def 'Update Cm Handles with #scenario States.'() {
@@ -229,6 +228,8 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'update data nodes and descendants is invoked with the correct params'
             1 * mockCpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlesJsonDataMap, _ as OffsetDateTime, ContentType.JSON)
+        and: 'update node leaves is invoked for top-level cm-handle-state'
+            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
         where: 'the following states are used'
             scenario    | cmHandleState          || cmHandlesJsonDataMap
             'READY'     | CmHandleState.READY    || ['/dmi-registry/cm-handles[@id=\'ch-11\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'ch-12\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
@@ -247,6 +248,8 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'update data nodes and descendants is invoked correct number of times'
             expectedCalls * mockCpsDataService.updateDataNodesAndDescendants(*_)
+        and: 'update node leaves is invoked correct number of times'
+            expectedCalls * mockCpsDataService.updateNodeLeaves(*_)
         where: 'the following cm handle ids are used'
             scenario            | keyExists | valueExists || expectedCalls
             'id exists as key'  | true      | false       || 1

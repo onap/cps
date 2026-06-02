@@ -38,7 +38,7 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
 
      def 'Migrate inventory with batch processing.'() {
         given: 'start with the old models (ignore upgrade)'
-            ReflectionTestUtils.setField(inventoryPersistence, 'ignoreR20260423Model', true)
+            ReflectionTestUtils.setField(inventoryPersistence, 'useOptimizedModel', false)
         and: 'DMI will return modules when requested'
             dmiDispatcher1.moduleNamesPerCmHandleId = (1..2).collectEntries{ ['ch-'+it, ['M1']] }
         and: 'multiple CM handles registered with old model'
@@ -51,7 +51,7 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
                 assert someCmHandle.getCompositeState().getCmHandleState().name() == 'READY'
             }
         when: 'the new (more performant) model is enabled (no longer ignored)'
-            ReflectionTestUtils.setField(inventoryPersistence, 'ignoreR20260423Model', false)
+            ReflectionTestUtils.setField(inventoryPersistence, 'useOptimizedModel', true)
             ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', false)
         and: 'inventory is upgraded to the new revision'
             objectUnderTest.onboardOrUpgradeModel()
@@ -62,7 +62,7 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
                 assert someCmHandle.getCompositeState().getCmHandleState().name() == 'READY'
             }
         cleanup: 'deregister CM handles and restore flag'
-            ReflectionTestUtils.setField(inventoryPersistence, 'ignoreR20260423Model', true)
+            ReflectionTestUtils.setField(inventoryPersistence, 'useOptimizedModel', false)
             ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', true)
             deregisterCmHandles(DMI1_URL, (1..2).collect{ 'ch-'+it })
     }

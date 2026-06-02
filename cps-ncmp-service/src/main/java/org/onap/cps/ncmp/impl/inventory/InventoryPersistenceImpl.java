@@ -68,8 +68,8 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     private final CpsValidator cpsValidator;
     private final IMap<String, String> cmHandleIdPerAlternateId;
 
-    @Value("${ignore.r20260423.model:true}")
-    private boolean ignoreR20260423Model;
+    @Value("#{!${ignore.r20260423.model:true}}")
+    private boolean useOptimizedModel;
 
     /**
      * initialize an inventory persistence object.
@@ -116,9 +116,8 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
             final String cmHandleId = entry.getKey();
             final CompositeState compositeState = entry.getValue();
             if (exists(cmHandleId)) {
-                cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId),
-                        compositeStateAsJson(compositeState));
-                if (!ignoreR20260423Model) {
+                cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId), compositeStateAsJson(compositeState));
+                if (useOptimizedModel) {
                     final Map<String, String> topLevelUpdate = new HashMap<>();
                     topLevelUpdate.put("id", cmHandleId);
                     topLevelUpdate.put("cm-handle-state", compositeState.getCmHandleState().name());
@@ -131,7 +130,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         if (!cmHandlesJsonDataMap.isEmpty()) {
             cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                                                          cmHandlesJsonDataMap, now(), JSON);
-            if (!ignoreR20260423Model && !topLevelStateUpdates.isEmpty()) {
+            if (useOptimizedModel && !topLevelStateUpdates.isEmpty()) {
                 cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                                                 cmHandleUpdatesAsJson(topLevelStateUpdates), now(), JSON);
             }

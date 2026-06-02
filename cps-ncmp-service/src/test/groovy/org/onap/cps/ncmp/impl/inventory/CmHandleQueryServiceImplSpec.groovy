@@ -63,7 +63,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
         trustLevelPerCmHandleId.put("PNFDemo", TrustLevel.COMPLETE)
         trustLevelPerCmHandleId.put("PNFDemo2", TrustLevel.NONE)
         trustLevelPerCmHandleId.put("PNFDemo4", TrustLevel.NONE)
-        objectUnderTest.ignoreR20260423Model = true
+        objectUnderTest.useOptimizedModel = true
     }
 
     def cleanupSpec() {
@@ -130,6 +130,8 @@ class CmHandleQueryServiceImplSpec extends Specification {
     def 'Get Ids of CmHandles by state (legacy model).'() {
         given: 'a cm handle state to query'
             def cmHandleState = CmHandleState.ADVISED
+        and: 'the legacy model is active'
+            objectUnderTest.useOptimizedModel = false
         and: 'the persistence service returns a list of data nodes'
             mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 "//state[@cm-handle-state='ADVISED']", OMIT_DESCENDANTS, 0) >> sampleDataNodes
@@ -140,9 +142,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
     }
 
     def 'Get Ids of CmHandles by state using top-level leaf (new model).'() {
-        given: 'the new model is active'
-            objectUnderTest.ignoreR20260423Model = false
-        and: 'the query service returns cm handle ids for the direct attribute query'
+        given: 'the query service returns cm handle ids for the direct attribute query'
             mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 "/dmi-registry/cm-handles[@cm-handle-state='ADVISED']/@id", String.class) >> ['ch-1', 'ch-2']
         when: 'cm handles are fetched by state'
@@ -154,6 +154,8 @@ class CmHandleQueryServiceImplSpec extends Specification {
     def 'Check the state of a cmHandle when #scenario (legacy model).'() {
         given: 'a cm handle state to compare'
             def cmHandleState = state
+        and: 'the legacy model is active'
+            objectUnderTest.useOptimizedModel = false
         and: 'the persistence service returns a list of data nodes'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 NCMP_DMI_REGISTRY_PARENT + '/cm-handles[@id=\'some-cm-handle\']/state',
@@ -169,9 +171,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
     }
 
     def 'Check the state of a cmHandle using top-level leaf when #scenario (new model).'() {
-        given: 'the new model is active'
-            objectUnderTest.ignoreR20260423Model = false
-        and: 'the query service returns the state from the top-level leaf'
+        given: 'the query service returns the state from the top-level leaf'
             mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 "/dmi-registry/cm-handles[@id='some-cm-handle']/@cm-handle-state", String.class) >> ['READY']
         when: 'cm handles are compared by state'
