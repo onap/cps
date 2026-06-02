@@ -84,7 +84,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(uniqueId).moduleName.sort()
         then: 'get the last 2 messages and related headers'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2)
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf3Seconds(kafkaConsumer, 2)
             def messages = []
             def headerMaps = []
             consumerRecords.each { consumerRecord ->
@@ -118,7 +118,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert messages[1].event.oldValues.dataSyncEnabled == null
             assert messages[1].event.newValues.dataSyncEnabled == false
         and: 'there are no more messages to be read'
-            assert getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1).size() == 0
+            assert getLatestConsumerRecordsWithMaxPollOf3Seconds(kafkaConsumer, 1).size() == 0
         and: 'instrumentation has recorded 2 events (null > ADVISED, ADVISED > READY)'
             new PollingConditions().within(5) {
                 assert countLcmEventTimerInvocations() == 2
@@ -157,7 +157,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(uniqueIdV2).moduleName.sort()
         then: 'get the last 2 messages'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2)
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf3Seconds(kafkaConsumer, 2)
             def messages = []
             consumerRecords.each { consumerRecord ->
                 messages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEventV2))

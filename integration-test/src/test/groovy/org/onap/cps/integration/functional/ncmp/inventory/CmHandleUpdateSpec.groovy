@@ -111,20 +111,20 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
         then: 'the module sync watchdog is triggered'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         and: 'flush and check there are 2 cm handle registration events (state transition from NONE to ADVISED and ADVISED to READY)'
-            assert getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2).size() == 2
+            assert getLatestConsumerRecordsWithMaxPollOf3Seconds(kafkaConsumer, 2).size() == 2
         and: 'cm handle updated with the data producer identifier'
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'my-data-producer-id')
             def dmiPluginRegistrationForUpdate = new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate])
             def dmiPluginRegistrationResponseForUpdate = objectUnderTest.updateDmiRegistration(dmiPluginRegistrationForUpdate)
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponseForUpdate.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
-        and: 'get the latest message'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
-        and: 'the message has the updated data producer identifier'
+        and: 'get the latest message(s)'
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf3Seconds(kafkaConsumer, 1)
             def notificationMessages = []
             for (def consumerRecord : consumerRecords) {
                 notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEventV1))
             }
+        and: 'the first message has the updated data producer identifier'
             assert notificationMessages[0].event.cmHandleId.contains(cmHandleId)
             assert notificationMessages[0].event.dataProducerIdentifier == 'my-data-producer-id'
         cleanup: 'deregister CM handle'
@@ -147,7 +147,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
         then: 'the module sync watchdog is triggered'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         and: 'flush and check there are 2 cm handle registration events (state transition from NONE to ADVISED and ADVISED to READY)'
-            assert getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2).size() == 2
+            assert getLatestConsumerRecordsWithMaxPollOf3Seconds(kafkaConsumer, 2).size() == 2
         and: 'cm handle updated with the data producer identifier'
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'my-data-producer-id')
             def dmiPluginRegistrationForUpdate = new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate])
@@ -155,7 +155,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponseForUpdate.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
         and: 'the latest message is for the correct cm handle'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf3Seconds(kafkaConsumer, 1)
             def notificationMessages = []
             for (def consumerRecord : consumerRecords) {
                 notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEventV2))

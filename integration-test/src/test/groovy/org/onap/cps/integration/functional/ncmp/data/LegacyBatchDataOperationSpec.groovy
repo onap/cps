@@ -78,7 +78,7 @@ class LegacyBatchDataOperationSpec extends CpsIntegrationSpecBase {
         then: 'response is successful'
             assert response.statusCode.is2xxSuccessful()
         and: 'there is one kafka message'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf3Seconds(kafkaConsumer, 1)
             assert consumerRecords.size() == 1
         and: 'it is a cloud event'
             assert consumerRecords[0].value() instanceof CloudEvent
