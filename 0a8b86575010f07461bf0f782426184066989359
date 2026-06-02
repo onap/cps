@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a394c8c_e7345948",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-02T14:24:34Z",
+      "side": 1,
+      "message": "NB: this is also duplicated (except) from the name.\nCodul eb done before on line 93 liek so:\nfinal String rawContent \u003d new String(multipartFile.getBytes(), StandardCharsets.UTF_8);\nAndthen pass the rawContent to the extract.. method instead of teh Multipart file.\nTBH then the parsing becomes just 1 line in both cases, maybe no need for methods at all anymore...",
+      "range": {
+        "startLine": 105,
+        "startChar": 7,
+        "endLine": 105,
+        "endChar": 96
+      },
+      "revId": "0a8b86575010f07461bf0f782426184066989359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
