@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d49655da_62c12a78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-02T07:28:51Z",
+      "side": 1,
+      "message": "Resolved",
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "731edf1c_e333ba9b",
@@ -14,6 +31,30 @@
       "writtenOn": "2026-06-01T12:52:49Z",
       "side": 1,
       "message": "fix this too",
+      "range": {
+        "startLine": 74,
+        "startChar": 54,
+        "endLine": 74,
+        "endChar": 76
+      },
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7552c40_e2ab5206",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-02T07:28:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "731edf1c_e333ba9b",
       "range": {
         "startLine": 74,
         "startChar": 54,
@@ -47,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea5e454_c9144416",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-02T07:28:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2fdfd9b_60bdcf14",
+      "range": {
+        "startLine": 110,
+        "startChar": 41,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8546949e_c8e01b21",
@@ -60,6 +125,30 @@
       "writtenOn": "2026-06-01T12:52:49Z",
       "side": 1,
       "message": "NB: indentation not fixed",
+      "range": {
+        "startLine": 114,
+        "startChar": 33,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1071188_105b7ed1",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-02T07:28:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8546949e_c8e01b21",
       "range": {
         "startLine": 114,
         "startChar": 33,
@@ -93,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e12b3e_93d5c381",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-02T07:28:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b108a4c6_d2eb6586",
+      "range": {
+        "startLine": 116,
+        "startChar": 35,
+        "endLine": 116,
+        "endChar": 84
+      },
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9283466c_b222f9a7",
@@ -106,6 +219,24 @@
       "writtenOn": "2026-06-01T12:52:49Z",
       "side": 1,
       "message": "why did you remove the test?",
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a4a43af_557691f8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-02T07:28:51Z",
+      "side": 1,
+      "message": "I tried to combine test cases for both JSON and XML instead of creating separate test cases specifically for XML.",
+      "parentUuid": "9283466c_b222f9a7",
       "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
