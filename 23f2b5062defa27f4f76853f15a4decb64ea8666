@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f53b5e5_019a7916",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8566
+      },
+      "writtenOn": "2026-06-02T06:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d7ff1e1_df2d0477",
+      "revId": "23f2b5062defa27f4f76853f15a4decb64ea8666",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7fba1166_ad9350d9",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-05-22T13:23:27Z",
       "side": 1,
       "message": "Use imports individually, maybe the intellij checkstyle is not propely setup.",
+      "range": {
+        "startLine": 38,
+        "startChar": 17,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "23f2b5062defa27f4f76853f15a4decb64ea8666",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d74b677_affa852c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8566
+      },
+      "writtenOn": "2026-06-02T06:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fba1166_ad9350d9",
       "range": {
         "startLine": 38,
         "startChar": 17,
@@ -87,6 +129,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "379f12c1_80b444a4",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8566
+      },
+      "writtenOn": "2026-06-02T06:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "debdba4e_78e4a4ff",
+      "range": {
+        "startLine": 104,
+        "startChar": 8,
+        "endLine": 104,
+        "endChar": 14
+      },
+      "revId": "23f2b5062defa27f4f76853f15a4decb64ea8666",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "434aaa07_d8e27e82",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8566
+      },
+      "writtenOn": "2026-06-02T06:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "665f784e_54286f95",
+      "range": {
+        "startLine": 104,
+        "startChar": 15,
+        "endLine": 104,
+        "endChar": 24
+      },
+      "revId": "23f2b5062defa27f4f76853f15a4decb64ea8666",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae14bf29_24a6a837",
@@ -100,6 +190,30 @@
       "writtenOn": "2026-05-22T13:23:27Z",
       "side": 1,
       "message": "we need to re-evaluate this approach\ndoes it cover multi-level lists like /level-1[...]/level-2[...]\ndoes it cover edge cases like @title\u003d\u0027a]b\u0027",
+      "range": {
+        "startLine": 390,
+        "startChar": 25,
+        "endLine": 390,
+        "endChar": 43
+      },
+      "revId": "23f2b5062defa27f4f76853f15a4decb64ea8666",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7806f300_7f868f37",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 8566
+      },
+      "writtenOn": "2026-06-02T06:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae14bf29_24a6a837",
       "range": {
         "startLine": 390,
         "startChar": 25,
