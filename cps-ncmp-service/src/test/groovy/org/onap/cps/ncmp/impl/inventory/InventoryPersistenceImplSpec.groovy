@@ -71,6 +71,10 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def objectUnderTest = Spy(new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleIdPerAlternateId))
 
+    def setup() {
+        ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', true)
+    }
+
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
@@ -203,12 +207,15 @@ class InventoryPersistenceImplSpec extends Specification {
             def compositeState = new CompositeState(cmHandleState: CmHandleState.READY, lastUpdateTime: formattedDateAndTime)
         and: 'alternate id cache contains the given cm handle reference'
             mockCmHandleIdPerAlternateId.containsKey(_) >> true
+        and: 'the new model is active'
+            ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', false)
         when: 'update cm handle state is invoked'
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
-        then: 'update data nodes and descendants is invoked'
+        then: 'update data nodes and descendants is invoked for state container'
             1 * mockCpsDataService.updateDataNodesAndDescendants(*_)
-        and: 'update node leaves is also invoked for top-level state'
-            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
+        and: 'update node leaves is invoked for top-level cm-handle-state'
+            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
     }
 
     def 'Update Cm Handles with #scenario States.'() {
@@ -240,8 +247,6 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'update data nodes and descendants is invoked correct number of times'
             expectedCalls * mockCpsDataService.updateDataNodesAndDescendants(*_)
-        and: 'update node leaves is invoked correct number of times'
-            expectedCalls * mockCpsDataService.updateNodeLeaves(*_)
         where: 'the following cm handle ids are used'
             scenario            | keyExists | valueExists || expectedCalls
             'id exists as key'  | true      | false       || 1

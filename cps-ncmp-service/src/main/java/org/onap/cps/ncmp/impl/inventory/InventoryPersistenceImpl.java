@@ -116,7 +116,8 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
             final String cmHandleId = entry.getKey();
             final CompositeState compositeState = entry.getValue();
             if (exists(cmHandleId)) {
-                cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId), compositeStateAsJson(compositeState));
+                cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId),
+                        compositeStateAsJson(compositeState));
                 if (!ignoreR20260423Model) {
                     final Map<String, String> topLevelUpdate = new HashMap<>();
                     topLevelUpdate.put("id", cmHandleId);
@@ -130,9 +131,9 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         if (!cmHandlesJsonDataMap.isEmpty()) {
             cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                                                          cmHandlesJsonDataMap, now(), JSON);
-            if (!ignoreR20260423Model) {
+            if (!ignoreR20260423Model && !topLevelStateUpdates.isEmpty()) {
                 cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                                                cmHandleUpdatesAsJson(topLevelStateUpdates),  now(), JSON);
+                                                cmHandleUpdatesAsJson(topLevelStateUpdates), now(), JSON);
             }
         }
     }
