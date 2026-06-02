@@ -365,10 +365,10 @@ abstract class CpsIntegrationSpecBase extends Specification {
         networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
     }
 
-    def getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, numberOfRecordsToRead) {
+    def getLatestConsumerRecordsWithMaxPollOf3Seconds(kafkaConsumer, minimumNumberOfRecordsToRead) {
         def consumerRecords = []
-        def retryAttempts = 10
-        while (consumerRecords.size() < numberOfRecordsToRead && retryAttempts-- > 0) {
+        def retryAttempts = 30
+        while (consumerRecords.size() < minimumNumberOfRecordsToRead && retryAttempts-- > 0) {
             consumerRecords.addAll(kafkaConsumer.poll(Duration.ofMillis(100)))
         }
         return consumerRecords
