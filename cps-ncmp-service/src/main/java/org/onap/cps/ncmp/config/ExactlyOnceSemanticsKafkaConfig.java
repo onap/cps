@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.config;
 
 import static org.apache.kafka.clients.consumer.ConsumerConfig.AUTO_OFFSET_RESET_CONFIG;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG;
-import static org.apache.kafka.clients.consumer.ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.ISOLATION_LEVEL_CONFIG;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.MAX_POLL_RECORDS_CONFIG;
 import static org.apache.kafka.clients.producer.ProducerConfig.ACKS_CONFIG;
@@ -30,8 +29,6 @@ import static org.apache.kafka.clients.producer.ProducerConfig.ENABLE_IDEMPOTENC
 import static org.springframework.kafka.listener.ContainerProperties.AckMode.BATCH;
 
 import io.cloudevents.CloudEvent;
-import io.opentelemetry.instrumentation.kafkaclients.v2_6.TracingConsumerInterceptor;
-import io.opentelemetry.instrumentation.kafkaclients.v2_6.TracingProducerInterceptor;
 import java.time.Duration;
 import java.util.Map;
 import java.util.UUID;
@@ -97,10 +94,6 @@ public class ExactlyOnceSemanticsKafkaConfig {
         final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
         producerConfigProperties.put(ENABLE_IDEMPOTENCE_CONFIG, true);
         producerConfigProperties.put(ACKS_CONFIG, "all");
-        if (tracingEnabled) {
-            producerConfigProperties.put(INTERCEPTOR_CLASSES_CONFIG,
-                    TracingProducerInterceptor.class.getName());
-        }
         final DefaultKafkaProducerFactory<String, CloudEvent> defaultKafkaProducerFactory =
                 new DefaultKafkaProducerFactory<>(producerConfigProperties);
         defaultKafkaProducerFactory.setTransactionIdPrefix("cps-" + transactionIdPrefix + CPS_NCMP_INSTANCE_UUID + "-");
@@ -120,10 +113,6 @@ public class ExactlyOnceSemanticsKafkaConfig {
         consumerConfigProperties.put(ENABLE_AUTO_COMMIT_CONFIG, false);
         consumerConfigProperties.put(AUTO_OFFSET_RESET_CONFIG, "earliest");
         consumerConfigProperties.put(MAX_POLL_RECORDS_CONFIG, maxPollRecords);
-        if (tracingEnabled) {
-            consumerConfigProperties.put(INTERCEPTOR_CLASSES_CONFIG,
-                    TracingConsumerInterceptor.class.getName());
-        }
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
 

@@ -21,8 +21,6 @@
 package org.onap.cps.ncmp.config;
 
 import io.cloudevents.CloudEvent;
-import io.opentelemetry.instrumentation.kafkaclients.v2_6.TracingConsumerInterceptor;
-import io.opentelemetry.instrumentation.kafkaclients.v2_6.TracingProducerInterceptor;
 import java.time.Duration;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -73,10 +71,6 @@ public class KafkaConfig {
     public ProducerFactory<String, LegacyEvent> legacyEventProducerFactory() {
         final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
         producerConfigProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        if (tracingEnabled) {
-            producerConfigProperties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG,
-                    TracingProducerInterceptor.class.getName());
-        }
         return new DefaultKafkaProducerFactory<>(producerConfigProperties);
     }
 
@@ -90,10 +84,6 @@ public class KafkaConfig {
     public ConsumerFactory<String, LegacyEvent> legacyEventConsumerFactory() {
         final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
         consumerConfigProperties.put("spring.deserializer.value.delegate.class", JsonDeserializer.class);
-        if (tracingEnabled) {
-            consumerConfigProperties.put(ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG,
-                    TracingConsumerInterceptor.class.getName());
-        }
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
 
@@ -140,10 +130,6 @@ public class KafkaConfig {
     @Bean
     public ProducerFactory<String, CloudEvent> cloudEventProducerFactory() {
         final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
-        if (tracingEnabled) {
-            producerConfigProperties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG,
-                    TracingProducerInterceptor.class.getName());
-        }
         return new DefaultKafkaProducerFactory<>(producerConfigProperties);
     }
 
@@ -156,10 +142,6 @@ public class KafkaConfig {
     @Bean
     public ConsumerFactory<String, CloudEvent> cloudEventConsumerFactory() {
         final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
-        if (tracingEnabled) {
-            consumerConfigProperties.put(ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG,
-                    TracingConsumerInterceptor.class.getName());
-        }
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
 
@@ -211,10 +193,6 @@ public class KafkaConfig {
         log.info("Configuring CM AVC event listener in single-record mode (no transactions, max-poll-records=1)");
         final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
         consumerConfigProperties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 1);
-        if (tracingEnabled) {
-            consumerConfigProperties.put(ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG,
-                    TracingConsumerInterceptor.class.getName());
-        }
         final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(new DefaultKafkaConsumerFactory<>(consumerConfigProperties));
