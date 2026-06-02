@@ -163,6 +163,18 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             1 * mockLcmEventProducer.sendLcmEventBatchAsynchronously(_)
     }
 
+    def 'State change duplicates state in optimized model.'() {
+        given: 'the optimized model is active'
+            objectUnderTest.useOptimizedModel = true
+        and: 'cm Handle as Yang model'
+            currentCompositeState = new CompositeState(cmHandleState: READY)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: currentCompositeState)
+        when: 'updating cm handle state to "DELETING"'
+            objectUnderTest.updateCmHandleStateBatch([(yangModelCmHandle): DELETING])
+        then: 'the top-level cm handle status is also updated'
+            assert yangModelCmHandle.getCmHandleStatus() == 'DELETING'
+    }
+
     def 'No state change and no event to be sent'() {
         given: 'Cm Handle batch with same state transition as before'
             def cmHandleStateMap = setupBatch('NO_CHANGE')

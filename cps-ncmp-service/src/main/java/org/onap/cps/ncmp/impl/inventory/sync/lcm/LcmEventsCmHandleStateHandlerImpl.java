@@ -39,6 +39,7 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
@@ -50,6 +51,9 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     private final InventoryPersistence inventoryPersistence;
     private final LcmEventProducer lcmEventProducer;
     private final CmHandleStateMonitor cmHandleStateMonitor;
+
+    @Value("#{!${ignore.r20260423.model:true}}")
+    private boolean useOptimizedModel;
 
     @Override
     @Timed(value = "cps.ncmp.cmhandle.state.update.batch",
@@ -129,6 +133,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     private void setInitialState(final YangModelCmHandle yangModelCmHandle) {
         CompositeStateUtils.setInitialDataStoreSyncState(yangModelCmHandle.getCompositeState());
         CompositeStateUtils.setCompositeState(READY, yangModelCmHandle.getCompositeState());
+        duplicateStateInOptimizedModel(yangModelCmHandle, READY);
     }
 
     private void retryCmHandle(final YangModelCmHandle yangModelCmHandle) {
@@ -142,6 +147,14 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
 
     private void setCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState targetCmHandleState) {
         CompositeStateUtils.setCompositeState(targetCmHandleState, yangModelCmHandle.getCompositeState());
+        duplicateStateInOptimizedModel(yangModelCmHandle, targetCmHandleState);
+    }
+
+    private void duplicateStateInOptimizedModel(final YangModelCmHandle yangModelCmHandle,
+                                                final CmHandleState cmHandleState) {
+        if (useOptimizedModel) {
+            yangModelCmHandle.setCmHandleStatus(cmHandleState.name());
+        }
     }
 
     private boolean isNew(final CompositeState existingCompositeState) {
