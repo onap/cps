@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbfcb4c9_7b3aef80",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 8566
+      },
+      "writtenOn": "2026-06-02T10:51:30Z",
+      "side": 1,
+      "message": "Fix indentation",
+      "range": {
+        "startLine": 373,
+        "startChar": 4,
+        "endLine": 373,
+        "endChar": 52
+      },
+      "revId": "233b30bb4c595866657e12d75720bdbbfac36ed5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
