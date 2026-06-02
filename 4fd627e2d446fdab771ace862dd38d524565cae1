@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69642bf9_2c52f278",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-02T16:02:25Z",
+      "side": 1,
+      "message": "use ms for better accuracy to get 50% rather then rounding up",
+      "revId": "4fd627e2d446fdab771ace862dd38d524565cae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

@@ -16,6 +16,75 @@
       "message": "recheck",
       "revId": "253c2877c8e84c74f684b4eb16cfc0a95e0ebb24",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f40c8cdb_609afe3c",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-02T16:02:25Z",
+      "side": 1,
+      "message": "if decimal (seconds) allowed why dont we change the test above like so:\n      \"rate\": 25,\n      \"timeUnit\": \"0.5s\",\nOR (maybe better)      \n      \"rate\": 25,\n      \"timeUnit\": \"500ms\",",
+      "range": {
+        "startLine": 28,
+        "startChar": 19,
+        "endLine": 28,
+        "endChar": 22
+      },
+      "revId": "253c2877c8e84c74f684b4eb16cfc0a95e0ebb24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8ede34a_c4559ff4",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-02T16:02:25Z",
+      "side": 1,
+      "message": "2500ms",
+      "range": {
+        "startLine": 140,
+        "startChar": 19,
+        "endLine": 140,
+        "endChar": 23
+      },
+      "revId": "253c2877c8e84c74f684b4eb16cfc0a95e0ebb24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd667e08_c7810df8",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-02T16:02:25Z",
+      "side": 1,
+      "message": "2500ms",
+      "range": {
+        "startLine": 148,
+        "startChar": 18,
+        "endLine": 148,
+        "endChar": 21
+      },
+      "revId": "253c2877c8e84c74f684b4eb16cfc0a95e0ebb24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
