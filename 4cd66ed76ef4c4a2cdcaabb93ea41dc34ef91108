@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "263a5c9e_11c16b0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-03T07:55:47Z",
+      "side": 1,
+      "message": "as below, please implement validation in the Antlr grammar",
+      "revId": "4cd66ed76ef4c4a2cdcaabb93ea41dc34ef91108",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d095369_8b0458cd",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-03T07:55:47Z",
+      "side": 1,
+      "message": "I dont think this is the correct place to handle this.\nAll syntax validation is done using Antlr rules. \nI think it wil be a lot easier and consistent to update the grammar rules. Contact me if you need any help with Antlr, trust me it is actually quite easy once you get started with it...",
+      "range": {
+        "startLine": 141,
+        "startChar": 11,
+        "endLine": 154,
+        "endChar": 32
+      },
+      "revId": "4cd66ed76ef4c4a2cdcaabb93ea41dc34ef91108",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
