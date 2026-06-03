@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Modifications Copyright (C) 2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,14 +21,18 @@
 
 package org.onap.cps.impl;
 
+import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
+
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.model.Anchor;
+import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -56,6 +61,12 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
     }
 
     @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName, final PaginationOption paginationOption) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        return cpsAdminPersistenceService.getAnchors(dataspaceName, paginationOption);
+    }
+
+    @Override
     public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> anchorNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(anchorNames);
@@ -66,6 +77,15 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
     public Collection<Anchor> getAnchorsBySchemaSetName(final String dataspaceName, final String schemaSetName) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsAdminPersistenceService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
+    }
+
+    @Override
+    public Collection<Anchor> getAnchorsBySchemaSetNames(final String dataspaceName,
+                                                         final Collection<String> schemaSetNames,
+                                                         final PaginationOption paginationOption) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validatePaginationOption(paginationOption);
+        return cpsAdminPersistenceService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames, paginationOption);
     }
 
     @Override
@@ -101,5 +121,25 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
                                       final String anchorName,
                                       final String schemaSetName) {
         cpsAdminPersistenceService.updateAnchorSchemaSet(dataspaceName, anchorName, schemaSetName);
+    }
+
+    @Override
+    public Collection<Anchor> getAnchorsPagination(final String dataspaceName,
+                                                   final Collection<String> schemaSetNames,
+                                                   final Integer pageIndex,
+                                                   final Integer pageSize) {
+        final PaginationOption paginationOption = (pageIndex == null || pageSize == null)
+                ? NO_PAGINATION : new PaginationOption(pageIndex, pageSize);
+        return CollectionUtils.isEmpty(schemaSetNames)
+                ? getAnchors(dataspaceName, paginationOption)
+                : getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames, paginationOption);
+    }
+
+    @Override
+    public Collection<Anchor> getAnchorsWithOrWithoutSchemaSet(final String dataspaceName,
+                                                               final Collection<String> schemaSetNames) {
+        return  CollectionUtils.isEmpty(schemaSetNames)
+                ? getAnchors(dataspaceName)
+                : getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames);
     }
 }
