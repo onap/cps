@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d73ec220_024abcaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-03T08:19:49Z",
+      "side": 1,
+      "message": "I am also worried that your current solution BREAKs existing functionality \ncurrently advanced queries combining other conditions then equals ARE support and work well!\n\nNow I think you should and do not need to change the rules at all!\n\nYou simply need to recognise and sort when multiple conditions are applied ONLY when all conditions are combined using AND. In that case you can and should sort the condition on name of the properties. If the conditions contain any \u0027OR\u0027 you should NOT sort!\n\nI think the correct place to code this exitMultipleLeafConditions() You need to add this method to \norg.onap.cps.cpspath.parser.CpsPathBuilder\nSO check if all conditions are \u0027AND\u0027 and then sort them (leafConditions) otherwise do nothing!\n\nAdd a simple unit test in the parser module (CpsPathQuerySpec) to check that multiple leaf conditions with AND get sorted but with OR are not sorted! You should NOT need any changes in teh data service!\n\nI do suggest you add an integration-test for e2e test on a condition that gets sorted. (happy path only)",
+      "revId": "4cd66ed76ef4c4a2cdcaabb93ea41dc34ef91108",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d095369_8b0458cd",
