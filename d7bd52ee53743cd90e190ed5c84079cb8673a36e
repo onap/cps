@@ -1,0 +1,285 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbb67753_dd5b95a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "Add jira ticket",
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e948011c_26c6a704",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "Can use static import",
+      "range": {
+        "startLine": 50,
+        "startChar": 61,
+        "endLine": 50,
+        "endChar": 68
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a0e2734_fab50b4d",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "string",
+      "range": {
+        "startLine": 122,
+        "startChar": 39,
+        "endLine": 122,
+        "endChar": 44
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "075aed85_b3071939",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "keys sorted in alphabetical order, separated by \u0027and\u0027 operator.",
+      "range": {
+        "startLine": 122,
+        "startChar": 50,
+        "endLine": 122,
+        "endChar": 61
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce2c86a8_a5fa4cc0",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "Can rename to getNormalizedXpathWithSortedKeys",
+      "range": {
+        "startLine": 127,
+        "startChar": 25,
+        "endLine": 127,
+        "endChar": 43
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11a4a08d_4497f67c",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "NB: xpath and same for next test",
+      "range": {
+        "startLine": 117,
+        "startChar": 20,
+        "endLine": 117,
+        "endChar": 25
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8dc2512_3cb8fc88",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "#scenario",
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae75f886_7659cdb8",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "remove: sorted elements",
+      "range": {
+        "startLine": 124,
+        "startChar": 13,
+        "endLine": 124,
+        "endChar": 28
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5831d52_299a86ee",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 20
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc60e218_864d84c9",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 130,
+        "startChar": 30,
+        "endLine": 130,
+        "endChar": 36
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb6e202c_91ee9e12",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 137,
+        "startChar": 25,
+        "endLine": 137,
+        "endChar": 34
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b93cf0f0_67e7f954",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "add to previous line",
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9837869a_e111b486",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-03T06:52:16Z",
+      "side": 1,
+      "message": "you can call normalizeXpathKeys directly in line 153 as here it is just assignment and direct use which is not necessary",
+      "range": {
+        "startLine": 151,
+        "startChar": 39,
+        "endLine": 151,
+        "endChar": 57
+      },
+      "revId": "d7bd52ee53743cd90e190ed5c84079cb8673a36e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
