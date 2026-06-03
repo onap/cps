@@ -26,6 +26,8 @@ import org.onap.cps.api.exceptions.AnchorNotFoundException;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.SchemaSetEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -45,6 +47,21 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
     Collection<AnchorEntity> findAllByDataspace(DataspaceEntity dataspaceEntity);
 
     Collection<AnchorEntity> findAllBySchemaSet(SchemaSetEntity schemaSetEntity);
+
+    @Query(value = "SELECT a.* FROM anchor a"
+                  + " LEFT OUTER JOIN schema_set s ON a.schema_set_id = s.id"
+                  + " WHERE a.dataspace_id = :dataspaceId AND s.name IN (:schemaSetNames)",
+        countQuery = "SELECT count(a.id) FROM anchor a"
+                  + " LEFT OUTER JOIN schema_set s ON a.schema_set_id = s.id"
+                  + " WHERE a.dataspace_id = :dataspaceId AND s.name IN (:schemaSetNames)",
+        nativeQuery = true)
+    Page<AnchorEntity> findPageByDataspaceIdAndSchemaSetNameIn(@Param("dataspaceId") int dataspaceId,
+                 @Param("schemaSetNames") Collection<String> schemaSetNames, Pageable pageable);
+
+    default Collection<AnchorEntity> getByDataspaceIdAndSchemaSetNameIn(final DataspaceEntity dataspaceEntity,
+                                            final Collection<String> schemaSetNames, final Pageable pageable) {
+        return findPageByDataspaceIdAndSchemaSetNameIn(dataspaceEntity.getId(), schemaSetNames, pageable).getContent();
+    }
 
     @Query(value = "SELECT * FROM anchor WHERE dataspace_id = :dataspaceId AND name IN (:anchorNames)",
         nativeQuery = true)
@@ -108,4 +125,8 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
     @Query(value = "UPDATE anchor SET schema_set_id =:schemaSetId WHERE id = :anchorId ", nativeQuery = true)
     void updateAnchorSchemaSetId(@Param("schemaSetId") int schemaSetId, @Param("anchorId") long anchorId);
 
+    default Collection<AnchorEntity> getByDataspace(DataspaceEntity dataspaceEntity, Pageable pageable) {
+        return findAllByDataspace(dataspaceEntity).stream().skip(pageable.getPageNumber() * pageable.getPageSize())
+            .limit(pageable.getPageSize()).toList();
+    }
 }
