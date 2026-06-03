@@ -109,6 +109,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ad0eb05_f4622bf8",
+        "filename": "docs/cm-notifications.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-03T10:51:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b88dcec_cf9a41c6",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 29
+      },
+      "revId": "b285422217c08ec2ab33dd38cd114929df2da70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e3d5473_f6cd88a6",
@@ -122,6 +146,30 @@
       "writtenOn": "2026-05-28T07:28:33Z",
       "side": 1,
       "message": "extends the length of this line to match the above\n(I think this lead to a RTD failure)",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 39
+      },
+      "revId": "b285422217c08ec2ab33dd38cd114929df2da70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0eda50a_c446aa1c",
+        "filename": "docs/cm-notifications.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-03T10:51:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e3d5473_f6cd88a6",
       "range": {
         "startLine": 65,
         "startChar": 0,
