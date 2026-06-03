@@ -26,6 +26,8 @@ import org.onap.cps.api.exceptions.AnchorNotFoundException;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.SchemaSetEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -45,6 +47,18 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
     Collection<AnchorEntity> findAllByDataspace(DataspaceEntity dataspaceEntity);
 
     Collection<AnchorEntity> findAllBySchemaSet(SchemaSetEntity schemaSetEntity);
+
+    @Query(value = "SELECT a.* FROM anchor a WHERE a.schema_set_id = :schemaSetId",
+        countQuery = "SELECT count(a.id) FROM anchor a WHERE a.schema_set_id = :schemaSetId",
+        nativeQuery = true)
+    Page<AnchorEntity> findPageBySchemaSetId(@Param("schemaSetId") long schemaSetId, Pageable pageable);
+
+    default Collection<AnchorEntity> getByDataspaceAndSchemaSetName(final SchemaSetEntity schemaSetEntity,
+                                                              final Pageable pageable) {
+        return findPageBySchemaSetId(schemaSetEntity.getId(), pageable).getContent();
+    }
+
+    Integer countBySchemaSet(SchemaSetEntity schemaSetEntity);
 
     @Query(value = "SELECT * FROM anchor WHERE dataspace_id = :dataspaceId AND name IN (:anchorNames)",
         nativeQuery = true)
@@ -108,4 +122,8 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
     @Query(value = "UPDATE anchor SET schema_set_id =:schemaSetId WHERE id = :anchorId ", nativeQuery = true)
     void updateAnchorSchemaSetId(@Param("schemaSetId") int schemaSetId, @Param("anchorId") long anchorId);
 
+    default Collection<AnchorEntity> getByDataspace(DataspaceEntity dataspaceEntity, Pageable pageable) {
+        return findAllByDataspace(dataspaceEntity).stream().skip(pageable.getPageNumber() * pageable.getPageSize())
+            .limit(pageable.getPageSize()).toList();
+    }
 }

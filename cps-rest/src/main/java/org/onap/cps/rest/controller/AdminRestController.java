@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022-2025 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2022-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.Dataspace;
 import org.onap.cps.api.model.SchemaSet;
+import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.rest.model.AnchorDetails;
 import org.onap.cps.rest.model.DataspaceDetails;
@@ -265,16 +266,38 @@ public class AdminRestController implements CpsAdminApi {
      */
     @Override
     public ResponseEntity<List<AnchorDetails>> getAnchors(final String apiVersion,
-            final String dataspaceName, final String schemaSetName) {
+            final String dataspaceName, final String schemaSetName, final Integer pageIndex, final Integer pageSize) {
+        final PaginationOption paginationOption = (pageIndex == null || pageSize == null)
+                ? PaginationOption.NO_PAGINATION : new PaginationOption(pageIndex, pageSize);
         final List<AnchorDetails> anchorDetails;
         if (schemaSetName == null || schemaSetName.isEmpty()) {
-            final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName);
-            anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+            if (paginationOption == PaginationOption.NO_PAGINATION) {
+                final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName);
+                anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+                return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
+            } else {
+                final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName, paginationOption);
+                anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+                final int totalAnchors = cpsAnchorService.countAnchorsInDataspace(dataspaceName);
+                return ResponseEntity.ok().header("total-anchors", String.valueOf(totalAnchors))
+                        .body(anchorDetails);
+            }
         } else {
-            final Collection<Anchor> anchors = cpsAnchorService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
-            anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+            if (paginationOption == PaginationOption.NO_PAGINATION) {
+                final Collection<Anchor> anchors = cpsAnchorService.getAnchorsBySchemaSetName(dataspaceName,
+                        schemaSetName);
+                anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+                return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
+            } else {
+                final Collection<Anchor> anchors = cpsAnchorService.getAnchorsBySchemaSetName(dataspaceName,
+                        schemaSetName, paginationOption);
+                anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
+                final int totalAnchors = cpsAnchorService.countAnchorsInDataspaceBySchemaSetName(dataspaceName,
+                        schemaSetName);
+                return ResponseEntity.ok().header("total-anchors", String.valueOf(totalAnchors))
+                        .body(anchorDetails);
+            }
         }
-        return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 
     @Override

@@ -23,6 +23,7 @@ package org.onap.cps.api;
 import java.util.Collection;
 import org.onap.cps.api.exceptions.CpsException;
 import org.onap.cps.api.model.Anchor;
+import org.onap.cps.api.parameters.PaginationOption;
 
 public interface CpsAnchorService {
 
@@ -54,6 +55,15 @@ public interface CpsAnchorService {
     Collection<Anchor> getAnchors(String dataspaceName);
 
     /**
+     * Read all anchors in the given dataspace based on pagination option.
+     *
+     * @param dataspaceName dataspace name
+     * @param paginationOption pagination option
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName, PaginationOption paginationOption);
+
+    /**
      * Read all anchors in the given dataspace with the anchor names.
      *
      * @param dataspaceName dataspace name
@@ -70,6 +80,17 @@ public interface CpsAnchorService {
      * @return a collection of anchors
      */
     Collection<Anchor> getAnchorsBySchemaSetName(String dataspaceName, String schemaSetName);
+
+    /**
+     * Read all anchors associated with the given schema-set in the given dataspace.
+     *
+     * @param dataspaceName  dataspace name
+     * @param schemaSetName schema-set names
+     * @param paginationOption pagination Option
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchorsBySchemaSetName(String dataspaceName, String schemaSetName,
+                                                 PaginationOption paginationOption);
 
     /**
      * Read all anchors associated with the given schema-sets in the given dataspace.
@@ -114,4 +135,21 @@ public interface CpsAnchorService {
      * @param schemaSetName schema set name
      */
     void updateAnchorSchemaSet(String dataspaceName, String anchorName, String schemaSetName);
+
+    /**
+     * Count of anchors associated with the given schema-set in the given dataspace.
+     *
+     * @param dataspaceName  dataspace name
+     * @param schemaSetName schema-set name
+     * @return a count of anchors
+     */
+    int countAnchorsInDataspaceBySchemaSetName(String dataspaceName, String schemaSetName);
+
+    /**
+     * Count of anchors in the given dataspace.
+     *
+     * @param dataspaceName  dataspace name
+     * @return a count of anchors
+     */
+    int countAnchorsInDataspace(String dataspaceName);
 }

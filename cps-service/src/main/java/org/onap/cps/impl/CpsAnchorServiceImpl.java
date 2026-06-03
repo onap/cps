@@ -24,6 +24,7 @@ import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.model.Anchor;
+import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.CpsValidator;
@@ -56,6 +57,12 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
     }
 
     @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName, final PaginationOption paginationOption) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        return cpsAdminPersistenceService.getAnchors(dataspaceName, paginationOption);
+    }
+
+    @Override
     public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> anchorNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(anchorNames);
@@ -66,6 +73,14 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
     public Collection<Anchor> getAnchorsBySchemaSetName(final String dataspaceName, final String schemaSetName) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsAdminPersistenceService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
+    }
+
+    @Override
+    public Collection<Anchor> getAnchorsBySchemaSetName(final String dataspaceName, final String schemaSetName,
+                                                        final PaginationOption paginationOption) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validatePaginationOption(paginationOption);
+        return cpsAdminPersistenceService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName, paginationOption);
     }
 
     @Override
@@ -101,5 +116,17 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
                                       final String anchorName,
                                       final String schemaSetName) {
         cpsAdminPersistenceService.updateAnchorSchemaSet(dataspaceName, anchorName, schemaSetName);
+    }
+
+    @Override
+    public int countAnchorsInDataspaceBySchemaSetName(final String dataspaceName, final String schemaSetName) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        return cpsAdminPersistenceService.countAnchorsBySchemaSetName(dataspaceName, schemaSetName);
+    }
+
+    @Override
+    public int countAnchorsInDataspace(final String dataspaceName) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        return cpsAdminPersistenceService.countAnchorsInDataspace(dataspaceName);
     }
 }
