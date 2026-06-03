@@ -27,7 +27,10 @@ import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.utils.ContentType
+
+import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 class AnchorServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -65,6 +68,35 @@ class AnchorServiceIntegrationSpec extends FunctionalSpecBase {
             assert objectUnderTest.getAnchorsBySchemaSetName(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET).size() == 2
         and: 'there is 1 anchor associated with other schema set'
             assert objectUnderTest.getAnchorsBySchemaSetName(GENERAL_TEST_DATASPACE, 'otherSchemaSet').size() == 1
+    }
+
+    def 'Get anchors returns all anchors'() {
+        when: 'anchor service is invoked'
+            def result = objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, null, null, null)
+        then: 'all 3 anchors are returned'
+            assert result.size() == 3
+    }
+
+    def 'Get anchors with pagination returns anchors with #scenario.'() {
+        when: 'anchor service is called with the given schema set names and page parameters'
+            def result = objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, schemaSetNames, pageIndex, pageSize)
+        then: 'the expected number of anchors is returned'
+            assert result.size() == expectedAnchors
+        where: 'the following pagination and schema set name combinations are used'
+            scenario                          | schemaSetNames         | pageIndex | pageSize || expectedAnchors
+            'no schema set name, page 1 of 2' | null                   | 1         | 2        || 2
+            'schema set name, page 1'         | ['bookstoreSchemaSet'] | 1         | 2        || 2
+    }
+
+    def 'Get anchors filtered by schema set names without pagination and #scenario.'() {
+        when: 'anchor service is invoked'
+            def result = objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, schemaSetNames, null, null)
+        then: 'the expected number of anchors is returned'
+            assert result.size() == expectedAnchors
+        where: 'the following schema set filters are used'
+            scenario              | schemaSetNames                           || expectedAnchors
+            'single schema set'   | ['bookstoreSchemaSet']                   || 2
+            'multiple schema set' | ['bookstoreSchemaSet', 'otherSchemaSet'] || 3
     }
 
     def 'Querying anchor(name)s (depends on previous test!).'() {
