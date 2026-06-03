@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022-2025 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2022-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 package org.onap.cps.rest.controller;
 
 import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
+import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
 import io.micrometer.core.annotation.Timed;
@@ -41,6 +42,7 @@ import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.Dataspace;
 import org.onap.cps.api.model.SchemaSet;
+import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.rest.model.AnchorDetails;
 import org.onap.cps.rest.model.DataspaceDetails;
@@ -266,11 +268,22 @@ public class AdminRestController implements CpsAdminApi {
      */
     @Override
     public ResponseEntity<List<AnchorDetails>> getAnchors(final String apiVersion,
-                         final String dataspaceName, final List<String> schemaSetNames) {
-        final Collection<Anchor> anchors = CollectionUtils.isEmpty(schemaSetNames) ? cpsAnchorService
-                .getAnchors(dataspaceName) : cpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames);
-        final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
-                .collect(Collectors.toList());
+            final String dataspaceName, final List<String> schemaSetNames,
+            final Integer pageIndex, final Integer pageSize) {
+        final PaginationOption paginationOption = (pageIndex == null || pageSize == null)
+                ? NO_PAGINATION : new PaginationOption(pageIndex, pageSize);
+        final Collection<Anchor> anchors;
+        if (CollectionUtils.isEmpty(schemaSetNames)) {
+            anchors = paginationOption == NO_PAGINATION
+                    ? cpsAnchorService.getAnchors(dataspaceName)
+                    : cpsAnchorService.getAnchors(dataspaceName, paginationOption);
+        } else {
+            anchors = paginationOption == NO_PAGINATION
+                    ? cpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames)
+                    : cpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames, paginationOption);
+        }
+        final List<AnchorDetails> anchorDetails = anchors.stream()
+                .map(cpsRestInputMapper::toAnchorDetails).collect(Collectors.toList());
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 
