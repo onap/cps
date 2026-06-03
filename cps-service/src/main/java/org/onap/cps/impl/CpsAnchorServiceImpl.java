@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Modifications Copyright (C) 2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,14 +21,19 @@
 
 package org.onap.cps.impl;
 
+import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
+
 import java.util.Collection;
+import java.util.Collections;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.model.Anchor;
+import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +61,15 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
         return cpsAdminPersistenceService.getAnchors(dataspaceName);
     }
 
+    private Collection<Anchor> getAnchors(final String dataspaceName, final PaginationOption paginationOption) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validatePaginationOption(paginationOption);
+        if (paginationOption == NO_PAGINATION) {
+            return cpsAdminPersistenceService.getAnchors(dataspaceName);
+        }
+        return cpsAdminPersistenceService.getAnchors(dataspaceName, Collections.emptyList(), paginationOption);
+    }
+
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> anchorNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
@@ -63,9 +78,34 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
     }
 
     @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName,
+                                         final Collection<String> schemaSetNames,
+                                         final Integer pageIndex,
+                                         final Integer pageSize) {
+        final PaginationOption paginationOption = (pageIndex == null || pageSize == null)
+                ? NO_PAGINATION : new PaginationOption(pageIndex, pageSize);
+
+        if (CollectionUtils.isEmpty(schemaSetNames)) {
+            return getAnchors(dataspaceName, paginationOption);
+        }
+        return getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames, paginationOption);
+    }
+
+    @Override
     public Collection<Anchor> getAnchorsBySchemaSetName(final String dataspaceName, final String schemaSetName) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsAdminPersistenceService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
+    }
+
+    private Collection<Anchor> getAnchorsBySchemaSetNames(final String dataspaceName,
+                                                         final Collection<String> schemaSetNames,
+                                                         final PaginationOption paginationOption) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validatePaginationOption(paginationOption);
+        if (paginationOption == NO_PAGINATION) {
+            return cpsAdminPersistenceService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames);
+        }
+        return cpsAdminPersistenceService.getAnchors(dataspaceName, schemaSetNames, paginationOption);
     }
 
     @Override
