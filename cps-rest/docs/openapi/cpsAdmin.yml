@@ -122,7 +122,9 @@ anchorsByDataspace:
     parameters:
       - $ref: 'components.yml#/components/parameters/apiVersionInPath'
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
-      - $ref: 'components.yml#/components/parameters/schemaSetNameOptionalInQuery'
+      - $ref: 'components.yml#/components/parameters/schemaSetNamesInQuery'
+      - $ref: 'components.yml#/components/parameters/pageIndexInQuery'
+      - $ref: 'components.yml#/components/parameters/pageSizeInQuery'
     responses:
       '200':
         description: OK

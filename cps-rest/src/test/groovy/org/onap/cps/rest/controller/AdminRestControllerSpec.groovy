@@ -24,6 +24,7 @@
 package org.onap.cps.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.parameters.PaginationOption
 
 import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
@@ -94,6 +95,7 @@ class AdminRestControllerSpec extends Specification {
     def schemaSetName = 'my_schema_set'
     def anchor = new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
     def dataspace = new Dataspace(name: dataspaceName)
+    def schemaSetNames = ["my-schema-set1","my-schema-set2"]
 
     def 'Create new dataspace with #scenario.'() {
         when: 'post is invoked on endpoint for creating a dataspace'
@@ -370,18 +372,42 @@ class AdminRestControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(anchorName)
     }
-    def 'Get existing anchors schema-set based.'() {
-        given: 'service method returns a list of (one) anchors schema-set based'
-        mockCpsAnchorService.getAnchorsBySchemaSetName(dataspaceName,schemaSetName) >> [anchor]
-        and: 'the endpoint for getting all anchors schema-set based'
-        def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors?schema-set-name=$schemaSetName"
-        when: 'get anchors API is invoked'
-        def response = mvc.perform(get(anchorEndpoint)).andReturn().response
+
+    def 'Get existing anchors with pagination.'() {
+        given: 'service method returns a list of (one) anchors'
+            mockCpsAnchorService.getAnchors(dataspaceName, new PaginationOption(1,4)) >> [anchor]
+        and: 'the endpoint for getting paginated anchors'
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors?pageIndex=1&pageSize=4"
+        when: 'get all anchors API is invoked'
+            def response = mvc.perform(get(anchorEndpoint)).andReturn().response
         then: 'the correct anchor is returned'
-        response.status == HttpStatus.OK.value()
-        response.getContentAsString().contains(anchorName)
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(anchorName)
     }
 
+    def 'Get existing anchors filtered by schema set names.'() {
+        given: 'service method returns a list of anchors'
+            mockCpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName,schemaSetNames) >> [anchor]
+        and: 'the endpoint for getting all anchors with multiple schema set name parameters'
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors?schema-set-names=my-schema-set1,my-schema-set2"
+        when: 'get anchors API is invoked'
+            def response = mvc.perform(get(anchorEndpoint)).andReturn().response
+        then: 'the correct anchor is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(anchorName)
+    }
+
+    def 'Get existing anchors filtered by schema set names with pagination.'() {
+        given: 'service method returns a list of anchors'
+            mockCpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName,schemaSetNames,new PaginationOption(1,4)) >> [anchor]
+        and: 'the endpoint for getting all anchors with multiple schema set name parameters and pagination parameters'
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors?schema-set-names=my-schema-set1,my-schema-set2&pageIndex=1&pageSize=4"
+        when: 'get anchors API is invoked'
+            def response = mvc.perform(get(anchorEndpoint)).andReturn().response
+        then: 'the correct anchor is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(anchorName)
+    }
 
     def 'Get existing anchor by dataspace and anchor name.'() {
         given: 'service method returns an anchor'

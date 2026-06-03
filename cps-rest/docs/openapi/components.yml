@@ -64,7 +64,7 @@ components:
           description: multipartFile
           format: binary
 
-    TargetDataAsJsonFile:
+    targetDataAsFile:
       type: object
       required:
         - file
@@ -518,14 +518,28 @@ components:
         type: boolean
         default: false
         example: true
-    schemaSetNameOptionalInQuery:
-      name: schema-set-name
-      in: query
-      description: schema-set-name
+    acceptMediaType:
+      name: Accept
+      in: header
+      description: Content type in header
       required: false
       schema:
         type: string
-        example: my-schema-set
+        enum:
+          - application/json
+          - application/xml
+        default: application/json
+    schemaSetNamesInQuery:
+      name: schema-set-names
+      in: query
+      description: schema-set-names
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
 
   responses:
     NotFound:
