@@ -3,7 +3,7 @@
  * Copyright (C) 2020-2025 Nordix Foundation.
  * Modifications Copyright (C) 2020-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
- * Modifications Copyright (C) 2022 Deutsche Telekom AG
+ * Modifications Copyright (C) 2022-2026 Deutsche Telekom AG
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import org.onap.cps.api.exceptions.AlreadyDefinedException;
 import org.onap.cps.api.exceptions.DataspaceInUseException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.Dataspace;
+import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.SchemaSetEntity;
@@ -40,6 +41,8 @@ import org.onap.cps.ri.repository.DataspaceRepository;
 import org.onap.cps.ri.repository.SchemaSetRepository;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -120,6 +123,14 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     }
 
     @Override
+    public Collection<Anchor> getAnchors(final String dataspaceName, final PaginationOption paginationOption) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final Pageable pageable = PageRequest.of(paginationOption.getPageIndex() - 1, paginationOption.getPageSize());
+        return anchorRepository.getByDataspace(dataspaceEntity, pageable)
+                .stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
+    }
+
+    @Override
     public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> anchorNames) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         return anchorRepository.findAllByDataspaceAndNameIn(dataspaceEntity, anchorNames)
@@ -134,6 +145,16 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         return anchorRepository.findAllBySchemaSet(schemaSetEntity)
             .stream().map(CpsAdminPersistenceServiceImpl::toAnchor)
             .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Collection<Anchor> getAnchorsBySchemaSetNames(final String dataspaceName,
+                                                         final Collection<String> schemaSetNames,
+                                                         final PaginationOption paginationOption) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final Pageable pageable = PageRequest.of(paginationOption.getPageIndex() - 1, paginationOption.getPageSize());
+        return anchorRepository.getByDataspaceIdAndSchemaSetNameIn(dataspaceEntity, schemaSetNames, pageable)
+                .stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toList());
     }
 
     @Override
