@@ -534,13 +534,9 @@ components:
       in: query
       description: comma separated list of schema set names
       required: false
-      style: form
-      explode: false
       schema:
-        type: array
-        items:
-          type: string
-      example: schema-set1,schema-set2,schema-set3
+        type: string
+        example: my-schema-set1,my-schema-set2,my-schema-set3
 
   responses:
     NotFound:
