@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Modifications Copyright (C) 2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,8 +24,10 @@ package org.onap.cps.impl
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.api.model.Anchor
+import org.onap.cps.api.parameters.PaginationOption
 import spock.lang.Specification
 
 class CpsAnchorServiceImplSpec extends Specification {
@@ -32,6 +35,10 @@ class CpsAnchorServiceImplSpec extends Specification {
     def mockCpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsValidator = Mock(CpsValidator)
+    def schemaSetNames = ["my-schema-set1","my-schema-set2"]
+    def pageIndex = 1
+    def pageSize = 4
+    def commaSeparatedSchemaSetNames = schemaSetNames.join(',');
 
     def objectUnderTest = new CpsAnchorServiceImpl(mockCpsAdminPersistenceService, mockCpsDataPersistenceService, mockCpsValidator)
 
@@ -62,6 +69,34 @@ class CpsAnchorServiceImplSpec extends Specification {
             mockCpsAdminPersistenceService.getAnchorsBySchemaSetName('someDataspace', 'someSchemaSet') >> anchors
         when: 'get anchors is called for a dataspace name and schema set name'
             def result = objectUnderTest.getAnchorsBySchemaSetName('someDataspace', 'someSchemaSet')
+        then: 'the collection provided by persistence service is returned as result'
+            result == anchors
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+    }
+
+    def 'Retrieve paginated anchors for dataspace.'() {
+        given: 'a pagination option'
+            def paginationOption = new PaginationOption(pageIndex, pageSize)
+        and: 'that anchors are associated with the dataspace'
+            def anchors = [new Anchor(), new Anchor()]
+            mockCpsAdminPersistenceService.getAnchors('someDataspace', paginationOption) >> anchors
+        when: 'get anchors is called with a dataspace name and pagination option'
+            def result = objectUnderTest.getAnchors('someDataspace', paginationOption)
+        then: 'the collection provided by persistence service is returned as result'
+            result == anchors
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+    }
+
+    def 'Retrieve paginated anchors for multiple schema-sets.'() {
+        given: 'a pagination option'
+            def paginationOption = new PaginationOption(pageIndex, pageSize)
+        and: 'that anchors are associated with the dataspace and schemaset'
+            def anchors = [new Anchor(), new Anchor()]
+            mockCpsAdminPersistenceService.getAnchorsBySchemaSetNames('someDataspace', _ as Collection<String>, paginationOption) >> anchors
+        when: 'get anchors is called with a dataspace name, schema set name and pagination option'
+            def result = objectUnderTest.getAnchorsBySchemaSetNames('someDataspace', schemaSetNames, paginationOption)
         then: 'the collection provided by persistence service is returned as result'
             result == anchors
         and: 'the CpsValidator is called on the dataspaceName'
@@ -163,6 +198,103 @@ class CpsAnchorServiceImplSpec extends Specification {
             objectUnderTest.updateAnchorSchemaSet('someDataspace', 'someAnchor', 'someSchemaSetName')
         then: 'associated persistence service method is invoked with correct parameter'
             1 * mockCpsAdminPersistenceService.updateAnchorSchemaSet('someDataspace', 'someAnchor', 'someSchemaSetName')
+    }
+
+    def 'Get paginated anchors without schema set names when #scenario.'() {
+        given: 'that anchors are associated with the dataspace'
+            def anchors = [new Anchor()]
+            mockCpsAdminPersistenceService.getAnchors('someDataspace', _ as PaginationOption) >> anchors
+        when: 'get anchors pagination is called without schema set names'
+            def result = objectUnderTest.getAnchors('someDataspace', schemaSetNamesParam, pageIndex, pageSize)
+        then: 'the collection provided by persistence service is returned as result'
+            result == anchors
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+        where: 'the following schema set names are used'
+            scenario              | schemaSetNamesParam
+            'null schema sets'    | null
+            'empty schema sets'   | ''
+    }
+
+    def 'Get paginated anchors with schema set names.'() {
+        given: 'that anchors are associated with the dataspace and schema sets'
+            def anchors = [new Anchor(), new Anchor()]
+            mockCpsAdminPersistenceService.getAnchorsBySchemaSetNames('someDataspace', schemaSetNames, _ as PaginationOption) >> anchors
+        when: 'get anchors pagination is called with schema set names'
+            def result = objectUnderTest.getAnchors('someDataspace', commaSeparatedSchemaSetNames, pageIndex, pageSize)
+        then: 'the collection provided by persistence service is returned as result'
+            result == anchors
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+    }
+
+    def 'Get paginated anchors with no pagination when page params are null for #scenario.'() {
+        given: 'that anchors are associated with the dataspace'
+            def anchors = [new Anchor()]
+            mockCpsAdminPersistenceService.getAnchors('someDataspace') >> anchors
+        when: 'get anchors pagination is called with null page parameters and no schema set names'
+            def result = objectUnderTest.getAnchors('someDataspace', null, nullablePageIndex, nullablePageSize)
+        then: 'the collection provided by persistence service is returned as result'
+            result == anchors
+        where: 'the following page parameters are used'
+            scenario             | nullablePageIndex | nullablePageSize
+            'null pageIndex'     | null              | 10
+            'null pageSize'      | 1                 | null
+            'both null'          | null              | null
+    }
+
+    def 'Get anchors without schema set when #scenario.'() {
+        given: 'that anchors are associated with the dataspace'
+            def anchors = [new Anchor()]
+            mockCpsAdminPersistenceService.getAnchors('someDataspace') >> anchors
+        when: 'get anchors with or without schema set is called without schema set names'
+            def result = objectUnderTest.getAnchors('someDataspace', schemaSetNamesParam, null, null)
+        then: 'the collection provided by persistence service is returned as result'
+            result == anchors
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+        where: 'the following schema set names are used'
+            scenario              | schemaSetNamesParam
+            'null schema sets'    | null
+            'empty schema sets'   | ''
+    }
+
+    def 'Get anchors with schema set names provided.'() {
+        given: 'that anchors are associated with the dataspace and schema sets'
+            def anchors = [new Anchor(), new Anchor()]
+            mockCpsAdminPersistenceService.getAnchorsBySchemaSetNames('someDataspace', _ as Collection) >> anchors
+        when: 'get anchors with or without schema set is called with schema set names'
+            def result = objectUnderTest.getAnchors('someDataspace', commaSeparatedSchemaSetNames, null, null)
+        then: 'the collection provided by persistence service is returned as result'
+            result == anchors
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+    }
+
+    def 'Get paginated anchors with negative pageIndex throws DataValidationException.'() {
+        given: 'the validator throws a DataValidationException for a negative pageIndex'
+            mockCpsValidator.validatePaginationOption(_ as PaginationOption) >> {
+                throw new DataValidationException('Pagination validation error.', 'Invalid page index or size')
+            }
+        when: 'get anchors pagination is called with a negative pageIndex'
+            objectUnderTest.getAnchors('someDataspace', null, -1, 4)
+        then: 'a DataValidationException is thrown'
+            thrown(DataValidationException)
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+    }
+
+    def 'Get paginated anchors with negative pageSize throws DataValidationException.'() {
+        given: 'the validator throws a DataValidationException for a negative pageSize'
+            mockCpsValidator.validatePaginationOption(_ as PaginationOption) >> {
+                throw new DataValidationException('Pagination validation error.', 'Invalid page index or size')
+            }
+        when: 'get anchors pagination is called with a negative pageSize'
+            objectUnderTest.getAnchors('someDataspace', null, 1, -1)
+        then: 'a DataValidationException is thrown'
+            thrown(DataValidationException)
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
     }
 
 }
