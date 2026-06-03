@@ -217,7 +217,7 @@ class CpsRestExceptionHandlerSpec extends Specification {
      */
 
     def setupTestException(exception) {
-        mockCpsAnchorService.getAnchors(_) >> { throw exception }
+        mockCpsAnchorService.getAnchorsWithOrWithoutSchemaSet(*_) >> { throw exception }
     }
 
     def performTestRequest() {

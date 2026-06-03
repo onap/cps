@@ -47,7 +47,6 @@ import org.onap.cps.rest.model.SchemaSetDetails;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -265,9 +264,13 @@ public class AdminRestController implements CpsAdminApi {
      */
     @Override
     public ResponseEntity<List<AnchorDetails>> getAnchors(final String apiVersion,
-                         final String dataspaceName, final List<String> schemaSetNames) {
-        final Collection<Anchor> anchors = CollectionUtils.isEmpty(schemaSetNames) ? cpsAnchorService
-                .getAnchors(dataspaceName) : cpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames);
+            final String dataspaceName, final String schemaSetNames,
+            final Integer pageIndex, final Integer pageSize) {
+        final boolean paginationFlag = pageIndex != null && pageSize != null;
+        final Collection<Anchor> anchors = paginationFlag
+                ? cpsAnchorService.getAnchorsPagination(dataspaceName, schemaSetNames, pageIndex, pageSize) :
+                cpsAnchorService.getAnchorsWithOrWithoutSchemaSet(dataspaceName, schemaSetNames);
+
         final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).toList();
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
