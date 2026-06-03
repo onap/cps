@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@ package org.onap.cps.api;
 import java.util.Collection;
 import org.onap.cps.api.exceptions.CpsException;
 import org.onap.cps.api.model.Anchor;
+import org.onap.cps.api.parameters.PaginationOption;
 
 public interface CpsAnchorService {
 
@@ -54,6 +56,15 @@ public interface CpsAnchorService {
     Collection<Anchor> getAnchors(String dataspaceName);
 
     /**
+     * Read all anchors in the given dataspace based on pagination option.
+     *
+     * @param dataspaceName dataspace name
+     * @param paginationOption pagination option
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName, PaginationOption paginationOption);
+
+    /**
      * Read all anchors in the given dataspace with the anchor names.
      *
      * @param dataspaceName dataspace name
@@ -70,6 +81,17 @@ public interface CpsAnchorService {
      * @return a collection of anchors
      */
     Collection<Anchor> getAnchorsBySchemaSetName(String dataspaceName, String schemaSetName);
+
+    /**
+     * Read all anchors associated with the given schema-sets in the given dataspace with pagination.
+     *
+     * @param dataspaceName  dataspace name
+     * @param schemaSetNames schema-set names
+     * @param paginationOption pagination Option
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchorsBySchemaSetNames(String dataspaceName, Collection<String> schemaSetNames,
+                                                 PaginationOption paginationOption);
 
     /**
      * Read all anchors associated with the given schema-sets in the given dataspace.
