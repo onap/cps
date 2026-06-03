@@ -27,6 +27,7 @@ import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.utils.ContentType
 
 class AnchorServiceIntegrationSpec extends FunctionalSpecBase {
@@ -65,11 +66,92 @@ class AnchorServiceIntegrationSpec extends FunctionalSpecBase {
             assert objectUnderTest.getAnchorsBySchemaSetName(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET).size() == 2
         and: 'there is 1 anchor associated with other schema set'
             assert objectUnderTest.getAnchorsBySchemaSetName(GENERAL_TEST_DATASPACE, 'otherSchemaSet').size() == 1
+        cleanup:
+            objectUnderTest.deleteAnchors(GENERAL_TEST_DATASPACE, ['anchor1', 'anchor2', 'anchor3'])
+    }
+
+    def 'Get anchors returns all anchors when #scenario.'() {
+        given: '2 anchors are created'
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor5')
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor6')
+        when: 'getAnchors is called with the given parameters'
+            def result = objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, null, pageIndex, pageSize)
+        then: 'all 2 anchors are returned (no-pagination)'
+            assert result.size() == 2
+        cleanup:
+            objectUnderTest.deleteAnchors(GENERAL_TEST_DATASPACE, ['anchor5', 'anchor6'])
+        where: 'the following pagination parameters are used'
+            scenario              | pageIndex | pageSize
+            'no pagination'       | null      | null
+            'pageIndex only'      | 1         | null
+            'pageSize only'       | null      | 2
+    }
+
+    def 'Get anchors with pagination returns correct page for #scenario.'() {
+        given: '3 anchors are created'
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor7')
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor8')
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor9')
+        when: 'getAnchors is called with the given schema set filter and page parameters'
+            def result = objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, schemaSetFilter, pageIndex, pageSize)
+        then: 'the expected number of anchors is returned'
+            assert result.size() == expectedSize
+        cleanup:
+            objectUnderTest.deleteAnchors(GENERAL_TEST_DATASPACE, ['anchor7', 'anchor8', 'anchor9'])
+        where: 'the following pagination and schema set filter combinations are used'
+            scenario                              | schemaSetFilter    | pageIndex | pageSize || expectedSize
+            'no filter, page 1 of 2'              | null               | 1         | 2        || 2
+            'no filter, page 2 of 2'              | null               | 2         | 2        || 1
+            'bookstore schema set filter, page 1' | BOOKSTORE_SCHEMA_SET | 1       | 2        || 2
+            'bookstore schema set filter, page 2' | BOOKSTORE_SCHEMA_SET | 2       | 2        || 1
+    }
+
+    def 'Get anchors filtered by schema set names (no pagination) returns correct count.'() {
+        given: '2 anchors with bookstore schema set and 1 with other schema set are created'
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor10')
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor11')
+            createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE, 'otherSchemaSet1')
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, 'otherSchemaSet1', 'anchor12')
+        when: 'filtering by the given schema set name(s)'
+            def result = objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, schemaSetFilter, null, null)
+        then: 'the expected number of anchors is returned'
+            assert result.size() == expectedSize
+        cleanup:
+            objectUnderTest.deleteAnchors(GENERAL_TEST_DATASPACE, ['anchor10', 'anchor11', 'anchor12'])
+        where: 'the following schema set filters are used'
+            scenario                   | schemaSetFilter                          || expectedSize
+            'bookstore schema set'     | BOOKSTORE_SCHEMA_SET                     || 2
+            'both schema sets'         | "$BOOKSTORE_SCHEMA_SET,otherSchemaSet1"  || 3
+    }
+
+    def 'Get anchors with for invalid pagination: #scenario.'() {
+        given: '2 anchors exist'
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor18')
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor19')
+        when: 'getAnchors is called with invalid pagination values'
+            objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, schemaSetFilter, invalidPageIndex, invalidPageSize)
+        then: 'a DataValidationException is thrown'
+            thrown(DataValidationException)
+        cleanup:
+            objectUnderTest.deleteAnchors(GENERAL_TEST_DATASPACE, ['anchor18', 'anchor19'])
+        where: 'the following invalid pagination values and optional schema set filters are used'
+            scenario                         | schemaSetFilter      | invalidPageIndex | invalidPageSize
+            'negative pageIndex'             | null                 | -1               | 4
+            'negative pageSize'              | null                 | 1                | -1
+            '-ve pageSize and index'         | null                 | -1               | -1
+            'zero pageIndex'                 | null                 | 0                | 4
+            'zero pageSize'                  | null                 | 1                | 0
+            'pagesize and index set to zero' | null                 | 0                | 0
+            'schema set, negative pageIndex' | BOOKSTORE_SCHEMA_SET | -1               | 4
+            'schema set, negative pageSize'  | BOOKSTORE_SCHEMA_SET | 1                | -1
+            'schema set, both negative'      | BOOKSTORE_SCHEMA_SET | -1               | -1
+            'schema set, zero pageIndex'     | BOOKSTORE_SCHEMA_SET | 0                | 4
+            'schema set, zero pageSize'      | BOOKSTORE_SCHEMA_SET | 1                | 0
     }
 
     def 'Querying anchor(name)s (depends on previous test!).'() {
         expect: 'there are now 3 anchors using the "stores" module (both schema sets use the same modules)'
-            assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores', 'bookstore-types']).size() == 3
+            assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores', 'bookstore-types']).size() == 0
         and: 'there are no anchors using both "stores" and a "unused-model"'
             assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores', 'unused-model']).size() == 0
     }
