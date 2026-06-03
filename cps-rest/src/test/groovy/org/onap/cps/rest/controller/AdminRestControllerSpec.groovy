@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021-2025 Nordix Foundation
- *  Modifications Copyright (C) 2022-2025 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2022-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 package org.onap.cps.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.parameters.PaginationOption
 
 import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
@@ -38,6 +39,7 @@ import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsNotificationService
 import org.onap.cps.api.exceptions.AlreadyDefinedException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.SchemaSetInUseException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.Dataspace
@@ -94,7 +96,9 @@ class AdminRestControllerSpec extends Specification {
     def schemaSetName = 'my_schema_set'
     def anchor = new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
     def dataspace = new Dataspace(name: dataspaceName)
-    def schemaSetNames = ["my_schema_set1","my_schema_set2"]
+    def schemaSetNames = ["my-schema-set1","my-schema-set2"]
+    def pageIndex = 1
+    def pageSize = 4
 
     def 'Create new dataspace with #scenario.'() {
         when: 'post is invoked on endpoint for creating a dataspace'
@@ -362,7 +366,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Get existing anchors.'() {
         given: 'service method returns a list of (one) anchors'
-            mockCpsAnchorService.getAnchors(dataspaceName) >> [anchor]
+            mockCpsAnchorService.getAnchors(dataspaceName, null, null, null) >> [anchor]
         and: 'the endpoint for getting all anchors'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'get all anchors API is invoked'
@@ -372,16 +376,70 @@ class AdminRestControllerSpec extends Specification {
             response.getContentAsString().contains(anchorName)
     }
 
-    def 'Get existing anchors filtered by schema set names.'() {
+    def 'Get existing anchors with pagination.'() {
         given: 'service method returns a list of anchors'
-            mockCpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames) >> [anchor]
-        and: 'the endpoint for getting all anchors with multiple schema-set-name parameters'
-            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors?schema-set-names=my_schema_set1,my_schema_set2"
-        when: 'get anchors API is invoked'
-            def response = mvc.perform(get(anchorEndpoint)).andReturn().response
+            mockCpsAnchorService.getAnchors(dataspaceName, null, pageIndex, pageSize) >> [anchor]
+        and: 'the endpoint for getting paginated anchors'
+            def requestParams = new LinkedMultiValueMap<>()
+            requestParams.add('pageIndex', pageIndex.toString())
+            requestParams.add('pageSize', pageSize.toString())
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
+        when: 'get all anchors API is invoked'
+            def response = mvc.perform(get(anchorEndpoint).
+                params(requestParams as MultiValueMap)).andReturn().response
         then: 'the correct anchor is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(anchorName)
+    }
+
+    def 'Get existing anchors filtered by schema set names.'() {
+        given: 'service method returns a list of anchors'
+            mockCpsAnchorService.getAnchors(dataspaceName, schemaSetNames.join(','),null,null) >> [anchor]
+        and: 'the endpoint for getting all anchors with multiple schema set name parameters'
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
+        when: 'get anchors API is invoked'
+            def response = mvc.perform(get(anchorEndpoint).
+                param('schema-set-names',schemaSetNames.join(','))).andReturn().response
+        then: 'the correct anchor is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(anchorName)
+    }
+
+    def 'Get existing anchors filtered by schema set names with pagination.'() {
+        given: 'service method returns a list of anchors'
+            mockCpsAnchorService.getAnchors(dataspaceName, schemaSetNames.join(','), pageIndex, pageSize) >> [anchor]
+        and: 'the endpoint for getting all anchors with multiple schema set name parameters and pagination parameters'
+            def requestParams = new LinkedMultiValueMap<>()
+            requestParams.add('schema-set-names', schemaSetNames.join(','))
+            requestParams.add('pageIndex', pageIndex.toString())
+            requestParams.add('pageSize', pageSize.toString())
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
+        when: 'get anchors API is invoked'
+            def response = mvc.perform(get(anchorEndpoint).
+                params(requestParams as MultiValueMap)).andReturn().response
+        then: 'the correct anchor is returned'
+            response.status == HttpStatus.OK.value()
+            response.getContentAsString().contains(anchorName)
+    }
+
+    def 'Attempt to get anchors using unsupported pagination values.'() {
+        given: 'the service throws Pagination related Exception for invalid pagination values'
+            mockCpsAnchorService.getAnchors(dataspaceName, null, negativePageIndex, negativePageSize) >> {
+                throw new DataValidationException('Pagination validation error.', 'Invalid page index or size')
+            }
+        and: 'the endpoint is called with a negative page parameter'
+            def requestParams = new LinkedMultiValueMap<>()
+            requestParams.add('pageIndex', negativePageIndex.toString())
+            requestParams.add('pageSize', negativePageSize.toString())
+            def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
+        when: 'get anchors API is invoked'
+            def response = mvc.perform(get(anchorEndpoint).
+                params(requestParams as MultiValueMap)).andReturn().response
+        then: 'response status is Bad Request'
+            response.status == HttpStatus.BAD_REQUEST.value()
+        where: 'the following negative page parameters are used'
+            scenario                             | negativePageIndex | negativePageSize
+            'both pageSize and index negative'   | -1                | -1
     }
 
     def 'Get existing anchor by dataspace and anchor name.'() {
