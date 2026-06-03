@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -52,6 +53,18 @@ public interface CpsAnchorService {
      * @return a collection of anchors
      */
     Collection<Anchor> getAnchors(String dataspaceName);
+
+    /**
+     * Get all anchors in a dataspace. Anchors can be filtered based on schema set names and can be paginated.
+     *
+     * @param dataspaceName  dataspaceName
+     * @param schemaSetNames schema-set names
+     * @param pageIndex      1-based index of the page to retrieve, where 1 returns the first page of results
+     * @param pageSize       maximum number of anchors or number of records to return per page
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName, Collection<String> schemaSetNames,
+                                  Integer pageIndex, Integer pageSize);
 
     /**
      * Read all anchors in the given dataspace with the anchor names.
