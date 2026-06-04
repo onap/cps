@@ -112,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea39f4c_5d02a2ff",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-04T11:48:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f6363260_f8ae29bb",
+      "range": {
+        "startLine": 140,
+        "startChar": 19,
+        "endLine": 140,
+        "endChar": 23
+      },
+      "revId": "253c2877c8e84c74f684b4eb16cfc0a95e0ebb24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd667e08_c7810df8",
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "same as above",
       "parentUuid": "fd667e08_c7810df8",
+      "range": {
+        "startLine": 148,
+        "startChar": 18,
+        "endLine": 148,
+        "endChar": 21
+      },
+      "revId": "253c2877c8e84c74f684b4eb16cfc0a95e0ebb24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb9a2bb5_9e011530",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-04T11:48:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "44217e18_5f3d20ef",
       "range": {
         "startLine": 148,
         "startChar": 18,
