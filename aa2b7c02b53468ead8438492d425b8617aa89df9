@@ -16,6 +16,29 @@
       "message": "Resolved",
       "revId": "aa2b7c02b53468ead8438492d425b8617aa89df9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c342a32_c4cb5e79",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 8566
+      },
+      "writtenOn": "2026-06-04T10:11:17Z",
+      "side": 1,
+      "message": "Use StringUtils.isBlank() instead of manual null/empty check.",
+      "range": {
+        "startLine": 270,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 63
+      },
+      "revId": "aa2b7c02b53468ead8438492d425b8617aa89df9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
