@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79eca628_0f7a3838",
+        "filename": "cps-ri/lombok.config",
+        "patchSetId": 24
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-04T15:55:23Z",
+      "side": 1,
+      "message": "NB: no longer needed because you move the logic to different layer I assume",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 84
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2cf152a5_2c159c78",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
         "patchSetId": 24
