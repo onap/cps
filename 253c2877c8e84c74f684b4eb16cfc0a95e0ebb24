@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df923fe7_7e6547f4",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-04T11:39:39Z",
+      "side": 1,
+      "message": "I\u0027ve updated the 2.5 to 2500ms to remove the decimal, I\u0027ve kept the other whole seconds or minutes for readability",
+      "parentUuid": "f40c8cdb_609afe3c",
+      "range": {
+        "startLine": 28,
+        "startChar": 19,
+        "endLine": 28,
+        "endChar": 22
+      },
+      "revId": "253c2877c8e84c74f684b4eb16cfc0a95e0ebb24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8ede34a_c4559ff4",
         "filename": "k6-tests/ncmp/config/kpi.json",
         "patchSetId": 1
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6363260_f8ae29bb",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-04T11:39:39Z",
+      "side": 1,
+      "message": "Original (100% load) was 1 second so 50% would be 2 seconds",
+      "parentUuid": "e8ede34a_c4559ff4",
+      "range": {
+        "startLine": 140,
+        "startChar": 19,
+        "endLine": 140,
+        "endChar": 23
+      },
+      "revId": "253c2877c8e84c74f684b4eb16cfc0a95e0ebb24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd667e08_c7810df8",
         "filename": "k6-tests/ncmp/config/kpi.json",
         "patchSetId": 1
@@ -77,6 +125,30 @@
       "writtenOn": "2026-06-02T16:02:25Z",
       "side": 1,
       "message": "2500ms",
+      "range": {
+        "startLine": 148,
+        "startChar": 18,
+        "endLine": 148,
+        "endChar": 21
+      },
+      "revId": "253c2877c8e84c74f684b4eb16cfc0a95e0ebb24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44217e18_5f3d20ef",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-04T11:39:39Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "fd667e08_c7810df8",
       "range": {
         "startLine": 148,
         "startChar": 18,
