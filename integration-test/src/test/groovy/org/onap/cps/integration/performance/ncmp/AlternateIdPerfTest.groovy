@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -48,8 +48,19 @@ class AlternateIdPerfTest extends CpsIntegrationSpecBase {
                 networkCmProxyInventoryFacade.getNcmpServiceCmHandle("${altIdPrefix}alt=${it}")
             }
             resourceMeter.stop()
-        then: 'record the result. Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2605'
-            println "*** CPS-2605 Execution time: ${resourceMeter.totalTimeInSeconds} ms"
+        then: 'record the result, not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2605'
+            println "*** CPS-2605, Alternate Id lookups. Execution time: ${resourceMeter.totalTimeInSeconds} s"
+    }
+
+    def 'CM Handle Distinguished Name Lookup Performance with properties.'() {
+        when: 'perform 10 lookups by distinguished name' // Increase to 1,000 for more accurate result while tuning
+            resourceMeter.start()
+            (1..10).each {
+                networkCmProxyInventoryController.getCmHandleByDistinguishedName("${altIdPrefix}alt=${it}", Boolean.TRUE)
+            }
+            resourceMeter.stop()
+        then: 'record the result, not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-3212'
+            println "*** CPS-3212, CM Handle Distinguished Name lookups. Execution time: ${resourceMeter.totalTimeInSeconds} s"
     }
 
     def 'Alternate Id Longest Match Performance.'() {
