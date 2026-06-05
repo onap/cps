@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31621e45_f6731a7a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63664216_a051a745",
+      "range": {
+        "startLine": 99,
+        "startChar": 57,
+        "endLine": 102,
+        "endChar": 102
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4819b212_1526c860",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-06-04T15:55:23Z",
       "side": 1,
       "message": "Probably easier and better to write a simple placeholder test that asserts what is does now (thrown an exception I think)\nThere is a risk this gets forgotten in the next patch and we could miss slippage in future coverage",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 10
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a7ffc3_4a24d59d",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 33
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4819b212_1526c860",
       "range": {
         "startLine": 214,
         "startChar": 0,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a18ec1ac_9abb8012",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/CompositeQuery.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done. But I noticed we never had java doc for data models, like DataNode and DeltaReport.",
+      "parentUuid": "3a4dcc8d_52baa416",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 28
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f2e2c25_a24bb4d8",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
         "patchSetId": 33
@@ -100,6 +172,30 @@
       "writtenOn": "2026-06-04T15:55:23Z",
       "side": 1,
       "message": "why can you not use @RequiredArgsConstructor?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 5
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88357304_5cf8e5c8",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "It can be used; this was left unhandled from my research phase where it required manual injection",
+      "parentUuid": "3f2e2c25_a24bb4d8",
       "range": {
         "startLine": 44,
         "startChar": 0,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0ed4002_1719824a",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5ae8508_3cf3e5ec",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 70
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e9ba185_a6e35e42",
@@ -146,6 +266,30 @@
       "writtenOn": "2026-06-04T15:55:23Z",
       "side": 1,
       "message": "NB: check your copyrights",
+      "range": {
+        "startLine": 4,
+        "startChar": 18,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd3b5c89_c71c5ca0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e9ba185_a6e35e42",
       "range": {
         "startLine": 4,
         "startChar": 18,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f5cdabf_1df7042e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13c0a76b_7af73dc4",
+      "range": {
+        "startLine": 140,
+        "startChar": 30,
+        "endLine": 140,
+        "endChar": 85
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "891a6f6c_d052d98c",
@@ -192,6 +360,30 @@
       "writtenOn": "2026-06-04T15:55:23Z",
       "side": 1,
       "message": "the (same) datanodes from the query service are returned",
+      "range": {
+        "startLine": 145,
+        "startChar": 15,
+        "endLine": 145,
+        "endChar": 42
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e62d70f2_6c0a0ef4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "891a6f6c_d052d98c",
       "range": {
         "startLine": 145,
         "startChar": 15,
@@ -225,6 +417,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c3d0ad4_16544516",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dfa84d1_d833a3ff",
+      "range": {
+        "startLine": 4,
+        "startChar": 28,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7741f43b_7d54d8fd",
@@ -238,6 +454,30 @@
       "writtenOn": "2026-06-04T15:55:23Z",
       "side": 1,
       "message": "i prefer hard coding these values(yes 3 times)  adn use \u0027my-....\u0027 as you are asserting them",
+      "range": {
+        "startLine": 103,
+        "startChar": 1,
+        "endLine": 104,
+        "endChar": 42
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87ed9e88_645dafa5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7741f43b_7d54d8fd",
       "range": {
         "startLine": 103,
         "startChar": 1,

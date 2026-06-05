@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beaff97f_52f208af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "I resolved the new comments. Should I mark the old comments which are no longer valid as the code has been moved?",
+      "revId": "30fdde061f16f0efef282db1d6ed346630650edf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

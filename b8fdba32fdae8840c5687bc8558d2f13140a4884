@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe693898_5c4d2e2c",
+        "filename": "cps-ri/lombok.config",
+        "patchSetId": 24
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "yes I have removed it, looks like you reviewed patch 24 but latest is patch 33 where this is removed 😊",
+      "parentUuid": "79eca628_0f7a3838",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 84
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2cf152a5_2c159c78",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/query/CompositeQueryOperators.java",
         "patchSetId": 24
@@ -516,6 +540,30 @@
       "writtenOn": "2026-05-06T12:21:21Z",
       "side": 1,
       "message": "add javadoc",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "b8fdba32fdae8840c5687bc8558d2f13140a4884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "213f392e_0b88fbd8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/CompositeQuery.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T05:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "771b7f02_efe38900",
       "range": {
         "startLine": 36,
         "startChar": 13,
