@@ -210,6 +210,24 @@
       "parentUuid": "3ac243d2_30bfc1f1",
       "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "089338d5_f58b38bb",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-05T09:20:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "478fc08e_d3291ae3",
+      "revId": "83a62c17e8a55868e10d640fc6bd292c026695b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
