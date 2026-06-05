@@ -16,6 +16,190 @@
       "message": "Resolved comments",
       "revId": "66e394e51190f9e5efda647db213383c69be5e67",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4676ab7_83be8e22",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T11:23:42Z",
+      "side": 1,
+      "message": "Manage all copyrights",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "66e394e51190f9e5efda647db213383c69be5e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda10491_5720fa7a",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T11:23:42Z",
+      "side": 1,
+      "message": "can be extracted as static string, do not forget the heading and trailing space",
+      "range": {
+        "startLine": 139,
+        "startChar": 33,
+        "endLine": 139,
+        "endChar": 38
+      },
+      "revId": "66e394e51190f9e5efda647db213383c69be5e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79aa01be_69f2212b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T11:23:42Z",
+      "side": 1,
+      "message": "make static variable",
+      "range": {
+        "startLine": 156,
+        "startChar": 17,
+        "endLine": 156,
+        "endChar": 20
+      },
+      "revId": "66e394e51190f9e5efda647db213383c69be5e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d2cee84_e13dea9d",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T11:23:42Z",
+      "side": 1,
+      "message": "static",
+      "range": {
+        "startLine": 161,
+        "startChar": 17,
+        "endLine": 161,
+        "endChar": 22
+      },
+      "revId": "66e394e51190f9e5efda647db213383c69be5e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63c8bddd_6d6e5e3a",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T11:23:42Z",
+      "side": 1,
+      "message": "make all hardcoded values static",
+      "range": {
+        "startLine": 228,
+        "startChar": 50,
+        "endLine": 228,
+        "endChar": 53
+      },
+      "revId": "66e394e51190f9e5efda647db213383c69be5e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55a3f116_7e45b896",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T11:23:42Z",
+      "side": 1,
+      "message": "this method can now be safely removed, as getNormalizedXpath handles sorting, but you need to move all the test scenarios of sorting with getNormalizedXpathWithSortedKeys to getNormalizedXpath",
+      "range": {
+        "startLine": 119,
+        "startChar": 25,
+        "endLine": 119,
+        "endChar": 57
+      },
+      "revId": "66e394e51190f9e5efda647db213383c69be5e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c368300_7a1d30f7",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 31
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T11:23:42Z",
+      "side": 1,
+      "message": "these will be testing with getNormalizedXpath once you remove getNormalizedXpathWithSortedKeys. See if the scenarios can be combined with existing tests and new ones can then be completely removed.",
+      "range": {
+        "startLine": 135,
+        "startChar": 37,
+        "endLine": 135,
+        "endChar": 69
+      },
+      "revId": "66e394e51190f9e5efda647db213383c69be5e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e61a975_632fc7f3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 31
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-05T11:23:42Z",
+      "side": 1,
+      "message": "this might have to be reverted, but add a add new integration test with unsorted keys",
+      "range": {
+        "startLine": 92,
+        "startChar": 36,
+        "endLine": 92,
+        "endChar": 56
+      },
+      "revId": "66e394e51190f9e5efda647db213383c69be5e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
