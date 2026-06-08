@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b261c78_28d012c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-08T09:57:34Z",
+      "side": 1,
+      "message": "Looks good, minor suggestion",
+      "revId": "a11854397992e08d0b9acbcbdc99b771913006b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c8cbb6_60b9d7a5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/CompositeQuery.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-08T09:57:34Z",
+      "side": 1,
+      "message": "NB: rename to andOperator for readability",
+      "revId": "a11854397992e08d0b9acbcbdc99b771913006b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
