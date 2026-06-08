@@ -16,6 +16,29 @@
       "message": "Resolved",
       "revId": "d842aab9d3c0493e82cc66d0aa4782b3d5655777",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9310b360_0e08778b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-08T11:05:33Z",
+      "side": 1,
+      "message": "you mixed this up I think, it should be:\nvalidateXml(final String xmlData) {",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 54
+      },
+      "revId": "d842aab9d3c0493e82cc66d0aa4782b3d5655777",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
