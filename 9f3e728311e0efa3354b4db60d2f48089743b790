@@ -159,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "573799b9_63da5b4a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/CompositeQuery.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-08T08:05:23Z",
+      "side": 1,
+      "message": "that is correct IMHO i having JavaDoc is superflous for well written code but we agreed in the past to always add it for pubic APIs (incl models)\nI totaly agree we haven\u0027t applied it conistently (yet)",
+      "parentUuid": "a18ec1ac_9abb8012",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 28
+      },
+      "revId": "9f3e728311e0efa3354b4db60d2f48089743b790",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f2e2c25_a24bb4d8",
