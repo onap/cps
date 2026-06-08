@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92320f16_c8dab7ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-08T07:34:32Z",
+      "side": 1,
+      "message": "one small suggestion",
+      "revId": "71e279f66c315952e5810ab82b8da4270af5ae96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a305a1d3_a16a07b1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 48
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-08T07:34:32Z",
+      "side": 1,
+      "message": "nb: strange name (a verb applies to methods)\nsuggestion: stringToBeValidated or simply xmlData",
+      "range": {
+        "startLine": 61,
+        "startChar": 41,
+        "endLine": 61,
+        "endChar": 58
+      },
+      "revId": "71e279f66c315952e5810ab82b8da4270af5ae96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
