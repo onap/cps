@@ -39,6 +39,30 @@
       },
       "revId": "71e279f66c315952e5810ab82b8da4270af5ae96",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f87a48a8_321e786a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 48
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-08T09:29:02Z",
+      "side": 1,
+      "message": "Updated it to xmlData for clarity",
+      "parentUuid": "a305a1d3_a16a07b1",
+      "range": {
+        "startLine": 61,
+        "startChar": 41,
+        "endLine": 61,
+        "endChar": 58
+      },
+      "revId": "71e279f66c315952e5810ab82b8da4270af5ae96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
