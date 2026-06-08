@@ -16,6 +16,29 @@
       "message": "Resolved comments",
       "revId": "4aa8fbb68339a6f9099afc511abc393f45a7a96c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7414c6f_97da318e",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-08T12:37:30Z",
+      "side": 1,
+      "message": "your solution still seems overly complicated. Also you are to strict on when to sort. You can always sort as long as there is NO OR-condition.\nMy suggestion:\n1) Add only one new static: boolean leafConditionsIncludesOr \u003d false\n2) Combine leafContext() and appendCondition() into one methdod called AppendLefCOndition (this is a legacy issue they were split for no good reason and first methodname is very unlcear)\n3) In the combined method set the new static to true the moment you encounter an \u0027Or\u0027 operator \n4) in exitMultipleLeafConditions sort and replace the existing leafConditions array.\n\nOK I think there is some difficulty with the normalizedPathBuilder...\n\nI had a call with Arpit and together we worked out a simpler solution\nsee https://gerrit.nordix.org/c/onap/cps/+/25652",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 140,
+        "endChar": 42
+      },
+      "revId": "4aa8fbb68339a6f9099afc511abc393f45a7a96c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
