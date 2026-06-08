@@ -65,24 +65,26 @@ delta:
       - $ref: 'components.yml#/components/parameters/sourceAnchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/groupDataNodesInQuery'
+      - $ref: 'components.yml#/components/parameters/acceptMediaType'
+
     requestBody:
       content:
         multipart/form-data:
           schema:
             type: object
             properties:
-              targetDataAsJsonFile:
+              targetData:
                    type: string
                    format: binary
                    example:
-                     $ref: 'components.yml#/components/schemas/TargetDataAsJsonFile'
+                     $ref: 'components.yml#/components/schemas/targetData'
               yangResourceFile:
                     type: string
                     format: binary
                     example:
                       $ref: 'components.yml#/components/schemas/MultipartFile'
             required:
-              - targetDataAsJsonFile
+              - targetData
     responses:
       '200':
         description: OK
@@ -93,6 +95,12 @@ delta:
             examples:
               dataSample:
                 $ref: 'components.yml#/components/examples/deltaReportSample'
+          application/xml:
+            schema:
+              type: object
+            examples:
+              dataSample:
+                $ref: 'components.yml#/components/examples/deltaReportSampleXml'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '401':
