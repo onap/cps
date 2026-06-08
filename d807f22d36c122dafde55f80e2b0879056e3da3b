@@ -33,6 +33,144 @@
       "message": "Resolved comments",
       "revId": "d807f22d36c122dafde55f80e2b0879056e3da3b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fc8545f_92818a8b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-08T08:15:05Z",
+      "side": 1,
+      "message": "NB: 2023-2026",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "d807f22d36c122dafde55f80e2b0879056e3da3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c65a2d91_d4d0c0e5",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 38
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-08T08:15:05Z",
+      "side": 1,
+      "message": "NB: 2025-2026",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "d807f22d36c122dafde55f80e2b0879056e3da3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d626b7b8_f08d9992",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 38
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-08T08:15:05Z",
+      "side": 1,
+      "message": "remove, irrelevant",
+      "range": {
+        "startLine": 128,
+        "startChar": 207,
+        "endLine": 129,
+        "endChar": 199
+      },
+      "revId": "d807f22d36c122dafde55f80e2b0879056e3da3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be29d492_9e588a1c",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 38
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-08T08:15:05Z",
+      "side": 1,
+      "message": "remove, same scenarios are covered by the test above",
+      "range": {
+        "startLine": 133,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 6
+      },
+      "revId": "d807f22d36c122dafde55f80e2b0879056e3da3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c790f16d_2e389974",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 38
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-08T08:15:05Z",
+      "side": 1,
+      "message": "NB: can remove /bookstore from all scenarios as it is not contributing to anything.",
+      "range": {
+        "startLine": 151,
+        "startChar": 52,
+        "endLine": 151,
+        "endChar": 62
+      },
+      "revId": "d807f22d36c122dafde55f80e2b0879056e3da3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ce8954_98502ba0",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-08T08:15:05Z",
+      "side": 1,
+      "message": "All changes in this file can be reverted.",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 31
+      },
+      "revId": "d807f22d36c122dafde55f80e2b0879056e3da3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
