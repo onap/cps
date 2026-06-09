@@ -38,8 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
-import org.springframework.boot.ssl.SslBundles;
+import org.springframework.boot.kafka.autoconfigure.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.KafkaException;
@@ -82,7 +81,6 @@ public class ExactlyOnceSemanticsKafkaConfig {
     private String maxPollRecords;
 
     private static final UUID CPS_NCMP_INSTANCE_UUID = UUID.randomUUID();
-    private static final SslBundles NO_SSL = null;
 
     /**
      * Producer factory configured for exactly-once semantics.
@@ -91,7 +89,7 @@ public class ExactlyOnceSemanticsKafkaConfig {
      */
     @Bean
     public ProducerFactory<String, CloudEvent> cloudEventProducerFactoryForExactlyOnceSemantics() {
-        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
+        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties();
         producerConfigProperties.put(ENABLE_IDEMPOTENCE_CONFIG, true);
         producerConfigProperties.put(ACKS_CONFIG, "all");
         final DefaultKafkaProducerFactory<String, CloudEvent> defaultKafkaProducerFactory =
@@ -108,7 +106,7 @@ public class ExactlyOnceSemanticsKafkaConfig {
      */
     @Bean
     public ConsumerFactory<String, CloudEvent> cloudEventConsumerFactoryForExactlyOnceSemantics() {
-        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
+        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties();
         consumerConfigProperties.put(ISOLATION_LEVEL_CONFIG, "read_committed");
         consumerConfigProperties.put(ENABLE_AUTO_COMMIT_CONFIG, false);
         consumerConfigProperties.put(AUTO_OFFSET_RESET_CONFIG, "earliest");
