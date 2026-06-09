@@ -26,11 +26,9 @@ import com.google.gson.stream.JsonReader;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.StringReader;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
@@ -45,18 +43,14 @@ import org.onap.cps.cpspath.parser.PathParsingException;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
-import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild;
-import org.opendaylight.yangtools.yang.data.api.schema.LeafNode;
-import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.api.schema.builder.DataContainerNodeBuilder;
 import org.opendaylight.yangtools.yang.data.api.schema.stream.NormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactory;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactorySupplier;
 import org.opendaylight.yangtools.yang.data.codec.gson.JsonParserStream;
 import org.opendaylight.yangtools.yang.data.codec.xml.XmlParserStream;
-import org.opendaylight.yangtools.yang.data.impl.schema.Builders;
 import org.opendaylight.yangtools.yang.data.impl.schema.ImmutableNormalizedNodeStreamWriter;
-import org.opendaylight.yangtools.yang.data.impl.schema.NormalizedNodeResult;
+import org.opendaylight.yangtools.yang.data.spi.node.ImmutableNodes;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.EffectiveModelContext;
@@ -98,11 +92,11 @@ public class YangParserHelper {
             }
             return validatedAndParsedJson;
         }
-        final NormalizedNodeResult normalizedNodeResult = parseXmlData(nodeData, schemaContext, parentNodeXpath);
+        final ContainerNode parsedXmlData = parseXmlData(nodeData, schemaContext, parentNodeXpath);
         if (validateOnly) {
             return null;
         }
-        return buildContainerNodeFormNormalizedNodeResult(normalizedNodeResult);
+        return parsedXmlData;
     }
 
     private ContainerNode parseJsonData(final String jsonData,
@@ -111,7 +105,7 @@ public class YangParserHelper {
         final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
             .getShared((EffectiveModelContext) schemaContext);
         final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> dataContainerNodeBuilder =
-                Builders.containerBuilder()
+                ImmutableNodes.builderFactory().newContainerBuilder()
                         .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(
                             QName.create(DATA_ROOT_NODE_NAMESPACE, DATA_ROOT_NODE_TAG_NAME)
                         ));
@@ -143,21 +137,25 @@ public class YangParserHelper {
     }
 
     @SuppressFBWarnings(value = "DCN_NULLPOINTER_EXCEPTION", justification = "Problem originates in 3PP code")
-    private NormalizedNodeResult parseXmlData(final String xmlData,
+    private ContainerNode parseXmlData(final String xmlData,
                                        final SchemaContext schemaContext,
                                        final String parentNodeXpath) {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
-        final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
+        final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> dataContainerNodeBuilder =
+                ImmutableNodes.builderFactory().newContainerBuilder()
+                        .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(
+                            QName.create(DATA_ROOT_NODE_NAMESPACE, DATA_ROOT_NODE_TAG_NAME)
+                        ));
         final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
-                .from(normalizedNodeResult);
+                .from(dataContainerNodeBuilder);
 
         final EffectiveModelContext effectiveModelContext = (EffectiveModelContext) schemaContext;
         final XmlParserStream xmlParserStream;
         final String preparedXmlContent;
         try {
             if (parentNodeXpath.isEmpty()) {
-                preparedXmlContent = XmlUtils.prepareXmlContent(xmlData, schemaContext);
+                preparedXmlContent = XmlUtils.parsedXmlContent(xmlData, schemaContext);
                 xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveModelContext);
             } else {
                 final DataSchemaNode parentSchemaNode =
@@ -168,7 +166,7 @@ public class YangParserHelper {
                 final EffectiveStatementInference effectiveStatementInference =
                     SchemaInferenceStack.of(effectiveModelContext,
                         SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();
-                preparedXmlContent = XmlUtils.prepareXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
+                preparedXmlContent = XmlUtils.parsedXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
                 xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveStatementInference);
             }
 
@@ -177,21 +175,13 @@ public class YangParserHelper {
                 final XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(stringReader);
                 xmlParserStream.parse(xmlStreamReader);
             }
-        } catch (final XMLStreamException | URISyntaxException | IOException | SAXException | NullPointerException
+        } catch (final XMLStreamException | IOException | SAXException | NullPointerException
                        | ParserConfigurationException | TransformerException exception) {
             throw new DataValidationException(
                     DATA_VALIDATION_FAILURE_MESSAGE, "Failed to parse xml data: " + exception.getMessage(), exception);
         }
-        return normalizedNodeResult;
-    }
 
-    private ContainerNode buildContainerNodeFormNormalizedNodeResult(final NormalizedNodeResult normalizedNodeResult) {
-
-        final DataContainerChild dataContainerChild =
-                (DataContainerChild) getFirstChildXmlRoot(normalizedNodeResult.getResult());
-        final YangInstanceIdentifier.NodeIdentifier nodeIdentifier =
-                new YangInstanceIdentifier.NodeIdentifier(dataContainerChild.getIdentifier().getNodeType());
-        return Builders.containerBuilder().withChild(dataContainerChild).withNodeIdentifier(nodeIdentifier).build();
+        return dataContainerNodeBuilder.build();
     }
 
     @SuppressWarnings("unchecked")
@@ -248,21 +238,5 @@ public class YangParserHelper {
     private static DataValidationException schemaNodeNotFoundException(final String schemaNodeIdentifier) {
         return new DataValidationException("Invalid xpath.",
             String.format("No schema node was found for xpath identifier '%s'.", schemaNodeIdentifier));
-    }
-
-    private static NormalizedNode getFirstChildXmlRoot(final NormalizedNode parent) {
-        final String rootNodeType = parent.getIdentifier().getNodeType().getLocalName();
-        @SuppressWarnings("unchecked")
-        final Collection<DataContainerChild> children = (Collection<DataContainerChild>) parent.body();
-        final Iterator<DataContainerChild> iterator = children.iterator();
-        NormalizedNode child = null;
-        while (iterator.hasNext()) {
-            child = iterator.next();
-            if (!child.getIdentifier().getNodeType().getLocalName().equals(rootNodeType)
-                    && !(child instanceof LeafNode)) {
-                return child;
-            }
-        }
-        return getFirstChildXmlRoot(child);
     }
 }

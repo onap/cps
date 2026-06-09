@@ -51,8 +51,7 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
     @SpringBean
     NcmpAsyncRequestResponseEventMapper mapper = Stub() { toNcmpAsyncEvent(_) >> new NcmpAsyncRequestResponseEvent(eventId: 'my-event-id', eventTarget: 'some client topic')}
 
-    @Autowired
-    private ObjectMapper objectMapper
+    private ObjectMapper objectMapper = new ObjectMapper()
 
     @Value('${app.ncmp.async-m2m.topic}')
     def topic

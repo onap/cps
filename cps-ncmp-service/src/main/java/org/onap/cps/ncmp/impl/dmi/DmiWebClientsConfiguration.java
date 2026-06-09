@@ -25,6 +25,7 @@ import org.onap.cps.ncmp.config.DmiHttpClientConfig;
 import org.onap.cps.ncmp.config.ServiceConfig;
 import org.onap.cps.ncmp.impl.dmi.provmns.out.ClientRequestMetricsTagCustomizer;
 import org.onap.cps.ncmp.impl.utils.http.WebClientConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -35,6 +36,12 @@ public class DmiWebClientsConfiguration extends WebClientConfiguration {
 
     private final DmiHttpClientConfig dmiHttpClientConfig;
     private final ClientRequestMetricsTagCustomizer clientRequestMetricsTagCustomizer;
+
+    @Bean
+    @ConditionalOnMissingBean
+    public WebClient.Builder webClientBuilder() {
+        return WebClient.builder();
+    }
 
     /**
      * Configures and creates a web client bean for DMI data services.
