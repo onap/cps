@@ -58,14 +58,15 @@
         <sonar.version>4.0.0.4121</sonar.version>
         <spotbugs.plugin.version>4.8.6.6</spotbugs.plugin.version>
         <spotbugs.version>4.8.6</spotbugs.version>
-        <spring.boot.maven.plugin.version>3.5.11</spring.boot.maven.plugin.version>
+        <spring.boot.maven.plugin.version>4.0.7</spring.boot.maven.plugin.version>
+        <antlr4.version>4.13.2</antlr4.version>
         <swagger.codegen.version>1.2.1</swagger.codegen.version>
 
         <!-- Reporting paths and coverage -->
         <jacoco.execFile>${project.build.directory}/code-coverage/jacoco-ut.exec</jacoco.execFile>
         <jacoco.outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</jacoco.outputDirectory>
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>
-        <minimum-coverage>1.00</minimum-coverage>
+        <minimum-coverage>1.0</minimum-coverage>
         <sonar.coverage.jacoco.xmlReportPaths>
             ../jacoco-report/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
@@ -334,6 +335,7 @@
                 <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <useModulePath>false</useModulePath>
                 </configuration>
             </plugin>
             <plugin>

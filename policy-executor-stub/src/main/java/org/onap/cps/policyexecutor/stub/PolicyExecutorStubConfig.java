@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,33 +18,19 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.config;
+package org.onap.cps.policyexecutor.stub;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.onap.cps.api.CpsAnchorService;
-import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.CpsDataspaceService;
-import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.impl.CpsServicesBundle;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CpsServicesConfig {
+public class PolicyExecutorStubConfig {
 
     @Bean
     @ConditionalOnMissingBean
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
     }
-
-    @Bean
-    public CpsServicesBundle cpsServices(final CpsDataspaceService dataspaceService,
-                                         final CpsModuleService moduleService,
-                                         final CpsAnchorService anchorService,
-                                         final CpsDataService dataService) {
-        return new CpsServicesBundle(dataspaceService, moduleService, anchorService, dataService);
-    }
-
 }
