@@ -94,14 +94,14 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>3.5.13</version>
+                <version>4.0.5</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2024.0.3</version>
+                <version>2025.0.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -144,7 +144,7 @@
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>mockwebserver</artifactId>
-                <version>4.12.0</version>
+                <version>5.3.2</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -202,7 +202,7 @@
             <dependency>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-runtime</artifactId>
-                <version>4.9.3</version>
+                <version>4.13.2</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -247,7 +247,7 @@
             <dependency>
                 <groupId>org.opendaylight.yangtools</groupId>
                 <artifactId>yangtools-artifacts</artifactId>
-                <version>8.0.10</version>
+                <version>14.0.23</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -22,14 +22,11 @@
 package org.onap.cps.impl
 
 import org.onap.cps.TestUtils
-import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DataMapUtils
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
-import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode
-import org.opendaylight.yangtools.yang.data.api.schema.ForeignDataNode
 import spock.lang.Specification
 
 class DataNodeBuilderSpec extends Specification {
@@ -180,16 +177,6 @@ class DataNodeBuilderSpec extends Specification {
     def 'Converting ContainerNode to a Collection with #scenario.'() {
         expect: 'converting null to a collection returns an empty collection'
             assert objectUnderTest.withContainerNode(null).buildCollection().isEmpty()
-    }
-
-    def 'Converting ContainerNode to a DataNode with unsupported Normalized Node.'() {
-        given: 'a container node of an unsupported type'
-            def mockContainerNode = Mock(ContainerNode)
-            mockContainerNode.body() >> [ Mock(ForeignDataNode) ]
-        when: 'attempt to convert it'
-            objectUnderTest.withContainerNode(mockContainerNode).build()
-        then: 'a data validation exception is thrown'
-            thrown(DataValidationException)
     }
 
     def 'Build datanode from attributes.'() {

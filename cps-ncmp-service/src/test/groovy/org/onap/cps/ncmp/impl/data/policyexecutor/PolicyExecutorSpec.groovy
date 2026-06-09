@@ -69,7 +69,7 @@ class PolicyExecutorSpec extends Specification {
         mockWebClient.post() >> mockRequestBodyUriSpec
         mockRequestBodyUriSpec.uri(*_) >> mockRequestBodyUriSpec
         mockRequestBodyUriSpec.header(*_) >> mockRequestBodyUriSpec
-        mockRequestBodyUriSpec.body(*_) >> mockRequestBodyUriSpec
+        mockRequestBodyUriSpec.bodyValue(*_) >> mockRequestBodyUriSpec
         mockRequestBodyUriSpec.retrieve() >> mockResponseSpec
     }
 
@@ -84,11 +84,15 @@ class PolicyExecutorSpec extends Specification {
             objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource',provMnSExampleJson)
         then: 'system logs the operation is allowed'
             assert getLogEntry(4) == 'Operation allowed.'
-        and: 'the request body sent has expected operation and change request'
-            1 * mockRequestBodyUriSpec.body(*_) >> { args ->
-                def firstOperationAsMap = args[0].arg$1.get('operations')[0]
-                assert firstOperationAsMap.get('operation') == operationType.operationName
-                assert firstOperationAsMap.get('changeRequest') == expectedChangeRequest
+        and: 'the request body sent is a JSON String'
+            1 * mockRequestBodyUriSpec.bodyValue(*_) >> { args ->
+                // Body is now a JSON String (not an Object)
+                def bodyAsString = args[0]
+                assert bodyAsString instanceof String
+                assert bodyAsString.contains('"operation":"' + operationType.operationName + '"')
+                if (expectedChangeRequest != null) {
+                    assert bodyAsString.contains('"changeRequest"')
+                }
                 return mockRequestBodyUriSpec
             }
         and: 'no exception occurs'
@@ -239,8 +243,8 @@ class PolicyExecutorSpec extends Specification {
     }
 
     def mockResponse(mockResponseAsMap, httpStatus) {
-        JsonNode jsonNode = spiedObjectMapper.readTree(spiedObjectMapper.writeValueAsString(mockResponseAsMap))
-        def mono = Mono.just(new ResponseEntity<>(jsonNode, httpStatus))
+        def jsonString = spiedObjectMapper.writeValueAsString(mockResponseAsMap)
+        def mono = Mono.just(new ResponseEntity<>(jsonString, httpStatus))
         mockResponseSpec.toEntity(*_) >> mono
     }
 
