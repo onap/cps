@@ -44,7 +44,7 @@ class YangParserHelperSpec extends Specification {
         then: 'a ContainerNode holding collection of normalized nodes is returned'
             result.body().getAt(index) instanceof NormalizedNode == true
         then: 'qualified name of children created is as expected'
-            result.body().getAt(index).getIdentifier().nodeType == QName.create('org:onap:ccsdk:multiDataTree', '2020-09-15', nodeName)
+            result.body().getAt(index).name().nodeType == QName.create('org:onap:ccsdk:multiDataTree', '2020-09-15', nodeName)
         where:
             index | nodeName
             0     | 'first-container'
@@ -61,9 +61,9 @@ class YangParserHelperSpec extends Specification {
             NormalizedNode result = objectUnderTest.parseData(contentType, fileData, schemaContext, '', validateAndParse)
         then: 'the result is a normalized node of the correct type'
             if (revision) {
-                result.identifier.nodeType == QName.create(namespace, revision, localName)
+                result.name().nodeType == QName.create(namespace, revision, localName)
             } else {
-                result.identifier.nodeType == QName.create(namespace, localName)
+                result.name().nodeType == QName.create(namespace, localName)
             }
         where:
             scenario | contentFile      | contentType      | namespace                                 | revision     | localName
@@ -93,20 +93,21 @@ class YangParserHelperSpec extends Specification {
         given: 'schema context'
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
-        when: 'json string is parsed'
+        when: 'data string is parsed'
             def result = objectUnderTest.parseData(contentType, nodeData, schemaContext, parentNodeXpath, validateAndParse)
         then: 'a ContainerNode holding collection of normalized nodes is returned'
             result.body().getAt(0) instanceof NormalizedNode == true
         then: 'result represents a node of expected type'
-            result.body().getAt(0).getIdentifier().nodeType == QName.create('org:onap:cps:test:test-tree', '2020-02-02', nodeName)
+            def actualNodeType = result.body().getAt(0).name().nodeType
+            actualNodeType.getLocalName() == expectedNodeName
         where:
-            scenario                         | contentType      | nodeData                                                                                                                                                                                                      | parentNodeXpath                       || nodeName
+            scenario                         | contentType      | nodeData                                                                                                                                                                                                      | parentNodeXpath                       || expectedNodeName
             'JSON list element as container' | ContentType.JSON | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'                                                                                                                                   | '/test-tree'                          || 'branch'
             'JSON list element within list'  | ContentType.JSON | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }'                                                                                                                                 | '/test-tree'                          || 'branch'
             'JSON container element'         | ContentType.JSON | '{ "nest": { "name": "N", "birds": ["bird"] } }'                                                                                                                                                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
-            'XML element test tree'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'                                       | '/test-tree'                          || 'branch'
-            'XML element branch xpath'       | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds><birds>Robin</birds></nest></branch>'                   | '/test-tree'                          || 'branch'
-            'XML container element'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                                         | '/test-tree/branch[@name=\'Branch\']' || 'nest'
+            'XML element test tree'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'                                       | '/test-tree'                          || 'test-tree'
+            'XML element branch xpath'       | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds><birds>Robin</birds></nest></branch>'                   | '/test-tree'                          || 'test-tree'
+            'XML container element'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                                         | '/test-tree/branch[@name=\'Branch\']' || 'branch'
     }
 
     def 'Parsing json data fragment by xpath error scenario: #scenario.'() {

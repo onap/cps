@@ -62,7 +62,7 @@ class JsonParserStreamSpec extends Specification{
             def dataContainerChild = result.body().getAt(index)
             dataContainerChild instanceof NormalizedNode == true
         then: 'qualified name created is as expected'
-            dataContainerChild.identifier.nodeType == QName.create('org:onap:ccsdk:multiDataTree', '2020-09-15', nodeName)
+            dataContainerChild.name().nodeType == QName.create('org:onap:ccsdk:multiDataTree', '2020-09-15', nodeName)
         where:
             index   | nodeName
             0       | 'first-container'

@@ -54,7 +54,7 @@ import org.slf4j.LoggerFactory
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.web.servlet.MockMvc
@@ -398,7 +398,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule('my-cm-handle', 'sampleModuleName', _)
                 >> [new ModuleDefinition('sampleModuleName', '2021-10-03','module sampleModuleName{ sample module content }')]
         and: 'response contains an array with the module name, revision and content'
-            assert response.getContentAsString() == '[{"moduleName":"sampleModuleName","revision":"2021-10-03","content":"module sampleModuleName{ sample module content }"}]'
+            assert response.getContentAsString() == '[{"content":"module sampleModuleName{ sample module content }","moduleName":"sampleModuleName","revision":"2021-10-03"}]'
         and: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
     }
@@ -501,7 +501,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         def expectedContent = [
                 '"state":',
                 '"cmHandleState":"ADVISED"',
-                '"lockReason":{"reason":"MODULE_SYNC_FAILED","details":"lock details"}',
+                '"lockReason":{"details":"lock details","reason":"MODULE_SYNC_FAILED"}',
                 '"lastUpdateTime":"2022-12-31T20:30:40.000+0000"',
                 '"dataSyncEnabled":false',
                 '"dataSyncState":',

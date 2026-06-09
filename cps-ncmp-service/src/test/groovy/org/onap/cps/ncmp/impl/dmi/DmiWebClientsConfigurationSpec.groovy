@@ -68,4 +68,11 @@ class DmiWebClientsConfigurationSpec extends Specification {
             assert result != null
             assert result instanceof WebClient
     }
+
+    def 'Web client builder bean creation.'() {
+        when: 'creating a web client builder bean'
+            def result = objectUnderTest.webClientBuilder()
+        then: 'a web client builder is created successfully'
+            assert result instanceof WebClient.Builder
+    }
 }

@@ -168,7 +168,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                       final String authorization) {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
-
         final Object responseObject = networkCmProxyFacade
                 .writeResourceDataPassThroughRunningForCmHandle(
                         cmHandleReference, resourceIdentifier, PATCH,
@@ -195,7 +194,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final String contentType,
                                                                      final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
-
         networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
                 resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -221,7 +219,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final String contentType,
                                                                        final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
-
         networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
                 resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.OK);
