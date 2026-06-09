@@ -62,7 +62,7 @@ public class XmlUtils {
     private static final TransformerFactory transformerFactory = TransformerFactory.newInstance();
     private static boolean isNewTransformerFactoryInstance = true;
     private static final Pattern XPATH_PROPERTY_REGEX =
-        Pattern.compile("\\[@(\\S{1,100})=['\\\"](\\S{1,100})['\\\"]\\]");
+        Pattern.compile("\\[@(\\S{1,100})=['\"](\\S{1,100})['\"]\\]");
 
     /**
      * Prepare XML content.
@@ -70,12 +70,20 @@ public class XmlUtils {
      * @param xmlContent XML content sent to store
      * @param schemaContext schema context
      *
-     * @return XML content wrapped by root node (if needed)
+     * @return ContextualXml with XML content wrapped by root node (if needed) and parsing context
      */
-    public static String prepareXmlContent(final String xmlContent, final SchemaContext schemaContext)
+    public static ContextualXml prepareXmlContent(final String xmlContent,
+                                                   final SchemaContext schemaContext)
         throws IOException, ParserConfigurationException, TransformerException, SAXException {
-        return addRootNodeToXmlContent(xmlContent, schemaContext.getModules().iterator().next().getName(),
-                YangParserHelper.DATA_ROOT_NODE_NAMESPACE);
+        final var module = schemaContext.getModules().iterator().next();
+        final String moduleName = module.getName();
+        final String moduleNamespace = module.getNamespace().toString();
+        final String preparedContent =
+                addRootNodeToXmlContent(xmlContent, moduleName, moduleNamespace);
+        final boolean wasWrapped = !preparedContent.equals(xmlContent);
+        return new ContextualXml(preparedContent, wasWrapped
+                ? XmlParsingContext.wrappedWithModuleName(moduleName)
+                : XmlParsingContext.noParentXpath());
     }
 
     /**
@@ -85,23 +93,27 @@ public class XmlUtils {
      * @param parentSchemaNode Parent schema node
      * @param xpath Parent xpath
      *
-     * @return XML content wrapped by root node (if needed)
+     * @return ContextualXml with XML content wrapped by root node (if needed) and parsing context
      */
-    public static String prepareXmlContent(final String xmlContent,
-                                           final DataSchemaNode parentSchemaNode,
-                                           final String xpath)
+    public static ContextualXml prepareXmlContent(final String xmlContent,
+                                                  final DataSchemaNode parentSchemaNode,
+                                                  final String xpath)
         throws IOException, ParserConfigurationException, TransformerException, SAXException {
         final String namespace = parentSchemaNode.getQName().getNamespace().toString();
         final String parentXpathPart = xpath.substring(xpath.lastIndexOf('/') + 1);
         final Matcher regexMatcher = XPATH_PROPERTY_REGEX.matcher(parentXpathPart);
+        final String preparedContent;
         if (regexMatcher.find()) {
             final HashMap<String, String> rootNodePropertyMap = new HashMap<>();
             rootNodePropertyMap.put(regexMatcher.group(1), regexMatcher.group(2));
-            return addRootNodeToXmlContent(xmlContent, parentSchemaNode.getQName().getLocalName(), namespace,
-                    rootNodePropertyMap);
+            preparedContent = addRootNodeToXmlContent(xmlContent, parentSchemaNode.getQName().getLocalName(),
+                    namespace, rootNodePropertyMap);
+        } else {
+            preparedContent = addRootNodeToXmlContent(xmlContent, parentSchemaNode.getQName().getLocalName(),
+                    namespace);
         }
 
-        return addRootNodeToXmlContent(xmlContent, parentSchemaNode.getQName().getLocalName(), namespace);
+        return new ContextualXml(preparedContent, XmlParsingContext.withParentXpath(xpath));
     }
 
     private static String addRootNodeToXmlContent(final String xmlContent,
@@ -187,7 +199,7 @@ public class XmlUtils {
                 throw new IllegalArgumentException("Unsupported data type for XML conversion");
             }
             return transformNodeToString(documentFragment);
-        } catch (final DOMException |  NullPointerException | ParserConfigurationException | TransformerException
+        } catch (final DOMException | NullPointerException | ParserConfigurationException | TransformerException
                 exception) {
             throw new DataValidationException(
                     "Data Validation Failed", "Failed to parse xml data: " + exception.getMessage(), exception);
@@ -284,7 +296,6 @@ public class XmlUtils {
      * @return a configured TransformerFactory instance
      */
 
-    @SuppressWarnings("SameReturnValue")
     private static TransformerFactory getTransformerFactory() {
         if (isNewTransformerFactoryInstance) {
             transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");

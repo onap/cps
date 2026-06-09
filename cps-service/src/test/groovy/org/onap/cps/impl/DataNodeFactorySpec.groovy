@@ -75,7 +75,8 @@ class DataNodeFactorySpec extends Specification {
         then: 'expected number of data nodes are created'
             dataNodes.size() == expectedDataNodes
         and: 'data nodes have expected xpaths'
-            dataNodes.stream().map { it.getXpath() }.toList().containsAll(expectedXpaths)
+            def actualXpaths = dataNodes.collect { it.getXpath() }
+            actualXpaths.containsAll(expectedXpaths)
         where: 'the following data was used'
             scenario    | xpathToNodeData                                                                         | contentType      || expectedDataNodes | expectedXpaths
             'JSON Data' | ['/' : "{'test-tree': {'branch': []}}", '/test-tree' : "{'branch': [{'name':'Name'}]}"] | ContentType.JSON || 2                 | ['/test-tree', "/test-tree/branch[@name='Name']"]
@@ -92,11 +93,11 @@ class DataNodeFactorySpec extends Specification {
         then: 'expected number of data nodes are created'
             dataNodes.size() == 1
         and: 'data nodes have expected xpaths'
-            dataNodes[0].getXpath() == '/test-tree'
+            dataNodes[0].getXpath() == expectedXpath
         where: 'the following data was used'
-            scenario | data             | contentType
-            'JSON'   | 'test-tree.json' | ContentType.JSON
-            'XML'    | 'test-tree.xml'  | ContentType.XML
+            scenario | data             | contentType      || expectedXpath
+            'JSON'   | 'test-tree.json' | ContentType.JSON || '/test-tree'
+            'XML'    | 'test-tree.xml'  | ContentType.XML  || '/data'
     }
 
     def 'Building data nodes using anchor, xpath and #scenario'() {
@@ -123,11 +124,11 @@ class DataNodeFactorySpec extends Specification {
         then: 'expected number of data nodes are created'
             dataNodes.size() == 1
         and: 'data nodes have expected xpaths'
-            dataNodes[0].getXpath() == "/test-tree/branch[@name='A']"
+            dataNodes[0].getXpath() == expectedXpath
         where: 'the following data was used'
-            scenario | nodeData                                                                                     | contentType
-            'JSON'   | '{"branch": [{"name": "A"}]}'                                                                | ContentType.JSON
-            'XML'    | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch></test-tree>' | ContentType.XML
+            scenario | nodeData                                                                                     | contentType      || expectedXpath
+            'JSON'   | '{"branch": [{"name": "A"}]}'                                                                | ContentType.JSON || "/test-tree/branch[@name='A']"
+            'XML'    | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch></test-tree>' | ContentType.XML  || "/test-tree/branch[@name='A']"
     }
 
     def 'Create data nodes using anchor, parent node xpath and invalid #scenario string'() {
@@ -154,11 +155,11 @@ class DataNodeFactorySpec extends Specification {
         then: 'expected number of data nodes are created'
             dataNodes.size() == 1
         and: 'data nodes have expected xpath'
-            dataNodes[0].getXpath() == '/bookstore'
+            dataNodes[0].getXpath() == expectedXpath
         where: 'the following data was used'
-            scenario | nodeData                                                                                         | contentType
-            'JSON'   | '{"bookstore":{"bookstore-name":"Easons"}}'                                                      | ContentType.JSON
-            'XML'    | "<bookstore xmlns=\"org:onap:ccsdk:sample\"><bookstore-name>Easons</bookstore-name></bookstore>" | ContentType.XML
+            scenario                    | nodeData                                                                                         | contentType      || expectedXpath
+            'JSON'                      | '{"bookstore":{"bookstore-name":"Easons"}}'                                                      | ContentType.JSON || '/bookstore'
+            'XML'                       | "<bookstore xmlns=\"org:onap:ccsdk:sample\"><bookstore-name>Easons</bookstore-name></bookstore>" | ContentType.XML  || '/bookstore'
     }
 
     def 'Create data nodes using schema, xpath and invalid #scenario string'() {

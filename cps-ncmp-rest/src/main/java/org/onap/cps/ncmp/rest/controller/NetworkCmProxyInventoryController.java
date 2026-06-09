@@ -151,6 +151,9 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse =
             networkCmProxyInventoryFacade.updateDmiRegistration(
                 ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
+        if (dmiPluginRegistrationResponse == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         final DmiPluginRegistrationErrorResponse failedRegistrationErrorResponse =
             getFailureRegistrationResponse(dmiPluginRegistrationResponse);
         return allRegistrationsSuccessful(failedRegistrationErrorResponse)

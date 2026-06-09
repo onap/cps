@@ -30,6 +30,7 @@ import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
 import static org.onap.cps.ncmp.api.data.models.OperationType.PATCH;
 import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -168,11 +169,10 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                       final String authorization) {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
-
         final Object responseObject = networkCmProxyFacade
                 .writeResourceDataPassThroughRunningForCmHandle(
                         cmHandleReference, resourceIdentifier, PATCH,
-                        jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
+                        toRequestBodyString(requestBody), contentType, authorization);
         return ResponseEntity.ok(responseObject);
     }
 
@@ -195,9 +195,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final String contentType,
                                                                      final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
-
         networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
-                resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
+                resourceIdentifier, CREATE, toRequestBodyString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -221,9 +220,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final String contentType,
                                                                        final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
-
         networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
-                resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
+                resourceIdentifier, UPDATE, toRequestBodyString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -398,6 +396,16 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                     final Boolean dataSyncEnabledFlag) {
         networkCmProxyInventoryFacade.setDataSyncEnabled(cmHandleId, dataSyncEnabledFlag);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private String toRequestBodyString(final Object requestBody) {
+        if (requestBody instanceof String) {
+            return (String) requestBody;
+        }
+        if (requestBody instanceof JsonNode) {
+            return requestBody.toString();
+        }
+        return jsonObjectMapper.asJsonString(requestBody);
     }
 
     private void validateDataStore(final DatastoreType acceptableDataStoreType, final String requestedDatastoreName) {

@@ -106,13 +106,13 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.saveData(dataspaceName, anchorName, data, observedTimestamp, contentType)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
-                    { dataNode -> dataNode.xpath[0] == '/test-tree' })
+                    { dataNode -> dataNode.xpath[0] == expectedXpath })
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'given parameters'
-            scenario | dataFile         | contentType
-            'json'   | 'test-tree.json' | ContentType.JSON
-            'xml'    | 'test-tree.xml'  | ContentType.XML
+            scenario | dataFile         | contentType      || expectedXpath
+            'json'   | 'test-tree.json' | ContentType.JSON || '/test-tree'
+            'xml'    | 'test-tree.xml'  | ContentType.XML  || '/data'
     }
 
     def 'Saving data with error: #scenario.'() {
@@ -173,18 +173,18 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.addListElements(dataspaceName, anchorName, '/test-tree',
                 { dataNodeCollection ->
                     {
-                        assert dataNodeCollection.size() == 2
+                        assert dataNodeCollection.size() == expectedSize
                         assert dataNodeCollection.collect { it.getXpath() }
-                            .containsAll(['/test-tree/branch[@name=\'A\']', '/test-tree/branch[@name=\'B\']'])
+                            .containsAll(expectedXpaths)
                     }
                 }
             )
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where:
-            scenario    | data                                                                                                                        | contentType
-            'JSON data' | '{"branch": [{"name": "A"}, {"name": "B"}]}'                                                                                | ContentType.JSON
-            'XML data'  | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch><branch><name>B</name></branch></test-tree>' | ContentType.XML
+            scenario    | data                                                                                                                        | contentType      || expectedSize | expectedXpaths
+            'JSON data' | '{"branch": [{"name": "A"}, {"name": "B"}]}'                                                                                | ContentType.JSON || 2            | ['/test-tree/branch[@name=\'A\']', '/test-tree/branch[@name=\'B\']']
+            'XML data'  | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch><branch><name>B</name></branch></test-tree>' | ContentType.XML  || 2            | ['/test-tree/branch[@name=\'A\']', '/test-tree/branch[@name=\'B\']']
 
     }
 
@@ -342,7 +342,7 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
             scenario       | parentNodeXpath | xmlData                                                                                                                                  || expectedNodeXpath
-            'level 2 node' | '/test-tree'    | '<branch><name>Name</name></branch>'                                                                                                     || ['/test-tree/branch[@name=\'Name\']']
+            'level 2 node' | '/test-tree'    | '<branch><name>Name</name></branch>'                                                                                                     || ["/test-tree/branch[@name='Name']"]
             'xml list'     | '/test-tree'    | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Name1</name></branch>' + '<branch><name>Name2</name></branch></test-tree>' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
