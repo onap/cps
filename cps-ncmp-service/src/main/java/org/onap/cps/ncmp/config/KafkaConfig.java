@@ -29,8 +29,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.onap.cps.events.LegacyEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
-import org.springframework.boot.ssl.SslBundles;
+import org.springframework.boot.kafka.autoconfigure.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -58,8 +57,6 @@ public class KafkaConfig {
     @Value("${cps.tracing.enabled:false}")
     private boolean tracingEnabled;
 
-    private static final SslBundles NO_SSL = null;
-
     /**
      * This sets the strategy for creating legacy Kafka producer instance from kafka properties defined into
      * application.yml and replaces value-serializer by JsonSerializer.
@@ -68,7 +65,7 @@ public class KafkaConfig {
      */
     @Bean
     public ProducerFactory<String, LegacyEvent> legacyEventProducerFactory() {
-        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
+        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties();
         producerConfigProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(producerConfigProperties);
     }
@@ -81,7 +78,7 @@ public class KafkaConfig {
      */
     @Bean
     public ConsumerFactory<String, LegacyEvent> legacyEventConsumerFactory() {
-        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
+        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties();
         consumerConfigProperties.put("spring.deserializer.value.delegate.class", JsonDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
@@ -128,7 +125,7 @@ public class KafkaConfig {
      */
     @Bean
     public ProducerFactory<String, CloudEvent> cloudEventProducerFactory() {
-        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
+        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties();
         return new DefaultKafkaProducerFactory<>(producerConfigProperties);
     }
 
@@ -140,7 +137,7 @@ public class KafkaConfig {
      */
     @Bean
     public ConsumerFactory<String, CloudEvent> cloudEventConsumerFactory() {
-        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
+        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties();
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
 
@@ -190,7 +187,7 @@ public class KafkaConfig {
     public ConcurrentKafkaListenerContainerFactory<String, CloudEvent>
             cmAvcEventListenerContainerFactory() {
         log.info("Configuring CM AVC event listener in non-transactional mode");
-        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
+        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties();
         final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(new DefaultKafkaConsumerFactory<>(consumerConfigProperties));

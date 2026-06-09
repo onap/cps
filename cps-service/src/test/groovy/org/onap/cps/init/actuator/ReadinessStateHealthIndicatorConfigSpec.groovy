@@ -30,7 +30,7 @@ class ReadinessStateHealthIndicatorConfigSpec extends Specification {
     def 'CPS service UP when all loaders are completed'() {
         given: 'no loaders are in progress'
         when: 'cps health check is invoked'
-            def cpsHealth = objectUnderTest.readinessStateHealthIndicator().getHealth(true)
+            def cpsHealth = objectUnderTest.readinessStateHealthIndicator().health()
         then: 'health status is UP with following message'
             assert cpsHealth.status.code == 'UP'
             assert cpsHealth.details['Startup Processes'] == 'All startup processes completed'
@@ -40,7 +40,7 @@ class ReadinessStateHealthIndicatorConfigSpec extends Specification {
         given: 'any module loader is still running'
             readinessManager.registerStartupProcess('someLoader')
         when: 'cps health check is invoked'
-            def cpsHealth = objectUnderTest.readinessStateHealthIndicator().getHealth(true)
+            def cpsHealth = objectUnderTest.readinessStateHealthIndicator().health()
         then: 'cps service is DOWN with loaders listed'
             assert cpsHealth.status.code == 'DOWN'
             def busyLoaders = cpsHealth.details['Startup Processes active']
@@ -52,7 +52,7 @@ class ReadinessStateHealthIndicatorConfigSpec extends Specification {
             readinessManager.registerStartupProcess('someLoader')
         when: 'module loader completes'
             readinessManager.markStartupProcessComplete('someLoader')
-            def health = objectUnderTest.readinessStateHealthIndicator().getHealth(true)
+            def health = objectUnderTest.readinessStateHealthIndicator().health()
         then: 'cps health status flips to UP'
             assert health.status.code == 'UP'
             assert health.details['Startup Processes'] == 'All startup processes completed'
