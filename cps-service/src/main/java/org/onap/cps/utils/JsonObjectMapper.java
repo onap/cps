@@ -42,7 +42,7 @@ public class JsonObjectMapper {
      * Serializing generic java object to JSON using Jackson.
      *
      * @param object any java object value
-     * @return the generated JSON as a string.
+     * @return the generated JSON as a string e.g. '{"key":"value"}'
      */
     public String asJsonString(final Object object) {
         try {

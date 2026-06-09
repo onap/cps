@@ -22,7 +22,6 @@
 package org.onap.cps.integration.base
 
 import com.hazelcast.map.IMap
-import groovy.json.JsonSlurper
 import io.micrometer.core.instrument.MeterRegistry
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
@@ -61,16 +60,16 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
-import org.springframework.boot.autoconfigure.domain.EntityScan
+import org.springframework.boot.persistence.autoconfigure.EntityScan
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.test.web.server.LocalServerPort
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
@@ -80,16 +79,11 @@ import java.time.OffsetDateTime
 import java.time.ZonedDateTime
 import java.util.concurrent.BlockingQueue
 
-import static org.springframework.http.HttpMethod.DELETE
-import static org.springframework.http.HttpMethod.GET
-import static org.springframework.http.HttpMethod.PATCH
-import static org.springframework.http.HttpMethod.POST
-import static org.springframework.http.HttpMethod.PUT
-import static org.springframework.http.MediaType.APPLICATION_JSON
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = [CpsDataspaceService])
 @Testcontainers
 @EnableAutoConfiguration
+@AutoConfigureMockMvc
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
 @ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.ri.models')
@@ -101,11 +95,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Shared
     KafkaTestContainer kafkaTestContainer = KafkaTestContainer.getInstance()
 
-    @LocalServerPort
-    def port
-
     @Autowired
-    TestRestTemplate restTemplate
+    MockMvc mvc
 
     @Autowired
     NetworkCmProxyInventoryController networkCmProxyInventoryController
@@ -191,7 +182,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     MockWebServer mockDmiServer1 = new MockWebServer()
     MockWebServer mockDmiServer2 = new MockWebServer()
-    MockWebServer mockPolicyServer = new MockWebServer()
+    @Shared
+    static MockWebServer sharedMockPolicyServer
+    MockWebServer mockPolicyServer
 
     DmiDispatcher dmiDispatcher1 = new DmiDispatcher()
     DmiDispatcher dmiDispatcher2 = new DmiDispatcher()
@@ -217,14 +210,22 @@ abstract class CpsIntegrationSpecBase extends Specification {
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
             initialized = true
         }
+        mockDmiServer1 = new MockWebServer()
         mockDmiServer1.setDispatcher(dmiDispatcher1)
-        mockDmiServer1.start()
+        mockDmiServer1.start(0)  // Use port 0 to let the OS assign an available port
 
+        mockDmiServer2 = new MockWebServer()
         mockDmiServer2.setDispatcher(dmiDispatcher2)
-        mockDmiServer2.start()
+        mockDmiServer2.start(0)  // Use port 0 to let the OS assign an available port
 
-        mockPolicyServer.setDispatcher(policyDispatcher)
-        mockPolicyServer.start(Integer.valueOf(policyServerPort))
+        // Start policy server only once (shared) to avoid TIME_WAIT port binding issues
+        def policyPort = Integer.parseInt(System.getProperty('POLICY_EXECUTOR_PORT', policyServerPort))
+        if (sharedMockPolicyServer == null) {
+            sharedMockPolicyServer = new MockWebServer()
+            sharedMockPolicyServer.start(policyPort)
+        }
+        sharedMockPolicyServer.setDispatcher(policyDispatcher)
+        mockPolicyServer = sharedMockPolicyServer
 
         DMI1_URL = String.format('http://%s:%s', mockDmiServer1.getHostName(), mockDmiServer1.getPort())
         DMI2_URL = String.format('http://%s:%s', mockDmiServer2.getHostName(), mockDmiServer2.getPort())
@@ -235,7 +236,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def cleanup() {
         mockDmiServer1.shutdown()
         mockDmiServer2.shutdown()
-        mockPolicyServer.shutdown()
+        // Do NOT shutdown sharedMockPolicyServer - it is reused across tests
+        policyDispatcher.allowAll = true  // Reset to default after each test
         cpsModuleService.deleteAllUnusedYangModuleData('NFP-Operational')
     }
 
@@ -280,10 +282,22 @@ abstract class CpsIntegrationSpecBase extends Specification {
         return true
     }
 
+    def anchorExists(dataspaceName, anchorName) {
+        try {
+            cpsAnchorService.getAnchor(dataspaceName, anchorName)
+        } catch (Exception ignored) {
+            return false
+        }
+        return true
+    }
+
     def addAnchorsWithData(numberOfAnchors, dataspaceName, schemaSetName, anchorNamePrefix, data, contentType) {
-        (1..numberOfAnchors).each {
-            cpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorNamePrefix + it)
-            cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data.replace("Easons", "Easons-"+it.toString()), OffsetDateTime.now(), contentType)
+        for (def i = 1; i <= numberOfAnchors; i++) {
+            def anchorName = anchorNamePrefix + i
+            if (!anchorExists(dataspaceName, anchorName)) {
+                cpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorName)
+                cpsDataService.saveData(dataspaceName, anchorName, data.replace("Easons", "Easons-"+i.toString()), OffsetDateTime.now(), contentType)
+            }
         }
     }
 
@@ -383,63 +397,73 @@ abstract class CpsIntegrationSpecBase extends Specification {
         meterRegistry.clear()
     }
 
-
-    // *** REST API Test Helpers ***
+    // *** REST API Test Helpers (MockMvc-based) ***
 
     def performGet(String path, Map<String, String> queryParams = [:], String authorization = null) {
-        def uri = buildUri(path, queryParams)
-        def headers = buildHeaders(APPLICATION_JSON, authorization)
-        return restTemplate.exchange(uri, GET, new HttpEntity<>(headers), String)
+        def request = MockMvcRequestBuilders.get(buildMockUri(path, queryParams))
+        if (authorization) request.header('Authorization', authorization)
+        def result = mvc.perform(request.accept(MediaType.APPLICATION_JSON)).andReturn()
+        return toResponseEntity(result)
     }
 
     def performPost(String path, String body, Map<String, String> queryParams = [:], String authorization = null) {
-        def uri = buildUri(path, queryParams)
-        def headers = buildHeaders(APPLICATION_JSON, authorization)
-        return restTemplate.exchange(uri, POST, new HttpEntity<>(body, headers), String)
+        def request = MockMvcRequestBuilders.post(buildMockUri(path, queryParams))
+            .contentType(MediaType.APPLICATION_JSON).content(body)
+        if (authorization) request.header('Authorization', authorization)
+        def result = mvc.perform(request).andReturn()
+        return toResponseEntity(result)
     }
 
     def performPut(String path, String body, Map<String, String> queryParams = [:], String authorization = null) {
-        def uri = buildUri(path, queryParams)
-        def headers = buildHeaders(APPLICATION_JSON, authorization)
-        return restTemplate.exchange(uri, PUT, new HttpEntity<>(body, headers), String)
+        def request = MockMvcRequestBuilders.put(buildMockUri(path, queryParams))
+            .contentType(MediaType.APPLICATION_JSON).content(body)
+        if (authorization) request.header('Authorization', authorization)
+        def result = mvc.perform(request).andReturn()
+        return toResponseEntity(result)
     }
 
-    def performPatch(String path, String body, MediaType contentType = APPLICATION_JSON, Map<String, String> queryParams = [:]) {
-        def uri = buildUri(path, queryParams)
-        def headers = buildHeaders(contentType, null)
-        return restTemplate.exchange(uri, PATCH, new HttpEntity<>(body, headers), String)
+    def performPatch(String path, String body, MediaType contentType = MediaType.APPLICATION_JSON, Map<String, String> queryParams = [:]) {
+        def request = MockMvcRequestBuilders.patch(buildMockUri(path, queryParams))
+            .contentType(contentType).content(body)
+        def result = mvc.perform(request).andReturn()
+        return toResponseEntity(result)
     }
 
     def performDelete(String path, Map<String, String> queryParams = [:]) {
-        def uri = buildUri(path, queryParams)
-        def headers = buildHeaders(APPLICATION_JSON, null)
-        return restTemplate.exchange(uri, DELETE, new HttpEntity<>(headers), String)
+        def request = MockMvcRequestBuilders.delete(buildMockUri(path, queryParams))
+        def result = mvc.perform(request).andReturn()
+        return toResponseEntity(result)
     }
 
     def performRequest(HttpMethod method, String path, String body = null, Map<String, String> queryParams = [:], String authorization = null) {
-        def uri = buildUri(path, queryParams)
-        def headers = buildHeaders(APPLICATION_JSON, authorization)
-        def entity = body ? new HttpEntity<>(body, headers) : new HttpEntity<>(headers)
-        return restTemplate.exchange(uri, method, entity, String)
+        def builder
+        switch (method) {
+            case HttpMethod.GET:    builder = MockMvcRequestBuilders.get(buildMockUri(path, queryParams)); break
+            case HttpMethod.POST:   builder = MockMvcRequestBuilders.post(buildMockUri(path, queryParams)); break
+            case HttpMethod.PUT:    builder = MockMvcRequestBuilders.put(buildMockUri(path, queryParams)); break
+            case HttpMethod.PATCH:  builder = MockMvcRequestBuilders.patch(buildMockUri(path, queryParams)); break
+            case HttpMethod.DELETE: builder = MockMvcRequestBuilders.delete(buildMockUri(path, queryParams)); break
+        }
+        builder.contentType(MediaType.APPLICATION_JSON)
+        if (body) builder.content(body)
+        if (authorization) builder.header('Authorization', authorization)
+        def result = mvc.perform(builder).andReturn()
+        return toResponseEntity(result)
     }
 
     def parseResponseBody(response) {
-        return new JsonSlurper().parseText(response.body)
+        return new groovy.json.JsonSlurper().parseText(response.body)
     }
 
-    def buildUri(path, queryParams) {
-        def query = queryParams.collect { k, v -> "${URLEncoder.encode(k, 'UTF-8')}=${URLEncoder.encode(v, 'UTF-8')}" }.join('&')
-        def uriString = "http://localhost:${port}${path}" + (query ? "?${query}" : '')
-        return new URI(uriString)
+    private def buildMockUri(String path, Map<String, String> queryParams) {
+        def query = queryParams.collect { k, v -> "${k}=${v}" }.join('&')
+        return new URI(path + (query ? "?${query}" : ''))
     }
 
-    def buildHeaders(contentType, authorization) {
-        def headers = new HttpHeaders()
-        headers.setContentType(contentType)
-        if (authorization) {
-            headers.set('Authorization', authorization)
-        }
-        return headers
+    private def toResponseEntity(mvcResult) {
+        def response = mvcResult.response
+        return [status: response.status, body: response.contentAsString,
+                statusCode: HttpStatus.valueOf(response.status)]
     }
 
 }

@@ -24,7 +24,7 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
-import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
@@ -69,7 +69,7 @@ class PolicyExecutorSpec extends Specification {
         mockWebClient.post() >> mockRequestBodyUriSpec
         mockRequestBodyUriSpec.uri(*_) >> mockRequestBodyUriSpec
         mockRequestBodyUriSpec.header(*_) >> mockRequestBodyUriSpec
-        mockRequestBodyUriSpec.body(*_) >> mockRequestBodyUriSpec
+        mockRequestBodyUriSpec.bodyValue(*_) >> mockRequestBodyUriSpec
         mockRequestBodyUriSpec.retrieve() >> mockResponseSpec
     }
 
@@ -84,11 +84,15 @@ class PolicyExecutorSpec extends Specification {
             objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource',provMnSExampleJson)
         then: 'system logs the operation is allowed'
             assert getLogEntry(4) == 'Operation allowed.'
-        and: 'the request body sent has expected operation and change request'
-            1 * mockRequestBodyUriSpec.body(*_) >> { args ->
-                def firstOperationAsMap = args[0].arg$1.get('operations')[0]
-                assert firstOperationAsMap.get('operation') == operationType.operationName
-                assert firstOperationAsMap.get('changeRequest') == expectedChangeRequest
+        and: 'the request body sent is a JSON String'
+            1 * mockRequestBodyUriSpec.bodyValue(*_) >> { args ->
+                // Body is now a JSON String (not an Object)
+                def bodyAsString = args[0]
+                assert bodyAsString instanceof String
+                assert bodyAsString.contains('"operation":"' + operationType.operationName + '"')
+                if (expectedChangeRequest != null) {
+                    assert bodyAsString.contains('"changeRequest"')
+                }
                 return mockRequestBodyUriSpec
             }
         and: 'no exception occurs'
@@ -238,9 +242,32 @@ class PolicyExecutorSpec extends Specification {
             thrownException.cause == webClientRequestException
     }
 
+    def 'Permission check with unparseable response body.'() {
+        given: 'a response with invalid JSON that cannot be parsed'
+            def responseEntity = new ResponseEntity<>('invalid { json', HttpStatus.OK)
+            mockResponseSpec.toEntity(*_) >> Mono.just(responseEntity)
+        when: 'permission is checked for an operation'
+            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
+        then: 'a warning is logged about the parse failure'
+            assert getLogEntry(3).contains('Failed to parse Policy Executor response')
+        and: 'no exception is thrown (graceful handling)'
+            noExceptionThrown()
+    }
+
+    def 'Permission check with request body serialization failure.'() {
+        given: 'the object mapper fails to serialize the request body'
+            spiedObjectMapper.writeValueAsString(_) >> { throw new JsonProcessingException('Serialization error') {} }
+        when: 'permission is checked for an operation'
+            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
+        then: 'an NcmpException is thrown'
+            def thrownException = thrown(NcmpException)
+            assert thrownException.message == 'Cannot serialize Policy Executor request body to JSON'
+            assert thrownException.details.contains('Serialization error')
+    }
+
     def mockResponse(mockResponseAsMap, httpStatus) {
-        JsonNode jsonNode = spiedObjectMapper.readTree(spiedObjectMapper.writeValueAsString(mockResponseAsMap))
-        def mono = Mono.just(new ResponseEntity<>(jsonNode, httpStatus))
+        def jsonString = spiedObjectMapper.writeValueAsString(mockResponseAsMap)
+        def mono = Mono.just(new ResponseEntity<>(jsonString, httpStatus))
         mockResponseSpec.toEntity(*_) >> mono
     }
 

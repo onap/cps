@@ -63,10 +63,11 @@ import org.onap.cps.ri.repository.YangResourceRepository;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.opendaylight.yangtools.yang.common.Revision;
-import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
-import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
+import org.opendaylight.yangtools.yang.model.api.source.SourceIdentifier;
+import org.opendaylight.yangtools.yang.model.api.source.YangTextSource;
+import org.opendaylight.yangtools.yang.model.spi.source.SourceInfo;
 import org.opendaylight.yangtools.yang.parser.api.YangSyntaxErrorException;
-import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangModelDependencyInfo;
+import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangIRSourceInfoExtractor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
@@ -289,16 +290,16 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     private static Map<String, String> createModuleNameAndRevisionMap(final String sourceName, final String source) {
         final Map<String, String> metaDataMap = new HashMap<>();
-        final RevisionSourceIdentifier revisionSourceIdentifier =
+        final SourceIdentifier sourceIdentifier =
             createIdentifierFromSourceName(checkNotNull(sourceName));
 
-        final YangTextSchemaSource tempYangTextSchemaSource =
-            YangTextSchemaSourceSetBuilder.getYangTextSchemaSource(source, revisionSourceIdentifier);
+        final YangTextSource tempYangTextSource =
+            YangTextSchemaSourceSetBuilder.getYangTextSource(source, sourceIdentifier);
         try {
-            final YangModelDependencyInfo yangModelDependencyInfo
-                = YangModelDependencyInfo.forYangText(tempYangTextSchemaSource);
-            metaDataMap.put("moduleName", yangModelDependencyInfo.getName());
-            metaDataMap.put("revision", yangModelDependencyInfo.getFormattedRevision());
+            final SourceInfo yangIrSourceInfo = YangIRSourceInfoExtractor.forYangText(tempYangTextSource);
+            metaDataMap.put("moduleName", yangIrSourceInfo.sourceId().name().getLocalName());
+            final Revision revision = yangIrSourceInfo.sourceId().revision();
+            metaDataMap.put("revision", revision == null ? "" : revision.toString());
         } catch (final YangSyntaxErrorException | IOException e) {
             throw new ModelValidationException("Yang resource is invalid.",
                 String.format("Yang syntax validation failed for resource %s:%n%s", sourceName, e.getMessage()), e);
@@ -306,12 +307,12 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         return metaDataMap;
     }
 
-    private static RevisionSourceIdentifier createIdentifierFromSourceName(final String sourceName) {
+    private static SourceIdentifier createIdentifierFromSourceName(final String sourceName) {
         final Matcher matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
         if (matcher.matches()) {
-            return RevisionSourceIdentifier.create(matcher.group(1), Revision.of(matcher.group(2)));
+            return new SourceIdentifier(matcher.group(1), Revision.of(matcher.group(2)));
         }
-        return RevisionSourceIdentifier.create(sourceName);
+        return new SourceIdentifier(sourceName);
     }
 
     private void convertExceptionIfNeeded(final DataIntegrityViolationException dataIntegrityViolationException,

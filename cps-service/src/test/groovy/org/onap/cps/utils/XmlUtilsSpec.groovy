@@ -37,9 +37,9 @@ class XmlUtilsSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'the xml data is parsed'
-            def parsedXmlContent = XmlUtils.prepareXmlContent(xmlData, schemaContext)
+            def preparedXml = XmlUtils.parsedXmlContent(xmlData, schemaContext)
         then: 'the result xml is wrapped by root node defined in YANG schema'
-            assert parsedXmlContent == expectedOutput
+            assert preparedXml == expectedOutput
         where:
             scenario                 | xmlData                                                                   || expectedOutput
             'without root data node' | '<?xml version="1.0" encoding="UTF-8"?><class> </class>'                  || '<?xml version="1.0" encoding="UTF-8"?><stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"><class> </class></stores>'
@@ -52,7 +52,7 @@ class XmlUtilsSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'attempt to parse invalid xml'
-            XmlUtils.prepareXmlContent('invalid-xml', schemaContext)
+            XmlUtils.parsedXmlContent('invalid-xml', schemaContext)
         then: 'a Sax Parser exception is thrown'
             thrown(SAXParseException)
     }
@@ -64,9 +64,9 @@ class XmlUtilsSpec extends Specification {
         and: 'Parent schema node by xPath'
             def parentSchemaNode = YangParserHelper.getDataSchemaNodeAndIdentifiersByXpath(xPath, schemaContext).get('dataSchemaNode')
         when: 'the XML data is parsed'
-            def parsedXmlContent = XmlUtils.prepareXmlContent(xmlData, parentSchemaNode, xPath)
+            def preparedXml = XmlUtils.parsedXmlContent(xmlData, parentSchemaNode, xPath)
         then: 'the result XML is wrapped by xPath defined parent root node'
-            assert parsedXmlContent == expectedOutput
+            assert preparedXml == expectedOutput
         where:
             scenario                 | xmlData                                                                                                                                                                                    | xPath                                 || expectedOutput
             'XML element test tree'  | '<?xml version="1.0" encoding="UTF-8"?><test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>' | '/test-tree'                          || '<?xml version="1.0" encoding="UTF-8"?><test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>'

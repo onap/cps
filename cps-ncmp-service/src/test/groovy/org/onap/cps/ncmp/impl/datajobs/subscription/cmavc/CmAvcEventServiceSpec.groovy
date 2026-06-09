@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.cmavc
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.model.Anchor
@@ -31,7 +30,6 @@ import org.onap.cps.ncmp.events.avc1_0_0.DatastoreChanges
 import org.onap.cps.ncmp.events.avc1_0_0.Edit
 import org.onap.cps.ncmp.events.avc1_0_0.IetfYangPatchYangPatch
 import org.onap.cps.ncmp.events.avc1_0_0.PushChangeUpdate
-import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.YangParser
 import spock.lang.Specification
 
@@ -39,11 +37,9 @@ class CmAvcEventServiceSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockYangParser = Mock(YangParser)
 
-
-    def objectUnderTest = new CmAvcEventService(mockCpsDataService, mockCpsAnchorService, jsonObjectMapper, mockYangParser)
+    def objectUnderTest = new CmAvcEventService(mockCpsDataService, mockCpsAnchorService, mockYangParser)
 
     def NO_TIMESTAMP = null
     def NO_XPATH = ''
