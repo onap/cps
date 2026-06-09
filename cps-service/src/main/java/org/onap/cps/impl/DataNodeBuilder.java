@@ -36,7 +36,6 @@ import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.common.Ordering;
-import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.ChoiceNode;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild;
@@ -44,6 +43,7 @@ import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.LeafSetNode;
 import org.opendaylight.yangtools.yang.data.api.schema.MapEntryNode;
 import org.opendaylight.yangtools.yang.data.api.schema.MapNode;
+import org.opendaylight.yangtools.yang.data.api.schema.MixinNode;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.api.schema.ValueNode;
 
@@ -210,7 +210,7 @@ public class DataNodeBuilder {
         } else if (normalizedNode instanceof MapNode mapNode) {
             addDataNodeForEachListElement(currentDataNode, mapNode);
         } else if (normalizedNode instanceof ValueNode<?> valueNode) {
-            addYangLeaf(currentDataNode, valueNode.getIdentifier().getNodeType().getLocalName(),
+            addYangLeaf(currentDataNode, valueNode.name().getNodeType().getLocalName(),
                     (Serializable) valueNode.body());
         } else if (normalizedNode instanceof LeafSetNode<?> leafSetNode) {
             addYangLeafList(currentDataNode, leafSetNode);
@@ -221,9 +221,9 @@ public class DataNodeBuilder {
 
     private static void addYangContainer(final DataNode currentDataNode, final DataContainerNode dataContainerNode) {
         final DataNode dataContainerDataNode =
-            (dataContainerNode.getIdentifier() instanceof YangInstanceIdentifier.AugmentationIdentifier)
+            (dataContainerNode instanceof MixinNode)
                 ? currentDataNode
-                : createAndAddChildDataNode(currentDataNode, YangUtils.buildXpath(dataContainerNode.getIdentifier()));
+                : createAndAddChildDataNode(currentDataNode, YangUtils.buildXpath(dataContainerNode.name()));
         final Collection<DataContainerChild> normalizedChildNodes = dataContainerNode.body();
         for (final NormalizedNode normalizedNode : normalizedChildNodes) {
             addDataNodeFromNormalizedNode(dataContainerDataNode, normalizedNode);
@@ -240,7 +240,7 @@ public class DataNodeBuilder {
     }
 
     private static void addYangLeafList(final DataNode currentDataNode, final LeafSetNode<?> leafSetNode) {
-        final String leafListName = leafSetNode.getIdentifier().getNodeType().getLocalName();
+        final String leafListName = leafSetNode.name().getNodeType().getLocalName();
         List<?> leafListValues = (leafSetNode.body())
                 .stream()
                 .map(NormalizedNode::body)

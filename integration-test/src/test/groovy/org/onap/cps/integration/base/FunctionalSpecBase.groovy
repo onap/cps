@@ -57,14 +57,22 @@ abstract class FunctionalSpecBase extends CpsIntegrationSpecBase {
     }
 
     def setupBookstoreInfraStructure() {
-        cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_1)
-        cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_2)
-        cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_3)
-        cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_4)
-        createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_1)
-        createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_2)
-        createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_3)
-        createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_4)
+        if (!dataspaceExists(FUNCTIONAL_TEST_DATASPACE_1)) {
+            cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_1)
+            createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_1)
+        }
+        if (!dataspaceExists(FUNCTIONAL_TEST_DATASPACE_2)) {
+            cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_2)
+            createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_2)
+        }
+        if (!dataspaceExists(FUNCTIONAL_TEST_DATASPACE_3)) {
+            cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_3)
+            createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_3)
+        }
+        if (!dataspaceExists(FUNCTIONAL_TEST_DATASPACE_4)) {
+            cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_4)
+            createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_4)
+        }
     }
 
     def addBookstoreData() {
@@ -73,7 +81,11 @@ abstract class FunctionalSpecBase extends CpsIntegrationSpecBase {
     }
 
     def addXmlData() {
-        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_XML_DATA, FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchorXml', bookstoreXmlData, XML)
+        def anchorName = 'bookstoreAnchorXml1'
+        if (!anchorExists(FUNCTIONAL_TEST_DATASPACE_4, anchorName)) {
+            cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_SCHEMA_SET, anchorName)
+            cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_4, anchorName, bookstoreXmlData, OffsetDateTime.now(), XML)
+        }
     }
 
     def addDeltaData() {
