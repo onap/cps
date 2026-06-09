@@ -29,7 +29,8 @@ import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.REQUEST_TIMEOUT;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Locale;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -224,8 +225,15 @@ public class DmiRestClient {
                 .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
                 .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
                 .retrieve()
-                .bodyToMono(JsonNode.class)
-                .map(responseHealthStatus -> responseHealthStatus.path("status").asText())
+                .bodyToMono(String.class)
+                .map(body -> {
+                    try {
+                        return new ObjectMapper().readTree(body).path("status").asText();
+                    } catch (final JsonProcessingException e) {
+                        log.warn("Failed to parse health status response: {}", e.getMessage());
+                        return NOT_SPECIFIED;
+                    }
+                })
                 .onErrorResume(Exception.class, e -> {
                     log.warn("Failed to retrieve health status from {}. Status: {}",
                             urlTemplateParameters.urlTemplate(), e.getMessage());

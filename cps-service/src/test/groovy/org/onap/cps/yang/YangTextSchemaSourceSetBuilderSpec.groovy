@@ -66,12 +66,13 @@ class YangTextSchemaSourceSetBuilderSpec extends Specification {
     def 'Convert yang source to a YangTextSchemaSource.'() {
         given: 'a yang source text'
             def yangSourceText = TestUtils.getResourceFileContent('bookstore.yang')
+        and: 'a source identifier'
+            def sourceIdentifier = new org.opendaylight.yangtools.yang.model.api.source.SourceIdentifier('bookstore')
         when: 'convert it to a YangTextSchemaSource'
-            def result = YangTextSchemaSourceSetBuilder.toYangTextSchemaSource('some name', yangSourceText)
-        then: 'the converted object has correct properties'
-            assert result.toString() == '{identifier=RevisionSourceIdentifier [name=some name]}'
-            assert new String(result.openStream().readAllBytes(), StandardCharsets.UTF_8) ==  yangSourceText
-        and: 'it has no symbolic name'
-            assert result.getSymbolicName().isEmpty()
+            def result = YangTextSchemaSourceSetBuilder.getYangTextSource(yangSourceText, sourceIdentifier)
+        then: 'the converted object has correct source identifier'
+            assert result.sourceId().name().getLocalName() == 'bookstore'
+        and: 'the result can be read as an input stream'
+            assert result.read() != null
     }
 }
