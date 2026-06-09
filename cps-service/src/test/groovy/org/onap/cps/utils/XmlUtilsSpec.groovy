@@ -37,14 +37,17 @@ class XmlUtilsSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'the xml data is parsed'
-            def parsedXmlContent = XmlUtils.prepareXmlContent(xmlData, schemaContext)
+            def preparedXml = XmlUtils.prepareXmlContent(xmlData, schemaContext)
         then: 'the result xml is wrapped by root node defined in YANG schema'
-            assert parsedXmlContent == expectedOutput
+            assert preparedXml.xmlContent == expectedOutput
+        and: 'the parsing context indicates no parent xpath'
+            assert !preparedXml.context.hasParentXpath
+            assert preparedXml.context.isWrappedByXmlUtils == expectedWrapped
         where:
-            scenario                 | xmlData                                                                   || expectedOutput
-            'without root data node' | '<?xml version="1.0" encoding="UTF-8"?><class> </class>'                  || '<?xml version="1.0" encoding="UTF-8"?><stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"><class> </class></stores>'
-            'with root data node'    | '<?xml version="1.0" encoding="UTF-8"?><stores><class> </class></stores>' || '<?xml version="1.0" encoding="UTF-8"?><stores><class> </class></stores>'
-            'no xml header'          | '<stores><class> </class></stores>'                                       || '<stores><class> </class></stores>'
+            scenario                 | xmlData                                                                   || expectedOutput                                                                                                                                                  | expectedWrapped
+            'without root data node' | '<?xml version="1.0" encoding="UTF-8"?><class> </class>'                  || '<?xml version="1.0" encoding="UTF-8"?><stores xmlns="org:onap:ccsdk:sample"><class> </class></stores>'  | true
+            'with root data node'    | '<?xml version="1.0" encoding="UTF-8"?><stores><class> </class></stores>' || '<?xml version="1.0" encoding="UTF-8"?><stores><class> </class></stores>'                                                | false
+            'no xml header'          | '<stores><class> </class></stores>'                                       || '<stores><class> </class></stores>'                                                                                      | false
     }
 
     def 'Parse a invalid xml content'() {
@@ -64,9 +67,13 @@ class XmlUtilsSpec extends Specification {
         and: 'Parent schema node by xPath'
             def parentSchemaNode = YangParserHelper.getDataSchemaNodeAndIdentifiersByXpath(xPath, schemaContext).get('dataSchemaNode')
         when: 'the XML data is parsed'
-            def parsedXmlContent = XmlUtils.prepareXmlContent(xmlData, parentSchemaNode, xPath)
+            def preparedXml = XmlUtils.prepareXmlContent(xmlData, parentSchemaNode, xPath)
         then: 'the result XML is wrapped by xPath defined parent root node'
-            assert parsedXmlContent == expectedOutput
+            assert preparedXml.xmlContent == expectedOutput
+        and: 'the parsing context indicates parent xpath and wrapping'
+            assert preparedXml.context.hasParentXpath
+            assert preparedXml.context.isWrappedByXmlUtils
+            assert preparedXml.context.parentXpath == xPath
         where:
             scenario                 | xmlData                                                                                                                                                                                    | xPath                                 || expectedOutput
             'XML element test tree'  | '<?xml version="1.0" encoding="UTF-8"?><test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>' | '/test-tree'                          || '<?xml version="1.0" encoding="UTF-8"?><test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>'

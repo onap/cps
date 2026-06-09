@@ -30,6 +30,7 @@ import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
 import static org.onap.cps.ncmp.api.data.models.OperationType.PATCH;
 import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -169,10 +170,21 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
+        // Convert requestBody to String - handles String, JsonNode, and other types
+        final String requestBodyAsString;
+        if (requestBody instanceof String) {
+            requestBodyAsString = (String) requestBody;
+        } else if (requestBody instanceof JsonNode) {
+            // JsonNode can be converted to String directly
+            requestBodyAsString = requestBody.toString();
+        } else {
+            requestBodyAsString = jsonObjectMapper.asJsonString(requestBody);
+        }
+
         final Object responseObject = networkCmProxyFacade
                 .writeResourceDataPassThroughRunningForCmHandle(
                         cmHandleReference, resourceIdentifier, PATCH,
-                        jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
+                        requestBodyAsString, contentType, authorization);
         return ResponseEntity.ok(responseObject);
     }
 
@@ -196,8 +208,19 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
+        // Convert requestBody to String - handles String, JsonNode, and other types
+        final String requestBodyAsString;
+        if (requestBody instanceof String) {
+            requestBodyAsString = (String) requestBody;
+        } else if (requestBody instanceof JsonNode) {
+            // JsonNode can be converted to String directly
+            requestBodyAsString = requestBody.toString();
+        } else {
+            requestBodyAsString = jsonObjectMapper.asJsonString(requestBody);
+        }
+
         networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
-                resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
+                resourceIdentifier, CREATE, requestBodyAsString, contentType, authorization);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -222,8 +245,19 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
+        // Convert requestBody to String - handles String, JsonNode, and other types
+        final String requestBodyAsString;
+        if (requestBody instanceof String) {
+            requestBodyAsString = (String) requestBody;
+        } else if (requestBody instanceof JsonNode) {
+            // JsonNode can be converted to String directly
+            requestBodyAsString = requestBody.toString();
+        } else {
+            requestBodyAsString = jsonObjectMapper.asJsonString(requestBody);
+        }
+
         networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
-                resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
+                resourceIdentifier, UPDATE, requestBodyAsString, contentType, authorization);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

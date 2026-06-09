@@ -19,10 +19,17 @@
  */
 package org.onap.cps.ncmp.rest.stub
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
 @ComponentScan(basePackages = ["org.onap.cps.ncmp.rest.stub", "org.onap.cps.ncmp.rest.stub.controller", "org.onap.cps.ncmp.rest.api"])
 class TestApplication {
+
+    @Bean
+    ObjectMapper objectMapper() {
+        return new ObjectMapper()
+    }
 }

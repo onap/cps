@@ -30,6 +30,9 @@ import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.http.codec.json.Jackson2JsonDecoder
+import org.springframework.http.codec.json.Jackson2JsonEncoder
+import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.util.InvalidUrlException
 import spock.lang.Specification
 
@@ -48,7 +51,11 @@ class DmiRestClientIntegrationSpec extends Specification {
 
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
-    def webClientBuilder = WebClient.builder().baseUrl(baseUrl.toString())
+    def webClientBuilder = WebClient.builder()
+            .baseUrl(baseUrl.toString())
+            .exchangeStrategies(ExchangeStrategies.builder()
+                .codecs { it.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(new ObjectMapper())) }
+                .build())
     def mockClientRequestMetricsTagCustomizer = Mock(ClientRequestMetricsTagCustomizer)
     def dmiWebClientsConfiguration = new DmiWebClientsConfiguration(new DmiHttpClientConfig(), mockClientRequestMetricsTagCustomizer)
     def webClientForMockServer = dmiWebClientsConfiguration.dataServicesWebClient(webClientBuilder)

@@ -34,9 +34,11 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.utils.XmlParsingContext;
+import org.onap.cps.utils.XmlParsingContextHolder;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.common.Ordering;
-import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier.NodeIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.ChoiceNode;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild;
@@ -44,8 +46,11 @@ import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
 import org.opendaylight.yangtools.yang.data.api.schema.LeafSetNode;
 import org.opendaylight.yangtools.yang.data.api.schema.MapEntryNode;
 import org.opendaylight.yangtools.yang.data.api.schema.MapNode;
+import org.opendaylight.yangtools.yang.data.api.schema.MixinNode;
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.api.schema.ValueNode;
+import org.opendaylight.yangtools.yang.data.api.schema.builder.DataContainerNodeBuilder;
+import org.opendaylight.yangtools.yang.data.spi.node.ImmutableNodes;
 
 @Slf4j
 public class DataNodeBuilder {
@@ -194,10 +199,130 @@ public class DataNodeBuilder {
 
     private Collection<DataNode> buildCollectionFromContainerNode() {
         final DataNode parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
-        for (final NormalizedNode normalizedNode : containerNode.body()) {
+        final XmlParsingContext xmlContext = XmlParsingContextHolder.get();
+        ContainerNode processedContainer = containerNode;
+        if (xmlContext != null && xmlContext.isWrappedByXmlUtils()) {
+            if (xmlContext.isHasParentXpath()) {
+                if (isArtificialWrapper(containerNode, xmlContext)) {
+                    processedContainer = unwrapContainer(containerNode);
+                }
+            } else {
+                processedContainer = skipModuleNameWrapper(
+                        containerNode, xmlContext.getParentXpath());
+            }
+        }
+        for (final NormalizedNode normalizedNode : processedContainer.body()) {
             addDataNodeFromNormalizedNode(parentDataNode, normalizedNode);
         }
+        if (xmlContext != null) {
+            XmlParsingContextHolder.clear();
+        }
         return parentDataNode.getChildDataNodes();
+    }
+
+    private static ContainerNode skipModuleNameWrapper(
+            final ContainerNode containerNode, final String moduleName) {
+        for (final NormalizedNode child : containerNode.body()) {
+            if (child instanceof DataContainerNode dataContainerNode) {
+                final String childLocalName =
+                        dataContainerNode.name().getNodeType().getLocalName();
+                if ("data".equals(childLocalName)) {
+                    return skipModuleNameWrapper(
+                            (ContainerNode) child, moduleName);
+                }
+                if (childLocalName.equals(moduleName)) {
+                    final DataContainerNodeBuilder<NodeIdentifier, ContainerNode> builder =
+                            ImmutableNodes.builderFactory().newContainerBuilder()
+                                    .withNodeIdentifier(containerNode.name());
+                    for (final DataContainerChild grandChild
+                            : dataContainerNode.body()) {
+                        builder.withChild(grandChild);
+                    }
+                    return builder.build();
+                }
+            }
+        }
+        return containerNode;
+    }
+
+    private static boolean isArtificialWrapper(final ContainerNode node,
+                                               final org.onap.cps.utils.XmlParsingContext context) {
+        final Collection<?> nodeBody = node.body();
+        if (nodeBody.isEmpty()) {
+            return false;
+        }
+        if (nodeBody.size() != 1) {
+            return false;
+        }
+        final Object firstChild = nodeBody.iterator().next();
+        if (firstChild instanceof MapNode) {
+            final MapNode mapNode = (MapNode) firstChild;
+            final String mapNodeName = mapNode.name().getNodeType().getLocalName();
+            final String expectedWrapperName = extractLastXpathSegment(context.getParentXpath());
+            if (!mapNodeName.equals(expectedWrapperName)) {
+                return false;
+            }
+            final Collection<MapEntryNode> mapEntries = mapNode.body();
+            if (mapEntries.size() != 1) {
+                return false;
+            }
+            final MapEntryNode mapEntryNode = mapEntries.iterator().next();
+            return !mapEntryNode.body().isEmpty();
+        }
+        if (!(firstChild instanceof DataContainerNode)) {
+            return false;
+        }
+        final DataContainerNode childContainer = (DataContainerNode) firstChild;
+        final String childName = childContainer.name().getNodeType().getLocalName();
+        final String expectedWrapperName = extractLastXpathSegment(context.getParentXpath());
+        if (!childName.equals(expectedWrapperName)) {
+            return false;
+        }
+        return !childContainer.body().isEmpty();
+    }
+
+    private static ContainerNode unwrapContainer(final ContainerNode wrappedContainer) {
+        final Object firstChild = wrappedContainer.body().iterator().next();
+        if (firstChild instanceof MapNode) {
+            final MapNode mapNode = (MapNode) firstChild;
+            final Collection<MapEntryNode> mapEntries = mapNode.body();
+            if (mapEntries.size() == 1) {
+                final MapEntryNode mapEntryNode = mapEntries.iterator().next();
+                final DataContainerNodeBuilder<NodeIdentifier, ContainerNode> unwrappedBuilder =
+                       ImmutableNodes.builderFactory().newContainerBuilder()
+                               .withNodeIdentifier(wrappedContainer.name());
+                for (final DataContainerChild child : mapEntryNode.body()) {
+                    unwrappedBuilder.withChild(child);
+                }
+                return unwrappedBuilder.build();
+            }
+        }
+        if (firstChild instanceof DataContainerNode) {
+            final DataContainerNode wrapperNode = (DataContainerNode) firstChild;
+            final DataContainerNodeBuilder<NodeIdentifier, ContainerNode> unwrappedBuilder =
+                    ImmutableNodes.builderFactory().newContainerBuilder().withNodeIdentifier(wrappedContainer.name());
+            for (final DataContainerChild child : wrapperNode.body()) {
+                unwrappedBuilder.withChild(child);
+            }
+            return unwrappedBuilder.build();
+        }
+        return wrappedContainer;
+    }
+
+    private static String extractLastXpathSegment(final String xpath) {
+        if (xpath == null || xpath.isEmpty()) {
+            return "";
+        }
+        final int lastSlash = xpath.lastIndexOf('/');
+        if (lastSlash < 0) {
+            return xpath;
+        }
+        final String lastSegment = xpath.substring(lastSlash + 1);
+        final int bracketIndex = lastSegment.indexOf('[');
+        if (bracketIndex > 0) {
+            return lastSegment.substring(0, bracketIndex);
+        }
+        return lastSegment;
     }
 
     private static void addDataNodeFromNormalizedNode(final DataNode currentDataNode,
@@ -210,7 +335,7 @@ public class DataNodeBuilder {
         } else if (normalizedNode instanceof MapNode mapNode) {
             addDataNodeForEachListElement(currentDataNode, mapNode);
         } else if (normalizedNode instanceof ValueNode<?> valueNode) {
-            addYangLeaf(currentDataNode, valueNode.getIdentifier().getNodeType().getLocalName(),
+            addYangLeaf(currentDataNode, valueNode.name().getNodeType().getLocalName(),
                     (Serializable) valueNode.body());
         } else if (normalizedNode instanceof LeafSetNode<?> leafSetNode) {
             addYangLeafList(currentDataNode, leafSetNode);
@@ -221,9 +346,9 @@ public class DataNodeBuilder {
 
     private static void addYangContainer(final DataNode currentDataNode, final DataContainerNode dataContainerNode) {
         final DataNode dataContainerDataNode =
-            (dataContainerNode.getIdentifier() instanceof YangInstanceIdentifier.AugmentationIdentifier)
+            (dataContainerNode instanceof MixinNode)
                 ? currentDataNode
-                : createAndAddChildDataNode(currentDataNode, YangUtils.buildXpath(dataContainerNode.getIdentifier()));
+                : createAndAddChildDataNode(currentDataNode, YangUtils.buildXpath(dataContainerNode.name()));
         final Collection<DataContainerChild> normalizedChildNodes = dataContainerNode.body();
         for (final NormalizedNode normalizedNode : normalizedChildNodes) {
             addDataNodeFromNormalizedNode(dataContainerDataNode, normalizedNode);
@@ -240,7 +365,7 @@ public class DataNodeBuilder {
     }
 
     private static void addYangLeafList(final DataNode currentDataNode, final LeafSetNode<?> leafSetNode) {
-        final String leafListName = leafSetNode.getIdentifier().getNodeType().getLocalName();
+        final String leafListName = leafSetNode.name().getNodeType().getLocalName();
         List<?> leafListValues = (leafSetNode.body())
                 .stream()
                 .map(NormalizedNode::body)

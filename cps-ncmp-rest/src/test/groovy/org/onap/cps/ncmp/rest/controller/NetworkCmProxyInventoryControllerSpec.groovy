@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.rest.controller
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
@@ -41,7 +42,7 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
 import org.springframework.context.annotation.Import
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -76,7 +77,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     CmHandleQueryServiceParameters cmHandleQueryServiceParameters = Mock()
 
     @SpringBean
-    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper().enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES))
 
     @Value('${rest.api.ncmp-inventory-base-path}/v1')
     def ncmpBasePathV1
@@ -108,14 +109,16 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     def 'Dmi plugin registration with invalid json'() {
         given: 'a dmi plugin registration with #scenario'
             def jsonDataWithUndefinedDataLabel = '{"notAdmiPlugin":""}'
+        and: 'the registration service returns a response'
+            mockNetworkCmProxyInventoryFacade.updateDmiRegistration(_) >> new DmiPluginRegistrationResponse()
         when: 'post request is performed & registration is called with correct DMI plugin information'
             def response = mvc.perform(
                 post("$ncmpBasePathV1/ch")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonDataWithUndefinedDataLabel)
             ).andReturn().response
-        then: 'response status is bad request'
-            response.status == HttpStatus.BAD_REQUEST.value()
+        then: 'response status is ok since unknown fields are ignored'
+            response.status == HttpStatus.OK.value()
     }
 
     def 'CmHandle search endpoint test #scenario.'() {
