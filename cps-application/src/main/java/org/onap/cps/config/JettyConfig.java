@@ -21,14 +21,14 @@
 package org.onap.cps.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
-import org.eclipse.jetty.ee10.servlet.ServletHandler;
+import org.eclipse.jetty.ee11.servlet.ServletContextHandler;
+import org.eclipse.jetty.ee11.servlet.ServletHandler;
 import org.eclipse.jetty.http.UriCompliance;
 import org.eclipse.jetty.server.ConnectionFactory;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.HttpConnectionFactory;
-import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
+import org.springframework.boot.jetty.servlet.JettyServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,7 +40,7 @@ import org.springframework.context.annotation.Configuration;
  * <ol>
  *     <li><b>HTTP parser</b> - the connector's {@code HttpConfiguration} URI compliance. Without
  *     {@code UriCompliance.UNSAFE} Jetty rejects the raw request with "Ambiguous URI path separator".</li>
- *     <li><b>Servlet dispatch</b> - the EE10 {@code ServletHandler}. Without
+ *     <li><b>Servlet dispatch</b> - the EE11 {@code ServletHandler}. Without
  *     {@code setDecodeAmbiguousURIs(true)} Jetty wraps the request as an {@code AmbiguousURI} and
  *     returns 400 when Spring reads the servlet path, even though the parser accepted it.</li>
  * </ol>
@@ -48,12 +48,13 @@ import org.springframework.context.annotation.Configuration;
  * <p>Note: Spring Security's firewall is a THIRD layer that must also allow encoded slashes; see
  * {@link SecurityConfig#webSecurityCustomizer()}.
  *
- * <p><b>Spring Boot 4 / Jetty upgrade warning:</b> This class depends on Jetty 12 EE10 internals
- * ({@code org.eclipse.jetty.ee10.servlet.*}) and the {@code UriCompliance} model, both of which have
- * changed across Jetty major versions. When migrating to Spring Boot 4 (newer Jetty / likely {@code ee11}):
+ * <p><b>Upgrade warning:</b> this class depends on Jetty EE internals
+ * ({@code org.eclipse.jetty.ee11.servlet.*}) and the {@code UriCompliance} model, both of which have
+ * changed across Jetty major versions (e.g. the EE namespace moved from {@code ee10} in Spring Boot 3.x
+ * to {@code ee11} in Spring Boot 4.x). On future Spring Boot / Jetty upgrades:
  * <ul>
- *     <li>The {@code ee10} package imports will no longer resolve - update to the new EE namespace.</li>
- *     <li>Verify {@code ServletHandler.setDecodeAmbiguousURIs} still exists / has the same semantics.</li>
+ *     <li>Update the EE namespace imports if the bundled Jetty moves to a newer EE version.</li>
+ *     <li>Verify {@code ServletHandler.setDecodeAmbiguousURIs} still exists and has the same semantics.</li>
  *     <li>Verify {@code UriCompliance.UNSAFE} is still the correct mode.</li>
  *     <li>The integration test covering encoded-slash paths is the safety net - if it fails after the
  *     upgrade, this class needs revisiting.</li>

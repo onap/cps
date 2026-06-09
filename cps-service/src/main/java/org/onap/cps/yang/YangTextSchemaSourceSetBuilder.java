@@ -23,17 +23,12 @@ package org.onap.cps.yang;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableMap;
 import io.micrometer.core.annotation.Timed;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.NoArgsConstructor;
@@ -42,13 +37,13 @@ import org.onap.cps.api.model.ModuleReference;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
-import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
+import org.opendaylight.yangtools.yang.model.api.source.SourceIdentifier;
+import org.opendaylight.yangtools.yang.model.api.source.YangTextSource;
+import org.opendaylight.yangtools.yang.model.spi.source.StringYangTextSource;
 import org.opendaylight.yangtools.yang.parser.api.YangParser;
 import org.opendaylight.yangtools.yang.parser.api.YangParserException;
 import org.opendaylight.yangtools.yang.parser.api.YangParserFactory;
 import org.opendaylight.yangtools.yang.parser.impl.DefaultYangParserFactory;
-import org.opendaylight.yangtools.yang.xpath.impl.di.DefaultXPathParserFactory;
 
 @NoArgsConstructor
 public final class YangTextSchemaSourceSetBuilder {
@@ -58,8 +53,11 @@ public final class YangTextSchemaSourceSetBuilder {
 
     private final ImmutableMap.Builder<String, String> yangModelMap = new ImmutableMap.Builder<>();
 
+    // DefaultYangParserFactory is deprecated in YangTools 14.x but no non-deprecated standalone
+    // replacement exists. The YangTools team recommends OSGi/Dagger DI which is not applicable here.
+    @SuppressWarnings({"deprecation", "removal"})
     private static final YangParserFactory YANG_PARSER_FACTORY =
-        new DefaultYangParserFactory(new DefaultXPathParserFactory());
+        new DefaultYangParserFactory();
 
     /**
      * Add Yang resource context.
@@ -88,7 +86,6 @@ public final class YangTextSchemaSourceSetBuilder {
      * @param yangResourceNameToContent the resource content
      * @return the YangTextSchemaSourceSet
      */
-
     @Timed(value = "cps.yang.schema.source.set.build", description = "Time taken to build a ODL yang Model")
     public static YangTextSchemaSourceSet of(final Map<String, String> yangResourceNameToContent) {
         return new YangTextSchemaSourceSetBuilder().putAll(yangResourceNameToContent).build();
@@ -105,34 +102,16 @@ public final class YangTextSchemaSourceSetBuilder {
     }
 
     /**
-     * Create a new YangTextSchemaSource.
+     * Create a new YangTextSource.
      *
-     * @param source                   Yang (module) source as string
-     * @param revisionSourceIdentifier Revision of the source
-     * @return a YangTextSchemaSource created from the given source
+     * @param source           Yang (module) source as string
+     * @param sourceIdentifier Identifier of the source
+     * @return a YangTextSource created from the given source
      */
-    public static YangTextSchemaSource getYangTextSchemaSource(final String source,
-                                                               final RevisionSourceIdentifier
-                                                                   revisionSourceIdentifier) {
-        return new YangTextSchemaSource(revisionSourceIdentifier) {
-            @Override
-            public Optional<String> getSymbolicName() {
-                return Optional.empty();
-            }
-
-            @Override
-            protected MoreObjects.ToStringHelper addToStringAttributes(
-                final MoreObjects.ToStringHelper toStringHelper) {
-                return toStringHelper;
-            }
-
-            @Override
-            public InputStream openStream() {
-                return new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8));
-            }
-        };
+    public static YangTextSource getYangTextSource(final String source,
+                                                   final SourceIdentifier sourceIdentifier) {
+        return new StringYangTextSource(sourceIdentifier, source);
     }
-
 
     private record YangTextSchemaSourceSetImpl(SchemaContext schemaContext) implements YangTextSchemaSourceSet {
 
@@ -144,7 +123,7 @@ public final class YangTextSchemaSourceSetBuilder {
         private static ModuleReference toModuleReference(final Module module) {
             return ModuleReference.builder()
                 .moduleName(module.getName())
-                .namespace(module.getQNameModule().getNamespace().toString())
+                .namespace(module.getQNameModule().namespace().toString())
                 .revision(module.getRevision().map(Revision::toString).orElse(null))
                 .build();
         }
@@ -159,10 +138,10 @@ public final class YangTextSchemaSourceSetBuilder {
      */
     private static SchemaContext generateSchemaContext(final Map<String, String> yangResourceNameToContent) {
         final YangParser yangParser = YANG_PARSER_FACTORY.createParser();
-        for (final YangTextSchemaSource yangTextSchemaSource : forResources(yangResourceNameToContent)) {
-            final String resourceName = yangTextSchemaSource.getIdentifier().getName();
+        for (final YangTextSource yangTextSource : forResources(yangResourceNameToContent)) {
+            final String resourceName = yangTextSource.sourceId().name().getLocalName();
             try {
-                yangParser.addSource(yangTextSchemaSource);
+                yangParser.addSource(yangTextSource);
             } catch (final Exception exception) {
                 throw new ModelValidationException("Yang resource processing exception.",
                     String.format("Could not process resource %s:%n%s", resourceName, exception.getMessage()),
@@ -180,23 +159,23 @@ public final class YangTextSchemaSourceSetBuilder {
         }
     }
 
-    private static List<YangTextSchemaSource> forResources(final Map<String, String> yangResourceNameToContent) {
+    private static List<YangTextSource> forResources(final Map<String, String> yangResourceNameToContent) {
         return yangResourceNameToContent.entrySet().stream()
-            .map(entry -> toYangTextSchemaSource(entry.getKey(), entry.getValue())).toList();
+            .map(entry -> toYangTextSource(entry.getKey(), entry.getValue())).toList();
     }
 
-    private static YangTextSchemaSource toYangTextSchemaSource(final String sourceName, final String source) {
-        final RevisionSourceIdentifier revisionSourceIdentifier =
+    private static YangTextSource toYangTextSource(final String sourceName, final String source) {
+        final SourceIdentifier sourceIdentifier =
             createIdentifierFromSourceName(checkNotNull(sourceName));
 
-        return getYangTextSchemaSource(source, revisionSourceIdentifier);
+        return getYangTextSource(source, sourceIdentifier);
     }
 
-    private static RevisionSourceIdentifier createIdentifierFromSourceName(final String sourceName) {
+    private static SourceIdentifier createIdentifierFromSourceName(final String sourceName) {
         final Matcher matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
         if (matcher.matches()) {
-            return RevisionSourceIdentifier.create(matcher.group(1), Revision.of(matcher.group(2)));
+            return new SourceIdentifier(matcher.group(1), Revision.of(matcher.group(2)));
         }
-        return RevisionSourceIdentifier.create(sourceName);
+        return new SourceIdentifier(sourceName);
     }
 }

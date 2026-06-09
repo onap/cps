@@ -35,7 +35,6 @@ import org.onap.cps.api.model.Anchor;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.ncmp.events.avc1_0_0.AvcEvent;
 import org.onap.cps.ncmp.events.avc1_0_0.Edit;
-import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.YangParser;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +47,6 @@ public class CmAvcEventService {
 
     private final CpsDataService cpsDataService;
     private final CpsAnchorService cpsAnchorService;
-    private final JsonObjectMapper jsonObjectMapper;
     private final YangParser yangParser;
 
     /**
@@ -130,8 +128,7 @@ public class CmAvcEventService {
     }
 
     private String extractNodeData(final Edit cmAvcEventEdit) {
-        return jsonObjectMapper.convertJsonString(jsonObjectMapper.asJsonString(cmAvcEventEdit.getValue()),
-            String.class);
+        return (String) cmAvcEventEdit.getValue();
     }
 
     private String getCpsPath(final String cmHandleId, final String restConfStylePath) {

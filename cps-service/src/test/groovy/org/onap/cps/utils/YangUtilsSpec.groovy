@@ -22,6 +22,7 @@
 
 package org.onap.cps.utils
 
+import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier
 import spock.lang.Specification
 
@@ -29,9 +30,9 @@ class YangUtilsSpec extends Specification {
 
     def 'Get key attribute statement without key attributes'() {
         given: 'a path argument without key attributes'
-            def mockPathArgument = Mock(YangInstanceIdentifier.NodeIdentifierWithPredicates)
-            mockPathArgument.entrySet() >> [ ]
+            def qname = QName.create('test', 'test')
+            def nodeIdentifierWithPredicates = YangInstanceIdentifier.NodeIdentifierWithPredicates.of(qname)
         expect: 'the result is an empty string'
-            YangUtils.getKeyAttributesStatement(mockPathArgument) == ''
+            YangUtils.getKeyAttributesStatement(nodeIdentifierWithPredicates) == ''
     }
 }
