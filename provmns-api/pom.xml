@@ -103,11 +103,10 @@
     </repositories>
 
     <build>
-        <finalName>${project.artifactId}-${provmns.lib.version}</finalName>
         <plugins>
             <!--
                 Merges the pre-built generated-only JAR from local-repo with the hand-written compiled classes
-                into the final JAR during the package phase. The hand-written classes (Resource,
+                into the final JAR during the compile phase. The hand-written classes (Resource,
                 ClassNameIdGetDataNodeSelectorParameter) override any stale versions from the lib JAR.
                 After install, the merged JAR is copied back to local-repo so it stays up to date
                 for subsequent builds (e.g. IntelliJ), avoiding the 'missing classes' issue.
@@ -120,15 +119,17 @@
                     <!-- Merges generated classes from local-repo lib JAR with hand-written compiled classes into the final JAR -->
                     <execution>
                         <id>merge-lib-jar</id>
-                        <phase>package</phase>
+                        <phase>compile</phase>
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                                <jar destfile="${project.build.directory}/${project.build.finalName}.jar">
+                                <jar destfile="${project.build.outputDirectory}/../provmns-api-merged.jar">
                                     <zipfileset src="${project.basedir}/local-repo/org/onap/cps/provmns-api/${provmns.lib.version}/provmns-api-${provmns.lib.version}.jar"
                                                 excludes="**/Resource.class,**/ClassNameIdGetDataNodeSelectorParameter.class"/>
                                     <fileset dir="${project.build.outputDirectory}"/>
                                 </jar>
+                                <unzip src="${project.build.outputDirectory}/../provmns-api-merged.jar"
+                                       dest="${project.build.outputDirectory}" overwrite="true"/>
                             </target>
                         </configuration>
                     </execution>
@@ -143,29 +144,6 @@
                                       tofile="${project.basedir}/local-repo/org/onap/cps/provmns-api/${provmns.lib.version}/provmns-api-${provmns.lib.version}.jar"
                                       overwrite="true"/>
                             </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>default-install</id>
-                        <phase>none</phase>
-                    </execution>
-                    <execution>
-                        <id>install-merged-jar</id>
-                        <phase>install</phase>
-                        <goals><goal>install-file</goal></goals>
-                        <configuration>
-                            <file>${project.build.directory}/${project.build.finalName}.jar</file>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>${project.artifactId}</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <pomFile>${project.basedir}/pom.xml</pomFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -231,7 +209,7 @@
                                         <javac srcdir="${provmns.generated.sources}/src/main/java"
                                                destdir="${project.build.directory}/provmns-classes"
                                                includeantruntime="false"
-                                               source="17" target="17">
+                                               source="21" target="21">
                                             <include name="**/ClassNameIdPatchDefaultResponse.java"/>
                                             <include name="**/ErrorResponseDefault.java"/>
                                             <include name="**/ErrorResponseDefaultOtherProblemsInner.java"/>
