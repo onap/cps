@@ -72,7 +72,7 @@ public class XmlUtils {
      *
      * @return XML content wrapped by root node (if needed)
      */
-    public static String prepareXmlContent(final String xmlContent, final SchemaContext schemaContext)
+    public static String parsedXmlContent(final String xmlContent, final SchemaContext schemaContext)
         throws IOException, ParserConfigurationException, TransformerException, SAXException {
         return addRootNodeToXmlContent(xmlContent, schemaContext.getModules().iterator().next().getName(),
                 YangParserHelper.DATA_ROOT_NODE_NAMESPACE);
@@ -87,9 +87,9 @@ public class XmlUtils {
      *
      * @return XML content wrapped by root node (if needed)
      */
-    public static String prepareXmlContent(final String xmlContent,
-                                           final DataSchemaNode parentSchemaNode,
-                                           final String xpath)
+    public static String parsedXmlContent(final String xmlContent,
+                                          final DataSchemaNode parentSchemaNode,
+                                          final String xpath)
         throws IOException, ParserConfigurationException, TransformerException, SAXException {
         final String namespace = parentSchemaNode.getQName().getNamespace().toString();
         final String parentXpathPart = xpath.substring(xpath.lastIndexOf('/') + 1);

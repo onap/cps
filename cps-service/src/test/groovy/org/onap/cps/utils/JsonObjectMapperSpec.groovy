@@ -47,6 +47,18 @@ class JsonObjectMapperSpec extends Specification {
             type << ['String', 'bytes']
     }
 
+    def 'Convert object to json string for #scenario.'() {
+        when: 'the object is converted to a json string'
+            def result = jsonObjectMapper.asJsonString(input)
+        then: 'the result is as expected'
+            assert result == expectedOutput
+        where:
+            scenario              | input                                           || expectedOutput
+            'plain String'        | 'hello'                                         || 'hello'
+            'JsonNode'            | new ObjectMapper().readTree('{"key":"value"}')  || '{"key":"value"}'
+            'generic object (Map)'| [key: 'value']                                  || '{"key":"value"}'
+    }
+
     def 'Convert to bytes with processing exception.'() {
         given: 'the object mapper throws an processing exception'
             spiedObjectMapper.writeValueAsBytes(_) >> { throw new JsonProcessingException('message from cause')}

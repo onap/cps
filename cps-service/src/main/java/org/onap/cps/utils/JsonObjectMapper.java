@@ -39,12 +39,31 @@ public class JsonObjectMapper {
     private final ObjectMapper objectMapper;
 
     /**
+     * Convert an object to a JSON string, handling String and JsonNode types directly.
+     * If the object is already a String, it is returned as-is.
+     * If the object is a JsonNode, its text representation is returned.
+     * Otherwise, the object is serialized to JSON.
+     *
+     * @param object any object
+     * @return JSON string representation
+     */
+    public String asJsonString(final Object object) {
+        if (object instanceof String stringObject) {
+            return stringObject;
+        }
+        if (object instanceof JsonNode jsonNodeObject) {
+            return jsonNodeObject.toString();
+        }
+        return asJsonStringFromObject(object);
+    }
+
+    /**
      * Serializing generic java object to JSON using Jackson.
      *
      * @param object any java object value
      * @return the generated JSON as a string.
      */
-    public String asJsonString(final Object object) {
+    private String asJsonStringFromObject(final Object object) {
         try {
             return objectMapper.writeValueAsString(object);
         } catch (final JsonProcessingException e) {

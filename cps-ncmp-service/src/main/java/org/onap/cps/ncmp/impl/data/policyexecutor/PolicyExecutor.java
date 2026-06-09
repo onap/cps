@@ -44,7 +44,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientRequestException;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -99,19 +98,23 @@ public class PolicyExecutor {
         log.trace("Policy Executor Enabled: {}", enabled);
         if (enabled) {
             try {
-                final ResponseEntity<JsonNode> responseEntity = getPolicyExecutorResponse(yangModelCmHandle,
+                final ResponseEntity<String> responseEntity = getPolicyExecutorResponse(yangModelCmHandle,
                                                                                           operationType,
                                                                                           authorization,
                                                                                           resourceIdentifier,
                                                                                           changeRequestAsJson);
-                final JsonNode responseBody = responseEntity.getBody();
-                if (responseBody == null) {
+                final String responseBodyAsString = responseEntity.getBody();
+                if (responseBodyAsString == null || responseBodyAsString.isEmpty()) {
                     log.warn("No valid response body from Policy Executor, ignored");
                     return;
                 }
+                // Parse the String response to JsonNode
+                final JsonNode responseBody = objectMapper.readTree(responseBodyAsString);
                 processSuccessResponse(responseBody);
             } catch (final RuntimeException runtimeException) {
                 processException(runtimeException);
+            } catch (final JsonProcessingException jsonProcessingException) {
+                log.warn("Failed to parse Policy Executor response: {}", jsonProcessingException.getMessage());
             }
         }
     }
@@ -127,7 +130,8 @@ public class PolicyExecutor {
         operationAsMap.put("targetIdentifier", yangModelCmHandle.getAlternateId());
         if (!OperationType.DELETE.equals(operationType)) {
             try {
-                final Object changeRequestAsObject = objectMapper.readValue(changeRequestAsJson, Object.class);
+                // Read as Map to avoid JsonNode instances that can't be serialized in Spring Boot 4.x
+                final Object changeRequestAsObject = objectMapper.readValue(changeRequestAsJson, Map.class);
                 operationAsMap.put("changeRequest", changeRequestAsObject);
             } catch (final JsonProcessingException e) {
                 throw new NcmpException("Cannot convert Change Request data to Object",
@@ -145,7 +149,7 @@ public class PolicyExecutor {
         return permissionRequestAsMap;
     }
 
-    private ResponseEntity<JsonNode> getPolicyExecutorResponse(final YangModelCmHandle yangModelCmHandle,
+    private ResponseEntity<String> getPolicyExecutorResponse(final YangModelCmHandle yangModelCmHandle,
                                                                final OperationType operationType,
                                                                final String authorization,
                                                                final String resourceIdentifier,
@@ -161,6 +165,15 @@ public class PolicyExecutor {
                 yangModelCmHandle.getId(), operationType);
         log.trace("Policy Executor request body: {}", bodyAsObject);
 
+        // Convert Object to JSON String to avoid Jackson serialization issues with JsonNode in Spring Boot 4.x
+        final String bodyAsJsonString;
+        try {
+            bodyAsJsonString = objectMapper.writeValueAsString(bodyAsObject);
+        } catch (final JsonProcessingException jsonProcessingException) {
+            throw new NcmpException("Cannot serialize Policy Executor request body to JSON",
+                "Failed to convert request body to JSON string: " + jsonProcessingException.getMessage());
+        }
+
         final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
                 .fixedPathSegment(REQUEST_PATH)
                 .createUrlTemplateParameters(String.format("%s:%s", serverAddress, serverPort), PERMISSION_BASE_PATH);
@@ -168,9 +181,10 @@ public class PolicyExecutor {
         return policyExecutorWebClient.post()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
             .header(HttpHeaders.AUTHORIZATION, authorization)
-            .body(BodyInserters.fromValue(bodyAsObject))
+            .header(HttpHeaders.CONTENT_TYPE, "application/json")
+            .bodyValue(bodyAsJsonString)
             .retrieve()
-            .toEntity(JsonNode.class)
+            .toEntity(String.class)
             .timeout(Duration.of(readTimeoutInSeconds, ChronoUnit.SECONDS))
             .block();
     }
