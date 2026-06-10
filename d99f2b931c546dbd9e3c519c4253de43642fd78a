@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0fa794e_1f5401c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 43
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T07:27:25Z",
+      "side": 1,
+      "message": "Add Issue-ID:\u003cjirs-ticket\u003e",
+      "revId": "d99f2b931c546dbd9e3c519c4253de43642fd78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9a93333_5fc17410",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 43
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T07:27:25Z",
+      "side": 1,
+      "message": "NB: The static variables are fine by me for maintainability. Others can pitch in about its necessity.",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "d99f2b931c546dbd9e3c519c4253de43642fd78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d97dbb32_1e3e372d",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 43
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T07:27:25Z",
+      "side": 1,
+      "message": "NB: For other reviewers. This has changed because we concluded cps path should be consistent with sorting in xpath.",
+      "range": {
+        "startLine": 96,
+        "startChar": 154,
+        "endLine": 96,
+        "endChar": 179
+      },
+      "revId": "d99f2b931c546dbd9e3c519c4253de43642fd78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
