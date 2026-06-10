@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd1d3197_606cfb31",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T06:13:00Z",
+      "side": 1,
+      "message": "ok I saw pratheeka\u0027s comment now, you can use StringUtils as well. But I would need suggestion from other reviewers as well",
+      "parentUuid": "546f239b_336a25bb",
+      "range": {
+        "startLine": 271,
+        "startChar": 7,
+        "endLine": 271,
+        "endChar": 11
+      },
+      "revId": "6edea6ae8f23b8d99fbbe2f8cda39e17143be195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "329a1955_dcd4dc5e",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 9
