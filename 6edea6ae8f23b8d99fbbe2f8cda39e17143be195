@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c99ec11b_34cec4a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T06:22:41Z",
+      "side": 1,
+      "message": "Since your task is divided into 2 parts, use the jira reference of the sub tasks and add topic",
+      "revId": "6edea6ae8f23b8d99fbbe2f8cda39e17143be195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "546f239b_336a25bb",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
         "patchSetId": 9
