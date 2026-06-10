@@ -33,6 +33,24 @@
       "message": "NB: rename to andOperator for readability",
       "revId": "a11854397992e08d0b9acbcbdc99b771913006b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e833fec6_d421d0d8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/CompositeQuery.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T06:01:46Z",
+      "side": 1,
+      "message": "Sorry I missed this but I will add it in the second patch for this API",
+      "parentUuid": "a4c8cbb6_60b9d7a5",
+      "revId": "a11854397992e08d0b9acbcbdc99b771913006b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
