@@ -1,0 +1,435 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9baa2328_33252e96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "I stopped at XMLUtils because I am runnign out of time and also want to discuss all those XML elated changes before continuing...",
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f499c7e_eecd1f33",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "you sure all of these al really necessary?\n(i might do a bit of trial an error or ask my AI later)",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 21
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6df3cc9a_e263c40e",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/TestApplication.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "why is this needed now and not befoer?!",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 5
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de4c231a_880af33b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "why are these alternatives needed now?",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 16
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58e01c29_0d4115fb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "did you add test for this?",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 9
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "886463a5_836d5f08",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "change the description adn add a rtest will relal yinvalid json ie badly formed json, that should still fail ie BAD request",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 50
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb2db2e_fce8c1f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "did you add test for this",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 13
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d8f6c34_eca75b02",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "the old way seemd simpler, is taht not supported anymore?",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 35
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc3a05a2_01f9fa24",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "typicall AI gen issue, make sure to use proper imports instead",
+      "range": {
+        "startLine": 229,
+        "startChar": 36,
+        "endLine": 229,
+        "endChar": 66
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc3ae98b_2f6c9e2b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "requires new test",
+      "range": {
+        "startLine": 230,
+        "startChar": 1,
+        "endLine": 233,
+        "endChar": 21
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efe1ba84_5acdd50e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiWebClientsConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "why is this needed?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05aa6baa_bc0778f1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "why not autowired or injected anymore?",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 58
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55332e78_c447b5dc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "nb: use def",
+      "range": {
+        "startLine": 246,
+        "startChar": 8,
+        "endLine": 246,
+        "endChar": 15
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77e756f2_3eff77d3",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "maybe we can agree to do test in new commit..",
+      "range": {
+        "startLine": 69,
+        "startChar": 26,
+        "endLine": 69,
+        "endChar": 30
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c5d569_e5cd84b7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "dont use var, use proper full names. Thi is AI generated code that is fine but you need to fix/correct it with our standards",
+      "range": {
+        "startLine": 298,
+        "startChar": 18,
+        "endLine": 298,
+        "endChar": 22
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d885e40b_1747b020",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "change to \u003d\u003d and swap each side of :",
+      "range": {
+        "startLine": 301,
+        "startChar": 48,
+        "endLine": 301,
+        "endChar": 52
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6b94bb2_ef3f3e33",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/CpsServicesConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "as before, why is this needed now?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 5
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d89373a6_b5a8907f",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "where does all this code come from?! is this rebase issue ie CML support. I need to check against my (latest) version...\ni just checked and  dont see it on latest?!",
+      "range": {
+        "startLine": 223,
+        "startChar": 33,
+        "endLine": 223,
+        "endChar": 54
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e67c68_dd951708",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-10T08:14:38Z",
+      "side": 1,
+      "message": "again a lot of XML stuff taht does nt seem to have to do with SpringBoot uplift?!",
+      "range": {
+        "startLine": 58,
+        "startChar": 13,
+        "endLine": 58,
+        "endChar": 22
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
