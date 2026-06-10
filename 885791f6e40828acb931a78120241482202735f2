@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c345279_403552a7",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "yes all are needed.\nspring-boot-resttestclient contains TestRestTemplate\nspring-boot-restclient — runtime dependency of TestRestTemplate, not transitively included\nspring-boot-http-client — same reason\nRemoving any of them would likely cause a ClassNotFoundException at test runtime.",
+      "parentUuid": "2f499c7e_eecd1f33",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 21
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6df3cc9a_e263c40e",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-06-10T08:14:38Z",
       "side": 1,
       "message": "why is this needed now and not befoer?!",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 5
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d31befa4_7e8e2c65",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/test/groovy/org/onap/cps/ncmp/rest/stub/TestApplication.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "Spring Boot 4.0 switched its internal Jackson to 3.x (tools.jackson), so com.fasterxml.jackson.databind.ObjectMapper (Jackson 2.x) is no longer auto-configured as a bean. Explicit definition required to satisfy autowiring in NetworkCmProxyStubController.",
+      "parentUuid": "6df3cc9a_e263c40e",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "add40fb7_a5b146d1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "In Spring Boot 4.0, Spring MVC uses Jackson 3.x (tools.jackson) internally for HTTP message conversion, so requestBody may arrive as a Jackson 3.x JsonNode instead of the expected Jackson 2.x JsonNode. The three-way check handles all possible types to avoid ClassCastException or serialization failures.",
+      "parentUuid": "de4c231a_880af33b",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 16
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58e01c29_0d4115fb",
@@ -100,6 +172,30 @@
       "writtenOn": "2026-06-10T08:14:38Z",
       "side": 1,
       "message": "did you add test for this?",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 9
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66f2e3c1_0f556528",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "No, the null response case is not tested. The existing BAD_REQUEST test covers invalid request body (empty/non-json string), not the dmiPluginRegistrationResponse \u003d\u003d null path.",
+      "parentUuid": "58e01c29_0d4115fb",
       "range": {
         "startLine": 154,
         "startChar": 0,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf1fe2d6_5d133e17",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "I will do that in next patch.",
+      "parentUuid": "886463a5_836d5f08",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 50
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1eb2db2e_fce8c1f6",
@@ -146,6 +266,30 @@
       "writtenOn": "2026-06-10T08:14:38Z",
       "side": 1,
       "message": "did you add test for this",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 13
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7358c08_696cda73",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "No, the JsonProcessingException catch block is not tested.I will do that in next patch.",
+      "parentUuid": "1eb2db2e_fce8c1f6",
       "range": {
         "startLine": 116,
         "startChar": 0,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a2c57b6_77480e71",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "The old way broke because Spring Boot 4.0 switched to Jackson 3.x, which doesn\u0027t understand Jackson 2.x objects — so we serialize to String first and let Jackson 2.x handle it ourselves.",
+      "parentUuid": "6d8f6c34_eca75b02",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 35
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc3a05a2_01f9fa24",
@@ -192,6 +360,30 @@
       "writtenOn": "2026-06-10T08:14:38Z",
       "side": 1,
       "message": "typicall AI gen issue, make sure to use proper imports instead",
+      "range": {
+        "startLine": 229,
+        "startChar": 36,
+        "endLine": 229,
+        "endChar": 66
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c270a8d8_6e3ba779",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "yep,I missed this will update it in next patch.",
+      "parentUuid": "cc3a05a2_01f9fa24",
       "range": {
         "startLine": 229,
         "startChar": 36,
@@ -225,6 +417,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9de63bd_be314f07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "The JsonProcessingException catch block is already covered in DmiRestClientIntegrationSpec.groovy under the \u0027Invalid Json\u0027 scenario of the \u0027DMI health status check with #scenario\u0027test. No new test needed.",
+      "parentUuid": "bc3ae98b_2f6c9e2b",
+      "range": {
+        "startLine": 230,
+        "startChar": 1,
+        "endLine": 233,
+        "endChar": 21
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efe1ba84_5acdd50e",
@@ -248,6 +464,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "066bbda8_92bce3e2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiWebClientsConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "Spring Boot 4.0\u0027s auto-configured WebClient.Builder is pre-wired with Jackson 3.x codecs, so this fallback ensures tests without full auto-configuration context still have a WebClient.Builder bean available.",
+      "parentUuid": "efe1ba84_5acdd50e",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05aa6baa_bc0778f1",
@@ -261,6 +501,30 @@
       "writtenOn": "2026-06-10T08:14:38Z",
       "side": 1,
       "message": "why not autowired or injected anymore?",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 58
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a82d3b05_c71b4e01",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "The @SpringBootTest context only loads specific classes — DataOperationEventConsumer, DmiAsyncRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig. None of these register a com.fasterxml.jackson.databind.ObjectMapper bean, and Spring Boot 4.0\u0027s JacksonAutoConfiguration no longer auto-configures one either. So @Autowired would fail with NoSuchBeanDefinitionException — instantiating it directly is the simplest fix.",
+      "parentUuid": "05aa6baa_bc0778f1",
       "range": {
         "startLine": 54,
         "startChar": 4,
@@ -340,6 +604,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33ea9320_5f25765b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "sure, I will change it in next patch.",
+      "parentUuid": "37c5d569_e5cd84b7",
+      "range": {
+        "startLine": 298,
+        "startChar": 18,
+        "endLine": 298,
+        "endChar": 22
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d885e40b_1747b020",
@@ -353,6 +641,30 @@
       "writtenOn": "2026-06-10T08:14:38Z",
       "side": 1,
       "message": "change to \u003d\u003d and swap each side of :",
+      "range": {
+        "startLine": 301,
+        "startChar": 48,
+        "endLine": 301,
+        "endChar": 52
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73c5287b_991822d0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "sure, I will do it in next patch.",
+      "parentUuid": "d885e40b_1747b020",
       "range": {
         "startLine": 301,
         "startChar": 48,
@@ -386,6 +698,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44219557_b2d4038d",
+        "filename": "cps-service/src/main/java/org/onap/cps/config/CpsServicesConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "Answer: same as above",
+      "parentUuid": "d6b94bb2_ef3f3e33",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 5
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d89373a6_b5a8907f",
@@ -409,6 +745,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53d74d33_4cfd1b8b",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "It\u0027s not a rebase issue — skipModuleNameWrapper was added as part of the yangtools 14.x migration because NormalizedNodeResult was removed, causing parsed XML to be wrapped with an extra module name container node that needs to be stripped to reach the actual data nodes.",
+      "parentUuid": "d89373a6_b5a8907f",
+      "range": {
+        "startLine": 223,
+        "startChar": 33,
+        "endLine": 223,
+        "endChar": 54
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7e67c68_dd951708",
@@ -422,6 +782,30 @@
       "writtenOn": "2026-06-10T08:14:38Z",
       "side": 1,
       "message": "again a lot of XML stuff taht does nt seem to have to do with SpringBoot uplift?!",
+      "range": {
+        "startLine": 58,
+        "startChar": 13,
+        "endLine": 58,
+        "endChar": 22
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b196ae5_1829f6b7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-10T11:31:49Z",
+      "side": 1,
+      "message": "Nothing in XmlUtils is related to Spring Boot 4.0 itself — it\u0027s all yangtools 14.x API migration.",
+      "parentUuid": "c7e67c68_dd951708",
       "range": {
         "startLine": 58,
         "startChar": 13,
