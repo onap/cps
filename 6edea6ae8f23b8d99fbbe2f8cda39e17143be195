@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "546f239b_336a25bb",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T06:09:14Z",
+      "side": 1,
+      "message": "Can use ternary opeator, anchors \u003d schema is null or empty ? get all : get with schema set name\n\nconvert to list",
+      "range": {
+        "startLine": 271,
+        "startChar": 7,
+        "endLine": 271,
+        "endChar": 11
+      },
+      "revId": "6edea6ae8f23b8d99fbbe2f8cda39e17143be195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329a1955_dcd4dc5e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T06:09:14Z",
+      "side": 1,
+      "message": "NB: Sugestion to explore further.\ncan you check if we can use getAnchorsBySchemaSetNames?\nso user can pass multiple comma separated schema set names and we can achieve filtering over multiple schema set names.",
+      "range": {
+        "startLine": 275,
+        "startChar": 64,
+        "endLine": 275,
+        "endChar": 89
+      },
+      "revId": "6edea6ae8f23b8d99fbbe2f8cda39e17143be195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dec98e22_bad7f861",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T06:09:14Z",
+      "side": 1,
+      "message": "NB: filtered by schema set name",
+      "range": {
+        "startLine": 374,
+        "startChar": 30,
+        "endLine": 374,
+        "endChar": 46
+      },
+      "revId": "6edea6ae8f23b8d99fbbe2f8cda39e17143be195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37641e55_0e75876a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T06:09:14Z",
+      "side": 1,
+      "message": "no needed as it is clear from statement above",
+      "range": {
+        "startLine": 375,
+        "startChar": 63,
+        "endLine": 375,
+        "endChar": 79
+      },
+      "revId": "6edea6ae8f23b8d99fbbe2f8cda39e17143be195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbc250b6_3cca9420",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-10T06:09:14Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 377,
+        "startChar": 51,
+        "endLine": 377,
+        "endChar": 67
+      },
+      "revId": "6edea6ae8f23b8d99fbbe2f8cda39e17143be195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
