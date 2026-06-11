@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -83,9 +83,9 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
         testRequestProducer.close()
         testResponseProducer.close()
         kafkaTestContainer.close()
-        deregisterCmHandles('dmi-0', ['cmHandle0'])
-        deregisterCmHandles('dmi-1', ['cmHandle1', 'cmHandle2', 'cmHandle5'])
-        deregisterCmHandles('dmi-2', ['cmHandle3', 'cmHandle4'])
+        deregisterCmHandles(DMI1_URL, ['cmHandle0'])
+        deregisterCmHandles(DMI1_URL, ['cmHandle1', 'cmHandle2', 'cmHandle5'])
+        deregisterCmHandles(DMI2_URL, ['cmHandle3', 'cmHandle4'])
     }
 
     def 'Create subscription and send to multiple DMIs'() {
@@ -107,7 +107,7 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
             def correlationIds = getAllConsumedCorrelationIds()
         and: 'there is correlation IDs (event) for each affected dmi (DMI-1, DMI-2)'
             assert correlationIds.size() == 2
-            assert correlationIds.containsAll(['myDataJobId01#dmi-1', 'myDataJobId01#dmi-2'])
+            assert correlationIds.containsAll(['myDataJobId01#' + DMI1_URL, 'myDataJobId01#' + DMI2_URL])
     }
 
 
@@ -116,7 +116,7 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
             def eventPayload = createSubscriptionEventPayload('dataJobCreated', 'newDataJob', '/parent[id=\\\"0\\\"]\\n')
             sendSubscriptionRequest(subscriptionTopic, 'some key', eventPayload, 'newDataJob', 'dataJobCreated')
         when: 'dmi accepts the subscription create request'
-            sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', 'dmi-0', 'newDataJob#dmi-0')
+            sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', DMI1_URL, 'newDataJob#' + DMI1_URL)
         then: 'there are no more inactive data node selector for given datajob id'
             assert cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors('newDataJob').size() == 0
         and: 'status for the data node selector for given data job id is ACCEPTED'
@@ -146,8 +146,8 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
         and: 'get correlation ids from event sent to DMIs'
             def correlationIds = getAllConsumedCorrelationIds()
         and: 'there is correlation IDs (event) for only the affected dmi (DMI-2)'
-            assert !correlationIds.contains('partialOverlappingDataJobId#dmi-1')
-            assert correlationIds.contains('partialOverlappingDataJobId#dmi-2')
+            assert !correlationIds.contains('partialOverlappingDataJobId#' + DMI1_URL)
+            assert correlationIds.contains('partialOverlappingDataJobId#' + DMI2_URL)
     }
 
     def 'Create new subscription which completely overlaps with an active existing subscriptions'() {
@@ -198,7 +198,7 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
             assert remainingDataJobId.isEmpty()
         and: 'a DMI delete event is published for the affected DMI'
             def correlationIds = getAllConsumedCorrelationIds()
-            assert correlationIds.contains('lastDataJobId#dmi-1')
+            assert correlationIds.contains('lastDataJobId#' + DMI1_URL)
     }
 
     def 'Delete subscription removes one of multiple subscribers.'() {
@@ -224,7 +224,7 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
             assert !remainingSubscriptions.contains('id-to-remove')
         and: 'no DMI delete event is published'
             def correlationIds = getAllConsumedCorrelationIds()
-            assert !correlationIds.contains(['id-to-remove#dmi-1'])
+            assert !correlationIds.contains(['id-to-remove#' + DMI1_URL])
     }
 
     def 'Deleting non-existent subscription.'() {
@@ -239,12 +239,12 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
     }
 
     def registerCmHandlesForSubscriptions() {
-        registerCmHandle('dmi-0', 'cmHandle0', '', '/parent=0')
-        registerCmHandle('dmi-1', 'cmHandle1', '', '/parent=1')
-        registerCmHandle('dmi-1', 'cmHandle2', '', '/parent=2')
-        registerCmHandle('dmi-2', 'cmHandle3', '', '/parent=3')
-        registerCmHandle('dmi-2', 'cmHandle4', '', '/parent=4')
-        registerCmHandle('dmi-1', 'cmHandle5', '', '/parent=5')
+        registerCmHandle(DMI1_URL, 'cmHandle0', '', '/parent=0')
+        registerCmHandle(DMI1_URL, 'cmHandle1', '', '/parent=1')
+        registerCmHandle(DMI1_URL, 'cmHandle2', '', '/parent=2')
+        registerCmHandle(DMI2_URL, 'cmHandle3', '', '/parent=3')
+        registerCmHandle(DMI2_URL, 'cmHandle4', '', '/parent=4')
+        registerCmHandle(DMI1_URL, 'cmHandle5', '', '/parent=5')
     }
 
     def createSubscriptionEventPayload(eventType, dataJobId, dataNodeSelector) {
@@ -259,15 +259,15 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
         def dataNodeSelector = '''/parent[id=\\\"1\\\"]\\n/parent[id=\\\"2\\\"]/child\\n/parent[id=\\\"3\\\"]/child'''
         def eventPayload = createSubscriptionEventPayload('dataJobCreated', 'dataJobA', dataNodeSelector)
         sendSubscriptionRequest(subscriptionTopic, 'dataJobA', eventPayload, 'dataJobA', 'dataJobCreated')
-        sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', 'dmi-1', 'dataJobA#dmi-1')
-        sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', 'dmi-2', 'dataJobA#dmi-2')
+        sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', DMI1_URL, 'dataJobA#' + DMI1_URL)
+        sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', DMI2_URL, 'dataJobA#' + DMI2_URL)
     }
 
     def createAndAcceptSubscriptionB() {
         def dataNodeSelector = '''/parent[id=\\\"1\\\"]\\n/parent[id=\\\"3\\\"]/child\\n/parent[id=\\\"4\\\"]'''
         def eventPayload = createSubscriptionEventPayload('dataJobCreated', 'dataJobB', dataNodeSelector)
         sendSubscriptionRequest(subscriptionTopic, 'dataJobB', eventPayload, 'dataJobB', 'dataJobCreated')
-        sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', 'dmi-2', 'dataJobB#dmi-2')
+        sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', DMI2_URL, 'dataJobB#' + DMI2_URL)
     }
 
     def sendSubscriptionRequest(topic, eventKey, eventPayload, dataJobId, eventType) {
