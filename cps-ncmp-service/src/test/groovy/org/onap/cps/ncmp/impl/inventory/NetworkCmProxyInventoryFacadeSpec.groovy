@@ -39,6 +39,7 @@ import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
+import org.onap.cps.ncmp.impl.dmi.DmiPluginUrlValidator
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
@@ -55,7 +56,8 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
-    def objectUnderTest = new NetworkCmProxyInventoryFacadeImpl(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockTrustLevelManager, mockAlternateIdMatcher)
+    def dmiPluginUrlValidator = new DmiPluginUrlValidator('')
+    def objectUnderTest = new NetworkCmProxyInventoryFacadeImpl(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockTrustLevelManager, mockAlternateIdMatcher, dmiPluginUrlValidator)
 
     def 'Update DMI Registration'() {
         given: 'an (updated) dmi plugin registration'
