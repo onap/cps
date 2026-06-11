@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe
+ *  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 Deutsche Telekom AG
@@ -41,6 +41,7 @@ import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
+import org.onap.cps.ncmp.impl.dmi.DmiPluginUrlValidator;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationService;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
@@ -66,9 +67,11 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     private final JsonObjectMapper jsonObjectMapper;
     private final TrustLevelManager trustLevelManager;
     private final AlternateIdMatcher alternateIdMatcher;
+    private final DmiPluginUrlValidator dmiPluginUrlValidator;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        dmiPluginUrlValidator.validateDmiPluginUrls(dmiPluginRegistration);
         return cmHandleRegistrationService.updateDmiRegistration(dmiPluginRegistration);
     }
 

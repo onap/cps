@@ -597,22 +597,27 @@ components:
       properties:
         dmiPlugin:
           default: ""
+          description: DMI plugin URL. Must use http or https scheme.
           example: my-dmi-plugin
           type: string
         dmiDataPlugin:
           default: ""
+          description: DMI data plugin URL. Must use http or https scheme.
           example: my-dmi-data-plugin
           type: string
         dmiModelPlugin:
           default: ""
+          description: DMI model plugin URL. Must use http or https scheme.
           example: my-dmi-model-plugin
           type: string
         dmiDatajobsReadPlugin:
           default: ""
+          description: DMI datajobs read plugin URL. Must use http or https scheme.
           example: my-dmi-datajobs-read-plugin
           type: string
         dmiDatajobsWritePlugin:
           default: ""
+          description: DMI datajobs write plugin URL. Must use http or https scheme.
           example: my-dmi-datajobs-write-plugin
           type: string
         createdCmHandles:
