@@ -159,6 +159,7 @@ logging:
 
 ncmp:
   dmi:
+    allowed-url-pattern: 'https?://localhost(:\d+)?(/.*)?'
     httpclient:
       connectionTimeoutInSeconds: 30
       maximumConnectionsPerRoute: 50
