@@ -83,6 +83,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24284a9e_4ac70d56",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-12T17:34:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd1d3197_606cfb31",
+      "range": {
+        "startLine": 271,
+        "startChar": 7,
+        "endLine": 271,
+        "endChar": 11
+      },
+      "revId": "6edea6ae8f23b8d99fbbe2f8cda39e17143be195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "329a1955_dcd4dc5e",
@@ -96,6 +120,30 @@
       "writtenOn": "2026-06-10T06:09:14Z",
       "side": 1,
       "message": "NB: Sugestion to explore further.\ncan you check if we can use getAnchorsBySchemaSetNames?\nso user can pass multiple comma separated schema set names and we can achieve filtering over multiple schema set names.",
+      "range": {
+        "startLine": 275,
+        "startChar": 64,
+        "endLine": 275,
+        "endChar": 89
+      },
+      "revId": "6edea6ae8f23b8d99fbbe2f8cda39e17143be195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55db67c7_f822f2c9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-12T17:34:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "329a1955_dcd4dc5e",
       "range": {
         "startLine": 275,
         "startChar": 64,
