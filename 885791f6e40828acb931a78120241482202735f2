@@ -206,6 +206,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b19aff9_cbce0e39",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-15T11:06:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9dd0fa7b_fd30d886",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 0
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58e01c29_0d4115fb",
@@ -323,6 +347,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c5f7714_f57561e9",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-15T11:06:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b6ea2d38_a52a069c",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 50
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f218117_3fe51258",
@@ -336,6 +384,30 @@
       "writtenOn": "2026-06-10T15:13:25Z",
       "side": 1,
       "message": "cannot have different outcome for same test",
+      "range": {
+        "startLine": 121,
+        "startChar": 42,
+        "endLine": 121,
+        "endChar": 44
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21fc4a7e_ac8e0b01",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-15T11:06:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f218117_3fe51258",
       "range": {
         "startLine": 121,
         "startChar": 42,
@@ -557,6 +629,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b23c0e9a_6f576574",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-15T11:06:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "23967012_ec967d82",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 18
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efe1ba84_5acdd50e",
@@ -698,6 +794,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "144a28e0_a52ba828",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-15T11:06:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "55332e78_c447b5dc",
+      "range": {
+        "startLine": 246,
+        "startChar": 8,
+        "endLine": 246,
+        "endChar": 15
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c07866a8_9393c3a7",
@@ -721,6 +841,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d4d840b_99cc9d0e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-15T11:06:08Z",
+      "side": 1,
+      "message": "Jackson 3.x is used internally by Spring Boot 4.0 framework itself but has no dedicated Jackson3JsonDecoder in Spring Framework yet. CPS hasn\u0027t migrated to Jackson 3.x — that\u0027s a separate future task. Until then, Jackson2JsonDecoder with an explicit ObjectMapper is the bridge.",
+      "parentUuid": "c07866a8_9393c3a7",
+      "range": {
+        "startLine": 33,
+        "startChar": 50,
+        "endLine": 33,
+        "endChar": 51
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77e756f2_3eff77d3",
@@ -734,6 +878,30 @@
       "writtenOn": "2026-06-10T08:14:38Z",
       "side": 1,
       "message": "maybe we can agree to do test in new commit..",
+      "range": {
+        "startLine": 69,
+        "startChar": 26,
+        "endLine": 69,
+        "endChar": 30
+      },
+      "revId": "885791f6e40828acb931a78120241482202735f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05a1574d_8e1a8b13",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-15T11:06:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "77e756f2_3eff77d3",
       "range": {
         "startLine": 69,
         "startChar": 26,
