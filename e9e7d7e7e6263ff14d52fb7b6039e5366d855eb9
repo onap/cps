@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ef7d587_594bbe0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 49
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T09:34:45Z",
+      "side": 1,
+      "message": "looking good, some minor suggestions",
+      "revId": "e9e7d7e7e6263ff14d52fb7b6039e5366d855eb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c0e82c_259ad750",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T09:34:45Z",
+      "side": 1,
+      "message": "NB: group these with the other similar statics ie move to under line #45",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 44
+      },
+      "revId": "e9e7d7e7e6263ff14d52fb7b6039e5366d855eb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "791fbcf5_9a32b339",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T09:34:45Z",
+      "side": 1,
+      "message": "NB: normalizeCondition",
+      "range": {
+        "startLine": 217,
+        "startChar": 26,
+        "endLine": 217,
+        "endChar": 41
+      },
+      "revId": "e9e7d7e7e6263ff14d52fb7b6039e5366d855eb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07bccb71_f6bbe94c",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T09:34:45Z",
+      "side": 1,
+      "message": "normalizedValue",
+      "range": {
+        "startLine": 218,
+        "startChar": 21,
+        "endLine": 218,
+        "endChar": 35
+      },
+      "revId": "e9e7d7e7e6263ff14d52fb7b6039e5366d855eb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
