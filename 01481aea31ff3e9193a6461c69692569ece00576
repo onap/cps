@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f1ec8d5_baf813eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T09:16:42Z",
+      "side": 1,
+      "message": "some further suggestions\nwill leave at -2 until xml stuff removed\nDid we agree test coverage will be fixed in a separate commit (even when xml stuff has been removed and test disabled)",
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be5b1f59_0f5296d0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T09:16:42Z",
+      "side": 1,
+      "message": "NB: just toString(final Object requestBody) is good enough",
+      "range": {
+        "startLine": 401,
+        "startChar": 19,
+        "endLine": 401,
+        "endChar": 38
+      },
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97fda028_2acdcd7f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T09:16:42Z",
+      "side": 1,
+      "message": "Just simple scenario, no expectations:\n\u0027Dmi plugin registration with undefined data label\u0027",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 114
+      },
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "932153d4_8f7a49bc",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T09:16:42Z",
+      "side": 1,
+      "message": "just: with undefined data label\u0027",
+      "range": {
+        "startLine": 110,
+        "startChar": 47,
+        "endLine": 110,
+        "endChar": 84
+      },
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdd414e2_9334720b",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T09:16:42Z",
+      "side": 1,
+      "message": "bit weird, because if the request is accepted we should get a 500 error not a BAD Request. need to discuss this one. But maybe this is a legacy issue and needs to be fixed in a separate ticket",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 68
+      },
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
