@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eded183_d04abe04",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/hardening/CmHandleDeregistrationSqlInjectionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T08:41:59Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 11
+      },
+      "revId": "f265458e747408b916d998df6b9c0893433293c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05a4a49e_8d5da002",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/hardening/CmHandleDeregistrationSqlInjectionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T08:41:59Z",
+      "side": 1,
+      "message": "don\u0027t need we need 4 scenarios, just 1 will do.\nCombine the previous test and this one into 1, we just need a test that proof a eal inject attempt is rejected as an invalid id and the other is processed",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 60
+      },
+      "revId": "f265458e747408b916d998df6b9c0893433293c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e252f3b_c3e10733",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/hardening/CmHandleDeregistrationSqlInjectionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-16T08:41:59Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 5
+      },
+      "revId": "f265458e747408b916d998df6b9c0893433293c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
