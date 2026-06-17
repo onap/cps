@@ -1,0 +1,458 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74f2d98a_93674c34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "looking good, just one question on production code and a few suggestion on testware",
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42f2d4b4_db80f445",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "why are you ignore anything that does not contain :// seems an unneccesary check (exart branch!) given you try to convert it to a URI later anyway",
+      "range": {
+        "startLine": 71,
+        "startChar": 47,
+        "endLine": 71,
+        "endChar": 65
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f2e520_b75bb27b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "extract out\n  private DataValidationException createDataValidationException(final String fieldName, final String errorDetails) {\n      return new DataValidationException(String.format(\"Invalid DMI plugin URL for %s\", fieldName), errorDetails);\n  }",
+      "range": {
+        "startLine": 82,
+        "startChar": 17,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06aa1a36_0957949c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "good adition, bit suprised but it seems a pssoble to have URI without host :-D",
+      "range": {
+        "startLine": 96,
+        "startChar": 20,
+        "endLine": 96,
+        "endChar": 27
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5b737a2_c341241c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "NB: remvov redundant spacing",
+      "range": {
+        "startLine": 45,
+        "startChar": 32,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2179ff71_d492d764",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "rejects is an expectation, should not be in title\n\u0027Validation with invalid scheme\u0027",
+      "range": {
+        "startLine": 50,
+        "startChar": 20,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db62e7b9_77dab993",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "suggestion, assert details (url, field name) are present in exception message./details (using \u0027contains\u0027) Possibly in common assert method if you want to do that for all cases...",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57725d8c_d5a76085",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "exptectaion! change to \u0027with\u0027",
+      "range": {
+        "startLine": 65,
+        "startChar": 20,
+        "endLine": 65,
+        "endChar": 27
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73afcd1f_223998c1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "prefer \u0027invalid-scheme://some-host\u0027",
+      "range": {
+        "startLine": 68,
+        "startChar": 41,
+        "endLine": 68,
+        "endChar": 57
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50647f51_903f7e23",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "expectation, remove from title",
+      "range": {
+        "startLine": 78,
+        "startChar": 45,
+        "endLine": 78,
+        "endChar": 70
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99d411ef_3ee69a70",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "very complex realisic regex is not required for unit test!\nTest with a very basic regx lieek \u0027.*dmi..*\u0027  \u0027anything containing dmi\u0027",
+      "range": {
+        "startLine": 80,
+        "startChar": 65,
+        "endLine": 80,
+        "endChar": 132
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bdb1c6c_89769259",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "expectation, remove from title",
+      "range": {
+        "startLine": 89,
+        "startChar": 45,
+        "endLine": 89,
+        "endChar": 67
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce09d14_7320c0ed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "as above, suggest to use .*dmi.*",
+      "range": {
+        "startLine": 91,
+        "startChar": 65,
+        "endLine": 91,
+        "endChar": 123
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c495a9d_a386dee6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "NB: redudnant spacing",
+      "range": {
+        "startLine": 100,
+        "startChar": 27,
+        "endLine": 100,
+        "endChar": 33
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4163bc8_f20a29be",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "expectation, remove from title",
+      "range": {
+        "startLine": 104,
+        "startChar": 47,
+        "endLine": 104,
+        "endChar": 69
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c1f94d0_72d69beb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "are we hitting SOnarQube parameter Limit ?!",
+      "range": {
+        "startLine": 60,
+        "startChar": 29,
+        "endLine": 60,
+        "endChar": 279
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b61d3a2_628d73ff",
+        "filename": "docs/csv/ncmp_custom_properties.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "you were right, its somewhat auto generated, correct?!",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 103
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04162326_6e2eb6af",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/security/DmiPluginUrlValidationIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "NB sugegstion, you could assert it contains teh field name and faulty URL in teh relevant exception fields\nIf you do taht for all cases create a common assertExceptionDetais method\nactually that is more for the unit tests, I now see this is a integration security test",
+      "range": {
+        "startLine": 57,
+        "startChar": 19,
+        "endLine": 57,
+        "endChar": 42
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c6aa7c_3f503183",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/security/DmiPluginUrlValidationIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "all above are good neutral titles but here you isnert an expectation in teh title...",
+      "range": {
+        "startLine": 70,
+        "startChar": 26,
+        "endLine": 70,
+        "endChar": 35
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fe97c60_841a0682",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/security/DmiPluginUrlValidationIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T13:07:27Z",
+      "side": 1,
+      "message": "more basic patetrn",
+      "range": {
+        "startLine": 72,
+        "startChar": 65,
+        "endLine": 72,
+        "endChar": 99
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
