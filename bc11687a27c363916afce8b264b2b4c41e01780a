@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9717a1d_056aeb44",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-17T09:51:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5f83b35_ac99b34d",
+      "range": {
+        "startLine": 532,
+        "startChar": 4,
+        "endLine": 532,
+        "endChar": 32
+      },
+      "revId": "bc11687a27c363916afce8b264b2b4c41e01780a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fc9c8ae_d4812e8f",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-06-17T07:15:41Z",
       "side": 1,
       "message": "comma separated schema set names",
+      "range": {
+        "startLine": 535,
+        "startChar": 19,
+        "endLine": 535,
+        "endChar": 35
+      },
+      "revId": "bc11687a27c363916afce8b264b2b4c41e01780a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eee84190_4743e49b",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-17T09:51:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fc9c8ae_d4812e8f",
       "range": {
         "startLine": 535,
         "startChar": 19,
@@ -64,6 +112,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4e5a0a5_92f5fd24",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-17T09:51:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c1b367d_ad6b6059",
+      "revId": "bc11687a27c363916afce8b264b2b4c41e01780a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f530c470_05f38386",
@@ -87,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "274aae87_94334859",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-17T09:51:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f530c470_05f38386",
+      "range": {
+        "startLine": 375,
+        "startChar": 53,
+        "endLine": 375,
+        "endChar": 57
+      },
+      "revId": "bc11687a27c363916afce8b264b2b4c41e01780a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2856b143_1e052095",
@@ -100,6 +190,30 @@
       "writtenOn": "2026-06-16T11:26:19Z",
       "side": 1,
       "message": "NB: remove",
+      "range": {
+        "startLine": 376,
+        "startChar": 49,
+        "endLine": 376,
+        "endChar": 54
+      },
+      "revId": "bc11687a27c363916afce8b264b2b4c41e01780a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "196731b5_4e9bc01d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-17T09:51:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2856b143_1e052095",
       "range": {
         "startLine": 376,
         "startChar": 49,
