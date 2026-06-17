@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3981e13a_93718e3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-17T15:21:00Z",
+      "side": 1,
+      "message": "yep, I will fix the test coverage in a separate commit.",
+      "parentUuid": "9f1ec8d5_baf813eb",
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be5b1f59_0f5296d0",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-06-16T09:16:42Z",
       "side": 1,
       "message": "NB: just toString(final Object requestBody) is good enough",
+      "range": {
+        "startLine": 401,
+        "startChar": 19,
+        "endLine": 401,
+        "endChar": 38
+      },
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c66001f_1b60be36",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-17T15:21:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "be5b1f59_0f5296d0",
       "range": {
         "startLine": 401,
         "startChar": 19,
@@ -64,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a671c1c8_c543a5b2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-17T15:21:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "97fda028_2acdcd7f",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 114
+      },
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "932153d4_8f7a49bc",
@@ -87,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edb0049e_4e4157f4",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-17T15:21:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "932153d4_8f7a49bc",
+      "range": {
+        "startLine": 110,
+        "startChar": 47,
+        "endLine": 110,
+        "endChar": 84
+      },
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdd414e2_9334720b",
@@ -100,6 +190,30 @@
       "writtenOn": "2026-06-16T09:16:42Z",
       "side": 1,
       "message": "bit weird, because if the request is accepted we should get a 500 error not a BAD Request. need to discuss this one. But maybe this is a legacy issue and needs to be fixed in a separate ticket",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 68
+      },
+      "revId": "01481aea31ff3e9193a6461c69692569ece00576",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f1c6e07_c196a769",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-17T15:21:00Z",
+      "side": 1,
+      "message": "CmHandleRegistrationService.updateDmiRegistration() always creates a new DmiPluginRegistrationResponse() and always returns it — it can never return null. The null-guard in the controller is dead code.",
+      "parentUuid": "bdd414e2_9334720b",
       "range": {
         "startLine": 141,
         "startChar": 0,
