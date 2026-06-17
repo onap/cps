@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "504d141e_be62fddd",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T07:37:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08c0e82c_259ad750",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 44
+      },
+      "revId": "e9e7d7e7e6263ff14d52fb7b6039e5366d855eb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "791fbcf5_9a32b339",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb9baeca_b03af00c",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T07:37:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "791fbcf5_9a32b339",
+      "range": {
+        "startLine": 217,
+        "startChar": 26,
+        "endLine": 217,
+        "endChar": 41
+      },
+      "revId": "e9e7d7e7e6263ff14d52fb7b6039e5366d855eb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07bccb71_f6bbe94c",
@@ -77,6 +125,30 @@
       "writtenOn": "2026-06-16T09:34:45Z",
       "side": 1,
       "message": "normalizedValue",
+      "range": {
+        "startLine": 218,
+        "startChar": 21,
+        "endLine": 218,
+        "endChar": 35
+      },
+      "revId": "e9e7d7e7e6263ff14d52fb7b6039e5366d855eb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "affb574c_a3685578",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T07:37:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07bccb71_f6bbe94c",
       "range": {
         "startLine": 218,
         "startChar": 21,
