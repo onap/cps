@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e70daf83_bf024c2a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-17T15:43:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42f2d4b4_db80f445",
+      "range": {
+        "startLine": 71,
+        "startChar": 47,
+        "endLine": 71,
+        "endChar": 65
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4f2e520_b75bb27b",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-06-17T13:07:27Z",
       "side": 1,
       "message": "extract out\n  private DataValidationException createDataValidationException(final String fieldName, final String errorDetails) {\n      return new DataValidationException(String.format(\"Invalid DMI plugin URL for %s\", fieldName), errorDetails);\n  }",
+      "range": {
+        "startLine": 82,
+        "startChar": 17,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b02c1d69_193c75ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-17T15:43:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4f2e520_b75bb27b",
       "range": {
         "startLine": 82,
         "startChar": 17,
@@ -110,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d768007_da339e30",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-17T15:43:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5b737a2_c341241c",
+      "range": {
+        "startLine": 45,
+        "startChar": 32,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2179ff71_d492d764",
@@ -123,6 +195,30 @@
       "writtenOn": "2026-06-17T13:07:27Z",
       "side": 1,
       "message": "rejects is an expectation, should not be in title\n\u0027Validation with invalid scheme\u0027",
+      "range": {
+        "startLine": 50,
+        "startChar": 20,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6342d13_27e6b8d8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-17T15:43:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2179ff71_d492d764",
       "range": {
         "startLine": 50,
         "startChar": 20,
@@ -169,6 +265,30 @@
       "writtenOn": "2026-06-17T13:07:27Z",
       "side": 1,
       "message": "exptectaion! change to \u0027with\u0027",
+      "range": {
+        "startLine": 65,
+        "startChar": 20,
+        "endLine": 65,
+        "endChar": 27
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdaeedac_460be574",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiPluginUrlValidatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-17T15:43:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57725d8c_d5a76085",
       "range": {
         "startLine": 65,
         "startChar": 20,
@@ -648,6 +768,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e564744d_5c35f47e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/security/DmiPluginUrlValidationIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-17T15:43:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0c6aa7c_3f503183",
+      "range": {
+        "startLine": 70,
+        "startChar": 26,
+        "endLine": 70,
+        "endChar": 35
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fe97c60_841a0682",
@@ -661,6 +805,30 @@
       "writtenOn": "2026-06-17T13:07:27Z",
       "side": 1,
       "message": "more basic patetrn",
+      "range": {
+        "startLine": 72,
+        "startChar": 65,
+        "endLine": 72,
+        "endChar": 99
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f9a3892_000d8a25",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/security/DmiPluginUrlValidationIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-17T15:43:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fe97c60_841a0682",
       "range": {
         "startLine": 72,
         "startChar": 65,
