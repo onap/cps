@@ -675,6 +675,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "065a009d_b863dc6b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T16:28:15Z",
+      "side": 1,
+      "message": "yes but I was thinking of teh production code. But I suppose we use injection and a lombok-generated constructor so thats probaly why we get away with it...",
+      "parentUuid": "726ba2d4_5c370782",
+      "range": {
+        "startLine": 60,
+        "startChar": 29,
+        "endLine": 60,
+        "endChar": 279
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b61d3a2_628d73ff",
@@ -712,6 +736,30 @@
       "side": 1,
       "message": "No I added this manually",
       "parentUuid": "7b61d3a2_628d73ff",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 103
+      },
+      "revId": "a9ddbff1693a5c93f7b4e35e5a5a488bc608427f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5e3c3a9_052e0df3",
+        "filename": "docs/csv/ncmp_custom_properties.csv",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-17T16:28:15Z",
+      "side": 1,
+      "message": "i meant the sem-aumtoatic. teh CSB is imported into teh .rst",
+      "parentUuid": "6552ed09_dd8dcbc8",
       "range": {
         "startLine": 17,
         "startChar": 0,
