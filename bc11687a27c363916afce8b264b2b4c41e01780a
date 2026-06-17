@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1fc9c8ae_d4812e8f",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-17T07:15:41Z",
+      "side": 1,
+      "message": "comma separated schema set names",
+      "range": {
+        "startLine": 535,
+        "startChar": 19,
+        "endLine": 535,
+        "endChar": 35
+      },
+      "revId": "bc11687a27c363916afce8b264b2b4c41e01780a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c1b367d_ad6b6059",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 12
