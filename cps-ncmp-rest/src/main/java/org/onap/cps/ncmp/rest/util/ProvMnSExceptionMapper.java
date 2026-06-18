@@ -58,7 +58,7 @@ public class ProvMnSExceptionMapper {
             httpStatus = BAD_REQUEST;
         } else if (exception.getCause() instanceof TimeoutException) {
             httpStatus = GATEWAY_TIMEOUT;
-            exceptionMessage = "Upstream server did not respond in a timely manner";
+            exceptionMessage = "Southbound system did not respond in a timely manner";
         } else {
             httpStatus = INTERNAL_SERVER_ERROR;
         }

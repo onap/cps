@@ -66,7 +66,7 @@ public class ProvMnSCmHandleRetriever {
                     PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE, NO_OP);
             }
             if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {
-                final String title = yangModelCmHandle.getId() + " is not in READY state. Current state: "
+                final String title = yangModelCmHandle.getAlternateId() + " is not in READY state. Current state: "
                     + yangModelCmHandle.getCompositeState().getCmHandleState().name();
                 throw new ProvMnSException(httpMethodName, NOT_ACCEPTABLE, title, NO_OP);
             }

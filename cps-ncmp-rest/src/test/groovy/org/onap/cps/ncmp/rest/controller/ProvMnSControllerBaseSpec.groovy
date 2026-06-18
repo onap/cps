@@ -84,7 +84,7 @@ abstract class ProvMnSControllerBaseSpec extends Specification {
     static def resourceAsJson = '{"id":"test", "objectClass": "Test", "attributes": { "attr1": "value1"} }'
     static def validCmHandle = new YangModelCmHandle(id:'ch-1', alternateId: '/managedElement=1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: READY))
     static def cmHandleWithoutDataProducer = new YangModelCmHandle(id:'ch-1', dmiServiceName: 'someDmiService', compositeState: new CompositeState(cmHandleState: READY))
-    static def cmHandleNotReady = new YangModelCmHandle(id:'ch-1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: ADVISED))
+    static def cmHandleNotReady = new YangModelCmHandle(id:'ch-1', alternateId: '/managedElement=1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: ADVISED))
 
     static def patchMediaType = new MediaType('application', 'json-patch+json')
     static def patchMediaType3gpp = new MediaType('application', '3gpp-json-patch+json')

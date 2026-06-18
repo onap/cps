@@ -71,7 +71,7 @@ class ProvMnSExtensionsControllerSpec extends ProvMnSControllerBaseSpec {
         where: 'following error scenario'
             scenario              | yangModelCmHandle           || expectedHttpStatus   | expectedType              | expectedTitle
             'no data producer id' | cmHandleWithoutDataProducer || UNPROCESSABLE_ENTITY | 'SERVER_LIMITATION'       | 'Registered DMI does not support the ProvMnS interface.'
-            'cm Handle NOT READY' | cmHandleNotReady            || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'ch-1 is not in READY state. Current state: ADVISED'
+            'cm Handle NOT READY' | cmHandleNotReady            || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | '/managedElement=1 is not in READY state. Current state: ADVISED'
     }
 
     def 'Action request attempt with exception during execution: #exception.'() {
@@ -91,7 +91,7 @@ class ProvMnSExtensionsControllerSpec extends ProvMnSControllerBaseSpec {
         where: 'following exceptions occur'
             exception                           || expectedHttpStatus    | expectedType              | expectedTitle
             new NoAlternateIdMatchFoundException('myTarget')    || NOT_FOUND             | 'IE_NOT_FOUND'            | '/myClass=id1 not found'
-            new Exception("my message", new TimeoutException()) || GATEWAY_TIMEOUT       | 'APPLICATION_LAYER_ERROR' | 'Upstream server did not respond in a timely manner'
+            new Exception("my message", new TimeoutException()) || GATEWAY_TIMEOUT       | 'APPLICATION_LAYER_ERROR' | 'Southbound system did not respond in a timely manner'
             new Exception("my message")                         || INTERNAL_SERVER_ERROR | 'APPLICATION_LAYER_ERROR' | 'my message'
     }
 
