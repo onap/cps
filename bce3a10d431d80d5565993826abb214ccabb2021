@@ -41,6 +41,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8cd290c_26937c2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T09:17:01Z",
+      "side": 1,
+      "message": "Nice tidy patch",
+      "revId": "bce3a10d431d80d5565993826abb214ccabb2021",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05e4ee2d_5e773d6f",
