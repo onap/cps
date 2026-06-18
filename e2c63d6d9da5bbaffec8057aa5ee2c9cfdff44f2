@@ -16,6 +16,322 @@
       "message": "I suspect this needs to be rebased against master for the integration test fix to pass your verification",
       "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db5237eb_7ddb5a92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "interesting commit, i am curious to see the actual impact on performance... Did you PoC it already using existing Groovy tests?\n\none small refactoring suggested that might help the amount of test required\nand some minor suggestions on wording in tests",
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d85e86_64e6e051",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/GroupedDeltaReportGenerator.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "seen this 3 time now, extract ou to common utils or base class ?",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 9
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4406183e_39b7d181",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/GroupedDeltaReportGenerator.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "NB, use consistent order; source parameter first",
+      "range": {
+        "startLine": 135,
+        "startChar": 67,
+        "endLine": 135,
+        "endChar": 118
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72f1e595_97c55c2b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "simplify and use english words: ... with a runtime exception",
+      "range": {
+        "startLine": 160,
+        "startChar": 37,
+        "endLine": 160,
+        "endChar": 69
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ed01523_005a0226",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "use assert keyword for redability",
+      "range": {
+        "startLine": 169,
+        "startChar": 12,
+        "endLine": 169,
+        "endChar": 35
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b44eba94_dfb2f9c8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "simplify and use english words: ... with a checked exception\n\n\nNote. if you extract the exception handling  logic in the production code as I suggested you dont need to test 2 error scenarios for  each use case",
+      "range": {
+        "startLine": 172,
+        "startChar": 36,
+        "endLine": 172,
+        "endChar": 87
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4ac47ff_5cf4501f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "always use assert keyword as per our convention",
+      "range": {
+        "startLine": 184,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 5
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f78f1d1_4fb96b3c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "simplify",
+      "range": {
+        "startLine": 34,
+        "startChar": 28,
+        "endLine": 34,
+        "endChar": 69
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ae92837_3a966c51",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "add assert keyword",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad1a2025_7310f9d3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "simplify i dont put expectation in teh slogan",
+      "range": {
+        "startLine": 47,
+        "startChar": 34,
+        "endLine": 47,
+        "endChar": 88
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57049a00_51294bff",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "add assert keyword",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 60
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be950b52_c7d96622",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/GroupedDeltaReportGeneratorSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "simplify",
+      "range": {
+        "startLine": 34,
+        "startChar": 34,
+        "endLine": 34,
+        "endChar": 69
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "209772d8_77c26ee6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/GroupedDeltaReportGeneratorSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "simplify",
+      "range": {
+        "startLine": 44,
+        "startChar": 29,
+        "endLine": 44,
+        "endChar": 88
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a4851e1_82e2a64c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/GroupedDeltaReportGeneratorSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-18T09:25:23Z",
+      "side": 1,
+      "message": "assert",
+      "range": {
+        "startLine": 54,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 60
+      },
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
