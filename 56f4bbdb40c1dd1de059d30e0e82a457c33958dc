@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3c428ee_eec61375",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T13:54:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d275342_6be1bf0c",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 41
+      },
+      "revId": "56f4bbdb40c1dd1de059d30e0e82a457c33958dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ce04f5c_9d1f58d2",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-06-10T13:04:21Z",
       "side": 1,
       "message": "NB: revert back to one line if fits",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 62
+      },
+      "revId": "56f4bbdb40c1dd1de059d30e0e82a457c33958dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcae54a1_d49c8f9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T13:54:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ce04f5c_9d1f58d2",
       "range": {
         "startLine": 119,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ed2c4d2_9435f995",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T13:54:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34b1d48d_457b5f9b",
+      "range": {
+        "startLine": 134,
+        "startChar": 16,
+        "endLine": 134,
+        "endChar": 37
+      },
+      "revId": "56f4bbdb40c1dd1de059d30e0e82a457c33958dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58e92c06_e05f0872",
@@ -100,6 +172,30 @@
       "writtenOn": "2026-06-10T13:04:21Z",
       "side": 1,
       "message": "maybe extract out mehdod with clear name\n\ne.g. duplicateStateInOptimizedModel()",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 9
+      },
+      "revId": "56f4bbdb40c1dd1de059d30e0e82a457c33958dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9d19679_8aeb65d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T13:54:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58e92c06_e05f0872",
       "range": {
         "startLine": 136,
         "startChar": 0,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bed17d82_72e419f9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T13:54:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a06e4337_5896d43e",
+      "range": {
+        "startLine": 66,
+        "startChar": 47,
+        "endLine": 66,
+        "endChar": 51
+      },
+      "revId": "56f4bbdb40c1dd1de059d30e0e82a457c33958dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d33a1fb_09cc34f4",
@@ -146,6 +266,30 @@
       "writtenOn": "2026-06-10T13:04:21Z",
       "side": 1,
       "message": "as per my previous comment I prefer to have a default (in config) of false.\nAnd only set it to true in teh affect legacy test. Would that impact many tests in this test class?",
+      "range": {
+        "startLine": 75,
+        "startChar": 78,
+        "endLine": 75,
+        "endChar": 82
+      },
+      "revId": "56f4bbdb40c1dd1de059d30e0e82a457c33958dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af5ac665_9d710077",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T13:54:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d33a1fb_09cc34f4",
       "range": {
         "startLine": 75,
         "startChar": 78,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1676b55b_5508a49b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T13:54:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e784464_e1f58b6e",
+      "range": {
+        "startLine": 204,
+        "startChar": 36,
+        "endLine": 204,
+        "endChar": 60
+      },
+      "revId": "56f4bbdb40c1dd1de059d30e0e82a457c33958dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "118c0bd5_65a90942",
@@ -192,6 +360,30 @@
       "writtenOn": "2026-06-10T13:04:21Z",
       "side": 1,
       "message": "NB: I dont mind onger lines in Groovy but its personal preference",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 74
+      },
+      "revId": "56f4bbdb40c1dd1de059d30e0e82a457c33958dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ae2c053_7e58579c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T13:54:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "118c0bd5_65a90942",
       "range": {
         "startLine": 217,
         "startChar": 0,
