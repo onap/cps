@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9ebe985_69c7306c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T09:24:35Z",
+      "side": 1,
+      "message": "I suspect this needs to be rebased against master for the integration test fix to pass your verification",
+      "revId": "e2c63d6d9da5bbaffec8057aa5ee2c9cfdff44f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
