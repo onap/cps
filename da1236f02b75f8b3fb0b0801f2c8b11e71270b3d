@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a8bb4d8_10a38166",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/CmHandleDeregistrationSqlInjectionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T09:20:47Z",
+      "side": 1,
+      "message": "I think this will fail with the registration patch I\u0027m implementing. Will need to be a legit uri",
+      "revId": "da1236f02b75f8b3fb0b0801f2c8b11e71270b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4207980_79569c2e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/CmHandleDeregistrationSqlInjectionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T09:20:47Z",
+      "side": 1,
+      "message": "As above",
+      "revId": "da1236f02b75f8b3fb0b0801f2c8b11e71270b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4542ab8_0b9aa7ce",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/CmHandleDeregistrationSqlInjectionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-18T09:20:47Z",
+      "side": 1,
+      "message": "As above",
+      "revId": "da1236f02b75f8b3fb0b0801f2c8b11e71270b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
