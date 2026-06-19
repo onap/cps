@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f0020ac4_f164c141",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-19T10:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67135b1d_d668a7aa",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 13
+      },
+      "revId": "bce3a10d431d80d5565993826abb214ccabb2021",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0f0d03f4_905e05bb",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 15
@@ -92,6 +116,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19f0c52f_cb5a0c74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-19T10:15:11Z",
+      "side": 1,
+      "message": "Resolved all the comments",
+      "revId": "bce3a10d431d80d5565993826abb214ccabb2021",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05e4ee2d_5e773d6f",
@@ -105,6 +146,30 @@
       "writtenOn": "2026-06-18T07:37:20Z",
       "side": 1,
       "message": "I checked and this is the recommended REST format, no need for square brackets or anything like that 😊\nbut DO add an example\n example: \"schema1,schema2,schema3\"",
+      "range": {
+        "startLine": 539,
+        "startChar": 6,
+        "endLine": 540,
+        "endChar": 15
+      },
+      "revId": "bce3a10d431d80d5565993826abb214ccabb2021",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56a4d25a_8c1f9394",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-19T10:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05e4ee2d_5e773d6f",
       "range": {
         "startLine": 539,
         "startChar": 6,
