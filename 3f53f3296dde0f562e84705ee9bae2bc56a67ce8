@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ec79bd8_7e58cb01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-19T16:06:32Z",
+      "side": 1,
+      "message": "minor comments",
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d821d39_34d11a1a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NcmpPassthroughResourceRequestHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-19T16:06:32Z",
+      "side": 1,
+      "message": "hmm not sure about the name , maybe others can input \n\nsuggestion:        validateTopicIsNotAsyncInternalTopic() ?",
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4266340b_43ab63f8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-19T16:06:32Z",
+      "side": 1,
+      "message": "setup() should already set this , dont think this is needed actually , will it fail without?",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 56
+      },
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
