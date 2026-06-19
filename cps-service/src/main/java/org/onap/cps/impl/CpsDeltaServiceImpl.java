@@ -20,6 +20,7 @@
 
 package org.onap.cps.impl;
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
 import static org.onap.cps.utils.ContentType.JSON;
 
@@ -96,10 +97,9 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                                  final String xpath,
                                                                  final Map<String, String> yangResourceContentPerName,
                                                                  final String targetData,
-                                                                 final FetchDescendantsOption fetchDescendantsOption,
                                                                  final boolean groupDataNodes,
                                                                  final ContentType contentType) {
-
+        final FetchDescendantsOption fetchDescendantsOption = INCLUDE_ALL_DESCENDANTS;
         final String normalizedXpath = getNormalizedXpath(xpath);
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
         final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
