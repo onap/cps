@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.utils.events.TopicValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -35,6 +36,9 @@ public abstract class NcmpDatastoreRequestHandler {
 
     private static final String NO_REQUEST_ID = null;
     private static final String NO_TOPIC = null;
+
+    @Autowired
+    protected TopicValidator topicValidator;
 
     @Value("${notification.async.executor.time-out-value-in-ms:60000}")
     protected int timeOutInMilliSeconds;
@@ -77,7 +81,7 @@ public abstract class NcmpDatastoreRequestHandler {
                                                               final String topic,
                                                               final boolean includeDescendants,
                                                               final String authorization) {
-        TopicValidator.validateTopicName(topic);
+        topicValidator.validateTopicName(topic);
         final String requestId = UUID.randomUUID().toString();
         getResourceDataForCmHandle(cmResourceAddress, options, topic, requestId, includeDescendants, authorization)
                 .doOnSuccess(result ->

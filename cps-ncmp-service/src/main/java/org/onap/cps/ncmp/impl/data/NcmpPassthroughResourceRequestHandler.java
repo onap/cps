@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,7 +33,6 @@ import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
-import org.onap.cps.ncmp.utils.events.TopicValidator;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -81,7 +80,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
 
     private void validateDataOperationRequest(final String topicParamInQuery,
                                               final DataOperationRequest dataOperationRequest) {
-        TopicValidator.validateTopicName(topicParamInQuery);
+        topicValidator.validateTopicName(topicParamInQuery);
         dataOperationRequest.getDataOperationDefinitions().forEach(dataOperationDefinition -> {
             if (OperationType.fromOperationName(dataOperationDefinition.getOperation()) != READ) {
                 throw new OperationNotSupportedException(
