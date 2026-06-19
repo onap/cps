@@ -86,7 +86,6 @@ public class DeltaRestController implements CpsDeltaApi {
                                                                       final String acceptMediaType,
                                                                       final MultipartFile yangResourceFile) {
         final ContentType contentType = fromString(acceptMediaType);
-        final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
         final String  targetData = extractFileContent(targetDataAsFile, contentType,
                 jsonObjectMapper, xmlObjectMapper);
         final Map<String, String> yangResourceMap;
@@ -97,7 +96,7 @@ public class DeltaRestController implements CpsDeltaApi {
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
             cpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, targetData, fetchDescendantsOption, groupDataNodes, contentType));
+                xpath, yangResourceMap, targetData, groupDataNodes, contentType));
         return buildDeltaResponseEntity(deltaReports, contentType);
     }
 
