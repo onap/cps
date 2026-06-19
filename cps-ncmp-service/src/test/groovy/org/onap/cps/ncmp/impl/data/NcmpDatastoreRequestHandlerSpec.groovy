@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
+import org.onap.cps.ncmp.api.exceptions.InvalidTopicException
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException
 import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
@@ -39,8 +40,25 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def objectUnderTest = new NcmpPassthroughResourceRequestHandler(dmiDataOperations)
 
+    def setup() {
+        objectUnderTest.asyncM2mTopic = 'ncmp-async-m2m'
+    }
+
     def NO_TOPIC = null
     def NO_AUTH_HEADER = null
+
+    def 'CPS-3263: Batch request using async M2M topic as client topic is rejected, preventing infinite loop.'() {
+        given: 'a valid data operation definition'
+            def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleReferences: ['ch'])
+        and: 'notification feature is enabled'
+            objectUnderTest.notificationFeatureEnabled = true
+        when: 'a batch request is made using the internal async M2M topic as the client topic'
+            objectUnderTest.executeAsynchronousRequest('ncmp-async-m2m', new DataOperationRequest(dataOperationDefinitions: [dataOperationDefinition]), NO_AUTH_HEADER)
+        then: 'an invalid topic exception is thrown'
+            thrown(InvalidTopicException)
+        and: 'DMI is NOT called, preventing the infinite loop'
+            0 * dmiDataOperations.requestResourceDataFromDmi(*_)
+    }
 
     def 'Attempt to execute async get request with #scenario.'() {
         given: 'notification feature is turned on/off'
@@ -70,6 +88,8 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
     def 'Attempt to execute async data operation request with feature #scenario.'() {
         given: 'a extended request handler that supports bulk requests'
            def objectUnderTest = new NcmpPassthroughResourceRequestHandler(dmiDataOperations)
+        and: 'async M2M topic is set'
+            objectUnderTest.asyncM2mTopic = 'ncmp-async-m2m'
         and: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         when: 'data operation request is executed'

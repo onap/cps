@@ -34,6 +34,7 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.events.EventProducer
+import org.onap.cps.ncmp.api.exceptions.InvalidTopicException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
@@ -187,6 +188,23 @@ class NetworkCmProxyControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
         then: 'the request for (async) data operation invoked once'
             1 * mockNetworkCmProxyFacade.executeDataOperationForCmHandles('my-topic-name', _, NO_AUTH_HEADER)
+    }
+
+    def 'Execute (async) data operation with topic equal to async M2M topic returns 400 BAD REQUEST.'() {
+        given: 'data operation url using the reserved async M2M topic'
+            def getUrl = "$ncmpBasePathV1/data?topic=ncmp-async-m2m"
+        and: 'a data operation request as json string'
+            def dataOperationRequestAsJsonString = jsonObjectMapper.asJsonString(createDataOperationRequest())
+        and: 'the facade throws an InvalidTopicException'
+            mockNetworkCmProxyFacade.executeDataOperationForCmHandles('ncmp-async-m2m', _, NO_AUTH_HEADER) >> {
+                throw new InvalidTopicException('Topic ncmp-async-m2m is reserved for internal use', 'client topic must not be the same as the async M2M topic')
+            }
+        when: 'post data operation request is performed'
+            def response = mvc.perform(post(getUrl).contentType(APPLICATION_JSON).content(dataOperationRequestAsJsonString)).andReturn().response
+        then: 'the response status is BAD REQUEST'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+        and: 'the error message contains the reserved topic name'
+            assert response.contentAsString.contains('ncmp-async-m2m')
     }
 
     def 'Query Resource Data from operational.'() {
