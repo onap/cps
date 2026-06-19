@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75655dc6_70edcb65",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-19T11:20:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3970a3f6_05fb8942",
+      "range": {
+        "startLine": 401,
+        "startChar": 19,
+        "endLine": 401,
+        "endChar": 27
+      },
+      "revId": "5e7a67089bcae6276c749f1c9c1be8798085876e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfffe002_da93db4c",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-06-18T07:44:30Z",
       "side": 1,
       "message": "restore fully, naem was \u0027parsedXmlCOntent\n(comapre to base in your IDE to easily fix all)",
+      "range": {
+        "startLine": 40,
+        "startChar": 16,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "5e7a67089bcae6276c749f1c9c1be8798085876e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1bdf575_1e2c84a4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-19T11:20:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dfffe002_da93db4c",
       "range": {
         "startLine": 40,
         "startChar": 16,
