@@ -25,6 +25,7 @@ import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
+import com.google.common.base.Strings;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
@@ -66,7 +67,9 @@ public class ProvMnSCmHandleRetriever {
                     PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE, NO_OP);
             }
             if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {
-                final String title = yangModelCmHandle.getId() + " is not in READY state. Current state: "
+                final String cmHandleReference = Strings.isNullOrEmpty(yangModelCmHandle.getAlternateId())
+                    ? yangModelCmHandle.getId() : yangModelCmHandle.getAlternateId();
+                final String title = cmHandleReference + " is not in READY state. Current state: "
                     + yangModelCmHandle.getCompositeState().getCmHandleState().name();
                 throw new ProvMnSException(httpMethodName, NOT_ACCEPTABLE, title, NO_OP);
             }
