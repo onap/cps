@@ -96,7 +96,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
     def 'Get delta between an anchor and JSON payload with grouping enabled and #scenario'() {
         when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'source-anchor1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, fetchDescendantsOption, true)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'source-anchor1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, true)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
@@ -111,7 +111,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
     def 'Get delta between an anchor and JSON payload with grouping disabled and #scenario'() {
         when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'source-anchor1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, INCLUDE_ALL_DESCENDANTS, false)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'source-anchor1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, false)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
