@@ -32,8 +32,10 @@ import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.api.exceptions.InvalidTopicException;
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.utils.events.TopicValidator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -42,6 +44,9 @@ import reactor.core.publisher.Mono;
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
     private final DmiDataOperations dmiDataOperations;
+
+    @Value("${app.ncmp.async-m2m.topic}")
+    String asyncM2mTopic;
 
     private static final int MAXIMUM_CM_HANDLES_PER_OPERATION = 200;
     private static final String PAYLOAD_TOO_LARGE_TEMPLATE = "Operation '%s' affects too many (%d) cm handles";
@@ -82,6 +87,10 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     private void validateDataOperationRequest(final String topicParamInQuery,
                                               final DataOperationRequest dataOperationRequest) {
         TopicValidator.validateTopicName(topicParamInQuery);
+        if (topicParamInQuery.equals(asyncM2mTopic)) {
+            throw new InvalidTopicException("Topic " + topicParamInQuery + " is reserved for internal use",
+                "client topic must not be the same as the async M2M topic");
+        }
         dataOperationRequest.getDataOperationDefinitions().forEach(dataOperationDefinition -> {
             if (OperationType.fromOperationName(dataOperationDefinition.getOperation()) != READ) {
                 throw new OperationNotSupportedException(
