@@ -58,7 +58,6 @@ public interface CpsDeltaService {
      * @param xpath                        xpath
      * @param yangResourceContentPerName   YANG resources (files) map where key is a name and value is content
      * @param targetData                   target data to be compared in XMl/JSON string format
-     * @param fetchDescendantsOption       defines the scope of data to fetch: defaulted to INCLUDE_ALL_DESCENDANTS
      * @param groupDataNodes               boolean flag to enable or disable grouping of data nodes in delta report.
      *                                     If enabled, data nodes are grouped based on parent-child relationship,
      *                                     providing a condensed version of delta report.
@@ -69,7 +68,6 @@ public interface CpsDeltaService {
     List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String sourceAnchorName, String xpath,
                                                           Map<String, String> yangResourceContentPerName,
                                                           String targetData,
-                                                          FetchDescendantsOption fetchDescendantsOption,
                                                           boolean groupDataNodes, ContentType contentType);
 
     /**
