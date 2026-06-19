@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "040601bb_5cf6a032",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/CmHandleDeregistrationSqlInjectionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-19T13:10:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a8bb4d8_10a38166",
+      "revId": "da1236f02b75f8b3fb0b0801f2c8b11e71270b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4207980_79569c2e",
@@ -35,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a749e2b0_11f1cc14",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/CmHandleDeregistrationSqlInjectionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-19T13:10:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4207980_79569c2e",
+      "revId": "da1236f02b75f8b3fb0b0801f2c8b11e71270b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4542ab8_0b9aa7ce",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-06-18T09:20:47Z",
       "side": 1,
       "message": "As above",
+      "revId": "da1236f02b75f8b3fb0b0801f2c8b11e71270b3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7b0428d_09862996",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/CmHandleDeregistrationSqlInjectionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-19T13:10:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4542ab8_0b9aa7ce",
       "revId": "da1236f02b75f8b3fb0b0801f2c8b11e71270b3d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
