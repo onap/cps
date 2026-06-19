@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13acc6db_40714715",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-19T14:03:20Z",
+      "side": 1,
+      "message": "is NcmpDatastoreRequestHandler.java not affected in path ?",
+      "revId": "672ec88c126cc047b8829a168355159eaf8d8cb0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a63eab06_409ae3a8",
