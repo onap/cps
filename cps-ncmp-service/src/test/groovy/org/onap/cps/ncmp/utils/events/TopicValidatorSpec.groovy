@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2026 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,24 +23,41 @@ package org.onap.cps.ncmp.utils.events
 import org.onap.cps.ncmp.api.exceptions.InvalidTopicException
 import spock.lang.Specification
 
-class TopicParameterMapperSpec extends Specification {
+class TopicValidatorSpec extends Specification {
+
+    def objectUnderTest = new TopicValidator(reservedTopicName: 'my-async-topic')
 
     def 'Valid topic name validation.'() {
         when: 'a valid topic name is validated'
-            TopicValidator.validateTopicName('my-valid-topic')
+            objectUnderTest.validateTopicName(topicName)
         then: 'no exception is thrown'
             noExceptionThrown()
+        where: 'the following valid names are used'
+            scenario                    | topicName
+            'alphanumeric only'         | 'myTopic123'
+            'with hyphen'               | 'my-topic'
+            'with underscore'           | 'my_topic'
+            'with dot'                  | 'my.topic'
+            'mixed valid special chars' | 'my-topic.name_1'
+            'minimum length (2 chars)'  | 'ab'
     }
 
     def 'Validating invalid topic names.'() {
         when: 'the invalid topic name is validated'
-            TopicValidator.validateTopicName(topicName)
-        then: 'boolean response will be returned for #scenario'
+            objectUnderTest.validateTopicName(topicName)
+        then: 'an invalid topic exception is thrown for #scenario'
             thrown(InvalidTopicException)
         where: 'the following names are used'
-            scenario                  | topicName
-            'empty topic'             | ''
-            'blank topic'             | ' '
-            'invalid non empty topic' | '1_5_*_#'
+            scenario                          | topicName
+            'empty topic'                     | ''
+            'blank topic'                     | ' '
+            'special characters'              | '1_5_*_#'
+            'consecutive dots'                | 'topic..name'
+            'consecutive hyphens'             | 'topic--name'
+            'consecutive mixed special chars' | 'topic.-name'
+            'starts with special char'        | '-topic'
+            'ends with special char'          | 'topic-'
+            'reserved async topic'            | 'my-async-topic'
     }
+
 }
