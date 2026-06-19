@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,6 +34,7 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.events.EventProducer
+import org.onap.cps.ncmp.api.exceptions.InvalidTopicException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
@@ -187,6 +188,23 @@ class NetworkCmProxyControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
         then: 'the request for (async) data operation invoked once'
             1 * mockNetworkCmProxyFacade.executeDataOperationForCmHandles('my-topic-name', _, NO_AUTH_HEADER)
+    }
+
+    def 'Execute (async) data operation with topic equal to async topic.'() {
+        given: 'data operation url using the reserved async topic'
+            def getUrl = "$ncmpBasePathV1/data?topic=ncmp-async-topic"
+        and: 'a data operation request as json string'
+            def dataOperationRequestAsJsonString = jsonObjectMapper.asJsonString(createDataOperationRequest())
+        and: 'the facade throws an InvalidTopicException'
+            mockNetworkCmProxyFacade.executeDataOperationForCmHandles('ncmp-async-topic', _, NO_AUTH_HEADER) >> {
+                throw new InvalidTopicException('Topic ncmp-async-topic is reserved for internal use', 'client topic must not be the same as the async topic')
+            }
+        when: 'post data operation request is performed'
+            def response = mvc.perform(post(getUrl).contentType(APPLICATION_JSON).content(dataOperationRequestAsJsonString)).andReturn().response
+        then: 'the response status is BAD REQUEST'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+        and: 'the error message contains the reserved topic name'
+            assert response.contentAsString.contains('ncmp-async-topic')
     }
 
     def 'Query Resource Data from operational.'() {

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2026 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -42,5 +42,19 @@ class TopicParameterMapperSpec extends Specification {
             'empty topic'             | ''
             'blank topic'             | ' '
             'invalid non empty topic' | '1_5_*_#'
+    }
+
+    def 'Validating topic is not reserved.'() {
+        when: 'a topic different from the async topic is validated'
+            TopicValidator.validateTopicNotReserved('some-client-topic', 'ncmp-async-topic')
+        then: 'no exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'Validating topic that equals the reserved async topic.'() {
+        when: 'a topic equal to the async topic is validated'
+            TopicValidator.validateTopicNotReserved('ncmp-async-topic', 'ncmp-async-topic')
+        then: 'an invalid topic exception is thrown'
+            thrown(InvalidTopicException)
     }
 }

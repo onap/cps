@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2026 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -41,6 +41,21 @@ public class TopicValidator {
     public static void validateTopicName(final String topicName) {
         if (!TOPIC_NAME_PATTERN.matcher(topicName).matches()) {
             throw new InvalidTopicException("Topic name " + topicName + " is invalid", "invalid topic");
+        }
+    }
+
+    /**
+     * Validate that the client topic is not the same as the internal async topic.
+     *
+     * @param topicName        the client topic name
+     * @param reservedTopic    the configured internal async topic name
+     *
+     * @throws InvalidTopicException if the topics are the same
+     */
+    public static void validateTopicNotReserved(final String topicName, final String reservedTopic) {
+        if (topicName.equals(reservedTopic)) {
+            throw new InvalidTopicException("Topic " + topicName + " is reserved for internal use",
+                "client topic must not be the same as the async topic");
         }
     }
 

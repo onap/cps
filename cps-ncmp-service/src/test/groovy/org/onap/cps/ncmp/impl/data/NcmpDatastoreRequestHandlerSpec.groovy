@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2026 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
+import org.onap.cps.ncmp.api.exceptions.InvalidTopicException
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException
 import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
@@ -39,8 +40,26 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def objectUnderTest = new NcmpPassthroughResourceRequestHandler(dmiDataOperations)
 
+    def ASYNC_TOPIC = 'my-async-topic'
+
+    def setup() {
+        objectUnderTest.asyncTopicName = ASYNC_TOPIC
+    }
+
     def NO_TOPIC = null
     def NO_AUTH_HEADER = null
+
+    def 'Attempt to execute async data operation request with topic matching the async internal topic.'() {
+        given: 'a valid data operation definition'
+            def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleReferences: ['ch'])
+        and: 'notification feature is enabled'
+            objectUnderTest.notificationFeatureEnabled = true
+        when: 'a batch request is made using the internal async topic as the client topic'
+            objectUnderTest.executeAsynchronousRequest(ASYNC_TOPIC, new DataOperationRequest(dataOperationDefinitions: [dataOperationDefinition]), NO_AUTH_HEADER)
+        then: 'an invalid topic exception is thrown, preventing the infinite loop'
+            def thrownException = thrown(InvalidTopicException)
+            assert thrownException.message.contains(ASYNC_TOPIC)
+    }
 
     def 'Attempt to execute async get request with #scenario.'() {
         given: 'notification feature is turned on/off'
@@ -70,6 +89,8 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
     def 'Attempt to execute async data operation request with feature #scenario.'() {
         given: 'a extended request handler that supports bulk requests'
            def objectUnderTest = new NcmpPassthroughResourceRequestHandler(dmiDataOperations)
+        and: 'async internal topic is set'
+            objectUnderTest.asyncTopicName = ASYNC_TOPIC
         and: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         when: 'data operation request is executed'
