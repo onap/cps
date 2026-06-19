@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2026 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,27 +21,34 @@
 package org.onap.cps.ncmp.utils.events;
 
 import java.util.regex.Pattern;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import org.onap.cps.ncmp.api.exceptions.InvalidTopicException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Service
 public class TopicValidator {
 
     private static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]([._-](?![._-])|"
         + "[a-zA-Z0-9]){0,120}[a-zA-Z0-9]$");
 
+    @Value("${app.ncmp.async-m2m.topic}")
+    String reservedTopicName;
+
     /**
-     * Validate kafka topic name pattern.
+     * Validate kafka topic name pattern and that it is not reserved for internal use.
      *
      * @param topicName name of the topic to be validated
      *
-     * @throws InvalidTopicException if the topic is not valid
+     * @throws InvalidTopicException if the topic is invalid or reserved
      */
-    public static void validateTopicName(final String topicName) {
+    public void validateTopicName(final String topicName) {
         if (!TOPIC_NAME_PATTERN.matcher(topicName).matches()) {
-            throw new InvalidTopicException("Topic name " + topicName + " is invalid", "invalid topic");
+            throw new InvalidTopicException("Topic name " + topicName + " is invalid",
+                    "invalid topic name, allowed: alphanumeric, '.', '_', '-'");
+        }
+        if (topicName.equals(reservedTopicName)) {
+            throw new InvalidTopicException("Topic name " + topicName + " is invalid", "Topic "
+                    + topicName + " is reserved for internal use");
         }
     }
-
 }
