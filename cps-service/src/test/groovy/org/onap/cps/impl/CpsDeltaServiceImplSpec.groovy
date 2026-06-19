@@ -254,7 +254,7 @@ class CpsDeltaServiceImplSpec extends Specification {
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
             setupSchemaSetMocksForDelta(yangResourceContentPerName)
         when: 'attempt to get delta between an anchor and a JSON payload'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED, JSON)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, GROUPING_DISABLED, JSON)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
@@ -277,7 +277,7 @@ class CpsDeltaServiceImplSpec extends Specification {
         given: 'schema set for a given dataspace and anchor'
             setupSchemaSetMocks('bookstore.yang')
         when: 'attempt to get delta between an anchor and a JSON payload'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, [:], jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED, JSON)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, [:], jsonData, GROUPING_DISABLED, JSON)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
@@ -301,7 +301,7 @@ class CpsDeltaServiceImplSpec extends Specification {
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
             setupSchemaSetMocksForDelta(yangResourceContentPerName)
         when: 'attempt to get delta between anchor and payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED, JSON)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, GROUPING_DISABLED, JSON)
         then: 'expected exception is thrown'
             thrown(DataValidationException)
         where: 'following parameters were used'
