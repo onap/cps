@@ -14,3 +14,4 @@ ncmp.policy-executor.enabled,"Enables or disables the policy-executor feature.",
 ncmp.policy-executor.defaultDecision,"The default (fallback) decision in case a problem with the external service occurs.",allow
 ncmp.policy-executor.server.address,"The server address for the external policy executor service.",``http://policy-executor-stub``
 ncmp.policy-executor.server.port,"The port used for the external policy executor service.",8093
+ncmp.dmi.allowed-url-pattern,"Naming pattern that must be adhered to for DMI Plugin names.",Not defined

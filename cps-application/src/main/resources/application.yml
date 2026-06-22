@@ -217,6 +217,7 @@ ncmp:
                 writeTimeoutInSeconds: 30
                 responseTimeoutInSeconds: 60
     dmi:
+        allowed-url-pattern: ${DMI_ALLOWED_URL_PATTERN:}
         httpclient:
             data-services:
                 maximumInMemorySizeInMegabytes: 64
