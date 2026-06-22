@@ -37,6 +37,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32ca8bcb_16e8c204",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:21:01Z",
+      "side": 1,
+      "message": "PO speak not developer speak :-) \n\u0027Attempt to execute async data operation with internal (reserved) topic name\u0027",
+      "range": {
+        "startLine": 193,
+        "startChar": 9,
+        "endLine": 193,
+        "endChar": 72
+      },
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "670e01a4_8690649d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:21:01Z",
+      "side": 1,
+      "message": "this is where you mock the functionallity you want to test. SO you are testing your own mocking... Common mistake. You just need to test this somewhere else",
+      "range": {
+        "startLine": 199,
+        "startChar": 11,
+        "endLine": 200,
+        "endChar": 158
+      },
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95ef0aff_5280b953",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:21:01Z",
+      "side": 1,
+      "message": "this test is not testing the actual new functionality but test the already existing exception handling! Not needed at all",
+      "range": {
+        "startLine": 193,
+        "startChar": 1,
+        "endLine": 208,
+        "endChar": 5
+      },
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b849e4f_3e3994fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NcmpPassthroughResourceRequestHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:21:01Z",
+      "side": 1,
+      "message": "use this in validator to rather then passing as a parameter",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d821d39_34d11a1a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NcmpPassthroughResourceRequestHandler.java",
         "patchSetId": 4
@@ -48,6 +140,93 @@
       "writtenOn": "2026-06-19T16:06:32Z",
       "side": 1,
       "message": "hmm not sure about the name , maybe others can input \n\nsuggestion:        validateTopicIsNotAsyncInternalTopic() ?",
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "305bf82d_cab63d49",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NcmpPassthroughResourceRequestHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:21:01Z",
+      "side": 1,
+      "message": "why dont we use the existing validTopicName method, add teh new check theer. should work fine!",
+      "parentUuid": "3d821d39_34d11a1a",
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edafa965_3c875a61",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/TopicValidator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:21:01Z",
+      "side": 1,
+      "message": "shoudl NOT be passed in , I am suer we have a config paarmeetr for this",
+      "range": {
+        "startLine": 55,
+        "startChar": 85,
+        "endLine": 55,
+        "endChar": 98
+      },
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9827ea9_56fca047",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/TopicValidator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:21:01Z",
+      "side": 1,
+      "message": "Combine with previous method, no ned for new method!",
+      "range": {
+        "startLine": 55,
+        "startChar": 23,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d43f244f_5c56a564",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:21:01Z",
+      "side": 1,
+      "message": "the only new test you need is in topicValidator, that\u0027s were you create a new branch!",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 4
+      },
       "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -70,6 +249,29 @@
         "startChar": 0,
         "endLine": 93,
         "endChar": 56
+      },
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e0c088_2d600afd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/events/TopicParameterMapperSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:21:01Z",
+      "side": 1,
+      "message": "legacy issue, ename to TopicValidatorSpec",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 31
       },
       "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
