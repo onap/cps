@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a149234_d6172d12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T13:17:15Z",
+      "side": 1,
+      "message": "looks good, a little bit of tidying up required",
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13f68536_4ca03f37",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T13:17:15Z",
+      "side": 1,
+      "message": "NB: you made no changes in this file. but nor marh leaving this as 2026",
+      "range": {
+        "startLine": 5,
+        "startChar": 40,
+        "endLine": 5,
+        "endChar": 41
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6592812f_1bb8e5a0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T13:17:15Z",
+      "side": 1,
+      "message": "can this not be pass in using the constructore on line #40",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 61
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c2af6a7_ea4f9af4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T13:17:15Z",
+      "side": 1,
+      "message": "already done in setup",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 64
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
