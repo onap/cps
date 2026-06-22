@@ -164,6 +164,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b7f7f39_08c681d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NcmpPassthroughResourceRequestHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-22T08:37:33Z",
+      "side": 1,
+      "message": "agree",
+      "parentUuid": "305bf82d_cab63d49",
+      "revId": "3f53f3296dde0f562e84705ee9bae2bc56a67ce8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "edafa965_3c875a61",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/TopicValidator.java",
         "patchSetId": 4
