@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2344d094_97372fd4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:41:37Z",
+      "side": 1,
+      "message": "need better clarification, both objects and json nodes are returned as a json string. maybe add example in the java doc ( \u0027{\"key\":\"value\"}\u0027)",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c95f75ff_a42d28b0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:41:37Z",
+      "side": 1,
+      "message": "why is this needed, this method should NOT be called if we alraedy have a plain string! I dont think there is a case were we can expect normal string and json strings...",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 9
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ead28ff3_33b3ed44",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:41:37Z",
+      "side": 1,
+      "message": "simply (into one block) using expect:",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 43
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecc0d193_9a99a459",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:41:37Z",
+      "side": 1,
+      "message": "NB remove redundat space",
+      "range": {
+        "startLine": 58,
+        "startChar": 82,
+        "endLine": 58,
+        "endChar": 84
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5b83460_27901df6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-22T07:41:37Z",
+      "side": 1,
+      "message": "NB: insert space before |",
+      "range": {
+        "startLine": 59,
+        "startChar": 34,
+        "endLine": 59,
+        "endChar": 35
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
