@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "950be1b9_33ebe63e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-23T12:43:19Z",
+      "side": 1,
+      "message": "All good but holding off with merge till today\u0027s release has been completed",
+      "revId": "1780054b1a5691d491391f24c4504faf20e89b87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
