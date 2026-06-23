@@ -96,6 +96,9 @@ public class KafkaTestContainer extends ConfluentKafkaContainer {
         return new KafkaProducer<>(configProps);
     }
 
+    /**
+     * Starts the Kafka container if not already running and sets the bootstrap servers system property.
+     */
     @Override
     public void start() {
         if (!isRunning()) {
@@ -105,9 +108,12 @@ public class KafkaTestContainer extends ConfluentKafkaContainer {
         }
     }
 
+    /**
+     * Overridden to prevent premature container shutdown.
+     */
     @Override
     public void stop() {
-        // Method intentionally left blank
+        // Method intentionally left blank, do not remove some test depend on this
     }
 
     private static Map<String, Object> consumerProperties(final String consumerGroupId,
