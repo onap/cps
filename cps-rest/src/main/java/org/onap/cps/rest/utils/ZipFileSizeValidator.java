@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada.
- *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
+ *  Modifications Copyright (C) 2023-2026 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ public class ZipFileSizeValidator {
     private static final int THRESHOLD_SIZE = 100_000_000;
     private static final String INVALID_ZIP = "Invalid ZIP archive content.";
 
-    private int totalUncompressedSizeOfYangFilesInArchive = 0;
+    private long totalUncompressedSizeOfYangFilesInArchive = 0;
     private int totalYangFileEntriesInArchive = 0;
     private long compressedSize = 0;
 
@@ -54,11 +54,15 @@ public class ZipFileSizeValidator {
     }
 
     /**
-     * Validate the total Compression size of the zip.
+     * Validate the compression ratio of a zip entry.
+     * Skipped for streamed zip entries where compressed size is unknown.
      *
-     * @param totalEntrySize the size of the unzipped entry.
+     * @param totalEntrySize the uncompressed size of the entry read so far.
      */
     public void validateCompressionRatio(final int totalEntrySize) {
+        if (isStreamedZipEntry()) {
+            return;
+        }
         final double compressionRatio = (double) totalEntrySize / compressedSize;
         if (compressionRatio > THRESHOLD_RATIO) {
             throw new ModelValidationException(INVALID_ZIP,
@@ -68,7 +72,7 @@ public class ZipFileSizeValidator {
     }
 
     /**
-     * Validate the total Size and number of entries in the zip.
+     * Validate that the total uncompressed size and entry count are within allowed limits.
      */
     public void validateSizeAndEntries() {
         if (totalUncompressedSizeOfYangFilesInArchive > THRESHOLD_SIZE) {
@@ -81,5 +85,9 @@ public class ZipFileSizeValidator {
                 String.format("The number of yang file entries in the archive exceeds the CPS limit %s.",
                     THRESHOLD_ENTRIES));
         }
+    }
+
+    private boolean isStreamedZipEntry() {
+        return compressedSize <= 0;
     }
 }
