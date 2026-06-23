@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acb2adfb_b3d5929d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-23T09:39:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "13f68536_4ca03f37",
+      "range": {
+        "startLine": 5,
+        "startChar": 40,
+        "endLine": 5,
+        "endChar": 41
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08b9f56b_b034e0a6",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-06-22T13:18:01Z",
       "side": 1,
       "message": "OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fcf809b_85f414b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-23T09:39:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "08b9f56b_b034e0a6",
       "range": {
         "startLine": 3,
         "startChar": 28,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58a0fda3_80e3563b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/TopicValidator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-23T09:39:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4532a80d_e2fd578b",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "718905b1_ce5469bb",
@@ -100,6 +172,30 @@
       "writtenOn": "2026-06-22T13:18:01Z",
       "side": 1,
       "message": "OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25c2110f_f4e14259",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-23T09:39:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "718905b1_ce5469bb",
       "range": {
         "startLine": 3,
         "startChar": 28,
@@ -241,6 +337,30 @@
       "writtenOn": "2026-06-22T13:18:01Z",
       "side": 1,
       "message": "OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a8172ad_aa219b26",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/events/TopicValidatorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-23T09:39:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "de2c350e_0fe0b0cb",
       "range": {
         "startLine": 3,
         "startChar": 28,
