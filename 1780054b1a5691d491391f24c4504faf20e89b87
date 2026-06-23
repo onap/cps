@@ -16,6 +16,29 @@
       "message": "All good but holding off with merge till today\u0027s release has been completed",
       "revId": "1780054b1a5691d491391f24c4504faf20e89b87",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f60f4012_67dadcd6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/events/TopicValidatorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-23T14:26:15Z",
+      "side": 1,
+      "message": "2026 only",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "1780054b1a5691d491391f24c4504faf20e89b87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
