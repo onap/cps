@@ -1,0 +1,8 @@
+distribution_type: container
+container_release_tag: 3.7.9
+project: cps
+log_dir: cps-maven-docker-stage-master/965/
+ref: 43dd7e1e32cccae3264d7f15552cc6e2ea9c8ae7
+containers:
+  - name: 'cps-and-ncmp'
+    version: '3.7.9-20260623T124616Z'
