@@ -3,7 +3,7 @@
   ============LICENSE_START=======================================================
   Copyright (c) 2021 Pantheon.tech.
   Modifications Copyright (C) 2021 Bell Canada.
-  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -69,6 +69,7 @@
         <sonar.coverage.jacoco.xmlReportPaths>
             ../jacoco-report/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.exclusions>**/config/SecurityConfig.java</sonar.coverage.exclusions>
 
         <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
@@ -449,6 +450,8 @@
                         <exclude>org/onap/cps/ncmp/rest/stub/*</exclude>
                         <exclude>org/onap/cps/policyexecutor/stub/model/*</exclude>
                         <exclude>org/onap/cps/ncmp/provmns/model/*</exclude>
+                        <!-- Covered by integration-test-with-auth module -->
+                        <exclude>org/onap/cps/config/SecurityConfig.class</exclude>
                         <exclude>**/pom.xml</exclude>
                     </excludes>
                 </configuration>

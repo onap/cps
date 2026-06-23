@@ -96,6 +96,9 @@ public class KafkaTestContainer extends ConfluentKafkaContainer {
         return new KafkaProducer<>(configProps);
     }
 
+    /**
+     * Starts the Kafka container if not already running and sets the bootstrap servers system property.
+     */
     @Override
     public void start() {
         if (!isRunning()) {
@@ -103,11 +106,6 @@ public class KafkaTestContainer extends ConfluentKafkaContainer {
             System.setProperty("spring.kafka.properties.bootstrap.servers", getBootstrapServers());
             log.info("KafkaTestContainer started at {}", getBootstrapServers());
         }
-    }
-
-    @Override
-    public void stop() {
-        // Method intentionally left blank
     }
 
     private static Map<String, Object> consumerProperties(final String consumerGroupId,
