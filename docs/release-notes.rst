@@ -11,6 +11,29 @@ CPS Release Notes
 .. contents::
     :depth: 2
 
+Version: 3.7.10
+===============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:3.7.10                               |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 3.7.10                                                 |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | Not yet released                                       |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Features
+--------
+
 Version: 3.7.9
 ==============
 
@@ -27,12 +50,19 @@ Release Data
 | **Release designation**              | 3.7.9                                                  |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not yet released                                       |
+| **Release date**                     | 2026 June 23                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Features
 --------
+    - `CPS-3213 <https://lf-onap.atlassian.net/browse/CPS-3213>`_ Uplift code base to Java 21
+
+Security Notes
+--------------
+    - `CPS-3223 <https://lf-onap.atlassian.net/browse/CPS-3223>`_ Hardening: DMI Plugin Registration
+        CVE-2026-XXXXX: Fixed Server-Side Request Forgery (SSRF) via unauthenticated DMI plugin
+        registration endpoint. Added URL validation to the inventory API. (CWE-918, CVSS 9.3 High)
 
 Version: 3.7.8
 ==============
