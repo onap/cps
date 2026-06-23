@@ -135,6 +135,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25e3d452_41d77067",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-23T09:07:16Z",
+      "side": 1,
+      "message": "trying to use constructor injection for @Autowired fields in abstract base classes causes too many downstream issues in a codebase that uses @RequiredArgsConstructor throughout.",
+      "parentUuid": "6592812f_1bb8e5a0",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 61
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c2af6a7_ea4f9af4",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NcmpDatastoreRequestHandlerSpec.groovy",
         "patchSetId": 5
@@ -146,6 +170,30 @@
       "writtenOn": "2026-06-22T13:17:15Z",
       "side": 1,
       "message": "already done in setup",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 64
+      },
+      "revId": "a14cf4c74a4018b61de81b9c296c29b6519fea6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3184e52e_c8866526",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-23T09:07:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8c2af6a7_ea4f9af4",
       "range": {
         "startLine": 76,
         "startChar": 11,
