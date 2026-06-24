@@ -62,6 +62,29 @@
       },
       "revId": "8e14e371651b6ebc4237b63b4dd8ed90cbc235ed",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eac79ab4_355d7c06",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/yang/YangTextSchemaSourceSetBuilderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-24T13:34:38Z",
+      "side": 1,
+      "message": "can this be be imported ?",
+      "range": {
+        "startLine": 70,
+        "startChar": 39,
+        "endLine": 70,
+        "endChar": 104
+      },
+      "revId": "8e14e371651b6ebc4237b63b4dd8ed90cbc235ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
