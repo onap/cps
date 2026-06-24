@@ -18,6 +18,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "31f8cdb6_f253d0ae",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-24T13:31:03Z",
+      "side": 1,
+      "message": "why was this added? i cant see where this is aligned on the jsonObjectMapper class? do we enable this somewhere i missed?",
+      "range": {
+        "startLine": 80,
+        "startChar": 79,
+        "endLine": 80,
+        "endChar": 138
+      },
+      "revId": "8e14e371651b6ebc4237b63b4dd8ed90cbc235ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "87be7e59_21fffe9c",
