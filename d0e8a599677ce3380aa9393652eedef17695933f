@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dfbccfd_aae04daf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-24T13:50:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1691539_e46330c8",
+      "range": {
+        "startLine": 251,
+        "startChar": 14,
+        "endLine": 251,
+        "endChar": 68
+      },
+      "revId": "d0e8a599677ce3380aa9393652eedef17695933f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fb1fc14_778d7e46",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83e92255_c144ca83",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-24T13:50:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fb1fc14_778d7e46",
+      "range": {
+        "startLine": 175,
+        "startChar": 11,
+        "endLine": 175,
+        "endChar": 13
+      },
+      "revId": "d0e8a599677ce3380aa9393652eedef17695933f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f155c35_35574966",
@@ -94,6 +142,30 @@
       "writtenOn": "2026-06-18T14:13:58Z",
       "side": 1,
       "message": "NB: can be removed now you changed the boolean name",
+      "range": {
+        "startLine": 53,
+        "startChar": 58,
+        "endLine": 53,
+        "endChar": 77
+      },
+      "revId": "d0e8a599677ce3380aa9393652eedef17695933f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12190a8d_ab083d48",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-06-24T13:50:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f155c35_35574966",
       "range": {
         "startLine": 53,
         "startChar": 58,
