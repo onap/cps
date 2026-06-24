@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76008709_f4e6f00d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DeltaServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T05:45:41Z",
+      "side": 1,
+      "message": "As we discussed yesterday, disable this test and write a new test which tests on subset of bookstore data with INCLUDE ALL DESCENDANTS option.",
+      "range": {
+        "startLine": 182,
+        "startChar": 9,
+        "endLine": 182,
+        "endChar": 50
+      },
+      "revId": "dec09898615ac0706c46ce0a486b54b70283f4fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
