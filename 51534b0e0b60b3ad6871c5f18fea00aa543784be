@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34018aa6_ad247f8e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "NB: remove the extra lines",
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c95a2291_34a26365",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "NB: remove original",
+      "range": {
+        "startLine": 71,
+        "startChar": 34,
+        "endLine": 71,
+        "endChar": 42
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17ed6e55_681bcc7a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "dataFromDeltaReport",
+      "range": {
+        "startLine": 102,
+        "startChar": 59,
+        "endLine": 102,
+        "endChar": 63
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8a848e2_b3114532",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "serializeData, use proper name for methods. what I showed over call was pseudo code so do not copy exact names",
+      "range": {
+        "startLine": 102,
+        "startChar": 19,
+        "endLine": 102,
+        "endChar": 26
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0389fa6_79d51210",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "remove if this is unused",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 63
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ef8db97_eba0fe88",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "not needed as you can directly use it in where block",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a9976ea_cc0a929e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 74,
+        "startChar": 45,
+        "endLine": 75,
+        "endChar": 201
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6926060_4d3de282",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "this can be removed as it does not test any functionality. add a string \u0027my-source-data\u0027 below",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 65
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ddadabe_210c93d0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "Stubbing is not needed as it only sets flow of test, this has no effect and does not test production code. Remove.",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 13
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f08f238_1dcc355f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "generic string suffice",
+      "range": {
+        "startLine": 91,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 50
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfc015d5_e177b60f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "deltaReport",
+      "range": {
+        "startLine": 95,
+        "startChar": 50,
+        "endLine": 95,
+        "endChar": 59
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c631db6e_3608ef15",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "check for XML?",
+      "range": {
+        "startLine": 126,
+        "startChar": 9,
+        "endLine": 126,
+        "endChar": 16
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bb01a5a_5521c9e2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "all this will be removed when testing for XML",
+      "range": {
+        "startLine": 131,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 26
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1885e34_f05edff6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "not needed after code is refactored to a private method",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 160,
+        "endChar": 24
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7baa7612_51513454",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "not needed anymore",
+      "range": {
+        "startLine": 162,
+        "startChar": 12,
+        "endLine": 162,
+        "endChar": 94
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ed4556c_6411a6fa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 166,
+        "endChar": 67
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a928140_6e871ed5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "same reason as above. So remove",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 13
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1872e9a9_e36ef566",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-24T09:41:20Z",
+      "side": 1,
+      "message": "generic string suffice",
+      "range": {
+        "startLine": 179,
+        "startChar": 85,
+        "endLine": 179,
+        "endChar": 112
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
