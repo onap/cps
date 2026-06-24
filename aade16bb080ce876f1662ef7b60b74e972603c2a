@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e40790_ba3320f7",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-24T15:37:06Z",
+      "side": 1,
+      "message": "We can not use equals method for reverse comparing because PaginationOption.NO_PAGINATION is defined as null as below in the PaginationOption class\npublic static final PaginationOption NO_PAGINATION \u003d null;\n\nSo calling NO_PAGINATION.equals(paginationOption) is identical to null.equals(...) → NullPointerException at runtime.\n\nFix — reverse the comparison to use \u003d\u003d (reference/null check) instead of .equals():",
+      "parentUuid": "0c216eae_81a1b249",
+      "range": {
+        "startLine": 280,
+        "startChar": 22,
+        "endLine": 280,
+        "endChar": 72
+      },
+      "revId": "aade16bb080ce876f1662ef7b60b74e972603c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "175e6358_475df865",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "069e136c_44ffdcb1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-24T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "175e6358_475df865",
+      "range": {
+        "startLine": 52,
+        "startChar": 22,
+        "endLine": 52,
+        "endChar": 37
+      },
+      "revId": "aade16bb080ce876f1662ef7b60b74e972603c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9a7decf_5a169881",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-06-22T08:01:44Z",
       "side": 1,
       "message": "Current implementation fetches ALL anchors into memory and then applies pagination using skip() and limit().This is inefficient for large datasets because pagination is not pushed down to the database.\n\nSuggested fix:\nDefine a repository method that accepts Pageable directly:\nPage\u003cAnchorEntity\u003e findAllByDataspace(DataspaceEntity dataspaceEntity, Pageable pageable);\nThis way Spring Data JPA generates SQL with LIMIT/OFFSET,making pagination efficient and scalable.",
+      "range": {
+        "startLine": 128,
+        "startChar": 3,
+        "endLine": 131,
+        "endChar": 5
+      },
+      "revId": "aade16bb080ce876f1662ef7b60b74e972603c2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8394a095_3ff81161",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-06-24T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9a7decf_5a169881",
       "range": {
         "startLine": 128,
         "startChar": 3,
