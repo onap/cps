@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException
+import org.onap.cps.ncmp.utils.events.TopicValidator
 import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
 import spock.lang.Specification
@@ -36,8 +37,11 @@ import static org.springframework.http.HttpStatus.I_AM_A_TEAPOT
 class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def dmiDataOperations = Mock(DmiDataOperations)
-
     def objectUnderTest = new NcmpPassthroughResourceRequestHandler(dmiDataOperations)
+
+    def setup() {
+        objectUnderTest.topicValidator = new TopicValidator()
+    }
 
     def NO_TOPIC = null
     def NO_AUTH_HEADER = null
@@ -68,9 +72,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
     }
 
     def 'Attempt to execute async data operation request with feature #scenario.'() {
-        given: 'a extended request handler that supports bulk requests'
-           def objectUnderTest = new NcmpPassthroughResourceRequestHandler(dmiDataOperations)
-        and: 'notification feature is turned on/off'
+        given: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         when: 'data operation request is executed'
             def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleReferences: ['ch'])
