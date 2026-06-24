@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0de7953_246422a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-24T13:08:04Z",
+      "side": 1,
+      "message": "assuming test coverage will be handled in a follow up tach ASAP\nwe need to discuss with team when we merge this",
+      "revId": "8e14e371651b6ebc4237b63b4dd8ed90cbc235ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87be7e59_21fffe9c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-24T13:08:04Z",
+      "side": 1,
+      "message": "back to base i see, much better :-D",
+      "range": {
+        "startLine": 47,
+        "startChar": 18,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "8e14e371651b6ebc4237b63b4dd8ed90cbc235ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
