@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99515b69_fc2a96f9",
+        "filename": "integration-test-with-auth/src/test/java/org/onap/cps/security/DatabaseTestContainer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-25T09:21:01Z",
+      "side": 1,
+      "message": "method is empty",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "b8483ade9e013c96f92f9f6c4152fe828c9f0f59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
