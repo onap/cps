@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada.
- *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
+ *  Modifications Copyright (C) 2023-2026 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -98,5 +98,23 @@ class ZipFileSizeValidatorSpec extends Specification {
             caseDescriptor                                  | totalUncompressedSizeofYangArchive | totalYangEntriesInArchive
             'totalEntriesInArchive exceeds threshold value' | thresholdSize                      | thresholdEntries + 1
             'totalSizeArchive exceeds threshold value'      | thresholdSize + 1                  | thresholdEntries
+    }
+
+    def 'Validate size with overflow beyond integer range.'() {
+        given: 'the total uncompressed size exceeds integer max value'
+            objectUnderTest.setTotalUncompressedSizeOfYangFilesInArchive((long) Integer.MAX_VALUE + 1)
+        when: 'the validation is performed'
+            objectUnderTest.validateSizeAndEntries()
+        then: 'validation fails because the size exceeds the threshold'
+            thrown ModelValidationException
+    }
+
+    def 'Validate compression ratio check with unknown compressed size (streaming zip entry).'() {
+        given: 'compressed size is unknown (streaming zip entry)'
+            objectUnderTest.setCompressedSize(-1)
+        when: 'the validation is performed with a large entry size'
+            objectUnderTest.validateCompressionRatio(compressedFileSize * thresholdRatio + 1)
+        then: 'validation passes because ratio check is skipped'
+            noExceptionThrown()
     }
 }
