@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "31653674_63fb9c9c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "31f8cdb6_f253d0ae",
+      "range": {
+        "startLine": 80,
+        "startChar": 79,
+        "endLine": 80,
+        "endChar": 138
+      },
+      "revId": "8e14e371651b6ebc4237b63b4dd8ed90cbc235ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "87be7e59_21fffe9c",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
         "patchSetId": 6
@@ -77,6 +101,30 @@
       "writtenOn": "2026-06-24T13:34:38Z",
       "side": 1,
       "message": "can this be be imported ?",
+      "range": {
+        "startLine": 70,
+        "startChar": 39,
+        "endLine": 70,
+        "endChar": 104
+      },
+      "revId": "8e14e371651b6ebc4237b63b4dd8ed90cbc235ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22554e65_415f8d54",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/yang/YangTextSchemaSourceSetBuilderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eac79ab4_355d7c06",
       "range": {
         "startLine": 70,
         "startChar": 39,

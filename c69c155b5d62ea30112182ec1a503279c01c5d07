@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16dda981_d64e81a1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2344d094_97372fd4",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c95f75ff_a42d28b0",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-06-22T07:41:37Z",
       "side": 1,
       "message": "why is this needed, this method should NOT be called if we alraedy have a plain string! I dont think there is a case were we can expect normal string and json strings...",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 9
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2f198ae_a0034c09",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c95f75ff_a42d28b0",
       "range": {
         "startLine": 51,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfd1ebc0_e0c1469b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ead28ff3_33b3ed44",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 43
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecc0d193_9a99a459",
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e156ee5_9d6d249c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ecc0d193_9a99a459",
+      "range": {
+        "startLine": 58,
+        "startChar": 82,
+        "endLine": 58,
+        "endChar": 84
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5b83460_27901df6",
@@ -106,6 +202,30 @@
       "writtenOn": "2026-06-22T07:41:37Z",
       "side": 1,
       "message": "NB: insert space before |",
+      "range": {
+        "startLine": 59,
+        "startChar": 34,
+        "endLine": 59,
+        "endChar": 35
+      },
+      "revId": "c69c155b5d62ea30112182ec1a503279c01c5d07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09e5fa01_979025d8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-25T13:44:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b5b83460_27901df6",
       "range": {
         "startLine": 59,
         "startChar": 34,
