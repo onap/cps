@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54cfd180_d0906c05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Resolved",
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34018aa6_ad247f8e",
@@ -18,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b672b0e2_6176cc1a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlObjectMapper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34018aa6_ad247f8e",
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c95a2291_34a26365",
@@ -31,6 +66,30 @@
       "writtenOn": "2026-06-24T09:41:20Z",
       "side": 1,
       "message": "NB: remove original",
+      "range": {
+        "startLine": 71,
+        "startChar": 34,
+        "endLine": 71,
+        "endChar": 42
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e9dd309_0d68823f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c95a2291_34a26365",
       "range": {
         "startLine": 71,
         "startChar": 34,
@@ -87,6 +146,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5312b737_5a2045c9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8a848e2_b3114532",
+      "range": {
+        "startLine": 102,
+        "startChar": 19,
+        "endLine": 102,
+        "endChar": 26
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98d28afa_a1a56b42",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17ed6e55_681bcc7a",
+      "range": {
+        "startLine": 102,
+        "startChar": 59,
+        "endLine": 102,
+        "endChar": 63
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0389fa6_79d51210",
@@ -100,6 +207,30 @@
       "writtenOn": "2026-06-24T09:41:20Z",
       "side": 1,
       "message": "remove if this is unused",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 63
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87d0b9ad_8447f316",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0389fa6_79d51210",
       "range": {
         "startLine": 21,
         "startChar": 1,
@@ -133,6 +264,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f595d04_c05abad2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ef8db97_eba0fe88",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a9976ea_cc0a929e",
@@ -146,6 +301,30 @@
       "writtenOn": "2026-06-24T09:41:20Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 74,
+        "startChar": 45,
+        "endLine": 75,
+        "endChar": 201
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc8ab0b7_751fdb3e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a9976ea_cc0a929e",
       "range": {
         "startLine": 74,
         "startChar": 45,
@@ -179,6 +358,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea202db6_7157e757",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6926060_4d3de282",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 65
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ddadabe_210c93d0",
@@ -192,6 +395,30 @@
       "writtenOn": "2026-06-24T09:41:20Z",
       "side": 1,
       "message": "Stubbing is not needed as it only sets flow of test, this has no effect and does not test production code. Remove.",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 13
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fd74a05_2ed0f993",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ddadabe_210c93d0",
       "range": {
         "startLine": 84,
         "startChar": 12,
@@ -225,6 +452,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72742d99_ae5a6491",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f08f238_1dcc355f",
+      "range": {
+        "startLine": 91,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 50
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfc015d5_e177b60f",
@@ -238,6 +489,30 @@
       "writtenOn": "2026-06-24T09:41:20Z",
       "side": 1,
       "message": "deltaReport",
+      "range": {
+        "startLine": 95,
+        "startChar": 50,
+        "endLine": 95,
+        "endChar": 59
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e95f5382_bd19c5c4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfc015d5_e177b60f",
       "range": {
         "startLine": 95,
         "startChar": 50,
@@ -317,6 +592,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d044bbe3_de835ffa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1885e34_f05edff6",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 160,
+        "endChar": 24
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7baa7612_51513454",
@@ -330,6 +629,30 @@
       "writtenOn": "2026-06-24T09:41:20Z",
       "side": 1,
       "message": "not needed anymore",
+      "range": {
+        "startLine": 162,
+        "startChar": 12,
+        "endLine": 162,
+        "endChar": 94
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1a0c819_60e5418d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7baa7612_51513454",
       "range": {
         "startLine": 162,
         "startChar": 12,
@@ -363,6 +686,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a22e7ae4_b0146df0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ed4556c_6411a6fa",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 166,
+        "endChar": 67
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a928140_6e871ed5",
@@ -386,6 +733,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bf0b766_4b92dd09",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a928140_6e871ed5",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 13
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1872e9a9_e36ef566",
@@ -399,6 +770,30 @@
       "writtenOn": "2026-06-24T09:41:20Z",
       "side": 1,
       "message": "generic string suffice",
+      "range": {
+        "startLine": 179,
+        "startChar": 85,
+        "endLine": 179,
+        "endChar": 112
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41df500a_ba3424b2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-06-25T05:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1872e9a9_e36ef566",
       "range": {
         "startLine": 179,
         "startChar": 85,
