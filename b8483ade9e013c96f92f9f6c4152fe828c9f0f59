@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa03524_f9f3d5e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-26T11:38:44Z",
+      "side": 1,
+      "message": "Missing javadoc, has checkstyle been correctly configured for this new module?",
+      "revId": "b8483ade9e013c96f92f9f6c4152fe828c9f0f59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99515b69_fc2a96f9",
@@ -20,6 +37,23 @@
         "endLine": 56,
         "endChar": 5
       },
+      "revId": "b8483ade9e013c96f92f9f6c4152fe828c9f0f59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85d414a_98e3c8fe",
+        "filename": "integration-test-with-auth/src/test/java/org/onap/cps/security/KafkaTestContainer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-26T11:38:44Z",
+      "side": 1,
+      "message": "Missing javadoc?",
       "revId": "b8483ade9e013c96f92f9f6c4152fe828c9f0f59",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
