@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9af8c81_085cd94c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DeltaServiceIntegrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-26T11:41:20Z",
+      "side": 1,
+      "message": "this can be removed, and block above is testing the same thing",
+      "range": {
+        "startLine": 195,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 27
+      },
+      "revId": "39bd534bbf78ff81d9e0d7d42eda2f085f0c833e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
