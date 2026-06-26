@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dc62510_ed2773d4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-26T07:13:04Z",
+      "side": 1,
+      "message": "this is doing too much in controller, I\u0027d prefer this to be moved to service layer and have the schema based filter and pagination concerns separated for better code quality.",
+      "range": {
+        "startLine": 273,
+        "startChar": 8,
+        "endLine": 284,
+        "endChar": 9
+      },
+      "revId": "e38167ba85f25bc2f523861256443d59383ea637",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5063b76a_51e0e1e8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-26T07:13:04Z",
+      "side": 1,
+      "message": "Umbrella comment for all tests related to filter and pagination:\nHardcoded request parameters in these tests make intent brittle and duplicate setup, please extract them into named constants or a small parameterized test matrix. This will improve readability and make future query-option changes easier to maintain.",
+      "revId": "e38167ba85f25bc2f523861256443d59383ea637",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7ef470c_e18c9026",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-26T07:13:04Z",
+      "side": 1,
+      "message": "This repository-layer change introduces new direct DB interaction but lacks supporting design/impact documentation. Please add an in-depth analysis (query behavior, performance implications, and migration/compatibility considerations) this was not presented to community and stakeholders so there can be some inputs and concerns regarding this.",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 8
+      },
+      "revId": "e38167ba85f25bc2f523861256443d59383ea637",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
