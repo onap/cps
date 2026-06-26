@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1486ad7c_5d7a4023",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-26T11:12:21Z",
+      "side": 1,
+      "message": "Looks good, just one question",
+      "revId": "24df4dd8c24bb8dd49e57d50958c05e957fd0b36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed911e6_e0075ebb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-26T11:12:21Z",
+      "side": 1,
+      "message": "NB: could this value be updated or are we stuck with this?",
+      "range": {
+        "startLine": 72,
+        "startChar": 17,
+        "endLine": 72,
+        "endChar": 39
+      },
+      "revId": "24df4dd8c24bb8dd49e57d50958c05e957fd0b36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
