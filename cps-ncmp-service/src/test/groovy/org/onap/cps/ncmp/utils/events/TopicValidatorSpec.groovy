@@ -39,7 +39,17 @@ class TopicValidatorSpec extends Specification {
             'with underscore'           | 'my_topic'
             'with dot'                  | 'my.topic'
             'mixed valid special chars' | 'my-topic.name_1'
-            'minimum length (2 chars)'  | 'ab'
+            'single character'          | 'a'
+            'starts with dot'           | '.exampleTopic'
+            'ends with dot'             | 'exampleTopic.'
+            'starts with hyphen'        | '-topic'
+            'ends with hyphen'          | 'topic-'
+            'starts with underscore'    | '_topic'
+            'ends with underscore'      | 'topic_'
+            'consecutive dots'          | 'topic..name'
+            'consecutive hyphens'       | 'topic--name'
+            'consecutive mixed chars'   | 'topic.-name'
+            'max length (249 chars)'    | 'a' * 249
     }
 
     def 'Validating invalid topic names.'() {
@@ -52,11 +62,12 @@ class TopicValidatorSpec extends Specification {
             'empty topic'                     | ''
             'blank topic'                     | ' '
             'special characters'              | '1_5_*_#'
-            'consecutive dots'                | 'topic..name'
-            'consecutive hyphens'             | 'topic--name'
-            'consecutive mixed special chars' | 'topic.-name'
-            'starts with special char'        | '-topic'
-            'ends with special char'          | 'topic-'
+            'single dot'                      | '.'
+            'double dot'                      | '..'
+            'exceeds max length (250 chars)'  | 'a' * 250
+            'contains space'                  | 'topic name'
+            'contains hash'                   | 'topic#name'
+            'contains asterisk'               | 'topic*name'
             'reserved async topic'            | 'my-async-topic'
     }
 

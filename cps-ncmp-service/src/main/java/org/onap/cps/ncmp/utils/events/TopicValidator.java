@@ -28,8 +28,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TopicValidator {
 
-    private static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]([._-](?![._-])|"
-        + "[a-zA-Z0-9]){0,120}[a-zA-Z0-9]$");
+    private static final Pattern TOPIC_NAME_PATTERN = Pattern.compile("^(?!\\.{1,2}$)[a-zA-Z0-9._-]{1,249}$");
 
     @Value("${app.ncmp.async-m2m.topic}")
     String reservedTopicName;
