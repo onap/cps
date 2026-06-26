@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24b53d0d_68a6bba5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/CpsCoreInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-06-26T11:33:26Z",
+      "side": 1,
+      "message": "NB: these can go on one line",
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
