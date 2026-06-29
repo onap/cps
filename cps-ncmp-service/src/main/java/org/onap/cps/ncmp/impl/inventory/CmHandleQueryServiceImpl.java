@@ -48,6 +48,7 @@ import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.CpsValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -67,6 +68,9 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private final IMap<String, TrustLevel> trustLevelPerCmHandleId;
 
     private final CpsValidator cpsValidator;
+
+    @Value("#{!${ignore.r20260423.model:true}}")
+    private boolean useOptimizedModel;
 
     @Override
     public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> additionalPropertyQueryPairs,
@@ -90,6 +94,11 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
     @Override
     public Collection<String> queryCmHandleIdsByState(final CmHandleState cmHandleState) {
+        if (useOptimizedModel) {
+            final String cpsPath = NCMP_DMI_REGISTRY_PARENT
+                    + "/cm-handles[@cm-handle-state='" + cmHandleState + "']/@id";
+            return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+        }
         final Collection<DataNode> cmHandlesAsDataNodes =
                 queryNcmpRegistryByCpsPath("//state[@cm-handle-state='" + cmHandleState + "']",
                         OMIT_DESCENDANTS);
@@ -110,6 +119,15 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
     @Override
     public boolean cmHandleHasState(final String cmHandleId, final CmHandleState requiredCmHandleState) {
+        if (useOptimizedModel) {
+            cpsValidator.validateNameCharacters(cmHandleId);
+            final String cpsPath = NCMP_DMI_REGISTRY_PARENT
+                    + "/cm-handles[@id='" + cmHandleId + "']/@cm-handle-state";
+            final Collection<String> result = cpsQueryService.queryDataLeaf(
+                    NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+            return !result.isEmpty()
+                    && CmHandleState.valueOf(result.iterator().next()).equals(requiredCmHandleState);
+        }
         final DataNode stateDataNode = getCmHandleState(cmHandleId);
         final String cmHandleStateAsString = (String) stateDataNode.getLeaves().get("cm-handle-state");
         return CmHandleState.valueOf(cmHandleStateAsString).equals(requiredCmHandleState);
