@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2fa9af9_ffbffba3",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-29T10:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e9c07b6_06e7fbf5",
+      "range": {
+        "startLine": 91,
+        "startChar": 56,
+        "endLine": 91,
+        "endChar": 67
+      },
+      "revId": "dd0ba33822b132a1322ff0226a8edf5457212c09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ec165fd_7ead2e47",
@@ -202,6 +226,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a76cf57a_bdfa0f41",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-29T10:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de26d44c_e3ea14d0",
+      "range": {
+        "startLine": 139,
+        "startChar": 17,
+        "endLine": 139,
+        "endChar": 34
+      },
+      "revId": "dd0ba33822b132a1322ff0226a8edf5457212c09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44af91bc_f75b5b93",
@@ -225,6 +273,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6142d172_a0a59c9b",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-29T10:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44af91bc_f75b5b93",
+      "range": {
+        "startLine": 152,
+        "startChar": 77,
+        "endLine": 152,
+        "endChar": 86
+      },
+      "revId": "dd0ba33822b132a1322ff0226a8edf5457212c09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2cb0271_cd846d76",
@@ -238,6 +310,30 @@
       "writtenOn": "2026-06-22T11:35:33Z",
       "side": 1,
       "message": "descendantsXpaths",
+      "range": {
+        "startLine": 153,
+        "startChar": 26,
+        "endLine": 153,
+        "endChar": 38
+      },
+      "revId": "dd0ba33822b132a1322ff0226a8edf5457212c09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c68cd44_29d79de1",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-29T10:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2cb0271_cd846d76",
       "range": {
         "startLine": 153,
         "startChar": 26,
@@ -284,6 +380,30 @@
       "writtenOn": "2026-06-22T11:35:33Z",
       "side": 1,
       "message": "pruneAndFlattenTree",
+      "range": {
+        "startLine": 165,
+        "startChar": 33,
+        "endLine": 165,
+        "endChar": 41
+      },
+      "revId": "dd0ba33822b132a1322ff0226a8edf5457212c09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a801eab_139e7b20",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-29T10:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a673813_4a748244",
       "range": {
         "startLine": 165,
         "startChar": 33,
@@ -514,6 +634,30 @@
       "writtenOn": "2026-06-22T11:35:33Z",
       "side": 1,
       "message": "childDataNodes",
+      "range": {
+        "startLine": 204,
+        "startChar": 39,
+        "endLine": 204,
+        "endChar": 49
+      },
+      "revId": "dd0ba33822b132a1322ff0226a8edf5457212c09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87cec8d1_25ac0303",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-29T10:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3cc7362_3bf10480",
       "range": {
         "startLine": 204,
         "startChar": 39,
