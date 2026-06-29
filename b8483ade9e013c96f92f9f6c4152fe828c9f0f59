@@ -56,6 +56,24 @@
       "message": "Missing javadoc?",
       "revId": "b8483ade9e013c96f92f9f6c4152fe828c9f0f59",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f0f7837_fde4aa94",
+        "filename": "integration-test-with-auth/src/test/java/org/onap/cps/security/KafkaTestContainer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T07:57:20Z",
+      "side": 1,
+      "message": "possibly not, let me check...\nI do know check javadoc-check only kicks in when method is at least a certain size...",
+      "parentUuid": "c85d414a_98e3c8fe",
+      "revId": "b8483ade9e013c96f92f9f6c4152fe828c9f0f59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
