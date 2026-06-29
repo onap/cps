@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "174482d4_662b53dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T08:09:06Z",
+      "side": 1,
+      "message": "looks good, some minot test updates and one question to discuss",
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24b53d0d_68a6bba5",
@@ -14,6 +31,144 @@
       "writtenOn": "2026-06-26T11:33:26Z",
       "side": 1,
       "message": "NB: these can go on one line",
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2972481_ccc026c7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/CpsCoreInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T08:09:06Z",
+      "side": 1,
+      "message": "NB: add some general description fot where block but as specific as can be e.g \u0027following injection attempts are made\u0027",
+      "range": {
+        "startLine": 54,
+        "startChar": 7,
+        "endLine": 54,
+        "endChar": 14
+      },
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d521210e_62b87aa8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T08:09:06Z",
+      "side": 1,
+      "message": "as before try to describe all the \u0027where\u0027 blocks",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 14
+      },
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "648df427_ad45003c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T08:09:06Z",
+      "side": 1,
+      "message": "can you be more specic like 4xx or !2xx",
+      "range": {
+        "startLine": 76,
+        "startChar": 50,
+        "endLine": 76,
+        "endChar": 53
+      },
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ba1b2c5_213b13be",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T08:09:06Z",
+      "side": 1,
+      "message": "looks more complicated the needs be. Also what exactly are we trying to proof here. NO you just proving taht this strange value are not found...\nMight need to discuss what is the best approach here",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 105,
+        "endChar": 41
+      },
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34df24ce_860c1946",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T08:09:06Z",
+      "side": 1,
+      "message": "not needed?",
+      "range": {
+        "startLine": 129,
+        "startChar": 37,
+        "endLine": 129,
+        "endChar": 44
+      },
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "248fef10_705753bb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T08:09:06Z",
+      "side": 1,
+      "message": "as befeor...",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 41
+      },
       "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
