@@ -5,3 +5,4 @@ notification.async.executor.queue-capacity,"Queue Capacity in asynchronous execu
 notification.async.executor.wait-for-tasks-to-complete-on-shutdown,"If the executor should wait for the tasks to be completed on shutdown",true
 notification.async.executor.thread-name-prefix,Prefix to be added to the thread name in asynchronous execution of notifications.",Async-
 notification.async.executor.time-out-value-in-ms,"Maximum time allowed by the thread pool executor for execution of one of the threads in milliseconds.",60000
+security.auth.enabled,"Enables or disables JWT bearer token authentication on all REST API endpoints. When enabled, requires spring.security.oauth2.resourceserver.jwt.issuer-uri to be configured.",false

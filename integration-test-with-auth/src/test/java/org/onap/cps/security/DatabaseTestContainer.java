@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation.
+ *  Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,39 +17,30 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration;
+package org.onap.cps.security;
 
 import org.testcontainers.postgresql.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
-/**
- * The Postgresql database test container wrapper.
- * Singleton implementation allows saving time on database initialization which otherwise would occur on each test.
- * for debugging/developing purposes you can suspend any test and connect to this database:
- *  docker exec -it {container-id} sh
- *  psql -d test -U test
- */
 public class DatabaseTestContainer extends PostgreSQLContainer {
     private static final String IMAGE_VERSION = "registry.nordix.org/onaptest/postgres:14.1";
-    private static DatabaseTestContainer databaseTestContainer;
+    private static DatabaseTestContainer instance;
 
     private DatabaseTestContainer() {
         super(DockerImageName.parse(IMAGE_VERSION).asCompatibleSubstituteFor("postgres"));
     }
 
     /**
-     * Provides an instance of test container wrapper.
-     * The returned value expected to be assigned to static variable annotated with @ClassRule.
-     * This will allow to initialize DB connection env variables before DataSource object
-     * is initialized by Spring framework.
+     * Get singleton instance of the database test container.
      *
+     * @return the database test container instance
      */
     public static DatabaseTestContainer getInstance() {
-        if (databaseTestContainer == null) {
-            databaseTestContainer = new DatabaseTestContainer();
-            Runtime.getRuntime().addShutdownHook(new Thread(databaseTestContainer::terminate));
+        if (instance == null) {
+            instance = new DatabaseTestContainer();
+            Runtime.getRuntime().addShutdownHook(new Thread(instance::terminate));
         }
-        return databaseTestContainer;
+        return instance;
     }
 
     /**
@@ -58,9 +49,9 @@ public class DatabaseTestContainer extends PostgreSQLContainer {
     @Override
     public void start() {
         super.start();
-        System.setProperty("DB_URL", databaseTestContainer.getJdbcUrl());
-        System.setProperty("DB_USERNAME", databaseTestContainer.getUsername());
-        System.setProperty("DB_PASSWORD", databaseTestContainer.getPassword());
+        System.setProperty("DB_URL", getJdbcUrl());
+        System.setProperty("DB_USERNAME", getUsername());
+        System.setProperty("DB_PASSWORD", getPassword());
     }
 
     /**
