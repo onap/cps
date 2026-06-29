@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "844b9e9b_eca82d25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T07:59:30Z",
+      "side": 1,
+      "message": "looks fine, value was hardcoded anyway so parameter was not needed..",
+      "revId": "5a2128a7fb41914c787510379c0051e657f45213",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
