@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c04456_d94957fe",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/KafkaTestContainer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-29T10:34:42Z",
+      "side": 0,
+      "message": "could be removed according to AI, ambigous results when testing locally. Testing on build server now to be sure...",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 5
+      },
+      "revId": "6dc7eb4e20206c7f484243f755bb0c592e92cc4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
