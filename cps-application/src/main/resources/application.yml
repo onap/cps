@@ -98,6 +98,11 @@ spring:
     sql:
         init:
             mode: ALWAYS
+
+security:
+    auth:
+        enabled: ${SECURITY_AUTH_ENABLED:false}
+
 app:
     ncmp:
         async-m2m:

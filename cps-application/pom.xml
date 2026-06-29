@@ -3,7 +3,7 @@
   ============LICENSE_START=======================================================
   Copyright (c) 2021 Pantheon.tech.
   Modifications Copyright (C) 2021 Bell Canada.
-  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
   Modifications Copyright (C) 2022 Deutsche Telekom AG
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,6 +55,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -114,6 +122,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
 

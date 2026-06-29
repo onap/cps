@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+.. Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
 .. Modifications Copyright (C) 2021 Bell Canada.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
@@ -219,6 +219,31 @@ The following tables list properties that can be configured in the deployment. T
     - [services]: ``all-services`` for 'policy-executor'.
     - [services]: ``data-services`` and 'model-services' for 'dmi'.
     - All ncmp.policy-executor properties can also be overridden using environment variables: ``POLICY_SERVICE_ENABLED``, ``POLICY_SERVICE_DEFAULT_DECISION``, ``POLICY_SERVICE_URL``, ``POLICY_SERVICE_PORT``
+
+Authentication
+--------------
+CPS supports optional JWT bearer token authentication on all REST API endpoints. By default, authentication is disabled
+for backward compatibility with Service Mesh deployments that handle authentication at the infrastructure layer.
+
+To enable authentication, set ``security.auth.enabled=true`` (or environment variable ``SECURITY_AUTH_ENABLED=true``)
+and configure the JWT issuer URI:
+
+.. code-block:: yaml
+
+    security:
+        auth:
+            enabled: true
+
+    spring:
+        security:
+            oauth2:
+                resourceserver:
+                    jwt:
+                        issuer-uri: https://your-identity-provider/realms/your-realm
+
+When enabled, all API requests (except actuator and swagger endpoints) require a valid ``Authorization: Bearer <token>``
+header. Requests without a valid token will receive a 401 Unauthorized response.
+
 
 CPS-Core Docker Installation
 ============================
