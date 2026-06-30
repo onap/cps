@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "17f0316f_08d51f8d",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-30T17:38:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "87fa4d2b_ed7780f7",
+      "range": {
+        "startLine": 104,
+        "startChar": 97,
+        "endLine": 104,
+        "endChar": 101
+      },
+      "revId": "4d9f1df3c5940c05a4ff2268a97ebe7b6b85d133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "43e58462_5d2a50b6",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 3
