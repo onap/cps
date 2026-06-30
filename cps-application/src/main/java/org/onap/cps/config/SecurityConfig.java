@@ -26,9 +26,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 /**
  * Security configuration for CPS REST APIs.
@@ -38,6 +40,27 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @SuppressWarnings("squid:S4502") // CSRF disabled intentionally - stateless REST API
 public class SecurityConfig {
+
+    /**
+     * Configures Spring Security's HTTP firewall to allow URL-encoded slashes (%2F) in request paths.
+     *
+     * <p>Required for alternate IDs containing hierarchical paths (e.g. {@code /SubNetwork=Europe/ManagedElement=X1}).
+     * This is one of three layers that must permit encoded slashes; the embedded server (Jetty) is relaxed
+     * separately in {@link JettyConfig}.
+     *
+     * <p><b>Note:</b> {@code StrictHttpFirewall} with {@code setAllowUrlEncodedSlash(true)} is used here
+     * deliberately. {@code DefaultHttpFirewall} cannot be used - it unconditionally rejects encoded slashes.
+     *
+     * @return WebSecurityCustomizer that applies the encoded-slash-tolerant firewall
+     */
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        final StrictHttpFirewall strictHttpFirewall = new StrictHttpFirewall();
+        strictHttpFirewall.setAllowUrlEncodedSlash(true);
+        strictHttpFirewall.setAllowUrlEncodedPercent(true);
+        strictHttpFirewall.setAllowUrlEncodedDoubleSlash(true);
+        return web -> web.httpFirewall(strictHttpFirewall);
+    }
 
     /**
      * Security filter chain with JWT authentication enabled.
