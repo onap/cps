@@ -37,16 +37,6 @@ public class PathParsingException extends RuntimeException {
     /**
      * Constructor.
      *
-     * @param details the error details
-     */
-    public PathParsingException(final String details) {
-        super("Error while parsing xpath expression");
-        this.details = details;
-    }
-
-    /**
-     * Constructor.
-     *
      * @param message the error message
      * @param details the error details
      */
