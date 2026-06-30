@@ -185,31 +185,41 @@ class CpsPathQuerySpec extends Specification {
         when: 'the given cps path is parsed'
             CpsPathQuery.createFrom(cpsPath)
         then: 'a CpsPathException is thrown'
-            thrown(PathParsingException)
+            def exception = thrown(PathParsingException)
+        and: 'it contains expected details'
+            assert exception.message.contains(expectedMessageContent)
         where: 'the following data is used'
-            group               | scenario                                 | cpsPath
-            'axis'              | 'incomplete ancestor value'              | '//books/ancestor::'
-            'list element'      | 'invalid list element with missing ['    | '/parent-206/child-206/grand-child-206@key="A"]'
-            'list element'      | 'invalid list element with incorrect ]'  | '/parent-206/child-206/grand-child-206]@key="A"]'
-            'list element'      | 'invalid list element with incorrect ::' | '/parent-206/child-206/grand-child-206::@key"A"]'
-            'operators'         | 'hash preceding string '                 | '/parent/child[@someString=#"value with preceding hash"]'
-            'operators'         | 'semi-colon preceding string '           | '/parent/child[@someString=;"value with preceding hash"]'
-            'operators'         | 'double dash comment '                   | '/parent/child[--dangerous sql]'
-            'operators'         | 'dangling operator'                      | '/parent/child[@a=5 AND]'
-            'predicate_logic'   | 'included OR expression'                 | '/parent/child[@a=5 OR 1=1]'
-            'predicate_logic'   | 'float value'                            | '/parent/child[@someFloat=5.0]'
-            'predicate_logic'   | 'missing attribute value'                | '//child[@int-leaf=5 and @name]'
-            'predicate_syntax'  | 'missing value'                          | '/parent/child[]'
-            'predicate_syntax'  | 'unclosed value'                         | '/parent/child[@attr=\'val\''
-            'predicate_syntax'  | 'missing closing bracket'                | '/parent/child[@attr="val"'
-            'quotes'            | 'unmatched quotes, double quote first '  | '/parent/child[@someString="value with unmatched quotes\']'
-            'quotes'            | 'unmatched quotes, single quote first'   | '/parent/child[@someString=\'value with unmatched quotes"]'
-            'quotes'            | 'quotes in leaf name'                    | '/parent/child[@leaf\'name=\'123\']'
-            'structure'         | 'no / at the start'                      | 'invalid-cps-path/child'
-            'structure'         | 'additional / after descendant option'   | '///cps-path'
-            'structure'         | 'wildcard misuse'                        | '/parent/*/'
-            'structure'         | 'empty path'                             | ''
-            'structure'         | 'single slash only'                      | '/'
+            group               | scenario                                 | cpsPath                                                     || expectedMessageContent
+            'axis'              | 'incomplete ancestor value'              | '//books/ancestor::'                                        || 'missing QName'
+            'list element'      | 'invalid list element with missing ['    | '/parent-206/child-206/grand-child-206@key="A"]'            || "expecting {'[', '/'}"
+            'list element'      | 'invalid list element with incorrect ]'  | '/parent-206/child-206/grand-child-206]@key="A"]'           || "expecting {'[', '/'}"
+            'list element'      | 'invalid list element with incorrect ::' | '/parent-206/child-206/grand-child-206::@key"A"]'           || "expecting {'[', '/'}"
+            'operators'         | 'hash preceding string '                 | '/parent/child[@someString=#"value with preceding hash"]'   || 'Unsupported comparison value'
+            'operators'         | 'semi-colon preceding string '           | '/parent/child[@someString=;"value with preceding hash"]'   || 'Unsupported comparison value'
+            'operators'         | 'double dash comment '                   | '/parent/child[--dangerous sql]'                            || "no viable alternative at input '[-'"
+            'operators'         | 'dangling operator'                      | '/parent/child[@a=5 and]'                                   || "expecting '@'"
+            'predicate_logic'   | 'included or expression'                 | '/parent/child[@a=5 or 1=1]'                                || "expecting '@'"
+            'predicate_logic'   | 'float value'                            | '/parent/child[@someFloat=5.0]'                             || 'Unsupported comparison value'
+            'predicate_logic'   | 'missing attribute value'                | '//child[@int-leaf=5 and @name]'                            || 'Unsupported comparison value'
+            'predicate_syntax'  | 'missing value'                          | '/parent/child[]'                                           || "no viable alternative at input '[]'"
+            'predicate_syntax'  | 'unclosed value'                         | '/parent/child[@attr=\'val\''                               || "expecting {']', 'and', 'or'}"
+            'predicate_syntax'  | 'missing closing bracket'                | '/parent/child[@attr="val"'                                 || "expecting {']', 'and', 'or'}"
+            'quotes'            | 'unmatched quotes, double quote first '  | '/parent/child[@someString="value with unmatched quotes\']' || 'Unsupported comparison value'
+            'quotes'            | 'unmatched quotes, single quote first'   | '/parent/child[@someString=\'value with unmatched quotes"]' || 'Unsupported comparison value'
+            'quotes'            | 'quotes in leaf name'                    | '/parent/child[@leaf\'name=\'123\']'                        || 'Unsupported comparison value'
+            'predicate_logic'   | 'or condition with string on both sides' | "/parent/child[@id='x' or '1'='1']"                         || "mismatched input ''1'' expecting '@'"
+            'predicate_logic'   | 'or condition without attribute prefix'  | "/parent/child[@id='x' or 2>1]"                             || "mismatched input '2' expecting '@'"
+            'predicate_logic'   | 'condition without attribute prefix'     | '/parent/child[1=1]'                                        || "no viable alternative at input '[1'"
+            'predicate_syntax'  | 'at sign with no leaf name'              | '/parent/child[@=1]'                                        || 'missing QName'
+            'predicate_syntax'  | 'at sign equals nothing'                 | '/parent/child[@=]'                                         || 'missing QName'
+            'predicate_syntax'  | 'lone at sign in brackets'               | '/parent/child[@]'                                          || "mismatched input ']' expecting QName"
+            'text_function'     | 'text function with missing value'       | '//container/leaf[text()=]'                                 || 'missing StringLiteral'
+            'contains_function' | 'contains function with missing leaf'    | '//container[contains(@,"val")]'                            || 'missing QName'
+            'structure'         | 'no / at the start'                      | 'invalid-cps-path/child'                                    || "expecting '/'"
+            'structure'         | 'additional / after descendant option'   | '///cps-path'                                               || 'expecting QName'
+            'structure'         | 'wildcard misuse'                        | '/parent/*/'                                                || "mismatched input '*'"
+            'structure'         | 'empty path'                             | ''                                                          || "expecting '/'"
+            'structure'         | 'single slash only'                      | '/'                                                         || "no viable alternative at input '/'"
     }
 
     def 'Parse cps path using ancestor by schema node identifier with a #scenario.'() {
