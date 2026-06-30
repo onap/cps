@@ -48,6 +48,7 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 import static org.springframework.http.HttpMethod.GET
+import static org.springframework.http.HttpMethod.POST
 import static org.springframework.http.MediaType.APPLICATION_JSON
 
 @SpringBootTest(
@@ -76,6 +77,9 @@ class SecurityAuthEnabledSpec extends Specification {
     @Shared
     static RSAKey rsaKey
 
+    @Shared
+    static String validBearerToken
+
     @LocalServerPort
     int port
 
@@ -84,6 +88,7 @@ class SecurityAuthEnabledSpec extends Specification {
 
     def setupSpec() {
         rsaKey = new RSAKeyGenerator(2048).keyID('test-key').generate()
+        validBearerToken = 'Bearer ' + createSignedJwt()
         mockJwksServer = new MockWebServer()
         mockJwksServer.setDispatcher(new Dispatcher() {
             @Override
@@ -111,13 +116,85 @@ class SecurityAuthEnabledSpec extends Specification {
                     GET, new HttpEntity<>(headers), String)
         then: 'the expected status is returned'
             assert response.statusCode == expectedStatus
-        where:
-            scenario           | authorizationToken            || expectedStatus
-            'without a token'  | null                          || HttpStatus.UNAUTHORIZED
-            'with valid token' | 'Bearer ' + createSignedJwt() || HttpStatus.OK
+        where: 'token presence determines access'
+            scenario           | authorizationToken || expectedStatus
+            'without a token'  | null               || HttpStatus.UNAUTHORIZED
+            'with valid token' | validBearerToken   || HttpStatus.OK
     }
 
-    def createSignedJwt() {
+    def 'NCMP API security is enabled, request #scenario.'() {
+        when: 'a request is made to an NCMP endpoint'
+            def headers = new HttpHeaders()
+            headers.setContentType(APPLICATION_JSON)
+            if (authorizationToken != null) {
+                headers.set('Authorization', authorizationToken)
+            }
+            def response = restTemplate.exchange(
+                    new URI("http://localhost:${port}/ncmp/v1/ch/test-cm-handle"),
+                    GET, new HttpEntity<>(headers), String)
+        then: 'the expected status is returned'
+            assert response.statusCode == expectedStatus
+        where: 'token presence determines access to NCMP interface'
+            scenario           | authorizationToken || expectedStatus
+            'without a token'  | null               || HttpStatus.UNAUTHORIZED
+            'with valid token' | validBearerToken   || HttpStatus.NOT_FOUND
+    }
+
+    def 'NCMP Inventory API security is enabled, request #scenario.'() {
+        when: 'a request is made to an NCMP Inventory endpoint'
+            def headers = new HttpHeaders()
+            headers.setContentType(APPLICATION_JSON)
+            if (authorizationToken != null) {
+                headers.set('Authorization', authorizationToken)
+            }
+            def response = restTemplate.exchange(
+                    new URI("http://localhost:${port}/ncmpInventory/v1/ch/cmHandles?dmi-plugin-identifier=test"),
+                    GET, new HttpEntity<>(headers), String)
+        then: 'the expected status is returned'
+            assert response.statusCode == expectedStatus
+        where: 'token presence determines access to NCMP Inventory interface'
+            scenario           | authorizationToken || expectedStatus
+            'without a token'  | null               || HttpStatus.UNAUTHORIZED
+            'with valid token' | validBearerToken   || HttpStatus.OK
+    }
+
+    def 'ProvMnS API security is enabled, request #scenario.'() {
+        when: 'a request is made to a ProvMnS endpoint'
+            def headers = new HttpHeaders()
+            headers.setContentType(APPLICATION_JSON)
+            if (authorizationToken != null) {
+                headers.set('Authorization', authorizationToken)
+            }
+            def response = restTemplate.exchange(
+                    new URI("http://localhost:${port}/ProvMnS/v1/SubNetwork=test"),
+                    GET, new HttpEntity<>(headers), String)
+        then: 'the expected status is returned'
+            assert response.statusCode == expectedStatus
+        where: 'token presence determines access to ProvMnS interface'
+            scenario           | authorizationToken || expectedStatus
+            'without a token'  | null               || HttpStatus.UNAUTHORIZED
+            'with valid token' | validBearerToken   || HttpStatus.NOT_FOUND
+    }
+
+    def 'ProvMnS Extensions API security is enabled, request #scenario.'() {
+        when: 'a request is made to a ProvMnS Extensions endpoint'
+            def headers = new HttpHeaders()
+            headers.setContentType(APPLICATION_JSON)
+            if (authorizationToken != null) {
+                headers.set('Authorization', authorizationToken)
+            }
+            def response = restTemplate.exchange(
+                    new URI("http://localhost:${port}/prov-mns-extensions/v1alpha1/actions/SubNetwork=test/reset"),
+                    POST, new HttpEntity<>('{}', headers), String)
+        then: 'the expected status is returned'
+            assert response.statusCode == expectedStatus
+        where: 'token presence determines access to ProvMnS Extensions interface'
+            scenario           | authorizationToken || expectedStatus
+            'without a token'  | null               || HttpStatus.UNAUTHORIZED
+            'with valid token' | validBearerToken   || HttpStatus.NOT_FOUND
+    }
+
+    static def createSignedJwt() {
         def claims = new JWTClaimsSet.Builder()
                 .subject('test-user')
                 .issuer('test-issuer')
