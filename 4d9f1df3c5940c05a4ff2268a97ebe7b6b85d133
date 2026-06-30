@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26ae5eb3_474f439b",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T16:56:50Z",
+      "side": 1,
+      "message": "NB: this was no needed in the old version or is it a small improvement to have empty details instead of null?",
+      "range": {
+        "startLine": 104,
+        "startChar": 97,
+        "endLine": 104,
+        "endChar": 101
+      },
+      "revId": "4d9f1df3c5940c05a4ff2268a97ebe7b6b85d133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43e58462_5d2a50b6",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T16:56:50Z",
+      "side": 1,
+      "message": "I was expecting a few of these...\nI assum you stil have 100% coverage otehrwise build should break...",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 5
+      },
+      "revId": "4d9f1df3c5940c05a4ff2268a97ebe7b6b85d133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
