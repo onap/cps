@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d5c89e9_aecd4d98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-06-30T06:47:06Z",
+      "side": 1,
+      "message": "Almost all comments resolved. Need feedback on some comments. Only critical comment open is https://gerrit.onap.org/r/c/cps/+/144161/comment/37ee9099_b3a9b15d/",
+      "revId": "a2db1a138fed3d8adb7c08ea3a7c3009485e91b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
