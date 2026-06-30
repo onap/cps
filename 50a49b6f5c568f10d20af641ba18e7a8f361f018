@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3385a4f_b0329ea0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-06-30T17:38:32Z",
+      "side": 1,
+      "message": "just changed to uppercase :)",
+      "range": {
+        "startLine": 197,
+        "startChar": 47,
+        "endLine": 197,
+        "endChar": 48
+      },
+      "revId": "50a49b6f5c568f10d20af641ba18e7a8f361f018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
