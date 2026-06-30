@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17c3255e_bcc88bda",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiWebClientsConfigurationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-30T11:56:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "888ebd55_0b1db117",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 33
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fed81e7_cc1de3d2",
@@ -77,6 +101,30 @@
       "writtenOn": "2026-06-30T07:31:31Z",
       "side": 1,
       "message": "please set this as high as possible, i.e. run the report and set the current percentage i expect 0.99 or 0.98",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 25
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9742ac22_565140f9",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-30T11:56:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8fed81e7_cc1de3d2",
       "range": {
         "startLine": 40,
         "startChar": 22,
@@ -146,6 +194,54 @@
       "writtenOn": "2026-06-30T07:31:31Z",
       "side": 1,
       "message": "name conflicts interface: ChoiceNode\neiteh change class or Chnage name",
+      "range": {
+        "startLine": 217,
+        "startChar": 22,
+        "endLine": 217,
+        "endChar": 39
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f28e030_21f62f43",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-30T11:56:48Z",
+      "side": 1,
+      "message": "yes mixinNode is deprecated and ChoiceNode is the correct replacement for this.",
+      "parentUuid": "880a62b1_9930d1f7",
+      "range": {
+        "startLine": 217,
+        "startChar": 70,
+        "endLine": 217,
+        "endChar": 80
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53d780dc_0d87adab",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-06-30T11:56:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "32d0bddf_764dd6b1",
       "range": {
         "startLine": 217,
         "startChar": 22,
