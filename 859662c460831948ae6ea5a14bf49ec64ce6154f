@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c575b421_575fd907",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T07:31:31Z",
+      "side": 1,
+      "message": "some small improvements but mainly need to set the code coverage as high as possible in cps-service to prevent further degradation...",
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f03d709_ba168f87",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T07:31:31Z",
+      "side": 1,
+      "message": "Behavior seems inconsistent with next one but this could be a legacy issue...\nMaybe create a ticket to align the behavior (I think both cases should result in a exception ? Can discuss during Grooming (shoud be clear from original requirement what should happen  in the E2E usecase ie what reponse from REST)",
+      "range": {
+        "startLine": 252,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 5
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "888ebd55_0b1db117",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiWebClientsConfigurationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T07:31:31Z",
+      "side": 1,
+      "message": "NB: not needed because of line below",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 33
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fed81e7_cc1de3d2",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T07:31:31Z",
+      "side": 1,
+      "message": "please set this as high as possible, i.e. run the report and set the current percentage i expect 0.99 or 0.98",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 25
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2491bd7e_c11a0754",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T07:31:31Z",
+      "side": 1,
+      "message": "much better!",
+      "range": {
+        "startLine": 205,
+        "startChar": 8,
+        "endLine": 205,
+        "endChar": 29
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "880a62b1_9930d1f7",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T07:31:31Z",
+      "side": 1,
+      "message": "different class then before (was that deprecated?), you sure this is teh correct replacement?",
+      "range": {
+        "startLine": 217,
+        "startChar": 70,
+        "endLine": 217,
+        "endChar": 80
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32d0bddf_764dd6b1",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T07:31:31Z",
+      "side": 1,
+      "message": "name conflicts interface: ChoiceNode\neiteh change class or Chnage name",
+      "range": {
+        "startLine": 217,
+        "startChar": 22,
+        "endLine": 217,
+        "endChar": 39
+      },
+      "revId": "859662c460831948ae6ea5a14bf49ec64ce6154f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

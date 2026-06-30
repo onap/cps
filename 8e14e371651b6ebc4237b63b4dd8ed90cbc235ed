@@ -65,6 +65,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b5b9215_c445f63d",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T07:31:31Z",
+      "side": 1,
+      "message": "Restore 1.00\napply specific code coverage limits in each affect module",
+      "range": {
+        "startLine": 69,
+        "startChar": 26,
+        "endLine": 69,
+        "endChar": 31
+      },
+      "revId": "8e14e371651b6ebc4237b63b4dd8ed90cbc235ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "87be7e59_21fffe9c",
