@@ -100,7 +100,7 @@ public class CpsPathUtil {
             @Override
             public void syntaxError(final Recognizer<?, ?> recognizer, final Object offendingSymbol, final int line,
                                     final int charPositionInLine, final String msg, final RecognitionException e) {
-                throw new PathParsingException("failed to parse at line " + line + " due to " + msg,
+                throw new PathParsingException("Failed to parse at line " + line + " due to " + msg,
                         e == null ? "" : e.getMessage());
             }
         });
