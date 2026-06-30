@@ -195,8 +195,8 @@ class CpsPathQuerySpec extends Specification {
             'operators'         | 'hash preceding string '                 | '/parent/child[@someString=#"value with preceding hash"]'
             'operators'         | 'semi-colon preceding string '           | '/parent/child[@someString=;"value with preceding hash"]'
             'operators'         | 'double dash comment '                   | '/parent/child[--dangerous sql]'
-            'operators'         | 'dangling operator'                      | '/parent/child[@a=5 AND]'
-            'predicate_logic'   | 'included OR expression'                 | '/parent/child[@a=5 OR 1=1]'
+            'operators'         | 'dangling operator'                      | '/parent/child[@a=5 and]'
+            'predicate_logic'   | 'included or expression'                 | '/parent/child[@a=5 or 1=1]'
             'predicate_logic'   | 'float value'                            | '/parent/child[@someFloat=5.0]'
             'predicate_logic'   | 'missing attribute value'                | '//child[@int-leaf=5 and @name]'
             'predicate_syntax'  | 'missing value'                          | '/parent/child[]'
@@ -205,6 +205,15 @@ class CpsPathQuerySpec extends Specification {
             'quotes'            | 'unmatched quotes, double quote first '  | '/parent/child[@someString="value with unmatched quotes\']'
             'quotes'            | 'unmatched quotes, single quote first'   | '/parent/child[@someString=\'value with unmatched quotes"]'
             'quotes'            | 'quotes in leaf name'                    | '/parent/child[@leaf\'name=\'123\']'
+            'predicate_logic'   | 'or condition with string on both sides' | "/parent/child[@id='x' or '1'='1']"
+            'predicate_logic'   | 'or condition with integer on both sides'| "/parent/child[@id='x' or 1=1]"
+            'predicate_logic'   | 'or condition without attribute prefix'  | "/parent/child[@id='x' or 2>1]"
+            'predicate_logic'   | 'condition without attribute prefix'     | '/parent/child[1=1]'
+            'predicate_syntax'  | 'at sign with no leaf name'              | '/parent/child[@=1]'
+            'predicate_syntax'  | 'at sign equals nothing'                 | '/parent/child[@=]'
+            'predicate_syntax'  | 'lone at sign in brackets'               | '/parent/child[@]'
+            'text_function'     | 'text function with missing value'       | '//container/leaf[text()=]'
+            'contains_function' | 'contains function with missing leaf'    | '//container[contains(@,"val")]'
             'structure'         | 'no / at the start'                      | 'invalid-cps-path/child'
             'structure'         | 'additional / after descendant option'   | '///cps-path'
             'structure'         | 'wildcard misuse'                        | '/parent/*/'

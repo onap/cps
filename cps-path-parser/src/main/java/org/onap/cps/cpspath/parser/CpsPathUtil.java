@@ -106,7 +106,13 @@ public class CpsPathUtil {
         });
         final CpsPathBuilder cpsPathBuilder = new CpsPathBuilder();
         cpsPathParser.addParseListener(cpsPathBuilder);
-        cpsPathParser.cpsPath();
+        try {
+            cpsPathParser.cpsPath();
+        } catch (final PathParsingException pathParsingException) {
+            throw pathParsingException;
+        } catch (final Exception exception) {
+            throw new PathParsingException("failed to parse cps path expression", exception.toString());
+        }
         return cpsPathBuilder;
     }
 }

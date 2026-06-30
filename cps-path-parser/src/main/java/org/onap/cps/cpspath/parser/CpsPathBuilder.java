@@ -91,6 +91,9 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     @Override
     public void exitLeafCondition(final LeafConditionContext ctx) {
+        if (ctx.leafName() == null || ctx.comparativeOperators() == null) {
+            throw new PathParsingException("Incomplete leaf condition in expression: " + ctx.getText());
+        }
         final String leafName = ctx.leafName().getText();
         final String operator = ctx.comparativeOperators().getText();
         final Object comparisonValue;
