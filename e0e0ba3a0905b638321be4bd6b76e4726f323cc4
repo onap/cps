@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62ade48c_64ee9c0f",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T14:07:19Z",
+      "side": 1,
+      "message": "thsi is stil hiding the reals syntax error and replacing it with a generic parsing exception without  details abut why the syntax check faile.\nSimply wrap the logic below inif not nulll .. and not null ... then the syntax areas should re-appear",
+      "range": {
+        "startLine": 94,
+        "startChar": 1,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "e0e0ba3a0905b638321be4bd6b76e4726f323cc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e839a281_e75ae7d8",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T14:07:19Z",
+      "side": 1,
+      "message": "dont do this, it hide potential otreh problems ie oterh syntax error taht are hidden...",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 9
+      },
+      "revId": "e0e0ba3a0905b638321be4bd6b76e4726f323cc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bf4bf70_b67f7881",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T14:07:19Z",
+      "side": 1,
+      "message": "NB: would be nice to have || expectedInMessage\nand add some key words for each exception showing the user gets some additional useful(?) info about thr syntax error we have seen for 1\u003d1 that is includes something like \"epxpecting @\"",
+      "range": {
+        "startLine": 190,
+        "startChar": 77,
+        "endLine": 190,
+        "endChar": 84
+      },
+      "revId": "e0e0ba3a0905b638321be4bd6b76e4726f323cc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e86f669_c6868be0",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T14:07:19Z",
+      "side": 1,
+      "message": "duplicate of line #199, remove the one on 199",
+      "range": {
+        "startLine": 209,
+        "startChar": 12,
+        "endLine": 209,
+        "endChar": 108
+      },
+      "revId": "e0e0ba3a0905b638321be4bd6b76e4726f323cc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89e66f5c_f8e53c3f",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-06-30T14:07:19Z",
+      "side": 1,
+      "message": "great test.",
+      "range": {
+        "startLine": 208,
+        "startChar": 3,
+        "endLine": 216,
+        "endChar": 109
+      },
+      "revId": "e0e0ba3a0905b638321be4bd6b76e4726f323cc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
