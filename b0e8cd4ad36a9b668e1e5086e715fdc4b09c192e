@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "340dd14b_96f5d18a",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-01T15:03:33Z",
+      "side": 1,
+      "message": "this is here the working supplier for the demo. has the RTD explains any installer will need to provide their own URL",
+      "parentUuid": "3bf7132c_f14012f6",
+      "range": {
+        "startLine": 115,
+        "startChar": 59,
+        "endLine": 115,
+        "endChar": 140
+      },
+      "revId": "b0e8cd4ad36a9b668e1e5086e715fdc4b09c192e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e102154_9bc5b7af",
         "filename": "integration-test-with-auth/src/test/groovy/org/onap/cps/security/SecurityAuthEnabledSpec.groovy",
         "patchSetId": 4
@@ -60,6 +84,30 @@
       "writtenOn": "2026-07-01T14:51:54Z",
       "side": 1,
       "message": "is this \u0027not found\u0027 because its just not set on the test?",
+      "range": {
+        "startLine": 210,
+        "startChar": 7,
+        "endLine": 211,
+        "endChar": 62
+      },
+      "revId": "b0e8cd4ad36a9b668e1e5086e715fdc4b09c192e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c3112c7_3cc296f1",
+        "filename": "integration-test-with-auth/src/test/groovy/org/onap/cps/security/SecurityAuthEnabledSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-01T15:03:33Z",
+      "side": 1,
+      "message": "yes look at the alternate ID at #199: /SubNetwork\u003dUnknown/ManagedElement\u003dUnknown\u0027\nThis is an access only test, the fact it returns not found means access is OK, no need for a real positive test.\nI could change it to rteun 200 but not sure if its worth the effort",
+      "parentUuid": "8e102154_9bc5b7af",
       "range": {
         "startLine": 210,
         "startChar": 7,
