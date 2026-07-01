@@ -33,6 +33,161 @@
       "message": "code coverage looks to need a little work",
       "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eefecd89_00fbb02e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-01T07:32:08Z",
+      "side": 1,
+      "message": "looking good, just a minor issue around retuning or throwing the converted exception. also some naming suggestions",
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2edcc12e_394b377f",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-01T07:32:08Z",
+      "side": 1,
+      "message": "the method already does the thowing, see also my comment in teh utis class",
+      "range": {
+        "startLine": 98,
+        "startChar": 12,
+        "endLine": 98,
+        "endChar": 18
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a44b00e_560fd3d6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/CompletionExceptionUtils.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-01T07:32:08Z",
+      "side": 1,
+      "message": "can be more specific eg CompletionExceptionConverter",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 38
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4b67a9f_99a0c60b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/CompletionExceptionUtils.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-01T07:32:08Z",
+      "side": 1,
+      "message": "NB: a more appropriate verb would be \u0027convert\u0027",
+      "range": {
+        "startLine": 43,
+        "startChar": 35,
+        "endLine": 43,
+        "endChar": 41
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dd55e7e_63662ab8",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/CompletionExceptionUtils.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-01T07:32:08Z",
+      "side": 1,
+      "message": "should be void, it always throws an exception!\nAlternatively you can make it return a exception in both cases and make the caller throw it",
+      "range": {
+        "startLine": 43,
+        "startChar": 18,
+        "endLine": 43,
+        "endChar": 35
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df161699_abe4e318",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-01T07:32:08Z",
+      "side": 1,
+      "message": "as before: the method already does the throwing",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 18
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b2eeaf0_dec38876",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/GroupedDeltaReportGenerator.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-01T07:32:08Z",
+      "side": 1,
+      "message": "wont repeat :-)",
+      "range": {
+        "startLine": 83,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 18
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
