@@ -33,6 +33,92 @@
       "message": "all, good can you just confirm you create a Jira for that inconsistent behavior when parsing json?",
       "revId": "582b24e1f86502478ad5f3691d1b2208a8aa8aee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92988cb7_3532f772",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-01T08:37:36Z",
+      "side": 1,
+      "message": "minor comments but all good",
+      "revId": "582b24e1f86502478ad5f3691d1b2208a8aa8aee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4612aaa5_c5e8cb00",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-01T08:37:36Z",
+      "side": 1,
+      "message": "nb: unparsable*",
+      "range": {
+        "startLine": 124,
+        "startChar": 31,
+        "endLine": 124,
+        "endChar": 44
+      },
+      "revId": "582b24e1f86502478ad5f3691d1b2208a8aa8aee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2599177_83a7b16f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-01T08:37:36Z",
+      "side": 1,
+      "message": "not in this test, can this be checked?",
+      "range": {
+        "startLine": 166,
+        "startChar": 54,
+        "endLine": 166,
+        "endChar": 74
+      },
+      "revId": "582b24e1f86502478ad5f3691d1b2208a8aa8aee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d471972_c9c6d274",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-01T08:37:36Z",
+      "side": 1,
+      "message": "nb: just sourceInfo",
+      "range": {
+        "startLine": 299,
+        "startChar": 29,
+        "endLine": 299,
+        "endChar": 45
+      },
+      "revId": "582b24e1f86502478ad5f3691d1b2208a8aa8aee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
