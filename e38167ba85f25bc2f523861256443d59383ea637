@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "978721c1_5638297a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-01T13:46:20Z",
+      "side": 1,
+      "message": "As per your suggestion we have moved logic from controller to service layer for that we have created two service method one for pagination and second for filtration over here calling these two methods from controller layer based on pagination flag if pagination flag is true then below method will be call\n  1.getAnchorsPagination\ninside this two method is called one for pagination without filtration and second  for pagination with filtration.\n\nif pagination flag is false then below method will be call\n  2.getAnchorsWithOrWithoutSchemaSet\ninside this two method is called one for filtration and second for without  filtration",
+      "parentUuid": "4dc62510_ed2773d4",
+      "range": {
+        "startLine": 273,
+        "startChar": 8,
+        "endLine": 284,
+        "endChar": 9
+      },
+      "revId": "e38167ba85f25bc2f523861256443d59383ea637",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5063b76a_51e0e1e8",
@@ -41,6 +65,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7a66446_c17ba731",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-01T13:46:20Z",
+      "side": 1,
+      "message": "I have removed hardcoded request parameters from request uri",
+      "parentUuid": "5063b76a_51e0e1e8",
+      "revId": "e38167ba85f25bc2f523861256443d59383ea637",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7ef470c_e18c9026",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-06-26T07:13:04Z",
       "side": 1,
       "message": "This repository-layer change introduces new direct DB interaction but lacks supporting design/impact documentation. Please add an in-depth analysis (query behavior, performance implications, and migration/compatibility considerations) this was not presented to community and stakeholders so there can be some inputs and concerns regarding this.",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 8
+      },
+      "revId": "e38167ba85f25bc2f523861256443d59383ea637",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c9ce050_8c73cb12",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-01T13:46:20Z",
+      "side": 1,
+      "message": "As per this comment i have updated documentation in wiki page please see.",
+      "parentUuid": "b7ef470c_e18c9026",
       "range": {
         "startLine": 50,
         "startChar": 4,
