@@ -45,6 +45,29 @@
       },
       "revId": "b0e8cd4ad36a9b668e1e5086e715fdc4b09c192e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e102154_9bc5b7af",
+        "filename": "integration-test-with-auth/src/test/groovy/org/onap/cps/security/SecurityAuthEnabledSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-01T14:51:54Z",
+      "side": 1,
+      "message": "is this \u0027not found\u0027 because its just not set on the test?",
+      "range": {
+        "startLine": 210,
+        "startChar": 7,
+        "endLine": 211,
+        "endChar": 62
+      },
+      "revId": "b0e8cd4ad36a9b668e1e5086e715fdc4b09c192e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
