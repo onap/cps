@@ -91,17 +91,20 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     @Override
     public void exitLeafCondition(final LeafConditionContext ctx) {
-        final String leafName = ctx.leafName().getText();
-        final String operator = ctx.comparativeOperators().getText();
-        final Object comparisonValue;
-        if (ctx.IntegerLiteral() != null) {
-            comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
-        } else if (ctx.StringLiteral() != null) {
-            comparisonValue = unwrapQuotedString(ctx.StringLiteral().getText());
-        } else {
-            throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
+        if (ctx.leafName() != null && ctx.comparativeOperators() != null) {
+            final String leafName = ctx.leafName().getText();
+            final String operator = ctx.comparativeOperators().getText();
+            final Object comparisonValue;
+            if (ctx.IntegerLiteral() != null) {
+                comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
+            } else if (ctx.StringLiteral() != null) {
+                comparisonValue = unwrapQuotedString(ctx.StringLiteral().getText());
+            } else {
+                throw new PathParsingException(
+                        "Unsupported comparison value encountered in expression:" + ctx.getText(), "");
+            }
+            leafConditions.add(new CpsPathQuery.LeafCondition(leafName, operator, comparisonValue));
         }
-        leafConditions.add(new CpsPathQuery.LeafCondition(leafName, operator, comparisonValue));
     }
 
     @Override
@@ -162,14 +165,18 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     @Override
     public void exitTextFunctionCondition(final TextFunctionConditionContext ctx) {
-        cpsPathQuery.setTextFunctionConditionLeafName(ctx.leafName().getText());
-        cpsPathQuery.setTextFunctionConditionValue(unwrapQuotedString(ctx.StringLiteral().getText()));
+        if (ctx.leafName() != null && ctx.StringLiteral() != null) {
+            cpsPathQuery.setTextFunctionConditionLeafName(ctx.leafName().getText());
+            cpsPathQuery.setTextFunctionConditionValue(unwrapQuotedString(ctx.StringLiteral().getText()));
+        }
     }
 
     @Override
     public void exitContainsFunctionCondition(final CpsPathParser.ContainsFunctionConditionContext ctx) {
-        cpsPathQuery.setContainsFunctionConditionLeafName(ctx.leafName().getText());
-        cpsPathQuery.setContainsFunctionConditionValue(unwrapQuotedString(ctx.StringLiteral().getText()));
+        if (ctx.leafName() != null && ctx.StringLiteral() != null) {
+            cpsPathQuery.setContainsFunctionConditionLeafName(ctx.leafName().getText());
+            cpsPathQuery.setContainsFunctionConditionValue(unwrapQuotedString(ctx.StringLiteral().getText()));
+        }
     }
 
     @Override

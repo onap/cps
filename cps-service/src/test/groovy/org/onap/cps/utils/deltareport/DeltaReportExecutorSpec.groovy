@@ -194,7 +194,7 @@ class DeltaReportExecutorSpec extends Specification {
         then: 'expected exception is thrown'
             def thrownException = thrown(DataValidationException)
             assert thrownException.message == 'Error while parsing xpath expression \'/invalid[\'.'
-            assert thrownException.details == 'failed to parse at line 1 due to no viable alternative at input \'[\''
+            assert thrownException.details == 'Failed to parse at line 1 due to no viable alternative at input \'[\''
     }
 
     def 'Apply delta report with an unsupported action'() {
