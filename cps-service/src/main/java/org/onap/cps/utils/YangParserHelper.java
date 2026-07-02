@@ -43,6 +43,11 @@ import org.onap.cps.cpspath.parser.PathParsingException;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
+import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild;
+import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
+import org.opendaylight.yangtools.yang.data.api.schema.MapEntryNode;
+import org.opendaylight.yangtools.yang.data.api.schema.MapNode;
+import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.api.schema.builder.DataContainerNodeBuilder;
 import org.opendaylight.yangtools.yang.data.api.schema.stream.NormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactory;
@@ -153,9 +158,11 @@ public class YangParserHelper {
         final EffectiveModelContext effectiveModelContext = (EffectiveModelContext) schemaContext;
         final XmlParserStream xmlParserStream;
         final String preparedXmlContent;
+        final boolean wasWrapped;
         try {
             if (parentNodeXpath.isEmpty()) {
                 preparedXmlContent = XmlUtils.parsedXmlContent(xmlData, schemaContext);
+                wasWrapped = !preparedXmlContent.equals(xmlData);
                 xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveModelContext);
             } else {
                 final DataSchemaNode parentSchemaNode =
@@ -167,6 +174,7 @@ public class YangParserHelper {
                     SchemaInferenceStack.of(effectiveModelContext,
                         SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();
                 preparedXmlContent = XmlUtils.parsedXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
+                wasWrapped = true;
                 xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveStatementInference);
             }
 
@@ -181,7 +189,29 @@ public class YangParserHelper {
                     DATA_VALIDATION_FAILURE_MESSAGE, "Failed to parse xml data: " + exception.getMessage(), exception);
         }
 
-        return dataContainerNodeBuilder.build();
+        final ContainerNode parsedContainer = dataContainerNodeBuilder.build();
+        return wasWrapped ? unwrapFirstChild(parsedContainer) : parsedContainer;
+    }
+
+    private static ContainerNode unwrapFirstChild(final ContainerNode container) {
+        if (container.body().isEmpty()) {
+            return container;
+        }
+        final NormalizedNode firstChild = container.body().iterator().next();
+        final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> builder =
+                ImmutableNodes.builderFactory().newContainerBuilder()
+                        .withNodeIdentifier(container.name());
+        if (firstChild instanceof MapNode mapNode) {
+            final MapEntryNode mapEntry = mapNode.body().iterator().next();
+            for (final DataContainerChild child : mapEntry.body()) {
+                builder.withChild(child);
+            }
+        } else if (firstChild instanceof DataContainerNode dataContainerNode) {
+            for (final DataContainerChild child : dataContainerNode.body()) {
+                builder.withChild(child);
+            }
+        }
+        return builder.build();
     }
 
     @SuppressWarnings("unchecked")
