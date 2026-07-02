@@ -22,11 +22,15 @@
 package org.onap.cps.impl
 
 import org.onap.cps.TestUtils
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DataMapUtils
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import org.opendaylight.yangtools.yang.common.QName
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier
+import org.opendaylight.yangtools.yang.data.spi.node.ImmutableNodes
 import spock.lang.Specification
 
 class DataNodeBuilderSpec extends Specification {
@@ -177,6 +181,21 @@ class DataNodeBuilderSpec extends Specification {
     def 'Converting ContainerNode to a Collection with #scenario.'() {
         expect: 'converting null to a collection returns an empty collection'
             assert objectUnderTest.withContainerNode(null).buildCollection().isEmpty()
+    }
+
+    def 'Converting ContainerNode with an unsupported normalized node type.'() {
+        given: 'a container node with an unsupported child node type (unkeyed list)'
+            def unsupportedNode = ImmutableNodes.builderFactory().newUnkeyedListBuilder()
+                .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(QName.create('my-namespace', 'my-unkeyed-list')))
+                .build()
+            def containerNode = ImmutableNodes.builderFactory().newContainerBuilder()
+                .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(QName.create('my-namespace', 'my-container')))
+                .withChild(unsupportedNode)
+                .build()
+        when: 'attempt to convert it'
+            objectUnderTest.withContainerNode(containerNode).build()
+        then: 'a data validation exception is thrown as the unsupported node is skipped leaving no data nodes'
+            thrown(DataValidationException)
     }
 
     def 'Build datanode from attributes.'() {

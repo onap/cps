@@ -34,7 +34,6 @@ import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.TransformerException;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.exceptions.DataValidationException;
@@ -43,6 +42,11 @@ import org.onap.cps.cpspath.parser.PathParsingException;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
+import org.opendaylight.yangtools.yang.data.api.schema.DataContainerChild;
+import org.opendaylight.yangtools.yang.data.api.schema.DataContainerNode;
+import org.opendaylight.yangtools.yang.data.api.schema.MapEntryNode;
+import org.opendaylight.yangtools.yang.data.api.schema.MapNode;
+import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode;
 import org.opendaylight.yangtools.yang.data.api.schema.builder.DataContainerNodeBuilder;
 import org.opendaylight.yangtools.yang.data.api.schema.stream.NormalizedNodeStreamWriter;
 import org.opendaylight.yangtools.yang.data.codec.gson.JSONCodecFactory;
@@ -136,52 +140,84 @@ public class YangParserHelper {
         return dataContainerNodeBuilder.build();
     }
 
-    @SuppressFBWarnings(value = "DCN_NULLPOINTER_EXCEPTION", justification = "Problem originates in 3PP code")
     private ContainerNode parseXmlData(final String xmlData,
                                        final SchemaContext schemaContext,
                                        final String parentNodeXpath) {
-        final XMLInputFactory factory = XMLInputFactory.newInstance();
-        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
-        final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> dataContainerNodeBuilder =
-                ImmutableNodes.builderFactory().newContainerBuilder()
-                        .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(
-                            QName.create(DATA_ROOT_NODE_NAMESPACE, DATA_ROOT_NODE_TAG_NAME)
-                        ));
-        final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
-                .from(dataContainerNodeBuilder);
+        final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> dataRootBuilder =
+                newDataRootBuilder();
+        final NormalizedNodeStreamWriter writer = ImmutableNormalizedNodeStreamWriter.from(dataRootBuilder);
+        final boolean hasParent = !parentNodeXpath.isEmpty();
+        final String preparedXml = prepareXml(xmlData, schemaContext, parentNodeXpath);
+        final XmlParserStream xmlParserStream = hasParent
+                ? XmlParserStream.create(writer, getEffectiveStatementInference(schemaContext, parentNodeXpath))
+                : XmlParserStream.create(writer, (EffectiveModelContext) schemaContext);
+        parseXmlIntoWriter(preparedXml, xmlParserStream);
+        final ContainerNode parsedXml = dataRootBuilder.build();
+        final boolean wrapperAdded = !preparedXml.equals(xmlData);
+        return (hasParent || wrapperAdded) ? removeWrappedRootNode(parsedXml) : parsedXml;
+    }
 
-        final EffectiveModelContext effectiveModelContext = (EffectiveModelContext) schemaContext;
-        final XmlParserStream xmlParserStream;
-        final String preparedXmlContent;
+    private static String prepareXml(final String xmlData,
+                                     final SchemaContext schemaContext,
+                                     final String parentNodeXpath) {
         try {
             if (parentNodeXpath.isEmpty()) {
-                preparedXmlContent = XmlUtils.parsedXmlContent(xmlData, schemaContext);
-                xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveModelContext);
-            } else {
-                final DataSchemaNode parentSchemaNode =
+                return XmlUtils.parsedXmlContent(xmlData, schemaContext);
+            }
+            final DataSchemaNode parentSchemaNode =
                     (DataSchemaNode) getDataSchemaNodeAndIdentifiersByXpath(parentNodeXpath, schemaContext)
-                        .get("dataSchemaNode");
-                final Collection<QName> dataSchemaNodeIdentifiers =
-                    getDataSchemaNodeIdentifiers(schemaContext, parentNodeXpath);
-                final EffectiveStatementInference effectiveStatementInference =
-                    SchemaInferenceStack.of(effectiveModelContext,
-                        SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();
-                preparedXmlContent = XmlUtils.parsedXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
-                xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveStatementInference);
-            }
-
-            try (xmlParserStream;
-                 StringReader stringReader = new StringReader(preparedXmlContent)) {
-                final XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(stringReader);
-                xmlParserStream.parse(xmlStreamReader);
-            }
-        } catch (final XMLStreamException | IOException | SAXException | NullPointerException
-                       | ParserConfigurationException | TransformerException exception) {
+                            .get("dataSchemaNode");
+            return XmlUtils.parsedXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
+        } catch (final IOException | ParserConfigurationException | TransformerException | SAXException exception) {
             throw new DataValidationException(
                     DATA_VALIDATION_FAILURE_MESSAGE, "Failed to parse xml data: " + exception.getMessage(), exception);
         }
+    }
 
-        return dataContainerNodeBuilder.build();
+    private static EffectiveStatementInference getEffectiveStatementInference(final SchemaContext schemaContext,
+                                                                              final String parentNodeXpath) {
+        return SchemaInferenceStack.of((EffectiveModelContext) schemaContext,
+                SchemaNodeIdentifier.Absolute.of(getDataSchemaNodeIdentifiers(schemaContext, parentNodeXpath)))
+                .toInference();
+    }
+
+    @SuppressFBWarnings(value = "DCN_NULLPOINTER_EXCEPTION", justification = "Problem originates in 3PP code")
+    private static void parseXmlIntoWriter(final String xml, final XmlParserStream xmlParserStream) {
+        final XMLInputFactory factory = XMLInputFactory.newInstance();
+        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        try (xmlParserStream; StringReader stringReader = new StringReader(xml)) {
+            xmlParserStream.parse(factory.createXMLStreamReader(stringReader));
+        } catch (final XMLStreamException | IOException | NullPointerException exception) {
+            throw new DataValidationException(
+                    DATA_VALIDATION_FAILURE_MESSAGE, "Failed to parse xml data: " + exception.getMessage(), exception);
+        }
+    }
+
+    private static DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> newDataRootBuilder() {
+        return ImmutableNodes.builderFactory().newContainerBuilder()
+                .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(
+                        QName.create(DATA_ROOT_NODE_NAMESPACE, DATA_ROOT_NODE_TAG_NAME)));
+    }
+
+    private static ContainerNode removeWrappedRootNode(final ContainerNode container) {
+        if (container.body().isEmpty()) {
+            return container;
+        }
+        final NormalizedNode firstChildNode = container.body().iterator().next();
+        final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> builder =
+                ImmutableNodes.builderFactory().newContainerBuilder()
+                        .withNodeIdentifier(container.name());
+        if (firstChildNode instanceof MapNode mapNode) {
+            final MapEntryNode mapEntry = mapNode.body().iterator().next();
+            for (final DataContainerChild dataContainerChild : mapEntry.body()) {
+                builder.withChild(dataContainerChild);
+            }
+        } else if (firstChildNode instanceof DataContainerNode dataContainerNode) {
+            for (final DataContainerChild dataContainerChild : dataContainerNode.body()) {
+                builder.withChild(dataContainerChild);
+            }
+        }
+        return builder.build();
     }
 
     @SuppressWarnings("unchecked")
