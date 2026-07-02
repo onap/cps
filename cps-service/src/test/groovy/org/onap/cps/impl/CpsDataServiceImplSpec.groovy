@@ -186,7 +186,7 @@ class CpsDataServiceImplSpec extends Specification {
             scenario    | data                                                                                                                        | contentType      || expectedSize | expectedXpaths
             'JSON data' | '{"branch": [{"name": "A"}, {"name": "B"}]}'                                                                                | ContentType.JSON || 2            | ['/test-tree/branch[@name=\'A\']', '/test-tree/branch[@name=\'B\']']
             // TODO CPS-3257: XML support needs fixing for latest YangTools version
-            // 'XML data'  | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch><branch><name>B</name></branch></test-tree>' | ContentType.XML  || 2            | ['/test-tree/branch[@name=\'A\']', '/test-tree/branch[@name=\'B\']']
+            'XML data'  | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch><branch><name>B</name></branch></test-tree>' | ContentType.XML  || 2            | ['/test-tree/branch[@name=\'A\']', '/test-tree/branch[@name=\'B\']']
 
     }
 
@@ -242,7 +242,7 @@ class CpsDataServiceImplSpec extends Specification {
             'JSON content: top level node' | '/'             | '{"test-tree": {"branch": []}}'      || '/test-tree'                        | ContentType.JSON
             'JSON content: level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'      || '/test-tree/branch[@name=\'Name\']' | ContentType.JSON
             // TODO CPS-3257: XML support needs fixing for latest YangTools version
-            // 'XML  content: level 2 node'   | '/test-tree'    | '<branch><name>Name</name></branch>' || '/test-tree/branch[@name=\'Name\']' | ContentType.XML
+            'XML  content: level 2 node'   | '/test-tree'    | '<branch><name>Name</name></branch>' || '/test-tree/branch[@name=\'Name\']' | ContentType.XML
     }
 
     def 'Update list-element data node with : #scenario.'() {
