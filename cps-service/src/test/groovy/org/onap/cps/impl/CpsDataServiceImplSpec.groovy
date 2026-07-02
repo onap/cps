@@ -333,7 +333,6 @@ class CpsDataServiceImplSpec extends Specification {
             'XML data'  | ContentType.XML  | '<nest><name>nestName</name></nest>'
     }
 
-    @Ignore('CPS-3257: XML support needs fixing for latest YangTools version')
     def 'Replace data node using singular XML data node: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -367,7 +366,6 @@ class CpsDataServiceImplSpec extends Specification {
             'json list'      | ['/test-tree' : '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}']                                                  || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
-    @Ignore('CPS-3257: XML support needs fixing for latest YangTools version')
     def 'Replace data node using multiple XML data nodes: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -417,7 +415,6 @@ class CpsDataServiceImplSpec extends Specification {
             2 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
-    @Ignore('CPS-3257: XML support needs fixing for latest YangTools version')
     def 'Replace list content data fragment XML under parent node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
