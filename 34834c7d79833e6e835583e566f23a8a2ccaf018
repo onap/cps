@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42f74986_d7f281e3",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-02T14:40:11Z",
+      "side": 1,
+      "message": "If i remove throw it will give compile time error saying \"missing return statement\" for that i have made return exception in the converter class and throwing from the caller",
+      "parentUuid": "2edcc12e_394b377f",
+      "range": {
+        "startLine": 98,
+        "startChar": 12,
+        "endLine": 98,
+        "endChar": 18
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a44b00e_560fd3d6",
@@ -88,6 +112,30 @@
       "writtenOn": "2026-07-01T07:32:08Z",
       "side": 1,
       "message": "can be more specific eg CompletionExceptionConverter",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 38
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80c6108c_117757d7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/CompletionExceptionUtils.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-02T14:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a44b00e_560fd3d6",
       "range": {
         "startLine": 29,
         "startChar": 13,
@@ -144,6 +192,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24761cf7_075cbf70",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/CompletionExceptionUtils.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-02T14:40:11Z",
+      "side": 1,
+      "message": "I have made return exception instead of throw in both cases and throwing from the caller",
+      "parentUuid": "6dd55e7e_63662ab8",
+      "range": {
+        "startLine": 43,
+        "startChar": 18,
+        "endLine": 43,
+        "endChar": 35
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3c9b6b5_113e750d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/CompletionExceptionUtils.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-02T14:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4b67a9f_99a0c60b",
+      "range": {
+        "startLine": 43,
+        "startChar": 35,
+        "endLine": 43,
+        "endChar": 41
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df161699_abe4e318",
@@ -167,6 +263,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52aaa93_c450e84d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-02T14:40:11Z",
+      "side": 1,
+      "message": "If i remove throw it will give compile time error saying \"missing return statement for this i have made return exception in the converter class and throwing from the caller",
+      "parentUuid": "df161699_abe4e318",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 18
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b2eeaf0_dec38876",
@@ -180,6 +300,30 @@
       "writtenOn": "2026-07-01T07:32:08Z",
       "side": 1,
       "message": "wont repeat :-)",
+      "range": {
+        "startLine": 83,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 18
+      },
+      "revId": "34834c7d79833e6e835583e566f23a8a2ccaf018",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1428f89_634cb60e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/GroupedDeltaReportGenerator.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-02T14:40:11Z",
+      "side": 1,
+      "message": "If i remove throw it will give compile time error saying \"missing return statement for this i have made return exception in the converter class and throwing from the caller",
+      "parentUuid": "3b2eeaf0_dec38876",
       "range": {
         "startLine": 83,
         "startChar": 12,
