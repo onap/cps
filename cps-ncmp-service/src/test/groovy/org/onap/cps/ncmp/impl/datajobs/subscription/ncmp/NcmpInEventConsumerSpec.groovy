@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (c) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,12 +35,15 @@ class NcmpInEventConsumerSpec extends Specification {
     def mockCmSubscriptionHandler = Mock(CmSubscriptionHandlerImpl)
     def objectUnderTest = new NcmpInEventConsumer(mockCmSubscriptionHandler)
 
+    def setup() {
+        objectUnderTest.subscriptionFeatureEnabled = true
+    }
+
     def 'Consuming CREATE cm data job subscription request.'() {
         given: 'a JSON file for create event'
             def jsonData = TestUtils.getResourceFileContent(
                 'datajobs/subscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def myEventType = "dataJobCreated"
-            jsonData = jsonData.replace('#myEventType', myEventType)
+            jsonData = jsonData.replace('#myEventType', 'dataJobCreated')
         and: 'the event'
             def event = objectMapper.readValue(jsonData, DataJobSubscriptionOperationInEvent)
         and: 'the list of data node selectors'
@@ -50,21 +53,20 @@ class NcmpInEventConsumerSpec extends Specification {
         when: 'the event is consumed'
             objectUnderTest.consumeSubscriptionEvent(event)
         then: 'subscription create request is called'
-            1 * mockCmSubscriptionHandler.createSubscription(dataSelector, "myDataJobId", dataNodeSelectorList)
+            1 * mockCmSubscriptionHandler.createSubscription(dataSelector, 'myDataJobId', dataNodeSelectorList)
     }
 
     def 'Consuming DELETE cm data job subscription request.'() {
         given: 'a JSON file for delete event'
             def jsonData = TestUtils.getResourceFileContent(
                     'datajobs/subscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def myEventType = "dataJobDeleted"
-            jsonData = jsonData.replace('#myEventType', myEventType)
+            jsonData = jsonData.replace('#myEventType', 'dataJobDeleted')
         and: 'the event'
             def event = objectMapper.readValue(jsonData, DataJobSubscriptionOperationInEvent)
         when: 'the event is consumed'
             objectUnderTest.consumeSubscriptionEvent(event)
         then: 'subscription delete request is called'
-            1 * mockCmSubscriptionHandler.deleteSubscription("myDataJobId")
+            1 * mockCmSubscriptionHandler.deleteSubscription('myDataJobId')
     }
 
     def 'Consuming subscription request with unknown event type.'() {
@@ -75,8 +77,22 @@ class NcmpInEventConsumerSpec extends Specification {
         then: 'no error thrown'
             noExceptionThrown()
         and: 'request was not delegated to be handled as CREATE or DELETE'
-            0 * mockCmSubscriptionHandler.deleteSubscription(_)
-            0 * mockCmSubscriptionHandler.createSubscription(_)
+            0 * mockCmSubscriptionHandler.deleteSubscription
+            0 * mockCmSubscriptionHandler.createSubscription
+    }
+
+    def 'Consuming subscription event when feature is disabled.'() {
+        given: 'the subscription feature is disabled'
+            objectUnderTest.subscriptionFeatureEnabled = false
+        and: 'a subscription event'
+            def event = new DataJobSubscriptionOperationInEvent(event: new Event(dataJob: new DataJob(id: 'someId')), eventType: eventType)
+        when: 'the event is consumed'
+            objectUnderTest.consumeSubscriptionEvent(event)
+        then: 'no subscription handling is invoked'
+            0 * mockCmSubscriptionHandler.createSubscription
+            0 * mockCmSubscriptionHandler.deleteSubscription
+        where: 'following operations are attempted'
+            eventType << ['dataJobCreated', 'dataJobDeleted']
     }
 
     def getDataNodeSelectorsAsXpaths(event) {

@@ -1,6 +1,6 @@
 /*
  *  ===========LICENSE_START========================================================
- * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (c) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataJob;
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataJobSubscriptionOperationInEvent;
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector;
 import org.onap.cps.ncmp.impl.utils.JexParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -38,6 +39,9 @@ import org.springframework.stereotype.Component;
 public class NcmpInEventConsumer {
 
     private final CmSubscriptionHandler cmSubscriptionHandler;
+
+    @Value("${ncmp.datajob.subscription.enabled:false}")
+    private boolean subscriptionFeatureEnabled;
 
     /**
      * Consume the specified event.
@@ -56,14 +60,19 @@ public class NcmpInEventConsumer {
 
         log.info("Consumed subscription event with details: | dataJobId={} | eventType={}", dataJobId, eventType);
 
-        try {
-            switch (eventType) {
-                case "dataJobCreated" -> handleCreate(dataJobId, dataJob);
-                case "dataJobDeleted" -> cmSubscriptionHandler.deleteSubscription(dataJobId);
-                default -> log.warn("Unknown eventType={} for dataJobId={}", eventType, dataJobId);
+        if (subscriptionFeatureEnabled) {
+            try {
+                switch (eventType) {
+                    case "dataJobCreated" -> handleCreate(dataJobId, dataJob);
+                    case "dataJobDeleted" -> cmSubscriptionHandler.deleteSubscription(dataJobId);
+                    default -> log.warn("Unknown eventType={} for dataJobId={}", eventType, dataJobId);
+                }
+            } finally {
+                log.info("NCMP In Event with eventType={} has been Processed for dataJobId={}", eventType, dataJobId);
             }
-        } finally {
-            log.info("NCMP In Event with eventType={} has been Processed for dataJobId={}", eventType, dataJobId);
+        } else {
+            log.warn("CM data job subscription feature is disabled. Ignoring {} event for dataJobId={}",
+                eventType, dataJobId);
         }
     }
 
