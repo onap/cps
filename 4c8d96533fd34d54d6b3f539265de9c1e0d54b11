@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "354608e0_8b16471d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-02T10:56:01Z",
+      "side": 1,
+      "message": "are these the only affected tests ?",
+      "revId": "4c8d96533fd34d54d6b3f539265de9c1e0d54b11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a17b23d_9947cf16",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-02T10:56:01Z",
+      "side": 1,
+      "message": "can you be more specific ?",
+      "range": {
+        "startLine": 161,
+        "startChar": 22,
+        "endLine": 161,
+        "endChar": 32
+      },
+      "revId": "4c8d96533fd34d54d6b3f539265de9c1e0d54b11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
