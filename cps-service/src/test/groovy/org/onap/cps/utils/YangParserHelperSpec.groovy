@@ -24,7 +24,10 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier
+import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
+import org.opendaylight.yangtools.yang.data.spi.node.ImmutableNodes
 import spock.lang.Specification
 
 class YangParserHelperSpec extends Specification {
@@ -96,18 +99,17 @@ class YangParserHelperSpec extends Specification {
         when: 'data string is parsed'
             def result = objectUnderTest.parseData(contentType, nodeData, schemaContext, parentNodeXpath, validateAndParse)
         then: 'a ContainerNode holding collection of normalized nodes is returned'
-            result.body().getAt(0) instanceof NormalizedNode == true
-        then: 'result represents a node of expected type'
-            def actualNodeType = result.body().getAt(0).name().nodeType
-            actualNodeType.getLocalName() == expectedNodeName
+            result.body().any { it instanceof NormalizedNode }
+        then: 'result body contains a node of the expected type'
+            result.body().any { it.name().nodeType.getLocalName() == expectedNodeName }
         where:
             scenario                         | contentType      | nodeData                                                                                                                                                                                                      | parentNodeXpath                       || expectedNodeName
             'JSON list element as container' | ContentType.JSON | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'                                                                                                                                   | '/test-tree'                          || 'branch'
             'JSON list element within list'  | ContentType.JSON | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }'                                                                                                                                 | '/test-tree'                          || 'branch'
             'JSON container element'         | ContentType.JSON | '{ "nest": { "name": "N", "birds": ["bird"] } }'                                                                                                                                                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
-            'XML element test tree'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'                                       | '/test-tree'                          || 'test-tree'
-            'XML element branch xpath'       | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds><birds>Robin</birds></nest></branch>'                   | '/test-tree'                          || 'test-tree'
-            'XML container element'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                                         | '/test-tree/branch[@name=\'Branch\']' || 'branch'
+            'XML element test tree'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'                                       | '/test-tree'                          || 'branch'
+            'XML element branch xpath'       | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds><birds>Robin</birds></nest></branch>'                   | '/test-tree'                          || 'branch'
+            'XML container element'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                                         | '/test-tree/branch[@name=\'Branch\']' || 'nest'
     }
 
     def 'Parsing json data fragment by xpath error scenario: #scenario.'() {
@@ -181,6 +183,36 @@ class YangParserHelperSpec extends Specification {
             'JSON with parent node'    | '/bookstore'    | 'bookstore-categories-data.json' | ContentType.JSON
             'XML without parent node'  | ''              | 'bookstore.xml'                  | ContentType.XML
             'XML with parent node'     | '/bookstore'    | 'bookstore-categories-data.xml'  | ContentType.XML
+    }
+
+    def 'Removing wrapped root node from an empty container node.'() {
+        given: 'a container node with an empty body'
+            def emptyContainerNode = ImmutableNodes.builderFactory().newContainerBuilder()
+                .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(QName.create('my-namespace', 'my-container')))
+                .build()
+        when: 'the wrapped root node is removed'
+            def result = removeWrappedRootNode(emptyContainerNode)
+        then: 'the same container node is returned unchanged'
+            assert result == emptyContainerNode
+    }
+
+    def 'Removing wrapped root node when first child is neither a container nor a list.'() {
+        given: 'a container node whose first child is a leaf'
+            def leafNode = ImmutableNodes.leafNode(QName.create('my-namespace', 'my-leaf'), 'my-value')
+            def containerNode = ImmutableNodes.builderFactory().newContainerBuilder()
+                .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(QName.create('my-namespace', 'my-container')))
+                .withChild(leafNode)
+                .build()
+        when: 'the wrapped root node is removed'
+            def result = removeWrappedRootNode(containerNode)
+        then: 'the result has no children as only containers and lists can be unwrapped'
+            assert result.body().isEmpty()
+    }
+
+    def removeWrappedRootNode(containerNode) {
+        def removeWrappedRootNodeMethod = YangParserHelper.getDeclaredMethod('removeWrappedRootNode', ContainerNode)
+        removeWrappedRootNodeMethod.accessible = true
+        return removeWrappedRootNodeMethod.invoke(null, containerNode)
     }
 
 }

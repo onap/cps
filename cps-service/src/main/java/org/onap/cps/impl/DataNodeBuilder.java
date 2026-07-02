@@ -214,9 +214,8 @@ public class DataNodeBuilder {
     }
 
     private static void addYangContainer(final DataNode currentDataNode, final DataContainerNode dataContainerNode) {
-        final DataNode dataContainerDataNode = dataContainerNode instanceof ChoiceNode
-                ? currentDataNode
-                : createAndAddChildDataNode(currentDataNode, YangUtils.buildXpath(dataContainerNode.name()));
+        final DataNode dataContainerDataNode =
+                createAndAddChildDataNode(currentDataNode, YangUtils.buildXpath(dataContainerNode.name()));
         final Collection<DataContainerChild> normalizedChildNodes = dataContainerNode.body();
         for (final NormalizedNode normalizedNode : normalizedChildNodes) {
             addDataNodeFromNormalizedNode(dataContainerDataNode, normalizedNode);
