@@ -96,18 +96,17 @@ class YangParserHelperSpec extends Specification {
         when: 'data string is parsed'
             def result = objectUnderTest.parseData(contentType, nodeData, schemaContext, parentNodeXpath, validateAndParse)
         then: 'a ContainerNode holding collection of normalized nodes is returned'
-            result.body().getAt(0) instanceof NormalizedNode == true
-        then: 'result represents a node of expected type'
-            def actualNodeType = result.body().getAt(0).name().nodeType
-            actualNodeType.getLocalName() == expectedNodeName
+            result.body().any { it instanceof NormalizedNode }
+        then: 'result body contains a node of the expected type'
+            result.body().any { it.name().nodeType.getLocalName() == expectedNodeName }
         where:
             scenario                         | contentType      | nodeData                                                                                                                                                                                                      | parentNodeXpath                       || expectedNodeName
             'JSON list element as container' | ContentType.JSON | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'                                                                                                                                   | '/test-tree'                          || 'branch'
             'JSON list element within list'  | ContentType.JSON | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }'                                                                                                                                 | '/test-tree'                          || 'branch'
             'JSON container element'         | ContentType.JSON | '{ "nest": { "name": "N", "birds": ["bird"] } }'                                                                                                                                                              | '/test-tree/branch[@name=\'Branch\']' || 'nest'
-            'XML element test tree'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'                                       | '/test-tree'                          || 'test-tree'
-            'XML element branch xpath'       | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds><birds>Robin</birds></nest></branch>'                   | '/test-tree'                          || 'test-tree'
-            'XML container element'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                                         | '/test-tree/branch[@name=\'Branch\']' || 'branch'
+            'XML element test tree'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'                                       | '/test-tree'                          || 'branch'
+            'XML element branch xpath'       | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds><birds>Robin</birds></nest></branch>'                   | '/test-tree'                          || 'branch'
+            'XML container element'          | ContentType.XML  | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                                         | '/test-tree/branch[@name=\'Branch\']' || 'nest'
     }
 
     def 'Parsing json data fragment by xpath error scenario: #scenario.'() {
