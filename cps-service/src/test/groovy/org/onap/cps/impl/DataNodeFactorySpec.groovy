@@ -81,7 +81,7 @@ class DataNodeFactorySpec extends Specification {
             scenario    | xpathToNodeData                                                                         | contentType      || expectedDataNodes | expectedXpaths
             'JSON Data' | ['/' : "{'test-tree': {'branch': []}}", '/test-tree' : "{'branch': [{'name':'Name'}]}"] | ContentType.JSON || 2                 | ['/test-tree', "/test-tree/branch[@name='Name']"]
             // TODO CPS-3257: XML support needs fixing for latest YangTools version
-            // 'XML Data'  | ['/test-tree' : '<branch><name>Name</name></branch>']                                   | ContentType.XML  || 1                 | ["/test-tree/branch[@name='Name']"]
+            'XML Data'  | ['/test-tree' : '<branch><name>Name</name></branch>']                                   | ContentType.XML  || 1                 | ["/test-tree/branch[@name='Name']"]
     }
 
     def 'Create data nodes using anchor, xpath and #scenario string'() {
@@ -130,7 +130,7 @@ class DataNodeFactorySpec extends Specification {
             scenario | nodeData                                                                                     | contentType      || expectedXpath
             'JSON'   | '{"branch": [{"name": "A"}]}'                                                                | ContentType.JSON || "/test-tree/branch[@name='A']"
             // TODO CPS-3257: XML support needs fixing for latest YangTools version
-            // 'XML'    | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch></test-tree>' | ContentType.XML  || "/test-tree/branch[@name='A']"
+            'XML'    | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch></test-tree>' | ContentType.XML  || "/test-tree/branch[@name='A']"
     }
 
     def 'Create data nodes using anchor, parent node xpath and invalid #scenario string'() {
@@ -162,7 +162,7 @@ class DataNodeFactorySpec extends Specification {
             scenario                    | nodeData                                                                                         | contentType      || expectedXpath
             'JSON'                      | '{"bookstore":{"bookstore-name":"Easons"}}'                                                      | ContentType.JSON || '/bookstore'
             // TODO CPS-3257: XML support needs fixing for latest YangTools version
-            // 'XML'                       | "<bookstore xmlns=\"org:onap:ccsdk:sample\"><bookstore-name>Easons</bookstore-name></bookstore>" | ContentType.XML  || '/bookstore'
+            'XML'                       | "<bookstore xmlns=\"org:onap:ccsdk:sample\"><bookstore-name>Easons</bookstore-name></bookstore>" | ContentType.XML  || '/bookstore'
     }
 
     def 'Create data nodes using schema, xpath and invalid #scenario string'() {
