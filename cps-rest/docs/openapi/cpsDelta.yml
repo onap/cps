@@ -30,7 +30,7 @@ delta:
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/descendantsInQuery'
       - $ref: 'components.yml#/components/parameters/groupDataNodesInQuery'
-      - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
+      - $ref: 'components.yml#/components/parameters/acceptMediaType'
     responses:
       '200':
         description: OK
@@ -44,18 +44,20 @@ delta:
           application/xml:
             schema:
               type: object
+              xml:
+                name: deltaReports
             examples:
               dataSample:
                 $ref: 'components.yml#/components/examples/deltaReportSampleXml'
       '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
+        $ref: 'components.yml#/components/responses/BadRequestXml'
       '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
+        $ref: 'components.yml#/components/responses/ForbiddenXml'
       '500':
-        $ref: 'components.yml#/components/responses/InternalServerError'
+        $ref: 'components.yml#/components/responses/InternalServerErrorXml'
     x-codegen-request-body-name: xpath
   post:
-    description: Get delta between an anchor in a dataspace and JSON payload
+    description: Get delta between an anchor in a dataspace
     tags:
       - cps-delta
     summary: Get delta between an anchor and JSON payload
@@ -74,6 +76,7 @@ delta:
             type: object
             properties:
               targetData:
+                   description: Upload the targetData file in JSON or XML format.
                    type: string
                    format: binary
                    example:
@@ -98,17 +101,19 @@ delta:
           application/xml:
             schema:
               type: object
+              xml:
+                name: deltaReports
             examples:
               dataSample:
                 $ref: 'components.yml#/components/examples/deltaReportSampleXml'
       '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
+        $ref: 'components.yml#/components/responses/BadRequestXml'
       '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
+        $ref: 'components.yml#/components/responses/UnauthorizedXml'
       '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
+        $ref: 'components.yml#/components/responses/ForbiddenXml'
       '500':
-        $ref: 'components.yml#/components/responses/InternalServerError'
+        $ref: 'components.yml#/components/responses/InternalServerErrorXml'
 
 applyChangesInDeltaReport:
   post:
@@ -133,8 +138,8 @@ applyChangesInDeltaReport:
       '201':
         $ref: 'components.yml#/components/responses/Created'
       '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
+        $ref: 'components.yml#/components/responses/BadRequestXml'
       '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
+        $ref: 'components.yml#/components/responses/ForbiddenXml'
       '500':
-        $ref: 'components.yml#/components/responses/InternalServerError'
+        $ref: 'components.yml#/components/responses/InternalServerErrorXml'
