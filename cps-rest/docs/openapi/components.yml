@@ -287,11 +287,12 @@ components:
                     xpath:
                       - path: /shops/bookstore
     notificationSubscriptionResponseSample:
+      datasample:
       value:
-        cps-notification-subscriptions:dataspaces:
-          dataspace:
-            - name: my-dataspace
-            - name: bookstore-dataspace
+        dataspaces:
+            dataspace:
+              - name: my-dataspace
+              - name: bookstore-dataspace
     deltaReportSampleXml:
       value:
          <deltaReports>
@@ -553,6 +554,26 @@ components:
             status: 404
             message: Resource Not Found
             details: The requested resource is not found
+    NotFoundXml:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 404
+            message: Resource Not Found
+            details: The requested resource is not found
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example: |
+            <?xml version="1.0" encoding="UTF-8"?>
+            <ErrorMessage>
+              <status>404</status>
+              <message>Resource Not Found</message>
+              <details>The requested resource is not found</details>
+            </ErrorMessage>
     Unauthorized:
       description: Unauthorized
       content:
@@ -563,6 +584,26 @@ components:
             status: 401
             message: Unauthorized request
             details: This request is unauthorized
+    UnauthorizedXml:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 401
+            message: Unauthorized request
+            details: This request is unauthorized
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example: |
+            <?xml version="1.0" encoding="UTF-8"?>
+            <ErrorMessage>
+              <status>401</status>
+              <message>Unauthorized request</message>
+              <details>This request is unauthorized</details>
+            </ErrorMessage>
     Forbidden:
       description: Forbidden
       content:
@@ -573,6 +614,26 @@ components:
             status: 403
             message: Request Forbidden
             details: This request is forbidden
+    ForbiddenXml:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 403
+            message: Request Forbidden
+            details: This request is forbidden
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example: |
+            <?xml version="1.0" encoding="UTF-8"?>
+            <ErrorMessage>
+              <status>403</status>
+              <message>Request Forbidden</message>
+              <details>This request is forbidden</details>
+            </ErrorMessage>
     BadRequest:
       description: Bad Request
       content:
@@ -583,6 +644,26 @@ components:
             status: 400
             message: Bad Request
             details: The provided request is not valid
+    BadRequestXml:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 400
+            message: Bad Request
+            details: The provided request is not valid
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example: |
+            <?xml version="1.0" encoding="UTF-8"?>
+            <ErrorMessage>
+              <status>400</status>
+              <message>Bad Request</message>
+              <details>The provided request is not valid</details>
+            </ErrorMessage>
     Conflict:
       description: Conflict
       content:
@@ -593,6 +674,26 @@ components:
             status: 409
             message: Conflicting request
             details: The request cannot be processed as the resource is in use.
+    ConflictXml:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 409
+            message: Conflicting request
+            details: The request cannot be processed as the resource is in use.
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example: |
+            <?xml version="1.0" encoding="UTF-8"?>
+            <ErrorMessage>
+              <status>409</status>
+              <message>Conflicting request</message>
+              <details>The request cannot be processed as the resource is in use.</details>
+            </ErrorMessage>
     Ok:
       description: OK
       content:
@@ -621,6 +722,49 @@ components:
             status: 500
             message: Internal Server Error
             details: Internal Server Error occurred
+    InternalServerErrorXml:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occurred
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example: |
+            <?xml version="1.0" encoding="UTF-8"?>
+            <ErrorMessage>
+              <status>500</status>
+              <message>Internal Server Error</message>
+              <details>Internal Server Error occurred</details>
+            </ErrorMessage>
     NoContent:
       description: No Content
       content: {}
+  DeltaReport:
+    type: object
+    xml:
+      name: deltaReport
+    properties:
+      action:
+        type: string
+        enum: [ create, remove, replace ]
+      xpath:
+        type: string
+      sourceData:
+        type: object
+      targetData:
+        type: object
+  DeltaReports:
+    type: object
+    xml:
+      name: deltaReports
+    properties:
+      deltaReport:
+        type: array
+        items:
+          $ref: '#/components/schemas/DeltaReport'
