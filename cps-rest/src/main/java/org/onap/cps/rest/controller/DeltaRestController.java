@@ -65,13 +65,13 @@ public class DeltaRestController implements CpsDeltaApi {
                                                                 final String xpath,
                                                                 final String descendants,
                                                                 final Boolean groupDataNodes,
-                                                                final String contentTypeInHeader) {
+                                                                final String acceptMediaType) {
         final FetchDescendantsOption fetchDescendantsOption =
             FetchDescendantsOption.getFetchDescendantsOption(descendants);
         final List<DeltaReport> deltaReports =
             cpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
                 targetAnchorName, xpath, fetchDescendantsOption, groupDataNodes);
-        return buildDeltaResponseEntity(deltaReports, ContentType.fromString(contentTypeInHeader));
+        return buildDeltaResponseEntity(deltaReports, ContentType.fromString(acceptMediaType));
 
     }
 
