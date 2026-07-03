@@ -287,11 +287,12 @@ components:
                     xpath:
                       - path: /shops/bookstore
     notificationSubscriptionResponseSample:
+      datasample:
       value:
-        cps-notification-subscriptions:dataspaces:
-          dataspace:
-            - name: my-dataspace
-            - name: bookstore-dataspace
+        dataspaces:
+            dataspace:
+              - name: my-dataspace
+              - name: bookstore-dataspace
     deltaReportSampleXml:
       value:
          <deltaReports>
@@ -624,3 +625,26 @@ components:
     NoContent:
       description: No Content
       content: {}
+  DeltaReport:
+    type: object
+    xml:
+      name: deltaReport
+    properties:
+      action:
+        type: string
+        enum: [ add, remove, replace ]
+      xpath:
+        type: string
+      sourceData:
+        type: object
+      targetData:
+        type: object
+  DeltaReports:
+    type: object
+    xml:
+      name: deltaReports
+    properties:
+      deltaReport:
+        type: array
+        items:
+          $ref: '#/components/schemas/DeltaReport'
