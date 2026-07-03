@@ -44,18 +44,74 @@ delta:
           application/xml:
             schema:
               type: object
+              xml:
+                name: deltaReports
             examples:
               dataSample:
                 $ref: 'components.yml#/components/examples/deltaReportSampleXml'
       '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example:
+              status: 400
+              message: Bad Request
+              details: The provided request is not valid
+          application/xml:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example: |
+              <?xml version="1.0" encoding="UTF-8"?>
+              <ErrorMessage>
+                <status>400</status>
+                <message>Bad Request</message>
+                <details>The provided request is not valid</details>
+              </ErrorMessage>
       '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example:
+              status: 403
+              message: Request Forbidden
+              details: This request is forbidden
+          application/xml:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example: |
+              <?xml version="1.0" encoding="UTF-8"?>
+              <ErrorMessage>
+                <status>403</status>
+                <message>Request Forbidden</message>
+                <details>This request is forbidden</details>
+              </ErrorMessage>
       '500':
-        $ref: 'components.yml#/components/responses/InternalServerError'
+        description: Internal Server Error
+        content:
+          application/json:
+            schema:
+              $ref: "components.yml#/components/schemas/ErrorMessage"
+            example:
+              status: 500
+              message: Internal Server Error
+              details: Internal Server Error occurred
+          application/xml:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example: |
+              <?xml version="1.0" encoding="UTF-8"?>
+              <ErrorMessage>
+                <status>500</status>
+                <message>Internal Server Error</message>
+                <details>Internal Server Error occurred</details>
+              </ErrorMessage>
     x-codegen-request-body-name: xpath
   post:
-    description: Get delta between an anchor in a dataspace and JSON payload
+    description: Get delta between an anchor in a dataspace
     tags:
       - cps-delta
     summary: Get delta between an anchor and JSON payload
@@ -74,6 +130,7 @@ delta:
             type: object
             properties:
               targetData:
+                   description: Upload the targetData file in JSON or XML format.
                    type: string
                    format: binary
                    example:
@@ -98,17 +155,91 @@ delta:
           application/xml:
             schema:
               type: object
+              xml:
+                name: deltaReports
             examples:
               dataSample:
                 $ref: 'components.yml#/components/examples/deltaReportSampleXml'
       '400':
-        $ref: 'components.yml#/components/responses/BadRequest'
+        description: Bad Request
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example:
+              status: 400
+              message: Bad Request
+              details: The provided request is not valid
+          application/xml:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example: |
+              <?xml version="1.0" encoding="UTF-8"?>
+              <ErrorMessage>
+                <status>400</status>
+                <message>Bad Request</message>
+                <details>The provided request is not valid</details>
+              </ErrorMessage>
       '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example:
+              status: 401
+              message: Unauthorized request
+              details: This request is unauthorized
+          application/xml:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example: |
+              <?xml version="1.0" encoding="UTF-8"?>
+              <ErrorMessage>
+                <status>401</status>
+                <message>Unauthorized request</message>
+                <details>This request is unauthorized</details>
+              </ErrorMessage>
       '403':
-        $ref: 'components.yml#/components/responses/Forbidden'
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example:
+              status: 403
+              message: Request Forbidden
+              details: This request is forbidden
+          application/xml:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example: |
+              <?xml version="1.0" encoding="UTF-8"?>
+              <ErrorMessage>
+                <status>403</status>
+                <message>Request Forbidden</message>
+                <details>This request is forbidden</details>
+              </ErrorMessage>
       '500':
-        $ref: 'components.yml#/components/responses/InternalServerError'
+        description: Internal Server Error
+        content:
+          application/json:
+            schema:
+              $ref: "components.yml#/components/schemas/ErrorMessage"
+            example:
+              status: 500
+              message: Internal Server Error
+              details: Internal Server Error occurred
+          application/xml:
+            schema:
+              $ref: 'components.yml#/components/schemas/ErrorMessage'
+            example: |
+              <?xml version="1.0" encoding="UTF-8"?>
+              <ErrorMessage>
+                <status>500</status>
+                <message>Internal Server Error</message>
+                <details>Internal Server Error occurred</details>
+              </ErrorMessage>
 
 applyChangesInDeltaReport:
   post:
