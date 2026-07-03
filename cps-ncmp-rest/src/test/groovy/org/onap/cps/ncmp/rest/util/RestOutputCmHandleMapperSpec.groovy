@@ -49,7 +49,6 @@ class RestOutputCmHandleMapperSpec extends Specification {
             assert result.alternateId == 'alt-1'
             assert result.cmHandle == 'ch-1'
             assert result.cmHandleStatus == 'REPORTED STATE'
-            assert result.dmiProperties == 'dmi property'
         where:
             scenario                        | includeAdditionalProperties || trustLevel
             'without additional properties' | false                       || null

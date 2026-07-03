@@ -60,7 +60,6 @@ public class RestOutputCmHandleMapper {
         restOutputCmHandle.setAlternateId(ncmpServiceCmHandle.getAlternateId());
         restOutputCmHandle.setDataProducerIdentifier(ncmpServiceCmHandle.getDataProducerIdentifier());
         restOutputCmHandle.setCmHandleStatus(ncmpServiceCmHandle.getCmHandleStatus());
-        restOutputCmHandle.setDmiProperties(ncmpServiceCmHandle.getDmiProperties());
         return restOutputCmHandle;
     }
 }

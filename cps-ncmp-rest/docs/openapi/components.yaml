@@ -194,9 +194,6 @@ components:
         cmHandleStatus:
           type: string
           example: "READY"
-        dmiProperties:
-          type: string
-          example: my-dmi-property
     #Module upgrade schema
     UpgradedCmHandles:
       required:
@@ -327,9 +324,6 @@ components:
         cmHandleStatus:
           type: string
           example: "READY"
-        dmiProperties:
-          type: string
-          example: my-dmi-property
     CmHandleCompositeState:
       type: object
       properties:
