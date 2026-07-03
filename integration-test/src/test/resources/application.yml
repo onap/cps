@@ -158,6 +158,9 @@ logging:
         cps: INFO
 
 ncmp:
+  datajob:
+    subscription:
+      enabled: true
   dmi:
     httpclient:
       connectionTimeoutInSeconds: 30
