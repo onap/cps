@@ -69,7 +69,7 @@ public class DataOperationEventCreator {
     private static Data createPayloadFromDataOperationResponses(final MultiValueMap<DmiDataOperation,
             Map<NcmpResponseStatus, List<String>>> cmHandleIdsPerResponseCodesPerOperation) {
         final Data data = new Data();
-        final List<org.onap.cps.ncmp.events.async1_0_0.Response> responses = new ArrayList<>();
+        final List<Response> responses = new ArrayList<>();
         cmHandleIdsPerResponseCodesPerOperation.forEach((dmiDataOperation, cmHandleIdsPerResponseCodes) ->
                 cmHandleIdsPerResponseCodes.forEach(cmHandleIdsPerResponseCodeEntries ->
                         responses.addAll(createResponseFromDataOperationResponses(
@@ -81,7 +81,7 @@ public class DataOperationEventCreator {
     private static List<Response> createResponseFromDataOperationResponses(
             final DmiDataOperation dmiDataOperation,
             final Map<NcmpResponseStatus, List<String>> cmHandleIdsPerResponseCodeEntries) {
-        final List<org.onap.cps.ncmp.events.async1_0_0.Response> responses = new ArrayList<>();
+        final List<Response> responses = new ArrayList<>();
         cmHandleIdsPerResponseCodeEntries.forEach((ncmpEventResponseCode, cmHandleIds) -> {
             final Response response = new Response();
             response.setOperationId(dmiDataOperation.getOperationId());

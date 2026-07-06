@@ -88,4 +88,3 @@ public class NcmpArchitectureTest extends ArchitectureTestBase {
                                                                 "org.onap.cps.utils..",
                                                                 "org.onap.cps.init.."));
 }
-

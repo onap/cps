@@ -33,9 +33,9 @@ public class ZipFileSizeValidator {
     private static final int THRESHOLD_SIZE = 100_000_000;
     private static final String INVALID_ZIP = "Invalid ZIP archive content.";
 
-    private long totalUncompressedSizeOfYangFilesInArchive = 0;
-    private int totalYangFileEntriesInArchive = 0;
-    private long compressedSize = 0;
+    private long totalUncompressedSizeOfYangFilesInArchive;
+    private int totalYangFileEntriesInArchive;
+    private long compressedSize;
 
     /**
      * Increment the totalEntryInArchive by 1.

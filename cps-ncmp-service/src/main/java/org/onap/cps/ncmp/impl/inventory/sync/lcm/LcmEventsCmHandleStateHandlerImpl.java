@@ -158,7 +158,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     }
 
     private boolean isNew(final CompositeState existingCompositeState) {
-        return (existingCompositeState == null);
+        return existingCompositeState == null;
     }
 
     private boolean isDeleted(final CompositeState targetCompositeState) {
@@ -166,7 +166,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     }
 
     private boolean isCompositeStateSame(final CompositeState compositeState, final CmHandleState targetCmHandleState) {
-        return (compositeState != null && compositeState.getCmHandleState() == targetCmHandleState);
+        return compositeState != null && compositeState.getCmHandleState() == targetCmHandleState;
     }
 
     private static void logCmHandleStateChanges(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {

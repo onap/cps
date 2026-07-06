@@ -21,26 +21,27 @@ package org.onap.cps.architecture;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-public class ArchitectureTestBase {
+public abstract class ArchitectureTestBase {
 
-    private static final String[] ACCEPTED_3PP_PACKAGES = { "com.fasterxml..",
-                                                            "com.google..",
-                                                            "com.hazelcast..",
-                                                            "edu..",
-                                                            "io.cloudevents..",
-                                                            "io.micrometer..",
-                                                            "io.netty..",
-                                                            "io.swagger..",
-                                                            "jakarta..",
-                                                            "java..",
-                                                            "lombok..",
-                                                            "org.apache..",
-                                                            "org.aspectj..",
-                                                            "org.mapstruct..",
-                                                            "org.opendaylight..",
-                                                            "org.slf4j..",
-                                                            "org.springframework..",
-                                                            "reactor.."
+    private static final String[] ACCEPTED_3PP_PACKAGES = {
+        "com.fasterxml..",
+        "com.google..",
+        "com.hazelcast..",
+        "edu..",
+        "io.cloudevents..",
+        "io.micrometer..",
+        "io.netty..",
+        "io.swagger..",
+        "jakarta..",
+        "java..",
+        "lombok..",
+        "org.apache..",
+        "org.aspectj..",
+        "org.mapstruct..",
+        "org.opendaylight..",
+        "org.slf4j..",
+        "org.springframework..",
+        "reactor.."
     };
 
     static String[] commonAndListedPackages(final String... packageIdentifiers) {

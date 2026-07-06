@@ -214,7 +214,7 @@ public class DataNodeBuilder {
     }
 
     private static void addYangContainer(final DataNode currentDataNode, final DataContainerNode dataContainerNode) {
-        final DataNode dataContainerDataNode = (dataContainerNode instanceof ChoiceNode)
+        final DataNode dataContainerDataNode = dataContainerNode instanceof ChoiceNode
                 ? currentDataNode
                 : createAndAddChildDataNode(currentDataNode, YangUtils.buildXpath(dataContainerNode.name()));
         final Collection<DataContainerChild> normalizedChildNodes = dataContainerNode.body();
@@ -234,7 +234,7 @@ public class DataNodeBuilder {
 
     private static void addYangLeafList(final DataNode currentDataNode, final LeafSetNode<?> leafSetNode) {
         final String leafListName = leafSetNode.name().getNodeType().getLocalName();
-        List<?> leafListValues = (leafSetNode.body())
+        List<?> leafListValues = leafSetNode.body()
                 .stream()
                 .map(NormalizedNode::body)
                 .collect(Collectors.toList());

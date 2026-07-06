@@ -33,4 +33,3 @@ public class UpgradedCmHandles {
     private List<String> cmHandles = Collections.emptyList();
     private String moduleSetTag;
 }
-

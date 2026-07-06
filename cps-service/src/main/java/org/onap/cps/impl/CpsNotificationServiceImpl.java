@@ -84,8 +84,8 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
 
     @Override
     public boolean isNotificationEnabled(final String dataspaceName, final String anchorName) {
-        return (isNotificationEnabledForAnchor(dataspaceName, anchorName)
-            || notificationEnabledForAllAnchors(dataspaceName));
+        return isNotificationEnabledForAnchor(dataspaceName, anchorName)
+            || notificationEnabledForAllAnchors(dataspaceName);
     }
 
     private boolean isNotificationEnabledForAnchor(final String dataspaceName, final String anchorName) {

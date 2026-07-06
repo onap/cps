@@ -165,4 +165,3 @@ public class OperationDetailsFactory {
         return level == attributeNamesArray.length - 1;
     }
 }
-

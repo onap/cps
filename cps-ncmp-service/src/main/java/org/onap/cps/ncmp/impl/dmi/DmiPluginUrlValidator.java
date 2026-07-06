@@ -87,7 +87,7 @@ public class DmiPluginUrlValidator {
             }
         } else {
             final String scheme = uri.getScheme();
-            if (scheme == null || !(scheme.equals("http") || scheme.equals("https"))) {
+            if (scheme == null || !("http".equals(scheme) || "https".equals(scheme))) {
                 throw createDataValidationException(fieldName, "Only http or https schemes are allowed, got: " + url);
             }
             if (uri.getHost() == null) {

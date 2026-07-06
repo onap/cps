@@ -50,7 +50,7 @@ public class PolicyExecutorStubController implements OperationPermissionApi {
     private static final Pattern PATTERN_SLOW_RESPONSE = Pattern.compile("slowResponse_(\\d{1,3})");
     private static final Pattern PATTERN_POLICY_RESPONSE = Pattern.compile("policyResponse_(\\w+)");
 
-    private int decisionCounter = 0;
+    private int decisionCounter;
 
     @Override
     public ResponseEntity<PermissionResponse> initiatePermissionRequest(final String contentType,

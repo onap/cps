@@ -82,6 +82,7 @@ https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16429749/How+to+update+ONAP+c
             <property name="allowNonPrintableEscapes" value="true" />
         </module>
         <module name="AvoidStarImport" />
+        <module name="UnusedImports" />
         <module name="OneTopLevelClass" />
         <module name="NoLineWrap">
             <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT" />

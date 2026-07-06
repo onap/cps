@@ -52,4 +52,3 @@ public class CompositeQuery {
     @Builder.Default
     private Collection<CompositeQuery> conditions = new ArrayList<>();
 }
-

@@ -58,8 +58,8 @@ public class DataNodeFactoryImpl implements DataNodeFactory {
     public Collection<DataNode> createDataNodesWithAnchorXpathAndNodeData(final Anchor anchor, final String xpath,
                                                                           final String nodeData,
                                                                           final ContentType contentType) {
-        final String xpathToBuildNodes = isRootNodeXpath(xpath) ? NO_PARENT_PATH :
-            CpsPathUtil.getNormalizedParentXpath(xpath);
+        final String xpathToBuildNodes = isRootNodeXpath(xpath) ? NO_PARENT_PATH
+            : CpsPathUtil.getNormalizedParentXpath(xpath);
         final ContainerNode containerNode = yangParser.parseData(contentType, nodeData, anchor, xpathToBuildNodes);
         return convertToDataNodes(xpathToBuildNodes, containerNode, xpath);
     }
@@ -81,8 +81,8 @@ public class DataNodeFactoryImpl implements DataNodeFactory {
                                                                 final Map<String, String> yangResourceContentPerName,
                                                                 final String xpath, final String nodeData,
                                                                 final ContentType contentType) {
-        final String normalizedParentNodeXpath = isRootNodeXpath(xpath) ? NO_PARENT_PATH :
-            CpsPathUtil.getNormalizedParentXpath(xpath);
+        final String normalizedParentNodeXpath = isRootNodeXpath(xpath) ? NO_PARENT_PATH
+            : CpsPathUtil.getNormalizedParentXpath(xpath);
         final ContainerNode containerNode =
                 yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
         return convertToDataNodes(normalizedParentNodeXpath, containerNode, xpath);
