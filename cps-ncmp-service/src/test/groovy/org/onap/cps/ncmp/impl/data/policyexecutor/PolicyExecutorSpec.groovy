@@ -249,7 +249,7 @@ class PolicyExecutorSpec extends Specification {
             objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
         then: 'a warning is logged about the parse failure'
             assert getLogEntry(3).contains('Failed to parse Policy Executor response')
-        and: 'no exception is thrown (graceful handling)'
+        and: 'no exception is thrown'
             noExceptionThrown()
     }
 
@@ -258,13 +258,10 @@ class PolicyExecutorSpec extends Specification {
             spiedObjectMapper.writeValueAsString(_) >> { throw new JsonProcessingException('Serialization error') {} }
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
-        then: 'an NcmpException is thrown'
-            def thrownException = thrown(NcmpException)
-        and: 'the exception has the expected message'
-            assert thrownException.message == 'Cannot serialize Policy Executor request body to JSON'
-        and: 'the exception details contain the expected text'
-            assert thrownException.details.contains('Serialization error')
-
+        then: 'a warning is logged about the serialization failure'
+            assert getLogEntry(3).contains('Failed to serialize Policy Executor request body')
+        and: 'no exception is thrown'
+            noExceptionThrown()
     }
 
     def mockResponse(mockResponseAsMap, httpStatus) {

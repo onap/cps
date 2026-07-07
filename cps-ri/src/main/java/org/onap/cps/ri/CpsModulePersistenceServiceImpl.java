@@ -296,9 +296,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final YangTextSource tempYangTextSource =
             YangTextSchemaSourceSetBuilder.getYangTextSource(source, sourceIdentifier);
         try {
-            final SourceInfo yangIrSourceInfo = YangIRSourceInfoExtractor.forYangText(tempYangTextSource);
-            metaDataMap.put("moduleName", yangIrSourceInfo.sourceId().name().getLocalName());
-            final Revision revision = yangIrSourceInfo.sourceId().revision();
+            final SourceInfo sourceInfo = YangIRSourceInfoExtractor.forYangText(tempYangTextSource);
+            metaDataMap.put("moduleName", sourceInfo.sourceId().name().getLocalName());
+            final Revision revision = sourceInfo.sourceId().revision();
             metaDataMap.put("revision", revision == null ? "" : revision.toString());
         } catch (final YangSyntaxErrorException | IOException e) {
             throw new ModelValidationException("Yang resource is invalid.",
