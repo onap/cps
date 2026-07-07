@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c516d3c_c8a30296",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T10:43:41Z",
+      "side": 1,
+      "message": "as discussed, I decided to make changes instead to prevent review iterations. I\u0027ll send you a t patch file....",
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f6d18aa_d0501066",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T10:43:41Z",
+      "side": 1,
+      "message": "its OK to have proper Javadoc for \u0027complicated\u0027 private methods to help oterh understadn them",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 84
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "126cb32d_6ca3cf89",
@@ -318,6 +358,144 @@
         "startChar": 66,
         "endLine": 154,
         "endChar": 80
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16b69c63_d491b7f6",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T10:43:41Z",
+      "side": 1,
+      "message": "trees plural!",
+      "range": {
+        "startLine": 212,
+        "startChar": 70,
+        "endLine": 212,
+        "endChar": 83
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a74b76a_87200ab2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T10:43:41Z",
+      "side": 1,
+      "message": "you are realy buidling a (new) tree by examining the candidate tree if you were manipulating the candidate tree the prune verb would make sense but not in this case\nI would simply call this \"buildTrees\"",
+      "range": {
+        "startLine": 212,
+        "startChar": 33,
+        "endLine": 212,
+        "endChar": 38
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dfc847f_1319fc22",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T10:43:41Z",
+      "side": 1,
+      "message": "i just dont like streams and contrary to what many developers think they are not faster the basic loops (they are actually a tiny bit slower but that is insignificant) teh main reason is readability: compare with this (unfortunatly gerrit comments dont persist indenting):\n\nfinal List\u003cDataNode\u003e resultTrees \u003d new ArrayList\u003c\u003e(candidateTrees.size());\nfor (final DataNode rootNode : candidateTrees) {\n  final DataNode tree \u003d buildTree(rootNode, matchedXpaths,etchDescendantsOption);\n   if (tree !\u003d null) {\n        resultTrees.add(tree);\n      }\n   }\nreturn resultTrees;",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 22
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7db95f8c_e04b6133",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T10:43:41Z",
+      "side": 1,
+      "message": "so now you are building a single tree so call this buildTree()",
+      "range": {
+        "startLine": 231,
+        "startChar": 21,
+        "endLine": 231,
+        "endChar": 29
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecbc4c58_337dfcea",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T10:43:41Z",
+      "side": 1,
+      "message": "NB: for readability I would prefer to see a simple if/else\nif (canDescend)\n return rebuildDataNodeTree(dataNode, fetchDescendantsOption);\nelse\n return  buildFilteredNode(dataNode, Collections.emptyList());",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 17
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38f69b53_01ee2e63",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T10:43:41Z",
+      "side": 1,
+      "message": "do this inside buildFilteredNode()",
+      "range": {
+        "startLine": 246,
+        "startChar": 15,
+        "endLine": 246,
+        "endChar": 50
       },
       "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
