@@ -1,3 +1,8 @@
+---
+name: test-quality
+description: Spock/Groovy testing standards and best practices for CPS project.
+---
+
 # Spock/Groovy Testing Guide for CPS-NCMP
 
 This document describes important aspects of our Spock/Groovy test framework, conventions, and best practices observed in the CPS-NCMP codebase.
