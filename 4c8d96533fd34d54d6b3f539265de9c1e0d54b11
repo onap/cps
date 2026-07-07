@@ -60,6 +60,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97f5a07a_6309674a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T11:08:27Z",
+      "side": 1,
+      "message": "agreed with Lee Anjella; I am also unclear what \u0027wrapping; is being removed",
+      "range": {
+        "startLine": 196,
+        "startChar": 33,
+        "endLine": 196,
+        "endChar": 39
+      },
+      "revId": "4c8d96533fd34d54d6b3f539265de9c1e0d54b11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef14480c_8647e650",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
         "patchSetId": 1
