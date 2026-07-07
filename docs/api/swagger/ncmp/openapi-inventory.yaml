@@ -404,7 +404,6 @@ components:
           lastUpdateTime: 2022-12-31T20:30:40.000+0000
         trustLevel: COMPLETE
         moduleSetTag: my-module-set-tag
-        dmiProperties: my-dmi-property
       properties:
         cmHandle:
           example: my-cm-handle1
@@ -439,9 +438,6 @@ components:
           type: string
         cmHandleStatus:
           example: READY
-          type: string
-        dmiProperties:
-          example: my-dmi-property
           type: string
       title: CM handle Details
       type: object
@@ -545,7 +541,6 @@ components:
             key: my-property
           moduleSetTag: my-module-set-tag
           trustLevel: COMPLETE
-          dmiProperties: my-dmi-property
         - cmHandle: my-cm-handle
           alternateId: "Subnetwork=Europe,ManagedElement=X123"
           dataProducerIdentifier: my-data-producer-identifier
@@ -556,7 +551,6 @@ components:
             key: my-property
           moduleSetTag: my-module-set-tag
           trustLevel: COMPLETE
-          dmiProperties: my-dmi-property
         createdCmHandles:
         - cmHandle: my-cm-handle
           alternateId: "Subnetwork=Europe,ManagedElement=X123"
@@ -568,7 +562,6 @@ components:
             key: my-property
           moduleSetTag: my-module-set-tag
           trustLevel: COMPLETE
-          dmiProperties: my-dmi-property
         - cmHandle: my-cm-handle
           alternateId: "Subnetwork=Europe,ManagedElement=X123"
           dataProducerIdentifier: my-data-producer-identifier
@@ -579,7 +572,6 @@ components:
             key: my-property
           moduleSetTag: my-module-set-tag
           trustLevel: COMPLETE
-          dmiProperties: my-dmi-property
         dmiPlugin: my-dmi-plugin
         dmiDatajobsWritePlugin: my-dmi-datajobs-write-plugin
         dmiModelPlugin: my-dmi-model-plugin
@@ -646,7 +638,6 @@ components:
           key: my-property
         moduleSetTag: my-module-set-tag
         trustLevel: COMPLETE
-        dmiProperties: my-dmi-property
       properties:
         cmHandle:
           example: my-cm-handle
@@ -678,9 +669,6 @@ components:
           type: string
         cmHandleStatus:
           example: READY
-          type: string
-        dmiProperties:
-          example: my-dmi-property
           type: string
       required:
       - cmHandle
