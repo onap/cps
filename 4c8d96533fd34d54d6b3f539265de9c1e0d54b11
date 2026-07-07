@@ -39,6 +39,23 @@
       },
       "revId": "4c8d96533fd34d54d6b3f539265de9c1e0d54b11",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef14480c_8647e650",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-07T11:06:11Z",
+      "side": 1,
+      "message": "shoudl",
+      "revId": "4c8d96533fd34d54d6b3f539265de9c1e0d54b11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
