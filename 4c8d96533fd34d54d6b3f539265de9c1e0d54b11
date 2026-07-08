@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e1c1df9_3539a6c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-08T09:37:26Z",
+      "side": 1,
+      "message": "nope. I thought these were the only tests, but then I saw Toine\u0027s comment about Ignored tests in CpsDataServiceImplSpec and DataServiceIntegrationSpecDataServiceIntegrationSpec. I removed Ignore annotation and the tests pass",
+      "parentUuid": "354608e0_8b16471d",
+      "revId": "4c8d96533fd34d54d6b3f539265de9c1e0d54b11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3a17b23d_9947cf16",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
         "patchSetId": 1
@@ -48,6 +66,30 @@
       "writtenOn": "2026-07-02T10:56:01Z",
       "side": 1,
       "message": "can you be more specific ?",
+      "range": {
+        "startLine": 161,
+        "startChar": 22,
+        "endLine": 161,
+        "endChar": 32
+      },
+      "revId": "4c8d96533fd34d54d6b3f539265de9c1e0d54b11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b7a3517_76cdf2e2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-08T09:37:26Z",
+      "side": 1,
+      "message": "This was just a test to check if unwrapping the parent works. I have refactored the code and we do not need a boolean tracking flag.",
+      "parentUuid": "3a17b23d_9947cf16",
       "range": {
         "startLine": 161,
         "startChar": 22,
@@ -94,6 +136,24 @@
       "writtenOn": "2026-07-07T11:06:11Z",
       "side": 1,
       "message": "shoudl",
+      "revId": "4c8d96533fd34d54d6b3f539265de9c1e0d54b11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db44ae45_a4d34651",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-08T09:37:26Z",
+      "side": 1,
+      "message": "I think this is by mistake so marked close",
+      "parentUuid": "ef14480c_8647e650",
       "revId": "4c8d96533fd34d54d6b3f539265de9c1e0d54b11",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
