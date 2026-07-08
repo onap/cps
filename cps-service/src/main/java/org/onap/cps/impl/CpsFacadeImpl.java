@@ -112,7 +112,7 @@ public class CpsFacadeImpl implements CpsFacade {
         if (paginationOption == PaginationOption.NO_PAGINATION) {
             return 1;
         }
-        final int totalAnchors =  cpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
+        final int totalAnchors = cpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
         return totalAnchors <= paginationOption.getPageSize() ? 1
             : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
     }

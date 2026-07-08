@@ -58,7 +58,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
     protected final CpsDataService cpsDataService;
     protected final ReadinessManager readinessManager;
 
-    protected boolean isMaster = false;
+    protected boolean isMaster;
 
     private final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper());
 

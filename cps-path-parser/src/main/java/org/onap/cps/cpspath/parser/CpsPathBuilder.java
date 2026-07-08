@@ -58,15 +58,15 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private final StringBuilder normalizedXpathBuilder = new StringBuilder();
 
-    private int startIndexOfAncestorSchemaNodeIdentifier = 0;
+    private int startIndexOfAncestorSchemaNodeIdentifier;
 
-    private boolean processingAncestorAxis = false;
+    private boolean processingAncestorAxis;
 
     private final List<String> containerNames = new ArrayList<>();
 
     private final List<String> booleanOperators = new ArrayList<>();
 
-    private boolean hasOrOperator = false;
+    private boolean hasOrOperator;
 
     @Override
     public void exitSlash(final CpsPathParser.SlashContext ctx) {
@@ -81,7 +81,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void exitParent(final CpsPathParser.ParentContext ctx) {
         final String normalizedParentPath;
-        if (normalizedXpathBuilder.toString().equals("/")) {
+        if ("/".equals(normalizedXpathBuilder.toString())) {
             normalizedParentPath = NO_PARENT_PATH;
         } else {
             normalizedParentPath = normalizedXpathBuilder.toString();
@@ -221,7 +221,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         return leafConditions.stream().allMatch(lc -> EQUALITY_OPERATOR.equals(lc.operator()));
     }
 
-    private static String  normalizeCondition(final CpsPathQuery.LeafCondition leafCondition) {
+    private static String normalizeCondition(final CpsPathQuery.LeafCondition leafCondition) {
         final String normalizedValue;
         if (EQUALITY_OPERATOR.equals(leafCondition.operator())) {
             normalizedValue = wrapValueInSingleQuotes(leafCondition.value());

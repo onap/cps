@@ -114,7 +114,7 @@ public class XmlUtils {
             documentBuilder.parse(new ByteArrayInputStream(xmlContent.getBytes(StandardCharsets.UTF_8)));
         final Element root = document.getDocumentElement();
         if (!root.getTagName().equals(rootNodeTagName)
-            && !root.getTagName().equals(YangParserHelper.DATA_ROOT_NODE_TAG_NAME)) {
+            && !YangParserHelper.DATA_ROOT_NODE_TAG_NAME.equals(root.getTagName())) {
             final Document documentWithRootNode = addDataRootNode(root, rootNodeTagName, namespace, rootNodeProperty);
             documentWithRootNode.setXmlStandalone(true);
             final Transformer transformer = getTransformerFactory().newTransformer();
@@ -171,7 +171,7 @@ public class XmlUtils {
      * @return XML string representation of the data maps
      */
     @SuppressWarnings("unchecked")
-    @SuppressFBWarnings(value = "DCN_NULLPOINTER_EXCEPTION")
+    @SuppressFBWarnings("DCN_NULLPOINTER_EXCEPTION")
     public static String convertDataMapsToXml(final Object dataMaps) {
         try {
             final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();

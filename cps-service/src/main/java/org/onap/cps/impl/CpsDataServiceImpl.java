@@ -343,8 +343,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void validateData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                              final String nodeData, final ContentType contentType) {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final String xpath = ROOT_NODE_XPATH.equals(parentNodeXpath) ? NO_PARENT_PATH :
-                CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+        final String xpath = ROOT_NODE_XPATH.equals(parentNodeXpath) ? NO_PARENT_PATH
+                : CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         yangParser.validateData(contentType, nodeData, anchor, xpath);
     }
 

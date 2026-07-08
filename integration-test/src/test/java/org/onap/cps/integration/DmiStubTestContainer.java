@@ -50,11 +50,6 @@ public class DmiStubTestContainer extends GenericContainer<DmiStubTestContainer>
     }
 
     @Override
-    public void start() {
-        super.start();
-    }
-
-    @Override
     public void stop() {
         // Method intentionally left blank
     }

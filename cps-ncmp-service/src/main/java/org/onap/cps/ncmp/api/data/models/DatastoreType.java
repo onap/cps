@@ -64,4 +64,3 @@ public enum DatastoreType {
     }
 
 }
-

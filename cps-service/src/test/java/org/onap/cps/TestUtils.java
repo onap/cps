@@ -26,11 +26,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Map;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.onap.cps.api.model.DataNode;
 
 /**
  * Common convenience methods for testing.
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TestUtils {
 
     /**

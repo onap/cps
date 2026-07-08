@@ -57,7 +57,7 @@ public interface ProvMnSExtensions {
         summary = "Execute a Managed Object action",
         description = "Execute a Managed Object action identified by the URI path with supplied input parameters "
             + "if there are any.",
-        tags = { "action" },
+        tags = {"action"},
         responses = {
             @ApiResponse(responseCode = "200", description = "OK - This status code is returned when the action has "
                 + "been successfully executed.", content = {
@@ -105,8 +105,8 @@ public interface ProvMnSExtensions {
     )
     @PostMapping(
         value = "/v1alpha1/actions/**",
-        produces = { "application/json", "application/problem+json" },
-        consumes = { "application/json" }
+        produces = {"application/json", "application/problem+json"},
+        consumes = {"application/json"}
     )
 
     ResponseEntity<Object> executeAction(HttpServletRequest httpServletRequest,

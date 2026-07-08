@@ -50,8 +50,7 @@ public class CpsEvent {
      */
 
     public CloudEvent asCloudEvent() {
-        final CloudEventBuilder cloudEventBuilder = io.cloudevents.core.builder
-            .CloudEventBuilder.v1()
+        final CloudEventBuilder cloudEventBuilder = CloudEventBuilder.v1()
             .withId(UUID.randomUUID().toString())
             .withSource(URI.create(CLOUD_EVENT_SOURCE))
             .withType(type)

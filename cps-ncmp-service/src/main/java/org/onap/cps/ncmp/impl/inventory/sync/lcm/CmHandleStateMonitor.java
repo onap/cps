@@ -57,7 +57,7 @@ public class CmHandleStateMonitor {
         for (final CmHandleState cmHandleState : CmHandleState.values()) {
             final String cmHandleStateAsString = cmHandleState.name().toLowerCase();
             final String stateMetricKey = cmHandleStateAsString + METRIC_POSTFIX;
-            final int cmHandleCountForState =  cmHandleQueryService.queryCmHandleIdsByState(cmHandleState).size();
+            final int cmHandleCountForState = cmHandleQueryService.queryCmHandleIdsByState(cmHandleState).size();
             cmHandlesByState.putIfAbsent(stateMetricKey, cmHandleCountForState);
             log.info("Cm handle state monitor has set {} to {}", stateMetricKey, cmHandleCountForState);
         }
@@ -98,7 +98,7 @@ public class CmHandleStateMonitor {
     }
 
     private boolean isNew(final CompositeState currentCompositeState) {
-        return (currentCompositeState == null);
+        return currentCompositeState == null;
     }
 
     static class DecreasingEntryProcessor implements EntryProcessor<String, Integer, Void> {

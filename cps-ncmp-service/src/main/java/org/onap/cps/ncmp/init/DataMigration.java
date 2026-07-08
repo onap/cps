@@ -91,4 +91,3 @@ public class DataMigration {
         return jsonObjectMapper.asJsonString(additionalProperties);
     }
 }
-

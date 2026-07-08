@@ -26,4 +26,3 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ModuleReferenceRepository extends JpaRepository<YangResourceEntity, Integer>, ModuleReferenceQuery {}
-

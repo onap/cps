@@ -38,4 +38,3 @@ public class MicroMeterTestConfig {
         return new TimedAspect(meterRegistry);
     }
 }
-

@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.impl.provmns;
 
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.AccessLevel;
@@ -105,7 +106,7 @@ public class ParameterHelper {
         int count = 0;
         for (int i = segments.length - 1; i >= 0; i--) {
             if (segments[i].contains("=") && ++count == indexFromEnd) {
-                return String.join("/", java.util.Arrays.copyOfRange(segments, 0, i + 1));
+                return String.join("/", Arrays.copyOfRange(segments, 0, i + 1));
             }
         }
         return "";

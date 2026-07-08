@@ -130,7 +130,7 @@ public class RestServiceUrlTemplateBuilder {
         this.uriComponentsBuilder.pathSegment(basePath).pathSegment(versionSegment);
         final Map<String, String> urlTemplateVariables = new HashMap<>();
 
-        pathSegments.forEach((pathSegmentName, variablePathValue) ->  {
+        pathSegments.forEach((pathSegmentName, variablePathValue) -> {
             if (Strings.CS.equals(variablePathValue, FIXED_PATH_SEGMENT)) {
                 this.uriComponentsBuilder.pathSegment(pathSegmentName);
             } else {

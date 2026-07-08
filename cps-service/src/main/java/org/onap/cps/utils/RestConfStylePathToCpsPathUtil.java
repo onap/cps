@@ -60,7 +60,7 @@ public final class RestConfStylePathToCpsPathUtil {
                     findMatchingDataSchemaNode(pathSegment.nodeName, currentSchemaNodes);
             buildCpsPath(pathSegment, matchingDataSchemaNode, cpsPathStringBuilder);
             currentSchemaNodes =
-                    (matchingDataSchemaNode instanceof DataNodeContainer container) ? container.getChildNodes()
+                    matchingDataSchemaNode instanceof DataNodeContainer container ? container.getChildNodes()
                             : List.of();
         }
 

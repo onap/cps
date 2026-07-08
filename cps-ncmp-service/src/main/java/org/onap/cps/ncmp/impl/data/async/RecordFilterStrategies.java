@@ -71,6 +71,6 @@ public class RecordFilterStrategies {
             log.trace("No ce_type header found, possibly a legacy event (ignored)");
             return EXCLUDE_EVENT;
         }
-        return !(eventTypeHeaderValue.contains("DataOperationEvent"));
+        return !eventTypeHeaderValue.contains("DataOperationEvent");
     }
 }

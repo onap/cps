@@ -126,10 +126,3 @@ public class JexParser {
         return xpathSegmentsAsList;
     }
 }
-
-
-
-
-
-
-

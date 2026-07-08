@@ -33,4 +33,3 @@ public record ActionRequestParameters(
     String authorization,
     String fdn,
     String action) {}
-

@@ -78,7 +78,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public Dataspace getDataspace(final String dataspaceName) {
-        final DataspaceEntity dataspaceEntity =  dataspaceRepository.getByName(dataspaceName);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         return toDataspace(dataspaceEntity);
     }
 

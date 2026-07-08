@@ -103,7 +103,7 @@ public interface ProvMnS {
     )
     @GetMapping(
         value = "v1/**",
-        produces = { "application/json", "application/vnd.3gpp.object-tree-hierarchical+json"}
+        produces = {"application/json", "application/vnd.3gpp.object-tree-hierarchical+json"}
     )
 
     ResponseEntity<Object> getMoi(
@@ -157,7 +157,7 @@ public interface ProvMnS {
     )
     @DeleteMapping(
         value = "v1/**",
-        produces = { "application/json" }
+        produces = {"application/json"}
     )
     ResponseEntity<Object> deleteMoi(HttpServletRequest httpServletRequest);
 
@@ -210,8 +210,8 @@ public interface ProvMnS {
     )
     @PatchMapping(
         value = "v1/**",
-        produces = { "application/json" },
-        consumes = { "application/json-patch+json", "application/3gpp-json-patch+json" }
+        produces = {"application/json"},
+        consumes = {"application/json-patch+json", "application/3gpp-json-patch+json"}
     )
 
     ResponseEntity<Object> patchMoi(
@@ -277,8 +277,8 @@ public interface ProvMnS {
     )
     @PutMapping(
         value = "v1/**",
-        produces = { "application/json" },
-        consumes = { "application/json" }
+        produces = {"application/json"},
+        consumes = {"application/json"}
     )
 
     ResponseEntity<Object> putMoi(

@@ -119,7 +119,7 @@ public class YangParserHelper {
         } else {
             final Collection<QName> dataSchemaNodeIdentifiers
                 = getDataSchemaNodeIdentifiers(schemaContext, parentNodeXpath);
-            final EffectiveModelContext effectiveModelContext = ((EffectiveModelContext) schemaContext);
+            final EffectiveModelContext effectiveModelContext = (EffectiveModelContext) schemaContext;
             final EffectiveStatementInference effectiveStatementInference =
                 SchemaInferenceStack.of(effectiveModelContext,
                     SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();

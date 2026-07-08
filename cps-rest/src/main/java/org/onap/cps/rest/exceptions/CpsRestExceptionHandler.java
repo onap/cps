@@ -95,8 +95,8 @@ public class CpsRestExceptionHandler {
         final var errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
         errorMessage.setMessage(exception.getMessage());
-        errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails() :
-            "Check logs for details.");
+        errorMessage.setDetails(exception instanceof CpsException ? ((CpsException) exception).getDetails()
+            : "Check logs for details.");
         return new ResponseEntity<>(errorMessage, status);
     }
 }

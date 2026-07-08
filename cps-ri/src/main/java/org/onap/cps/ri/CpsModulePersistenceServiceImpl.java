@@ -356,7 +356,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private String getNameForChecksum(final String checksum,
                                       final Collection<YangResourceEntity> yangResourceEntities) {
         final Optional<String> optionalFileName = yangResourceEntities.stream()
-            .filter(entity -> Strings.CS.equals(checksum, (entity.getChecksum())))
+            .filter(entity -> Strings.CS.equals(checksum, entity.getChecksum()))
             .findFirst()
             .map(YangResourceEntity::getFileName);
         return optionalFileName.orElse("no filename");

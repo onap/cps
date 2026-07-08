@@ -85,7 +85,7 @@ public class QueryRestController implements CpsQueryApi {
                                                                 final Integer pageSize) {
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
-        final PaginationOption paginationOption = (pageIndex == null || pageSize == null)
+        final PaginationOption paginationOption = pageIndex == null || pageSize == null
                 ? PaginationOption.NO_PAGINATION : new PaginationOption(pageIndex, pageSize);
         final List<Map<String, Object>> dataNodesAsMaps
             = cpsFacade.executeDataspaceQuery(dataspaceName, cpsPath, fetchDescendantsOption, paginationOption);

@@ -23,10 +23,13 @@ package org.onap.cps;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * Common convenience methods for testing.
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TestUtils {
 
     /**

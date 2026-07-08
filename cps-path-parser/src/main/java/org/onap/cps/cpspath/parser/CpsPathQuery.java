@@ -63,7 +63,7 @@ public class CpsPathQuery {
      * @return boolean value.
      */
     public boolean hasAncestorAxis() {
-        return !(ancestorSchemaNodeIdentifier.isEmpty());
+        return !ancestorSchemaNodeIdentifier.isEmpty();
     }
 
     /**
@@ -72,7 +72,7 @@ public class CpsPathQuery {
      * @return boolean value.
      */
     public boolean hasAttributeAxis() {
-        return !(attributeAxisAttributeName.isEmpty());
+        return !attributeAxisAttributeName.isEmpty();
     }
 
     /**

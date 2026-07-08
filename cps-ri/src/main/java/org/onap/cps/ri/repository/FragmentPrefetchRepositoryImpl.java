@@ -20,6 +20,7 @@
 
 package org.onap.cps.ri.repository;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.util.Collection;
 import java.util.HashSet;
@@ -85,7 +86,7 @@ public class FragmentPrefetchRepositoryImpl implements FragmentPrefetchRepositor
 
         final PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
             final Connection connection = preparedStatement.getConnection();
-            final java.sql.Array idArray = connection.createArrayOf("bigint", fragmentEntityIds.toArray());
+            final Array idArray = connection.createArrayOf("bigint", fragmentEntityIds.toArray());
             preparedStatement.setArray(1, idArray);
             preparedStatement.setInt(2, maxDepth);
         };
