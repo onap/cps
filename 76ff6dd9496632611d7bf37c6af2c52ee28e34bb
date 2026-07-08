@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48fbb437_544c7b8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-08T13:25:05Z",
+      "side": 1,
+      "message": "Build fails because: SonarCloud dropped Java 17 support, but the CI still runs the scanner on Java 17",
+      "revId": "76ff6dd9496632611d7bf37c6af2c52ee28e34bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
