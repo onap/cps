@@ -21,8 +21,8 @@
 
 openapi: 3.0.3
 info:
-  title: ONAP Open API v3 Configuration Persistence Service
-  description: Configuration Persistence Service is a Model Driven Generic Database
+  title: ONAP Open API v3 Configuration Persistence Service.
+  description: Configuration Persistence Service is a Model Driven Generic Database.
   version: "3.6.3"
   contact:
      name: ONAP

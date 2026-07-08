@@ -18,7 +18,12 @@
 
 from docutils.parsers.rst import directives
 
+import os
 import subprocess
+
+# Generate OpenAPI docs if not already present
+if not os.path.isfile(os.path.join(os.path.dirname(__file__), 'api', 'swagger', 'cps', 'openapi.yaml')):
+    subprocess.run(['bash', os.path.join(os.path.dirname(__file__), 'generate-openapi.sh')], check=True)
 
 project = "onap"
 release = "master"
