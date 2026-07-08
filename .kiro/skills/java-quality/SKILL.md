@@ -1,3 +1,8 @@
+---
+name: java-quality
+description: Java code quality standards and best practices for CPS project.
+---
+
 # Java Code Quality Skill
 
 ## Overview
