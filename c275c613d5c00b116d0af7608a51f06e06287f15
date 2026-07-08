@@ -3,6 +3,29 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4c0ea399_6e4a7852",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-08T16:27:26Z",
+      "side": 1,
+      "message": "good to know!",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "c275c613d5c00b116d0af7608a51f06e06287f15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1edd8c8c_f5c36eed",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
