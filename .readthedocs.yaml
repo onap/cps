@@ -27,7 +27,8 @@ build:
   os: ubuntu-24.04
   tools:
     python: "3.12"
-    java: "21"
+  apt_packages:
+    - openjdk-21-jdk-headless
   jobs:
     pre_build:
       - bash docs/generate-openapi.sh
