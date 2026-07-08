@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a73440a7_6ccef787",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-08T07:59:44Z",
+      "side": 1,
+      "message": "i just checked and that API update should have been theer a long time before.\nWE really need an improvement ticket to remove or at least ignore generated documents... I\u0027ll create that now",
+      "parentUuid": "3c0ff880_69ac0d21",
+      "revId": "b08165f4ca71b9e7d494e53ca2032d5d1706de7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f984ce8_8837fc41",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-07-07T13:58:59Z",
       "side": 1,
       "message": "That\u0027s cool, didn\u0027t know you could do that if its on the class level",
+      "revId": "b08165f4ca71b9e7d494e53ca2032d5d1706de7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b23341f_930e8129",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/ZipFileSizeValidator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-08T07:59:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2f984ce8_8837fc41",
       "revId": "b08165f4ca71b9e7d494e53ca2032d5d1706de7a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
