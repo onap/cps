@@ -16,6 +16,52 @@
       "message": "Resolved all the comments",
       "revId": "d7fb72eceedcd8fff6a87a24ddb755c9152c034f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2a7d032_3d2b8d27",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-09T08:57:04Z",
+      "side": 1,
+      "message": "expand to describe more as it sounds like the Future was updated and removed rather than the delta reports",
+      "range": {
+        "startLine": 64,
+        "startChar": 55,
+        "endLine": 64,
+        "endChar": 78
+      },
+      "revId": "d7fb72eceedcd8fff6a87a24ddb755c9152c034f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e1c3ec_668fa763",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-09T08:57:04Z",
+      "side": 1,
+      "message": "withoutChild ** be consistent as the following lines",
+      "range": {
+        "startLine": 101,
+        "startChar": 28,
+        "endLine": 101,
+        "endChar": 51
+      },
+      "revId": "d7fb72eceedcd8fff6a87a24ddb755c9152c034f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
