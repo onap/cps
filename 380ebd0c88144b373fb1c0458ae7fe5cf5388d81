@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f749603e_0f3f6fed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-09T11:36:54Z",
+      "side": 1,
+      "message": "Did the easier refactoring. There is a comment which requires refactoring across files, that will be attempted in another patch",
+      "revId": "380ebd0c88144b373fb1c0458ae7fe5cf5388d81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
