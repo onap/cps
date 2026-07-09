@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e33a7ff2_ddfbcc8a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-09T14:34:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b63a76f_7d87d447",
+      "range": {
+        "startLine": 64,
+        "startChar": 55,
+        "endLine": 64,
+        "endChar": 78
+      },
+      "revId": "d7fb72eceedcd8fff6a87a24ddb755c9152c034f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5450f3b3_50fb3246",
@@ -88,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "347045e3_15386139",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-09T14:34:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5450f3b3_50fb3246",
+      "range": {
+        "startLine": 67,
+        "startChar": 54,
+        "endLine": 67,
+        "endChar": 66
+      },
+      "revId": "d7fb72eceedcd8fff6a87a24ddb755c9152c034f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11e1c3ec_668fa763",
@@ -101,6 +149,30 @@
       "writtenOn": "2026-07-09T08:57:04Z",
       "side": 1,
       "message": "withoutChild ** be consistent as the following lines",
+      "range": {
+        "startLine": 101,
+        "startChar": 28,
+        "endLine": 101,
+        "endChar": 51
+      },
+      "revId": "d7fb72eceedcd8fff6a87a24ddb755c9152c034f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0070ef14_6eaf0358",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-09T14:34:51Z",
+      "side": 1,
+      "message": "I have renamed method name from dataNodeWithoutChildren to copyWithoutChild",
+      "parentUuid": "11e1c3ec_668fa763",
       "range": {
         "startLine": 101,
         "startChar": 28,
