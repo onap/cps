@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ce9a3d9_ad88eb5d",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T15:09:49Z",
+      "side": 1,
+      "message": "our code never references any LatencyUtils class directly (Micrometer loads PauseDetector reflectively at runtime). Using runtime keeps it off the\n  compile classpath — so nobody can accidentally write a direct import against it — while still ensuring it\u0027s packaged and present when the app runs",
+      "range": {
+        "startLine": 95,
+        "startChar": 6,
+        "endLine": 95,
+        "endChar": 28
+      },
+      "revId": "dad7f258fade3def1a2f1ff7170da13161a77e88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
