@@ -67,6 +67,46 @@
       "message": "recheck",
       "revId": "380ebd0c88144b373fb1c0458ae7fe5cf5388d81",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3adb48a0_06f0e828",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T15:19:27Z",
+      "side": 1,
+      "message": "for sake of expediency we can fix NB comments in a future commit",
+      "revId": "380ebd0c88144b373fb1c0458ae7fe5cf5388d81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f973205_632dbf9b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T15:19:27Z",
+      "side": 1,
+      "message": "NB (can be done in future commit): can this be refactrod like so (pseudo code):\ncontent \u003d hasParentNode ? ... : ....;\nxmlParserStream \u003d XmlParserStream.create(writer,content)\n\nOr is Content a completely differenn type of object for each case?",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 88
+      },
+      "revId": "380ebd0c88144b373fb1c0458ae7fe5cf5388d81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
