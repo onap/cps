@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd993242_b49a356a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T15:13:45Z",
+      "side": 1,
+      "message": "NB: I think this is overkill",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 72
+      },
+      "revId": "31af1918e97dbe2a5a565da42697c64a8d0fc36f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

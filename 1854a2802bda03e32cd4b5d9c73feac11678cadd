@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "1854a2802bda03e32cd4b5d9c73feac11678cadd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98535765_49bebbdd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/CpsCoreInjectionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T15:13:45Z",
+      "side": 1,
+      "message": "NB, AI always adds to many spaces :-) Have to put sometign in our skills abot that!",
+      "range": {
+        "startLine": 73,
+        "startChar": 76,
+        "endLine": 73,
+        "endChar": 78
+      },
+      "revId": "1854a2802bda03e32cd4b5d9c73feac11678cadd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

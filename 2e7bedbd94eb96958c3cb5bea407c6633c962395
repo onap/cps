@@ -243,6 +243,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43ded109_6cbf5264",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T15:13:45Z",
+      "side": 1,
+      "message": "maybe better to log (if rejected) and assert logging if they are rejected",
+      "parentUuid": "7ba1b2c5_213b13be",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 105,
+        "endChar": 41
+      },
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34df24ce_860c1946",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
         "patchSetId": 2
@@ -283,6 +307,29 @@
         "startChar": 37,
         "endLine": 129,
         "endChar": 44
+      },
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b59ef7f4_dd96cd05",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T15:13:45Z",
+      "side": 1,
+      "message": "normal functional test not needed (here)",
+      "range": {
+        "startLine": 113,
+        "startChar": 3,
+        "endLine": 132,
+        "endChar": 5
       },
       "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
