@@ -138,6 +138,16 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     }
 
     @Override
+    public Flux<NcmpServiceCmHandle> northboundCmHandleSearchLightweight(
+            final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters =
+                jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters,
+            NorthboundCmHandleQuerySupportedConditions.CONDITION_NAMES);
+        return parameterizedCmHandleQueryService.queryCmHandlesLightweight(cmHandleQueryServiceParameters);
+    }
+
+    @Override
     public Flux<NcmpServiceCmHandle> southboundCmHandleSearch(
             final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters =
@@ -145,6 +155,16 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters,
             SouthboundCmHandleQuerySupportedConditions.CONDITION_NAMES);
         return parameterizedCmHandleQueryService.queryInventoryForCmHandles(cmHandleQueryServiceParameters);
+    }
+
+    @Override
+    public Flux<NcmpServiceCmHandle> southboundCmHandleSearchLightweight(
+            final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters =
+                jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters,
+            SouthboundCmHandleQuerySupportedConditions.CONDITION_NAMES);
+        return parameterizedCmHandleQueryService.queryCmHandlesLightweight(cmHandleQueryServiceParameters);
     }
 
     @Override

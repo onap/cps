@@ -175,6 +175,17 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             assert yangModelCmHandle.getCmHandleStatus() == 'DELETING'
     }
 
+    def 'Initial state is duplicated in optimized model.'() {
+        given: 'the optimized model is active'
+            objectUnderTest.useOptimizedModel = true
+        and: 'a new cm handle as Yang model'
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [])
+        when: 'initiating state to ADVISED'
+            objectUnderTest.initiateStateAdvised([yangModelCmHandle])
+        then: 'the top-level cm handle status is also set to ADVISED'
+            assert yangModelCmHandle.getCmHandleStatus() == 'ADVISED'
+    }
+
     def 'No state change and no event to be sent'() {
         given: 'Cm Handle batch with same state transition as before'
             def cmHandleStateMap = setupBatch('NO_CHANGE')

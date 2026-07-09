@@ -324,6 +324,30 @@ components:
         cmHandleStatus:
           type: string
           example: "READY"
+        dmiProperties:
+          type: string
+          example: my-dmi-property
+    RestOutputCmHandleLightweight:
+      type: object
+      title: Lightweight CM handle Details
+      properties:
+        cmHandle:
+          type: string
+          example: my-cm-handle1
+        alternateId:
+          type: string
+          example: "Subnetwork=Europe,ManagedElement=X123"
+        cmHandleStatus:
+          type: string
+          example: "READY"
+        moduleSetTag:
+          type: string
+          example: my-module-set-tag
+        dataProducerIdentifier:
+          type: string
+          example: my-data-producer-identifier
+        trustLevel:
+          $ref: '#/components/schemas/CmHandleTrustLevel'
     CmHandleCompositeState:
       type: object
       properties:

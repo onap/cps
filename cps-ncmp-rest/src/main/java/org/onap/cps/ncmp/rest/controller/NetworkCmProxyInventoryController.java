@@ -39,10 +39,12 @@ import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight;
 import org.onap.cps.ncmp.rest.util.CountCmHandleSearchExecution;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper;
 import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,6 +59,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final DeprecationHelper deprecationHelper;
     private final RestOutputCmHandleMapper restOutputCmHandleMapper;
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Get CM handle details by distinguished name.
@@ -158,6 +161,24 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
             : new ResponseEntity<>(failedRegistrationErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Search for CM handles and return lightweight response (top-level leaves only).
+     *
+     * @param cmHandleQueryParameters the cm handle query parameters
+     * @return list of lightweight cm handle details
+     */
+    @Override
+    public ResponseEntity<List<RestOutputCmHandleLightweight>> searchCmHandlesLightweight(
+            final CmHandleQueryParameters cmHandleQueryParameters) {
+        final CmHandleQueryApiParameters cmHandleQueryApiParameters =
+                jsonObjectMapper.convertToValueType(cmHandleQueryParameters, CmHandleQueryApiParameters.class);
+        final List<RestOutputCmHandleLightweight> restOutputCmHandles =
+                networkCmProxyInventoryFacade.southboundCmHandleSearchLightweight(cmHandleQueryApiParameters)
+                        .map(restOutputCmHandleMapper::toRestOutputCmHandleLightweight)
+                        .collectList().block();
+        return ResponseEntity.ok(restOutputCmHandles);
+    }
+
     private boolean allRegistrationsSuccessful(
         final DmiPluginRegistrationErrorResponse dmiPluginRegistrationErrorResponse) {
         return dmiPluginRegistrationErrorResponse.getFailedCreatedCmHandles().isEmpty()
@@ -195,5 +216,4 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
             .errorCode(registrationResponse.getNcmpResponseStatus().getCode())
             .errorText(registrationResponse.getErrorText());
     }
-
 }

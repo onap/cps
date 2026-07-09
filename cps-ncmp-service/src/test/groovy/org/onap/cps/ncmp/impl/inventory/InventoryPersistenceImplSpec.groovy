@@ -257,6 +257,19 @@ class InventoryPersistenceImplSpec extends Specification {
             'id does not exist' | false     | false       || 0
     }
 
+    def 'Update Cm Handle State batch when cm handle does not exist with optimized model.'() {
+        given: 'a map of cm handles composite states'
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED, lastUpdateTime: formattedDateAndTime)
+            def cmHandleStateMap = ['non-existent-ch' : compositeState]
+        and: 'the cm handle does not exist'
+            mockCmHandleIdPerAlternateId.containsKey(_) >> false
+            mockCmHandleIdPerAlternateId.containsValue(_) >> false
+        when: 'update cm handle state batch is invoked'
+            objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
+        then: 'no interactions with the CPS Data Service'
+            0 * mockCpsDataService._
+    }
+
     def 'Getting module definitions by module.'() {
         given: 'cps module service returns module definition for module name'
             def moduleDefinitions = [new ModuleDefinition('moduleName','revision','content')]

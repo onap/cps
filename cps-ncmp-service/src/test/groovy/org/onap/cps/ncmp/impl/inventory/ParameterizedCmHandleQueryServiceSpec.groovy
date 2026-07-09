@@ -28,7 +28,9 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.ConditionProperties
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
+
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
@@ -289,5 +291,51 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             cmHandleReferences.add(cmHandle.leaves.get(attributeName))
         }
         return cmHandleReferences
+    }
+
+    def 'Query lightweight cm handles.'() {
+        given: 'query parameters without conditions'
+            def queryParameters = new CmHandleQueryServiceParameters()
+        and: 'a cm handle represented as Yang model without properties'
+            def yangModelCmHandle = new YangModelCmHandle(
+                    id: 'ch-1', alternateId: 'alt-1', cmHandleStatus: 'READY',
+                    moduleSetTag: 'module-set-tag-1', dataProducerIdentifier: 'data-producer-1',
+                    additionalProperties: [], publicProperties: [])
+        and: 'trust level manager applies a unique trust level'
+            mockTrustLevelManager.applyEffectiveTrustLevels(_) >> { args ->
+                args[0].each { it.currentTrustLevel = TrustLevel.COMPLETE }
+            }
+        when: 'lightweight cm handles are queried'
+            def result = objectUnderTest.queryCmHandlesLightweight(queryParameters).collectList().block()
+        then: 'all cm handle references are queried'
+            1 * cmHandleQueries.getAllCmHandleReferences(false) >> ['ch-1']
+        and: 'cm handles are retrieved without properties'
+            1 * mockInventoryPersistence.getYangModelCmHandlesWithoutProperties(['ch-1']) >> [yangModelCmHandle]
+        and: 'the expected fields are populated'
+            assert result.size() == 1
+            with(result[0]) {
+                assert cmHandleId == 'ch-1'
+                assert alternateId == 'alt-1'
+                assert cmHandleStatus == 'READY'
+                assert moduleSetTag == 'module-set-tag-1'
+                assert dataProducerIdentifier == 'data-producer-1'
+            }
+        and: 'the effective trust level is applied'
+            assert result[0].currentTrustLevel == TrustLevel.COMPLETE
+        and: 'full cm handles are not retrieved'
+            0 * mockInventoryPersistence.getYangModelCmHandles(_)
+    }
+
+    def 'Query lightweight cm handles with no matching cm handles.'() {
+        given: 'query parameters'
+            def queryParameters = new CmHandleQueryServiceParameters()
+        and: 'no cm handles match'
+            cmHandleQueries.getAllCmHandleReferences(false) >> []
+        when: 'lightweight cm handles are queried'
+            def result = objectUnderTest.queryCmHandlesLightweight(queryParameters).collectList().block()
+        then: 'no cm handles are returned'
+            assert result.empty
+        and: 'lightweight cm handles are not retrieved'
+            0 * mockInventoryPersistence._
     }
 }

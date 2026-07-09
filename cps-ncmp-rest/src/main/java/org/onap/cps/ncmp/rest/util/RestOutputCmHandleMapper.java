@@ -24,6 +24,7 @@ import java.util.Collections;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -61,5 +62,26 @@ public class RestOutputCmHandleMapper {
         restOutputCmHandle.setDataProducerIdentifier(ncmpServiceCmHandle.getDataProducerIdentifier());
         restOutputCmHandle.setCmHandleStatus(ncmpServiceCmHandle.getCmHandleStatus());
         return restOutputCmHandle;
+    }
+
+    /**
+     * Map NcmpServiceCmHandle to a lightweight RestOutputCmHandleLightweight (top-level leaves only).
+     * Only includes: cmHandle, alternateId, cmHandleState, moduleSetTag, dataProducerIdentifier, trustLevel.
+     *
+     * @param ncmpServiceCmHandle the cm handle
+     * @return lightweight rest output cm handle
+     */
+    public RestOutputCmHandleLightweight toRestOutputCmHandleLightweight(
+            final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final RestOutputCmHandleLightweight restOutputCmHandleLightweight = new RestOutputCmHandleLightweight();
+        restOutputCmHandleLightweight.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
+        restOutputCmHandleLightweight.setAlternateId(ncmpServiceCmHandle.getAlternateId());
+        restOutputCmHandleLightweight.setCmHandleStatus(ncmpServiceCmHandle.getCmHandleStatus());
+        restOutputCmHandleLightweight.setModuleSetTag(ncmpServiceCmHandle.getModuleSetTag());
+        restOutputCmHandleLightweight.setDataProducerIdentifier(ncmpServiceCmHandle.getDataProducerIdentifier());
+        if (ncmpServiceCmHandle.getCurrentTrustLevel() != null) {
+            restOutputCmHandleLightweight.setTrustLevel(ncmpServiceCmHandle.getCurrentTrustLevel().toString());
+        }
+        return restOutputCmHandleLightweight;
     }
 }

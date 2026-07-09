@@ -55,6 +55,7 @@ import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight;
 import org.onap.cps.ncmp.rest.model.RestOutputPublicCmHandleProperties;
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper;
 import org.onap.cps.ncmp.rest.util.CountCmHandleSearchExecution;
@@ -403,6 +404,38 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         if (acceptableDataStoreType != datastoreType) {
             throw new InvalidDatastoreException(requestedDatastoreName + " is not supported");
         }
+    }
+
+    /**
+     * Search for CM handles and return lightweight response (top-level leaves only).
+     *
+     * @param cmHandleQueryParameters the cm handle query parameters
+     * @return list of lightweight cm handle details
+     */
+    @Override
+    public ResponseEntity<List<RestOutputCmHandleLightweight>> searchCmHandlesLightweight(
+            final CmHandleQueryParameters cmHandleQueryParameters) {
+        final CmHandleQueryApiParameters cmHandleQueryApiParameters =
+                jsonObjectMapper.convertToValueType(cmHandleQueryParameters, CmHandleQueryApiParameters.class);
+        final List<RestOutputCmHandleLightweight> restOutputCmHandles =
+                networkCmProxyInventoryFacade.northboundCmHandleSearchLightweight(cmHandleQueryApiParameters)
+                        .map(restOutputCmHandleMapper::toRestOutputCmHandleLightweight)
+                        .collectList().block();
+        return ResponseEntity.ok(restOutputCmHandles);
+    }
+
+    /**
+     * Get lightweight CM handle details by cm handle reference.
+     *
+     * @param cmHandleReference cm-handle or alternate identifier
+     * @return lightweight cm handle details
+     */
+    @Override
+    public ResponseEntity<RestOutputCmHandleLightweight> retrieveCmHandleDetailsByIdLightweight(
+            final String cmHandleReference) {
+        final NcmpServiceCmHandle ncmpServiceCmHandle
+            = networkCmProxyInventoryFacade.getNcmpServiceCmHandle(cmHandleReference);
+        return ResponseEntity.ok(restOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle));
     }
 
 }
