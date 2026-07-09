@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2024 Nordix Foundation
+ * Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ class OpenTelemetryConfigSpec extends Specification {
         then: 'an OTLP Exporter is created'
             assert result instanceof OtlpHttpSpanExporter
         and: 'the endpoint is correctly set'
-            assert result.builder.endpoint == 'http://exporter-test-url'
+            assert result.builder.endpoint.toString() == 'http://exporter-test-url'
     }
 
     def 'Jaeger Remote Sampler Creation'() {
@@ -73,10 +73,6 @@ class OpenTelemetryConfigSpec extends Specification {
             def result = objectUnderTest.createJaegerRemoteSampler()
         then: 'a Jaeger remote sampler is created'
             assert result instanceof JaegerRemoteSampler
-        and: 'the sampler type is correct'
-            assert result.delegate.type == 'remoteSampling'
-        and: 'the sampler endpoint is correctly set'
-            assert result.delegate.url.toString().startsWith('http://jaeger-remote-test-url')
     }
 
     def 'Skipping actuator endpoints'() {

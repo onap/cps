@@ -94,7 +94,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>4.0.7</version>
+                <version>4.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -164,6 +164,11 @@
                 <groupId>io.github.mweirauch</groupId>
                 <artifactId>micrometer-jvm-extras</artifactId>
                 <version>0.2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.latencyutils</groupId>
+                <artifactId>LatencyUtils</artifactId>
+                <version>2.0.3</version>
             </dependency>
             <dependency>
                 <groupId>io.gsonfire</groupId>

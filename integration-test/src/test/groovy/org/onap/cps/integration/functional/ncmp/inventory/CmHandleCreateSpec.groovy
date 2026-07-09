@@ -129,6 +129,8 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             new PollingConditions().within(5) {
                 assert countLcmEventTimerInvocations() == 2 + 2
             }
+        cleanup: 'ensure CM handle is deregistered even if an assertion above fails'
+            deregisterCmHandle(DMI1_URL, uniqueId)
     }
 
     def 'CM Handle registration using V2 events.'() {
