@@ -63,4 +63,23 @@ class RestOutputCmHandleMapperSpec extends Specification {
                 alternateId: 'alt-1', compositeState: new CompositeState(cmHandleState: 'ADVISED'), cmHandleStatus: 'REPORTED STATE',
                 dmiProperties: 'dmi property')
     }
+
+    def 'Map cm handle to lightweight rest output.'() {
+        given: 'a cm handle with all fields'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(
+                    cmHandleId: 'ch-1', alternateId: 'alt-1', cmHandleStatus: 'READY',
+                    moduleSetTag: 'tag-1', dataProducerIdentifier: 'producer-1',
+                    currentTrustLevel: TrustLevel.COMPLETE,
+                    publicProperties: ['key': 'val'], additionalProperties: ['secret': 'val'],
+                    compositeState: new CompositeState(), dmiProperties: '{"key":"val"}')
+        when: 'the lightweight mapper is called'
+            def result = objectUnderTest.toRestOutputCmHandleLightweight(ncmpServiceCmHandle)
+        then: 'only top-level fields are populated'
+            assert result.cmHandle == 'ch-1'
+            assert result.alternateId == 'alt-1'
+            assert result.cmHandleStatus == 'READY'
+            assert result.moduleSetTag == 'tag-1'
+            assert result.dataProducerIdentifier == 'producer-1'
+            assert result.trustLevel == 'COMPLETE'
+    }
 }

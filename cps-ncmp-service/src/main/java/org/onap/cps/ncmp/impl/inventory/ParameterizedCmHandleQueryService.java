@@ -71,6 +71,15 @@ public interface ParameterizedCmHandleQueryService {
      */
     Flux<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 
+    /**
+     * Query and return lightweight cm handle objects (top-level leaves only, no descendants).
+     * Response includes: id, alternateId, cmHandleState, moduleSetTag, dataProducerIdentifier, trustLevel.
+     *
+     * @param cmHandleQueryServiceParameters the cm handle query parameters
+     * @return lightweight cm handle objects as a reactive stream (flux)
+     */
+    Flux<NcmpServiceCmHandle> queryCmHandlesLightweight(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+
 
     /**
      * Query and return cm handles that match the given query parameters.

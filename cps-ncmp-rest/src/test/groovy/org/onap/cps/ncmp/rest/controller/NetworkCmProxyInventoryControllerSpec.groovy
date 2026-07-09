@@ -333,4 +333,26 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         return CmHandleRegistrationResponse.createSuccessResponse(cmHandle)
     }
 
+    def 'Execute v2 lightweight cm handle search on inventory endpoint.'() {
+        given: 'a search request body'
+            def searchRequest = '{"cmHandleQueryParameters":[]}'
+        and: 'the facade returns a lightweight cm handle'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
+            mockNetworkCmProxyInventoryFacade.southboundCmHandleSearchLightweight(_) >>
+                Flux.fromIterable([ncmpServiceCmHandle])
+        and: 'the mapper converts to lightweight output'
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle) >> new org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight(cmHandle: 'ch-1', cmHandleStatus: 'READY')
+        when: 'the v2 search endpoint is invoked'
+            def response = mvc.perform(
+                    post('/ncmpInventory/v2/ch/searches')
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(searchRequest)
+            ).andReturn().response
+        then: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains the lightweight cm handle'
+            assert response.contentAsString.contains('ch-1')
+            assert response.contentAsString.contains('READY')
+    }
+
 }

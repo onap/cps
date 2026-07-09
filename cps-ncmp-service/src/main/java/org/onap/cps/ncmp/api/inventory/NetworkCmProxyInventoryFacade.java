@@ -102,6 +102,15 @@ public interface NetworkCmProxyInventoryFacade {
     Flux<NcmpServiceCmHandle> northboundCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
 
     /**
+     * Retrieve lightweight cm handles (top-level leaves only) for the given query parameters.
+     *
+     * @param cmHandleQueryApiParameters cm handle query parameters
+     * @return lightweight cm handle objects as a reactive stream (flux)
+     */
+    Flux<NcmpServiceCmHandle> northboundCmHandleSearchLightweight(
+            final CmHandleQueryApiParameters cmHandleQueryApiParameters);
+
+    /**
      * Retrieve cm handle ids for the given query parameters.
      *
      * @param cmHandleQueryApiParameters cm handle query parameters
@@ -152,4 +161,13 @@ public interface NetworkCmProxyInventoryFacade {
      */
     Flux<NcmpServiceCmHandle> southboundCmHandleSearch(final CmHandleQueryApiParameters
                                                                      cmHandleQueryApiParameters);
+
+    /**
+     * Retrieve lightweight cm handles (top-level leaves only) for the given query parameters.
+     *
+     * @param cmHandleQueryApiParameters cm handle query parameters
+     * @return lightweight cm handle objects as a reactive stream (flux)
+     */
+    Flux<NcmpServiceCmHandle> southboundCmHandleSearchLightweight(
+            final CmHandleQueryApiParameters cmHandleQueryApiParameters);
 }
