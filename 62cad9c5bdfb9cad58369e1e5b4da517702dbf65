@@ -43,6 +43,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d36f0a4_ff4304fc",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-09T08:32:08Z",
+      "side": 1,
+      "message": "this two methods is very similar with only .forEach(result::**); difference, can this be merged and have the AND/OR as parameter?",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 110,
+        "endChar": 1
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd09bc0f_782e0baa",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryOperator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-09T08:32:08Z",
+      "side": 1,
+      "message": "proper java doc",
+      "range": {
+        "startLine": 65,
+        "startChar": 3,
+        "endLine": 66,
+        "endChar": 38
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "126cb32d_6ca3cf89",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
         "patchSetId": 11
@@ -358,6 +404,29 @@
         "startChar": 66,
         "endLine": 154,
         "endChar": 80
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1421855f_a867ff67",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-09T08:32:08Z",
+      "side": 1,
+      "message": "this can result to null",
+      "range": {
+        "startLine": 196,
+        "startChar": 55,
+        "endLine": 196,
+        "endChar": 73
       },
       "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
