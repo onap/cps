@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3ac636f_5db6c4f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T07:41:22Z",
+      "side": 1,
+      "message": "looking good, some refactoring suggested...",
+      "revId": "ff3e7bcf27137c10bbb98839771ed6c0ceafd7bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1503b53_edd4daf3",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T07:41:22Z",
+      "side": 1,
+      "message": "there is a lot of duplication between this method and the previous (setup, error handling).\nI would combine them, have a if-else in the middle to handle the difference",
+      "range": {
+        "startLine": 168,
+        "startChar": 26,
+        "endLine": 168,
+        "endChar": 46
+      },
+      "revId": "ff3e7bcf27137c10bbb98839771ed6c0ceafd7bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d23a53_713404e5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T07:41:22Z",
+      "side": 1,
+      "message": "strange to use past tense. Suggest name for this method: wrapXmlContent (for both variations)\nI also suggest you handle the parentNodeXpath being empty iNsides the XmlUtils (redirect to method without it, maybe that can become private?) so you can call the same method here",
+      "range": {
+        "startLine": 184,
+        "startChar": 35,
+        "endLine": 184,
+        "endChar": 41
+      },
+      "revId": "ff3e7bcf27137c10bbb98839771ed6c0ceafd7bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e33f776_1f5f4e40",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-09T07:41:22Z",
+      "side": 1,
+      "message": "NB: would  \u003d\u003d not work ?",
+      "range": {
+        "startLine": 196,
+        "startChar": 25,
+        "endLine": 196,
+        "endChar": 29
+      },
+      "revId": "ff3e7bcf27137c10bbb98839771ed6c0ceafd7bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
