@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "252c3e75_1645bc29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-10T12:35:05Z",
+      "side": 1,
+      "message": "Rename message like Update and fix in Swagger API documentation",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 58
+      },
+      "revId": "168310f12827c728f7532a025724e892c5ddb3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dc9d732_3d00ade7",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-10T12:35:05Z",
+      "side": 1,
+      "message": "Here you have replaced from Content-Type to Accept i know we can pass either Content-Type or Accept in header can you please see once again why Content-Type is not supporting for xml response.",
+      "range": {
+        "startLine": 68,
+        "startChar": 77,
+        "endLine": 68,
+        "endChar": 92
+      },
+      "revId": "168310f12827c728f7532a025724e892c5ddb3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
