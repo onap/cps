@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0478703b_d2639d1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-10T09:46:42Z",
+      "side": 1,
+      "message": "stage-release",
+      "revId": "dad7f258fade3def1a2f1ff7170da13161a77e88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8ce9a3d9_ad88eb5d",
         "filename": "cps-service/pom.xml",
         "patchSetId": 1
