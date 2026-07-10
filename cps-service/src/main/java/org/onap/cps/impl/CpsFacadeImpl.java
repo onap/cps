@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 Nordix Foundation
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,8 @@
  */
 
 package org.onap.cps.impl;
+
+import static org.onap.cps.api.CpsQueryService.SKIP_LEAF_CONDITION_VALIDATION;
 
 import java.util.Collection;
 import java.util.List;
@@ -87,7 +89,8 @@ public class CpsFacadeImpl implements CpsFacade {
         if (cpsPathQuery.hasAttributeAxis()) {
             final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
             final Set<Object> attributeValues =
-                    cpsQueryService.queryDataLeaf(dataspaceName, anchorName, cpsPath, Object.class);
+                    cpsQueryService.queryDataLeaf(
+                            dataspaceName, anchorName, cpsPath, Object.class, SKIP_LEAF_CONDITION_VALIDATION);
             return dataMapper.toAttributeMaps(attributeName, attributeValues);
         }
         final Collection<DataNode> dataNodes =
