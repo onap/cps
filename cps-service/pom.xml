@@ -88,6 +88,13 @@
       <artifactId>micrometer-core</artifactId>
     </dependency>
     <dependency>
+      <!-- Required at runtime by Micrometer Timer for pause detection.
+           No longer pulled in transitively since the Spring Boot 4.1.0 / Micrometer upgrade. -->
+      <groupId>org.latencyutils</groupId>
+      <artifactId>LatencyUtils</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>io.cloudevents</groupId>
       <artifactId>cloudevents-json-jackson</artifactId>
     </dependency>
