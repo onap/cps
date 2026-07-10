@@ -1,0 +1,9 @@
+Code-Review+2: Sean Beirne <sean.beirne@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Verified+1: ONAP Bypass GHA <releng+onap.bypass.gha@linuxfoundation.org>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Submitted-by: Sean Beirne <sean.beirne@est.tech>
+Submitted-at: Fri, 10 Jul 2026 15:07:59 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/145992
+Project: cps
+Branch: refs/heads/master
