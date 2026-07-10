@@ -21,13 +21,13 @@
 
 package org.onap.cps.impl
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.model.CompositeQuery
-import org.onap.cps.utils.JsonObjectMapper
-
+import static org.onap.cps.api.CpsQueryService.SKIP_LEAF_CONDITION_VALIDATION
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.model.CompositeQuery
+import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
@@ -99,7 +99,7 @@ class CpsFacadeImplSpec extends Specification {
 
     def 'Execute anchor query with attribute-axis.'() {
         given: 'the cps query service returns two attribute values'
-            mockCpsQueryService.queryDataLeaf('my dataspace', 'my anchor', '/my/path/@myAttribute', Object) >> ['value1', 'value2']
+            mockCpsQueryService.queryDataLeaf('my dataspace', 'my anchor', '/my/path/@myAttribute', Object, SKIP_LEAF_CONDITION_VALIDATION) >> ['value1', 'value2']
         when: 'get data using attribute axis'
             def result = objectUnderTest.executeAnchorQuery('my dataspace', 'my anchor', '/my/path/@myAttribute', myFetchDescendantsOption)
         then: 'attribute values (from the query service result) are returned'

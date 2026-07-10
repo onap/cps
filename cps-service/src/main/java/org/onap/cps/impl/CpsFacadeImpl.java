@@ -21,6 +21,8 @@
 
 package org.onap.cps.impl;
 
+import static org.onap.cps.api.CpsQueryService.SKIP_LEAF_CONDITION_VALIDATION;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -87,7 +89,8 @@ public class CpsFacadeImpl implements CpsFacade {
         if (cpsPathQuery.hasAttributeAxis()) {
             final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
             final Set<Object> attributeValues =
-                    cpsQueryService.queryDataLeaf(dataspaceName, anchorName, cpsPath, Object.class);
+                    cpsQueryService.queryDataLeaf(
+                            dataspaceName, anchorName, cpsPath, Object.class, SKIP_LEAF_CONDITION_VALIDATION);
             return dataMapper.toAttributeMaps(attributeName, attributeValues);
         }
         final Collection<DataNode> dataNodes =
