@@ -11,6 +11,29 @@ CPS Release Notes
 .. contents::
     :depth: 2
 
+Version: 3.8.1
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:3.8.1                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 3.8.1                                                  |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | Not yet released                                       |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Features
+--------
+
 Version: 3.8.0
 ==============
 
@@ -27,12 +50,19 @@ Release Data
 | **Release designation**              | 3.8.0                                                  |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not yet released                                       |
+| **Release date**                     | 2026 July 10                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Features
 --------
+    - `CPS-3284 <https://lf-onap.atlassian.net/browse/CPS-3284>`_ Update CPS-NCMP to Spring Boot 4.1.0
+
+Security Notes
+--------------
+    - `CPS-3267 <https://lf-onap.atlassian.net/browse/CPS-3267>`_ Hardening: Zip File size checks improvements
+    - `CPS-3268 <https://lf-onap.atlassian.net/browse/CPS-3268>`_ Hardening: Add optional JWT authentication for CPS REST APIs
+
 
 Version: 3.7.9
 ==============
