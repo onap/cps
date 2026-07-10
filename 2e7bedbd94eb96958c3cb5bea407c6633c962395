@@ -265,6 +265,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "115d7c36_64c65f43",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-10T11:05:52Z",
+      "side": 1,
+      "message": "will add on patch #2",
+      "parentUuid": "43ded109_6cbf5264",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 105,
+        "endChar": 41
+      },
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34df24ce_860c1946",
@@ -325,6 +349,30 @@
       "writtenOn": "2026-07-09T15:13:45Z",
       "side": 1,
       "message": "normal functional test not needed (here)",
+      "range": {
+        "startLine": 113,
+        "startChar": 3,
+        "endLine": 132,
+        "endChar": 5
+      },
+      "revId": "2e7bedbd94eb96958c3cb5bea407c6633c962395",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9108c10c_744906be",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-10T11:05:52Z",
+      "side": 1,
+      "message": "will add on patch #2",
+      "parentUuid": "b59ef7f4_dd96cd05",
       "range": {
         "startLine": 113,
         "startChar": 3,
