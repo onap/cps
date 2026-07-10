@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
+import static org.onap.cps.api.CpsQueryService.SKIP_LEAF_CONDITION_VALIDATION;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
@@ -97,7 +98,8 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         if (useOptimizedModel) {
             final String cpsPath = NCMP_DMI_REGISTRY_PARENT
                     + "/cm-handles[@cm-handle-state='" + cmHandleState + "']/@id";
-            return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+            return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                    cpsPath, String.class, 1);
         }
         final Collection<DataNode> cmHandlesAsDataNodes =
                 queryNcmpRegistryByCpsPath("//state[@cm-handle-state='" + cmHandleState + "']",
@@ -124,7 +126,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
             final String cpsPath = NCMP_DMI_REGISTRY_PARENT
                     + "/cm-handles[@id='" + cmHandleId + "']/@cm-handle-state";
             final Collection<String> result = cpsQueryService.queryDataLeaf(
-                    NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+                    NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class, 1);
             return !result.isEmpty()
                     && CmHandleState.valueOf(result.iterator().next()).equals(requiredCmHandleState);
         }
@@ -154,7 +156,8 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     public Collection<String> getAllCmHandleReferences(final boolean outputAlternateId) {
         final String attributeName = outputAlternateId ? ALTERNATE_ID : CM_HANDLE_ID;
         final String cpsPath = String.format("%s/cm-handles/@%s", NCMP_DMI_REGISTRY_PARENT, attributeName);
-        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPath, String.class, 0);
     }
 
     @Override
@@ -173,7 +176,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
             cpsPathInQueryWithAttribute = cpsPathInQuery + "/@id";
         }
         return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                cpsPathInQueryWithAttribute, String.class);
+                cpsPathInQueryWithAttribute, String.class, SKIP_LEAF_CONDITION_VALIDATION);
     }
 
     private Collection<String> getCmHandleReferencesByTrustLevel(final TrustLevel targetTrustLevel,
@@ -231,7 +234,8 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         final String attributeName = outputAlternateId ? ALTERNATE_ID : CM_HANDLE_ID;
         final String cpsPath = String.format("%s/cm-handles[@%s='%s']/@%s",
                 NCMP_DMI_REGISTRY_PARENT, dmiProperty, dmiPluginIdentifier, attributeName);
-        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPath, String.class, 1);
     }
 
     private Collection<DataNode> getDataNodesByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,
@@ -262,7 +266,8 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         final String attributeName = outputAlternateId ? ALTERNATE_ID : CM_HANDLE_ID;
         final String cpsPath = String.format("//%s[@name='%s' and @value='%s']%s/@%s",
                 propertyType.getYangContainerName(), propertyName, propertyValue, ANCESTOR_CM_HANDLES, attributeName);
-        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPath, String.class, 2);
     }
 
     private DataNode getCmHandleState(final String cmHandleId) {
