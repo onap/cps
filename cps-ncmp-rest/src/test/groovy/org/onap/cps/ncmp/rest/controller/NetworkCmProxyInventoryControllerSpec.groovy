@@ -121,7 +121,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     }
 
     def 'Dmi plugin registration with badly formed json.'() {
-        given: 'a badly formed (unparseable) json'
+        given: 'a badly formed (unparsable) json'
             def badlyFormedJson = 'this is not json at all'
         when: 'post request is performed'
             def response = mvc.perform(

@@ -163,7 +163,7 @@ class DmiRestClientIntegrationSpec extends Specification {
             mockWebServer.shutdown()
         when: 'DMI health status is checked'
             def result = objectUnderTest.getDmiHealthStatus(urlTemplateParameters).block()
-        then: 'result is empty string (NOT_SPECIFIED) due to onErrorResume'
+        then: 'result is empty string (NOT_SPECIFIED)'
             assert result == ''
     }
 

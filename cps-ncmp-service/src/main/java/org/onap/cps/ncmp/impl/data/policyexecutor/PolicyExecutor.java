@@ -103,6 +103,9 @@ public class PolicyExecutor {
                                                                                           authorization,
                                                                                           resourceIdentifier,
                                                                                           changeRequestAsJson);
+                if (responseEntity == null) {
+                    return;
+                }
                 final String responseBodyAsString = responseEntity.getBody();
                 if (responseBodyAsString == null || responseBodyAsString.isEmpty()) {
                     log.warn("No valid response body from Policy Executor, ignored");
@@ -170,8 +173,8 @@ public class PolicyExecutor {
         try {
             bodyAsJsonString = objectMapper.writeValueAsString(bodyAsObject);
         } catch (final JsonProcessingException jsonProcessingException) {
-            throw new NcmpException("Cannot serialize Policy Executor request body to JSON",
-                "Failed to convert request body to JSON string: " + jsonProcessingException.getMessage());
+            log.warn("Failed to serialize Policy Executor request body: {}", jsonProcessingException.getMessage());
+            return null;
         }
 
         final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
