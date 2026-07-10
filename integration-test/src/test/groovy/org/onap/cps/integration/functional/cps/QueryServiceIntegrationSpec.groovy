@@ -21,6 +21,7 @@
 
 package org.onap.cps.integration.functional.cps
 
+import static org.onap.cps.api.CpsQueryService.SKIP_LEAF_CONDITION_VALIDATION
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -58,7 +59,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Query data leaf using CPS path for #scenario.'() {
         when: 'query data leaf for bookstore container'
-            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, Object.class)
+            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, Object.class, SKIP_LEAF_CONDITION_VALIDATION)
         then: 'the result contains the expected number of leaf values'
             assert result.size() == expectedUniqueBooksTitles
         where:
@@ -73,7 +74,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'a cps path query for two books, returning only #leafName'
             def cpsPath = '//books[@title="Matilda" or @title="Good Omens"]/@' + leafName
         when: 'query data leaf for bookstore container'
-            def results = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, leafType)
+            def results = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, leafType, SKIP_LEAF_CONDITION_VALIDATION)
         then: 'the result contains the expected leaf values'
             assert results == expectedResults as Set
         where:
@@ -87,7 +88,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'a cps path query that will return the names of the categories of two books'
             def cpsPath = '//books[@title="Matilda" or @title="Good Omens"]/ancestor::categories/@name'
         when: 'query data leaf for bookstore container'
-            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, String.class)
+            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, String.class, SKIP_LEAF_CONDITION_VALIDATION)
         then: 'the result contains the expected leaf values'
             assert result == ['Children', 'Comedy'] as Set
     }
@@ -96,7 +97,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'a cps path without an attribute axis'
             def cpsPathWithoutAttributeAxis = '//books'
         when: 'query data leaf is called without attribute axis in cps path'
-            objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPathWithoutAttributeAxis, String.class)
+            objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPathWithoutAttributeAxis, String.class, SKIP_LEAF_CONDITION_VALIDATION)
         then: 'illegal argument exception is thrown'
             thrown(IllegalArgumentException)
     }

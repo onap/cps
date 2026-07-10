@@ -35,9 +35,9 @@ class CpsCoreInjectionSpec extends CpsIntegrationSpecBase {
         then: 'the request is rejected with a client error'
             assert response.statusCode.is4xxClientError()
         where: 'the following injection payloads are used as dataspace name'
-            scenario                                                        | dataspaceName
-            'single quote to attempt SQL tautology matching all dataspaces' | "operational' OR 1=1--"
-            'semicolon to attempt SQL statement termination and table drop' | "operational'; DROP TABLE dataspace;--"
+            scenario                                                       | dataspaceName
+            'single quote to attempt SQL tautology matching all dataspaces'| "operational' OR 1=1--"
+            'semicolon to attempt SQL statement termination and table drop'| "operational'; DROP TABLE dataspace;--"
     }
 
     def 'Read data node with #scenario as anchor name'() {
@@ -51,9 +51,9 @@ class CpsCoreInjectionSpec extends CpsIntegrationSpecBase {
         then: 'the request is rejected with a client error'
             assert response.statusCode.is4xxClientError()
         where: 'the following injection payloads are used as anchor name'
-            scenario                                                        | anchorName
-            'single quote to attempt SQL tautology matching all anchors'    | "bookstore' OR 1=1--"
-            'semicolon to attempt SQL statement termination and table drop' | "bookstore'; DROP TABLE anchor;--"
+            scenario                                                       | anchorName
+            'single quote to attempt SQL tautology matching all anchors'   | "bookstore' OR 1=1--"
+            'semicolon to attempt SQL statement termination and table drop'| "bookstore'; DROP TABLE anchor;--"
     }
 
     def 'Write data node with #scenario as dataspace name'() {
@@ -68,9 +68,9 @@ class CpsCoreInjectionSpec extends CpsIntegrationSpecBase {
         then: 'the write is rejected with a client error'
             assert response.statusCode.is4xxClientError()
         where: 'the following injection payloads are used as dataspace name'
-            scenario                                                          | dataspaceName
-            'single quote to attempt SQL tautology bypassing write target'    | "operational' OR 1=1--"
-            'semicolon to attempt SQL statement termination and data update'  | "operational'; UPDATE anchor SET name='hacked';--"
+            scenario                                                        | dataspaceName
+            'single quote to attempt SQL tautology bypassing write target'  | "operational' OR 1=1--"
+            'semicolon to attempt SQL statement termination and data update'| "operational'; UPDATE anchor SET name='hacked';--"
     }
 
     def 'Get module definitions with #scenario'() {
@@ -85,8 +85,8 @@ class CpsCoreInjectionSpec extends CpsIntegrationSpecBase {
         then: 'the request is rejected with a client error'
             assert response.statusCode.is4xxClientError()
         where: 'the following injection payloads are used as dataspace or anchor name'
-            scenario                                                                  | dataspaceName           | anchorName
-            'single quote in dataspace name to attempt SQL tautology'                 | "operational' OR 1=1--" | 'valid-anchor'
-            'single quote in anchor name to attempt reading modules from all anchors' | GENERAL_TEST_DATASPACE  | "bookstore' OR 1=1--"
+            scenario                                                                 | dataspaceName          | anchorName
+            'single quote in dataspace name to attempt SQL tautology'                | "operational' OR 1=1--"| 'valid-anchor'
+            'single quote in anchor name to attempt reading modules from all anchors'| GENERAL_TEST_DATASPACE | "bookstore' OR 1=1--"
     }
 }
