@@ -120,7 +120,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
 
     def 'Query CmHandles by a private field\'s value.'() {
         given: 'a data node exists with a certain additional-property'
-            mockCpsQueryService.queryDataLeaf(_, _, cpsPathWithPrivateField, _) >> [pnfDemo5.getLeaves().get('id')]
+            mockCpsQueryService.queryDataLeaf(_, _, cpsPathWithPrivateField, _, _) >> [pnfDemo5.getLeaves().get('id')]
         when: 'a query on CmHandle private properties is executed using a map'
             def result = objectUnderTest.queryCmHandleAdditionalProperties(['Contact3': 'newemailforstore3@bookstore.com'], false)
         then: 'one cm handle is returned'
@@ -144,7 +144,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
     def 'Get Ids of CmHandles by state using top-level leaf (new model).'() {
         given: 'the query service returns cm handle ids for the direct attribute query'
             mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                "/dmi-registry/cm-handles[@cm-handle-state='ADVISED']/@id", String.class) >> ['ch-1', 'ch-2']
+                "/dmi-registry/cm-handles[@cm-handle-state='ADVISED']/@id", String.class, _) >> ['ch-1', 'ch-2']
         when: 'cm handles are fetched by state'
             def result = objectUnderTest.queryCmHandleIdsByState(CmHandleState.ADVISED)
         then: 'the returned result matches the expected ids'
@@ -173,7 +173,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
     def 'Check the state of a cmHandle using top-level leaf when #scenario (new model).'() {
         given: 'the query service returns the state from the top-level leaf'
             mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                "/dmi-registry/cm-handles[@id='some-cm-handle']/@cm-handle-state", String.class) >> ['READY']
+                "/dmi-registry/cm-handles[@id='some-cm-handle']/@cm-handle-state", String.class, _) >> ['READY']
         when: 'cm handles are compared by state'
             def result = objectUnderTest.cmHandleHasState('some-cm-handle', state)
         then: 'the returned result matches the expected result'
@@ -267,7 +267,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
         when: 'the all cm handle references is retrieved via cps path'
             objectUnderTest.getCmHandleReferencesByCpsPath(sampleCpsPath, outputAlternateId)
         then: 'query service to query data leaf is called once with the correct cps path as parameter'
-            1 * mockCpsQueryService.queryDataLeaf(_, _, expectedCpsPathForQuery,_)
+            1 * mockCpsQueryService.queryDataLeaf(_, _, expectedCpsPathForQuery, _, _)
         where:
             scenario                                                     | sampleCpsPath                     | outputAlternateId || expectedCpsPathForQuery
             'cps path suffixes with cm-handles and outputs alternateId'   | '/some/path/ending/in/cm-handles'  | true            || '/some/path/ending/in/cm-handles/@alternate-id'
@@ -279,11 +279,11 @@ class CmHandleQueryServiceImplSpec extends Specification {
 
     void mockResponses() {
 
-        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles/@id', _) >> [pnfDemo.getLeaves().get('id'), pnfDemo2.getLeaves().get('id'), pnfDemo4.getLeaves().get('id')]
-        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'wont_match\' and @value=\'wont_match\']/ancestor::cm-handles/@id', _) >> []
-        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'Contact2\' and @value=\'newemailforstore2@bookstore.com\']/ancestor::cm-handles/@alternate-id', _) >> [pnfDemo4.getLeaves().get('alternate-id')]
-        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles/@alternate-id', _) >> [pnfDemo.getLeaves().get('alternate-id'), pnfDemo2.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
-        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'Contact2\' and @value=\'\']/ancestor::cm-handles/@id', _) >> []
+        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles/@id', _, _) >> [pnfDemo.getLeaves().get('id'), pnfDemo2.getLeaves().get('id'), pnfDemo4.getLeaves().get('id')]
+        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'wont_match\' and @value=\'wont_match\']/ancestor::cm-handles/@id', _, _) >> []
+        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'Contact2\' and @value=\'newemailforstore2@bookstore.com\']/ancestor::cm-handles/@alternate-id', _, _) >> [pnfDemo4.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles/@alternate-id', _, _) >> [pnfDemo.getLeaves().get('alternate-id'), pnfDemo2.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'Contact2\' and @value=\'\']/ancestor::cm-handles/@id', _, _) >> []
         mockCpsQueryService.queryDataNodes(_, _, '//state[@cm-handle-state=\"READY\"]/ancestor::cm-handles', _) >> [pnfDemo, pnfDemo3]
         mockCpsQueryService.queryDataNodes(_, _, '//state[@cm-handle-state=\"LOCKED\"]/ancestor::cm-handles', _) >> [pnfDemo2, pnfDemo4]
         mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo, pnfDemo2]
@@ -291,18 +291,18 @@ class CmHandleQueryServiceImplSpec extends Specification {
         mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo2, pnfDemo4]
 
 
-        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']/@id', _) >> [pnfDemo.getLeaves().get('id'), pnfDemo2.getLeaves().get('id')]
-        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']/@id', _) >> [pnfDemo.getLeaves().get('id'), pnfDemo4.getLeaves().get('id')]
-        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']/@id', _) >> [pnfDemo2.getLeaves().get('id'), pnfDemo4.getLeaves().get('id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']/@id', _, _) >> [pnfDemo.getLeaves().get('id'), pnfDemo2.getLeaves().get('id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']/@id', _, _) >> [pnfDemo.getLeaves().get('id'), pnfDemo4.getLeaves().get('id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']/@id', _, _) >> [pnfDemo2.getLeaves().get('id'), pnfDemo4.getLeaves().get('id')]
 
-        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']/@alternate-id', _) >> [pnfDemo.getLeaves().get('alternate-id'), pnfDemo2.getLeaves().get('alternate-id')]
-        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']/@alternate-id', _) >> [pnfDemo.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
-        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']/@alternate-id', _) >> [pnfDemo2.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
-        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'PNFDemo\']/@alternate-id', _) >> [pnfDemo.getLeaves().get('alternate-id')]
-        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'PNFDemo2\' or @id=\'PNFDemo4\' or @id=\'PNFDemo\']/@alternate-id', _) >> [pnfDemo2.getLeaves().get('alternate-id'), pnfDemo.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']/@alternate-id', _, _) >> [pnfDemo.getLeaves().get('alternate-id'), pnfDemo2.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']/@alternate-id', _, _) >> [pnfDemo.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']/@alternate-id', _, _) >> [pnfDemo2.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'PNFDemo\']/@alternate-id', _, _) >> [pnfDemo.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'PNFDemo2\' or @id=\'PNFDemo4\' or @id=\'PNFDemo\']/@alternate-id', _, _) >> [pnfDemo2.getLeaves().get('alternate-id'), pnfDemo.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
 
-        mockCpsQueryService.queryDataLeaf(_, _, '/dmi-registry/cm-handles/@alternate-id', _) >> getAllCmHandleReferences(true)
-        mockCpsQueryService.queryDataLeaf(_, _, '/dmi-registry/cm-handles/@id', _) >> getAllCmHandleReferences(false)
+        mockCpsQueryService.queryDataLeaf(_, _, '/dmi-registry/cm-handles/@alternate-id', _, _) >> getAllCmHandleReferences(true)
+        mockCpsQueryService.queryDataLeaf(_, _, '/dmi-registry/cm-handles/@id', _, _) >> getAllCmHandleReferences(false)
 
 
     }
@@ -322,3 +322,4 @@ class CmHandleQueryServiceImplSpec extends Specification {
         }
     }
 }
+

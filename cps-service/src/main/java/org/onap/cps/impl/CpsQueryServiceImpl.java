@@ -26,10 +26,13 @@ import java.util.Collection;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
+import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.impl.query.CompositeQueryProcessor;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.CpsValidator;
@@ -69,8 +72,18 @@ public class CpsQueryServiceImpl implements CpsQueryService {
 
     @Override
     public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
-                                    final Class<T> targetClass) {
+                                    final Class<T> targetClass, final int expectedLeafConditions) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        if (expectedLeafConditions >= 0) {
+            final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+            final int actualLeafConditions = cpsPathQuery.getLeafConditions() == null
+                    ? 0 : cpsPathQuery.getLeafConditions().size();
+            if (actualLeafConditions != expectedLeafConditions) {
+                throw new DataValidationException("CPS path leaf condition validation failed.",
+                        "Expected " + expectedLeafConditions + " leaf condition(s) but found "
+                                + actualLeafConditions + ". Possible injection attempt.");
+            }
+        }
         return cpsDataPersistenceService.queryDataLeaf(dataspaceName, anchorName, cpsPath, targetClass);
     }
 

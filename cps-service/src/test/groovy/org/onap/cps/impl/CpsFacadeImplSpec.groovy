@@ -99,7 +99,7 @@ class CpsFacadeImplSpec extends Specification {
 
     def 'Execute anchor query with attribute-axis.'() {
         given: 'the cps query service returns two attribute values'
-            mockCpsQueryService.queryDataLeaf('my dataspace', 'my anchor', '/my/path/@myAttribute', Object) >> ['value1', 'value2']
+            mockCpsQueryService.queryDataLeaf('my dataspace', 'my anchor', '/my/path/@myAttribute', Object, -1) >> ['value1', 'value2']
         when: 'get data using attribute axis'
             def result = objectUnderTest.executeAnchorQuery('my dataspace', 'my anchor', '/my/path/@myAttribute', myFetchDescendantsOption)
         then: 'attribute values (from the query service result) are returned'

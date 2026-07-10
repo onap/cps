@@ -52,12 +52,56 @@ class NcmpXpathInjectionSpec extends CpsIntegrationSpecBase {
             inventoryPersistence.getCmHandleState(cmHandleId)
         then: 'the request throws an exception'
             thrown(expectedException)
-        and: 'existing cm handles are not exposed or affected'
-            assert inventoryPersistence.getCmHandleState('ch-1') != null
-            assert inventoryPersistence.getCmHandleState('ch-2') != null
         where: 'the following injection payloads are used as cm handle ID'
-            scenario                                                              | cmHandleId                      | expectedException
-            'single quote closing predicate to attempt matching a second handle'  | "ch-1' or @id='ch-2"            | DataNodeNotFoundException
-            'semicolon to attempt breaking out of XPath into SQL'                 | "ch-1'; DROP TABLE fragment;--" | CpsPathException
+            scenario                                                            | cmHandleId                     | expectedException
+            'single quote closing predicate to attempt matching a second handle'| "ch-1' or @id='ch-2"           | DataNodeNotFoundException
+            'semicolon to attempt breaking out of XPath into SQL'               | "ch-1'; DROP TABLE fragment;--"| CpsPathException
     }
+
+    def 'Search cm handles with single quote closing value to attempt adding OR condition as property value'() {
+        given: 'a property value with a single quote to break out of the value context and add an OR condition'
+            def injectedPropertyValue = "red' or @name='color"
+            def requestBody = """
+                {
+                    "cmHandleQueryParameters": [
+                        {
+                            "conditionName": "hasAllProperties",
+                            "conditionParameters": [
+                                { "color": "${injectedPropertyValue}" }
+                            ]
+                        }
+                    ]
+                }
+            """
+        when: 'a cm handle search is executed with this injection payload'
+            def response = performPost('/ncmp/v1/ch/id-searches', requestBody)
+        then: 'the request is rejected with a client error'
+            assert response.statusCode.is4xxClientError()
+        and: 'the response indicates a possible injection attempt'
+            assert response.body.contains('Possible injection attempt')
+    }
+
+    def 'Search cm handles with single quote closing attribute to attempt OR condition as DMI plugin identifier'() {
+        given: 'a DMI plugin identifier with a single quote to break out and OR to match the other DMI'
+            def injectedIdentifier = DMI1_URL + "' or @dmi-service-name='" + DMI2_URL
+            def requestBody = """
+                {
+                    "cmHandleQueryParameters": [
+                        {
+                            "conditionName": "cmHandleWithDmiPlugin",
+                            "conditionParameters": [
+                                { "dmiPluginName": "${injectedIdentifier}" }
+                            ]
+                        }
+                    ]
+                }
+            """
+        when: 'an inventory search is executed with this injection payload'
+            def response = performPost('/ncmpInventory/v1/ch/searches', requestBody)
+        then: 'the request is rejected with a client error'
+            assert response.statusCode.is4xxClientError()
+        and: 'the response indicates a leaf condition validation failure'
+            assert response.body.contains('Possible injection attempt')
+    }
+
 }

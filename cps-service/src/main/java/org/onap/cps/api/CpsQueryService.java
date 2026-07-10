@@ -23,6 +23,7 @@ package org.onap.cps.api;
 
 import java.util.Collection;
 import java.util.Set;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
@@ -66,13 +67,16 @@ public interface CpsQueryService {
     /**
      * Get data leaf for the given dataspace and anchor by cps path.
      *
-     * @param dataspaceName          dataspace name
-     * @param anchorName             anchor name
-     * @param cpsPath                cps path
-     * @param targetClass            class of the expected data type
-     * @return a collection of data objects of expected type
+     * @param dataspaceName              dataspace name
+     * @param anchorName                 anchor name
+     * @param cpsPath                    cps path
+     * @param targetClass                class of the expected data type
+     * @param expectedLeafConditions     expected number of leaf conditions in the cps path, or -1 to skip validation
+     * @return a collection of data objects of an expected type
+     * @throws DataValidationException if expectedLeafConditions is not -1 and the actual count does not match
      */
-    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, Class<T> targetClass);
+    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, Class<T> targetClass,
+                             int expectedLeafConditions);
 
     /**
      * Get data nodes for the given dataspace across all anchors by cps path.

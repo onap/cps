@@ -111,7 +111,7 @@ class QueryPerfTest extends CpsPerfTestBase {
     def 'Query data leaf with #scenario.'() {
         when: 'query data leaf is called'
             resourceMeter.start()
-            def result = objectUnderTest.queryDataLeaf(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', cpsPath, String)
+            def result = objectUnderTest.queryDataLeaf(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', cpsPath, String, -1)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the expected number of results is returned'

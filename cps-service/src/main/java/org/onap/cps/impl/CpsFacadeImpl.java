@@ -87,7 +87,7 @@ public class CpsFacadeImpl implements CpsFacade {
         if (cpsPathQuery.hasAttributeAxis()) {
             final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
             final Set<Object> attributeValues =
-                    cpsQueryService.queryDataLeaf(dataspaceName, anchorName, cpsPath, Object.class);
+                    cpsQueryService.queryDataLeaf(dataspaceName, anchorName, cpsPath, Object.class, -1);
             return dataMapper.toAttributeMaps(attributeName, attributeValues);
         }
         final Collection<DataNode> dataNodes =

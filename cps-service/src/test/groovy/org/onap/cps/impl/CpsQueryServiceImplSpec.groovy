@@ -22,6 +22,7 @@
 package org.onap.cps.impl
 
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.CompositeQuery
 import org.onap.cps.impl.query.CompositeQueryProcessor
 import org.onap.cps.utils.CpsValidator
@@ -95,9 +96,33 @@ class CpsQueryServiceImplSpec extends Specification {
 
     def 'Query data leaf.'() {
         when: 'a query for a specific leaf is executed'
-            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class, -1)
         then: 'the persistence service is called once with the correct parameters'
             1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+    }
+
+    def 'Query data leaf with expected leaf condition count matching.'() {
+        given: 'a cps path with 2 leaf conditions'
+            def cpsPath = "//properties[@name='color' and @value='red']/@id"
+        and: 'expected leaf condition count'
+            def expectedLeafConditions = 2
+        when: 'the query is executed with the expected leaf condition count'
+            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', cpsPath, String.class, expectedLeafConditions)
+        then: 'the persistence service is called once'
+            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', cpsPath, String.class)
+    }
+
+    def 'Query data leaf with unexpected leaf condition count throws exception.'() {
+        given: 'a cps path with 3 leaf conditions'
+            def cpsPath = "//properties[@name='color' and @value='red' or @name='color']/@id"
+        and: 'expected leaf condition count'
+            def expectedLeafConditions = 2
+        when: 'the query is executed with the expected leaf condition count'
+            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', cpsPath, String.class, expectedLeafConditions)
+        then: 'a DataValidationException is thrown'
+            thrown(DataValidationException)
+        and: 'the persistence service is not called'
+            0 * mockCpsDataPersistenceService.queryDataLeaf(*_)
     }
 
     def 'Search data nodes with a composite query.'() {
