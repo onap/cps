@@ -318,6 +318,32 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     @Transactional
+    public void replaceAllChildDataNodes(final String dataspaceName, final String anchorName,
+                                         final String parentNodeXpath, final Collection<DataNode> newChildNodes) {
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        final FragmentEntity parentEntity = getFragmentEntity(anchorEntity, parentNodeXpath);
+        final Collection<FragmentEntity> prefetchedEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(
+            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, Collections.singleton(parentEntity));
+        final FragmentEntity prefetchedParent = prefetchedEntities.iterator().next();
+        final Map<String, FragmentEntity> existingChildrenByXpath = prefetchedParent.getChildFragments().stream()
+            .collect(Collectors.toMap(FragmentEntity::getXpath, childFragment -> childFragment));
+        final Set<FragmentEntity> updatedChildFragments = new HashSet<>();
+        for (final DataNode newChildNode : newChildNodes) {
+            final FragmentEntity existingChildFragment = existingChildrenByXpath.get(newChildNode.getXpath());
+            if (existingChildFragment == null) {
+                updatedChildFragments.add(convertToFragmentWithAllDescendants(anchorEntity, newChildNode));
+                continue;
+            }
+            updateFragmentEntityAndDescendantsWithDataNode(existingChildFragment, newChildNode);
+            updatedChildFragments.add(existingChildFragment);
+        }
+        prefetchedParent.getChildFragments().clear();
+        prefetchedParent.getChildFragments().addAll(updatedChildFragments);
+        fragmentRepository.save(prefetchedParent);
+    }
+
+    @Override
+    @Transactional
     public void deleteDataNodes(final String dataspaceName, final String anchorName) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         anchorRepository.findByDataspaceAndName(dataspaceEntity, anchorName)

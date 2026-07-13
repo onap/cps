@@ -257,6 +257,25 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             }})
     }
 
+    def 'Replace all child data nodes of a list element with multiple child types.'() {
+        given: 'a parent fragment with two existing children of different list types'
+            def existingTypeA = new FragmentEntity(id: 10, xpath: "/test/parent/TypeA[@key='1']", anchor: anchorEntity, childFragments: [] as Set)
+            def existingTypeB = new FragmentEntity(id: 11, xpath: "/test/parent/TypeB[@key='1']", anchor: anchorEntity, childFragments: [] as Set)
+            def parentFragment = new FragmentEntity(id: 1, xpath: '/test/parent', anchor: anchorEntity, childFragments: [existingTypeA, existingTypeB] as Set)
+            mockFragmentRepository.findByAnchorIdAndXpath(_, '/test/parent') >> parentFragment
+        and: 'new children of TypeA with a new list item under TypeA. TypeB is deleted'
+            def updatedTypeA = new DataNode(xpath: "/test/parent/TypeA[@key='1']", leaves: ['key': '1', 'value': 'updated'])
+            def newTypeA     = new DataNode(xpath: "/test/parent/TypeA[@key='2']", leaves: ['key': '2', 'value': 'new'])
+        when: 'attempt to replace child nodes'
+            objectUnderTest.replaceAllChildDataNodes('my-dataspace', 'my-anchor', '/test/parent', [updatedTypeA, newTypeA])
+        then: 'the parent is saved with exactly the two TypeA children and TypeB is deleted'
+            1 * mockFragmentRepository.save({ FragmentEntity saved ->
+                assert saved.childFragments.size() == 2
+                assert saved.childFragments.collect { it.xpath }.toSet() ==
+                    ["/test/parent/TypeA[@key='1']", "/test/parent/TypeA[@key='2']"].toSet()
+            })
+    }
+
     def createDataNodeAndMockRepositoryMethodSupportingIt(xpath, scenario) {
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
         def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
