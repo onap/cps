@@ -314,14 +314,14 @@ class CpsDataServiceImplSpec extends Specification {
             'json list'      | '/test-tree'    | '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
-    def 'Replace list data node using singular #scenario node'() {
+    def 'Replace data node and descendants using list element xpath with #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'replace data method is invoked with data and list node xpath'
+        when: 'replace data method is invoked with data and list element node xpath'
             objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, '/test-tree/branch[@name=\'Name\']', data, observedTimestamp, contentType)
-        then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, '/test-tree/branch[@name=\'Name\']',
-            { dataNodes ->{
+        then: 'the persistence service replaceAllChildDataNodes method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.replaceAllChildDataNodes(dataspaceName, anchorName, '/test-tree/branch[@name=\'Name\']',
+            { dataNodes -> {
                 assert dataNodes.size() == 1
                 assert dataNodes.collect { it.getXpath() == '/test-tree/branch[@name=\'Name\']/nest' }
             }})
