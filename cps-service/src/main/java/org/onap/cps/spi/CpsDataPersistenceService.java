@@ -130,6 +130,19 @@ public interface CpsDataPersistenceService {
                             String parentNodeXpath, Collection<DataNode> newListElements);
 
     /**
+     * Replaces all children of a list element node by removing all existing children (of any type)
+     * and inserting the given new children with their full subtrees.
+     * New child nodes are created, existing child nodes are updated, and absent child nodes are deleted.
+     *
+     * @param dataspaceName   dataspace name
+     * @param anchorName      anchor name
+     * @param parentNodeXpath xpath of the list element node whose children are replaced
+     * @param newListItems   collection of data nodes representing the new children
+     */
+    void replaceAllChildDataNodes(String dataspaceName, String anchorName,
+                                  String parentNodeXpath, Collection<DataNode> newListItems);
+
+    /**
      * Deletes any dataNode, yang container or yang list or yang list element.
      *
      * @param dataspaceName   dataspace name

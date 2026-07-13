@@ -234,7 +234,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         if (ROOT_NODE_XPATH.equals(parentNodeXpath) || !isPathToListElement(parentNodeXpath)) {
             cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
         } else {
-            cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+            cpsDataPersistenceService.replaceAllChildDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
         }
         sendDataUpdatedEvent(anchor, parentNodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
     }
