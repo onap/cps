@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -84,6 +84,9 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'the inventory persistence cm handle returns a ADVISED state for the handles'
             mockInventoryPersistence.getYangModelCmHandle('cm-handle-1') >> cmHandle1
             mockInventoryPersistence.getYangModelCmHandle('cm-handle-2') >> cmHandle2
+        and: 'cm handles are in the in-progress map'
+            moduleSyncStartedOnCmHandles.put('cm-handle-1', 'Started')
+            moduleSyncStartedOnCmHandles.put('cm-handle-2', 'Started')
         when: 'module sync poll is executed'
             objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'])
         then: 'module sync service is invoked for each cm handle'
@@ -93,6 +96,9 @@ class ModuleSyncTasksSpec extends Specification {
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle-1', 'cm-handle-2'], CmHandleState.READY)
             }
+        and: 'the cm handles are removed from the in-progress map'
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-2') == null
     }
 
     def 'Handle CM handle failure during #scenario and log MODULE_UPGRADE lock reason'() {
@@ -103,6 +109,8 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'module sync service attempts to sync/upgrade the CM handle and throws an exception'
             mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { throw new Exception('some exception') }
             mockModuleSyncService.syncAndUpgradeSchemaSet(_) >> { throw new Exception('some exception') }
+        and: 'cm handle is in the in-progress map'
+            moduleSyncStartedOnCmHandles.put('cm-handle', 'Started')
         when: 'module sync is executed'
             objectUnderTest.performModuleSync(['cm-handle'])
         then: 'lock reason is updated with number of attempts'
@@ -111,6 +119,8 @@ class ModuleSyncTasksSpec extends Specification {
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle'], CmHandleState.LOCKED)
             }
+        and: 'the cm handle is removed from the in-progress map despite the failure'
+            assert moduleSyncStartedOnCmHandles.get('cm-handle') == null
         where:
             scenario         | lockReasonCategory    | lockReasonDetails                              || expectedLockReasonCategory
             'module sync'    | MODULE_SYNC_FAILED    | 'some lock details'                            || MODULE_SYNC_FAILED
@@ -125,6 +135,10 @@ class ModuleSyncTasksSpec extends Specification {
             mockInventoryPersistence.getYangModelCmHandle('cm-handle-2') >> cmHandleByIdAndState('cm-handle-2', CmHandleState.DELETING)
         and: 'a cm handle in advised state'
             mockInventoryPersistence.getYangModelCmHandle('cm-handle-3') >> cmHandleByIdAndState('cm-handle-3', CmHandleState.ADVISED)
+        and: 'all cm handles are in the in-progress map'
+            moduleSyncStartedOnCmHandles.put('cm-handle-1', 'Started')
+            moduleSyncStartedOnCmHandles.put('cm-handle-2', 'Started')
+            moduleSyncStartedOnCmHandles.put('cm-handle-3', 'Started')
         when: 'module sync poll is executed'
             objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2', 'cm-handle-3'])
         then: 'no exception is thrown'
@@ -139,6 +153,10 @@ class ModuleSyncTasksSpec extends Specification {
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle-3'], CmHandleState.READY)
             }
+        and: 'all cm handles are removed from the in-progress map regardless of outcome'
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-2') == null
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-3') == null
     }
 
     def 'Reset failed CM Handles #scenario.'() {
@@ -158,6 +176,29 @@ class ModuleSyncTasksSpec extends Specification {
             objectUnderTest.setCmHandlesToAdvised([yangModelCmHandle1, yangModelCmHandle2])
         then: 'updated to state "ADVISED" from "READY" is called as often as there are cm handles ready for retry'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(expectedCmHandleStatePerCmHandle)
+        and: 'after reset performed progress map is empty'
+            assert moduleSyncStartedOnCmHandles.size() == 0
+    }
+
+    def 'Reset failed CM Handles is processed in batches.'() {
+        given: 'more cm handles than the batch size (300) in a locked state'
+            def lockedHandles = (1..350).collect { index ->
+                def lockedState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
+                    .withLockReason(MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
+                new YangModelCmHandle(id: "cm-handle-${index}", compositeState: lockedState)
+            }
+        and: 'clear in progress map'
+            resetModuleSyncStartedOnCmHandles(moduleSyncStartedOnCmHandles)
+        and: 'add cm handle entries into progress map'
+            lockedHandles.each { moduleSyncStartedOnCmHandles.put(it.id, 'started') }
+        when: 'resetting failed cm handles'
+            objectUnderTest.setCmHandlesToAdvised(lockedHandles)
+        then: 'state update is called twice (batch of 300 + batch of 50)'
+            2 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
+                def batch = args[0] as Map
+                assert batch.size() == 300 || batch.size() == 50
+                batch.values().each { assert it == CmHandleState.ADVISED }
+            }
         and: 'after reset performed progress map is empty'
             assert moduleSyncStartedOnCmHandles.size() == 0
     }
