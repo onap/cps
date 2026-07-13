@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -127,6 +127,30 @@ class ModuleSyncWatchdogSpec extends Specification {
             objectUnderTest.moduleSyncAdvisedCmHandles()
         then: 'it does NOT execute a task to process the (empty) batch'
             0 * mockModuleSyncTasks.performModuleSync(*_)
+        and: 'a warning is logged indicating all candidates were blocked'
+            def warningEvents = logAppender.list.findAll { it.level == Level.WARN }
+            assert warningEvents.any { it.formattedMessage.contains('1 of 1 candidates already in progress') }
+            assert warningEvents.any { it.formattedMessage.contains('Number of candidates blocked by in-progress map: 1') }
+    }
+
+    def 'Module sync with some handles already in progress logs a summary warning.'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'module sync utilities returns 3 advised cm handles'
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(3)
+        and: 'the work queue can be locked'
+            mockCpsCommonLocks.tryLock('workQueueLock') >> true
+        and: '2 of the 3 handles are already in progress'
+            mockModuleSyncStartedOnCmHandles.putIfAbsent('ch-1', _) >> 'Started'
+            mockModuleSyncStartedOnCmHandles.putIfAbsent('ch-2', _) >> 'Started'
+            mockModuleSyncStartedOnCmHandles.putIfAbsent('ch-3', _) >> null
+        when: 'module sync is started'
+            objectUnderTest.moduleSyncAdvisedCmHandles()
+        then: 'a batch with only the unblocked handle is processed'
+            1 * mockModuleSyncTasks.performModuleSync({ it.size() == 1 && it.contains('ch-3') })
+        and: 'a warning is logged about the skipped handles'
+            def warningEvents = logAppender.list.findAll { it.level == Level.WARN }
+            assert warningEvents.any { it.formattedMessage.contains('2 of 3 candidates already in progress') }
     }
 
     def 'Module sync with previous cm handle(s) left in work queue.'() {
