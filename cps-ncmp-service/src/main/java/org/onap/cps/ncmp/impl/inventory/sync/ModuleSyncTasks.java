@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,8 +21,10 @@
 package org.onap.cps.ncmp.impl.inventory.sync;
 
 import com.hazelcast.map.IMap;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +47,8 @@ public class ModuleSyncTasks {
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
 
+    private static final int RESET_BATCH_SIZE = 300;
+
     /**
      * Perform module sync on a batch of cm handles.
      *
@@ -65,6 +69,8 @@ public class ModuleSyncTasks {
                     }
                 } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                     log.warn("Skipping module sync for CM handle '{}' as it does not exist", cmHandleId);
+                } finally {
+                    moduleSyncStartedOnCmHandles.delete(cmHandleId);
                 }
             }
         } finally {
@@ -76,21 +82,26 @@ public class ModuleSyncTasks {
      * Set the state of CM handles to ADVISED.
      * This method processes a collection of CM handles, logs their lock reason, and resets their state
      * to ADVISED. Once reset, it updates the CM handle states in a batch to allow for re-attempt by the module-sync
-     * watchdog.
+     * watchdog. Processing is done in sub-batches to avoid holding database connections for too long.
      *
      * @param yangModelCmHandles a collection of CM handles that needs their state reset
      */
     public void setCmHandlesToAdvised(final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(yangModelCmHandles.size());
-        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
-            final CompositeState compositeState = yangModelCmHandle.getCompositeState();
-            final String resetCmHandleId = yangModelCmHandle.getId();
-            log.debug("Resetting CM handle {} state to ADVISED for retry by the module-sync watchdog. Lock reason: {}",
-                yangModelCmHandle.getId(), compositeState.getLockReason().getLockReasonCategory().name());
-            cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
-            removeResetCmHandleFromModuleSyncMap(resetCmHandleId);
+        final List<YangModelCmHandle> cmHandlesList = new ArrayList<>(yangModelCmHandles);
+        for (int batchStart = 0; batchStart < cmHandlesList.size(); batchStart += RESET_BATCH_SIZE) {
+            final int batchEnd = Math.min(batchStart + RESET_BATCH_SIZE, cmHandlesList.size());
+            final List<YangModelCmHandle> batch = cmHandlesList.subList(batchStart, batchEnd);
+            final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(batch.size());
+            for (final YangModelCmHandle yangModelCmHandle : batch) {
+                final CompositeState compositeState = yangModelCmHandle.getCompositeState();
+                log.debug("Resetting CM handle {} state to ADVISED for retry by the module-sync watchdog."
+                        + " Lock reason: {}",
+                    yangModelCmHandle.getId(), compositeState.getLockReason().getLockReasonCategory().name());
+                cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
+                removeResetCmHandleFromModuleSyncMap(yangModelCmHandle.getId());
+            }
+            lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
         }
-        lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
     }
 
     private CmHandleState processCmHandle(final YangModelCmHandle yangModelCmHandle) {
