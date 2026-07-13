@@ -199,12 +199,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private void updateFragmentEntityAndDescendantsWithDataNode(final FragmentEntity existingFragmentEntity,
                                                                 final DataNode newDataNode) {
         copyAttributesFromNewDataNode(existingFragmentEntity, newDataNode);
+        replaceChildFragments(existingFragmentEntity, newDataNode.getChildDataNodes());
+    }
 
+    private void replaceChildFragments(final FragmentEntity existingFragmentEntity,
+                                       final Collection<DataNode> childDataNodes) {
         final Map<String, FragmentEntity> existingChildrenByXpath = existingFragmentEntity.getChildFragments().stream()
             .collect(Collectors.toMap(FragmentEntity::getXpath, childFragmentEntity -> childFragmentEntity));
 
         final Collection<FragmentEntity> updatedChildFragments = new HashSet<>();
-        for (final DataNode newDataNodeChild : newDataNode.getChildDataNodes()) {
+        for (final DataNode newDataNodeChild : childDataNodes) {
             final FragmentEntity childFragment;
             if (isNewDataNode(newDataNodeChild, existingChildrenByXpath)) {
                 childFragment = convertToFragmentWithAllDescendants(existingFragmentEntity.getAnchor(),
@@ -314,6 +318,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         parentEntity.getChildFragments().addAll(updatedChildFragmentEntities);
         fragmentRepository.save(parentEntity);
+    }
+
+    @Override
+    @Transactional
+    public void replaceAllChildDataNodes(final String dataspaceName, final String anchorName,
+                                         final String parentNodeXpath, final Collection<DataNode> newListItems) {
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        final FragmentEntity parentEntity = getFragmentEntity(anchorEntity, parentNodeXpath);
+        final Collection<FragmentEntity> prefetchedEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(
+            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, Collections.singleton(parentEntity));
+        final FragmentEntity prefetchedParent = prefetchedEntities.iterator().next();
+        replaceChildFragments(prefetchedParent, newListItems);
+        fragmentRepository.save(prefetchedParent);
     }
 
     @Override
