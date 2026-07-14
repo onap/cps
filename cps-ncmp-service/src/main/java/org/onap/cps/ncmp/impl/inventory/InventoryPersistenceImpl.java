@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 Deutsche Telekom AG
  *  ================================================================================
@@ -28,7 +28,6 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANT
 import static org.onap.cps.utils.ContentType.JSON;
 
 import com.google.common.collect.Lists;
-import com.hazelcast.map.IMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -49,12 +48,12 @@ import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.CmHandleMigrationDetail;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -66,7 +65,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     private final CpsModuleService cpsModuleService;
     private final CpsValidator cpsValidator;
-    private final IMap<String, String> cmHandleIdPerAlternateId;
+    private final CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap;
 
     @Value("#{!${ignore.r20260423.model:true}}")
     private boolean useOptimizedModel;
@@ -85,12 +84,11 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
                                     final CpsAnchorService cpsAnchorService,
                                     final CpsModuleService cpsModuleService,
                                     final CpsDataService cpsDataService,
-                                    @Qualifier("cmHandleIdPerAlternateId")
-                                    final IMap<String, String> cmHandleIdPerAlternateId) {
+                                    final CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap) {
         super(jsonObjectMapper, cpsAnchorService, cpsDataService);
         this.cpsModuleService = cpsModuleService;
         this.cpsValidator = cpsValidator;
-        this.cmHandleIdPerAlternateId = cmHandleIdPerAlternateId;
+        this.cmHandleIdPerReferenceMap = cmHandleIdPerReferenceMap;
     }
 
     @Override
@@ -115,7 +113,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         for (final Map.Entry<String, CompositeState> entry : cmHandleStatePerCmHandleId.entrySet()) {
             final String cmHandleId = entry.getKey();
             final CompositeState compositeState = entry.getValue();
-            if (exists(cmHandleId)) {
+            if (cmHandleIdPerReferenceMap.exists(cmHandleId)) {
                 cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId), compositeStateAsJson(compositeState));
                 if (useOptimizedModel) {
                     final Map<String, String> topLevelUpdate = new HashMap<>();
@@ -316,9 +314,4 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         cmHandleIds.forEach(cmHandleId -> xpaths.add(getXPathForCmHandleById(cmHandleId)));
         return this.getDataNodes(xpaths, fetchDescendantsOption);
     }
-
-    private boolean exists(final String cmHandleId) {
-        return cmHandleIdPerAlternateId.containsKey(cmHandleId) || cmHandleIdPerAlternateId.containsValue(cmHandleId);
-    }
-
 }

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,17 +23,16 @@ package org.onap.cps.ncmp.init;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 
-import com.hazelcast.map.IMap;
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap;
 import org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationService;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
@@ -44,9 +43,7 @@ public class AlternateIdCacheDataLoader {
 
     private final InventoryPersistence inventoryPersistence;
     private final CmHandleRegistrationService cmHandleRegistrationService;
-
-    @Qualifier("cmHandleIdPerAlternateId")
-    private final IMap<String, String> cmHandleIdPerAlternateId;
+    private final CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap;
 
     /**
      * Method to initialise the Alternate ID Cache by querying the current inventory.
@@ -56,7 +53,7 @@ public class AlternateIdCacheDataLoader {
      */
     @EventListener
     public void populateCmHandleIdPerAlternateIdMap(final NcmpInventoryModelOnboardingFinishedEvent event) {
-        if (cmHandleIdPerAlternateId.isEmpty()) {
+        if (cmHandleIdPerReferenceMap.isEmpty()) {
             log.info("Populating Alternate ID map from inventory");
             final Collection<DataNode> dataNodes = inventoryPersistence.getDataNode(
                     NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY).iterator().next().getChildDataNodes();
@@ -64,7 +61,7 @@ public class AlternateIdCacheDataLoader {
                     .map(YangDataConverter::toYangModelCmHandle).toList();
             addAlternateIdsToCache(yangModelCmHandles);
         }
-        log.info("Alternate ID map has {} entries", cmHandleIdPerAlternateId.size());
+        log.info("Alternate ID map has {} entries", cmHandleIdPerReferenceMap.size());
     }
 
 

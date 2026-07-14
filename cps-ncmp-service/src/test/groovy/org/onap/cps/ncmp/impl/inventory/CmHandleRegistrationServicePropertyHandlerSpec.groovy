@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  * Modifications Copyright (C) 2022 Bell Canada
  * Modifications Copyright (C) 2024 Deutsche Telekom AG
  * ================================================================================
@@ -27,13 +27,13 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventProducer
 import org.onap.cps.utils.JsonObjectMapper
@@ -54,10 +54,10 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
-    def mockCmHandleIdPerAlternateId = Mock(IMap)
+    def mockCmHandleIdPerReferenceMap = Mock(CmHandleIdPerReferenceMap)
     def mockLcmEventProducer = Mock(LcmEventProducer)
 
-    def objectUnderTest = new CmHandleRegistrationServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker, mockCmHandleIdPerAlternateId, mockLcmEventProducer)
+    def objectUnderTest = new CmHandleRegistrationServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker, mockCmHandleIdPerReferenceMap, mockLcmEventProducer)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
@@ -207,8 +207,6 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
     def 'Update alternate id of existing CM Handle.'() {
         given: 'cm handles request'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')]
-        and: 'the cm handle per alternate id cache returns a value'
-            mockCmHandleIdPerAlternateId.get(_) >> cmHandleId
         and: 'a data node found'
             def dataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId, 'alternate-id': 'alt-1'])
             mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
@@ -216,6 +214,8 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
             def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the update is delegated to inventory persistence with correct parameters'
             1 * mockInventoryPersistence.updateCmHandleField(cmHandleId, 'alternate-id', 'alt-1')
+        and: 'the cache is updated with the new alternate id'
+            1 * mockCmHandleIdPerReferenceMap.updateAlternateId(cmHandleId, 'alt-1')
         and: 'one successful registration response'
             response.size() == 1
         and: 'the response shows success for the given cm handle id'

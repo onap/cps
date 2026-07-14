@@ -30,7 +30,6 @@ import static org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationServiceProper
 import static org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationServicePropertyHandler.PropertyType.PUBLIC_PROPERTY;
 
 import com.google.common.collect.ImmutableMap;
-import com.hazelcast.map.IMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -49,12 +48,12 @@ import org.onap.cps.api.model.DataNode;
 import org.onap.cps.impl.DataNodeBuilder;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.CmHandleTransitionPair;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventProducer;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -68,8 +67,7 @@ public class CmHandleRegistrationServicePropertyHandler {
     private final CpsDataService cpsDataService;
     private final JsonObjectMapper jsonObjectMapper;
     private final AlternateIdChecker alternateIdChecker;
-    @Qualifier("cmHandleIdPerAlternateId")
-    private final IMap<String, String> cmHandleIdPerAlternateId;
+    private final CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap;
     private final LcmEventProducer lcmEventProducer;
 
     /**
@@ -136,8 +134,7 @@ public class CmHandleRegistrationServicePropertyHandler {
                     ncmpServiceCmHandle.getCmHandleId(),
                     "alternate-id",
                     newAlternateId);
-            cmHandleIdPerAlternateId.delete(cmHandleId);
-            cmHandleIdPerAlternateId.set(newAlternateId, cmHandleId);
+            cmHandleIdPerReferenceMap.updateAlternateId(cmHandleId, newAlternateId);
         }
     }
 
