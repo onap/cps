@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,17 +29,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AlternateIdCacheConfig extends HazelcastCacheConfig {
 
-    private static final MapConfig cmHandleIdPerAlternateIdMapConfig =
-            createGenericMapConfig("cmHandleIdPerAlternateIdMapConfig");
+    private static final MapConfig cmHandleIdPerReferenceMapConfig =
+            createGenericMapConfig("cmHandleIdPerReferenceMapConfig");
 
     /**
-     * Distributed instance used for mapping alternate id to cm handle id.
+     * Distributed instance of a bidirectional cm handle reference map.
+     * Stores both cmHandleId->cmHandleId and alternateId->cmHandleId
      *
-     * @return configured map of cm handle id by alternate id
+     * @return configured CmHandleIdPerReferenceMap wrapper
      */
-    @Bean("cmHandleIdPerAlternateId")
-    public IMap<String, String> cmHandleIdPerAlternateId() {
-        return getOrCreateHazelcastInstance(cmHandleIdPerAlternateIdMapConfig).getMap("cmHandleIdPerAlternateId");
+    @Bean
+    public CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap() {
+        final IMap<String, String> iMap =
+                getOrCreateHazelcastInstance(cmHandleIdPerReferenceMapConfig).getMap("cmHandleIdPerReference");
+        return new CmHandleIdPerReferenceMap(iMap);
     }
 
 }

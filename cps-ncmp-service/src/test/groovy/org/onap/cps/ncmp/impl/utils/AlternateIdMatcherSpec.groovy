@@ -20,23 +20,23 @@
 
 package org.onap.cps.ncmp.impl.utils
 
-import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import spock.lang.Specification
 
 class AlternateIdMatcherSpec extends Specification {
 
-    def mockCmHandleIdPerAlternateId = Mock(IMap)
+    def mockCmHandleIdPerReferenceMap = Mock(CmHandleIdPerReferenceMap)
 
-    def objectUnderTest = new AlternateIdMatcher(mockCmHandleIdPerAlternateId)
+    def objectUnderTest = new AlternateIdMatcher(mockCmHandleIdPerReferenceMap)
 
     def testYangModelCmHandle = new YangModelCmHandle(id:1)
 
     def 'Finding longest alternate id matches, scenario: #scenario.'() {
         given: ' a match for alternate id "/a/b"'
-            mockCmHandleIdPerAlternateId.get('/a/b') >> 'ch1'
+            mockCmHandleIdPerReferenceMap.get('/a/b') >> 'ch1'
         expect: 'a match has been found'
             assert objectUnderTest.getCmHandleIdByLongestMatchingAlternateId(targetAlternateId, '/') != null
         where: 'the following alternate ids are used'
@@ -55,7 +55,7 @@ class AlternateIdMatcherSpec extends Specification {
         given: 'a batch of alternate ids'
             def aBatchOfAlternateIds = ['content does','not matter']
         and: 'the cached map returns a map of some matches'
-            mockCmHandleIdPerAlternateId.getAll(_) >> [fdn1:'ch1', fdn2:'ch2']
+            mockCmHandleIdPerReferenceMap.getAll(_) >> [fdn1:'ch1', fdn2:'ch2']
         when: 'getting the matches alternate ids for the batch'
             def result = objectUnderTest.getCmHandleIdsByLongestMatchingAlternateIds(aBatchOfAlternateIds, '/')
         then: 'the result are the ids (values) from the cached map'
@@ -115,20 +115,21 @@ class AlternateIdMatcherSpec extends Specification {
     }
 
     def 'Get cm handle id from a cm handle reference that is a #scenario id.' () {
-        given: 'cmHandleIdPerAlternateId cache contains the given reference'
-            mockCmHandleIdPerAlternateId.get(cmHandleReference) >> returnedCacheValue
-            mockCmHandleIdPerAlternateId.containsValue(cmHandleReference) >> true
+        given: 'cmHandleIdPerReferenceMap contains the given reference'
+            mockCmHandleIdPerReferenceMap.get(cmHandleReference) >> returnedCacheValue
         when: 'getting a cm handle id from the reference'
             def result = objectUnderTest.getCmHandleId(cmHandleReference)
         then: 'the expected cm handle id is returned'
             assert result == expectedResult
         where: 'the following parameters are used'
             scenario    | cmHandleReference| returnedCacheValue|| expectedResult
-            'standard'  | 'ch-id-1'        | null              || 'ch-id-1'
+            'standard'  | 'ch-id-1'        | 'ch-id-1'         || 'ch-id-1'
             'alternate' | 'alt-id=1'       | 'ch-id-2'         || 'ch-id-2'
     }
 
     def 'Get cm handle id when given reference DOES NOT exist in cache.'() {
+        given: 'the reference map returns null for the given reference'
+            mockCmHandleIdPerReferenceMap.get('nonExistingId') >> null
         when: 'getting a cm handle id from the reference'
             objectUnderTest.getCmHandleId('nonExistingId')
         then: 'an exception is thrown'
@@ -138,7 +139,7 @@ class AlternateIdMatcherSpec extends Specification {
 
     def 'Get cm handle ids whose alternate id contains a search term.'() {
         given: 'the cache returns matching values via server-side predicate'
-            mockCmHandleIdPerAlternateId.values(_) >> ['ch-1', 'ch-2']
+            mockCmHandleIdPerReferenceMap.getByKeyLike('Ireland') >> ['ch-1', 'ch-2']
         when: 'searching for alternate ids containing "Ireland"'
             def result = objectUnderTest.getCmHandleIds('Ireland')
         then: 'only the matching cm handle ids are returned'

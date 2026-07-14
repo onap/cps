@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 Deutsche Telekom AG
  *  ================================================================================
@@ -23,7 +23,6 @@
 package org.onap.cps.ncmp.impl.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
@@ -34,6 +33,7 @@ import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.models.CmHandleMigrationDetail
 import org.onap.cps.utils.ContentType
@@ -67,9 +67,9 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCpsValidator = Mock(CpsValidator)
 
-    def mockCmHandleIdPerAlternateId = Mock(IMap)
+    def mockCmHandleIdPerReferenceMap = Mock(CmHandleIdPerReferenceMap)
 
-    def objectUnderTest = Spy(new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleIdPerAlternateId))
+    def objectUnderTest = Spy(new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleIdPerReferenceMap))
 
     def setup() {
         ReflectionTestUtils.setField(objectUnderTest, 'useOptimizedModel', true)
@@ -189,7 +189,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def cmHandleId = 'ch-1'
             def compositeState = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
         and: 'alternate id cache contains the given cm handle reference'
-            mockCmHandleIdPerAlternateId.containsKey(_) >> true
+            mockCmHandleIdPerReferenceMap.containsKey(_) >> true
         when: 'update cm handle state is invoked with the #scenario state'
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
         then: 'update data nodes and descendants is invoked with the correct params'
@@ -208,7 +208,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def cmHandleId = 'ch-1'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.READY, lastUpdateTime: formattedDateAndTime)
         and: 'alternate id cache contains the given cm handle reference'
-            mockCmHandleIdPerAlternateId.containsKey(_) >> true
+            mockCmHandleIdPerReferenceMap.containsKey(_) >> true
         when: 'update cm handle state is invoked'
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
         then: 'update data nodes and descendants is invoked'
@@ -222,7 +222,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def compositeState1 = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
             def compositeState2 = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
         and: 'alternate id cache contains the given cm handle reference'
-            mockCmHandleIdPerAlternateId.containsKey(_) >> true
+            mockCmHandleIdPerReferenceMap.containsKey(_) >> true
         when: 'update cm handle state is invoked with the #scenario state'
             def cmHandleStateMap = ['ch-11' : compositeState1, 'ch-12' : compositeState2]
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
@@ -242,8 +242,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED, lastUpdateTime: formattedDateAndTime)
             def cmHandleStateMap = ['ch-1' : compositeState]
         and: 'alternate id cache returns #scenario'
-            mockCmHandleIdPerAlternateId.containsKey(_) >> keyExists
-            mockCmHandleIdPerAlternateId.containsValue(_) >> valueExists
+            mockCmHandleIdPerReferenceMap.containsKey(_) >> existsInCache
         when: 'we update the state of a cm handle when #scenario'
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'the composite state is persisted for existing ids only'
@@ -251,10 +250,9 @@ class InventoryPersistenceImplSpec extends Specification {
         and: 'the top-level cm-handle-state leaf is persisted for existing ids only'
             expectedCalls * mockCpsDataService.updateNodeLeaves(*_)
         where: 'the following cm handle ids are used'
-            scenario            | keyExists | valueExists || expectedCalls
-            'id exists as key'  | true      | false       || 1
-            'id exists as value'| false     | true        || 1
-            'id does not exist' | false     | false       || 0
+            scenario            | existsInCache || expectedCalls
+            'id exists in cache'| true          || 1
+            'id does not exist' | false         || 0
     }
 
     def 'Getting module definitions by module.'() {

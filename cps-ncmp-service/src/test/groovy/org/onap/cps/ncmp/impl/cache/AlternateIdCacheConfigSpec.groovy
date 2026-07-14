@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +21,7 @@
 package org.onap.cps.ncmp.impl.cache
 
 import com.hazelcast.core.Hazelcast
-import com.hazelcast.map.IMap
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
@@ -31,16 +29,15 @@ import spock.lang.Specification
 class AlternateIdCacheConfigSpec extends Specification {
 
     @Autowired
-    @Qualifier("cmHandleIdPerAlternateId")
-    IMap<String, String> cmHandleIdPerAlternateId
+    CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap
 
     def cleanupSpec() {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
     }
 
-    def 'Hazelcast cache for alternate ids.'() {
-        expect: 'system is able to create an instance alternate id cache'
-            assert null != cmHandleIdPerAlternateId
+    def 'Hazelcast cache for cm handle references.'() {
+        expect: 'system is able to create an instance of the reference map'
+            assert null != cmHandleIdPerReferenceMap
         and: 'there is at least 1 instance'
             assert Hazelcast.allHazelcastInstances.size() > 0
         and: 'Hazelcast cache instance for alternate ids is present'

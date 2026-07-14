@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (c) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@
 
 package org.onap.cps.ncmp.impl.inventory
 
-import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import spock.lang.Specification
@@ -29,12 +29,12 @@ import spock.lang.Specification
 class AlternateIdCheckerSpec extends Specification {
 
     def mockInventoryPersistenceService = Mock(InventoryPersistence)
-    def mockCmHandleIdPerAlternateId = Mock(IMap)
+    def mockCmHandleIdPerReferenceMap = Mock(CmHandleIdPerReferenceMap)
 
-    def objectUnderTest = new AlternateIdChecker(mockInventoryPersistenceService, mockCmHandleIdPerAlternateId)
+    def objectUnderTest = new AlternateIdChecker(mockInventoryPersistenceService, mockCmHandleIdPerReferenceMap)
 
     def setup() {
-        mockCmHandleIdPerAlternateId.getAll(_) >> [fdnInCache1:'ch-1',fdnInCache2:'ch-2']
+        mockCmHandleIdPerReferenceMap.getAll(_) >> [fdnInCache1:'ch-1',fdnInCache2:'ch-2']
     }
 
     def 'Check a batch of created cm handles with #scenario.'() {

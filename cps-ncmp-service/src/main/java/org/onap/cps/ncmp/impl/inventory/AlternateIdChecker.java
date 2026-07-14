@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (c) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import com.hazelcast.map.IMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -31,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -45,8 +44,7 @@ public class AlternateIdChecker {
 
     private final InventoryPersistence inventoryPersistence;
 
-    @Qualifier("cmHandleIdPerAlternateId")
-    private final IMap<String, String> cmHandleIdPerAlternateId;
+    private final CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap;
 
     private static final String NO_CURRENT_ALTERNATE_ID = "";
 
@@ -102,7 +100,7 @@ public class AlternateIdChecker {
                 .map(NcmpServiceCmHandle::getAlternateId)
                 .filter(StringUtils::isNotBlank)
                 .collect(Collectors.toSet());
-        return cmHandleIdPerAlternateId.getAll(alternateIdsToCheck).keySet();
+        return cmHandleIdPerReferenceMap.getAll(alternateIdsToCheck).keySet();
     }
 
     private String getCurrentAlternateId(final Operation operation, final String cmHandleId) {

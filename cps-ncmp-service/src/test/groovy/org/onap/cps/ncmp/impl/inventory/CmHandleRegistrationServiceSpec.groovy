@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.api.inventory.models.UpgradedCmHandles
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
@@ -58,11 +59,11 @@ class CmHandleRegistrationServiceSpec extends Specification {
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
-    def mockCmHandleIdPerAlternateId = Mock(IMap)
+    def mockCmHandleIdPerReferenceMap = Mock(CmHandleIdPerReferenceMap)
 
     def objectUnderTest = Spy(new CmHandleRegistrationService(
         mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsDataService, mockLcmEventsCmHandleStateHandler,
-        mockModuleSyncStartedOnCmHandles, mockTrustLevelManager, mockAlternateIdChecker, mockCmHandleIdPerAlternateId))
+        mockModuleSyncStartedOnCmHandles, mockTrustLevelManager, mockAlternateIdChecker, mockCmHandleIdPerReferenceMap))
 
     def setup() {
         // always accept all cm handles
@@ -421,17 +422,17 @@ class CmHandleRegistrationServiceSpec extends Specification {
             def yangModelCmHandle = new YangModelCmHandle(id:'ch-1', alternateId: alternateId)
         when: 'it is added to the cache'
             objectUnderTest.addAlternateIdsToCache([yangModelCmHandle])
-        then: 'it is added to the cache with the expected key'
-            1 * mockCmHandleIdPerAlternateId.putAll([(expectedKey):'ch-1'])
+        then: 'it is added to the cache using the wrapper'
+            1 * mockCmHandleIdPerReferenceMap.putAll([yangModelCmHandle])
         when: 'it is removed from the cache'
             objectUnderTest.removeAlternateIdsFromCache([yangModelCmHandle], ['ch-1'],[].toSet())
-        then: 'the correct key is deleted from the cache'
-            1 * mockCmHandleIdPerAlternateId.delete(expectedKey)
+        then: 'the correct entries are removed from the cache using the wrapper'
+            1 * mockCmHandleIdPerReferenceMap.removeAll([yangModelCmHandle])
         where: 'the following alternate ids are used'
-            scenario             | alternateId || expectedKey
-            'with alternate id'  | 'alt-1'     || 'alt-1'
-            'blank alternate id' | ''          || 'ch-1'
-            'no alternate id'    | null        || 'ch-1'
+            scenario             | alternateId
+            'with alternate id'  | 'alt-1'
+            'blank alternate id' | ''
+            'no alternate id'    | null
     }
 
     def 'Create CM-Handle with dmi-properties derived from additional properties.'() {

@@ -20,8 +20,6 @@
 
 package org.onap.cps.ncmp.impl.utils;
 
-import com.hazelcast.map.IMap;
-import com.hazelcast.query.Predicates;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -33,8 +31,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -42,8 +40,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AlternateIdMatcher {
 
-    @Qualifier("cmHandleIdPerAlternateId")
-    private final IMap<String, String> cmHandleIdPerAlternateId;
+    private final CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap;
 
     private static final String URI_PATH_COMPONENT_SEPARATOR = "#";
 
@@ -60,7 +57,7 @@ public class AlternateIdMatcher {
         final String[] uriPathComponents = alternateId.split(URI_PATH_COMPONENT_SEPARATOR, 2);
         String bestMatch = uriPathComponents[0];
         while (StringUtils.isNotEmpty(bestMatch)) {
-            final String cmHandleId = cmHandleIdPerAlternateId.get(bestMatch);
+            final String cmHandleId = cmHandleIdPerReferenceMap.get(bestMatch);
             if (cmHandleId != null) {
                 return cmHandleId;
             }
@@ -107,7 +104,7 @@ public class AlternateIdMatcher {
         Set<String> unresolvedPaths = new HashSet<>(paths);
         while (!unresolvedPaths.isEmpty()) {
             final Map<String, String> resolvedCmHandleIdPerAlternateId
-                = cmHandleIdPerAlternateId.getAll(unresolvedPaths);
+                = cmHandleIdPerReferenceMap.getAll(unresolvedPaths);
             cmHandleIds.addAll(resolvedCmHandleIdPerAlternateId.values());
             unresolvedPaths.removeAll(resolvedCmHandleIdPerAlternateId.keySet());
             unresolvedPaths = unresolvedPaths.stream().map(p -> getParentPath(p, separator))
@@ -124,13 +121,9 @@ public class AlternateIdMatcher {
      * @return cm handle id string
      */
     public String getCmHandleId(final String cmHandleReference) {
-        final String cmHandleId = cmHandleIdPerAlternateId.get(cmHandleReference);
+        final String cmHandleId = cmHandleIdPerReferenceMap.get(cmHandleReference);
         if (cmHandleId == null) {
-            if (cmHandleIdPerAlternateId.containsValue(cmHandleReference)) {
-                return cmHandleReference;
-            } else {
-                throw new CmHandleNotFoundException(cmHandleReference);
-            }
+            throw new CmHandleNotFoundException(cmHandleReference);
         }
         return cmHandleId;
     }
@@ -142,7 +135,7 @@ public class AlternateIdMatcher {
      * @return collection of matching cm handle ids
      */
     public Collection<String> getCmHandleIds(final String searchTerm) {
-        return cmHandleIdPerAlternateId.values(Predicates.like("__key", "%" + searchTerm + "%"));
+        return cmHandleIdPerReferenceMap.getByKeyLike(searchTerm);
     }
 
     private String getParentPath(final String path, final String separator) {
