@@ -20,8 +20,8 @@
 
 package org.onap.cps.ncmp.init
 
-import com.hazelcast.map.IMap
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap
 import org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationService
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent
@@ -31,13 +31,13 @@ class AlternateIdCacheDataLoaderSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockCmHandleRegistrationService = Mock(CmHandleRegistrationService)
-    def mockCmHandleIdPerAlternateId = Mock(IMap)
+    def mockCmHandleIdPerReferenceMap = Mock(CmHandleIdPerReferenceMap)
 
-    def objectUnderTest = new AlternateIdCacheDataLoader(mockInventoryPersistence, mockCmHandleRegistrationService, mockCmHandleIdPerAlternateId)
+    def objectUnderTest = new AlternateIdCacheDataLoader(mockInventoryPersistence, mockCmHandleRegistrationService, mockCmHandleIdPerReferenceMap)
 
     def 'Populate cm handle id per alternate id cache.'() {
         given: 'cache is empty'
-            mockCmHandleIdPerAlternateId.isEmpty() >> true
+            mockCmHandleIdPerReferenceMap.isEmpty() >> true
         and: 'inventory persistence returns some data nodes'
             def childDataNodes = [new DataNode(xpath: "", leaves: ['id': 'ch-1', 'alternate-id': 'alt-1'])]
             mockInventoryPersistence.getDataNode(_, _) >> [new DataNode(childDataNodes:childDataNodes, leaves: ['id':''])]

@@ -60,11 +60,11 @@ import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleOperationsUtils;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -86,8 +86,7 @@ public class CmHandleRegistrationService {
     private final TrustLevelManager trustLevelManager;
     private final AlternateIdChecker alternateIdChecker;
 
-    @Qualifier("cmHandleIdPerAlternateId")
-    private final IMap<String, String> cmHandleIdPerAlternateId;
+    private final CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap;
 
     /**
      * Registration of Created, Removed, Updated or Upgraded CM Handles.
@@ -143,23 +142,12 @@ public class CmHandleRegistrationService {
 
     /**
      * Method to add alternate ids to cache by passing in yang model cm handle.
-     * Note: If alternate id does not exist for given cm handle,
-     * then the map is populated with cm handle id as both key and value.
+     * Stores both cmHandleId->cmHandleId and alternateId->cmHandleId.
      *
      * @param yangModelCmHandles collection of yang model cm handles
      */
     public void addAlternateIdsToCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<String, String> cmHandleIdPerAlternateIdToRegister = HashMap.newHashMap(yangModelCmHandles.size());
-        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
-            final String cmHandleId = yangModelCmHandle.getId();
-            final String alternateId = yangModelCmHandle.getAlternateId();
-            if (StringUtils.isNotBlank(alternateId)) {
-                cmHandleIdPerAlternateIdToRegister.put(alternateId, cmHandleId);
-            } else {
-                cmHandleIdPerAlternateIdToRegister.put(cmHandleId, cmHandleId);
-            }
-        }
-        cmHandleIdPerAlternateId.putAll(cmHandleIdPerAlternateIdToRegister);
+        cmHandleIdPerReferenceMap.putAll(yangModelCmHandles);
     }
 
     protected void processRemovedCmHandles(final DmiPluginRegistration dmiPluginRegistration,
@@ -426,15 +414,7 @@ public class CmHandleRegistrationService {
                                 (new HashSet<>(toBeRemovedCmHandleBatch).contains(yangModelCmHandle.getId())
                                         && !cmHandlesIdsToExclude.contains(yangModelCmHandle.getId())))
                         .toList();
-        for (final YangModelCmHandle yangModelCmHandle : removedYangModelCmHandles) {
-            final String cmHandleId = yangModelCmHandle.getId();
-            final String alternateId = yangModelCmHandle.getAlternateId();
-            if (StringUtils.isNotBlank(alternateId)) {
-                cmHandleIdPerAlternateId.delete(alternateId);
-            } else {
-                cmHandleIdPerAlternateId.delete(cmHandleId);
-            }
-        }
+        cmHandleIdPerReferenceMap.removeAll(removedYangModelCmHandles);
     }
 
 }
