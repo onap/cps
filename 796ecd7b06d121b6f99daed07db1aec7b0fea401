@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8e87eac_3d8fa734",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-15T07:50:25Z",
+      "side": 1,
+      "message": "these can be declared as static variables and a short string will work like [{\"action\":\"remove\",\"xpath\":\"/bookstore\"}]. Do for all tests.",
+      "range": {
+        "startLine": 82,
+        "startChar": 43,
+        "endLine": 82,
+        "endChar": 54
+      },
+      "revId": "796ecd7b06d121b6f99daed07db1aec7b0fea401",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b253ef8e_cbd28984",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-15T07:50:25Z",
+      "side": 1,
+      "message": "data nodes",
+      "range": {
+        "startLine": 88,
+        "startChar": 16,
+        "endLine": 88,
+        "endChar": 33
+      },
+      "revId": "796ecd7b06d121b6f99daed07db1aec7b0fea401",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1e80966_5775e17a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-15T07:50:25Z",
+      "side": 1,
+      "message": "this is unnecessary complication, revert to having scenarios in where block.",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 10
+      },
+      "revId": "796ecd7b06d121b6f99daed07db1aec7b0fea401",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dafa03cd_b06e9860",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-15T07:50:25Z",
+      "side": 1,
+      "message": "scenario |deltaReport | contentTyper | dataNodes || expectedXpath",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 13
+      },
+      "revId": "796ecd7b06d121b6f99daed07db1aec7b0fea401",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbcaafba_395036b8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-15T07:50:25Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 97,
+        "startChar": 259,
+        "endLine": 97,
+        "endChar": 262
+      },
+      "revId": "796ecd7b06d121b6f99daed07db1aec7b0fea401",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaf012e6_e5303b45",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-15T07:50:25Z",
+      "side": 1,
+      "message": "data nodes",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 1
+      },
+      "revId": "796ecd7b06d121b6f99daed07db1aec7b0fea401",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c7520cf_34e87a9f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-15T07:50:25Z",
+      "side": 1,
+      "message": "dataNodes",
+      "range": {
+        "startLine": 106,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 48
+      },
+      "revId": "796ecd7b06d121b6f99daed07db1aec7b0fea401",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64dff537_f9b9d334",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-15T07:50:25Z",
+      "side": 1,
+      "message": "data nodes",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 1
+      },
+      "revId": "796ecd7b06d121b6f99daed07db1aec7b0fea401",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d13e1cf_32650de1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-15T07:50:25Z",
+      "side": 1,
+      "message": "dataNodes",
+      "range": {
+        "startLine": 122,
+        "startChar": 16,
+        "endLine": 122,
+        "endChar": 48
+      },
+      "revId": "796ecd7b06d121b6f99daed07db1aec7b0fea401",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
