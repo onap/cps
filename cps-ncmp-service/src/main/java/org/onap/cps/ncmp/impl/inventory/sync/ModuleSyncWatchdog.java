@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -137,15 +137,20 @@ public class ModuleSyncWatchdog {
         final Collection<String> nextBatch = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
         moduleSyncWorkQueue.drainTo(nextBatchCandidates, MODULE_SYNC_BATCH_SIZE);
         log.info("nextBatchCandidates size : {}", nextBatchCandidates.size());
+        int skippedCount = 0;
         for (final String cmHandleId : nextBatchCandidates) {
             final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP.equals(
                     moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP));
             if (alreadyAddedToInProgressMap) {
-                log.info("module sync for {} already in progress by other instance", cmHandleId);
+                skippedCount++;
             } else {
                 log.debug("Adding cmHandle : {} to current batch", cmHandleId);
                 nextBatch.add(cmHandleId);
             }
+        }
+        if (skippedCount > 0) {
+            log.warn("{} of {} candidates already in progress by other instance. In-progress map size: {}",
+                    skippedCount, nextBatchCandidates.size(), moduleSyncStartedOnCmHandles.size());
         }
         log.info("nextBatch size : {}", nextBatch.size());
         return nextBatch;
