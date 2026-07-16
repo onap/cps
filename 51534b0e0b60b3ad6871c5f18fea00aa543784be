@@ -500,6 +500,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee349f55_b15f3e13",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-07-16T09:08:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bab1911_fb4fdf6e",
+      "range": {
+        "startLine": 91,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 50
+      },
+      "revId": "51534b0e0b60b3ad6871c5f18fea00aa543784be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfc015d5_e177b60f",

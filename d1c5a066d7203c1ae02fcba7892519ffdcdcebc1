@@ -137,6 +137,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f0699a_6a456caf",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2026-07-16T09:08:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2946ad5a_96cc18ad",
+      "range": {
+        "startLine": 74,
+        "startChar": 54,
+        "endLine": 74,
+        "endChar": 76
+      },
+      "revId": "d1c5a066d7203c1ae02fcba7892519ffdcdcebc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2fdfd9b_60bdcf14",
