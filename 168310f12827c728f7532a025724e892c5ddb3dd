@@ -158,6 +158,30 @@
       },
       "revId": "168310f12827c728f7532a025724e892c5ddb3dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9347a17a_ae176e67",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T10:47:00Z",
+      "side": 1,
+      "message": "I would not change this as it will be a breaking change. Please provide a solution where there is no breaking code change",
+      "parentUuid": "f735d89f_7ddf00a2",
+      "range": {
+        "startLine": 68,
+        "startChar": 77,
+        "endLine": 68,
+        "endChar": 92
+      },
+      "revId": "168310f12827c728f7532a025724e892c5ddb3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
