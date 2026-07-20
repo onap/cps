@@ -73,7 +73,7 @@ public class OperationDetailsFactory {
                 operationDetails = buildOperationDetailsForDelete(requestParameters.fdn());
                 break;
             default:
-                throw new ProvMnSException("PATCH", HttpStatus.UNPROCESSABLE_ENTITY,
+                throw new ProvMnSException("PATCH", HttpStatus.UNPROCESSABLE_CONTENT,
                     "Unsupported Patch Operation Type: " + patchItem.getOp().getValue(), patchItem.getOp().getValue());
         }
         return operationDetails;
@@ -117,7 +117,7 @@ public class OperationDetailsFactory {
      */
     public OperationDetails buildOperationDetailsForPatchItem(final RequestParameters requestParameters,
                                                               final PatchItem patchItem) {
-        final Map<String, Object> resourceAsObject = new HashMap<>(2);
+        final Map<String, Object> resourceAsObject = HashMap.newHashMap(2);
         resourceAsObject.put("id", requestParameters.id());
         resourceAsObject.put("attributes", patchItem.getValue());
         return buildOperationDetails(UPDATE, requestParameters, resourceAsObject);

@@ -167,7 +167,7 @@ public class SessionManager {
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final long anchorId = anchorEntity.getId();
         log.debug("Attempting to lock anchor {} for session {}", anchorName, sessionId);
-        session.get(AnchorEntity.class, anchorId, LockMode.PESSIMISTIC_WRITE);
+        session.find(AnchorEntity.class, anchorId, LockMode.PESSIMISTIC_WRITE);
         log.info("Anchor {} successfully locked", anchorName);
     }
 

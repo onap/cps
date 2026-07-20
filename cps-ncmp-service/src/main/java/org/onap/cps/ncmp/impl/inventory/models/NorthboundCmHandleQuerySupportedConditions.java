@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.impl.inventory.models;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -37,7 +36,7 @@ public enum NorthboundCmHandleQuerySupportedConditions {
 
     public static final Collection<String> CONDITION_NAMES =
         Arrays.stream(NorthboundCmHandleQuerySupportedConditions.values())
-        .map(NorthboundCmHandleQuerySupportedConditions::getConditionName).collect(Collectors.toList());
+        .map(NorthboundCmHandleQuerySupportedConditions::getConditionName).toList();
 
     private final String conditionName;
 

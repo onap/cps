@@ -275,7 +275,7 @@ public class CmHandleRegistrationServicePropertyHandler {
     }
 
     private DataNode buildDataNode(final String xpath, final String attributeKey, final String attributeValue) {
-        final Map<String, String> updatedLeaves = new LinkedHashMap<>(1);
+        final Map<String, String> updatedLeaves = LinkedHashMap.newLinkedHashMap(1);
         updatedLeaves.put("name", attributeKey);
         updatedLeaves.put("value", attributeValue);
         log.debug("Building a new node with xpath {} with leaves (name : {} , value : {})", xpath, attributeKey,

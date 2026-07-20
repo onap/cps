@@ -644,7 +644,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private static Collection<String> getNormalizedXpaths(final Collection<String> xpaths) {
-        final Collection<String> normalizedXpaths = new HashSet<>(xpaths.size());
+        final Collection<String> normalizedXpaths = HashSet.newHashSet(xpaths.size());
         for (final String xpath : xpaths) {
             try {
                 normalizedXpaths.add(getNormalizedXpath(xpath));

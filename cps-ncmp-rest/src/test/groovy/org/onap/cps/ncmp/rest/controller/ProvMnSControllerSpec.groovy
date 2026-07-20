@@ -33,14 +33,14 @@ import org.springframework.test.context.TestPropertySource
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.CONFLICT
+import static org.springframework.http.HttpStatus.CONTENT_TOO_LARGE
 import static org.springframework.http.HttpStatus.GATEWAY_TIMEOUT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.I_AM_A_TEAPOT
 import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.OK
-import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
-import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_CONTENT
 import static org.springframework.http.HttpStatus.UNSUPPORTED_MEDIA_TYPE
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -87,10 +87,10 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
         and: 'the body contains the expected title'
             assert response.contentAsString.contains('"title":"' + expectedTitle)
         where: 'following scenario'
-            scenario                                   | yangModelCmHandle                  || expectedHttpStatus   | expectedType              | expectedTitle
-            'no data producer id'                      | cmHandleWithoutDataProducer        || UNPROCESSABLE_ENTITY | 'SERVER_LIMITATION'       | 'Registered DMI does not support the ProvMnS interface.'
-            'cm Handle NOT READY'                      | cmHandleNotReady                   || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | '/managedElement=1 is not in READY state. Current state: ADVISED'
-            'cm Handle with no alternate id NOT READY' | cmHandleNotReadyWithoutAlternateId || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'ch-1 is not in READY state. Current state: ADVISED'
+            scenario                                   | yangModelCmHandle                  || expectedHttpStatus    | expectedType              | expectedTitle
+            'no data producer id'                      | cmHandleWithoutDataProducer        || UNPROCESSABLE_CONTENT | 'SERVER_LIMITATION'       | 'Registered DMI does not support the ProvMnS interface.'
+            'cm Handle NOT READY'                      | cmHandleNotReady                   || NOT_ACCEPTABLE        | 'APPLICATION_LAYER_ERROR' | '/managedElement=1 is not in READY state. Current state: ADVISED'
+            'cm Handle with no alternate id NOT READY' | cmHandleNotReadyWithoutAlternateId || NOT_ACCEPTABLE        | 'APPLICATION_LAYER_ERROR' | 'ch-1 is not in READY state. Current state: ADVISED'
     }
 
     def 'Get data attempt with exception: #exceptionDuringProcessing.'() {
@@ -334,8 +334,8 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
                     .contentType(patchMediaType)
                     .content(patchItemsJsonRequestBody))
                     .andReturn().response
-        then: 'response status is PAYLOAD_TOO_LARGE (413)'
-            assert response.status == PAYLOAD_TOO_LARGE.value()
+        then: 'response status is CONTENT_TOO_LARGE (413)'
+            assert response.status == CONTENT_TOO_LARGE.value()
         and: 'response contains the correct type'
             assert response.contentAsString.contains('"type":"SERVER_LIMITATION"')
         and: 'response contains a title detail the limitations with the number of operations'

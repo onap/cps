@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.impl.CpsServicesBundle
 import spock.lang.Specification
 
 class CpsServicesConfigSpec extends Specification {
@@ -34,20 +33,20 @@ class CpsServicesConfigSpec extends Specification {
     def anchorService    = Mock(CpsAnchorService)
     def dataService      = Mock(CpsDataService)
 
-    def 'cpsServices returns bundle wired with given services'() {
-        given: 'a cps service config'
-            def objectUnderTest = new CpsServicesConfig()
-        when: 'cpsServices bean method is invoked'
-            CpsServicesBundle bundle = objectUnderTest.cpsServices(
-                    dataspaceService,
-                    moduleService,
-                    anchorService,
-                    dataService
-            )
+    def objectUnderTest = new CpsServicesConfig()
+
+    def 'Create object mapper bean.'() {
+        expect: 'can create an object mapper bean'
+            objectUnderTest.objectMapper() != null
+    }
+
+    def 'Create cps services (bundle) bean.'() {
+        when: 'create cps services (bundle) bean'
+            def cpsServicesBundle = objectUnderTest.cpsServices(dataspaceService, moduleService, anchorService, dataService)
         then: 'it is wired with the same instances that were passed in'
-            assert bundle.dataspaceService == dataspaceService
-            assert bundle.moduleService == moduleService
-            assert bundle.anchorService == anchorService
-            assert bundle.dataService == dataService
+            assert cpsServicesBundle.dataspaceService == dataspaceService
+            assert cpsServicesBundle.moduleService == moduleService
+            assert cpsServicesBundle.anchorService == anchorService
+            assert cpsServicesBundle.dataService == dataService
     }
 }

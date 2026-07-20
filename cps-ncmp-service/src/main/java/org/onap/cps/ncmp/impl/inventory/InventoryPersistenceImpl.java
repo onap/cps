@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 Deutsche Telekom AG
  *  ================================================================================
@@ -109,7 +109,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     @Override
     public void saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
-        final Map<String, String> cmHandlesJsonDataMap = new HashMap<>(cmHandleStatePerCmHandleId.size());
+        final Map<String, String> cmHandlesJsonDataMap = HashMap.newHashMap(cmHandleStatePerCmHandleId.size());
         final List<Map<String, String>> topLevelStateUpdates = new ArrayList<>(cmHandleStatePerCmHandleId.size());
 
         for (final Map.Entry<String, CompositeState> entry : cmHandleStatePerCmHandleId.entrySet()) {

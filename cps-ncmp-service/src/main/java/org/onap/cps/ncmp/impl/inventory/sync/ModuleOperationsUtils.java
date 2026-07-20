@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -145,7 +145,7 @@ public class ModuleOperationsUtils {
     public static Map<String, String> getLockedCompositeStateDetails(final CompositeState.LockReason
                                                                              compositeStateLockReason) {
         if (compositeStateLockReason != null) {
-            final Map<String, String> compositeStateDetails = new HashMap<>(2);
+            final Map<String, String> compositeStateDetails = HashMap.newHashMap(2);
             final String lockedCompositeStateReasonDetails = compositeStateLockReason.getDetails();
             final Matcher retryAttemptMatcher = retryAttemptPattern.matcher(lockedCompositeStateReasonDetails);
             if (retryAttemptMatcher.find()) {

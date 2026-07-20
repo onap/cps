@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   ============LICENSE_START=======================================================
-  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
   Modifications Copyright (C) 2021 Bell Canada.
   Modifications Copyright (C) 2021 Pantheon.tech
   Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
@@ -34,11 +34,6 @@
   </parent>
 
   <artifactId>cps-service</artifactId>
-
-  <properties>
-    <!-- TODO CPS-3257: restore to 1.0 when XML parsing tests are re-enabled -->
-    <minimum-coverage>0.99</minimum-coverage>
-  </properties>
 
   <dependencies>
     <dependency>

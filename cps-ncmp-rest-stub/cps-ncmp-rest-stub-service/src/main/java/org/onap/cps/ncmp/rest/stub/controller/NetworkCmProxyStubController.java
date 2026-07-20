@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (c) 2022-2025 OpenInfra Foundation Europe.
+ *  Modifications Copyright (c) 2022-2026 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     private Map<String, Object> getAsyncResponseData() {
-        final Map<String, Object> asyncResponseData = new HashMap<>(1);
+        final Map<String, Object> asyncResponseData = HashMap.newHashMap(1);
         final String resourceDataRequestId = UUID.randomUUID().toString();
         asyncResponseData.put(ASYNC_REQUEST_ID, resourceDataRequestId);
         return asyncResponseData;

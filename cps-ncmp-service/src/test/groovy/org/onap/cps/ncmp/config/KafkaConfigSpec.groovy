@@ -26,12 +26,12 @@ import io.cloudevents.kafka.CloudEventSerializer
 import org.onap.cps.events.LegacyEvent
 import org.spockframework.spring.EnableSharedInjection
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.kafka.autoconfigure.KafkaProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
+import org.springframework.boot.kafka.autoconfigure.KafkaProperties
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.kafka.core.KafkaTemplate
-import org.springframework.kafka.support.serializer.JsonDeserializer
-import org.springframework.kafka.support.serializer.JsonSerializer
+import org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+import org.springframework.kafka.support.serializer.JacksonJsonSerializer
 import org.springframework.test.context.TestPropertySource
 import spock.lang.Shared
 import spock.lang.Specification
@@ -58,8 +58,8 @@ class KafkaConfigSpec extends Specification {
         and: 'verify event key and value deserializer'
             assert kafkaTemplateInstance.properties['consumerFactory'].configs['spring.deserializer.value.delegate.class'].asType(String.class).contains(delegateDeserializer.getCanonicalName())
         where: 'the following event type is used'
-            eventType      | kafkaTemplateInstance    || beanName                   | valueSerializer      | delegateDeserializer
-            'legacy event' | legacyEventKafkaTemplate || 'legacyEventKafkaTemplate' | JsonSerializer       | JsonDeserializer
-            'cloud event'  | cloudEventKafkaTemplate  || 'cloudEventKafkaTemplate'  | CloudEventSerializer | CloudEventDeserializer
+            eventType      | kafkaTemplateInstance    || beanName                   | valueSerializer       | delegateDeserializer
+            'legacy event' | legacyEventKafkaTemplate || 'legacyEventKafkaTemplate' | JacksonJsonSerializer | JacksonJsonDeserializer
+            'cloud event'  | cloudEventKafkaTemplate  || 'cloudEventKafkaTemplate'  | CloudEventSerializer  | CloudEventDeserializer
     }
 }

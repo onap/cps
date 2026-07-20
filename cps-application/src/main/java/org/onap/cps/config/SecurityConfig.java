@@ -70,8 +70,8 @@ public class SecurityConfig {
      */
     @Bean
     @ConditionalOnProperty(name = "security.auth.enabled", havingValue = "true")
-    public SecurityFilterChain authEnabledFilterChain(final HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(csrf -> csrf.disable())
+    public SecurityFilterChain authEnabledFilterChain(final HttpSecurity httpSecurity) {
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/actuator/**").permitAll()
@@ -89,7 +89,7 @@ public class SecurityConfig {
      */
     @Bean
     @ConditionalOnProperty(name = "security.auth.enabled", havingValue = "false", matchIfMissing = true)
-    public SecurityFilterChain authDisabledFilterChain(final HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain authDisabledFilterChain(final HttpSecurity httpSecurity) {
         httpSecurity.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
         return httpSecurity.build();
     }

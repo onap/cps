@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022--2025 OpenInfra Foundation Europe.
+ *  Modifications Copyright (C) 2022-2026 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -138,8 +137,7 @@ public class CmHandleRegistrationResponse {
     }
 
     public static List<CmHandleRegistrationResponse> createSuccessResponses(final Collection<String> cmHandleIds) {
-        return cmHandleIds.stream().map(CmHandleRegistrationResponse::createSuccessResponse)
-                .collect(Collectors.toList());
+        return cmHandleIds.stream().map(CmHandleRegistrationResponse::createSuccessResponse).toList();
     }
 
     public enum Status {

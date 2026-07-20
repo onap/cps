@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe
+ *  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -134,7 +134,7 @@ public class NetworkCmProxyRestExceptionHandler {
      */
     @ExceptionHandler({PayloadTooLargeException.class})
     public static ResponseEntity<Object> handlePayloadTooLargeExceptions(final Exception exception) {
-        return buildErrorResponse(HttpStatus.PAYLOAD_TOO_LARGE, exception);
+        return buildErrorResponse(HttpStatus.CONTENT_TOO_LARGE, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {

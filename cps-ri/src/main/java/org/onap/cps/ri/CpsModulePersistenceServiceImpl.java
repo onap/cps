@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2020-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
@@ -67,7 +67,7 @@ import org.opendaylight.yangtools.yang.model.api.source.SourceIdentifier;
 import org.opendaylight.yangtools.yang.model.api.source.YangTextSource;
 import org.opendaylight.yangtools.yang.model.spi.source.SourceInfo;
 import org.opendaylight.yangtools.yang.parser.api.YangSyntaxErrorException;
-import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangIRSourceInfoExtractor;
+import org.opendaylight.yangtools.yang.parser.rfc7950.repo.TextToIRTransformer;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
@@ -79,7 +79,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private static final String YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME = "yang_resource_checksum_key";
     private static final String NO_MODULE_NAME_FILTER = null;
     private static final String NO_MODULE_REVISION = null;
-    private static final Pattern CHECKSUM_EXCEPTION_PATTERN = Pattern.compile(".*\\(checksum\\)=\\((\\w+)\\).*");
+    private static final Pattern CHECKSUM_EXCEPTION_PATTERN = Pattern.compile("\\(checksum\\)=\\((\\w+)\\)");
     private static final Pattern RFC6020_RECOMMENDED_FILENAME_PATTERN = Pattern
         .compile("([\\w-]+)@(\\d{4}-\\d{2}-\\d{2})(?:\\.yang)?", Pattern.CASE_INSENSITIVE);
 
@@ -114,7 +114,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             yangResourceRepository
                 .findAllModuleReferencesByDataspaceAndAnchor(dataspaceName, anchorName);
         return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
-            .collect(Collectors.toList());
+            .toList();
     }
 
     @Override
@@ -178,8 +178,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     public Collection<SchemaSet> getSchemaSetsByDataspaceName(final String dataspaceName) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final List<SchemaSetEntity> schemaSetEntities = schemaSetRepository.findByDataspace(dataspaceEntity);
-        return schemaSetEntities.stream()
-            .map(CpsModulePersistenceServiceImpl::toSchemaSet).collect(Collectors.toList());
+        return schemaSetEntities.stream().map(CpsModulePersistenceServiceImpl::toSchemaSet).toList();
     }
 
     @Override
@@ -288,19 +287,18 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         }
     }
 
+    @SuppressWarnings("UnstableApiUsage")
     private static Map<String, String> createModuleNameAndRevisionMap(final String sourceName, final String source) {
-        final Map<String, String> metaDataMap = new HashMap<>();
-        final SourceIdentifier sourceIdentifier =
-            createIdentifierFromSourceName(checkNotNull(sourceName));
-
-        final YangTextSource tempYangTextSource =
+        final SourceIdentifier sourceIdentifier = createIdentifierFromSourceName(checkNotNull(sourceName));
+        final YangTextSource yangTextSource =
             YangTextSchemaSourceSetBuilder.getYangTextSource(source, sourceIdentifier);
+        final Map<String, String> metaDataMap = new HashMap<>();
         try {
-            final SourceInfo sourceInfo = YangIRSourceInfoExtractor.forYangText(tempYangTextSource);
+            final SourceInfo sourceInfo = TextToIRTransformer.transformText(yangTextSource).extractSourceInfo();
             metaDataMap.put("moduleName", sourceInfo.sourceId().name().getLocalName());
             final Revision revision = sourceInfo.sourceId().revision();
             metaDataMap.put("revision", revision == null ? "" : revision.toString());
-        } catch (final YangSyntaxErrorException | IOException e) {
+        } catch (final YangSyntaxErrorException | SourceInfo.ExtractorException | IOException e) {
             throw new ModelValidationException("Yang resource is invalid.",
                 String.format("Yang syntax validation failed for resource %s:%n%s", sourceName, e.getMessage()), e);
         }

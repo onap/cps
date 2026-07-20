@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -106,8 +106,8 @@ public class YangParserHelper {
     private ContainerNode parseJsonData(final String jsonData,
                                         final SchemaContext schemaContext,
                                         final String parentNodeXpath) {
-        final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
-            .getShared((EffectiveModelContext) schemaContext);
+        final JSONCodecFactory jsonCodecFactory =
+            JSONCodecFactorySupplier.RFC7951.getShared((EffectiveModelContext) schemaContext);
         final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> dataContainerNodeBuilder =
                 ImmutableNodes.builderFactory().newContainerBuilder()
                         .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(

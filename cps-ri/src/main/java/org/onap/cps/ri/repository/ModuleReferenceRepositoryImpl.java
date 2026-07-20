@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
             return Collections.emptyList();
         }
 
-        final Collection<List<String>> sqlData = new HashSet<>(moduleReferencesToCheck.size());
+        final Collection<List<String>> sqlData = HashSet.newHashSet(moduleReferencesToCheck.size());
         for (final ModuleReference moduleReference : moduleReferencesToCheck) {
             final List<String> row = new ArrayList<>(2);
             row.add(moduleReference.getModuleName());

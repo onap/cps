@@ -122,7 +122,7 @@ public class LcmEventProducer {
     }
 
     private Map<String, Object> extractHeadersAsMap(final LcmEventBase lcmEventBase) {
-        final Map<String, Object> headersAsMap = new HashMap<>(7);
+        final Map<String, Object> headersAsMap = HashMap.newHashMap(7);
         headersAsMap.put("eventId", lcmEventBase.getEventId());
         headersAsMap.put("eventCorrelationId", lcmEventBase.getEventCorrelationId());
         headersAsMap.put("eventTime", lcmEventBase.getEventTime());

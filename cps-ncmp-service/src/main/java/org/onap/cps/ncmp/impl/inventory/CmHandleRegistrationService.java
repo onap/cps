@@ -149,7 +149,7 @@ public class CmHandleRegistrationService {
      * @param yangModelCmHandles collection of yang model cm handles
      */
     public void addAlternateIdsToCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<String, String> cmHandleIdPerAlternateIdToRegister = new HashMap<>(yangModelCmHandles.size());
+        final Map<String, String> cmHandleIdPerAlternateIdToRegister = HashMap.newHashMap(yangModelCmHandles.size());
         for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
             final String cmHandleId = yangModelCmHandle.getId();
             final String alternateId = yangModelCmHandle.getAlternateId();
@@ -220,7 +220,7 @@ public class CmHandleRegistrationService {
         } catch (final Exception exception) {
             log.error("Error while creating CM handles", exception);
             final Collection<String> cmHandleIds =
-                ncmpServiceCmHandles.stream().map(NcmpServiceCmHandle::getCmHandleId).collect(Collectors.toList());
+                ncmpServiceCmHandles.stream().map(NcmpServiceCmHandle::getCmHandleId).toList();
             failedCmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse
                 .createFailureResponses(cmHandleIds, exception));
         }
@@ -245,7 +245,7 @@ public class CmHandleRegistrationService {
         final List<String> cmHandleIds = dmiPluginRegistration.getUpgradedCmHandles().getCmHandles();
         final String upgradedModuleSetTag = dmiPluginRegistration.getUpgradedCmHandles().getModuleSetTag();
         final Map<YangModelCmHandle, CmHandleState> acceptedCmHandleStatePerCmHandle
-            = new HashMap<>(cmHandleIds.size());
+            = HashMap.newHashMap(cmHandleIds.size());
         final List<CmHandleRegistrationResponse> cmHandleUpgradeResponses = new ArrayList<>(cmHandleIds.size());
 
         for (final String cmHandleId : cmHandleIds) {
@@ -280,7 +280,7 @@ public class CmHandleRegistrationService {
 
     private void processTrustLevels(final Collection<NcmpServiceCmHandle> cmHandlesToBeCreated,
                                     final Collection<String> succeededCmHandleIds) {
-        final Map<String, TrustLevel> initialTrustLevelPerCmHandleId = new HashMap<>(cmHandlesToBeCreated.size());
+        final Map<String, TrustLevel> initialTrustLevelPerCmHandleId = HashMap.newHashMap(cmHandlesToBeCreated.size());
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : cmHandlesToBeCreated) {
             if (succeededCmHandleIds.contains(ncmpServiceCmHandle.getCmHandleId())) {
                 initialTrustLevelPerCmHandleId.put(ncmpServiceCmHandle.getCmHandleId(),
@@ -326,7 +326,8 @@ public class CmHandleRegistrationService {
 
     private void updateCmHandleStateBatch(final Collection<YangModelCmHandle> yangModelCmHandles,
                                           final CmHandleState cmHandleState) {
-        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(yangModelCmHandles.size());
+        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle
+            = HashMap.newHashMap(yangModelCmHandles.size());
         yangModelCmHandles.forEach(yangModelCmHandle -> cmHandleStatePerCmHandle.put(yangModelCmHandle, cmHandleState));
         lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
     }

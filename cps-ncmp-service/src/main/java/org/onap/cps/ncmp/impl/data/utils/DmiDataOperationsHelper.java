@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -120,7 +120,7 @@ public class DmiDataOperationsHelper {
 
     private static Map<String, String> getModuleSetTagPerCmHandleId(
                                                        final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<String, String> moduleSetTagPerCmHandle = new HashMap<>(yangModelCmHandles.size());
+        final Map<String, String> moduleSetTagPerCmHandle = HashMap.newHashMap(yangModelCmHandles.size());
         yangModelCmHandles.forEach(yangModelCmHandle ->
                 moduleSetTagPerCmHandle.put(yangModelCmHandle.getId(), yangModelCmHandle.getModuleSetTag()));
         return moduleSetTagPerCmHandle;
@@ -188,7 +188,7 @@ public class DmiDataOperationsHelper {
 
     private static Map<String, String> filterAndGetNonReadyAlternateIdPerCmHandleId(
         final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<String, String> cmHandleReferenceMap = new HashMap<>(0);
+        final Map<String, String> cmHandleReferenceMap = HashMap.newHashMap(0);
         for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
             if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {
                 cmHandleReferenceMap.put(yangModelCmHandle.getId(), yangModelCmHandle.getAlternateId());

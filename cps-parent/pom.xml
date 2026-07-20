@@ -516,6 +516,22 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${jacoco.execFile}</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${jacoco.outputDirectory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- Runs after the report so the coverage report is always generated,
+                         even when the coverage gate below is not met. -->
+                    <execution>
                         <id>coverage-check</id>
                         <phase>test</phase>
                         <goals>
@@ -535,20 +551,6 @@
                                     </limits>
                                 </rule>
                             </rules>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>post-unit-test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                        <configuration>
-                            <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
-                            <!-- Sets the path to the file which contains the execution data. -->
-                            <dataFile>${jacoco.execFile}</dataFile>
-                            <!-- Sets the output directory for the code coverage report. -->
-                            <outputDirectory>${jacoco.outputDirectory}</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>

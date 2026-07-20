@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ public class PolicyExecutor {
                                                         final OperationType operationType,
                                                         final String resourceIdentifier,
                                                         final String changeRequestAsJson) {
-        final Map<String, Object> operationAsMap = new HashMap<>(5);
+        final Map<String, Object> operationAsMap = HashMap.newHashMap(5);
         operationAsMap.put("operation", operationType.getOperationName());
         operationAsMap.put("entityHandleId", yangModelCmHandle.getId());
         operationAsMap.put("resourceIdentifier", resourceIdentifier);
@@ -146,7 +146,7 @@ public class PolicyExecutor {
 
     private Object createBodyAsObject(final Map<String, Object> operationAsMap) {
         final Collection<Map<String, Object>> operations = Collections.singletonList(operationAsMap);
-        final Map<String, Object> permissionRequestAsMap = new HashMap<>(2);
+        final Map<String, Object> permissionRequestAsMap = HashMap.newHashMap(2);
         permissionRequestAsMap.put("changeRequestFormat", "cm-legacy");
         permissionRequestAsMap.put("operations", operations);
         return permissionRequestAsMap;

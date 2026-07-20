@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     @Override
     public void initiateStateAdvised(final Collection<YangModelCmHandle> yangModelCmHandles) {
         final Map<YangModelCmHandle, CmHandleState> targetCmHandleStatePerCmHandle
-            = new HashMap<>(yangModelCmHandles.size());
+            = HashMap.newHashMap(yangModelCmHandles.size());
         for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
             targetCmHandleStatePerCmHandle.put(yangModelCmHandle, ADVISED);
         }
