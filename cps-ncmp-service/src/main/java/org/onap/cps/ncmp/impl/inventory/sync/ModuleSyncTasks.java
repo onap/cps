@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
+import org.slf4j.event.Level;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -74,6 +75,7 @@ public class ModuleSyncTasks {
                 }
             }
         } finally {
+            log.warn("Persisting state for {} cm handles", cmHandleStatePerCmHandle.size());
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
         }
     }
@@ -88,15 +90,19 @@ public class ModuleSyncTasks {
      */
     public void setCmHandlesToAdvised(final Collection<YangModelCmHandle> yangModelCmHandles) {
         final List<YangModelCmHandle> cmHandlesList = new ArrayList<>(yangModelCmHandles);
+        boolean firstHandle = true;
         for (int batchStart = 0; batchStart < cmHandlesList.size(); batchStart += RESET_BATCH_SIZE) {
             final int batchEnd = Math.min(batchStart + RESET_BATCH_SIZE, cmHandlesList.size());
             final List<YangModelCmHandle> batch = cmHandlesList.subList(batchStart, batchEnd);
             final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(batch.size());
             for (final YangModelCmHandle yangModelCmHandle : batch) {
                 final CompositeState compositeState = yangModelCmHandle.getCompositeState();
-                log.debug("Resetting CM handle {} state to ADVISED for retry by the module-sync watchdog."
-                        + " Lock reason: {}",
-                    yangModelCmHandle.getId(), compositeState.getLockReason().getLockReasonCategory().name());
+                final String message = "Resetting CM handle {} state to ADVISED for retry. Total: {}, lock reason: {}"
+                        + (firstHandle ? " (subsequent handles logged at DEBUG level)" : "");
+                log.atLevel(firstHandle ? Level.WARN : Level.DEBUG)
+                    .log(message, yangModelCmHandle.getId(), cmHandlesList.size(),
+                        compositeState.getLockReason().getLockReasonCategory().name());
+                firstHandle = false;
                 cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
                 removeResetCmHandleFromModuleSyncMap(yangModelCmHandle.getId());
             }

@@ -142,6 +142,10 @@ public class ModuleSyncWatchdog {
             final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP.equals(
                     moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP));
             if (alreadyAddedToInProgressMap) {
+                if (skippedCount == 0) {
+                    log.warn("module sync for {} already in progress by other instance", cmHandleId);
+                    log.warn("Similar warning for other cm handles in this batch not logged");
+                }
                 skippedCount++;
             } else {
                 log.debug("Adding cmHandle : {} to current batch", cmHandleId);
