@@ -1,0 +1,274 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3dd4cc3_a40fdefb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "Q: what do you mean with this?",
+      "range": {
+        "startLine": 11,
+        "startChar": 47,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3af88737_447649d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "looks good. some minor suggestions and renaming from \u0027what\u0027 to \u0027how\u0027",
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93945b94_4bf3c910",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/CmHandleIdPerReferenceMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "exists",
+      "range": {
+        "startLine": 121,
+        "startChar": 19,
+        "endLine": 121,
+        "endChar": 30
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96960262_6be73a74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/CmHandleIdPerReferenceMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "getByReferenceLike",
+      "range": {
+        "startLine": 131,
+        "startChar": 30,
+        "endLine": 131,
+        "endChar": 42
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1836a90_976cf2b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/CmHandleIdPerReferenceMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "NB: bit surprised we need this...",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 19
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3939d78c_bd21ea5c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "NB: could create a dedicated method for this in CmHandleIdPerReferenceMap",
+      "range": {
+        "startLine": 103,
+        "startChar": 41,
+        "endLine": 103,
+        "endChar": 77
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edf2d521_be2a3da8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "NB: maybe rename to exist() what instead of how :-)",
+      "range": {
+        "startLine": 116,
+        "startChar": 42,
+        "endLine": 116,
+        "endChar": 53
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab21051c_6bcba378",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/CmHandleIdPerReferenceMapSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "could this be order sensitive ie brittle. use containAll and size check instead?",
+      "range": {
+        "startLine": 127,
+        "startChar": 29,
+        "endLine": 127,
+        "endChar": 62
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d9818fb_fb90d600",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/CmHandleIdPerReferenceMapSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "😄",
+      "range": {
+        "startLine": 161,
+        "startChar": 31,
+        "endLine": 161,
+        "endChar": 33
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a36c123e_65f7bfc0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "cm handle",
+      "range": {
+        "startLine": 429,
+        "startChar": 27,
+        "endLine": 429,
+        "endChar": 35
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e08ab77a_d156c559",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "NB: I think you could move this and its copies to teh setup. \nLine #245 shoudl be able to override the common setup behavior",
+      "range": {
+        "startLine": 211,
+        "startChar": 12,
+        "endLine": 211,
+        "endChar": 64
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d59be69f_f1899b1d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T08:27:35Z",
+      "side": 1,
+      "message": "no need for this column anymore",
+      "range": {
+        "startLine": 125,
+        "startChar": 66,
+        "endLine": 125,
+        "endChar": 80
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
