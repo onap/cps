@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a8f853c_fcda7b6e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnSRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T15:53:39Z",
+      "side": 1,
+      "message": "deliberately using teh value as key and not the constant. \nIf the framework ever changes constant names again the value use is backward compatible, the constant is not!",
+      "range": {
+        "startLine": 46,
+        "startChar": 29,
+        "endLine": 46,
+        "endChar": 36
+      },
+      "revId": "47247b2636de6658eef849f9238b615e2113738e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3bfa8c1_56e9cca2",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T15:53:39Z",
+      "side": 1,
+      "message": "moved this up so we get report even if build fails because of coverage 😊",
+      "range": {
+        "startLine": 518,
+        "startChar": 0,
+        "endLine": 534,
+        "endChar": 31
+      },
+      "revId": "47247b2636de6658eef849f9238b615e2113738e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
