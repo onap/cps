@@ -43,16 +43,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class ProvMnSRestExceptionHandler {
 
-    @SuppressWarnings("deprecation")
-    private static final Map<HttpStatus, String> PROVMNS_ERROR_TYPE_PER_ERROR_CODE = Map.of(
-        HttpStatus.BAD_REQUEST, "VALIDATION_ERROR",
-        HttpStatus.CONFLICT, "APPLICATION_LAYER_ERROR",
-        HttpStatus.GATEWAY_TIMEOUT, "APPLICATION_LAYER_ERROR",
-        HttpStatus.INTERNAL_SERVER_ERROR, "APPLICATION_LAYER_ERROR",
-        HttpStatus.NOT_ACCEPTABLE, "APPLICATION_LAYER_ERROR",
-        HttpStatus.NOT_FOUND, "IE_NOT_FOUND",
-        HttpStatus.PAYLOAD_TOO_LARGE, "SERVER_LIMITATION",
-        HttpStatus.UNPROCESSABLE_ENTITY, "SERVER_LIMITATION"
+    private static final Map<Integer, String> PROVMNS_ERROR_TYPE_PER_ERROR_CODE = Map.of(
+        HttpStatus.BAD_REQUEST.value(), "VALIDATION_ERROR",
+        HttpStatus.CONFLICT.value(), "APPLICATION_LAYER_ERROR",
+        HttpStatus.GATEWAY_TIMEOUT.value(), "APPLICATION_LAYER_ERROR",
+        HttpStatus.INTERNAL_SERVER_ERROR.value(), "APPLICATION_LAYER_ERROR",
+        HttpStatus.NOT_ACCEPTABLE.value(), "APPLICATION_LAYER_ERROR",
+        HttpStatus.NOT_FOUND.value(), "IE_NOT_FOUND",
+        HttpStatus.CONTENT_TOO_LARGE.value(), "SERVER_LIMITATION",
+        HttpStatus.UNPROCESSABLE_CONTENT.value(), "SERVER_LIMITATION"
     );
 
     /**
@@ -80,7 +79,7 @@ public class ProvMnSRestExceptionHandler {
     private static ResponseEntity<Object> provMnSErrorResponsePatch(final HttpStatus httpStatus,
                                                                     final String title,
                                                                     final String badOp) {
-        final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus);
+        final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus.value());
         final ErrorResponsePatch errorResponsePatch = new ErrorResponsePatch(type, badOp);
         errorResponsePatch.setStatus(String.valueOf(httpStatus.value()));
         errorResponsePatch.setTitle(title);
@@ -88,7 +87,7 @@ public class ProvMnSRestExceptionHandler {
     }
 
     private static ResponseEntity<Object> provMnSErrorResponseGet(final HttpStatus httpStatus, final String title) {
-        final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus);
+        final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus.value());
         final ErrorResponseGet errorResponseGet = new ErrorResponseGet(type);
         errorResponseGet.setStatus(String.valueOf(httpStatus.value()));
         errorResponseGet.setTitle(title);
@@ -96,7 +95,7 @@ public class ProvMnSRestExceptionHandler {
     }
 
     private static ResponseEntity<Object> provMnSErrorResponseDefault(final HttpStatus httpStatus, final String title) {
-        final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus);
+        final String type = PROVMNS_ERROR_TYPE_PER_ERROR_CODE.get(httpStatus.value());
         final ErrorResponseDefault errorResponseDefault = new ErrorResponseDefault(type);
         errorResponseDefault.setStatus(String.valueOf(httpStatus.value()));
         errorResponseDefault.setTitle(title);

@@ -135,7 +135,7 @@ public class ParameterHelper {
 
     private static ProvMnSException createProvMnSException(final String httpMethodName, final String uriPath) {
         final String title = String.format(INVALID_PATH_DETAILS_TEMPLATE, uriPath);
-        return new ProvMnSException(httpMethodName, HttpStatus.UNPROCESSABLE_ENTITY, title, NO_OP);
+        return new ProvMnSException(httpMethodName, HttpStatus.UNPROCESSABLE_CONTENT, title, NO_OP);
     }
 
     private static void validatePathStructure(final String path, final String httpMethodName) {

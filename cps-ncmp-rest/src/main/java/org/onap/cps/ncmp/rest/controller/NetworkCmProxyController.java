@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.model.DataNode;
@@ -379,7 +378,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final List<RestModuleReference> restModuleReferences =
             networkCmProxyInventoryFacade.getYangResourcesModuleReferences(cmHandleReference).stream()
                         .map(ncmpRestInputMapper::toRestModuleReference)
-                        .collect(Collectors.toList());
+                        .toList();
         return new ResponseEntity<>(restModuleReferences, HttpStatus.OK);
     }
 

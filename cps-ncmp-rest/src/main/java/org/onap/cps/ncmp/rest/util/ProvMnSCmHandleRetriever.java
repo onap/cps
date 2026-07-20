@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.rest.util;
 import static org.onap.cps.ncmp.impl.provmns.ParameterHelper.NO_OP;
 import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_CONTENT;
 
 import com.google.common.base.Strings;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,6 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
 
 @Component
 @Slf4j
@@ -63,7 +62,7 @@ public class ProvMnSCmHandleRetriever {
             final String cmHandleId = alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/");
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
             if (!StringUtils.hasText(yangModelCmHandle.getDataProducerIdentifier())) {
-                throw new ProvMnSException(httpMethodName, UNPROCESSABLE_ENTITY,
+                throw new ProvMnSException(httpMethodName, UNPROCESSABLE_CONTENT,
                     PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE, NO_OP);
             }
             if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {

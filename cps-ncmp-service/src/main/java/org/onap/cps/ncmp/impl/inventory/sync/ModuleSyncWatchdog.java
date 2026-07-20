@@ -133,8 +133,8 @@ public class ModuleSyncWatchdog {
     }
 
     private Collection<String> prepareNextBatch() {
-        final Collection<String> nextBatchCandidates = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
-        final Collection<String> nextBatch = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
+        final Collection<String> nextBatchCandidates = HashSet.newHashSet(MODULE_SYNC_BATCH_SIZE);
+        final Collection<String> nextBatch = HashSet.newHashSet(MODULE_SYNC_BATCH_SIZE);
         moduleSyncWorkQueue.drainTo(nextBatchCandidates, MODULE_SYNC_BATCH_SIZE);
         log.info("nextBatchCandidates size : {}", nextBatchCandidates.size());
         int skippedCount = 0;

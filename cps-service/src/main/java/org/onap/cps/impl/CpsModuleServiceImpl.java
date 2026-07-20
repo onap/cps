@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2020-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
@@ -44,7 +44,7 @@ import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("CpsModuleServiceImpl")
+@Service
 @RequiredArgsConstructor
 public class CpsModuleServiceImpl implements CpsModuleService {
 

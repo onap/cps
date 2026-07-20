@@ -20,13 +20,13 @@
 
 package org.onap.cps.ncmp.impl.utils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -76,7 +76,7 @@ public class YangDataConverter {
      * @return simple map representing the properties
      */
     public static Map<String, String> toPropertiesMap(final List<YangModelCmHandle.Property> properties) {
-        final Map<String, String> propertiesMap = new LinkedHashMap<>(properties.size());
+        final Map<String, String> propertiesMap = LinkedHashMap.newLinkedHashMap(properties.size());
         for (final YangModelCmHandle.Property property : properties) {
             propertiesMap.put(property.name(), property.value());
         }
@@ -119,7 +119,7 @@ public class YangDataConverter {
      */
     public static Collection<YangModelCmHandle> toYangModelCmHandles(
             final Collection<DataNode> cmHandleDataNodes) {
-        return cmHandleDataNodes.stream().map(YangDataConverter::toYangModelCmHandle).collect(Collectors.toList());
+        return new ArrayList<>(cmHandleDataNodes.stream().map(YangDataConverter::toYangModelCmHandle).toList());
     }
 
     /**

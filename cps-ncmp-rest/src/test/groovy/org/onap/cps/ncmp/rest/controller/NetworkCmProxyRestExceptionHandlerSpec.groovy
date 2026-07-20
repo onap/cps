@@ -65,9 +65,9 @@ import static org.onap.cps.ncmp.rest.controller.NetworkCmProxyRestExceptionHandl
 import static org.springframework.http.HttpStatus.BAD_GATEWAY
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.CONFLICT
+import static org.springframework.http.HttpStatus.CONTENT_TOO_LARGE
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
@@ -165,7 +165,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'Data Node Not Found'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')          || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
             'Existing entry'        | new AlreadyDefinedException('name',null)                                  || CONFLICT              | 'Already defined exception' | 'name already exists'
             'Existing entries'      | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName')          || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
-            'Operation too large'   | new PayloadTooLargeException(sampleErrorMessage)                          || PAYLOAD_TOO_LARGE     | sampleErrorMessage          | 'Check logs'
+            'Operation too large'   | new PayloadTooLargeException(sampleErrorMessage)                          || CONTENT_TOO_LARGE     | sampleErrorMessage          | 'Check logs'
             'Policy Executor'       | new PolicyExecutorException(sampleErrorMessage, sampleErrorDetails, null) || CONFLICT              | sampleErrorMessage          | sampleErrorDetails
     }
 

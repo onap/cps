@@ -25,7 +25,7 @@ import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
 import static org.onap.cps.ncmp.impl.provmns.ParameterHelper.NO_OP;
 import static org.onap.cps.ncmp.rest.util.ProvMnSExceptionMapper.toProvMnSException;
-import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE;
+import static org.springframework.http.HttpStatus.CONTENT_TOO_LARGE;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -101,7 +101,7 @@ public class ProvMnSController implements ProvMnS {
         if (patchItems.size() > maxNumberOfPatchOperations) {
             final String title = patchItems.size() + " operations in request, this exceeds the maximum of "
                 + maxNumberOfPatchOperations;
-            throw new ProvMnSException(httpServletRequest.getMethod(), PAYLOAD_TOO_LARGE, title, NO_OP);
+            throw new ProvMnSException(httpServletRequest.getMethod(), CONTENT_TOO_LARGE, title, NO_OP);
         }
         final RequestParameters requestParameters = ParameterHelper.extractRequestParameters(httpServletRequest);
         try {
@@ -164,7 +164,7 @@ public class ProvMnSController implements ProvMnS {
     private void checkPermission(final YangModelCmHandle yangModelCmHandle,
                                  final OperationDetails operationDetails,
                                  final RequestParameters requestParameters) {
-        final Map<String, List<ClassInstance>> changeRequestAsMap = new HashMap<>(1);
+        final Map<String, List<ClassInstance>> changeRequestAsMap = HashMap.newHashMap(1);
         changeRequestAsMap.put(operationDetails.className(), operationDetails.ClassInstances());
         final String changeRequestAsJson = jsonObjectMapper.asJsonString(changeRequestAsMap);
         if (targetIsRootMo(yangModelCmHandle.getAlternateId(), operationDetails)) {

@@ -25,14 +25,12 @@ import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 
 import static org.springframework.http.HttpStatus.GATEWAY_TIMEOUT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE
 import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.http.HttpStatus.OK
-import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_CONTENT
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 class ProvMnSExtensionsControllerSpec extends ProvMnSControllerBaseSpec {
@@ -69,10 +67,10 @@ class ProvMnSExtensionsControllerSpec extends ProvMnSControllerBaseSpec {
         and: 'the result contains the expected title'
             assert response.contentAsString.contains('"title":"' + expectedTitle)
         where: 'following error scenario'
-            scenario                                   | yangModelCmHandle                  || expectedHttpStatus   | expectedType              | expectedTitle
-            'no data producer id'                      | cmHandleWithoutDataProducer        || UNPROCESSABLE_ENTITY | 'SERVER_LIMITATION'       | 'Registered DMI does not support the ProvMnS interface.'
-            'cm Handle NOT READY'                      | cmHandleNotReady                   || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | '/managedElement=1 is not in READY state. Current state: ADVISED'
-            'cm Handle with no alternate id NOT READY' | cmHandleNotReadyWithoutAlternateId || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'ch-1 is not in READY state. Current state: ADVISED'
+            scenario                                   | yangModelCmHandle                  || expectedHttpStatus    | expectedType              | expectedTitle
+            'no data producer id'                      | cmHandleWithoutDataProducer        || UNPROCESSABLE_CONTENT | 'SERVER_LIMITATION'       | 'Registered DMI does not support the ProvMnS interface.'
+            'cm Handle NOT READY'                      | cmHandleNotReady                   || NOT_ACCEPTABLE        | 'APPLICATION_LAYER_ERROR' | '/managedElement=1 is not in READY state. Current state: ADVISED'
+            'cm Handle with no alternate id NOT READY' | cmHandleNotReadyWithoutAlternateId || NOT_ACCEPTABLE        | 'APPLICATION_LAYER_ERROR' | 'ch-1 is not in READY state. Current state: ADVISED'
     }
 
     def 'Action request attempt with exception during execution: #exception.'() {
@@ -90,7 +88,7 @@ class ProvMnSExtensionsControllerSpec extends ProvMnSControllerBaseSpec {
         and: 'the result contains the expected title'
             assert response.contentAsString.contains('"title":"' + expectedTitle)
         where: 'following exceptions occur'
-            exception                           || expectedHttpStatus    | expectedType              | expectedTitle
+            exception                                           || expectedHttpStatus    | expectedType              | expectedTitle
             new NoAlternateIdMatchFoundException('myTarget')    || NOT_FOUND             | 'IE_NOT_FOUND'            | '/myClass=id1 not found'
             new Exception("my message", new TimeoutException()) || GATEWAY_TIMEOUT       | 'APPLICATION_LAYER_ERROR' | 'Southbound system did not respond in a timely manner'
             new Exception("my message")                         || INTERNAL_SERVER_ERROR | 'APPLICATION_LAYER_ERROR' | 'my message'

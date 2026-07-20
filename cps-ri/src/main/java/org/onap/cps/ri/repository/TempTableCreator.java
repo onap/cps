@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,7 +74,7 @@ public class TempTableCreator {
                                    final String tempTableName,
                                    final Collection<String> columnNames,
                                    final Collection<List<String>> sqlData) {
-        final Collection<String> sqlInserts = new HashSet<>(sqlData.size());
+        final Collection<String> sqlInserts = HashSet.newHashSet(sqlData.size());
         for (final Collection<String> rowValues : sqlData) {
             final Collection<String> escapedValues =
                 rowValues.stream().map(EscapeUtils::escapeForSqlStringLiteral).toList();

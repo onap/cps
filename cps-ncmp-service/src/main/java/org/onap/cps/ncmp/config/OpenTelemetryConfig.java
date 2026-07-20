@@ -30,7 +30,6 @@ import jakarta.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -75,7 +74,7 @@ public class OpenTelemetryConfig {
     public void init() {
         excludedObservationNames = Arrays.stream(excludedObservationNamesAsCsv.split(","))
                 .map(String::trim)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**

@@ -55,7 +55,7 @@ public class ModuleSyncTasks {
      * @param cmHandleIds                  a batch of cm handle ids to perform module sync on
      */
     public void performModuleSync(final Collection<String> cmHandleIds) {
-        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(cmHandleIds.size());
+        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = HashMap.newHashMap(cmHandleIds.size());
         try {
             for (final String cmHandleId : cmHandleIds) {
                 try {
@@ -91,7 +91,7 @@ public class ModuleSyncTasks {
         for (int batchStart = 0; batchStart < cmHandlesList.size(); batchStart += RESET_BATCH_SIZE) {
             final int batchEnd = Math.min(batchStart + RESET_BATCH_SIZE, cmHandlesList.size());
             final List<YangModelCmHandle> batch = cmHandlesList.subList(batchStart, batchEnd);
-            final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(batch.size());
+            final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = HashMap.newHashMap(batch.size());
             for (final YangModelCmHandle yangModelCmHandle : batch) {
                 final CompositeState compositeState = yangModelCmHandle.getCompositeState();
                 log.debug("Resetting CM handle {} state to ADVISED for retry by the module-sync watchdog."

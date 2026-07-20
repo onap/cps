@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2020-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022-2025 Deutsche Telekom AG
@@ -32,7 +32,6 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataspaceService;
@@ -163,7 +162,7 @@ public class AdminRestController implements CpsAdminApi {
     public ResponseEntity<List<SchemaSetDetails>> getSchemaSets(final String apiVersion, final String dataspaceName) {
         final Collection<SchemaSet> schemaSets = cpsModuleService.getSchemaSets(dataspaceName);
         final List<SchemaSetDetails> schemaSetDetails = schemaSets.stream().map(cpsRestInputMapper::toSchemaSetDetails)
-                .collect(Collectors.toList());
+                .toList();
         return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
     }
 
@@ -269,8 +268,7 @@ public class AdminRestController implements CpsAdminApi {
                          final String dataspaceName, final List<String> schemaSetNames) {
         final Collection<Anchor> anchors = CollectionUtils.isEmpty(schemaSetNames) ? cpsAnchorService
                 .getAnchors(dataspaceName) : cpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames);
-        final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
-                .collect(Collectors.toList());
+        final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails).toList();
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
 
@@ -278,7 +276,7 @@ public class AdminRestController implements CpsAdminApi {
     public ResponseEntity<List<DataspaceDetails>> getAllDataspaces(final String apiVersion) {
         final Collection<Dataspace> dataspaces = cpsDataspaceService.getAllDataspaces();
         final List<DataspaceDetails> dataspaceDetails = dataspaces.stream().map(cpsRestInputMapper::toDataspaceDetails)
-                .collect(Collectors.toList());
+                .toList();
         return new ResponseEntity<>(dataspaceDetails, HttpStatus.OK);
     }
 

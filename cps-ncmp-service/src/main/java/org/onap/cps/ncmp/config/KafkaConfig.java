@@ -40,8 +40,8 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
-import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.kafka.support.serializer.JacksonJsonDeserializer;
+import org.springframework.kafka.support.serializer.JacksonJsonSerializer;
 
 /**
  * kafka Configuration for legacy and cloud events.
@@ -66,7 +66,7 @@ public class KafkaConfig {
     @Bean
     public ProducerFactory<String, LegacyEvent> legacyEventProducerFactory() {
         final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties();
-        producerConfigProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        producerConfigProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JacksonJsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(producerConfigProperties);
     }
 
@@ -79,7 +79,7 @@ public class KafkaConfig {
     @Bean
     public ConsumerFactory<String, LegacyEvent> legacyEventConsumerFactory() {
         final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties();
-        consumerConfigProperties.put("spring.deserializer.value.delegate.class", JsonDeserializer.class);
+        consumerConfigProperties.put("spring.deserializer.value.delegate.class", JacksonJsonDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
 
