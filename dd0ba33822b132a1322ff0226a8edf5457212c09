@@ -231,6 +231,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "417f344c_0ec0b03f",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "KEEPING THIS OPEN AS FUTURE ENHANCEMENT/PERFORMANCE FIX",
+      "parentUuid": "37ee9099_b3a9b15d",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 30
+      },
+      "revId": "dd0ba33822b132a1322ff0226a8edf5457212c09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6a2c4e8_a3bac4d8",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
         "patchSetId": 5
@@ -501,6 +525,30 @@
       "side": 1,
       "message": "yes same reason as before, conditions has @Builder which only initializes the field when using the builder. Jackson deserialization via @NoArgsConstructor leaves it as raw null. We can eliminate them using a simple getter or replace NoArgsConstructor with a manual constructor for composite query. Let me know what suits best",
       "parentUuid": "df483d23_9509a6b8",
+      "range": {
+        "startLine": 155,
+        "startChar": 19,
+        "endLine": 155,
+        "endChar": 46
+      },
+      "revId": "dd0ba33822b132a1322ff0226a8edf5457212c09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9145d7cf_3de0b21c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Resolved it properly now: normalizeCompositeQuery validates the whole query upfront (operators, cps paths, nesting ≤ 10) and replaces null conditions with an empty collection so no null checks remain downstream, invalid queries fail before any DB call.",
+      "parentUuid": "5b376427_45d54314",
       "range": {
         "startLine": 155,
         "startChar": 19,

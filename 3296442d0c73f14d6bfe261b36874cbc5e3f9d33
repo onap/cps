@@ -16,6 +16,41 @@
       "message": "this doesn\u0027t have any of the changes I am expecting?!",
       "revId": "3296442d0c73f14d6bfe261b36874cbc5e3f9d33",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02de142a_d2b81b61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "yes this was just a rebase due to merge conflict. I got caught up with the replace node API bug so did not get much time for resolving all comments. I finished it today 😊",
+      "parentUuid": "0455d43c_468cf76d",
+      "revId": "3296442d0c73f14d6bfe261b36874cbc5e3f9d33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "465c815b_b2b01c42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Added a new file in this patchset CompositeQueryExecution, its a package-private class created per query by CompositeQueryProcessor. It addresses the comment to \"consider static / reduce parameter passing\" in a thread-safe way. fields on the singleton bean would be shared across concurrent requests, so each query instead gets its own short-lived instance holding dataspaceName, anchorName and xpathToDataNode.\n\nThis change drops parameters from 5-6 parameters to 1-2, the ConditionEvaluator lambda is replaced by a method reference, and it caches condition results so duplicate condition cps paths cost one DB query. The processor now only validates and normalizes the query upfront, then creates and delegates to an execution.\n\nAdded a query depth limit of 10.",
+      "revId": "3296442d0c73f14d6bfe261b36874cbc5e3f9d33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

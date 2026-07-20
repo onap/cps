@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39756106_73301ffc",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "this method has been deleted as part of evaluator rework. results are now folded into a combined set as each condition is evaluated. This allowa AND to short-circuit and skip remaining conditions, reducing DB calls",
+      "parentUuid": "5f6d18aa_d0501066",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 84
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1d36f0a4_ff4304fc",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
         "patchSetId": 11
@@ -54,6 +78,30 @@
       "writtenOn": "2026-07-09T08:32:08Z",
       "side": 1,
       "message": "this two methods is very similar with only .forEach(result::**); difference, can this be merged and have the AND/OR as parameter?",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 110,
+        "endChar": 1
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bb5d959_163b24f4",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Partly done by using single evaluate() with the operator as parameter and dispatching via an exhaustive switch. Kept the per-operator methods separate as the loops differ (AND short-circuits, skipping remaining DB queries). The switch also serves future operators so a new enum constant won\u0027t compile until its behavior is added.",
+      "parentUuid": "1d36f0a4_ff4304fc",
       "range": {
         "startLine": 81,
         "startChar": 2,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ad6d6bd_ce36c679",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryOperator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done now in CompositeQueryExecution",
+      "parentUuid": "cd09bc0f_782e0baa",
+      "range": {
+        "startLine": 65,
+        "startChar": 3,
+        "endLine": 66,
+        "endChar": 38
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "126cb32d_6ca3cf89",
@@ -100,6 +172,30 @@
       "writtenOn": "2026-07-06T10:55:32Z",
       "side": 1,
       "message": "compositeQueryConditions",
+      "range": {
+        "startLine": 100,
+        "startChar": 41,
+        "endLine": 100,
+        "endChar": 55
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c2a6783_06c4e507",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "renamed to compositeQueryConditions in CompositeQueryExecution class",
+      "parentUuid": "126cb32d_6ca3cf89",
       "range": {
         "startLine": 100,
         "startChar": 41,
@@ -179,6 +275,78 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "deddeb7c_32026293",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "lambda gone 😊",
+      "parentUuid": "b93828ce_ca83ba65",
+      "range": {
+        "startLine": 114,
+        "startChar": 65,
+        "endLine": 114,
+        "endChar": 74
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd8630b_95b6ce31",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done. The lambda is now gone and evaluator receives this::evaluateCondition. line 109-110 in CompositeQueryExecution.java",
+      "parentUuid": "7ea37998_f84de702",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 25
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92ab8262_d88b2989",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "lambda gone 😊",
+      "parentUuid": "a5cae723_2e8993d7",
+      "range": {
+        "startLine": 114,
+        "startChar": 41,
+        "endLine": 114,
+        "endChar": 63
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bab4a5cf_d31dcbe1",
@@ -192,6 +360,30 @@
       "writtenOn": "2026-07-06T10:55:32Z",
       "side": 1,
       "message": "USe proper javadoc for complicated private method\nEspecially want to see teh retrun explainded!",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 7
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be674b64_74714fc4",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done and now in CompositeQueryExecution",
+      "parentUuid": "bab4a5cf_d31dcbe1",
       "range": {
         "startLine": 118,
         "startChar": 0,
@@ -248,6 +440,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a27d0222_c50a367e",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done now in CompositeQueryExecution",
+      "parentUuid": "9d741cbe_590a0aa4",
+      "range": {
+        "startLine": 127,
+        "startChar": 63,
+        "endLine": 127,
+        "endChar": 77
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71f7f344_b363efc3",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done. introduced per-query CompositeQueryExecution holding dataspaceName, anchorName and xpathToDataNode as instance fields (this is a thread-safe alternative to static variablea, one instance per query, nothing shared between concurrent requests). The parameters disappear from all signatures entirely.",
+      "parentUuid": "2b68f710_00a1303f",
+      "range": {
+        "startLine": 127,
+        "startChar": 24,
+        "endLine": 127,
+        "endChar": 41
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d9622c5_b46f8ef4",
@@ -261,6 +501,30 @@
       "writtenOn": "2026-07-06T10:55:32Z",
       "side": 1,
       "message": "dataNodesForOneCompositeQueryCondition",
+      "range": {
+        "startLine": 132,
+        "startChar": 29,
+        "endLine": 132,
+        "endChar": 41
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e346d9f1_3d42cd06",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "done inside dataNodesForOneCompositeQueryCondition and moved to CompositeQueryExecution.java",
+      "parentUuid": "8d9622c5_b46f8ef4",
       "range": {
         "startLine": 132,
         "startChar": 29,
@@ -294,6 +558,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44d26df4_47c9d850",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "renamed to selectedXpaths and moved to CompositeQueryExecution.java",
+      "parentUuid": "751ddd4c_7c80956f",
+      "range": {
+        "startLine": 134,
+        "startChar": 26,
+        "endLine": 134,
+        "endChar": 40
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f7dab69_f6a125cc",
@@ -317,6 +605,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1c10c3f_e37e9ea8",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "done and moved to CompositeQueryExecution.java",
+      "parentUuid": "3f7dab69_f6a125cc",
+      "range": {
+        "startLine": 136,
+        "startChar": 20,
+        "endLine": 136,
+        "endChar": 35
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "448acd73_f3da9b52",
@@ -330,6 +642,30 @@
       "writtenOn": "2026-07-06T10:55:32Z",
       "side": 1,
       "message": "do NOT extract out",
+      "range": {
+        "startLine": 138,
+        "startChar": 41,
+        "endLine": 138,
+        "endChar": 55
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba52fcba_0598f90d",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "done and moved to CompositeQueryExecution.java",
+      "parentUuid": "448acd73_f3da9b52",
       "range": {
         "startLine": 138,
         "startChar": 41,
@@ -388,6 +724,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b1546897_e55f2c95",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Method is gone (inlined into evaluateCondition, the recursion is via computeMatchedXpaths). Calling the top-level method would lose scope narrowing hence nested conditions must match only within descendants of parent matches, and it would re-run tree building per nesting level.",
+      "parentUuid": "6b129d05_a3355781",
+      "range": {
+        "startLine": 153,
+        "startChar": 24,
+        "endLine": 153,
+        "endChar": 44
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ae7f3bb_29ab8747",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "renamed to selectedXpaths via patch file and moved to CompositeQueryExecution.java",
+      "parentUuid": "4ef8fe43_a0b9eb33",
+      "range": {
+        "startLine": 153,
+        "startChar": 63,
+        "endLine": 153,
+        "endChar": 76
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4c87d49_fa6ae5fd",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
         "patchSetId": 11
@@ -399,6 +783,30 @@
       "writtenOn": "2026-07-06T10:55:32Z",
       "side": 1,
       "message": "compositeQueryCondition",
+      "range": {
+        "startLine": 154,
+        "startChar": 66,
+        "endLine": 154,
+        "endChar": 80
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ddf83c_91e5c329",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "done and moved to CompositeQueryExecution.java",
+      "parentUuid": "f4c87d49_fa6ae5fd",
       "range": {
         "startLine": 154,
         "startChar": 66,
@@ -422,6 +830,30 @@
       "writtenOn": "2026-07-09T08:32:08Z",
       "side": 1,
       "message": "this can result to null",
+      "range": {
+        "startLine": 196,
+        "startChar": 55,
+        "endLine": 196,
+        "endChar": 73
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c54113ec_ca68bcca",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done. This has been moved to CompositeQueryExecution line 203 after simplifying the method parameters.",
+      "parentUuid": "1421855f_a867ff67",
       "range": {
         "startLine": 196,
         "startChar": 55,
@@ -478,6 +910,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3dc020f_a28d5012",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done via patch file. buildFilteredTrees now in CompositeQueryExecution",
+      "parentUuid": "4a74b76a_87200ab2",
+      "range": {
+        "startLine": 212,
+        "startChar": 33,
+        "endLine": 212,
+        "endChar": 38
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b876b492_84d83a46",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done via patch file. now in CompositeQueryExecution",
+      "parentUuid": "16b69c63_d491b7f6",
+      "range": {
+        "startLine": 212,
+        "startChar": 70,
+        "endLine": 212,
+        "endChar": 83
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8dfc847f_1319fc22",
@@ -491,6 +971,30 @@
       "writtenOn": "2026-07-07T10:43:41Z",
       "side": 1,
       "message": "i just dont like streams and contrary to what many developers think they are not faster the basic loops (they are actually a tiny bit slower but that is insignificant) teh main reason is readability: compare with this (unfortunatly gerrit comments dont persist indenting):\n\nfinal List\u003cDataNode\u003e resultTrees \u003d new ArrayList\u003c\u003e(candidateTrees.size());\nfor (final DataNode rootNode : candidateTrees) {\n  final DataNode tree \u003d buildTree(rootNode, matchedXpaths,etchDescendantsOption);\n   if (tree !\u003d null) {\n        resultTrees.add(tree);\n      }\n   }\nreturn resultTrees;",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 22
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31a37218_3694f401",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done now in CompositeQueryExecution",
+      "parentUuid": "8dfc847f_1319fc22",
       "range": {
         "startLine": 215,
         "startChar": 0,
@@ -524,6 +1028,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "284e38a7_c0483a31",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done via patch file, buildFilteredTree now in CompositeQueryExecution",
+      "parentUuid": "7db95f8c_e04b6133",
+      "range": {
+        "startLine": 231,
+        "startChar": 21,
+        "endLine": 231,
+        "endChar": 29
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecbc4c58_337dfcea",
@@ -547,6 +1075,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30546bfd_1c723a7c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "removed with one simple if block if (selectedXpaths.contains(dataNode.getXpath())) via patch file and now in CompositeQueryExecution",
+      "parentUuid": "ecbc4c58_337dfcea",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 17
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38f69b53_01ee2e63",
@@ -560,6 +1112,30 @@
       "writtenOn": "2026-07-07T10:43:41Z",
       "side": 1,
       "message": "do this inside buildFilteredNode()",
+      "range": {
+        "startLine": 246,
+        "startChar": 15,
+        "endLine": 246,
+        "endChar": 50
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5214b229_10509918",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-20T14:30:21Z",
+      "side": 1,
+      "message": "Done and renamed to copyDataNodeWithChildren via patch file. now in CompositeQueryExecution",
+      "parentUuid": "38f69b53_01ee2e63",
       "range": {
         "startLine": 246,
         "startChar": 15,
