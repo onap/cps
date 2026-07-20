@@ -16,6 +16,236 @@
       "message": "recheck",
       "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c3d4d79_109e762a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "-1 \u0027magic value\u0027 introduce constant fo redability",
+      "range": {
+        "startLine": 178,
+        "startChar": 58,
+        "endLine": 178,
+        "endChar": 61
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "546cf034_3e45b092",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "expectedNumberOfLeafConditions",
+      "range": {
+        "startLine": 79,
+        "startChar": 33,
+        "endLine": 79,
+        "endChar": 55
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "723af21c_01d4a110",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "magic value",
+      "range": {
+        "startLine": 90,
+        "startChar": 99,
+        "endLine": 90,
+        "endChar": 102
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58266171_9f35d499",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "numberOfCondtions (\u0027leaf\u0027 not necessary, but whatever you prefer)",
+      "range": {
+        "startLine": 75,
+        "startChar": 74,
+        "endLine": 75,
+        "endChar": 96
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25596919_0e54ac76",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "\u003e DO_NOT_CHECK_NUMBER_OF_CONDITIONS\nWhen WHen do we not check them, might need a better name based on the answer to taht question\ne.g. UNKNOWN_NUMBER_OF_CONDITIONS",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 40
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65fee143_35fd4f99",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "word \u0027matching\u0027 not needed",
+      "range": {
+        "startLine": 104,
+        "startChar": 59,
+        "endLine": 104,
+        "endChar": 69
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fe26b3b_ffedeeb5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "incorrect condition count\n(do not add expectation)",
+      "range": {
+        "startLine": 115,
+        "startChar": 30,
+        "endLine": 115,
+        "endChar": 79
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3be690d_c3ff7970",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "magic number, wont repeat\nBUT: consider putting in the expected number, would be better for testware should not be brittle",
+      "range": {
+        "startLine": 61,
+        "startChar": 127,
+        "endLine": 61,
+        "endChar": 129
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35020801_dcc69652",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "simplify to \u0027injection attempt in property value\u0027\n(line 62 explains teh details)",
+      "range": {
+        "startLine": 61,
+        "startChar": 32,
+        "endLine": 61,
+        "endChar": 108
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5e56842_e62f14a3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/security/NcmpXpathInjectionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T11:03:58Z",
+      "side": 1,
+      "message": "simplify to \u0027injection attempt in DMI plugin identifier\u0027",
+      "range": {
+        "startLine": 84,
+        "startChar": 32,
+        "endLine": 84,
+        "endChar": 110
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
