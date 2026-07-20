@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd7e00cf_6cbf3558",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T10:53:29Z",
+      "side": 1,
+      "message": "private method should be below public methods\n(preferably in the order they are called)",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 108
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd65dbd7_9005a533",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T10:53:29Z",
+      "side": 1,
+      "message": "private method should be below public methods",
+      "range": {
+        "startLine": 205,
+        "startChar": 17,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9879f707_86dfa382",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T10:53:29Z",
+      "side": 1,
+      "message": "no TypeB",
+      "range": {
+        "startLine": 266,
+        "startChar": 70,
+        "endLine": 266,
+        "endChar": 86
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61bcd93e_63399a77",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T10:53:29Z",
+      "side": 1,
+      "message": "there is no actual delete action (method) being used so maybe reword like\n,\n\"TypeB is no longer included\"\nor simply \n\"without TypeB\"",
+      "range": {
+        "startLine": 271,
+        "startChar": 75,
+        "endLine": 271,
+        "endChar": 91
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20a3cc13_21bcba11",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-20T10:53:29Z",
+      "side": 1,
+      "message": "name is ambiguous/misleading. It seems a special/extended version of the above method:\nreplaceListContent so maybe something like\n\nreplaceListContentWithOrphanDeletion\n\nis the old method incorrect?! should it be removed/replaced?!",
+      "range": {
+        "startLine": 142,
+        "startChar": 9,
+        "endLine": 142,
+        "endChar": 33
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
