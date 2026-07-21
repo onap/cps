@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d00bda24_2bf60010",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T09:29:25Z",
+      "side": 1,
+      "message": "looks good minor comment on teh wording",
+      "revId": "bb0b5b816dddcec72eed384a66c1b175b947180d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60dcf079_90b8e6ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T09:29:25Z",
+      "side": 1,
+      "message": "similar warnings",
+      "range": {
+        "startLine": 101,
+        "startChar": 55,
+        "endLine": 101,
+        "endChar": 63
+      },
+      "revId": "bb0b5b816dddcec72eed384a66c1b175b947180d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaded961_98732062",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T09:29:25Z",
+      "side": 1,
+      "message": "NB: plural: warnings",
+      "range": {
+        "startLine": 147,
+        "startChar": 38,
+        "endLine": 147,
+        "endChar": 46
+      },
+      "revId": "bb0b5b816dddcec72eed384a66c1b175b947180d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
