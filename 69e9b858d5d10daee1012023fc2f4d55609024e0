@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f870b02a_bddc6980",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T08:26:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd7e00cf_6cbf3558",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 108
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd65dbd7_9005a533",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e8ba24b_228b6492",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T08:26:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd65dbd7_9005a533",
+      "range": {
+        "startLine": 205,
+        "startChar": 17,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9879f707_86dfa382",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-07-20T10:53:29Z",
       "side": 1,
       "message": "no TypeB",
+      "range": {
+        "startLine": 266,
+        "startChar": 70,
+        "endLine": 266,
+        "endChar": 86
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4866ef0d_66532086",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T08:26:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9879f707_86dfa382",
       "range": {
         "startLine": 266,
         "startChar": 70,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65adb0c8_8ee89680",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T08:26:45Z",
+      "side": 1,
+      "message": "I felt TypeA and TypeB out of convention, so I renamed it to ListItemA and ListItemB and used \u0027without ListItemB\u0027",
+      "parentUuid": "61bcd93e_63399a77",
+      "range": {
+        "startLine": 271,
+        "startChar": 75,
+        "endLine": 271,
+        "endChar": 91
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20a3cc13_21bcba11",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 3
@@ -106,6 +202,30 @@
       "writtenOn": "2026-07-20T10:53:29Z",
       "side": 1,
       "message": "name is ambiguous/misleading. It seems a special/extended version of the above method:\nreplaceListContent so maybe something like\n\nreplaceListContentWithOrphanDeletion\n\nis the old method incorrect?! should it be removed/replaced?!",
+      "range": {
+        "startLine": 142,
+        "startChar": 9,
+        "endLine": 142,
+        "endChar": 33
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2963842d_d976dc3c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T08:26:45Z",
+      "side": 1,
+      "message": "1. it is slightly different operation, replaceListElement reconciles elements of one list \nFor Example in the follwoing structure, with parent xpath /bookstore[@name\u003dEasons] and data in DB as:\n\nbookstore[name\u003dEasons]\n - categoies[code\u003dkids]\n - categories[code\u003dthriller]\n - staff[id\u003dalice]\n - premises\n\nIf I am trying to replace [kids, thriller] with [horror, comedy] and staff[] then,\nA replaceListContent takes first payload element \u0027categories[horror]\u0027 and derives the list prefix as \u0027/categories[\u0027 and reconciles only that list and only changes [kids, thriller] to [horror, comedy]. \nHere staff and premises remain unchanged.\nThis is because we find first child node xpath prefix inside getListElementXpathPrefix()\n\nreplaceAllChildDataNodes reconciles every direct child of parent node bookstore. That is it replaces [kids, thriller] and deletes staff and premises.\n\nSo difference is in scope not orphan handling. Both delete orphans, just that the new one is not limited to one list element.",
+      "parentUuid": "20a3cc13_21bcba11",
       "range": {
         "startLine": 142,
         "startChar": 9,
