@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44da1963_e56a42b7",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T06:40:30Z",
+      "side": 1,
+      "message": "I would remove all logical processing of pagination branch decision from controller. And have only I method\nanchores \u003d cpsAnchorService.getAnchors(datasapce, schemaSets, pageIndex, pageSize)\n\nSo getAnchorsPagination would be renamed to getAnchors",
+      "range": {
+        "startLine": 271,
+        "startChar": 33,
+        "endLine": 271,
+        "endChar": 40
+      },
+      "revId": "8f64f63b3d49f8fa60aac9a8890d88690cbd6dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2599382_4a0707c6",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T06:40:30Z",
+      "side": 1,
+      "message": "private",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 10
+      },
+      "revId": "8f64f63b3d49f8fa60aac9a8890d88690cbd6dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df8baf93_c2ddcf62",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T06:40:30Z",
+      "side": 1,
+      "message": "private",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 10
+      },
+      "revId": "8f64f63b3d49f8fa60aac9a8890d88690cbd6dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc964111_e5dcfc07",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T06:40:30Z",
+      "side": 1,
+      "message": "do we have a check how this would react to NO_PAGINATION",
+      "range": {
+        "startLine": 136,
+        "startChar": 19,
+        "endLine": 136,
+        "endChar": 29
+      },
+      "revId": "8f64f63b3d49f8fa60aac9a8890d88690cbd6dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bed58881_c776769f",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T06:40:30Z",
+      "side": 1,
+      "message": "you can directly call it inside getAnchorsBySchemaSetNames method",
+      "range": {
+        "startLine": 138,
+        "startChar": 50,
+        "endLine": 138,
+        "endChar": 83
+      },
+      "revId": "8f64f63b3d49f8fa60aac9a8890d88690cbd6dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e384802_d2c5e8f6",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-21T06:40:30Z",
+      "side": 1,
+      "message": "this won\u0027t be needed",
+      "range": {
+        "startLine": 142,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 5
+      },
+      "revId": "8f64f63b3d49f8fa60aac9a8890d88690cbd6dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
