@@ -22,8 +22,14 @@ import os
 import subprocess
 
 # Generate OpenAPI docs if not already present
-if not os.path.isfile(os.path.join(os.path.dirname(__file__), 'api', 'swagger', 'cps', 'openapi.yaml')):
-    subprocess.run(['bash', os.path.join(os.path.dirname(__file__), 'generate-openapi.sh')], check=True)
+_docs_dir = os.path.dirname(__file__)
+_openapi_outputs = [
+    os.path.join(_docs_dir, 'api', 'swagger', 'cps', 'openapi.yaml'),
+    os.path.join(_docs_dir, 'api', 'swagger', 'ncmp', 'openapi.yaml'),
+    os.path.join(_docs_dir, 'api', 'swagger', 'ncmp', 'openapi-inventory.yaml'),
+]
+if not all(os.path.isfile(_f) for _f in _openapi_outputs):
+    subprocess.run(['bash', os.path.join(_docs_dir, 'generate-openapi.sh')], check=True)
 
 project = "onap"
 release = "master"
