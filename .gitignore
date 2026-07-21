@@ -51,3 +51,5 @@ provmns-api/.openapi-generator/
 docs/api/swagger/cps/
 docs/api/swagger/ncmp/
 docs/openapi-generator-cli.jar
+docs/.openapi-generator.lock
+docs/.openapi-gen.*
