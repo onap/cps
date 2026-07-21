@@ -4,6 +4,7 @@
 
 name: '🔐 Security Scans (CLM)'
 
+# yamllint disable-line rule:truthy
 on:
   schedule:
     # Intentionally scheduled at an odd minute letting GitHub's queue randomize the exact start.
@@ -94,6 +95,7 @@ env:
   JAVA_DISTRIBUTION: ${{ inputs.java_distribution || 'temurin' }}
   JAVA_VERSION: ${{ inputs.java_version || '21' }}
   IQ_CLI_VERSION: ${{ inputs.iq_cli_version || '2.4.2-01' }}
+  # yamllint disable-line rule:line-length
   APPLICATION_ID: ${{ inputs.application_id || format('{0}-{1}', github.repository_owner, github.event.repository.name) }}
   SCAN_TARGETS: ${{ inputs.scan_targets || '.' }}
   DEBUG: ${{ inputs.debug || false }}
@@ -106,22 +108,24 @@ concurrency:
 
 jobs:
   notify:
+    name: 'Notify Gerrit (job start)'
     if: github.event_name == 'workflow_dispatch' && inputs.GERRIT_DISABLED != true
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       # Harden the runner used by this workflow
       # yamllint disable-line rule:line-length
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411  # v2.19.4
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920  # v2.20.0
         with:
           egress-policy: audit
 
       - name: Notify job start
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/gerrit-review-action@a5de1d5bf17c2603ae81544dc2a455017b454ec8 # v1.1.1
+        uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13  # v1.1.2
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_USER }}
-          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}  # zizmor: ignore[secrets-outside-env]
           known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
           gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
           gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
@@ -139,7 +143,7 @@ jobs:
     steps:
       # Harden the runner used by this workflow
       # yamllint disable-line rule:line-length
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411  # v2.19.4
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920  # v2.20.0
         with:
           egress-policy: audit
 
@@ -153,14 +157,16 @@ jobs:
         # yamllint disable-line rule:line-length
         if: github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.GERRIT_DISABLED == true)
         # yamllint disable-line rule:line-length
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
 
       # Gerrit-aware checkout for workflow_dispatch with Gerrit context
       - name: 'Checkout Gerrit change'
         # yamllint disable-line rule:line-length
         if: github.event_name == 'workflow_dispatch' && inputs.GERRIT_DISABLED != true
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/checkout-gerrit-change-action@8523d768952d9690702b4696a8310d2a84b1be39 # v1.0.1
+        uses: lfreleng-actions/checkout-gerrit-change-action@f87b90a3370e62dad310797fedc7fd3700c75832  # v1.0.2
         with:
           gerrit-refspec: ${{ inputs.GERRIT_REFSPEC }}
           gerrit-project: ${{ inputs.GERRIT_PROJECT }}
@@ -170,7 +176,7 @@ jobs:
       - name: 'Check for pom.xml'
         id: check-pom-xml
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/path-check-action@9606e61c870025bc956e63156d1d55c5df54426c # v0.2.0
+        uses: lfreleng-actions/path-check-action@b51f09959a4a71eff2e2f175bf80400ae8576f63  # v0.2.1
         with:
           path: 'pom.xml'
 
@@ -180,7 +186,7 @@ jobs:
         run: |
           if [ -f .gitreview ]; then
             PROJECT_NAME=$(grep '^project=' .gitreview | cut -d'=' -f2 | sed 's/\.git$//' | tr '/' '-')
-            echo "project-name=${PROJECT_NAME}" >> $GITHUB_OUTPUT
+            echo "project-name=${PROJECT_NAME}" >> "$GITHUB_OUTPUT"
             echo "Detected project: ${PROJECT_NAME}"
           else
             echo "Error: .gitreview file not found"
@@ -189,11 +195,13 @@ jobs:
 
       - name: Load secret from 1Password
         if: steps.check-pom-xml.outputs.exists == 'true'
-        uses: 1password/load-secrets-action@92467eb28f72e8255933372f1e0707c567ce2259 # v4.0.0
+        uses: 1password/load-secrets-action@3a12b0ab99d9cd590a3e9b5a90ea017210ed9556  # v4.0.1
         with:
           export-env: true
+          version: "2.35.0"
         env:
-          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}  # zizmor: ignore[secrets-outside-env]
+          # yamllint disable-line rule:line-length
           NEXUS_V2_PASSWORD: "op://elnqtgip7eqavqvgodjbiiaqd4/${{ steps.extract-project.outputs.project-name }}/password"
 
       - name: 'Output SHA1 sum of password'
@@ -278,13 +286,13 @@ jobs:
           </settings>
           EOF
             echo 'SETTINGS_EOF'
-          } >> $GITHUB_OUTPUT
+          } >> "$GITHUB_OUTPUT"
 
       - name: 'Build with Maven'
         if: steps.check-pom-xml.outputs.exists == 'true'
         continue-on-error: true
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/maven-build-action@3e8765bbc2685951fb7c2be03964304179106b70 # v0.2.1
+        uses: lfreleng-actions/maven-build-action@c2ded37cb11ff1c2bb1eb7df7011906ddf97bd58  # v0.2.2
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: ${{ env.JAVA_DISTRIBUTION }}
@@ -301,11 +309,11 @@ jobs:
 
       - name: "Run CLM Scan"
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/sonatype-lifecycle-scan-action@e792424948d830e1d00ce828ecbcbbd40890006a  # v0.1.3
+        uses: lfreleng-actions/sonatype-lifecycle-scan-action@974066f00a3b7989013bd588cd56f7451933fed8  # v0.1.4
         with:
           nexus_iq_server: ${{ vars.NEXUS_IQ_SERVER }}
           nexus_iq_username: ${{ vars.NEXUS_IQ_USERNAME }}
-          nexus_iq_password: ${{ secrets.NEXUS_IQ_PASSWORD }}
+          nexus_iq_password: ${{ secrets.NEXUS_IQ_PASSWORD }}  # zizmor: ignore[secrets-outside-env]
           java_distribution: ${{ env.JAVA_DISTRIBUTION }}
           java_version: ${{ env.JAVA_VERSION }}
           iq_cli_version: ${{ env.IQ_CLI_VERSION }}
@@ -315,26 +323,28 @@ jobs:
           no_checkout: true
 
   report-status:
+    name: 'Report Status to Gerrit'
     if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.GERRIT_DISABLED != true }}
     needs: [notify, call-sonatype-lifecycle]
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       # Harden the runner used by this workflow
       # yamllint disable-line rule:line-length
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411  # v2.19.4
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920  # v2.20.0
         with:
           egress-policy: audit
 
       - name: Get workflow conclusion
-        uses: im-open/workflow-conclusion@7b146947e59eaf7fc3328822357861ab1758c088 # v2.2.5
+        uses: im-open/workflow-conclusion@8eac7f17381a6917bc04fec3e2c92e70ebc37526  # v3.0.0
 
       - name: Report workflow conclusion
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/gerrit-review-action@a5de1d5bf17c2603ae81544dc2a455017b454ec8 # v1.1.1
+        uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13  # v1.1.2
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_USER }}
-          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}  # zizmor: ignore[secrets-outside-env]
           known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
           gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
           gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
