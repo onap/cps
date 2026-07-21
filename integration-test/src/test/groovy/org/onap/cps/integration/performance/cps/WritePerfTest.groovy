@@ -47,7 +47,7 @@ class WritePerfTest extends CpsPerfTestBase {
             totalNodes || expectedDuration | referenceGraph
             50         || 1.45             | false
             100        || 2.9              | false
-            200        || 6.2              | true
+            200        || 6.2              | REFERENCE_GRAPH
             400        || 13.0             | false
     }
 
@@ -71,7 +71,7 @@ class WritePerfTest extends CpsPerfTestBase {
             800        || 0.31             | false
             1600       || 0.8              | false
             3200       || 2.2              | false
-            6400       || 6.9              | true
+            6400       || 6.9              | REFERENCE_GRAPH
     }
 
     def 'Writing openroadm list data using saveListElements.'() {

@@ -42,12 +42,12 @@ class GetPerfTest extends CpsPerfTestBase {
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'all data is read within #expectedDuration seconds and a margin of 100%'
-            recordAndAssertResourceUsage("CPS:Read datatree with ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), referencegraph)
+            recordAndAssertResourceUsage("CPS:Read datatree with ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), referenceGraph)
         where: 'the following parameters are used'
-            scenario             | fetchDescendantsOption  | referencegraph || expectedDuration | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        | false          || 0.01             | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | false          || 0.03             | 1 + OPENROADM_DEVICES_PER_ANCHOR
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | true           || 1.0              | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            scenario             | fetchDescendantsOption  | referenceGraph  || expectedDuration | expectedNumberOfDataNodes
+            'no descendants'     | OMIT_DESCENDANTS        | false           || 0.01             | 1
+            'direct descendants' | DIRECT_CHILDREN_ONLY    | false           || 0.03             | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS | REFERENCE_GRAPH || 1.0              | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
     def 'Read data trees for multiple xpaths'() {
