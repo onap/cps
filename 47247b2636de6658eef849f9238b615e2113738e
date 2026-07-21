@@ -45,6 +45,29 @@
       },
       "revId": "47247b2636de6658eef849f9238b615e2113738e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2910cd53_66141aec",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-21T07:42:23Z",
+      "side": 1,
+      "message": "Is this the Beta issue you mentioned yesterday?",
+      "range": {
+        "startLine": 290,
+        "startChar": 23,
+        "endLine": 290,
+        "endChar": 39
+      },
+      "revId": "47247b2636de6658eef849f9238b615e2113738e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
