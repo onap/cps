@@ -182,6 +182,30 @@
       },
       "revId": "168310f12827c728f7532a025724e892c5ddb3dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "193d4ac6_6a2603f4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-21T12:30:30Z",
+      "side": 1,
+      "message": "You can move this patch set for community review after reverted the changes for parameter from Accept to Content-Type",
+      "parentUuid": "9347a17a_ae176e67",
+      "range": {
+        "startLine": 68,
+        "startChar": 77,
+        "endLine": 68,
+        "endChar": 92
+      },
+      "revId": "168310f12827c728f7532a025724e892c5ddb3dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
