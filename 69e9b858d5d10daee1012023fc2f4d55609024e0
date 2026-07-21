@@ -189,6 +189,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fafc10a9_657857b0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T09:32:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65adb0c8_8ee89680",
+      "range": {
+        "startLine": 271,
+        "startChar": 75,
+        "endLine": 271,
+        "endChar": 91
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20a3cc13_21bcba11",
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "1. it is slightly different operation, replaceListElement reconciles elements of one list \nFor Example in the follwoing structure, with parent xpath /bookstore[@name\u003dEasons] and data in DB as:\n\nbookstore[name\u003dEasons]\n - categoies[code\u003dkids]\n - categories[code\u003dthriller]\n - staff[id\u003dalice]\n - premises\n\nIf I am trying to replace [kids, thriller] with [horror, comedy] and staff[] then,\nA replaceListContent takes first payload element \u0027categories[horror]\u0027 and derives the list prefix as \u0027/categories[\u0027 and reconciles only that list and only changes [kids, thriller] to [horror, comedy]. \nHere staff and premises remain unchanged.\nThis is because we find first child node xpath prefix inside getListElementXpathPrefix()\n\nreplaceAllChildDataNodes reconciles every direct child of parent node bookstore. That is it replaces [kids, thriller] and deletes staff and premises.\n\nSo difference is in scope not orphan handling. Both delete orphans, just that the new one is not limited to one list element.",
       "parentUuid": "20a3cc13_21bcba11",
+      "range": {
+        "startLine": 142,
+        "startChar": 9,
+        "endLine": 142,
+        "endChar": 33
+      },
+      "revId": "69e9b858d5d10daee1012023fc2f4d55609024e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fdc712e_f0510f8c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T09:32:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2963842d_d976dc3c",
       "range": {
         "startLine": 142,
         "startChar": 9,
