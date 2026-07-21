@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e99435c_6f636149",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T09:27:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "39756106_73301ffc",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 84
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d36f0a4_ff4304fc",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "Partly done by using single evaluate() with the operator as parameter and dispatching via an exhaustive switch. Kept the per-operator methods separate as the loops differ (AND short-circuits, skipping remaining DB queries). The switch also serves future operators so a new enum constant won\u0027t compile until its behavior is added.",
       "parentUuid": "1d36f0a4_ff4304fc",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 110,
+        "endChar": 1
+      },
+      "revId": "62cad9c5bdfb9cad58369e1e5b4da517702dbf65",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e430220e_8b33f514",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T09:27:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0bb5d959_163b24f4",
       "range": {
         "startLine": 81,
         "startChar": 2,
