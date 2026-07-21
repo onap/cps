@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97d8fe16_47c979c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/CmHandleIdPerReferenceMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T15:25:57Z",
+      "side": 1,
+      "message": "no javadoc for this parameter.\nAlso explain taht teh result is a subset (I asume) ie the intersection, correct?",
+      "range": {
+        "startLine": 158,
+        "startChar": 67,
+        "endLine": 158,
+        "endChar": 85
+      },
+      "revId": "3aad114a1be164da1596a8ada926d3845ce17c92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fc08628_d1775140",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T15:25:57Z",
+      "side": 1,
+      "message": "NB: this is not quiet true anymore\nmaybe word more generic",
+      "range": {
+        "startLine": 98,
+        "startChar": 48,
+        "endLine": 98,
+        "endChar": 50
+      },
+      "revId": "3aad114a1be164da1596a8ada926d3845ce17c92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

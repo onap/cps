@@ -206,6 +206,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "287e3a0c_12478f85",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/CmHandleIdPerReferenceMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T15:25:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "125995c9_28a9c403",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 19
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3939d78c_bd21ea5c",
@@ -454,6 +478,30 @@
       "side": 1,
       "message": "Tried it and override did not work, keeping as-is",
       "parentUuid": "e08ab77a_d156c559",
+      "range": {
+        "startLine": 211,
+        "startChar": 12,
+        "endLine": 211,
+        "endChar": 64
+      },
+      "revId": "0b11032c382814d04a245fdde6b353eefc2d8dcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50a0ea2e_589329ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-21T15:25:57Z",
+      "side": 1,
+      "message": "yeah, i dont get that; sometime that works sometimes it doesn\u0027t...",
+      "parentUuid": "e01efcaa_25aa6fad",
       "range": {
         "startLine": 211,
         "startChar": 12,
