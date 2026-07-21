@@ -16,6 +16,41 @@
       "message": "Please keep comment as a unresolved",
       "revId": "efebb4a26ae84e6776d8aa87ef57e5d66cbd5c59",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cf8a4fd_8e9de637",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-21T12:39:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24d28293_609b91ff",
+      "revId": "efebb4a26ae84e6776d8aa87ef57e5d66cbd5c59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65bae87c_9133a1a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-21T12:39:54Z",
+      "side": 1,
+      "message": "You can push the code without mark comment as a resolved",
+      "revId": "efebb4a26ae84e6776d8aa87ef57e5d66cbd5c59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
