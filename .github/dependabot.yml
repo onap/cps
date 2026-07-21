@@ -2,14 +2,17 @@
 # SPDX-FileCopyrightText: 2025 The Linux Foundation
 # SPDX-License-Identifier: Apache-2.0
 
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "CI(actions)"
+    # Wait before opening a bump PR so we don't churn on a release
+    # that gets retracted or superseded shortly after it ships.
+    # This is required to satisfy the zizmor workflow auditing tool.
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 15
