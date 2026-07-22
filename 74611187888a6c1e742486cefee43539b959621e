@@ -39,6 +39,29 @@
       },
       "revId": "74611187888a6c1e742486cefee43539b959621e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60403fff_1251d429",
+        "filename": "docs/generate-openapi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T07:39:44Z",
+      "side": 1,
+      "message": "NB: generate_all could be done outside if else block\nElse block only needed for warning maybe that flock is not available and race-condition might casue issues!",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 16
+      },
+      "revId": "74611187888a6c1e742486cefee43539b959621e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
