@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffaf5a39_b0f288e5",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-22T07:42:09Z",
+      "side": 1,
+      "message": "This is a valuable improvement.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 88
+      },
+      "revId": "74611187888a6c1e742486cefee43539b959621e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20110b25_55971247",
         "filename": "docs/generate-openapi.sh",
         "patchSetId": 1
