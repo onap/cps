@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "74611187888a6c1e742486cefee43539b959621e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20110b25_55971247",
+        "filename": "docs/generate-openapi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T07:35:48Z",
+      "side": 1,
+      "message": "NB: no timeout\nflock -w 300 9 || { echo \"timed out waiting for lock\"; exit 1; } would fail fast and clearly.",
+      "range": {
+        "startLine": 142,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 11
+      },
+      "revId": "74611187888a6c1e742486cefee43539b959621e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
