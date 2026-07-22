@@ -82,7 +82,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             'Replace 0 nodes with 100'         | 100        | 1       | false        || 3.0          | false
             'Replace 100 using same data'      | 100        | 1       | false        || 5.0          | false
             'Replace 100 with new leaf values' | 100        | 1       | true         || 5.4          | false
-            'Replace 100 with 100 new nodes'   | 100        | 101     | false        || 9.3          | true
+            'Replace 100 with 100 new nodes'   | 100        | 101     | false        || 9.3          | REFERENCE_GRAPH
             'Replace 50 existing and 50 new'   | 100        | 151     | true         || 7.3          | false
             'Replace 100 nodes with 0'         | 0          | 1       | false        || 6.0          | false
     }
