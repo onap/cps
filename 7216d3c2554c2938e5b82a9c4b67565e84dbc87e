@@ -1,0 +1,58 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c9dc0d_1a8f6473",
+        "filename": "docs/conf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8049
+      },
+      "writtenOn": "2026-07-22T09:06:21Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "ffaf5a39_b0f288e5",
+      "revId": "7216d3c2554c2938e5b82a9c4b67565e84dbc87e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c92d0f0_48e69679",
+        "filename": "docs/generate-openapi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8049
+      },
+      "writtenOn": "2026-07-22T09:06:21Z",
+      "side": 1,
+      "message": "Agreed - restructured in patchset 2 so generate_all runs once outside the if/else. The branch now only acquires the lock (with timeout) or, when flock is unavailable, emits a warning and proceeds without the guard.",
+      "parentUuid": "60403fff_1251d429",
+      "revId": "7216d3c2554c2938e5b82a9c4b67565e84dbc87e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13eab560_6ed886a1",
+        "filename": "docs/generate-openapi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8049
+      },
+      "writtenOn": "2026-07-22T09:06:21Z",
+      "side": 1,
+      "message": "Good call - added a timeout so it fails fast rather than blocking indefinitely: flock -w 300 9 || { echo \"Timed out waiting for generation lock\" \u003e\u00262; exit 1; }. Done in patchset 2.",
+      "parentUuid": "20110b25_55971247",
+      "revId": "7216d3c2554c2938e5b82a9c4b67565e84dbc87e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
