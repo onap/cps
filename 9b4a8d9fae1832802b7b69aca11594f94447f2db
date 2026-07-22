@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db4dd333_47f12bb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T10:55:10Z",
+      "side": 1,
+      "message": "looks like there is an issue with the RTD format \nsee also https://github.com/onap/.github/actions/runs/29909998042/job/88890459611",
+      "revId": "9b4a8d9fae1832802b7b69aca11594f94447f2db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
