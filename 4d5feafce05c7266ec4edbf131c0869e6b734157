@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2758fcb7_9c2b9c0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 41
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:57:35Z",
+      "side": 1,
+      "message": "looks good, just some minor sugegstions",
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45528b61_387d1546",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:57:35Z",
+      "side": 1,
+      "message": "NB: please expand like\ncontent type currently supporting: XML and JSON (maybe use ENUM references)",
+      "range": {
+        "startLine": 80,
+        "startChar": 35,
+        "endLine": 80,
+        "endChar": 56
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f526413e_26d7f02d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:57:35Z",
+      "side": 1,
+      "message": "as per previosu comment",
+      "range": {
+        "startLine": 72,
+        "startChar": 34,
+        "endLine": 72,
+        "endChar": 55
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f627d58_a3223b31",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:57:35Z",
+      "side": 1,
+      "message": "not a bad idea in this case to use constants...\nNB: maybe add space between the \u0027groups\u0027 ie an empty line before the JSON samples and then an empty line before the XML samples",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 326
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98947689_1fbda4da",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:57:35Z",
+      "side": 1,
+      "message": "do add some generic description of the data e.g. \u0027following content is provided\u0027",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 14
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfe4038b_7a043ff4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:57:35Z",
+      "side": 1,
+      "message": "NB: you could use static imports to make this shorter (everywhere)",
+      "range": {
+        "startLine": 97,
+        "startChar": 23,
+        "endLine": 97,
+        "endChar": 35
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bf1b5f7_71b90dad",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:57:35Z",
+      "side": 1,
+      "message": "do add some generic description of the data",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 13
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a28e9eba_657b0238",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:57:35Z",
+      "side": 1,
+      "message": "add descrption",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 13
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
