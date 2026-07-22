@@ -16,6 +16,23 @@
       "message": "looks like there is an issue with the RTD format \nsee also https://github.com/onap/.github/actions/runs/29909998042/job/88890459611",
       "revId": "9b4a8d9fae1832802b7b69aca11594f94447f2db",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c27fcd2_e4cde0a1",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-22T11:00:47Z",
+      "side": 1,
+      "message": "A couple of these underlines need fixed to render properly",
+      "revId": "9b4a8d9fae1832802b7b69aca11594f94447f2db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
