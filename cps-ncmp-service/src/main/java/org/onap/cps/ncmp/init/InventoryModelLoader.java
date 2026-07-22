@@ -24,6 +24,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NA
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.impl.CpsServicesBundle;
 import org.onap.cps.init.AbstractModelLoader;
@@ -111,7 +112,11 @@ public class InventoryModelLoader extends AbstractModelLoader {
     }
 
     private void deleteOldButNotThePreviousSchemaSets() {
-        deleteUnusedSchemaSets(NCMP_DATASPACE_NAME, SCHEMA_N, SCHEMA_N_MINUS_ONE);
+        final List<String> deletedSchemaSetNames = deleteUnusedSchemaSets(NCMP_DATASPACE_NAME, SCHEMA_N,
+            SCHEMA_N_MINUS_ONE);
+        for (final String schemaSetName : deletedSchemaSetNames) {
+            log.info("Model Loader #2: Deleted schema {}", schemaSetName);
+        }
     }
 
     private void upgradeInventoryModel(final String schemaSetName) {

@@ -21,12 +21,16 @@
 
 package org.onap.cps.init;
 
+import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +45,6 @@ import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.exceptions.ModelOnboardingException;
 import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.model.SchemaSet;
-import org.onap.cps.api.parameters.CascadeDeleteAllowed;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.boot.SpringApplication;
@@ -143,11 +146,10 @@ public abstract class AbstractModelLoader implements ModelLoader {
             return true;
         } catch (final DataspaceNotFoundException dataspaceNotFoundException) {
             log.debug("Dataspace '{}' does not exist", dataspaceName);
-            return false;
         } catch (final AnchorNotFoundException anchorNotFoundException) {
             log.debug("Anchor '{}' not found in dataspace '{}'", anchorName, dataspaceName);
-            return false;
         }
+        return false;
     }
 
     /**
@@ -173,24 +175,26 @@ public abstract class AbstractModelLoader implements ModelLoader {
      * @param dataspaceName dataspace name
      * @param currentSchemaSetName current schema set name to keep
      * @param previousSchemaSetName previous schema set name to keep (can be null)
+     * @return the names of the schema sets that were deleted
      */
-    public void deleteUnusedSchemaSets(final String dataspaceName, final String currentSchemaSetName,
-                                       final String previousSchemaSetName) {
+    public List<String> deleteUnusedSchemaSets(final String dataspaceName, final String currentSchemaSetName,
+                                               final String previousSchemaSetName) {
+        final List<String> deletedSchemaSetNames = new ArrayList<>();
         final Collection<SchemaSet> allSchemaSets = cpsModuleService.getSchemaSets(dataspaceName);
         for (final SchemaSet schemaSet : allSchemaSets) {
             final String schemaSetName = schemaSet.getName();
             if (schemaSetName.startsWith("dmi-registry")
-                    && !schemaSetName.equals(currentSchemaSetName) 
+                    && !schemaSetName.equals(currentSchemaSetName)
                     && !schemaSetName.equals(previousSchemaSetName)) {
                 try {
-                    log.info("Model Loader #2: Deleting schema {}", schemaSetName);
-                    cpsModuleService.deleteSchemaSet(
-                            dataspaceName, schemaSetName, CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED);
+                    cpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED);
+                    deletedSchemaSetNames.add(schemaSetName);
                 } catch (final Exception exception) {
                     log.warn("Deleting schema set {} failed: {}", schemaSetName, exception.getMessage());
                 }
             }
         }
+        return deletedSchemaSetNames;
     }
 
     /**
