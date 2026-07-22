@@ -111,6 +111,13 @@ Release Data
 Features
 --------
     - `CPS-3213 <https://lf-onap.atlassian.net/browse/CPS-3213>`_ Uplift code base to Java 21
+    - `CPS-3192 <https://lf-onap.atlassian.net/browse/CPS-3192>`_ Add XML content support : Get delta between anchor and payload
+    - `CPS-3238 <https://lf-onap.atlassian.net/browse/CPS-3238>`_ Part 1: CPS Composite Query API and Service Layer
+    - `CPS-3250 <https://lf-onap.atlassian.net/browse/CPS-3250>`_ Schema based filtering in Get Anchors API
+
+Bug Fixes
+---------
+        - `CPS-3230 <https://lf-onap.atlassian.net/browse/CPS-3230>`_ Get Data Node API fails to match multi-key list element xpath when key predicates are not in alphabetical order
 
 Security Notes
 --------------
@@ -171,6 +178,7 @@ Features
     - `CPS-2010 <https://lf-onap.atlassian.net/browse/CPS-2010>`_ NCMP to support datajob Read
     - `CPS-2521 <https://lf-onap.atlassian.net/browse/CPS-2521>`_ Invoke YANG Modelled Synchronous Action on (extended) ProvMnS(3GPP) Interface
     - `CPS-2876 <https://lf-onap.atlassian.net/browse/CPS-2876>`_ Change DataProduceId During Inventory Update
+    - `CPS-2452 <https://lf-onap.atlassian.net/browse/CPS-2452>`_ XML content support on Get delta between two anchors within a given dataspace
 
 Bug Fixes
 ---------
@@ -210,6 +218,11 @@ Features
     - `CPS-3150 <https://lf-onap.atlassian.net/browse/CPS-3150>`_ Fix passing authorization headers to DMI from ProvMnS interface
     - `CPS-3151 <https://lf-onap.atlassian.net/browse/CPS-3151>`_ Handle Root MO modify scenario in ProvMnS
 
+Bug Fixes
+    ---------
+        - `CPS-3104 <https://lf-onap.atlassian.net/browse/CPS-3104>`_ Fix response messages returned by Get delta between anchor and JSON payload API
+        - `CPS-3105 <https://lf-onap.atlassian.net/browse/CPS-3105>`_ BUG Handling null source and target data in CloudEventData
+
 Version: 3.7.4
 ==============
 
@@ -233,6 +246,14 @@ Release Data
 Features
 --------
     - `CPS-1992 <https://lf-onap.atlassian.net/browse/CPS-1992>`_ NCMP to Support ProvMnS CM New 3GPP sync single FDN request
+- `CPS-3026 <https://lf-onap.atlassian.net/browse/CPS-3026>`_ Part 2: Add delta report in Kafka notification
+
+Bug Fixes
+    ---------
+        - `CPS-2708 <https://lf-onap.atlassian.net/browse/CPS-2708>`_ Fix Replace a Node API behaviour handling List items
+        - `CPS-3041 <https://lf-onap.atlassian.net/browse/CPS-3041>`_ Fix response code returned by Get delta between 2 anchors API
+        - `CPS-3094 <https://lf-onap.atlassian.net/browse/CPS-3094>`_ Fix update documentation for CPS-2428 notification subscription APIs
+        - `CPS-3098 <https://lf-onap.atlassian.net/browse/CPS-3098>`_ Fix Response code returned by Apply Delta Report API
 
 Version: 3.7.3
 ==============
@@ -253,7 +274,9 @@ Release Data
 | **Release date**                     | 2025 November 26                                       |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-
+Features
+--------
+    - `CPS-2523 <https://lf-onap.atlassian.net/browse/CPS-2523>`_ Part 1: Add delta report in Kafka notification
 
 Version: 3.7.2
 ==============
@@ -279,6 +302,9 @@ Features
 --------
     - `CPS-89 <https://lf-onap.atlassian.net/browse/CPS-89>`_ Update Spring Boot to version 3.5.6
 
+Bug Fixes
+---------
+        - `CPS-3013 <https://lf-onap.atlassian.net/browse/CPS-3013>`_ Revert Inconsistency With JSON Response(List Items) Using ReplaceANode API
 
 Version: 3.7.1
 ==============
@@ -303,6 +329,13 @@ Release Data
 Features
 --------
     - `CPS-2892 <https://lf-onap.atlassian.net/browse/CPS-2892>`_ JEX expression parser
+    - `CPS-2796 <https://lf-onap.atlassian.net/browse/CPS-2796>`_ Add requestID and clientID in cps core logs
+    - `CPS-2800 <https://lf-onap.atlassian.net/browse/CPS-2800>`_ Inconsistency With JSON Response(List Items) Using ReplaceANode API
+
+Bug Fixes
+---------
+        - `CPS-2980 <https://lf-onap.atlassian.net/browse/CPS-2980>`_ Bug: Update operation executes on a data node that is not present in the database
+        - `CPS-2964 <https://lf-onap.atlassian.net/browse/CPS-2964>`_ Remove CpsDataService dependency from DeltaReportExecutor
 
 Version: 3.7.0
 ==============
@@ -352,6 +385,9 @@ Release Data
 | **Release date**                     | 2025 June 13                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
+Features
+--------
+    - `CPS-2547 <https://lf-onap.atlassian.net/browse/CPS-2547>`_ Grouping of Data Nodes in Delta Report
 
 Version: 3.6.3
 ==============
@@ -407,6 +443,7 @@ Features
     - `CPS-2169 <https://lf-onap.atlassian.net/browse/CPS-2169>`_ Support 50K CM Handles (performance improvements)
     - `CPS-2416 <https://lf-onap.atlassian.net/browse/CPS-2416>`_ Implement XPath Attribute Axis in CPS
     - `CPS-2725 <https://lf-onap.atlassian.net/browse/CPS-2725>`_ Uplift Spring Boot to 3.4.4 version
+    - `CPS-2428 <https://lf-onap.atlassian.net/browse/CPS-2428>`_ Add APIs to control notification subscription
 
 Version: 3.6.1
 ==============
@@ -460,6 +497,10 @@ Bug Fixes
 Features
 --------
     - `CPS-2249 <https://lf-onap.atlassian.net/browse/CPS-2249>`_ NCMP to support Conflict Handling.
+    - `CPS-2427 <https://lf-onap.atlassian.net/browse/CPS-2427>`_ Add schema to persist notification subscription information.
+    - `CPS-2411 <https://lf-onap.atlassian.net/browse/CPS-2411>`_ XML content support on Replace list content.
+    - `CPS-2516 <https://lf-onap.atlassian.net/browse/CPS-2516>`_ Implementation of Data validation feature in CPS APIs
+    - `CPS-2548 <https://lf-onap.atlassian.net/browse/CPS-2548>`_ Implement Integration Testcases for XML Supported API's
 
 ..      ====================
 ..      * * *   OSLO   * * *
@@ -501,6 +542,9 @@ Features
     - `CPS-2451 <https://lf-onap.atlassian.net/browse/CPS-2451>`_ Removing oparent from CPS-NCMP and ONAP DMI Plugin repository.
     - `CPS-2478 <https://lf-onap.atlassian.net/browse/CPS-2478>`_ Optimized CM Handle Registration and De-Registration use case.
     - `CPS-2507 <https://lf-onap.atlassian.net/browse/CPS-2507>`_ Upgrade liquibase to 4.30.0 version.
+    - `CPS-2359 <https://lf-onap.atlassian.net/browse/CPS-2359>`_ XML content support for only cps Query v2.
+    - `CPS-2361 <https://lf-onap.atlassian.net/browse/CPS-2361>`_ Implementation of Data validation feature in Create a Node API.
+    - `CPS-2280 <https://lf-onap.atlassian.net/browse/CPS-2280>`_ XML content support on get a node
 
 Performance
 -----------
@@ -599,6 +643,8 @@ Features
     - `CPS-2326 <https://lf-onap.atlassian.net/browse/CPS-2326>`_ Uplift liquibase-core dependency to 4.28.0
     - `CPS-2353 <https://lf-onap.atlassian.net/browse/CPS-2353>`_ Improve registration performance with moduleSetTag
     - `CPS-2366 <https://lf-onap.atlassian.net/browse/CPS-2366>`_ Improve registration performance with use of alternateID
+    - `CPS-2287 <https://lf-onap.atlassian.net/browse/CPS-2287>`_ XML content support on add list element
+    - `CPS-2282 <https://lf-onap.atlassian.net/browse/CPS-2282>`_ XML content support on replace a node with descendants
 
 Version: 3.5.1
 ==============
@@ -653,6 +699,7 @@ Features
 --------
     - `CPS-989 <https://lf-onap.atlassian.net/browse/CPS-989>`_ Replace RestTemplate with WebClient.
     - `CPS-2172 <https://lf-onap.atlassian.net/browse/CPS-2172>`_ Support for OpenTelemetry Tracing.
+    - `CPS-2071 <https://lf-onap.atlassian.net/browse/CPS-2071>`_ XML content support on update node leaves.
 
 ..      =========================
 ..      * * *   NEW DELHI   * * *
@@ -685,6 +732,7 @@ Bug Fixes
 Features
 --------
     - `CPS-1836 <https://lf-onap.atlassian.net/browse/CPS-1836>`_ Delta between anchor and JSON payload.
+    - `CPS-2068 <https://lf-onap.atlassian.net/browse/CPS-2068>`_ Add Notification support in cps core.
 
 Version: 3.4.8
 ==============
@@ -828,6 +876,7 @@ Release Data
 Bug Fixes
 ---------
     - `CPS-2027 <https://lf-onap.atlassian.net/browse/CPS-2027>`_ Upgrade Yang modules using module set tag functionalities fix
+    - `CPS-2074 <https://lf-onap.atlassian.net/browse/CPS-2074>`_ Fix: Documentation for Delta Feature
 
 Features
 --------
@@ -1086,11 +1135,14 @@ Bug Fixes
 ---------
     - `CPS-1841 <https://lf-onap.atlassian.net/browse/CPS-1841>`_ Update of top-level data node fails with exception
     - `CPS-1842 <https://lf-onap.atlassian.net/browse/CPS-1842>`_ Replace event-id with correlation-id for data read operation cloud event
+    - `CPS-1813 <https://lf-onap.atlassian.net/browse/CPS-1813>`_ Fix: Make bookstore data consistent
 
 Features
 --------
     - `CPS-1696 <https://lf-onap.atlassian.net/browse/CPS-1696>`_ Get Data Node to return entire List data node.
     - `CPS-1819 <https://lf-onap.atlassian.net/browse/CPS-1819>`_ Ability to disable sending authorization header.
+    - `CPS-1605 <https://lf-onap.atlassian.net/browse/CPS-1605>`_ Support pagination in query across all anchors(ep4).
+    - `CPS-1784 <https://lf-onap.atlassian.net/browse/CPS-1784>`_ Add 'direct' keyword to descendants option to query direct children (ep1).
 
 
 Version: 3.3.5
@@ -1116,6 +1168,7 @@ Release Data
 Features
 --------
     - `CPS-1760 <https://lf-onap.atlassian.net/browse/CPS-1760>`_ Improve handling of special characters in Cps Paths
+    - `CPS-1586 <https://lf-onap.atlassian.net/browse/CPS-1586>`_ Persisting a list element to a parent list (ep2)
 
 Version: 3.3.4
 ==============
@@ -1190,6 +1243,7 @@ Release Data
 Bug Fixes
 ---------
     - `CPS-1716 <https://lf-onap.atlassian.net/browse/CPS-1716>`_ NCMP: Java Heap OutOfMemory errors and slow registration in case of 20k cmhandles
+    - `CPS-1526 <https://lf-onap.atlassian.net/browse/CPS-1526>`_ Fix response message for PATCH operation
 
 Features
 --------
@@ -1434,6 +1488,7 @@ Features
    - `CPS-1422 <https://lf-onap.atlassian.net/browse/CPS-1422>`_  Fetch CM handles by collection of xpaths (CPS Core)
    - `CPS-1424 <https://lf-onap.atlassian.net/browse/CPS-1424>`_  Updating CmHandleStates using batch operation
    - `CPS-1439 <https://lf-onap.atlassian.net/browse/CPS-1439>`_  Use native query to delete data nodes
+   - `CPS-1189 <https://lf-onap.atlassian.net/browse/CPS-1189>`_  API versioning supported and added different versions for POST APIs
 
 Bug Fixes
 ---------
