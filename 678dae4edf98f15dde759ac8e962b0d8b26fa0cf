@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8465e7e_3f5367b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:38:18Z",
+      "side": 1,
+      "message": "looks OK but have a question",
+      "revId": "678dae4edf98f15dde759ac8e962b0d8b26fa0cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b930ccb5_71a695b6",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-22T13:38:18Z",
+      "side": 1,
+      "message": "NB Question: dont understand why you need XML versions of the error messages?\nMaybe explain in the commit message",
+      "range": {
+        "startLine": 617,
+        "startChar": 4,
+        "endLine": 617,
+        "endChar": 16
+      },
+      "revId": "678dae4edf98f15dde759ac8e962b0d8b26fa0cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
