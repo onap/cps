@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e44edaf_bf2f633e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-22T09:38:36Z",
+      "side": 1,
+      "message": "Test classes looking very tidy now. I\u0027m happy pending Toines previous comments",
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6b50b69_c24954ce",
@@ -192,6 +209,23 @@
         "endLine": 90,
         "endChar": 41
       },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e208ab15_13b191e1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryOperatorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-22T09:38:36Z",
+      "side": 1,
+      "message": "NB redundant space",
       "revId": "1d664833d62756687dcf143477882f1490033dd7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
