@@ -622,6 +622,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d720d270_0f2433da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/NetworkCmProxyInventoryFacadeImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-23T09:48:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4f911062_a5757a3c",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 72
+      },
+      "revId": "6bf7652814e9f0f4eabc63f7d8a34d15c99c86f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41f726e5_dd609856",

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2d53eaa_6f5a0394",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-23T09:48:05Z",
+      "side": 1,
+      "message": "NB: i preferred result \u003d\u003d false for readability",
+      "range": {
+        "startLine": 194,
+        "startChar": 19,
+        "endLine": 194,
+        "endChar": 26
+      },
+      "revId": "94f483673ef05d3c994241a439417bd8c38d0a20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
