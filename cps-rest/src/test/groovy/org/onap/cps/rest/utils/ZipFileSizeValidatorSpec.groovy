@@ -109,6 +109,28 @@ class ZipFileSizeValidatorSpec extends Specification {
             thrown ModelValidationException
     }
 
+    def 'Validate the total uncompressed size #scenario.'() {
+        given: 'the total uncompressed size of the archive so far'
+            objectUnderTest.setTotalUncompressedSizeOfYangFilesInArchive(totalUncompressedSize)
+        when: 'the total uncompressed size is validated'
+            objectUnderTest.validateTotalUncompressedSize()
+        then: 'validation passes and no exception is thrown'
+            noExceptionThrown()
+        where: 'following cases are tested'
+            scenario                    | totalUncompressedSize
+            'less than threshold value' | thresholdSize - 1
+            'at threshold value'        | thresholdSize
+    }
+
+    def 'Validate the total uncompressed size when it exceeds the threshold.'() {
+        given: 'the total uncompressed size exceeds the threshold'
+            objectUnderTest.setTotalUncompressedSizeOfYangFilesInArchive(thresholdSize + 1)
+        when: 'the total uncompressed size is validated'
+            objectUnderTest.validateTotalUncompressedSize()
+        then: 'validation fails and exception is thrown'
+            thrown ModelValidationException
+    }
+
     def 'Validate compression ratio check with unknown compressed size (streaming zip entry).'() {
         given: 'compressed size is unknown (streaming zip entry)'
             objectUnderTest.setCompressedSize(-1)

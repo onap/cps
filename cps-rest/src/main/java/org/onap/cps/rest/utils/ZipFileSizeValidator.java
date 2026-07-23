@@ -72,14 +72,22 @@ public class ZipFileSizeValidator {
     }
 
     /**
-     * Validate that the total uncompressed size and entry count are within allowed limits.
+     * Validate that the running total of uncompressed data does not exceed the allowed limit.
+     * Called during extraction to abort early and prevent zip-bomb resource exhaustion.
      */
-    public void validateSizeAndEntries() {
+    public void validateTotalUncompressedSize() {
         if (totalUncompressedSizeOfYangFilesInArchive > THRESHOLD_SIZE) {
             throw new ModelValidationException(INVALID_ZIP,
                 String.format("The total size of uncompressed yang files exceeds the CPS limit of %s bytes.",
                     THRESHOLD_SIZE));
         }
+    }
+
+    /**
+     * Validate that the total uncompressed size and entry count are within allowed limits.
+     */
+    public void validateSizeAndEntries() {
+        validateTotalUncompressedSize();
         if (totalYangFileEntriesInArchive > THRESHOLD_ENTRIES) {
             throw new ModelValidationException(INVALID_ZIP,
                 String.format("The number of yang file entries in the archive exceeds the CPS limit %s.",

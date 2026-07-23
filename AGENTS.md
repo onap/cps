@@ -15,6 +15,7 @@
 - Types: feat, fix, refactor, test, docs, chore
 - **Always include Issue-ID (Jira ticket) in the footer. If unknown, ask the user before generating the commit message.**
 - Body should explain *why*, not *what* (the code shows what)
+- Do not mention added or updated tests; the mandatory 100% code coverage rule makes test changes implicit.
 
 ## Specialized Skills
 The following specialized playbooks are available in `.kiro/skills/`:
