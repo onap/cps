@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19097e6e_2ceaa9aa",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-23T10:30:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45528b61_387d1546",
+      "range": {
+        "startLine": 80,
+        "startChar": 35,
+        "endLine": 80,
+        "endChar": 56
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f526413e_26d7f02d",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-07-22T13:57:35Z",
       "side": 1,
       "message": "as per previosu comment",
+      "range": {
+        "startLine": 72,
+        "startChar": 34,
+        "endLine": 72,
+        "endChar": 55
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cc24eae_72e1cc49",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-23T10:30:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f526413e_26d7f02d",
       "range": {
         "startLine": 72,
         "startChar": 34,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6627d19f_0ad69ac4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-23T10:30:18Z",
+      "side": 1,
+      "message": "Done. Grouped into Anchors, DataNodes, JSON data and XML data",
+      "parentUuid": "6f627d58_a3223b31",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 326
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98947689_1fbda4da",
@@ -100,6 +172,30 @@
       "writtenOn": "2026-07-22T13:57:35Z",
       "side": 1,
       "message": "do add some generic description of the data e.g. \u0027following content is provided\u0027",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 14
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2800373_d3b47c9b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-23T10:30:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98947689_1fbda4da",
       "range": {
         "startLine": 95,
         "startChar": 8,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "520a17ca_c418dc22",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-23T10:30:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfe4038b_7a043ff4",
+      "range": {
+        "startLine": 97,
+        "startChar": 23,
+        "endLine": 97,
+        "endChar": 35
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bf1b5f7_71b90dad",
@@ -156,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bcc2629_ed9dd8af",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-23T10:30:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bf1b5f7_71b90dad",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 13
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a28e9eba_657b0238",
@@ -169,6 +313,30 @@
       "writtenOn": "2026-07-22T13:57:35Z",
       "side": 1,
       "message": "add descrption",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 13
+      },
+      "revId": "4d5feafce05c7266ec4edbf131c0869e6b734157",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d502970f_f1d5a52a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-23T10:30:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a28e9eba_657b0238",
       "range": {
         "startLine": 142,
         "startChar": 8,
