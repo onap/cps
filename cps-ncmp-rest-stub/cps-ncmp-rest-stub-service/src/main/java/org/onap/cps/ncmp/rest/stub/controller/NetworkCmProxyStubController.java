@@ -43,6 +43,7 @@ import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight;
 import org.onap.cps.ncmp.rest.model.RestOutputPublicCmHandleProperties;
 import org.onap.cps.ncmp.rest.stub.providers.ResourceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -235,5 +236,17 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
                                                                        final String authorization) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
+    }
+
+    @Override
+    public ResponseEntity<List<RestOutputCmHandleLightweight>> searchCmHandlesLightweight(
+            final CmHandleQueryParameters cmHandleQueryParameters) {
+        return new ResponseEntity<>(Collections.emptyList(), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<RestOutputCmHandleLightweight> retrieveCmHandleDetailsByIdLightweight(
+            final String cmHandle) {
+        return new ResponseEntity<>(new RestOutputCmHandleLightweight(), HttpStatus.OK);
     }
 }

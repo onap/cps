@@ -354,6 +354,39 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             mockCmHandleRegistrationService.setDataSyncEnabled('ch-1', true)
     }
 
+    def 'Execute northbound lightweight cm handle search.'() {
+        given: 'a valid API parameter with a supported condition'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            def conditionApiProperties = new ConditionApiProperties(conditionName: 'hasAllModules', conditionParameters: [[moduleName: 'module-1']])
+            cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
+        and: 'lightweight query returns cm handles'
+            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >>
+                Flux.fromIterable([new NcmpServiceCmHandle(cmHandleId: 'ch-1')])
+        when: 'the lightweight search is called'
+            def result = objectUnderTest.northboundCmHandleSearchLightweight(cmHandleQueryApiParameters).collectList().block()
+        then: 'the result from the query service is returned'
+            assert result.size() == 1
+            assert result[0].cmHandleId == 'ch-1'
+    }
+
+    def 'Execute southbound lightweight cm handle search.'() {
+        given: 'a valid API parameter with a supported condition'
+            def apiParams = new CmHandleQueryApiParameters(
+                    cmHandleQueryParameters: [
+                            new ConditionApiProperties(
+                                    conditionName: 'hasAllProperties',
+                                    conditionParameters: [['some key': 'some value']]
+                            )])
+        and: 'lightweight query returns cm handles'
+            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >>
+                Flux.fromIterable([new NcmpServiceCmHandle(cmHandleId: 'ch-2')])
+        when: 'the lightweight search is called'
+            def result = objectUnderTest.southboundCmHandleSearchLightweight(apiParams).collectList().block()
+        then: 'the result from the query service is returned'
+            assert result.size() == 1
+            assert result[0].cmHandleId == 'ch-2'
+    }
+
     def dataStores() {
         CompositeState.DataStores.builder().operationalDataStore(CompositeState.Operational.builder()
                 .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)

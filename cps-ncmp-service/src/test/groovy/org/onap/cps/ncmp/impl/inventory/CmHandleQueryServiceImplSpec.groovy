@@ -184,6 +184,18 @@ class CmHandleQueryServiceImplSpec extends Specification {
             'the provided state does not match'| CmHandleState.DELETED || false
     }
 
+    def 'Check the state of a cmHandle using top-level leaf when cm handle does not exist (new model).'() {
+        given: 'the query service returns an empty list for non-existent cm handle'
+            mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                "/dmi-registry/cm-handles[@id='non-existent-handle']/@cm-handle-state", String.class) >> []
+        when: 'cm handles are compared by state'
+            def result = objectUnderTest.cmHandleHasState('non-existent-handle', CmHandleState.READY)
+        then: 'the returned result is false'
+            assert !result
+        and: 'the CM Handle ID is validated'
+            1 * mockCpsValidator.validateNameCharacters('non-existent-handle')
+    }
+
     def 'Get Cm Handles state by Cm-Handle Id'() {
         given: 'a cm handle state to query'
             def cmHandleState = CmHandleState.READY

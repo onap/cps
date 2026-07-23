@@ -87,6 +87,13 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     @Override
+    public Flux<NcmpServiceCmHandle> queryCmHandlesLightweight(
+            final CmHandleQueryServiceParameters queryParameters) {
+        final Collection<String> cmHandleIds = queryCmHandleReferenceIds(queryParameters, false);
+        return getNcmpServiceCmHandlesLightweight(cmHandleIds);
+    }
+
+    @Override
     public Flux<NcmpServiceCmHandle> queryInventoryForCmHandles(final CmHandleQueryServiceParameters queryParameters) {
         final Collection<String> cmHandleIds = queryCmHandleIdsForInventory(queryParameters, false);
         return getNcmpServiceCmHandles(cmHandleIds);
@@ -227,6 +234,27 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandleBatch(final Collection<String> cmHandleIds) {
         final Collection<YangModelCmHandle> yangModelCmHandles
                 = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
+
+        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles = new ArrayList<>(yangModelCmHandles.size());
+
+        yangModelCmHandles.forEach(yangModelcmHandle ->
+                ncmpServiceCmHandles.add(YangDataConverter.toNcmpServiceCmHandle(yangModelcmHandle))
+        );
+        trustLevelManager.applyEffectiveTrustLevels(ncmpServiceCmHandles);
+        return ncmpServiceCmHandles;
+    }
+
+    private Flux<NcmpServiceCmHandle> getNcmpServiceCmHandlesLightweight(final Collection<String> cmHandleIds) {
+        return Flux.fromIterable(cmHandleIds)
+                .buffer(FLUX_BUFFER_SIZE)
+                .map(this::getNcmpServiceCmHandleBatchLightweight)
+                .flatMap(Flux::fromIterable);
+    }
+
+    private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandleBatchLightweight(
+            final Collection<String> cmHandleIds) {
+        final Collection<YangModelCmHandle> yangModelCmHandles
+                = inventoryPersistence.getYangModelCmHandlesWithoutProperties(cmHandleIds);
 
         final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles = new ArrayList<>(yangModelCmHandles.size());
 

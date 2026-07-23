@@ -44,6 +44,7 @@ import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.model.DataOperationDefinition
 import org.onap.cps.ncmp.rest.model.DataOperationRequest
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
@@ -534,6 +535,48 @@ class NetworkCmProxyControllerSpec extends Specification {
         setupLogger.setLevel(Level.DEBUG)
         setupLogger.addAppender(logger)
         logger.start()
+    }
+
+    def 'Execute v2 lightweight cm handle search.'() {
+        given: 'v2 search endpoint and JSON request'
+            def searchesEndpoint = "/ncmp/v2/ch/searches"
+            def validSearchRequest = TestUtils.getResourceFileContent('cmhandle-search.json')
+        and: 'the inventory facade returns two cm handles'
+            def ncmpServiceCmHandle1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
+            def ncmpServiceCmHandle2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2')
+            mockNetworkCmProxyInventoryFacade.northboundCmHandleSearchLightweight(_) >> Flux.fromIterable([ncmpServiceCmHandle1, ncmpServiceCmHandle2])
+        and: 'mapper converts cm handles to lightweight response'
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle1) >> new RestOutputCmHandleLightweight(cmHandle: 'ch-1', cmHandleStatus: 'READY')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle2) >> new RestOutputCmHandleLightweight(cmHandle: 'ch-2', cmHandleStatus: 'ADVISED')
+        when: 'the v2 search endpoint is invoked'
+            def response = mvc.perform(post(searchesEndpoint).contentType(APPLICATION_JSON).content(validSearchRequest)).andReturn().response
+        then: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains both cm handles with state'
+            assert response.contentAsString.contains('ch-1')
+            assert response.contentAsString.contains('ch-2')
+            assert response.contentAsString.contains('READY')
+        and: 'the response does not contain fields excluded from lightweight response'
+            assert !response.contentAsString.contains('publicCmHandleProperties')
+            assert !response.contentAsString.contains('cmHandleProperties')
+            assert !response.contentAsString.contains('state')
+    }
+
+    def 'Get v2 lightweight CM handle details by reference.'() {
+        given: 'v2 cm handle details endpoint'
+            def cmHandleDetailsEndpoint = "/ncmp/v2/ch/my-cm-handle"
+        and: 'existing cm handle from inventory facade'
+            def cmHandle = new NcmpServiceCmHandle(cmHandleId: 'my-cm-handle')
+            mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('my-cm-handle') >> cmHandle
+        and: 'mapper converts cm handle to lightweight response'
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(cmHandle) >> new org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight(cmHandle: 'my-cm-handle', cmHandleStatus: 'READY')
+        when: 'the v2 cm handle details endpoint is invoked'
+            def response = mvc.perform(get(cmHandleDetailsEndpoint)).andReturn().response
+        then: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains the lightweight cm handle'
+            assert response.contentAsString.contains('my-cm-handle')
+            assert response.contentAsString.contains('READY')
     }
 
 }

@@ -21,18 +21,22 @@
 import {performPostRequest, NCMP_BASE_URL} from './utils.js';
 
 export function executeCmHandleSearch(scenario) {
-    return executeSearchRequest('searches', scenario);
+    return executeSearchRequest('v1', 'searches', scenario);
 }
 
 export function executeCmHandleIdSearch(scenario) {
-    return executeSearchRequest('id-searches', scenario);
+    return executeSearchRequest('v1', 'id-searches', scenario);
 }
 
-function executeSearchRequest(searchType, scenario) {
+export function executeCmHandleSearchLightweight(scenario) {
+    return executeSearchRequest('v1', 'searches', scenario);
+}
+
+function executeSearchRequest(version, searchType, scenario) {
     const searchParameters = SEARCH_PARAMETERS_PER_SCENARIO[scenario];
     const payload = JSON.stringify(searchParameters);
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}?outputAlternateId=true`;
-    return performPostRequest(url, payload, searchType);
+    const url = `${NCMP_BASE_URL}/ncmp/${version}/ch/${searchType}?outputAlternateId=true`;
+    return performPostRequest(url, payload, `${version}-${searchType}`);
 }
 
 const SEARCH_PARAMETERS_PER_SCENARIO = {
