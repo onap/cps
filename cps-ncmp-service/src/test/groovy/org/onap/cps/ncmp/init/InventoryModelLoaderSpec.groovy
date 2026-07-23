@@ -52,18 +52,12 @@ class InventoryModelLoaderSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def cpsServices = new CpsServicesBundle(
-            mockCpsAdminService,
-            mockCpsModuleService,
-            mockCpsAnchorService,
-            mockCpsDataService
-    )
+    def cpsServices = new CpsServicesBundle(mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService)
 
     def mockApplicationEventPublisher = Mock(ApplicationEventPublisher)
     def mockReadinessManager = Mock(ReadinessManager)
     def mockDataMigration = Mock(DataMigration)
-    def objectUnderTest = new InventoryModelLoader(mockModelLoaderLock, cpsServices, mockApplicationEventPublisher, mockReadinessManager,
-            mockDataMigration)
+    def objectUnderTest = new InventoryModelLoader(mockModelLoaderLock, cpsServices, mockApplicationEventPublisher, mockReadinessManager, mockDataMigration)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 

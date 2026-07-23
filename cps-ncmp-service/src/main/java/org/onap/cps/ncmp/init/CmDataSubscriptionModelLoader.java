@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,11 +23,8 @@ package org.onap.cps.ncmp.init;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME;
 
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAnchorService;
-import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.CpsDataspaceService;
-import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.init.AbstractModelLoader;
+import org.onap.cps.impl.CpsServicesBundle;
+import org.onap.cps.init.AbstractSubscriptionModelLoader;
 import org.onap.cps.init.ModelLoaderLock;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.springframework.core.annotation.Order;
@@ -36,7 +33,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @Order(3)
-public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
+public class CmDataSubscriptionModelLoader extends AbstractSubscriptionModelLoader {
 
     private static final String MODEL_FILE_NAME = "cm-data-job-subscriptions@2025-09-03.yang";
     private static final String SCHEMA_SET_NAME = "cm-data-job-subscriptions";
@@ -44,27 +41,14 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
     private static final String REGISTRY_DATA_NODE_NAME = "dataJob";
 
     public CmDataSubscriptionModelLoader(final ModelLoaderLock modelLoaderLock,
-                                         final CpsDataspaceService cpsDataspaceService,
-                                         final CpsModuleService cpsModuleService,
-                                         final CpsAnchorService cpsAnchorService,
-                                         final CpsDataService cpsDataService,
+                                         final CpsServicesBundle cpsServicesBundle,
                                          final ReadinessManager readinessManager) {
-        super(modelLoaderLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
-            readinessManager);
+        super(modelLoaderLock, cpsServicesBundle, readinessManager, 3,
+            "NCMP CM Data Notification Subscription Models");
     }
 
     @Override
-    public void onboardOrUpgradeModel() {
-        if (isMaster) {
-            log.info("Model Loader #3 Started: NCMP CM Data Notification Subscription Models");
-            onboardSubscriptionModels();
-            log.info("Model Loader #3 Completed");
-        } else {
-            logMessageForNonMasterInstance();
-        }
-    }
-
-    private void onboardSubscriptionModels() {
+    protected void onboardSubscriptionModels() {
         createSchemaSet(NCMP_DATASPACE_NAME, SCHEMA_SET_NAME, MODEL_FILE_NAME);
         createAnchor(NCMP_DATASPACE_NAME, SCHEMA_SET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATA_NODE_NAME);

@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2024-2025 Deutsche Telekom AG
- *  Modifications Copyright (C) 2025 OpenInfra Foundation Europe.
+ *  Modifications Copyright (C) 2025-2026 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,10 +22,7 @@
 package org.onap.cps.init;
 
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAnchorService;
-import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.CpsDataspaceService;
-import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.impl.CpsServicesBundle;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
@@ -33,7 +30,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @Order(1)
-public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader {
+public class CpsNotificationSubscriptionModelLoader extends AbstractSubscriptionModelLoader {
 
     private static final String MODEL_FILENAME = "cps-notification-subscriptions@2024-07-03.yang";
     private static final String SCHEMA_SET_NAME = "cps-notification-subscriptions";
@@ -42,27 +39,14 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
     private static final String REGISTRY_DATANODE_NAME = "dataspaces";
 
     public CpsNotificationSubscriptionModelLoader(final ModelLoaderLock modelLoaderLock,
-                                                  final CpsDataspaceService cpsDataspaceService,
-                                                  final CpsModuleService cpsModuleService,
-                                                  final CpsAnchorService cpsAnchorService,
-                                                  final CpsDataService cpsDataService,
+                                                  final CpsServicesBundle cpsServicesBundle,
                                                   final ReadinessManager readinessManager) {
-        super(modelLoaderLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
-            readinessManager);
+        super(modelLoaderLock, cpsServicesBundle, readinessManager, 1,
+            "CPS Data Notification Subscription Models");
     }
 
     @Override
-    public void onboardOrUpgradeModel() {
-        if (isMaster) {
-            log.info("Model Loader #1 Started: CPS Data Notification Subscription Models");
-            onboardSubscriptionModels();
-            log.info("Model Loader #1 Completed");
-        } else {
-            logMessageForNonMasterInstance();
-        }
-    }
-
-    private void onboardSubscriptionModels() {
+    protected void onboardSubscriptionModels() {
         createDataspace(CPS_DATASPACE_NAME);
         createSchemaSet(CPS_DATASPACE_NAME, SCHEMA_SET_NAME, MODEL_FILENAME);
         createAnchor(CPS_DATASPACE_NAME, SCHEMA_SET_NAME, ANCHOR_NAME);
