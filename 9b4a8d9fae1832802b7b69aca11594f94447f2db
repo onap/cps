@@ -33,6 +33,24 @@
       "message": "A couple of these underlines need fixed to render properly",
       "revId": "9b4a8d9fae1832802b7b69aca11594f94447f2db",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaf46aee_34c2cac4",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 8566
+      },
+      "writtenOn": "2026-07-23T07:21:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c27fcd2_e4cde0a1",
+      "revId": "9b4a8d9fae1832802b7b69aca11594f94447f2db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
