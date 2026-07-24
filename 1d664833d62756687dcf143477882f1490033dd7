@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25f5783b_9f390dfc",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryOperator.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0999391_1a55ca34",
+      "range": {
+        "startLine": 37,
+        "startChar": 41,
+        "endLine": 37,
+        "endChar": 62
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54758e6a_0b2c1e8e",
@@ -88,6 +112,30 @@
       "writtenOn": "2026-07-21T09:27:04Z",
       "side": 1,
       "message": "rethink the responsibilities (probably reduce it to one) and name of this class, I think it should just become CompositeQueryValidator\nSee further comments below",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cee2d30c_e87c9d33",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done. Removed the validation and moved it to CompositeQueryValidator, entry point moved to CompositeQueryExecution.processCompositeQuery. The CompositeQueryProcessor no longer handled any major responsibility hence it is removed.",
+      "parentUuid": "54758e6a_0b2c1e8e",
       "range": {
         "startLine": 37,
         "startChar": 13,
@@ -121,6 +169,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3371c41_985ae401",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ac9a685_bc779a73",
+      "range": {
+        "startLine": 39,
+        "startChar": 30,
+        "endLine": 39,
+        "endChar": 66
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e4ea65c_515a66bd",
@@ -134,6 +206,30 @@
       "writtenOn": "2026-07-21T09:27:04Z",
       "side": 1,
       "message": "I dont think we need to wrap effectively 2 liens into a method in another class processor v. executor... If you do want this method move it to the CompositeQueryExecution class instead",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "268ca5c3_6f3534fa",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e4ea65c_515a66bd",
       "range": {
         "startLine": 57,
         "startChar": 0,
@@ -167,6 +263,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f1a8044_cc967359",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2235c4e2_d1eb8f2c",
+      "range": {
+        "startLine": 77,
+        "startChar": 24,
+        "endLine": 77,
+        "endChar": 47
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2a385d4_80dbf543",
@@ -180,6 +300,30 @@
       "writtenOn": "2026-07-21T09:27:04Z",
       "side": 1,
       "message": "NB: not really needed. The next iteration wil do nothing...",
+      "range": {
+        "startLine": 90,
+        "startChar": 11,
+        "endLine": 90,
+        "endChar": 19
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e557f47_0abd69fd",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2a385d4_80dbf543",
       "range": {
         "startLine": 90,
         "startChar": 11,
@@ -213,6 +357,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b256d70_34296d5f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryEvaluatorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af199d01_8200444e",
+      "range": {
+        "startLine": 90,
+        "startChar": 22,
+        "endLine": 90,
+        "endChar": 41
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e208ab15_13b191e1",
@@ -230,6 +398,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2be8bab0_53f87553",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryOperatorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e208ab15_13b191e1",
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d11edeb7_83870845",
@@ -243,6 +429,30 @@
       "writtenOn": "2026-07-21T09:27:04Z",
       "side": 1,
       "message": "as per our convention do not add expectation in the slogan",
+      "range": {
+        "startLine": 502,
+        "startChar": 62,
+        "endLine": 502,
+        "endChar": 96
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e62711d7_5fd9b844",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d11edeb7_83870845",
       "range": {
         "startLine": 502,
         "startChar": 62,
@@ -276,6 +486,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68fe8747_a44d7970",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d8cfd1f_d3b129bf",
+      "range": {
+        "startLine": 516,
+        "startChar": 39,
+        "endLine": 516,
+        "endChar": 42
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "221c5cf6_91120b1b",
@@ -289,6 +523,30 @@
       "writtenOn": "2026-07-21T09:27:04Z",
       "side": 1,
       "message": "prefer \u0027invalid\u0027",
+      "range": {
+        "startLine": 517,
+        "startChar": 54,
+        "endLine": 517,
+        "endChar": 60
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "390c9253_a3b8f7fa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "221c5cf6_91120b1b",
       "range": {
         "startLine": 517,
         "startChar": 54,
@@ -322,6 +580,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e7b1e4a_46ee527f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ffc9c39_f52c8ba1",
+      "range": {
+        "startLine": 520,
+        "startChar": 65,
+        "endLine": 520,
+        "endChar": 97
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a934feb1_edfa90c2",
@@ -335,6 +617,30 @@
       "writtenOn": "2026-07-21T09:27:04Z",
       "side": 1,
       "message": "as per our convention do not add expectation in the slogan",
+      "range": {
+        "startLine": 533,
+        "startChar": 60,
+        "endLine": 533,
+        "endChar": 94
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2ae302c_8aad0ffa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a934feb1_edfa90c2",
       "range": {
         "startLine": 533,
         "startChar": 60,
@@ -368,6 +674,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b8a3959_6e4a8490",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfdba1bb_a1f3a04a",
+      "range": {
+        "startLine": 551,
+        "startChar": 68,
+        "endLine": 551,
+        "endChar": 100
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd310772_782b33d9",
@@ -381,6 +711,30 @@
       "writtenOn": "2026-07-21T09:27:04Z",
       "side": 1,
       "message": "with condition that selects nothing\n\n(no expectations)",
+      "range": {
+        "startLine": 571,
+        "startChar": 43,
+        "endLine": 571,
+        "endChar": 103
+      },
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59ae1269_81ec9e00",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryProcessorSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd310772_782b33d9",
       "range": {
         "startLine": 571,
         "startChar": 43,

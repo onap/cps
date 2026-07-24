@@ -865,6 +865,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e3bf7e8_b8f92730",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryProcessor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-24T13:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "954fce02_6070dda5",
+      "range": {
+        "startLine": 191,
+        "startChar": 55,
+        "endLine": 191,
+        "endChar": 66
+      },
+      "revId": "dd0ba33822b132a1322ff0226a8edf5457212c09",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "397336ec_b97b4ebf",
