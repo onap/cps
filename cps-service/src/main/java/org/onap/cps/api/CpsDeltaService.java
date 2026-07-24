@@ -74,9 +74,12 @@ public interface CpsDeltaService {
      * Apply the changes in the given delta report to an anchor. The delta report contains the difference between two
      * anchors or an anchor and a configuration.
      *
-     * @param dataspaceName           dataspace name
-     * @param anchorName              anchor name where the delta report is to be applied
-     * @param deltaReportAsJsonString delta report in JSON string format
+     * @param dataspaceName        dataspace name
+     * @param anchorName           anchor name
+     * @param deltaReportAsString  delta report in JSON or XML string format
+     * @param contentType          content type of the delta report, currently supports:
+     *                             {@link ContentType#JSON} and {@link ContentType#XML}
      */
-    void applyChangesInDeltaReport(String dataspaceName, String anchorName, String deltaReportAsJsonString);
+    void applyChangesInDeltaReport(String dataspaceName, String anchorName,
+                                   String deltaReportAsString, ContentType contentType);
 }
