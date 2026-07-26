@@ -1,0 +1,181 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 The Linux Foundation
+
+# Gerrit-triggered Maven verify pipeline for cps.
+#
+# gerrit_to_platform dispatches this workflow (via the GitHub API) when a
+# patchset is created (or on a `recheck` comment); it then votes Verified
+# +/-1 on the change. It runs the reusable Maven verify lane from
+# lfreleng-actions/java-workflows and is intended to run ALONGSIDE the
+# existing Jenkins verify job during the migration.
+#
+# Discovery is filename-convention based: the name contains BOTH 'gerrit'
+# AND 'verify', so gerrit_to_platform dispatches it on patchset-created.
+# The file must exist on every active branch (dispatch targets
+# refs/heads/{GERRIT_BRANCH}); this initial deployment covers `master`.
+name: 'Gerrit Verify'
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+    inputs:
+      GERRIT_BRANCH:
+        description: 'Branch that change is against'
+        required: false
+        type: string
+        default: ''
+      GERRIT_CHANGE_ID:
+        description: 'The ID for the change'
+        required: false
+        type: string
+        default: ''
+      GERRIT_CHANGE_NUMBER:
+        description: 'The Gerrit number'
+        required: false
+        type: string
+        default: ''
+      GERRIT_CHANGE_URL:
+        description: 'URL to the change'
+        required: false
+        type: string
+        default: ''
+      GERRIT_EVENT_TYPE:
+        description: 'Type of Gerrit event'
+        required: false
+        type: string
+        default: ''
+      GERRIT_PATCHSET_NUMBER:
+        description: 'The patch number for the change'
+        required: false
+        type: string
+        default: ''
+      GERRIT_PATCHSET_REVISION:
+        description: 'The revision sha'
+        required: false
+        type: string
+        default: ''
+      GERRIT_PROJECT:
+        description: 'Project in Gerrit'
+        required: false
+        type: string
+        default: ''
+      GERRIT_REFSPEC:
+        description: 'Gerrit refspec of change'
+        required: false
+        type: string
+        default: ''
+      GERRIT_DISABLED:
+        description: 'Run without Gerrit components'
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: '${{ github.event.inputs.GERRIT_CHANGE_ID || github.run_id }}'
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  # Clear any previous Verified vote so the change starts from a clean
+  # state on each patchset/recheck.
+  clear-vote:
+    name: 'Clear Gerrit Vote'
+    if: inputs.GERRIT_DISABLED != true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - name: 'Harden runner'
+        # yamllint disable-line rule:line-length
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920  # v2.20.0
+        with:
+          egress-policy: audit
+      - name: 'Clear votes'
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13  # v1.1.2
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_USER }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}  # zizmor: ignore[secrets-outside-env]
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: clear
+      - name: 'Allow replication'
+        run: sleep 10s
+
+  # Call the reusable Maven verify lane. When dispatched by Gerrit the
+  # gerrit_* inputs drive the reusable workflow's Gerrit-aware checkout;
+  # for a manual GERRIT_DISABLED run they are blanked so it falls back to
+  # a standard checkout of the calling repository.
+  build-test:
+    needs: clear-vote
+    if: >-
+      always()
+      && (needs.clear-vote.result == 'success'
+          || needs.clear-vote.result == 'skipped')
+    permissions:
+      contents: read
+      pull-requests: read  # repository-metadata-action queries PR data
+    # yamllint disable-line rule:line-length
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@aad3c7201751174e91a160671021c2c4c6c886d8  # v0.0.1
+    with:
+      # master stream builds on Java 21 (paris/Java 17 handled separately).
+      java_version: '21'
+      # Skip Jib container image builds during verify; the merge/stage
+      # lanes own image publication.
+      mvn_params: '-Djib.skip=true'
+      # cps pulls build dependencies and plugins from CDNs that are
+      # impractical to fully enumerate in the allow-list, so run the build
+      # job's harden-runner in audit for this initial deployment. Tighten
+      # to block once the egress footprint is characterised.
+      build_permit_egress_traffic: true
+      # Grype runs as a supplementary signal here; the authoritative
+      # dependency-risk gate remains the Sonatype CLM lane
+      # (gerrit-clm.yaml). Do not fail the Verified vote on Grype findings
+      # while running alongside Jenkins.
+      grype_permit_fail: true
+      # Gerrit-aware checkout inputs. Blanked on a GERRIT_DISABLED manual
+      # run so the reusable workflow performs a normal checkout.
+      # yamllint disable-line rule:line-length
+      gerrit_refspec: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_REFSPEC || '' }}
+      # yamllint disable-line rule:line-length
+      gerrit_project: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_PROJECT || '' }}
+      # yamllint disable-line rule:line-length
+      gerrit_branch: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_BRANCH || '' }}
+      # gerrit_url falls back to the GERRIT_URL repository variable.
+
+  # Report the overall workflow conclusion back to Gerrit as a Verified
+  # vote.
+  vote:
+    name: 'Report Status to Gerrit'
+    if: ${{ always() && inputs.GERRIT_DISABLED != true }}
+    needs: [clear-vote, build-test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read  # workflow-conclusion lists run jobs via the API
+    timeout-minutes: 5
+    steps:
+      - name: 'Harden runner'
+        # yamllint disable-line rule:line-length
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920  # v2.20.0
+        with:
+          egress-policy: audit
+      - name: 'Get workflow conclusion'
+        # yamllint disable-line rule:line-length
+        uses: im-open/workflow-conclusion@8eac7f17381a6917bc04fec3e2c92e70ebc37526  # v3.0.0
+      - name: 'Set vote'
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13  # v1.1.2
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_USER }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}  # zizmor: ignore[secrets-outside-env]
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: ${{ env.WORKFLOW_CONCLUSION }}
