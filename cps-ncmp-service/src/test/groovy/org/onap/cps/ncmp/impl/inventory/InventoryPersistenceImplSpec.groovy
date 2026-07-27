@@ -260,8 +260,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED, lastUpdateTime: formattedDateAndTime)
             def cmHandleStateMap = ['non-existent-ch' : compositeState]
         and: 'the cm handle does not exist'
-            mockCmHandleIdPerAlternateId.containsKey(_) >> false
-            mockCmHandleIdPerAlternateId.containsValue(_) >> false
+            mockCmHandleIdPerReferenceMap.exists(_) >> false
         when: 'update cm handle state batch is invoked'
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'no interactions with the CPS Data Service'
