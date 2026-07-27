@@ -334,26 +334,32 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         return CmHandleRegistrationResponse.createSuccessResponse(cmHandle)
     }
 
-    def 'Execute v2 lightweight cm handle search on inventory endpoint.'() {
+    def 'Execute v2 lightweight cm handle search on inventory endpoint when #scenario.'() {
         given: 'a search request body'
             def searchRequest = '{"cmHandleQueryParameters":[]}'
         and: 'the facade returns a lightweight cm handle'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1', dmiProperties: '{"my-key":"my-value"}')
             mockNetworkCmProxyInventoryFacade.southboundCmHandleSearchLightweight(_) >>
                 Flux.fromIterable([ncmpServiceCmHandle])
         and: 'the mapper converts to lightweight output'
-            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle) >> new RestOutputCmHandleLightweight(cmHandle: 'ch-1', cmHandleStatus: 'READY')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle, expectedIncludeDmiProperties) >>
+                new RestOutputCmHandleLightweight(cmHandle: 'ch-1', cmHandleStatus: 'READY')
         when: 'the v2 search endpoint is invoked'
             def response = mvc.perform(
-                    post('/ncmpInventory/v2/ch/searches')
+                    post("/ncmpInventory/v2/ch/searches$queryParameter")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(searchRequest)
             ).andReturn().response
         then: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
-        and: 'the output is the same cmhandle as returned by the cmhandle output mapper'
+        and: 'the output contains the expected cm handle data'
             assert response.contentAsString.contains('ch-1')
             assert response.contentAsString.contains('READY')
+        where:
+            scenario                                 | queryParameter               || expectedIncludeDmiProperties
+            'no outputDmiProperties parameter'       | ''                           || false
+            'dmi properties are requested'           | '?outputDmiProperties=true'  || true
+            'dmi properties are explicitly excluded' | '?outputDmiProperties=false' || false
     }
 
 }
