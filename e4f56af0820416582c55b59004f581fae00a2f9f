@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2158c49f_946ca074",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-27T16:31:37Z",
+      "side": 1,
+      "message": "based on what I understand now I am happy with patch #13 if you revert to that I cann approve.",
+      "revId": "e4f56af0820416582c55b59004f581fae00a2f9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67e4eec2_7252d39b",
+        "filename": "cps-rest/docs/openapi/cpsDelta.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-27T16:31:37Z",
+      "side": 1,
+      "message": "maybe I misunderstood. So there is really a different in output for error messages. I just didn\u0027t expect that. Then the approach in the previous commit was correct and better then what you have done now: Define both formats in \u0027components\u0027 add use references here...\n\nApologies for the misunderstanding",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 12
+      },
+      "revId": "e4f56af0820416582c55b59004f581fae00a2f9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

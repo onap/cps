@@ -80,6 +80,30 @@
       },
       "revId": "678dae4edf98f15dde759ac8e962b0d8b26fa0cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "158f0e70_59452bf5",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-27T16:31:37Z",
+      "side": 1,
+      "message": "I now understand why there is a different XMLversion for each example. So I think this is OK",
+      "parentUuid": "aca16ad2_9bf22e18",
+      "range": {
+        "startLine": 617,
+        "startChar": 4,
+        "endLine": 617,
+        "endChar": 16
+      },
+      "revId": "678dae4edf98f15dde759ac8e962b0d8b26fa0cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
