@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
- *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
+ *  Modifications Copyright (C) 2023-2026 OpenInfra Foundation Europe.
  *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -103,6 +103,9 @@ public class MultipartFileUtil {
         }
     }
 
+    // ZipFileSizeValidator bounds the entry count, the total uncompressed size (checked during
+    // extraction) and the compression ratio, so archive expansion is resource-controlled.
+    @SuppressWarnings("java:S5042")
     private static Map<String, String> extractYangResourcesMapFromZipArchive(final MultipartFile multipartFile) {
         final ImmutableMap.Builder<String, String> yangResourceMapBuilder = ImmutableMap.builder();
         final var zipFileSizeValidator = new ZipFileSizeValidator();
@@ -174,6 +177,7 @@ public class MultipartFileUtil {
                 byteArrayOutputStream.write(buffer, 0, numberOfBytesRead);
                 totalSizeEntry += numberOfBytesRead;
                 zipFileSizeValidator.updateTotalUncompressedSizeOfYangFilesInArchive(numberOfBytesRead);
+                zipFileSizeValidator.validateTotalUncompressedSize();
                 zipFileSizeValidator.validateCompressionRatio(totalSizeEntry);
             }
             return byteArrayOutputStream.toString(StandardCharsets.UTF_8);

@@ -120,7 +120,7 @@ public class CmHandleRegistrationService {
      */
     public void setDataSyncEnabled(final String cmHandleId, final boolean dataSyncEnabledTargetValue) {
         final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
-        if (dataSyncEnabledTargetValue == compositeState.getDataSyncEnabled()) {
+        if (dataSyncEnabledTargetValue == Boolean.TRUE.equals(compositeState.getDataSyncEnabled())) {
             log.info("Data-Sync Enabled flag is already: {} ", dataSyncEnabledTargetValue);
             return;
         }
