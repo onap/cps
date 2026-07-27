@@ -58,4 +58,27 @@ class CmHandleSearchesSouthBoundRestApiSpec extends CpsIntegrationSpecBase {
             false                  | false               || []
     }
 
+    def 'V2 lightweight search for CM Handles with outputDmiProperties parameter.'() {
+        given: 'register CM Handles with dmi properties'
+            def requestBody = '{"dmiPlugin":"'+DMI1_URL+'","createdCmHandles":[{"cmHandle":"ch-1","cmHandleProperties":{"my-key":"my-value"}},{"cmHandle":"ch-2","cmHandleProperties":{"other-key":"other-value"}}]}'
+            def regResponse = performPost('/ncmpInventory/v1/ch', requestBody)
+            assert regResponse.statusCode.is2xxSuccessful()
+        and: 'an empty search request body (no filter, returns all cm handles)'
+            def searchRequest = '{"cmHandleQueryParameters":[]}'
+        when: 'the v2 lightweight search is executed with outputDmiProperties parameter'
+            def response = performPost('/ncmpInventory/v2/ch/searches',
+                    searchRequest, [outputDmiProperties: outputDmiProperties.toString()])
+        then: 'response is successful'
+            assert response.statusCode.is2xxSuccessful()
+            def results = parseResponseBody(response) as List
+            assert results.size() >= 2
+        and: 'results contain expected lightweight fields'
+            assert results.every { it.cmHandle != null }
+        cleanup: 'deregister the CM Handles'
+            def cleanupBody = '{"dmiPlugin":"'+DMI1_URL+'", "removedCmHandles": ["ch-1", "ch-2"]}'
+            performPost('/ncmpInventory/v1/ch', cleanupBody)
+        where: 'the following parameters are used'
+            outputDmiProperties << [true, false]
+    }
+
 }

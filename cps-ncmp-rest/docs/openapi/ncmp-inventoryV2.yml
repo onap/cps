@@ -22,6 +22,8 @@ searchCmHandlesLightweight:
       - network-cm-proxy-inventory
     summary: Execute lightweight cm handle search
     operationId: searchCmHandlesLightweight
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/outputDmiPropertiesInQuery'
     requestBody:
       required: true
       content:

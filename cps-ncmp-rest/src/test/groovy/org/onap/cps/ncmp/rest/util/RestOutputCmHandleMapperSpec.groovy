@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,5 +81,38 @@ class RestOutputCmHandleMapperSpec extends Specification {
             assert result.moduleSetTag == 'tag-1'
             assert result.dataProducerIdentifier == 'producer-1'
             assert result.trustLevel == 'COMPLETE'
+        and: 'dmi properties are not included by default'
+            assert result.dmiProperties == null
+    }
+
+    def 'Map cm handle to lightweight rest output with dmiProperties included.'() {
+        given: 'a cm handle with dmi properties'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(
+                    cmHandleId: 'ch-1', alternateId: 'alt-1', cmHandleStatus: 'READY',
+                    moduleSetTag: 'tag-1', dataProducerIdentifier: 'producer-1',
+                    currentTrustLevel: TrustLevel.COMPLETE, dmiProperties: '{"my-key":"my-value"}')
+        when: 'the lightweight mapper is called with includeDmiProperties true'
+            def result = objectUnderTest.toRestOutputCmHandleLightweight(ncmpServiceCmHandle, true)
+        then: 'dmi properties are included in the result'
+            assert result.dmiProperties == '{"my-key":"my-value"}'
+        and: 'all other lightweight fields are populated'
+            assert result.cmHandle == 'ch-1'
+            assert result.alternateId == 'alt-1'
+            assert result.cmHandleStatus == 'READY'
+            assert result.moduleSetTag == 'tag-1'
+            assert result.dataProducerIdentifier == 'producer-1'
+            assert result.trustLevel == 'COMPLETE'
+    }
+
+    def 'Map cm handle to lightweight rest output with dmiProperties excluded.'() {
+        given: 'a cm handle with dmi properties'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(
+                    cmHandleId: 'ch-1', alternateId: 'alt-1', cmHandleStatus: 'READY',
+                    moduleSetTag: 'tag-1', dataProducerIdentifier: 'producer-1',
+                    currentTrustLevel: TrustLevel.COMPLETE, dmiProperties: '{"my-key":"my-value"}')
+        when: 'the lightweight mapper is called with includeDmiProperties false'
+            def result = objectUnderTest.toRestOutputCmHandleLightweight(ncmpServiceCmHandle, false)
+        then: 'dmi properties are not included in the result'
+            assert result.dmiProperties == null
     }
 }

@@ -342,7 +342,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             mockNetworkCmProxyInventoryFacade.southboundCmHandleSearchLightweight(_) >>
                 Flux.fromIterable([ncmpServiceCmHandle])
         and: 'the mapper converts to lightweight output'
-            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle) >> new RestOutputCmHandleLightweight(cmHandle: 'ch-1', cmHandleStatus: 'READY')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle, false) >> new RestOutputCmHandleLightweight(cmHandle: 'ch-1', cmHandleStatus: 'READY')
         when: 'the v2 search endpoint is invoked'
             def response = mvc.perform(
                     post('/ncmpInventory/v2/ch/searches')
@@ -354,6 +354,30 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the output is the same cmhandle as returned by the cmhandle output mapper'
             assert response.contentAsString.contains('ch-1')
             assert response.contentAsString.contains('READY')
+    }
+
+    def 'Execute v2 lightweight cm handle search with outputDmiProperties when #scenario.'() {
+        given: 'a search request body'
+            def searchRequest = '{"cmHandleQueryParameters":[]}'
+        and: 'the facade returns a lightweight cm handle'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1', dmiProperties: '{"my-key":"my-value"}')
+            mockNetworkCmProxyInventoryFacade.southboundCmHandleSearchLightweight(_) >>
+                Flux.fromIterable([ncmpServiceCmHandle])
+        and: 'the mapper converts to lightweight output'
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle, expectedIncludeDmiProperties) >>
+                new RestOutputCmHandleLightweight(cmHandle: 'ch-1')
+        when: 'the v2 search endpoint is invoked'
+            def response = mvc.perform(
+                    post("/ncmpInventory/v2/ch/searches$queryParameter")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(searchRequest)
+            ).andReturn().response
+        then: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        where:
+            scenario                                 | queryParameter               || expectedIncludeDmiProperties
+            'dmi properties are requested'           | '?outputDmiProperties=true'  || true
+            'dmi properties are explicitly excluded' | '?outputDmiProperties=false' || false
     }
 
 }

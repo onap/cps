@@ -348,6 +348,10 @@ components:
           example: my-data-producer-identifier
         trustLevel:
           $ref: '#/components/schemas/CmHandleTrustLevel'
+        dmiProperties:
+          type: string
+          description: DMI properties as a JSON string. Only included when outputDmiProperties=true on southbound searches.
+          example: '{"my-key":"my-value"}'
     CmHandleCompositeState:
       type: object
       properties:
