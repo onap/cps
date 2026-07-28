@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+# Copyright 2024-2026 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,20 +28,20 @@ pushd "$(dirname "$0")" >/dev/null || {
 # ══════════════════════════════════════════════════════════════
 threshold_failures=0
 testProfile=$1
-deploymentType=$2
 summaryFile="${testProfile}Summary.csv"
 echo "Running $testProfile performance tests..."
 
 # ══════════════════════════════════════════════════════════════
 # Run K6 Performance Tests
 # ══════════════════════════════════════════════════════════════
-k6 run "./ncmp-test-runner.js" --quiet -e TEST_PROFILE="$testProfile" -e DEPLOYMENT_TYPE="$deploymentType" > "$summaryFile"
+k6 run "./ncmp-test-runner.js" --quiet --no-usage-report --address "" -e TEST_PROFILE="$testProfile" > "$summaryFile"
 k6_exit_code=$?
 
 # ══════════════════════════════════════════════════════════════
 # Kafka Message Verification (Test #10)
 # ══════════════════════════════════════════════════════════════
-BROKER="localhost:30093"
+# Extract kafka bootstrap server from config
+BROKER=$(python3 -c "import json; c=json.load(open('./config/${testProfile}.json')); print(c['kafkaBootstrapServer'])" 2>/dev/null || echo "localhost:30093")
 SOURCE_TOPIC="dmi-cm-events"
 TARGET_TOPIC="cm-events"
 PARTITION="0"
@@ -60,15 +60,15 @@ while [ $elapsed -lt $TIMEOUT ]; do
     latest=$(kafkacat -Q -b $BROKER -t $TARGET_TOPIC:$PARTITION:-1 | awk '{print $NF}')
     earliest=$(kafkacat -Q -b $BROKER -t $TARGET_TOPIC:$PARTITION:-2 | awk '{print $NF}')
     message_count=$((latest - earliest))
-    
+
     if [ "$message_count" -ge "$target_threshold" ]; then
         break
     fi
-    
+
     if [ $((elapsed + CHECK_INTERVAL)) -ge $TIMEOUT ]; then
         break
     fi
-    
+
     sleep $CHECK_INTERVAL
     elapsed=$((elapsed + CHECK_INTERVAL))
 done

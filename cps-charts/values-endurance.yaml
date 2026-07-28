@@ -1,0 +1,40 @@
+# Helm values override for endurance test profile.
+# Uses different NodePorts from kpi (300xx) to allow parallel runs.
+# KPI uses: 30080 (CPS), 30092/30094 (DMI), 30093 (Kafka), 30095 (Policy), 30187 (PG Exporter)
+# Endurance uses: 30180 (CPS), 30192/30194 (DMI), 30193 (Kafka), 30195 (Policy), 30287 (PG Exporter)
+
+cps:
+  service:
+    nodePort: 30180
+
+kafka:
+  externalService:
+    nodePorts:
+      external: 30193
+  env:
+    KAFKA_ZOOKEEPER_CONNECT: "cps-ncmp-zookeeper-service:2181"
+    KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: "60000"
+    KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS: "60000"
+    KAFKA_BROKER_ID: "1"
+    KAFKA_LISTENERS: "INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092,NODEPORT://0.0.0.0:9093"
+    KAFKA_ADVERTISED_LISTENERS: "INTERNAL://cps-ncmp-kafka-service:29092,EXTERNAL://cps-ncmp-kafka-service:9092,NODEPORT://localhost:30193"
+    KAFKA_INTER_BROKER_LISTENER_NAME: "INTERNAL"
+    KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,NODEPORT:PLAINTEXT"
+    KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+    KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: "1"
+    KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: "1"
+    KAFKA_RESTART_ATTEMPTS: "10"
+    KAFKA_RESTART_DELAY_MS: "5000"
+
+dmiStub:
+  service1:
+    nodePort: 30192
+  service2:
+    nodePort: 30194
+
+policyExecutorStub:
+  service:
+    nodePort: 30195
+
+postgresql:
+  exporterNodePort: 30287
