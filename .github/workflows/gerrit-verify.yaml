@@ -121,13 +121,27 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@aad3c7201751174e91a160671021c2c4c6c886d8  # v0.0.1
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@be435166c7de39b654e143752c845bd1f4a1c944  # v0.0.2
     with:
       # master stream builds on Java 21 (paris/Java 17 handled separately).
       java_version: '21'
       # Skip Jib container image builds during verify; the merge/stage
       # lanes own image publication.
-      mvn_params: '-Djib.skip=true'
+      #
+      # docker.pull.registry has no default in the cps POMs: Jenkins
+      # supplies it through the managed settings.xml, so a build without
+      # one leaves ${docker.pull.registry} unsubstituted and the
+      # Testcontainers specs in cps-ncmp-service and cps-ri fail to pull
+      # their Kafka and PostgreSQL images. Sourced from the organisation
+      # variable rather than hardcoded, with the current value as a
+      # fallback. Note this is CONTAINER_PUBLIC_REGISTRY (10001, the
+      # Docker Hub proxy) and NOT the similarly named
+      # CONTAINER_PULL_REGISTRY, which serves a different repository and
+      # returns 404 for these images. docker.push.registry goes unused
+      # while Jib is skipped, and is set only to keep the property
+      # resolved across the reactor.
+      # yamllint disable-line rule:line-length
+      mvn_params: "-Djib.skip=true -Ddocker.pull.registry=${{ vars.CONTAINER_PUBLIC_REGISTRY || 'nexus3.onap.org:10001' }} -Ddocker.push.registry=${{ vars.CONTAINER_PUSH_REGISTRY || 'nexus3.onap.org:10002' }}"
       # cps pulls build dependencies and plugins from CDNs that are
       # impractical to fully enumerate in the allow-list, so run the build
       # job's harden-runner in audit for this initial deployment. Tighten
