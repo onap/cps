@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "822fbdbd_a9cb7f2a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-28T11:50:07Z",
+      "side": 1,
+      "message": "you can use schemaSetNames alone and use join() on it. schemaSetNames is just declared and used here",
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce4b82c9_8f71bb46",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-28T11:50:07Z",
+      "side": 1,
+      "message": "no need of query parameters in base url, use get().param() in line 386.\nBy doing so I guess you can combine tests defined in line 380, 392 and 404 using a where block. I am not sure about it so you can test it out.",
+      "range": {
+        "startLine": 384,
+        "startChar": 80,
+        "endLine": 384,
+        "endChar": 120
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "033a0bdb_ec14c4b2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-28T11:50:07Z",
+      "side": 1,
+      "message": "Attempt to get anchors using unsupported pagination values",
+      "range": {
+        "startLine": 416,
+        "startChar": 9,
+        "endLine": 416,
+        "endChar": 70
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2ef35bb_76729060",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-28T11:50:07Z",
+      "side": 1,
+      "message": "no exception is to be mentioned, can use expected exception instead",
+      "range": {
+        "startLine": 417,
+        "startChar": 35,
+        "endLine": 417,
+        "endChar": 60
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39fb6015_577bebd0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-28T11:50:07Z",
+      "side": 1,
+      "message": "use get().params() as explained in previous comment",
+      "range": {
+        "startLine": 422,
+        "startChar": 80,
+        "endLine": 422,
+        "endChar": 136
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbe701e5_ced4118f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-28T11:50:07Z",
+      "side": 1,
+      "message": "these do not test unique paths so -1,-1 would suffice",
+      "range": {
+        "startLine": 428,
+        "startChar": 12,
+        "endLine": 431,
+        "endChar": 62
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f8b351b_1d46cc07",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-28T11:50:07Z",
+      "side": 1,
+      "message": "anchor repo returns all anchors under a dataspace",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 50
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5706141d_410aa379",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-28T11:50:07Z",
+      "side": 1,
+      "message": "attempt to get all anchors",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f74a99_5171ee93",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-28T11:50:07Z",
+      "side": 1,
+      "message": "expected number of anchors are returned",
+      "range": {
+        "startLine": 62,
+        "startChar": 15,
+        "endLine": 62,
+        "endChar": 40
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
