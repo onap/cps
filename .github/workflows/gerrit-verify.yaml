@@ -121,7 +121,7 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@be435166c7de39b654e143752c845bd1f4a1c944  # v0.0.2
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@97df302a5d192faf7b7e451cbcea4eb900eba59d  # v0.0.3
     with:
       # master stream builds on Java 21 (paris/Java 17 handled separately).
       java_version: '21'
@@ -142,10 +142,19 @@ jobs:
       # resolved across the reactor.
       # yamllint disable-line rule:line-length
       mvn_params: "-Djib.skip=true -Ddocker.pull.registry=${{ vars.CONTAINER_PUBLIC_REGISTRY || 'nexus3.onap.org:10001' }} -Ddocker.push.registry=${{ vars.CONTAINER_PUSH_REGISTRY || 'nexus3.onap.org:10002' }}"
-      # cps pulls build dependencies and plugins from CDNs that are
-      # impractical to fully enumerate in the allow-list, so run the build
-      # job's harden-runner in audit for this initial deployment. Tighten
-      # to block once the egress footprint is characterised.
+      # Run the build job's harden-runner in audit while the egress
+      # footprint is characterised, then tighten to block.
+      #
+      # Worth knowing: before java-workflows v0.0.3 this input silently
+      # did nothing, because the workflow chose between two
+      # harden-runner steps with a step-level 'if:' and the action's
+      # pre-phase ignores that. Every build so far therefore ran under a
+      # block policy, and the only endpoint it actually lacked was the
+      # ONAP Docker proxy, now carried by the allow-list in v0.0.3. The
+      # toggle takes effect for the first time here, so keep it on until
+      # a full run has been observed; the reactor has never built past
+      # cps-ncmp-service under block, and the later modules' egress is
+      # still unknown.
       build_permit_egress_traffic: true
       # Grype runs as a supplementary signal here; the authoritative
       # dependency-risk gate remains the Sonatype CLM lane
