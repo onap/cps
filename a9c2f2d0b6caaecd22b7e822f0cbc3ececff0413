@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "895bc9d6_9d3d1287",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-28T15:03:49Z",
+      "side": 1,
+      "message": "this is a better place for the detailed analysis :-) \nBut maybe still a bit much...",
+      "range": {
+        "startLine": 131,
+        "startChar": 1,
+        "endLine": 142,
+        "endChar": 36
+      },
+      "revId": "a9c2f2d0b6caaecd22b7e822f0cbc3ececff0413",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26b03b87_1cf52c22",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-28T15:03:49Z",
+      "side": 1,
+      "message": "NB: in my team were just talking this morning about our AI Skill for generating commit messages. we have own and it works quiet well but we all agree part of the skill should be to create short to the point commit messages, preferably using bullet points.\nI think  this is a prime example (I asusm AI generated) of too much detail in the commit message :-)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 42
+      },
+      "revId": "a9c2f2d0b6caaecd22b7e822f0cbc3ececff0413",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
