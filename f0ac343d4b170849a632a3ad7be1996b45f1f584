@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e12f34a_c2d2021e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-28T11:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76dff5b4_7867163c",
+      "range": {
+        "startLine": 359,
+        "startChar": 9,
+        "endLine": 359,
+        "endChar": 94
+      },
+      "revId": "f0ac343d4b170849a632a3ad7be1996b45f1f584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffb9d103_b4621348",
@@ -77,6 +101,30 @@
       "writtenOn": "2026-07-27T13:42:44Z",
       "side": 1,
       "message": "again why not extend teh previous test",
+      "range": {
+        "startLine": 107,
+        "startChar": 9,
+        "endLine": 107,
+        "endChar": 80
+      },
+      "revId": "f0ac343d4b170849a632a3ad7be1996b45f1f584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33b0f73e_7d4eb4da",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/RestOutputCmHandleMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-28T11:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffb9d103_b4621348",
       "range": {
         "startLine": 107,
         "startChar": 9,
@@ -110,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d954acb_be6cc41c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleSearchesSouthBoundRestApiSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-28T11:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "975fb4eb_09bd02fa",
+      "range": {
+        "startLine": 71,
+        "startChar": 27,
+        "endLine": 71,
+        "endChar": 37
+      },
+      "revId": "f0ac343d4b170849a632a3ad7be1996b45f1f584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ed209e8_c1b95101",
@@ -133,6 +205,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad38b7d_180dfd9c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleSearchesSouthBoundRestApiSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-28T11:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ed209e8_c1b95101",
+      "range": {
+        "startLine": 76,
+        "startChar": 35,
+        "endLine": 76,
+        "endChar": 54
+      },
+      "revId": "f0ac343d4b170849a632a3ad7be1996b45f1f584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16f2b2b9_3668a022",
@@ -146,6 +242,30 @@
       "writtenOn": "2026-07-27T13:42:44Z",
       "side": 1,
       "message": "NB: can be more specific\u0027\n\u0027dmi properties are enabled/disabled\u0027",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 80,
+        "endChar": 49
+      },
+      "revId": "f0ac343d4b170849a632a3ad7be1996b45f1f584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33be0a23_4593e111",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleSearchesSouthBoundRestApiSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-07-28T11:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16f2b2b9_3668a022",
       "range": {
         "startLine": 80,
         "startChar": 16,
