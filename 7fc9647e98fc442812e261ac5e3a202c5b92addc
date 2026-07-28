@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd759f29_118c0136",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-28T12:43:09Z",
+      "side": 1,
+      "message": "this doc might be misleading as \u0027combineWithAnd\u0027 does exactly the opposite- it passes the progressively narrowed combinedXpaths to the next condition , please correct me if i misunderstood ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 39,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "7fc9647e98fc442812e261ac5e3a202c5b92addc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e985a501_a07bd080",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryExecution.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-28T12:43:09Z",
+      "side": 1,
+      "message": "if a nested condition matches a deeply nested descendant, that descendant appears in the result and so does its parent, correct ?",
+      "revId": "7fc9647e98fc442812e261ac5e3a202c5b92addc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
