@@ -23,8 +23,8 @@ set -o pipefail # Use last non-zero exit code in a pipeline
 # Default test profile is kpi.
 testProfile=${1:-kpi}
 
-# The default deployment type is dockerCompose
-deploymentType=${2:-dockerHosts}
+# Use test profile as namespace to allow parallel runs (e.g., kpi and endurance)
+export K8S_NAMESPACE="${testProfile}"
 
 # Cleanup handler: capture exit status, run teardown,
 # and restore directory, report failures, and exit with original code.
@@ -40,27 +40,17 @@ trap on_exit EXIT SIGINT SIGTERM SIGQUIT
 
 pushd "$(dirname "$0")" || exit 1
 
-# Install needed dependencies for any deployment type
-source ./install-deps.sh "$deploymentType"
+# Install needed dependencies
+source ./install-deps.sh
 
-# Handle deployment type specific setup
-if [[ "$deploymentType" == "dockerHosts" ]]; then
-    echo "Test profile: $testProfile, and deployment type: $deploymentType provided for docker-compose cluster"
+# Set default values for local development if not provided by Jenkins
+IMAGE_TAG="${IMAGE_TAG:-latest}"
+DMI_STUB_VERSION="${DMI_STUB_VERSION:-1.8.1-SNAPSHOT}"
+POLICY_EXECUTOR_STUB_VERSION="${POLICY_EXECUTOR_STUB_VERSION:-latest}"
+IMAGE_PULL_POLICY="${IMAGE_PULL_POLICY:-IfNotPresent}"
 
-    # Run setup for docker-compose environment
-    ./setup.sh "$testProfile"
-
-elif [[ "$deploymentType" == "k8sHosts" ]]; then
-    echo "Test profile: $testProfile, and deployment type: $deploymentType provided for k8s cluster"
-
-    # Set default values for local development if not provided by Jenkins
-    IMAGE_TAG="${IMAGE_TAG:-latest}"
-    DMI_STUB_VERSION="${DMI_STUB_VERSION:-1.8.1-SNAPSHOT}"
-    POLICY_EXECUTOR_STUB_VERSION="${POLICY_EXECUTOR_STUB_VERSION:-latest}"
-    IMAGE_PULL_POLICY="${IMAGE_PULL_POLICY:-IfNotPresent}"
-
-    # Display image configuration for verification
-    cat << EOF
+# Display image configuration for verification
+cat << EOF
 ==========================================
 IMAGE CONFIGURATION FOR K6 TESTS:
 ==========================================
@@ -68,41 +58,78 @@ CPS Image Tag:                ${IMAGE_TAG}
 DMI Stub Version:             ${DMI_STUB_VERSION}
 Policy Executor Stub Version: ${POLICY_EXECUTOR_STUB_VERSION}
 Image Pull Policy:            ${IMAGE_PULL_POLICY}
+Namespace:                    ${K8S_NAMESPACE}
 ==========================================
 EOF
 
-    # Deploy cps charts for k8s
-    helm install cps ../cps-charts \
-      --set cps.image.tag="${IMAGE_TAG}" \
-      --set cps.image.pullPolicy="${IMAGE_PULL_POLICY}" \
-      --set dmiStub.image.tag="${DMI_STUB_VERSION}" \
-      --set policyExecutorStub.image.tag="${POLICY_EXECUTOR_STUB_VERSION}" \
-      --set policyExecutorStub.image.pullPolicy="${IMAGE_PULL_POLICY}"
+# Wait for namespace to be fully gone if it's still terminating from a previous run
+if kubectl get namespace "$K8S_NAMESPACE" &>/dev/null; then
+    ns_phase=$(kubectl get namespace "$K8S_NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null)
+    if [ "$ns_phase" = "Terminating" ]; then
+        echo "Namespace '$K8S_NAMESPACE' is still terminating from a previous run. Waiting..."
+        local_timeout=120
+        local_elapsed=0
+        while kubectl get namespace "$K8S_NAMESPACE" &>/dev/null; do
+            if [ $local_elapsed -ge $local_timeout ]; then
+                echo "ERROR: Namespace '$K8S_NAMESPACE' stuck in Terminating state after ${local_timeout}s."
+                echo "Attempting to force-remove finalizers..."
+                kubectl get namespace "$K8S_NAMESPACE" -o json 2>/dev/null | \
+                  sed 's/"finalizers": \[[^]]*\]/"finalizers": []/' | \
+                  kubectl replace --raw "/api/v1/namespaces/$K8S_NAMESPACE/finalize" -f - 2>/dev/null || true
+                sleep 5
+                if kubectl get namespace "$K8S_NAMESPACE" &>/dev/null; then
+                    echo "FATAL: Cannot remove namespace '$K8S_NAMESPACE'. Manual intervention required."
+                    exit 1
+                fi
+                break
+            fi
+            sleep 5
+            local_elapsed=$((local_elapsed + 5))
+            echo "  ... waiting for termination (${local_elapsed}s/${local_timeout}s)"
+        done
+        echo "Namespace '$K8S_NAMESPACE' is now gone."
+    fi
+fi
 
-    # Wait for pods and services until becomes ready
-    echo "Waiting for cps and ncmp pods to be ready..."
-    kubectl wait --for=condition=available deploy -l app=ncmp --timeout=300s
+# Create namespace for this test profile
+kubectl create namespace "$K8S_NAMESPACE" --dry-run=client -o yaml | kubectl apply -f -
 
-    # Verify actual images running in pods
-    cat << EOF
+# Determine values override file for the test profile
+VALUES_OVERRIDE_FILE="../cps-charts/values-${testProfile}.yaml"
+HELM_VALUES_FLAG=""
+if [[ -f "$VALUES_OVERRIDE_FILE" ]]; then
+    echo "Using values override: $VALUES_OVERRIDE_FILE"
+    HELM_VALUES_FLAG="--values $VALUES_OVERRIDE_FILE"
+fi
+
+# Deploy cps charts for k8s in profile-specific namespace
+helm install cps ../cps-charts \
+  --namespace "$K8S_NAMESPACE" \
+  $HELM_VALUES_FLAG \
+  --set cps.image.tag="${IMAGE_TAG}" \
+  --set cps.image.pullPolicy="${IMAGE_PULL_POLICY}" \
+  --set dmiStub.image.tag="${DMI_STUB_VERSION}" \
+  --set policyExecutorStub.image.tag="${POLICY_EXECUTOR_STUB_VERSION}" \
+  --set policyExecutorStub.image.pullPolicy="${IMAGE_PULL_POLICY}"
+
+# Wait for pods and services until becomes ready
+echo "Waiting for cps and ncmp pods to be ready..."
+kubectl wait --namespace "$K8S_NAMESPACE" --for=condition=available deploy -l app=ncmp --timeout=300s
+
+# Verify actual images running in pods
+cat << EOF
 ==========================================
 VERIFYING ACTUAL IMAGES IN RUNNING PODS:
 ==========================================
 EOF
-    kubectl get pods -l app=ncmp -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.containers[*].image}{"\n"}{end}' | while read -r pod_name images; do
-      echo "Pod: $pod_name"
-      echo "  Images: $images"
-    done
-    echo "=========================================="
+kubectl get pods --namespace "$K8S_NAMESPACE" -l app=ncmp -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.containers[*].image}{"\n"}{end}' | while read -r pod_name images; do
+  echo "Pod: $pod_name"
+  echo "  Images: $images"
+done
+echo "=========================================="
 
-else
-    echo "Error: Unsupported deployment type: $deploymentType"
-    echo "Supported deployment types: dockerHosts, k8sHosts"
-    exit 1
-fi
-
-# Run k6 test suite for both deployment types
-./ncmp/execute-k6-scenarios.sh "$testProfile" "$deploymentType"
+# Run k6 test suite
+./ncmp/execute-k6-scenarios.sh "$testProfile"
 NCMP_RESULT=$?
 
 # Note that the final steps are done in on_exit function after this exit!

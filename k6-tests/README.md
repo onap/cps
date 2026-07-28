@@ -10,40 +10,42 @@ Follow the instructions in the [build from source guide](https://github.com/most
 The CPS k6 tests measure the system capabilities as per requirements.
 
 ### Test Profiles
-There are two test profiles that can be run with either:
+There are two test profiles that can be run:
 1. kpi — The test profile is to evaluate overall performance.
 2. endurance — The test profile to measure long-term stability.
 
-### Deployment Types
-1. dockerHosts — A docker-compose based deployment for the services in CPS/NCMP.
-2. k8sHosts — A Kubernetes based deployment for the services in CPS/NCMP with Helm Charts.
+### Deployment
+Tests run on a Kubernetes cluster using Helm Charts. Each test profile deploys into its own namespace
+(e.g., `kpi` namespace, `endurance` namespace), allowing profiles to run in parallel without conflicts.
 
-### Running the k6 test suites on a docker-compose environment
-Only docker-compose deployment type supported: dockerHosts
-Run the main script.
-The script assumes k6 and the relevant docker-compose have been installed.
-```shell
-./k6-main.sh [kpi|endurance] [dockerHosts]
-```
-### Running the k6 test suites on a Kubernetes environment
-Only kubernetes cluster deployment type supported: k8sHosts
-
-#### Prerequisites
+### Prerequisites
 See [Prerequisites for Windows](../cps-charts/README.md#prerequisites-for-windows) or [Prerequisites for Linux](../cps-charts/README.md#prerequisites-for-linux) in the CPS Charts README.
 
-Run the main script.
-By default, kpi profile is supported, and it assumes the kubernetes environment with Helm is already available.
+### Running the k6 test suites
+Run the main script. It assumes a Kubernetes environment with Helm is already available.
 ```shell
-./k6-main.sh [kpi|endurance] [k8sHosts]
+./k6-main.sh [kpi|endurance]
 ```
+
+### Parallel runs
+KPI and endurance can run simultaneously on the same cluster. They use separate namespaces and
+non-conflicting NodePorts:
+
+| Profile   | CPS NodePort | Kafka NodePort |
+|-----------|-------------|----------------|
+| kpi       | 30080       | 30093          |
+| endurance | 30180       | 30193          |
+
+The endurance profile uses a Helm values override file (`cps-charts/values-endurance.yaml`) to
+configure its unique NodePorts.
 
 ## Running k6 tests manually
-Before running tests, ensure CPS/NCMP is running:
+Before running tests, ensure CPS/NCMP is deployed via Helm:
 ```shell
-docker-compose -f docker-compose/docker-compose.yml up -d
+helm install cps ../cps-charts --namespace kpi --create-namespace
 ```
 
-To run an individual test from the command line, use
+To run an individual test from the command line, use:
 ```shell
-k6 run ncmp/scenarios-config.js
+k6 run ncmp/scenarios-config.js -e TEST_PROFILE=kpi
 ```
