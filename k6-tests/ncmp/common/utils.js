@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,19 +24,17 @@ import {check} from 'k6';
 import {Trend} from 'k6/metrics';
 
 export const TEST_PROFILE = __ENV.TEST_PROFILE ? __ENV.TEST_PROFILE : 'kpi'
-export const HOST_TYPE = __ENV.DEPLOYMENT_TYPE ? __ENV.DEPLOYMENT_TYPE : 'dockerHosts'
 export const testConfig = JSON.parse(open(`../config/${TEST_PROFILE}.json`));
 export const scenarioMetaData = JSON.parse(open(`../config/scenario-metadata.json`));
-export const KAFKA_BOOTSTRAP_SERVERS = __ENV.KAFKA_BOOTSTRAP_SERVERS || testConfig[`${HOST_TYPE}`].kafkaBootstrapServer;
-export const NCMP_BASE_URL = __ENV.NCMP_BASE_URL || testConfig[`${HOST_TYPE}`].ncmpBaseUrl;
-export const DMI_PLUGIN_URL = __ENV.DMI_PLUGIN_URL || (HOST_TYPE === 'k8sHosts' ? 'http://cps-ncmp-dmi-stub-1-service:8092'
-    : testConfig[`${HOST_TYPE}`].dmiStubUrl);
-export const CONTAINER_COOL_DOWW_TIME_IN_SECONDS = testConfig[`${HOST_TYPE}`].containerCoolDownTimeInSeconds || 10;
+export const KAFKA_BOOTSTRAP_SERVERS = __ENV.KAFKA_BOOTSTRAP_SERVERS || testConfig.kafkaBootstrapServer;
+export const NCMP_BASE_URL = __ENV.NCMP_BASE_URL || testConfig.ncmpBaseUrl;
+export const DMI_PLUGIN_URL = __ENV.DMI_PLUGIN_URL || testConfig.dmiStubUrl;
+export const CONTAINER_COOL_DOWW_TIME_IN_SECONDS = testConfig.containerCoolDownTimeInSeconds || 10;
 export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
 export const TOTAL_CM_HANDLES = __ENV.TOTAL_CM_HANDLES ? parseInt(__ENV.TOTAL_CM_HANDLES) : 50000;
 export const REGISTRATION_BATCH_SIZE = 2000;
-export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as in docker-compose.yml
-export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as in docker-compose.yml
+export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as in helm chart dmiStub.env
+export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as in helm chart dmiStub.env
 export const CONTENT_TYPE_JSON_PARAM = {'Content-Type': 'application/json'};
 export const CONTENT_TYPE_JSON_PATCH_PARAM = {'Content-Type': 'application/json-patch+json'};
 export const LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE = 200; // Note: a maximum batch size of 200 implemented in production code!

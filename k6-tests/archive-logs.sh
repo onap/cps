@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2025 OpenInfra Foundation Europe. All rights reserved.
+# Copyright 2025-2026 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,8 +23,6 @@ set -euo pipefail
 readonly LOG_DIR="${WORKSPACE:-.}/logs"
 readonly LOG_RETENTION_DAYS=14
 readonly TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-readonly DOCKER_SERVICES=("cps-and-ncmp" "ncmp-dmi-plugin-demo-and-csit-stub" "dbpostgresql")
-deploymentType=${1:-dockerHosts}
 
 mkdir -p "$LOG_DIR"
 
@@ -32,25 +30,19 @@ mkdir -p "$LOG_DIR"
 # Helper Functions
 # ------------------------
 
-# Fetch logs from a Docker container
-fetch_container_logs() {
-    local container_id="$1" dest_dir="$2"
-    local name
-    name=$(docker inspect --format="{{.Name}}" "$container_id" | sed 's/\///g')
-    docker logs "$container_id" > "$dest_dir/${name}_logs_$TIMESTAMP.log"
-}
-
 # Fetch logs from Kubernetes pods
 fetch_pod_logs() {
     local service="$1" dest_dir="$2"
+    local namespace_flag=""
+    [ -n "${K8S_NAMESPACE:-}" ] && namespace_flag="--namespace $K8S_NAMESPACE"
     local pods
-    pods=$(kubectl get pods -o custom-columns=":metadata.name" | grep "^$service")
+    pods=$(kubectl get pods $namespace_flag -o custom-columns=":metadata.name" | grep "^$service")
 
     [ -z "$pods" ] && { echo "No pods found for $service"; return 1; }
 
     for pod in $pods; do
         echo "  Fetching logs for pod: $pod"
-        kubectl logs "$pod" > "$dest_dir/${pod}_logs.log"
+        kubectl logs $namespace_flag "$pod" > "$dest_dir/${pod}_logs.log"
     done
 }
 
@@ -66,31 +58,18 @@ create_log_archive() {
     fi
 }
 
-# Archive logs for a service (Docker or K8s)
+# Archive logs for a service
 archive_service_logs() {
-    local service="$1" type="$2"
-    local temp_dir="$LOG_DIR/temp_${type}_${service}_$TIMESTAMP"
-    local zip_file="$LOG_DIR/logs_${type}_${service}_$TIMESTAMP.zip"
-    local fetched=false
+    local service="$1"
+    local temp_dir="$LOG_DIR/temp_k8s_${service}_$TIMESTAMP"
+    local zip_file="$LOG_DIR/logs_k8s_${service}_$TIMESTAMP.zip"
 
     echo "Processing $service..."
     mkdir -p "$temp_dir"
 
-    if [ "$type" = "docker" ]; then
-        local containers
-        containers=$(docker ps --filter "name=$service" --format "{{.ID}}")
-        if [ -z "$containers" ]; then
-            echo "No Docker containers found for $service"
-        else
-            for c in $containers; do fetch_container_logs "$c" "$temp_dir"; done
-            fetched=true
-        fi
+    fetch_pod_logs "$service" "$temp_dir" && \
+        create_log_archive "$service" "$temp_dir" "$zip_file"
 
-    elif [ "$type" = "k8s" ]; then
-        fetch_pod_logs "$service" "$temp_dir" && fetched=true
-    fi
-
-    $fetched && create_log_archive "$service" "$temp_dir" "$zip_file"
     rm -r "$temp_dir"
 }
 
@@ -116,27 +95,8 @@ renumber_logs_latest_first() {
 # ------------------------
 # Main Process
 # ------------------------
-case "$deploymentType" in
-    dockerHosts)
-        echo "Processing Docker Compose logs..."
-        for service in "${DOCKER_SERVICES[@]}"; do
-            archive_service_logs "$service" "docker"
-        done
-        cleanup_old_logs "logs_docker_*.zip"
-        renumber_logs_latest_first "logs_docker_*.zip"
-        ls -la "$LOG_DIR"/logs_docker_*.zip 2>/dev/null || echo "No Docker logs found."
-        ;;
-
-    k8sHosts)
-        echo "Processing Kubernetes logs..."
-        archive_service_logs "cps-ncmp" "k8s"
-        cleanup_old_logs "*logs_*.zip"
-        renumber_logs_latest_first "*logs_k8s_*.zip"
-        ls -la "$LOG_DIR"/logs_k8s_*.zip 2>/dev/null || echo "No Kubernetes logs found."
-        ;;
-
-    *)
-        echo "Error: Unknown deployment type '$deploymentType'. Supported: dockerHosts, k8sHosts"
-        exit 1
-        ;;
-esac
+echo "Processing Kubernetes logs..."
+archive_service_logs "cps-ncmp"
+cleanup_old_logs "*logs_*.zip"
+renumber_logs_latest_first "*logs_k8s_*.zip"
+ls -la "$LOG_DIR"/logs_k8s_*.zip 2>/dev/null || echo "No Kubernetes logs found."

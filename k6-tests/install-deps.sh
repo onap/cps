@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+# Copyright 2024-2026 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,10 +25,7 @@ touch bin/.gitignore
 # Add it to the PATH, so downloaded versions will be used.
 export PATH="$(pwd)/bin:$PATH"
 
-# The default deployment type is dockerCompose
-deploymentType=${1:-dockerHosts}
-
-# Download k6 with kafka extension for any deployment type
+# Download k6 with kafka extension
 if [ ! -x bin/k6 ]; then
   echo " Installing k6 1.0.0 with kafka extension"
   curl -s -L https://github.com/mostafa/xk6-kafka/releases/download/v1.0.0/xk6-kafka_v1.0.0_linux_amd64.tar.gz | tar -xz
@@ -40,15 +37,3 @@ fi
 echo " Checking k6 Version:"
 k6 --version
 sudo apt-get install -y kafkacat jq
-
-# Download docker-compose for only dockerHosts
-if [ ! -x bin/docker-compose ] && [ "$deploymentType" = "dockerHosts" ]; then
-  echo " Downloading docker-compose"
-  curl -s -L https://github.com/docker/compose/releases/download/v2.35.1/docker-compose-linux-x86_64 > bin/docker-compose
-  chmod +x bin/docker-compose
-else
-  echo " docker-compose already installed"
-fi
-docker-compose version
-
-

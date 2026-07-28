@@ -14,5 +14,5 @@ spec:
   ports:
     - port: 9187
       targetPort: 9187
-      nodePort: 30187
+      nodePort: {{ .Values.postgresql.exporterNodePort | default 30187 }}
       protocol: TCP
