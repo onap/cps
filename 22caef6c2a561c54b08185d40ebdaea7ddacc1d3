@@ -229,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f701ade_67b82519",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-29T14:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25596919_0e54ac76",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 40
+      },
+      "revId": "22caef6c2a561c54b08185d40ebdaea7ddacc1d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65fee143_35fd4f99",
