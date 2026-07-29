@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48449090_dd048a37",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-29T07:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b9aa8c6_d11aa89b",
+      "range": {
+        "startLine": 291,
+        "startChar": 6,
+        "endLine": 295,
+        "endChar": 41
+      },
+      "revId": "e4f56af0820416582c55b59004f581fae00a2f9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67e4eec2_7252d39b",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abdb060e_ff38a16b",
+        "filename": "cps-rest/docs/openapi/cpsDelta.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-29T07:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67e4eec2_7252d39b",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 12
+      },
+      "revId": "e4f56af0820416582c55b59004f581fae00a2f9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97d34090_c2bb492a",
@@ -77,6 +125,30 @@
       "writtenOn": "2026-07-28T12:26:20Z",
       "side": 1,
       "message": "i dont think this is the latest ? 3.8.1?",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "e4f56af0820416582c55b59004f581fae00a2f9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c9896b2_ac174bc9",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-07-29T07:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97d34090_c2bb492a",
       "range": {
         "startLine": 26,
         "startChar": 12,
