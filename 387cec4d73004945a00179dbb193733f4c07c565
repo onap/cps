@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fca953a_d5800e33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-29T15:10:45Z",
+      "side": 1,
+      "message": "I think you accidently declared the constant twice?!\nEverything else looks good",
+      "revId": "387cec4d73004945a00179dbb193733f4c07c565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcbb618e_1808d7a0",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-07-29T15:10:45Z",
+      "side": 1,
+      "message": "you already declared it as SKIP_LEAF_CONDITION_VALIDATION \u003d -1 in the interface?!",
+      "range": {
+        "startLine": 45,
+        "startChar": 29,
+        "endLine": 45,
+        "endChar": 58
+      },
+      "revId": "387cec4d73004945a00179dbb193733f4c07c565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
