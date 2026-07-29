@@ -135,6 +135,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6791c32d_05d19cd2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "the method is same as getAnchors above. can use if-else block",
+      "range": {
+        "startLine": 151,
+        "startChar": 30,
+        "endLine": 151,
+        "endChar": 56
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f8b351b_1d46cc07",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
         "patchSetId": 23
@@ -197,6 +220,460 @@
         "startChar": 15,
         "endLine": 62,
         "endChar": 40
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6d440d6_6d459bf9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAnchorService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "NB: no change so remove",
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "550f0172_254782e2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "not needed use return statement",
+      "range": {
+        "startLine": 84,
+        "startChar": 33,
+        "endLine": 84,
+        "endChar": 40
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f99ed2fb_a54e1f1b",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "return getAnchors(dataspace, paginationOPtion) should work\n\ngetAnchors(dataspace, pagination)\ngetAnchors(dataspace, NO_PAGINATION)\n\none method can handle both scenarios. so you do not need 2 separate methods. But make sure getAnchors(dataspace, NO_PAGINATION) behaves exactly like legacy method getAnchors(dataspace)",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 87,
+        "endChar": 64
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5229ffde_80d41310",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "return getAnchorsBySchemaSetNames(dataspace, schemaSets, paginationOption)",
+      "range": {
+        "startLine": 90,
+        "startChar": 22,
+        "endLine": 90,
+        "endChar": 48
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc69f40c_cca33e55",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "this and commaSeparatedSchemaSetNames are not needed. use one because it is just a declaration then join. so 2 variables are not needed",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 22
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82fc2008_55b08e77",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "#scenario\nnull schemaset\nempty schema set\nschema set names",
+      "range": {
+        "startLine": 203,
+        "startChar": 31,
+        "endLine": 203,
+        "endChar": 70
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76fe31c_89ee77c8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "this test looks duplicated from Get paginated anchors without schema set names when #scenario above, can you check",
+      "range": {
+        "startLine": 203,
+        "startChar": 9,
+        "endLine": 203,
+        "endChar": 70
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbef9c25_bbf5c1fe",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "can define anchors for all the new tests instead of defining new one for each test. I would prefer multiple anchors not one",
+      "range": {
+        "startLine": 205,
+        "startChar": 16,
+        "endLine": 205,
+        "endChar": 23
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dfdf6f0_7dde4b8e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "this test can be combined with previous test as a scenario",
+      "range": {
+        "startLine": 219,
+        "startChar": 9,
+        "endLine": 219,
+        "endChar": 12
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "119abf75_b50f83cf",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "pageIndex | pageSize",
+      "range": {
+        "startLine": 240,
+        "startChar": 35,
+        "endLine": 240,
+        "endChar": 52
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ac822df_e32987e8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "schemaSetNames",
+      "range": {
+        "startLine": 257,
+        "startChar": 36,
+        "endLine": 257,
+        "endChar": 55
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8829a0bc_738804e9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "same as Get paginated anchors with schema set names. above",
+      "range": {
+        "startLine": 262,
+        "startChar": 9,
+        "endLine": 262,
+        "endChar": 12
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e00db258_97ef0688",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "dont mention exception in test headers",
+      "range": {
+        "startLine": 274,
+        "startChar": 55,
+        "endLine": 274,
+        "endChar": 85
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1abd836f_706c777d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "can be combined with Get paginated anchors with negative pageIndex throws DataValidationException using where block",
+      "range": {
+        "startLine": 274,
+        "startChar": 9,
+        "endLine": 274,
+        "endChar": 85
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed3585a4_87781aa4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "many of these test cases differ slightly in parameters being passed. So check and see which ones can be reduced to scenario based test using a where block",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 12
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84214dfa_44e7b467",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "this can be added as a scenario",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 41
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bc1cd3f_ee58e4ad",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "no need to add exception in headers, check for all tests",
+      "range": {
+        "startLine": 148,
+        "startChar": 45,
+        "endLine": 148,
+        "endChar": 77
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d26e49c8_510bb702",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "remove \u0027neagative\u0027 it reads get anchors with negative zero pageindex which is semantically incorrect",
+      "range": {
+        "startLine": 148,
+        "startChar": 26,
+        "endLine": 148,
+        "endChar": 34
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813a6c82_32ac6124",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "-ve pagesixe and index",
+      "range": {
+        "startLine": 162,
+        "startChar": 13,
+        "endLine": 162,
+        "endChar": 26
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebcf9aa9_435d4c9e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-29T08:58:11Z",
+      "side": 1,
+      "message": "pagesize and index set to zero",
+      "range": {
+        "startLine": 165,
+        "startChar": 13,
+        "endLine": 165,
+        "endChar": 22
       },
       "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
