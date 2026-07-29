@@ -111,6 +111,14 @@ jobs:
   # gerrit_* inputs drive the reusable workflow's Gerrit-aware checkout;
   # for a manual GERRIT_DISABLED run they are blanked so it falls back to
   # a standard checkout of the calling repository.
+  #
+  # Pinned to v0.0.4, which makes the reusable workflow's job timeouts
+  # configurable and raises the defaults: build 45 minutes, and 30 each
+  # for tests, SBOM and Grype. The previous fixed 10 minutes killed this
+  # reactor at module 18 of 24 while it was still compiling. A caller
+  # cannot override a reusable workflow's job timeout, so the value had
+  # to become an input; the defaults suit cps as it stands, so nothing is
+  # set below. Pass build_timeout_minutes if the reactor outgrows them.
   build-test:
     needs: clear-vote
     if: >-
@@ -121,7 +129,7 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@97df302a5d192faf7b7e451cbcea4eb900eba59d  # v0.0.3
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@0b9c8f0b9f23a32b2a43a0df9329caf4d288f64e  # v0.0.4
     with:
       # master stream builds on Java 21 (paris/Java 17 handled separately).
       java_version: '21'
