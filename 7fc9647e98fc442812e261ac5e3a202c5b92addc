@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbfd79d9_3b590359",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-30T09:58:39Z",
+      "side": 1,
+      "message": "Yes you aree right. I forgot to update the javadoc. I have updated now: AND progressively narrows the scope for each subsequent condition; only OR evaluates every condition against the same full scope.",
+      "parentUuid": "dd759f29_118c0136",
+      "range": {
+        "startLine": 41,
+        "startChar": 39,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "7fc9647e98fc442812e261ac5e3a202c5b92addc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e985a501_a07bd080",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-07-28T12:43:09Z",
       "side": 1,
       "message": "if a nested condition matches a deeply nested descendant, that descendant appears in the result and so does its parent, correct ?",
+      "revId": "7fc9647e98fc442812e261ac5e3a202c5b92addc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "406ef43f_6e9868b9",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryExecution.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-07-30T09:58:39Z",
+      "side": 1,
+      "message": "There\u0027s no duplication since results are a tree not a flat list. Once an ancestor is selected, buildCompleteTree copies its whole subtree as is. so a selected descendant is just part of that copy, nested once in its normal place, never added separately elsewhere.\n\n\nI have updated java doc",
+      "parentUuid": "e985a501_a07bd080",
       "revId": "7fc9647e98fc442812e261ac5e3a202c5b92addc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
