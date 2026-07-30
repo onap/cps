@@ -47,6 +47,7 @@ import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
+import org.onap.cps.ncmp.rest.util.ModuleRefreshResponseMapper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
 import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
@@ -109,6 +110,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
+
+    @SpringBean
+    ModuleRefreshResponseMapper mockModuleRefreshResponseMapper = Mock()
 
     @SpringBean
     ParametersBuilder mockProvMnSParametersMapper = Mock()

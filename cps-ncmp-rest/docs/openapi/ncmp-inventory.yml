@@ -155,3 +155,30 @@ searchCmHandles:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+
+refreshModules:
+  post:
+    description: Force NCMP to re-read the YANG module content from the nodes for the matched CM Handles. The request body reuses the CM Handle query search criteria (CPS-Path / DMI-plugin / property conditions). The response is synchronous and returns the matched CM Handles grouped by module set tag (alternate id preferred where available). An empty match returns 200 with an empty array.
+    tags:
+      - network-cm-proxy-inventory
+    summary: Refresh YANG modules for matched CM Handles
+    operationId: refreshModules
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'components.yaml#/components/schemas/CmHandleQueryParameters'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yaml#/components/schemas/RestModuleRefreshResponse'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'

@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "a6f3171a-48c5-4e86-a8e6-b58c091d6ccf",
+    "_postman_id": "5aae7064-b098-4686-9afc-988ad63020d4",
     "name": "CPS",
     "description": "<img src=\"https://content.pstmn.io/bfbd86c2-7aa4-4afd-bd4a-207de1305bb7/Q1BTTG9nby5wbmc=\">\n\n# [CPS ONAP Documentation](https://docs.onap.org/projects/onap-cps/en/latest/index.html)\n\n# [DMI ONAP Documentation](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html)\n\n### How-to\n\nBuild CPS docker images with maven:\n\n`mvn clean install`\n\nor\n\n`mvn clean install -DskipTests`\n\nNavigate to docker-compose folder:\n\n`cd .\\docker-compose\\`\n\nBring up docker containers using commands found in docker-compose.yaml or run CPS services including dmi plugin\n\n`docker-compose --profile dmi-service up -d`\n\n### CPS-Enviroment\n\nTo enable the CPS enviroment, go to the top right of the screen in Postman and click envrioments. Import the CPS-envrioment file from the Postman Collections file in CPS.\n\n**To utilise NCMP-DMI-Stub endpoints begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`\n\n# CPS Core Example\n\n- Create dataspace\n    \n- Verify dataspace exists\n    \n- etc...\n    \n\n# CPS-NCMP Example\n\n- Create CM handles\n    \n- Verify CM handles exist\n    \n- etc...",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "16927565",
-    "_collection_link": "https://go.postman.co/collection/16927565-a6f3171a-48c5-4e86-a8e6-b58c091d6ccf?source=collection_link"
+    "_exporter_id": "5892346",
+    "_collection_link": "https://go.postman.co/collection/5892346-5aae7064-b098-4686-9afc-988ad63020d4?source=collection_link"
   },
   "item": [
     {
@@ -1004,7 +1004,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1190,6 +1190,45 @@
                   "response": []
                 },
                 {
+                  "name": "Refresh Modules",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"color\": \"green\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/searchCmHandles",
+                      "protocol": "http",
+                      "host": [
+                        "{{CPS_HOST}}"
+                      ],
+                      "port": "{{CPS_PORT}}",
+                      "path": [
+                        "ncmpInventory",
+                        "v1",
+                        "ch",
+                        "searchCmHandles"
+                      ],
+                      "query": [
+                        {
+                          "key": "outputAlternateId",
+                          "value": "true",
+                          "description": "Returns alternate ids rather then cm handle ids",
+                          "disabled": true
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
                   "name": "Query CM handles (withCpsPath)",
                   "request": {
                     "method": "POST",
@@ -1336,7 +1375,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1437,7 +1476,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1473,7 +1512,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1512,7 +1551,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1549,7 +1588,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1577,7 +1616,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1605,7 +1644,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1637,7 +1676,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1675,7 +1714,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1719,7 +1758,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1764,7 +1803,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1820,7 +1859,7 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                    "value": "{{basic_auth_171s}}",
                     "type": "text"
                   }
                 ],
@@ -1874,7 +1913,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1914,7 +1953,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -1954,7 +1993,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                        "value": "{{basic_auth_171s}}",
                         "type": "text"
                       }
                     ],
@@ -2741,7 +2780,7 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                    "value": "{{basic_auth_171s}}",
                     "type": "text"
                   }
                 ],
@@ -2879,7 +2918,7 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                    "value": "{{basic_auth_171s}}",
                     "type": "text"
                   }
                 ],
@@ -3148,6 +3187,10 @@
     {
       "key": "createdCmHandlesForDmiStub",
       "value": ""
+    },
+    {
+      "key": "basic_auth_171s",
+      "secret": true
     }
   ]
 }
