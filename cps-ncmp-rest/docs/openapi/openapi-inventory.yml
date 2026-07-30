@@ -37,5 +37,8 @@ paths:
   /v1/ch/searchCmHandles:
     $ref: 'ncmp-inventory.yml#/searchCmHandles'
 
+  /v1/ch/module/refresh:
+    $ref: 'ncmp-inventory.yml#/refreshModules'
+
   /v2/ch/searches:
     $ref: 'ncmp-inventoryV2.yml#/searchCmHandlesLightweight'

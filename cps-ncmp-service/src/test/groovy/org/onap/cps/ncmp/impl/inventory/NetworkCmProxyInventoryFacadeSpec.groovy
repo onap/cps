@@ -26,7 +26,6 @@ package org.onap.cps.ncmp.impl.inventory
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
-import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
@@ -38,6 +37,7 @@ import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.dmi.DmiPluginUrlValidator
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
@@ -385,6 +385,37 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         then: 'the result from the query service is returned'
             assert result.size() == 1
             assert result[0].cmHandleId == 'ch-2'
+    }
+
+    def 'Refresh modules with matched cm handles across multiple module set tags.'() {
+        given: 'a valid southbound query'
+            def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
+                new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
+        and: 'the query service returns cm handles across two module set tags, one handle without an alternate id'
+            mockParameterizedCmHandleQueryService.queryInventoryForCmHandles(_) >> Flux.fromIterable([
+                new NcmpServiceCmHandle(cmHandleId: 'ch-1', moduleSetTag: 'tag-A', alternateId: 'alt-1'),
+                new NcmpServiceCmHandle(cmHandleId: 'ch-2', moduleSetTag: 'tag-A', alternateId: ''),
+                new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'tag-B', alternateId: 'alt-3')])
+        when: 'refresh modules is called'
+            def result = objectUnderTest.refreshModules(apiParams)
+        then: 'the result groups references by module set tag'
+            assert result.size() == 2
+        and: 'tag-A uses the alternate id where present and the cm handle id otherwise'
+            assert result['tag-A'] == ['alt-1', 'ch-2']
+        and: 'tag-B uses the alternate id'
+            assert result['tag-B'] == ['alt-3']
+    }
+
+    def 'Refresh modules with no matching cm handles.'() {
+        given: 'a valid southbound query'
+            def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
+                new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
+        and: 'the query service returns no cm handles'
+            mockParameterizedCmHandleQueryService.queryInventoryForCmHandles(_) >> Flux.empty()
+        when: 'refresh modules is called'
+            def result = objectUnderTest.refreshModules(apiParams)
+        then: 'the result is empty'
+            assert result.isEmpty()
     }
 
     def dataStores() {

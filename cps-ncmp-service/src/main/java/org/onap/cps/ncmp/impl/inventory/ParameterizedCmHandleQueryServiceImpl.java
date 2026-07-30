@@ -77,7 +77,8 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
                 this::executeCpsPathQuery,
                 this::queryCmHandlesByPublicProperties,
                 this::queryCmHandlesByAdditionalProperties,
-                this::queryCmHandlesByDmiPlugin);
+                this::queryCmHandlesByDmiPlugin,
+                this::queryCmHandlesByTrustLevel);
     }
 
     @Override

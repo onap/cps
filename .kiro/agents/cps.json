@@ -1,0 +1,22 @@
+{
+  "name": "cps",
+  "description": "CPS / CPS-NCMP development agent with project skills (test quality, java quality, copyright) loaded.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://.kiro/skills/**/SKILL.md"
+  ]
+}

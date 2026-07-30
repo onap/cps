@@ -43,6 +43,7 @@ This document describes important aspects of our Spock/Groovy test framework, co
 - Object under test: **Always use** `objectUnderTest` (not custom names like `parameterMapper` or class-specific names)
 - Test result: **Always use** `result` for the outcome of method calls
 - Test data: Use meaningful prefixes like `my` or `some` for values that don't affect the test (e.g., `'my user'`, `'some scope'`)
+- When several related values interact in one test (e.g. multiple cm handles across multiple module set tags), prefer short structured names like `ch-1`, `ch-2`, `tag-A`, `tag-B` over `my ...` phrases - they make the relationships (which handle belongs to which tag) easier to read at a glance
 - Important test values: Use descriptive names without generic prefixes to distinguish them from arbitrary values
 
 ## Test Structure
@@ -216,11 +217,48 @@ def 'Get resource data from DMI (delegation).'() {
 }
 ```
 
+### 8. Delegation Tests
+
+A delegation test verifies that a thin layer (e.g. a controller) simply forwards
+its input to a collaborator and returns that collaborator's output. It does NOT
+verify realistic data or business logic - that belongs in the test for the class
+that actually does the work.
+
+**Conventions:**
+- Do NOT build realistic data in the mocks. Use basic placeholder values that make
+  the delegation obvious.
+- Name arbitrary inputs/values with `my ...` (e.g. `'my map'`, `'my tag'`) and name
+  returned objects after their source with `from ...` (e.g. `'from mapper'`,
+  `'from service'`). This makes it clear the value is only being passed through.
+- Assert that the returned value is the one produced by the collaborator (e.g. the
+  response body contains `'from mapper'`), not specific realistic content.
+
+```groovy
+def 'Refresh modules endpoint delegation.'() {
+    given: 'the deprecation helper maps the request to api parameters'
+        def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+        deprecationHelper.mapOldConditionProperties(_) >> cmHandleQueryApiParameters
+    and: 'the facade returns a map grouped by module set tag'
+        def myMap = ['my tag': ['my reference']]
+        mockNetworkCmProxyInventoryFacade.refreshModules(cmHandleQueryApiParameters) >> myMap
+    and: 'the mapper converts that map into a response'
+        mockModuleRefreshResponseMapper.toRestModuleRefreshResponse(myMap) >>
+            new RestModuleRefreshResponse(cmHandlesByModuleSetTag: [new CmHandlesByModuleSetTag(moduleSetTag: 'from mapper')])
+    when: 'the refresh modules endpoint is invoked'
+        def response = mvc.perform(post(...).content('{}')).andReturn().response
+    then: 'response status is OK'
+        assert response.status == HttpStatus.OK.value()
+    and: 'the response is the one produced by the mapper'
+        assert response.contentAsString.contains('from mapper')
+}
+```
+
 ## Best Practices
 
 ### 1. Descriptive Test Names (Slogans)
 - Use natural language that describes the scenario being tested
 - **Do NOT include expectations** - use `then:` blocks with descriptions instead
+- Keeping expectations out of the title makes titles shorter and easier to read, and easier to maintain: when an expectation changes you update only the `then:` block, not the test name
 - Include context about what's being tested
 - Examples:
   - ✅ `def 'Registration with invalid cm handle name.'()` with `then: 'a validation exception is thrown'`
@@ -261,6 +299,7 @@ def 'Get resource data from DMI (delegation).'() {
 - Keep test data close to where it's used
 - Use constants for commonly reused values (e.g., `NO_TOPIC = null`)
 - Clearly distinguish between important values and arbitrary values using prefixes like `my` or `some`
+- When several related values interact (e.g. multiple handles across multiple tags), prefer short structured names (`ch-1`, `tag-A`) over `my ...` phrases so the relationships stay clear and readable
 
 ### 6. Mock Verification
 - Verify important interactions explicitly
