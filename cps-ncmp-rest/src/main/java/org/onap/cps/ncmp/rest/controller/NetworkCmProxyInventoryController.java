@@ -165,16 +165,20 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
      * Search for CM handles and return lightweight response (top-level leaves only).
      *
      * @param cmHandleQueryParameters the cm handle query parameters
+     * @param outputDmiProperties     boolean to determine the inclusion of dmi properties
      * @return list of lightweight cm handle details
      */
     @Override
     public ResponseEntity<List<RestOutputCmHandleLightweight>> searchCmHandlesLightweight(
-            final CmHandleQueryParameters cmHandleQueryParameters) {
+            final CmHandleQueryParameters cmHandleQueryParameters,
+            final Boolean outputDmiProperties) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 jsonObjectMapper.convertToValueType(cmHandleQueryParameters, CmHandleQueryApiParameters.class);
+        final boolean includeDmiProperties = Boolean.TRUE.equals(outputDmiProperties);
         final List<RestOutputCmHandleLightweight> restOutputCmHandles =
                 networkCmProxyInventoryFacade.southboundCmHandleSearchLightweight(cmHandleQueryApiParameters)
-                        .map(restOutputCmHandleMapper::toRestOutputCmHandleLightweight)
+                        .map(handle -> restOutputCmHandleMapper
+                                .toRestOutputCmHandleLightweight(handle, includeDmiProperties))
                         .collectList().block();
         return ResponseEntity.ok(restOutputCmHandles);
     }

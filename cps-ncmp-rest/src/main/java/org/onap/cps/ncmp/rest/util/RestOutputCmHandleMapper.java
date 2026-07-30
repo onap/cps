@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,13 +66,13 @@ public class RestOutputCmHandleMapper {
 
     /**
      * Map NcmpServiceCmHandle to a lightweight RestOutputCmHandleLightweight (top-level leaves only).
-     * Only includes: cmHandle, alternateId, cmHandleState, moduleSetTag, dataProducerIdentifier, trustLevel.
      *
-     * @param ncmpServiceCmHandle the cm handle
+     * @param ncmpServiceCmHandle    the cm handle
+     * @param includeDmiProperties   whether to include dmiProperties in the response
      * @return lightweight rest output cm handle
      */
     public RestOutputCmHandleLightweight toRestOutputCmHandleLightweight(
-            final NcmpServiceCmHandle ncmpServiceCmHandle) {
+            final NcmpServiceCmHandle ncmpServiceCmHandle, final boolean includeDmiProperties) {
         final RestOutputCmHandleLightweight restOutputCmHandleLightweight = new RestOutputCmHandleLightweight();
         restOutputCmHandleLightweight.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
         restOutputCmHandleLightweight.setAlternateId(ncmpServiceCmHandle.getAlternateId());
@@ -82,6 +82,21 @@ public class RestOutputCmHandleMapper {
         if (ncmpServiceCmHandle.getCurrentTrustLevel() != null) {
             restOutputCmHandleLightweight.setTrustLevel(ncmpServiceCmHandle.getCurrentTrustLevel().toString());
         }
+        if (includeDmiProperties) {
+            restOutputCmHandleLightweight.setDmiProperties(ncmpServiceCmHandle.getDmiProperties());
+        }
         return restOutputCmHandleLightweight;
+    }
+
+    /**
+     * Map NcmpServiceCmHandle to a lightweight RestOutputCmHandleLightweight (top-level leaves only).
+     * Does not include dmiProperties.
+     *
+     * @param ncmpServiceCmHandle the cm handle
+     * @return lightweight rest output cm handle
+     */
+    public RestOutputCmHandleLightweight toRestOutputCmHandleLightweight(
+            final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        return toRestOutputCmHandleLightweight(ncmpServiceCmHandle, false);
     }
 }

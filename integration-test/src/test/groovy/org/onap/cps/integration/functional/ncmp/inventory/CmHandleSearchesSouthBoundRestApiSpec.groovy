@@ -58,4 +58,27 @@ class CmHandleSearchesSouthBoundRestApiSpec extends CpsIntegrationSpecBase {
             false                  | false               || []
     }
 
+    def 'V2 lightweight search for CM Handles when dmi properties are #scenario.'() {
+        given: 'registered CM Handles with dmi properties'
+            def requestBody = '{"dmiPlugin":"'+DMI1_URL+'","createdCmHandles":[{"cmHandle":"ch-1","cmHandleProperties":{"my-key":"my-value"}},{"cmHandle":"ch-2","cmHandleProperties":{"other-key":"other-value"}}]}'
+            def regResponse = performPost('/ncmpInventory/v1/ch', requestBody)
+            assert regResponse.statusCode.is2xxSuccessful()
+        and: 'an empty search request body'
+            def searchRequest = '{"cmHandleQueryParameters":[]}'
+        when: 'the v2 lightweight search is executed'
+            def response = performPost('/ncmpInventory/v2/ch/searches',
+                    searchRequest, [outputDmiProperties: outputDmiProperties.toString()])
+        then: 'the response contains the registered cm handles'
+            assert response.statusCode.is2xxSuccessful()
+            def results = parseResponseBody(response) as List
+            assert results*.cmHandle.containsAll(['ch-1', 'ch-2'])
+        cleanup: 'deregister the CM Handles'
+            def cleanupBody = '{"dmiPlugin":"'+DMI1_URL+'", "removedCmHandles": ["ch-1", "ch-2"]}'
+            performPost('/ncmpInventory/v1/ch', cleanupBody)
+        where: 'dmi properties are enabled or disabled'
+            scenario   | outputDmiProperties
+            'enabled'  | true
+            'disabled' | false
+    }
+
 }
