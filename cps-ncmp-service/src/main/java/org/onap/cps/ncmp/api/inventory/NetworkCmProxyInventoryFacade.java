@@ -94,6 +94,19 @@ public interface NetworkCmProxyInventoryFacade {
                                                                          final String moduleRevision);
 
     /**
+     * Find the CM Handles (references) matching the given (southbound) query and group them by module set tag.
+     *
+     * <p>This is a read-only operation: it runs the existing southbound search and groups the matched
+     * CM Handles by their module set tag. The reference used for each CM Handle is its alternate id where
+     * available, otherwise its cm handle id. No CM Handle state is changed and no asynchronous work is
+     * triggered.</p>
+     *
+     * @param cmHandleQueryApiParameters cm handle query parameters
+     * @return a map of module set tag to the collection of matched cm handle references
+     */
+    Map<String, Collection<String>> refreshModules(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
+
+    /**
      * Retrieve cm handles with details for the given query parameters.
      *
      * @param cmHandleQueryApiParameters cm handle query parameters
@@ -159,8 +172,7 @@ public interface NetworkCmProxyInventoryFacade {
      * @param cmHandleQueryApiParameters cm handle query parameters
      * @return cm handle objects as a reactive stream (flux)
      */
-    Flux<NcmpServiceCmHandle> southboundCmHandleSearch(final CmHandleQueryApiParameters
-                                                                     cmHandleQueryApiParameters);
+    Flux<NcmpServiceCmHandle> southboundCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
 
     /**
      * Retrieve lightweight cm handles (top-level leaves only) for the given query parameters.
@@ -170,4 +182,5 @@ public interface NetworkCmProxyInventoryFacade {
      */
     Flux<NcmpServiceCmHandle> southboundCmHandleSearchLightweight(
             final CmHandleQueryApiParameters cmHandleQueryApiParameters);
+
 }

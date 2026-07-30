@@ -248,6 +248,28 @@ components:
               }
             }
 
+    RestModuleRefreshResponse:
+      type: object
+      title: Module refresh response
+      description: Matched CM Handles grouped by module set tag (alternate id preferred where available).
+      properties:
+        cmHandlesByModuleSetTag:
+          type: array
+          items:
+            $ref: '#/components/schemas/CmHandlesByModuleSetTag'
+    CmHandlesByModuleSetTag:
+      type: object
+      title: CM Handles for a single module set tag
+      properties:
+        moduleSetTag:
+          type: string
+          example: my-module-set-tag
+        cmHandles:
+          type: array
+          items:
+            type: string
+          example: [ "Subnetwork=Europe,ManagedElement=X123", my-cm-handle2 ]
+
     CmHandleQueryParameters:
       type: object
       title: Cm Handle query parameters for executing cm handle search

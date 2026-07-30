@@ -25,6 +25,7 @@ import io.micrometer.core.annotation.Timed;
 import jakarta.validation.Valid;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
@@ -38,10 +39,12 @@ import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
+import org.onap.cps.ncmp.rest.model.RestModuleRefreshResponse;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight;
 import org.onap.cps.ncmp.rest.util.CountCmHandleSearchExecution;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
+import org.onap.cps.ncmp.rest.util.ModuleRefreshResponseMapper;
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper;
 import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -59,6 +62,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final DeprecationHelper deprecationHelper;
     private final RestOutputCmHandleMapper restOutputCmHandleMapper;
+    private final ModuleRefreshResponseMapper moduleRefreshResponseMapper;
     private final JsonObjectMapper jsonObjectMapper;
 
     /**
@@ -120,6 +124,27 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
                                 .toRestOutputCmHandle(handle, outputDmiPropertiesAsPrimitive))
                         .collectList().block();
         return ResponseEntity.ok(restOutputCmHandles);
+    }
+
+    /**
+     * Refresh YANG modules for the CM Handles matched by the given query. The request body reuses the CM Handle
+     * search criteria. The response is synchronous and returns the matched CM Handles grouped by module set tag
+     * (alternate id preferred where available). No CM Handle state is changed and no asynchronous work is triggered.
+     *
+     * @param cmHandleQueryParameters the cm handle query parameters
+     * @return matched cm handles grouped by module set tag
+     */
+    @Override
+    @SuppressWarnings("deprecation") // mapOldConditionProperties method will be removed in Release 17
+    public ResponseEntity<RestModuleRefreshResponse> refreshModules(
+            final CmHandleQueryParameters cmHandleQueryParameters) {
+        final CmHandleQueryApiParameters cmHandleQueryApiParameters =
+                deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
+        final Map<String, Collection<String>> cmHandleReferencesByModuleSetTag =
+                networkCmProxyInventoryFacade.refreshModules(cmHandleQueryApiParameters);
+        final RestModuleRefreshResponse restModuleRefreshResponse =
+                moduleRefreshResponseMapper.toRestModuleRefreshResponse(cmHandleReferencesByModuleSetTag);
+        return ResponseEntity.ok(restModuleRefreshResponse);
     }
 
     /**
