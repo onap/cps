@@ -221,6 +221,7 @@ def 'Get resource data from DMI (delegation).'() {
 ### 1. Descriptive Test Names (Slogans)
 - Use natural language that describes the scenario being tested
 - **Do NOT include expectations** - use `then:` blocks with descriptions instead
+- Keeping expectations out of the title makes titles shorter and easier to read, and easier to maintain: when an expectation changes you update only the `then:` block, not the test name
 - Include context about what's being tested
 - Examples:
   - ✅ `def 'Registration with invalid cm handle name.'()` with `then: 'a validation exception is thrown'`
