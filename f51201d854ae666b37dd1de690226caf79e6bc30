@@ -33,6 +33,24 @@
       "message": "Is this needed for ncmp interfaces, does the bug not just affect the inventory interface",
       "revId": "f51201d854ae666b37dd1de690226caf79e6bc30",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fa2e26a_426298fb",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-07-31T14:31:56Z",
+      "side": 1,
+      "message": "bug only affects inventory but for consistency i prefer to add on both (again reduadant change)",
+      "parentUuid": "2ed0cb4a_149840e4",
+      "revId": "f51201d854ae666b37dd1de690226caf79e6bc30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
