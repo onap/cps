@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8f765ac_72617a42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-07-31T14:28:01Z",
+      "side": 1,
+      "message": "question",
+      "revId": "f51201d854ae666b37dd1de690226caf79e6bc30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ed0cb4a_149840e4",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-07-31T14:28:01Z",
+      "side": 1,
+      "message": "Is this needed for ncmp interfaces, does the bug not just affect the inventory interface",
+      "revId": "f51201d854ae666b37dd1de690226caf79e6bc30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
