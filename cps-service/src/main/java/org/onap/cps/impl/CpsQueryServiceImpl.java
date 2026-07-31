@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,10 +26,13 @@ import java.util.Collection;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.CompositeQuery;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
+import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.impl.query.CompositeQueryProcessor;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.CpsValidator;
@@ -69,8 +72,18 @@ public class CpsQueryServiceImpl implements CpsQueryService {
 
     @Override
     public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
-                                    final Class<T> targetClass) {
+                                    final Class<T> targetClass, final int expectedNumberOfConditions) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        if (expectedNumberOfConditions != SKIP_LEAF_CONDITION_VALIDATION) {
+            final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+            final int actualLeafConditions = cpsPathQuery.getLeafConditions() == null
+                    ? 0 : cpsPathQuery.getLeafConditions().size();
+            if (actualLeafConditions != expectedNumberOfConditions) {
+                throw new DataValidationException("CPS path leaf condition validation failed.",
+                        "Expected " + expectedNumberOfConditions + " leaf condition(s) but found "
+                                + actualLeafConditions + ". Possible injection attempt.");
+            }
+        }
         return cpsDataPersistenceService.queryDataLeaf(dataspaceName, anchorName, cpsPath, targetClass);
     }
 

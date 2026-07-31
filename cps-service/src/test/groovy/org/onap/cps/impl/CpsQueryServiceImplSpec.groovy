@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2023-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,11 @@
 
 package org.onap.cps.impl
 
+import static org.onap.cps.api.CpsQueryService.SKIP_LEAF_CONDITION_VALIDATION
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.CompositeQuery
 import org.onap.cps.impl.query.CompositeQueryProcessor
 import org.onap.cps.utils.CpsValidator
@@ -29,8 +33,6 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.parameters.PaginationOption
 import spock.lang.Specification
-
-import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CpsQueryServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -95,9 +97,42 @@ class CpsQueryServiceImplSpec extends Specification {
 
     def 'Query data leaf.'() {
         when: 'a query for a specific leaf is executed'
-            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class, SKIP_LEAF_CONDITION_VALIDATION)
         then: 'the persistence service is called once with the correct parameters'
             1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+    }
+
+    def 'Query data leaf with expected leaf condition count.'() {
+        given: 'a cps path with 2 leaf conditions'
+            def cpsPath = "//properties[@name='color' and @value='red']/@id"
+        and: 'expected leaf condition count'
+            def expectedLeafConditions = 2
+        when: 'the query is executed with the expected leaf condition count'
+            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', cpsPath, String.class, expectedLeafConditions)
+        then: 'the persistence service is called once'
+            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', cpsPath, String.class)
+    }
+
+    def 'Query data leaf with incorrect condition count.'() {
+        given: 'a cps path with 3 leaf conditions'
+            def cpsPath = "//properties[@name='color' and @value='red' or @name='color']/@id"
+        and: 'expected leaf condition count'
+            def expectedLeafConditions = 2
+        when: 'the query is executed with the expected leaf condition count'
+            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', cpsPath, String.class, expectedLeafConditions)
+        then: 'a DataValidationException is thrown'
+            thrown(DataValidationException)
+        and: 'the persistence service is not called'
+            0 * mockCpsDataPersistenceService.queryDataLeaf(*_)
+    }
+
+    def 'Query data leaf with no leaf conditions and expected count of zero.'() {
+        given: 'a cps path with no leaf conditions'
+            def cpsPath = '/some/path/@attribute'
+        when: 'the query is executed with expected count of 0'
+            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', cpsPath, String.class, 0)
+        then: 'the persistence service is called once'
+            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', cpsPath, String.class)
     }
 
     def 'Search data nodes with a composite query.'() {
