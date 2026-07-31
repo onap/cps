@@ -127,7 +127,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@c5043c19a8c651d9c406fb19e70b5dc4f5db7b0d  # v0.0.1
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@6f5f52540d9d66de7d9f8b8cdb6b6a595a746652  # v0.1.0
     with:
       # Build before scanning: Nexus IQ identifies far more components
       # from the packaged output than from source alone. Tests and Jib
@@ -150,12 +150,14 @@ jobs:
       # Maven pulls from artifact CDNs that are impractical to enumerate
       # in the allow-list, and the build shares this job with the scan.
       build_permit_egress_traffic: true
-      # Newer allow-list than the reusable's default, which still points
-      # at v0.10.0. v0.12.2 is the first to carry the two endpoints this
-      # lane cannot run without: nexus-iq.wl.linuxfoundation.org (the IQ
-      # server) and download.sonatype.com (where the IQ CLI comes from).
-      # yamllint disable-line rule:line-length
-      harden_runner_allowlist: 'lfreleng-actions//.github/harden-runner/lfreleng-actions/allow_list.txt@bf6642f68d58c1b81bbe993e676d6cc339ac3654'  # v0.12.2
+      # harden_runner_allowlist is no longer overridden here. This lane
+      # pinned v0.12.2 explicitly while the reusable still defaulted to
+      # v0.10.0, which lacked the two endpoints the scan cannot run
+      # without: nexus-iq.wl.linuxfoundation.org and
+      # download.sonatype.com. security-workflows v0.1.0 moves its own
+      # default to v0.12.2, so the override became a second copy of the
+      # same pin. Dropping it means future allow-list updates arrive
+      # with the reusable instead of needing a change here.
       # application_id is left unset: the lane derives <owner>-<name>,
       # giving onap-cps, which is what the Jenkins job already reports
       # to ({nexus-iq-namespace}{project-name} = 'onap-' + 'cps').

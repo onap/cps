@@ -112,13 +112,24 @@ jobs:
   # for a manual GERRIT_DISABLED run they are blanked so it falls back to
   # a standard checkout of the calling repository.
   #
-  # Pinned to v0.0.4, which makes the reusable workflow's job timeouts
-  # configurable and raises the defaults: build 45 minutes, and 30 each
-  # for tests, SBOM and Grype. The previous fixed 10 minutes killed this
-  # reactor at module 18 of 24 while it was still compiling. A caller
-  # cannot override a reusable workflow's job timeout, so the value had
-  # to become an input; the defaults suit cps as it stands, so nothing is
-  # set below. Pass build_timeout_minutes if the reactor outgrows them.
+  # Pinned to v0.1.1. The job timeouts introduced in v0.0.4 remain the
+  # reason this lane completes at all: build 45 minutes, and 30 each for
+  # tests, SBOM and Grype. The fixed 10 minutes before that killed this
+  # reactor at module 18 of 24 while it was still compiling. A full run
+  # now builds in a little under 15 minutes, so the defaults suit cps
+  # with room to spare and nothing is set below; pass
+  # build_timeout_minutes if the reactor outgrows them.
+  #
+  # v0.1.0 added optional build artefact publication and removed a dead
+  # github_summary input that produced a warning annotation on every
+  # run. upload_build_artifacts stays off here deliberately: nothing
+  # downstream consumes the jars yet, and uploading a 24-module reactor
+  # on every patchset would cost storage for no reader. Turn it on when
+  # a merge, stage or container lane needs the output.
+  #
+  # v0.1.1 leaves both reusables byte-identical; it bumped the allow-list
+  # only in the reusable repository's own CI. Taken to keep this pin on
+  # the current release rather than for any behaviour it changes.
   build-test:
     needs: clear-vote
     if: >-
@@ -129,7 +140,7 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@0b9c8f0b9f23a32b2a43a0df9329caf4d288f64e  # v0.0.4
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@10f088e090f0a06572156a21a34321073af04a75  # v0.1.1
     with:
       # master stream builds on Java 21 (paris/Java 17 handled separately).
       java_version: '21'
