@@ -96,7 +96,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
     def 'Get delta between an anchor and JSON payload with grouping enabled and #scenario'() {
         when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'source-anchor1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, true)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'source-anchor1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, true, ContentType.JSON)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
@@ -111,7 +111,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
     def 'Get delta between an anchor and JSON payload with grouping disabled and #scenario'() {
         when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'source-anchor1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, false)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'source-anchor1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, false, ContentType.JSON)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
@@ -129,7 +129,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             def deltaReportAsJson = jsonObjectMapper.asJsonString(deltaReport)
         when: 'attempt to apply the delta report to an anchor'
             resourceMeter.start()
-            objectUnderTest.applyChangesInDeltaReport(CPS_PERFORMANCE_TEST_DATASPACE, 'target-anchor1', deltaReportAsJson)
+            objectUnderTest.applyChangesInDeltaReport(CPS_PERFORMANCE_TEST_DATASPACE, 'target-anchor1', deltaReportAsJson, ContentType.JSON)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is applied and operation completes within expected time'
