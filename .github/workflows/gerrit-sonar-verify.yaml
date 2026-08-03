@@ -185,6 +185,16 @@ jobs:
       wait_for_quality_gate: true
       fail_on_quality_gate: false
       #
+      # The reusable allows 45 minutes, which this project exceeds. Run
+      # 30813423304 was cancelled at the cap having done no more than the
+      # build; the verify lane's Build job alone takes 15 minutes on the
+      # same reactor, and this job does that plus the tests plus a Sonar
+      # analysis of 21k lines across 21 modules, in one job rather than
+      # four. 90 minutes leaves headroom on a busy shared runner without
+      # being meaningless: it bounds a hung job, and erring high costs
+      # nothing when the lane is not gating.
+      timeout_minutes: 90
+      #
       # Maven pulls from artifact CDNs that are impractical to enumerate
       # in the allow-list, and the build shares this job with the scan.
       build_permit_egress_traffic: true
