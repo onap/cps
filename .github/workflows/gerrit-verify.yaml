@@ -112,7 +112,7 @@ jobs:
   # for a manual GERRIT_DISABLED run they are blanked so it falls back to
   # a standard checkout of the calling repository.
   #
-  # Pinned to v0.1.1. The job timeouts introduced in v0.0.4 remain the
+  # Pinned to v0.1.2. The job timeouts introduced in v0.0.4 remain the
   # reason this lane completes at all: build 45 minutes, and 30 each for
   # tests, SBOM and Grype. The fixed 10 minutes before that killed this
   # reactor at module 18 of 24 while it was still compiling. A full run
@@ -127,9 +127,10 @@ jobs:
   # on every patchset would cost storage for no reader. Turn it on when
   # a merge, stage or container lane needs the output.
   #
-  # v0.1.1 leaves both reusables byte-identical; it bumped the allow-list
-  # only in the reusable repository's own CI. Taken to keep this pin on
-  # the current release rather than for any behaviour it changes.
+  # v0.1.2 carries maven-build-action v0.3.1, which stops that action
+  # leaving a Maven settings document in the workspace. This lane builds
+  # the code under review, so a credentials file left there was readable
+  # by the plugins and tests of the patchset being verified.
   build-test:
     needs: clear-vote
     if: >-
@@ -140,7 +141,7 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@10f088e090f0a06572156a21a34321073af04a75  # v0.1.1
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@cb4d89f992669dbb10c1c016fed9829d41517c5f  # v0.1.2
     with:
       # master stream builds on Java 21 (paris/Java 17 handled separately).
       java_version: '21'
