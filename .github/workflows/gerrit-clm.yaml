@@ -127,7 +127,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@6f5f52540d9d66de7d9f8b8cdb6b6a595a746652  # v0.1.0
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@3b5e72fd80a8066acb727c577af4f78e4fc5322e  # v0.1.2
     with:
       # Build before scanning: Nexus IQ identifies far more components
       # from the packaged output than from source alone. Tests and Jib
@@ -154,7 +154,7 @@ jobs:
       # pinned v0.12.2 explicitly while the reusable still defaulted to
       # v0.10.0, which lacked the two endpoints the scan cannot run
       # without: nexus-iq.wl.linuxfoundation.org and
-      # download.sonatype.com. security-workflows v0.1.0 moves its own
+      # download.sonatype.com. security-workflows v0.1.0 moved its own
       # default to v0.12.2, so the override became a second copy of the
       # same pin. Dropping it means future allow-list updates arrive
       # with the reusable instead of needing a change here.

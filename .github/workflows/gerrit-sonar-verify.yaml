@@ -125,7 +125,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@47da28f46f639fc64e924e1bdd3f85ff95e62a35  # v0.1.1
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@3b5e72fd80a8066acb727c577af4f78e4fc5322e  # v0.1.2
     with:
       # Same SonarCloud project the Jenkins jobs report to, so the
       # migration does not fork the analysis history.
@@ -162,7 +162,7 @@ jobs:
       # unset so the lane detects the project's JDK rather than pinning a
       # value that can drift out of step with the POMs.
       #
-      # analysis_mode is deliberately unset: security-workflows v0.1.1
+      # analysis_mode is deliberately unset: security-workflows
       # derives it from build_type, so a Maven project is analysed with
       # sonar-maven-plugin. Setting it here would only re-state that, and
       # the value that matters is the one this lane must never take. The
