@@ -33,6 +33,29 @@
       "message": "recheck",
       "revId": "00f7982109f14ad4873c17042594972267edb6f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "652f4fcd_3b6d5194",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-04T15:11:30Z",
+      "side": 1,
+      "message": "May need to investigate if this worked over the weekend. Should have caught the issue on Saturday nights run (namespace already taken)",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 59
+      },
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
