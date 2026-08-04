@@ -75,6 +75,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acf3e52d_68e45e87",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-04T14:51:26Z",
+      "side": 1,
+      "message": "NB: Best not to use deprecating code for new method, acceptable due to offline discussion",
+      "range": {
+        "startLine": 138,
+        "startChar": 92,
+        "endLine": 138,
+        "endChar": 102
+      },
+      "revId": "4441f24c9d690b37072ac45f8687052c8d5b2da8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc1b743b_327660a4",
