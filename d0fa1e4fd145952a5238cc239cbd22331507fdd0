@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55d52411_3e065a96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T14:14:33Z",
+      "side": 1,
+      "message": "Don\u0027t fully understand the script change but the explanation sounds good :-)",
+      "revId": "d0fa1e4fd145952a5238cc239cbd22331507fdd0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
