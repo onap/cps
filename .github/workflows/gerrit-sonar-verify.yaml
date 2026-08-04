@@ -171,7 +171,16 @@ jobs:
       # reported 1157 bugs against a project that has none.
       build_type: 'maven'
       mvn_phases: 'clean install'
-      mvn_params: '-Djib.skip=true --fail-at-end'
+      # No --fail-at-end here, deliberately. The lane fails when the
+      # pre-scan build fails regardless, so continuing past the first
+      # failure buys no signal and costs a great deal of time: a
+      # transient registry outage on 2026-08-04 left twelve
+      # Testcontainers specs each waiting out a seven-minute pull
+      # timeout, and the run hit the 90-minute cap without ever reaching
+      # the analysis. Failing fast turns that into a few minutes, and
+      # the verify lane, which does not pass the flag, completed the
+      # same reactor in sixteen.
+      mvn_params: '-Djib.skip=true'
       #
       # Wait for the quality gate so its verdict is visible in the run,
       # but do not yet fail on it. The Jenkins job it replaces does fail
