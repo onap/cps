@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
- * Modifications Copyright (C) 2022-2025 Nordix Foundation
+ * Modifications Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ package org.onap.cps.ri
 import org.hibernate.exception.ConstraintViolationException
 import org.onap.cps.ri.models.DataspaceEntity
 import org.onap.cps.ri.models.SchemaSetEntity
+import org.onap.cps.ri.models.YangResourceEntity
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.repository.ModuleReferenceRepository
 import org.onap.cps.ri.repository.SchemaSetRepository
@@ -127,6 +128,25 @@ class CpsModulePersistenceServiceImplSpec extends Specification {
             def result = objectUnderTest.getYangResourceModuleReferences('someDataspaceName','someAnchorName')
         then: 'an empty collection is returned'
             assert result.isEmpty()
+    }
+
+    def 'Update yang resource content in place for an existing module.'() {
+        given: 'an existing yang resource entity for the module'
+            def existingYangResourceEntity = new YangResourceEntity(id: 1, moduleName: 'stores', revision: '2020-09-15', content: 'old content', checksum: 'old checksum')
+            mockYangResourceRepository.findByModuleNameAndRevision('stores', '2020-09-15') >> existingYangResourceEntity
+        when: 'the yang resource content is updated'
+            objectUnderTest.updateYangResourceContent('stores', '2020-09-15', yangResourceContent)
+        then: 'the same entity (unchanged id) is saved with the new content and recalculated checksum'
+            1 * mockYangResourceRepository.save({ it.id == 1 && it.content == yangResourceContent && it.checksum == yangResourceChecksum })
+    }
+
+    def 'Update yang resource content when the module does not exist.'() {
+        given: 'no matching yang resource entity is found'
+            mockYangResourceRepository.findByModuleNameAndRevision(*_) >> null
+        when: 'the yang resource content update is attempted'
+            objectUnderTest.updateYangResourceContent('unknown', '2020-09-15', yangResourceContent)
+        then: 'nothing is saved'
+            0 * mockYangResourceRepository.save(*_)
     }
 
 }

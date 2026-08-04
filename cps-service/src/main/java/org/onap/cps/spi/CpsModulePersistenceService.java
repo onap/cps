@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 Nordix Foundation
+ *  Copyright (C) 2020-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
@@ -67,6 +67,18 @@ public interface CpsModulePersistenceService {
     void updateSchemaSetFromNewAndExistingModules(String dataspaceName, String schemaSetName,
                                                   Map<String, String> newYangResourcesPerName,
                                                   Collection<ModuleReference> allModuleReferences);
+
+    /**
+     * Update the stored content of an existing YANG resource (identified by module name and revision) in place.
+     * The existing yang resource record is reused (its id is unchanged) so that all schema sets referencing it
+     * keep their links and immediately see the updated content. Intended for refreshing model content when the
+     * module revision is (deliberately) not changed.
+     *
+     * @param moduleName the module name
+     * @param revision   the module revision
+     * @param newContent the new yang resource content
+     */
+    void updateYangResourceContent(String moduleName, String revision, String newContent);
 
     /**
      * Checks whether a schema set exists in the specified dataspace.

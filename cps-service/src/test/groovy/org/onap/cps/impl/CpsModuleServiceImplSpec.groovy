@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2020-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
@@ -196,6 +196,13 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.upgradeSchemaSetFromModules('my-dataspace', 'my-schemaset', [:], moduleReferences)
         then: 'no exception is thrown '
             noExceptionThrown()
+    }
+
+    def 'Update yang resource content in place.'() {
+        when: 'update yang resource content is requested'
+            objectUnderTest.updateYangResourceContent('my-module', '2024-01-01', 'new content')
+        then: 'the call is delegated to the module persistence service with the same parameters'
+            1 * mockCpsModulePersistenceService.updateYangResourceContent('my-module', '2024-01-01', 'new content')
     }
 
     def 'Get all yang resources module references.'() {

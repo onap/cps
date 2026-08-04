@@ -141,6 +141,11 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
+    public void updateYangResourceContent(final String moduleName, final String revision, final String newContent) {
+        cpsModulePersistenceService.updateYangResourceContent(moduleName, revision, newContent);
+    }
+
+    @Override
     public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsModulePersistenceService.getYangResourceModuleReferences(dataspaceName);

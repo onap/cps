@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2020-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
@@ -115,6 +115,17 @@ public interface CpsModuleService {
     void upgradeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                      final Map<String, String> newModuleNameToContentMap,
                                      final Collection<ModuleReference> allModuleReferences);
+
+    /**
+     * Update the stored content of an existing YANG resource (module) in place.
+     * The existing yang resource is reused so that every schema set referencing this module (by name and revision)
+     * is updated at once. Intended for refreshing model content when the module revision is (deliberately) unchanged.
+     *
+     * @param moduleName the module name
+     * @param revision   the module revision
+     * @param newContent the new yang resource content
+     */
+    void updateYangResourceContent(String moduleName, String revision, String newContent);
 
     /**
      * Retrieve module references for the given dataspace name.
