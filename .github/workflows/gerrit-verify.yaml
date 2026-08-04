@@ -72,7 +72,17 @@ on:
         type: boolean
 
 concurrency:
-  group: '${{ github.event.inputs.GERRIT_CHANGE_ID || github.run_id }}'
+  # Group on the Gerrit change when there is one, so a new patchset
+  # supersedes the run for its predecessor. Fall back to the ref rather
+  # than github.run_id: run_id is unique per run, so cancel-in-progress
+  # could never fire for a manual dispatch, and three full-reactor
+  # builds were seen competing for runners at once.
+  #
+  # The workflow name is part of the group because the group is
+  # repository-wide. Without it the verify and CLM lanes shared a group
+  # and cancelled each other for the same change.
+  # yamllint disable-line rule:line-length
+  group: '${{ github.workflow }}-${{ github.event.inputs.GERRIT_CHANGE_ID || github.ref }}'
   cancel-in-progress: true
 
 permissions: {}
