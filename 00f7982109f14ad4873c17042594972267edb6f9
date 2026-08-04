@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dd89bc8_2e01dee7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T15:58:12Z",
+      "side": 1,
+      "message": "this is really migration to Kubernetes and removing docker support is just an aspect of that",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99a5a92f_6901c9de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T15:58:12Z",
+      "side": 1,
+      "message": "wiki is good additonal info but I prefer if you pasted the summary on that wiki as the commit message",
+      "range": {
+        "startLine": 10,
+        "startChar": 3,
+        "endLine": 10,
+        "endChar": 109
+      },
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0d033f5b_a9f7097b",
@@ -35,6 +81,69 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e3b09fe_cc8abf93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T15:58:12Z",
+      "side": 1,
+      "message": "some minor suggestions, se below.\nAlso, just wondering, this commit mainly removes docker-support where it was interwoven with the k8s support\nwill there be another Jira/commit to fully remove it?  ie the whole docker-compose folder and anything else related to docker in our repo?!",
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9a5c825_632e410a",
+        "filename": "k6-tests/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T15:58:12Z",
+      "side": 1,
+      "message": "NB: aligmnet issue",
+      "range": {
+        "startLine": 35,
+        "startChar": 26,
+        "endLine": 38,
+        "endChar": 0
+      },
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a32ba56_b9b33f41",
+        "filename": "k6-tests/archive-logs.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T15:58:12Z",
+      "side": 1,
+      "message": "suggestion update comment to clarify it now only gets logs from relevant namespace \n(if I understand it correctly)",
+      "range": {
+        "startLine": 33,
+        "startChar": 18,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "652f4fcd_3b6d5194",
@@ -53,6 +162,98 @@
         "startChar": 0,
         "endLine": 66,
         "endChar": 59
+      },
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0f749ff_316e49d4",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T15:58:12Z",
+      "side": 1,
+      "message": "i prefer our java convention of long names instead of acronyms...",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 6
+      },
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a03ed54_7b4361ad",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T15:58:12Z",
+      "side": 1,
+      "message": "add _sec to indicate it is seconds (which I assume)",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 21
+      },
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14f3a48c_88f781be",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T15:58:12Z",
+      "side": 1,
+      "message": "add _sec",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 71,
+        "endChar": 21
+      },
+      "revId": "00f7982109f14ad4873c17042594972267edb6f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebf12dfa_eac231b6",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-04T15:58:12Z",
+      "side": 1,
+      "message": "its magic 😁",
+      "range": {
+        "startLine": 90,
+        "startChar": 44,
+        "endLine": 90,
+        "endChar": 54
       },
       "revId": "00f7982109f14ad4873c17042594972267edb6f9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
