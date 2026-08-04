@@ -135,7 +135,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@cf9d466e88b80809a4637a65667afe5a4a7d822c  # v0.2.0
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@88493e826262979e0863e1b429b1cf4a8e72d8e8  # v0.2.1
     with:
       # Same SonarCloud project the Jenkins jobs report to, so the
       # migration does not fork the analysis history.
@@ -216,6 +216,13 @@ jobs:
       #
       # Maven pulls from artifact CDNs that are impractical to enumerate
       # in the allow-list, and the build shares this job with the scan.
+      # NOTE: security-workflows v0.2.1 is the first release in which
+      # this input has any effect. Until then each lane chose between
+      # two harden-runner steps with a step-level 'if:', and the action
+      # runs its pre-phase regardless of that condition, so the block
+      # step always won. Every job ran blocked however the caller asked.
+      # Setting this true now genuinely yields audit, which is what the
+      # Testcontainers image pulls below need.
       build_permit_egress_traffic: true
       #
       # Gerrit-aware checkout. Blank for the scheduled run and for a

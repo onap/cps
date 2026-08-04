@@ -137,7 +137,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@cf9d466e88b80809a4637a65667afe5a4a7d822c  # v0.2.0
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@88493e826262979e0863e1b429b1cf4a8e72d8e8  # v0.2.1
     with:
       # Build before scanning: Nexus IQ identifies far more components
       # from the packaged output than from source alone. Tests and Jib
@@ -159,6 +159,13 @@ jobs:
       build_permit_fail: false
       # Maven pulls from artifact CDNs that are impractical to enumerate
       # in the allow-list, and the build shares this job with the scan.
+      # NOTE: security-workflows v0.2.1 is the first release in which
+      # this input has any effect. Until then each lane chose between
+      # two harden-runner steps with a step-level 'if:', and the action
+      # runs its pre-phase regardless of that condition, so the block
+      # step always won. Every job ran blocked however the caller asked.
+      # Setting this true now genuinely yields audit, which is what the
+      # Testcontainers image pulls below need.
       build_permit_egress_traffic: true
       # harden_runner_allowlist is no longer overridden here. This lane
       # pinned v0.12.2 explicitly while the reusable still defaulted to
