@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,5 +24,7 @@ public enum LockReasonCategory {
     MODULE_SYNC_FAILED,
     MODULE_UPGRADE,
     MODULE_UPGRADE_FAILED,
+    MODULE_REFRESH,
+    MODULE_REFRESH_FAILED,
     LOCKED_MISBEHAVING
 }
