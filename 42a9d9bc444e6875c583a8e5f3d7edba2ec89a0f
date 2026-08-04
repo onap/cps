@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "859a17ae_3a7cd8c6",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "i have removed declared variable commaSeparatedSchemaSetNames and used join on schemaSetNames.",
+      "parentUuid": "822fbdbd_a9cb7f2a",
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce4b82c9_8f71bb46",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-07-28T11:50:07Z",
       "side": 1,
       "message": "no need of query parameters in base url, use get().param() in line 386.\nBy doing so I guess you can combine tests defined in line 380, 392 and 404 using a where block. I am not sure about it so you can test it out.",
+      "range": {
+        "startLine": 384,
+        "startChar": 80,
+        "endLine": 384,
+        "endChar": 120
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7172e77d_bfb5abcc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have removed query parameters from base url and used get(anchorEndpoint).param() and get(anchorEndpoint).params() with combine parameters.",
+      "parentUuid": "ce4b82c9_8f71bb46",
       "range": {
         "startLine": 384,
         "startChar": 80,
@@ -64,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f90c5b_b452e14d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have replaced from \u0027Get anchors with negative #scenario returns HTTP Bad Request\u0027 to \u0027Attempt to get anchors using unsupported pagination values\u0027",
+      "parentUuid": "033a0bdb_ec14c4b2",
+      "range": {
+        "startLine": 416,
+        "startChar": 9,
+        "endLine": 416,
+        "endChar": 70
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2ef35bb_76729060",
@@ -77,6 +143,30 @@
       "writtenOn": "2026-07-28T11:50:07Z",
       "side": 1,
       "message": "no exception is to be mentioned, can use expected exception instead",
+      "range": {
+        "startLine": 417,
+        "startChar": 35,
+        "endLine": 417,
+        "endChar": 60
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d55cd76f_fe4f29ed",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Removed mentioned DataValidationException and used expected exception instead of that.",
+      "parentUuid": "f2ef35bb_76729060",
       "range": {
         "startLine": 417,
         "startChar": 35,
@@ -110,6 +200,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbd3bc65_a39585ef",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Here i have used get().params() instead of passing query parameters in base url",
+      "parentUuid": "39fb6015_577bebd0",
+      "range": {
+        "startLine": 422,
+        "startChar": 80,
+        "endLine": 422,
+        "endChar": 136
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbe701e5_ced4118f",
@@ -123,6 +237,30 @@
       "writtenOn": "2026-07-28T11:50:07Z",
       "side": 1,
       "message": "these do not test unique paths so -1,-1 would suffice",
+      "range": {
+        "startLine": 428,
+        "startChar": 12,
+        "endLine": 431,
+        "endChar": 62
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aacca20_fe966ed1",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbe701e5_ced4118f",
       "range": {
         "startLine": 428,
         "startChar": 12,
@@ -156,6 +294,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12cb2ac9_0531a9db",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have removed this method from the file and i have added one more parameter like schemaSetNames in getAnchors() method. used if-else block to differentiate",
+      "parentUuid": "6791c32d_05d19cd2",
+      "range": {
+        "startLine": 151,
+        "startChar": 30,
+        "endLine": 151,
+        "endChar": 56
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f8b351b_1d46cc07",
@@ -169,6 +331,30 @@
       "writtenOn": "2026-07-28T11:50:07Z",
       "side": 1,
       "message": "anchor repo returns all anchors under a dataspace",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 50
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "563a79c2_251b05b4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have replaced from \u0027two anchors exist in the dataspace\u0027 to \u0027anchor repo returns all anchors under a dataspace\u0027.",
+      "parentUuid": "7f8b351b_1d46cc07",
       "range": {
         "startLine": 57,
         "startChar": 16,
@@ -202,6 +388,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7e5c8a0_9b263c23",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have replaced from \u0027all anchors are retrieved\u0027 to \u0027attempt to get all anchors\u0027",
+      "parentUuid": "5706141d_410aa379",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0f74a99_5171ee93",
@@ -215,6 +425,30 @@
       "writtenOn": "2026-07-28T11:50:07Z",
       "side": 1,
       "message": "expected number of anchors are returned",
+      "range": {
+        "startLine": 62,
+        "startChar": 15,
+        "endLine": 62,
+        "endChar": 40
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5714bf28_917b5eee",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have replaced from \u0027both anchors are returned\u0027 to \u0027expected number of anchors are returned\u0027",
+      "parentUuid": "e0f74a99_5171ee93",
       "range": {
         "startLine": 62,
         "startChar": 15,
@@ -242,6 +476,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef7fc15f_1f39eab9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAnchorService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6d440d6_6d459bf9",
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "550f0172_254782e2",
@@ -255,6 +507,30 @@
       "writtenOn": "2026-07-29T08:58:11Z",
       "side": 1,
       "message": "not needed use return statement",
+      "range": {
+        "startLine": 84,
+        "startChar": 33,
+        "endLine": 84,
+        "endChar": 40
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "401ed562_161b2acf",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "550f0172_254782e2",
       "range": {
         "startLine": 84,
         "startChar": 33,
@@ -288,6 +564,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08432fe9_06b3ddd2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have return getAnchors(dataspace, paginationOPtion) only one method and handle both scenarios.",
+      "parentUuid": "f99ed2fb_a54e1f1b",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 87,
+        "endChar": 64
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5229ffde_80d41310",
@@ -311,6 +611,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de267a7d_b32c0102",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5229ffde_80d41310",
+      "range": {
+        "startLine": 90,
+        "startChar": 22,
+        "endLine": 90,
+        "endChar": 48
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc69f40c_cca33e55",
@@ -324,6 +648,30 @@
       "writtenOn": "2026-07-29T08:58:11Z",
       "side": 1,
       "message": "this and commaSeparatedSchemaSetNames are not needed. use one because it is just a declaration then join. so 2 variables are not needed",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 22
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af686558_8e8ed87b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have removed declared variables commaSeparatedSchemaSetNames and use join on it.",
+      "parentUuid": "fc69f40c_cca33e55",
       "range": {
         "startLine": 38,
         "startChar": 8,
@@ -380,6 +728,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c80e005a_daa194af",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have removed duplicate test from above and i am keeping this test",
+      "parentUuid": "d76fe31c_89ee77c8",
+      "range": {
+        "startLine": 203,
+        "startChar": 9,
+        "endLine": 203,
+        "endChar": 70
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae6bb2c9_b462581a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have replaced from without schema set names when #scenario to #scenario and added one more parameter schema set names in where block.",
+      "parentUuid": "82fc2008_55b08e77",
+      "range": {
+        "startLine": 203,
+        "startChar": 31,
+        "endLine": 203,
+        "endChar": 70
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbef9c25_bbf5c1fe",
@@ -393,6 +789,30 @@
       "writtenOn": "2026-07-29T08:58:11Z",
       "side": 1,
       "message": "can define anchors for all the new tests instead of defining new one for each test. I would prefer multiple anchors not one",
+      "range": {
+        "startLine": 205,
+        "startChar": 16,
+        "endLine": 205,
+        "endChar": 23
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc908f7c_eb71d0ac",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have defined multiple anchors for all the new test instead of defining one anchor.",
+      "parentUuid": "bbef9c25_bbf5c1fe",
       "range": {
         "startLine": 205,
         "startChar": 16,
@@ -426,6 +846,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea4ae597_537510d0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have combined this test case with previous test case as a scenario so removed this test case from the test file.",
+      "parentUuid": "8dfdf6f0_7dde4b8e",
+      "range": {
+        "startLine": 219,
+        "startChar": 9,
+        "endLine": 219,
+        "endChar": 12
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "119abf75_b50f83cf",
@@ -439,6 +883,30 @@
       "writtenOn": "2026-07-29T08:58:11Z",
       "side": 1,
       "message": "pageIndex | pageSize",
+      "range": {
+        "startLine": 240,
+        "startChar": 35,
+        "endLine": 240,
+        "endChar": 52
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30416c41_26c7d7ee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "119abf75_b50f83cf",
       "range": {
         "startLine": 240,
         "startChar": 35,
@@ -472,6 +940,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e941a658_2fa33992",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac822df_e32987e8",
+      "range": {
+        "startLine": 257,
+        "startChar": 36,
+        "endLine": 257,
+        "endChar": 55
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8829a0bc_738804e9",
@@ -485,6 +977,30 @@
       "writtenOn": "2026-07-29T08:58:11Z",
       "side": 1,
       "message": "same as Get paginated anchors with schema set names. above",
+      "range": {
+        "startLine": 262,
+        "startChar": 9,
+        "endLine": 262,
+        "endChar": 12
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99abb267_c8d280e9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "This \u0027Get paginated anchors with schema set names\u0027 test is combined with \u0027Get paginated anchors with #scenario\u0027 test and also below method is removed\ngetAnchorsBySchemaSetNames(\u0027someDataspace\u0027,\u0027schemaSetNames\u0027,\u0027PaginationOption\u0027).",
+      "parentUuid": "8829a0bc_738804e9",
       "range": {
         "startLine": 262,
         "startChar": 9,
@@ -541,6 +1057,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c112dc26_fa96f732",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have combined second test case with \u0027Get paginated anchors with negative pageIndex throws DataValidationException\u0027 using where block and also removed mentioned DataValidationException from test headers.",
+      "parentUuid": "1abd836f_706c777d",
+      "range": {
+        "startLine": 274,
+        "startChar": 9,
+        "endLine": 274,
+        "endChar": 85
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "718465b3_511f1a8b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "This test case is combined with previous test so i have removed this test case.",
+      "parentUuid": "e00db258_97ef0688",
+      "range": {
+        "startLine": 274,
+        "startChar": 55,
+        "endLine": 274,
+        "endChar": 85
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed3585a4_87781aa4",
@@ -564,6 +1128,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e3f1f46_b2ff85b5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed3585a4_87781aa4",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 12
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84214dfa_44e7b467",
@@ -577,6 +1165,30 @@
       "writtenOn": "2026-07-29T08:58:11Z",
       "side": 1,
       "message": "this can be added as a scenario",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 41
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4761cca6_4c989252",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84214dfa_44e7b467",
       "range": {
         "startLine": 109,
         "startChar": 8,
@@ -633,6 +1245,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08d829f5_a09af146",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have removed exception from headers",
+      "parentUuid": "5bc1cd3f_ee58e4ad",
+      "range": {
+        "startLine": 148,
+        "startChar": 45,
+        "endLine": 148,
+        "endChar": 77
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be4ef9f6_4f09405d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "I have removed \u0027negative\u0027 from def. instead of that i wrote \u0027following\u0027.",
+      "parentUuid": "d26e49c8_510bb702",
+      "range": {
+        "startLine": 148,
+        "startChar": 26,
+        "endLine": 148,
+        "endChar": 34
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "813a6c82_32ac6124",
@@ -656,6 +1316,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d319a90f_3830eab7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "813a6c82_32ac6124",
+      "range": {
+        "startLine": 162,
+        "startChar": 13,
+        "endLine": 162,
+        "endChar": 26
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebcf9aa9_435d4c9e",
@@ -669,6 +1353,30 @@
       "writtenOn": "2026-07-29T08:58:11Z",
       "side": 1,
       "message": "pagesize and index set to zero",
+      "range": {
+        "startLine": 165,
+        "startChar": 13,
+        "endLine": 165,
+        "endChar": 22
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82d24f7e_8f67d8fc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-04T05:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebcf9aa9_435d4c9e",
       "range": {
         "startLine": 165,
         "startChar": 13,
