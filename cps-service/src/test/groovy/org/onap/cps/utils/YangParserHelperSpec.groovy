@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Modifications Copyright (C) 2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -143,8 +144,65 @@ class YangParserHelperSpec extends Specification {
             'incorrect json'                                     | '{" }'
     }
 
-    def 'Parsing json data with space.'() {
+    def 'Parsing JSON data containing a null value #scenario.'() {
         given: 'schema context'
+            def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
+        when: 'JSON data containing a null value is parsed'
+            objectUnderTest.parseData(ContentType.JSON, jsonData, schemaContext, parentNodeXpath, validateAndParse)
+        then: 'expected exception is thrown'
+            def thrownException = thrown(DataValidationException)
+        and: 'The exception contains the expected details'
+            assert thrownException.message == 'Data Validation Failed'
+            assert thrownException.details == expectedDetails
+        where: 'the following data were used'
+            scenario                     | jsonData                                                                                         | parentNodeXpath || expectedDetails
+            'leaf in a container'        | '{"bookstore": {"bookstore-name": null}}'                                                        | ''              || "Validation failed at xpath '/bookstore/bookstore-name' : Null value is not allowed for mandatory leaf 'bookstore-name'."
+            'key leaf in a list element' | '{"bookstore": {"bookstore-name": "Easons", "categories": [{"code": null}]}}'                    | ''              || "Validation failed at xpath '/bookstore/categories/code' : Null value is not allowed for mandatory leaf 'code'."
+            'leaf in list node'          | '{"categories": [{"code": "1", "name": null}]}'                                                  | '/bookstore'    || "Validation failed at xpath '/bookstore/categories/name' : Null value is not allowed for mandatory leaf 'name'."
+            'leaf-list node'             | '{"bookstore": {"categories": [{"code": "1", "books": [{"title": "Book", "authors": null}]}]}}'  | ''              || "Validation failed at xpath '/bookstore/categories/books/authors' : Null value is not allowed for mandatory leaf 'authors'."
+    }
+
+    def 'Parsing json data with an invalid integer: #scenario'() {
+        given: 'schema context'
+            def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
+        when: 'json data with a non-numeric value is parsed'
+            objectUnderTest.parseData(ContentType.JSON, jsonData, schemaContext, parentNodeXpath, validateAndParse)
+        then: 'expected exception is thrown'
+            def thrownException = thrown(DataValidationException)
+        and: 'contains the expected validation details'
+            assert thrownException.message == 'Data Validation Failed'
+            assert thrownException.details == expectedDetails
+        where: 'the following data were used'
+            scenario                             | jsonData                                                                                           | parentNodeXpath || expectedDetails
+            'leaf from typedef'                  | '{"bookstore": {"categories": [{"code": "1", "books": [{"title": "Book", "pub_year": "two"}]}]}}'  | ''              || "Validation failed at xpath '/bookstore/categories/books/pub_year' : Value 'two' is not a valid integer."
+            'leaf with value'                    | '{"bookstore": {"categories": [{"code": "1", "books": [{"title": "Book", "price": "two"}]}]}}'     | ''              || "Validation failed at xpath '/bookstore/categories/books/price' : Value 'two' is not a valid integer."
+            'unsigned leaf with negative value'  | '{"bookstore": {"categories": [{"code": "1", "books": [{"title": "Book", "price": "-5"}]}]}}'      | ''              || "Validation failed at xpath '/bookstore/categories/books/price' : Value '-5' is not a valid integer."
+            'leaf under parent xpath with value' | '{"categories": [{"code": "1", "books": [{"title": "Book", "price": "two"}]}]}'                    | '/bookstore'    || "Validation failed at xpath '/bookstore/categories/books/price' : Value 'two' is not a valid integer."
+    }
+
+    def 'Parsing json data where the fallback rule applies: #scenario.'() {
+        given: 'schema context'
+            def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
+        when: 'The json data is parsed'
+            objectUnderTest.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
+        then: 'expected exception is thrown'
+            def thrownException = thrown(DataValidationException)
+        and: 'The exception has the expected message'
+            assert thrownException.message == 'Data Validation Failed'
+        where: 'The following data were used'
+            scenario                                        | jsonData
+            'null value on a list node (not a leaf)'        | '{"bookstore": {"categories": null}}'
+            'null value on the root container (not a leaf)' | '{"bookstore": null}'
+            'value outside the modelled range'              | '{"bookstore": {"categories": [{"code": "1", "books": [{"title": "Book", "pub_year": 500}]}]}}'
+            'un-modelled field'                             | '{"bookstore": {"bookstore-names": "Easons"}}'
+            'malformed json'                                | '{" }'
+    }
+
+    def 'Parsing json data with space.'() {
+        given: 'for schema context'
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
         and: 'some json data with space in the array elements'
