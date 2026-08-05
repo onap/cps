@@ -25,17 +25,21 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
+import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
+import org.onap.cps.ncmp.rest.model.CmHandlesByModuleSetTag
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
+import org.onap.cps.ncmp.rest.model.RestModuleRefreshResponse
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
+import org.onap.cps.ncmp.rest.util.ModuleRefreshResponseMapper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
 import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
@@ -68,6 +72,9 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
 
     @SpringBean
     RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
+
+    @SpringBean
+    ModuleRefreshResponseMapper mockModuleRefreshResponseMapper = Mock()
 
     @SpringBean
     DeprecationHelper deprecationHelper = Mock()
@@ -320,6 +327,28 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             'additional properties are not requested'   | ''                           || false
             'additional properties are requested'       | '&outputDmiProperties=true'  || true
             'additional properties explicitly excluded' | '&outputDmiProperties=false' || false
+    }
+
+    def 'Refresh modules endpoint delegation.'() {
+        given: 'the deprecation helper maps the request to api parameters'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            deprecationHelper.mapOldConditionProperties(_) >> cmHandleQueryApiParameters
+        and: 'the facade returns a map grouped by module set tag'
+            def myMap = ['my tag': ['my reference']]
+            mockNetworkCmProxyInventoryFacade.refreshModules(cmHandleQueryApiParameters) >> myMap
+        and: 'the mapper converts that map into a response'
+            mockModuleRefreshResponseMapper.toRestModuleRefreshResponse(myMap) >>
+                new RestModuleRefreshResponse(cmHandlesByModuleSetTag: [new CmHandlesByModuleSetTag(moduleSetTag: 'from mapper')])
+        when: 'the refresh modules endpoint is invoked'
+            def response = mvc.perform(
+                post("$ncmpBasePathV1/ch/module/refresh")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content('{}')
+            ).andReturn().response
+        then: 'response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response is the one produced by the mapper'
+            assert response.contentAsString.contains('from mapper')
     }
 
     def expectedUnknownErrorResponse(cmHandle) {

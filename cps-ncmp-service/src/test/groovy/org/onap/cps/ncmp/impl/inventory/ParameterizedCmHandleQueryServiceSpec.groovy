@@ -138,6 +138,22 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             1 * cmHandleQueries.queryCmHandlesByTrustLevel(['trustLevel': 'COMPLETE'] as Map, false)
     }
 
+    def 'Query cm handle details for inventory (southbound) with a trust level condition.'() {
+        given: 'a trust level condition property'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = createConditionProperties('cmHandleWithTrustLevel', [['trustLevel': 'COMPLETE'] as Map])
+            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+        and: 'the trust level query returns a matching cm handle id'
+            cmHandleQueries.queryCmHandlesByTrustLevel(['trustLevel': 'COMPLETE'] as Map, false) >> ['ch1']
+        and: 'the inventory persistence returns the matching cm handle object'
+            mockInventoryPersistence.getYangModelCmHandles(['ch1']) >> [new YangModelCmHandle(id: 'ch1', additionalProperties: [], publicProperties: [])]
+        when: 'the southbound inventory query is executed'
+            def result = objectUnderTest.queryInventoryForCmHandles(cmHandleQueryParameters).collectList().block()
+        then: 'the trust level condition is supported and the matching cm handle is returned'
+            assert result.size() == 1
+            assert result[0].cmHandleId == 'ch1'
+    }
+
     def 'Query cm handle details with module names when #scenario from query.'() {
         given: 'a modules condition property'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()

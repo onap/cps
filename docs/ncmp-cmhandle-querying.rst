@@ -205,7 +205,7 @@ The CM Handles returned will have this service in at least one of the following 
           "conditionName": "cmHandleWithDmiPlugin",
           "conditionParameters": [
             {
-              "dmi-service-name": "my-dmi-plugin"
+              "dmiPluginName": "my-dmi-plugin"
             }
           ]
         }

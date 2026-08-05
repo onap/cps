@@ -26,10 +26,13 @@ package org.onap.cps.ncmp.impl;
 
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateCmHandleQueryParameters;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
@@ -102,8 +105,6 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
         }
     }
 
-
-
     @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleReference,
                                                                                 final String moduleName,
@@ -114,6 +115,20 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
         } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public Map<String, Collection<String>> refreshModules(
+        final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+        final Map<String, Collection<String>> cmHandleReferencesByModuleSetTag = new LinkedHashMap<>();
+        southboundCmHandleSearch(cmHandleQueryApiParameters).toIterable().forEach(ncmpServiceCmHandle -> {
+            final String moduleSetTag = ncmpServiceCmHandle.getModuleSetTag();
+            final String cmHandleReference = StringUtils.isNotBlank(ncmpServiceCmHandle.getAlternateId())
+                ? ncmpServiceCmHandle.getAlternateId() : ncmpServiceCmHandle.getCmHandleId();
+            cmHandleReferencesByModuleSetTag.computeIfAbsent(moduleSetTag, tag -> new ArrayList<>())
+                .add(cmHandleReference);
+        });
+        return cmHandleReferencesByModuleSetTag;
     }
 
     @Override
