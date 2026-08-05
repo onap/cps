@@ -34,6 +34,7 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse.Status;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.inventory.models.RefreshCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyInventoryApi;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
@@ -140,10 +141,10 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
             final CmHandleQueryParameters cmHandleQueryParameters) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
-        final Map<String, Collection<String>> cmHandleReferencesByModuleSetTag =
+        final Map<String, List<RefreshCmHandle>> refreshCmHandlesByModuleSetTag =
                 networkCmProxyInventoryFacade.refreshModules(cmHandleQueryApiParameters);
         final RestModuleRefreshResponse restModuleRefreshResponse =
-                moduleRefreshResponseMapper.toRestModuleRefreshResponse(cmHandleReferencesByModuleSetTag);
+                moduleRefreshResponseMapper.toRestModuleRefreshResponse(refreshCmHandlesByModuleSetTag);
         return ResponseEntity.ok(restModuleRefreshResponse);
     }
 

@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.impl.inventory
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
+import org.onap.cps.ncmp.api.exceptions.ServerNcmpException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
@@ -391,27 +392,65 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         given: 'a valid southbound query'
             def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
                 new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
-        and: 'the query service returns cm handles across two module set tags, one handle without an alternate id'
-            mockParameterizedCmHandleQueryService.queryInventoryForCmHandles(_) >> Flux.fromIterable([
-                new NcmpServiceCmHandle(cmHandleId: 'ch-1', moduleSetTag: 'tag-A', alternateId: 'alt-1'),
-                new NcmpServiceCmHandle(cmHandleId: 'ch-2', moduleSetTag: 'tag-A', alternateId: ''),
-                new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'tag-B', alternateId: 'alt-3')])
+        and: 'the lightweight query returns handles across two tags; tag-A has a LOCKED handle before a READY one, one without an alternate id'
+            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >> Flux.fromIterable([
+                new NcmpServiceCmHandle(cmHandleId: 'ch-1', moduleSetTag: 'tag-A', alternateId: 'alt-1', cmHandleStatus: 'LOCKED'),
+                new NcmpServiceCmHandle(cmHandleId: 'ch-2', moduleSetTag: 'tag-A', alternateId: '', cmHandleStatus: 'READY'),
+                new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'tag-B', alternateId: 'alt-3', cmHandleStatus: 'READY')])
         when: 'refresh modules is called'
             def result = objectUnderTest.refreshModules(apiParams)
-        then: 'the result groups references by module set tag'
+        then: 'the result groups the handles by module set tag'
             assert result.size() == 2
-        and: 'tag-A uses the alternate id where present and the cm handle id otherwise'
-            assert result['tag-A'] == ['alt-1', 'ch-2']
-        and: 'tag-B uses the alternate id'
-            assert result['tag-B'] == ['alt-3']
+            assert result['tag-A'].size() == 2
+            assert result['tag-B'].size() == 1
+        and: 'references use the alternate id where present and the cm handle id otherwise'
+            assert result['tag-A'].cmHandleReference == ['alt-1', 'ch-2']
+            assert result['tag-B'].cmHandleReference == ['alt-3']
+        and: 'each handle carries its current state'
+            assert result['tag-A'].cmHandleState == ['LOCKED', 'READY']
+        and: 'the first READY handle in each tag is the one selected for refresh'
+            assert result['tag-A'].find { it.cmHandleReference == 'ch-2' }.selectedForRefresh
+            assert !result['tag-A'].find { it.cmHandleReference == 'alt-1' }.selectedForRefresh
+            assert result['tag-B'][0].selectedForRefresh
+    }
+
+    def 'Refresh modules when a module set tag has no READY cm handle.'() {
+        given: 'a valid southbound query'
+            def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
+                new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
+        and: 'the lightweight query returns only non-READY handles'
+            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >> Flux.fromIterable([
+                new NcmpServiceCmHandle(cmHandleId: 'ch-1', moduleSetTag: 'tag-A', alternateId: 'alt-1', cmHandleStatus: 'LOCKED'),
+                new NcmpServiceCmHandle(cmHandleId: 'ch-2', moduleSetTag: 'tag-A', alternateId: 'alt-2', cmHandleStatus: 'ADVISED')])
+        when: 'refresh modules is called'
+            def result = objectUnderTest.refreshModules(apiParams)
+        then: 'no cm handle is selected for refresh'
+            assert result['tag-A'].every { !it.selectedForRefresh }
+        and: 'each handle still reports its state'
+            assert result['tag-A'].cmHandleState == ['LOCKED', 'ADVISED']
+    }
+
+    def 'Attempt to refresh modules when the top-level cm handle status is not available (not using required model).'() {
+        given: 'a valid southbound query'
+            def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
+                new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
+        and: 'the lightweight query returns a cm handle without a top-level status (older inventory model)'
+            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >> Flux.fromIterable([
+                new NcmpServiceCmHandle(cmHandleId: 'ch-1', moduleSetTag: 'tag-A', alternateId: 'alt-1', cmHandleStatus: null)])
+        when: 'refresh modules is called'
+            objectUnderTest.refreshModules(apiParams)
+        then: 'a server ncmp exception is thrown indicating the model version dependency'
+            def thrownException = thrown(ServerNcmpException)
+            assert thrownException.message.contains('not supported')
+            assert thrownException.details.contains('r20260423')
     }
 
     def 'Refresh modules with no matching cm handles.'() {
         given: 'a valid southbound query'
             def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
                 new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
-        and: 'the query service returns no cm handles'
-            mockParameterizedCmHandleQueryService.queryInventoryForCmHandles(_) >> Flux.empty()
+        and: 'the lightweight query returns no cm handles'
+            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >> Flux.empty()
         when: 'refresh modules is called'
             def result = objectUnderTest.refreshModules(apiParams)
         then: 'the result is empty'

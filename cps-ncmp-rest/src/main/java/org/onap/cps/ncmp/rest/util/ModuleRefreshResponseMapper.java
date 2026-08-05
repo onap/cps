@@ -21,10 +21,11 @@
 package org.onap.cps.ncmp.rest.util;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import org.onap.cps.ncmp.api.inventory.models.RefreshCmHandle;
 import org.onap.cps.ncmp.rest.model.CmHandlesByModuleSetTag;
+import org.onap.cps.ncmp.rest.model.ModuleRefreshCmHandle;
 import org.onap.cps.ncmp.rest.model.RestModuleRefreshResponse;
 import org.springframework.stereotype.Component;
 
@@ -32,18 +33,28 @@ import org.springframework.stereotype.Component;
 public class ModuleRefreshResponseMapper {
 
     /**
-     * Map matched cm handle references grouped by module set tag to a RestModuleRefreshResponse object.
+     * Map the matched CM Handles grouped by module set tag to a RestModuleRefreshResponse object.
+     * Each CM Handle carries its reference and current state, and 'selectedForRefresh' marks the single sample
+     * (first READY CM Handle) that will be refreshed for the module set tag.
      *
-     * @param cmHandleReferencesByModuleSetTag map of module set tag to the collection of cm handle references
+     * @param refreshCmHandlesByModuleSetTag map of module set tag to the matched CM Handles
      * @return the module refresh response, with an empty array when no cm handles matched
      */
     public RestModuleRefreshResponse toRestModuleRefreshResponse(
-            final Map<String, Collection<String>> cmHandleReferencesByModuleSetTag) {
+            final Map<String, List<RefreshCmHandle>> refreshCmHandlesByModuleSetTag) {
         final List<CmHandlesByModuleSetTag> cmHandlesByModuleSetTagList = new ArrayList<>();
-        cmHandleReferencesByModuleSetTag.forEach((moduleSetTag, cmHandleReferences) -> {
+        refreshCmHandlesByModuleSetTag.forEach((moduleSetTag, refreshCmHandles) -> {
             final CmHandlesByModuleSetTag cmHandlesByModuleSetTag = new CmHandlesByModuleSetTag();
             cmHandlesByModuleSetTag.setModuleSetTag(moduleSetTag);
-            cmHandlesByModuleSetTag.setCmHandles(new ArrayList<>(cmHandleReferences));
+            final List<ModuleRefreshCmHandle> moduleRefreshCmHandles = new ArrayList<>(refreshCmHandles.size());
+            for (final RefreshCmHandle refreshCmHandle : refreshCmHandles) {
+                final ModuleRefreshCmHandle moduleRefreshCmHandle = new ModuleRefreshCmHandle();
+                moduleRefreshCmHandle.setCmHandleReference(refreshCmHandle.cmHandleReference());
+                moduleRefreshCmHandle.setCmHandleState(refreshCmHandle.cmHandleState());
+                moduleRefreshCmHandle.setSelectedForRefresh(refreshCmHandle.selectedForRefresh());
+                moduleRefreshCmHandles.add(moduleRefreshCmHandle);
+            }
+            cmHandlesByModuleSetTag.setCmHandles(moduleRefreshCmHandles);
             cmHandlesByModuleSetTagList.add(cmHandlesByModuleSetTag);
         });
         final RestModuleRefreshResponse restModuleRefreshResponse = new RestModuleRefreshResponse();
