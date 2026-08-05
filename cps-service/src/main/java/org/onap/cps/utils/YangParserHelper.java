@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,6 @@
 package org.onap.cps.utils;
 
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.stream.JsonReader;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.StringReader;
@@ -31,11 +30,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.StringTokenizer;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.transform.TransformerException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
@@ -65,6 +68,7 @@ import org.opendaylight.yangtools.yang.model.util.SchemaInferenceStack;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class YangParserHelper {
@@ -72,6 +76,8 @@ public class YangParserHelper {
     static final String DATA_ROOT_NODE_NAMESPACE = "urn:ietf:params:xml:ns:netconf:base:1.0";
     static final String DATA_ROOT_NODE_TAG_NAME = "data";
     static final String DATA_VALIDATION_FAILURE_MESSAGE = "Data Validation Failed";
+    private static final String PATH_DELIMITER = "/";
+    private static final String DATA_SCHEMA_NODE = "dataSchemaNode";
     static final boolean VALIDATE_ONLY = true;
     static final boolean VALIDATE_AND_PARSE = false;
 
@@ -115,7 +121,7 @@ public class YangParserHelper {
                         ));
         final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
                 .from(dataContainerNodeBuilder);
-        final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
+        final ValueRecordingJsonReader jsonReader = new ValueRecordingJsonReader(new StringReader(jsonData));
         final JsonParserStream jsonParserStream;
 
         if (parentNodeXpath.isEmpty()) {
@@ -133,13 +139,66 @@ public class YangParserHelper {
 
         try (jsonParserStream) {
             jsonParserStream.parse(jsonReader);
-        } catch (final IOException | JsonSyntaxException | IllegalStateException | IllegalArgumentException exception) {
-            throw new DataValidationException(
-                    DATA_VALIDATION_FAILURE_MESSAGE, "Failed to parse json data. " + exception.getMessage(), exception);
+        } catch (final IOException | JsonSyntaxException | IllegalStateException | IllegalArgumentException
+                       | NullPointerException exception) {
+            throw JsonParseFailureTranslator.translate(
+                buildJsonDataValidationException(exception, jsonReader, schemaContext, parentNodeXpath));
         }
         return dataContainerNodeBuilder.build();
     }
 
+    private static JsonNodeFailureContext buildJsonDataValidationException(final Exception exception,
+                                                                      final ValueRecordingJsonReader jsonReader,
+                                                                      final SchemaContext schemaContext,
+                                                                      final String parentNodeXpath) {
+        final List<String> nodeNames = getFailingNodeName(jsonReader.getPath(), parentNodeXpath);
+        if (nodeNames.isEmpty()) {
+            return new JsonNodeFailureContext(exception, null, PATH_DELIMITER, "",
+                jsonReader.getLastStringValue(), jsonReader.isLastValueNull(),
+                Set.copyOf(jsonReader.getSeenFieldNames()));
+        }
+        final String xpath = PATH_DELIMITER + String.join(PATH_DELIMITER, nodeNames);
+        final String nodeName = nodeNames.get(nodeNames.size() - 1);
+        DataSchemaNode dataSchemaNode = null;
+        try {
+            dataSchemaNode = (DataSchemaNode) findDataSchemaNodeAndIdentifiersByXpathNodeIdSequence(
+                nodeNames, schemaContext.getChildNodes(), new ArrayList<>()).get(DATA_SCHEMA_NODE);
+        } catch (final DataValidationException schemaLookupException) {
+            // The JSON path did not resolve to a known schema node (e.g. an
+            // unrecognised field name). A null schema node is still forwarded so the
+            // FallbackRule can produce a useful error message for the caller.
+            log.debug("Schema node not found during JSON parse failure analysis." + schemaLookupException);
+        }
+        return new JsonNodeFailureContext(exception, dataSchemaNode, xpath, nodeName,
+            jsonReader.getLastStringValue(), jsonReader.isLastValueNull(),
+            Set.copyOf(jsonReader.getSeenFieldNames()));
+    }
+
+    private static List<String> getFailingNodeName(final String jsonPath, final String parentNodeXpath) {
+        final List<String> nodeNames = new ArrayList<>();
+        if (!StringUtils.isEmpty(parentNodeXpath)) {
+            nodeNames.addAll(xpathToNodeIdSequence(parentNodeXpath));
+        }
+        final StringTokenizer jsonPathTokenizer = new StringTokenizer(jsonPath, ".");
+        while (jsonPathTokenizer.hasMoreTokens()) {
+            final String jsonPathToken = jsonPathTokenizer.nextToken();
+            if (!"$".equals(jsonPathToken)) {
+                nodeNames.add(withoutListIndex(jsonPathToken));
+            }
+        }
+        return nodeNames;
+    }
+
+    private static String withoutListIndex(final String jsonPathToken) {
+        final int startOfListIndex = jsonPathToken.indexOf('[');
+        if (startOfListIndex < 0) {
+            return jsonPathToken;
+        }
+        return jsonPathToken.substring(0, startOfListIndex);
+    }
+
+
+    @SuppressFBWarnings(value = "DCN_NULLPOINTER_EXCEPTION", justification = "Problem originates in 3PP code")
     private ContainerNode parseXmlData(final String xmlData,
                                        final SchemaContext schemaContext,
                                        final String parentNodeXpath) {
