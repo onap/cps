@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "bb83cc70-5f44-47e7-b79a-b03ebb8768d0",
+    "_postman_id": "90b88ed8-c2fd-4f21-a637-9fb220fd6262",
     "name": "CPS",
-    "description": "<img src=\"https://content.pstmn.io/bfbd86c2-7aa4-4afd-bd4a-207de1305bb7/Q1BTTG9nby5wbmc=\">\n\n# [CPS ONAP Documentation](https://docs.onap.org/projects/onap-cps/en/latest/index.html)\n\n# [DMI ONAP Documentation](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html)\n\n### How-to\n\nBuild CPS docker images with maven:\n\n`mvn clean install`\n\nor\n\n`mvn clean install -DskipTests`\n\nNavigate to docker-compose folder:\n\n`cd .\\docker-compose\\`\n\nBring up docker containers using commands found in docker-compose.yaml or run CPS services including dmi plugin\n\n`docker-compose --profile dmi-service up -d`\n\n### CPS-Enviroment\n\nTo enable the CPS enviroment, go to the top right of the screen in Postman and click envrioments. Import the CPS-envrioment file from the Postman Collections file in CPS.\n\n**To utilise NCMP-DMI-Stub endpoints begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`\n\n# CPS Core Example\n\n- Create dataspace\n    \n- Verify dataspace exists\n    \n- etc...\n    \n\n# CPS-NCMP Example\n\n- Create CM handles\n    \n- Verify CM handles exist\n    \n- etc...",
+    "description": "<img src=\"https://content.pstmn.io/bfbd86c2-7aa4-4afd-bd4a-207de1305bb7/Q1BTTG9nby5wbmc=\">\n\n# [CPS ONAP Documentation](https://docs.onap.org/projects/onap-cps/en/latest/index.html)\n\n# [DMI ONAP Documentation](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "5892346",
-    "_collection_link": "https://go.postman.co/collection/5892346-bb83cc70-5f44-47e7-b79a-b03ebb8768d0?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/5892346-90b88ed8-c2fd-4f21-a637-9fb220fd6262?source=collection_link"
   },
   "item": [
     {
@@ -952,25 +952,12 @@
               "item": [
                 {
                   "name": "CM handle registration for dmi-stub-1",
-                  "event": [
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "exec": [
-                          ""
-                        ],
-                        "type": "text/javascript",
-                        "packages": {},
-                        "requests": {}
-                      }
-                    }
-                  ],
                   "request": {
                     "method": "POST",
                     "header": [],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\r\n  \"dmiPlugin\": \"http://{{DMI_HOST_1}}:{{DMI_PORT_1}}\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-1\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X1\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"red\"         },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-2\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X2\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"purple\"           },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-3-never-ready\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X3\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"moduleSetTag\": \"errorTag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
+                      "raw": "{\r\n  \"dmiPlugin\": \"http://{{DMI_HOST_1}}:{{DMI_PORT_1}}\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-1\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X1\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"red\"         },\r\n      \"moduleSetTag\": \"tagA\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-2\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X2\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"red\"           },\r\n      \"moduleSetTag\": \"tagA\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-3\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X3\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"red\"           },\r\n      \"moduleSetTag\": \"tagA\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n     {\r\n      \"cmHandle\": \"cm-handle-11\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X11\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"green\"         },\r\n      \"moduleSetTag\": \"tagB\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-12\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X12\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"green\"           },\r\n      \"moduleSetTag\": \"tagB\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-13\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X13\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"red\"           },\r\n      \"moduleSetTag\": \"tagB\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-99-never-ready\",\r\n      \"alternateId\": \"/Subnetwork=Europe/ManagedElement=X99\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"red\"           },\r\n      \"moduleSetTag\": \"errorTag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -1087,7 +1074,7 @@
                     "header": [],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\r\n  \"dmiPlugin\": \"http://{{DMI_HOST_1}}:{{DMI_PORT_1}}\",\r\n  \"removedCmHandles\": [ \"cm-handle-1\", \"cm-handle-2\", \"cm-handle-3-never-ready\"]\r\n}",
+                      "raw": "{\r\n  \"dmiPlugin\": \"http://{{DMI_HOST_1}}:{{DMI_PORT_1}}\",\r\n  \"removedCmHandles\": [ \"cm-handle-1\", \"cm-handle-2\", \"cm-handle-3\", \"cm-handle-11\", \"cm-handle-12\", \"cm-handle-13\", \"cm-handle-99-never-ready\"]\r\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -1190,7 +1177,7 @@
                   "response": []
                 },
                 {
-                  "name": "Refresh Modules",
+                  "name": "Refresh Modules (color = red)",
                   "request": {
                     "method": "POST",
                     "header": [],
@@ -1313,36 +1300,12 @@
                 },
                 {
                   "name": "CM handle registration for dmi-stub-2",
-                  "event": [
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "exec": [
-                          ""
-                        ],
-                        "type": "text/javascript",
-                        "packages": {},
-                        "requests": {}
-                      }
-                    },
-                    {
-                      "listen": "test",
-                      "script": {
-                        "exec": [
-                          ""
-                        ],
-                        "type": "text/javascript",
-                        "packages": {},
-                        "requests": {}
-                      }
-                    }
-                  ],
                   "request": {
                     "method": "POST",
                     "header": [],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\r\n  \"dmiPlugin\": \"http://{{DMI_HOST_2}}:{{DMI_PORT_2}}\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-3\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X3\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"red\"           },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-4\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X4\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"green\"     },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
+                      "raw": "{\r\n  \"dmiPlugin\": \"http://{{DMI_HOST_2}}:{{DMI_PORT_2}}\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-101\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X101\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"red\"           },\r\n      \"moduleSetTag\": \"tagA\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-102\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X102\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"color\": \"green\"     },\r\n      \"moduleSetTag\": \"tagB\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -1420,25 +1383,12 @@
                 },
                 {
                   "name": "CM handle de-registration for dmi-stub-2",
-                  "event": [
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "exec": [
-                          ""
-                        ],
-                        "type": "text/javascript",
-                        "packages": {},
-                        "requests": {}
-                      }
-                    }
-                  ],
                   "request": {
                     "method": "POST",
                     "header": [],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\r\n  \"dmiPlugin\": \"http://{{DMI_HOST_2}}:{{DMI_PORT_2}}\",\r\n  \"removedCmHandles\": [\r\n    \"cm-handle-3\",\r\n    \"cm-handle-4\"\r\n  ]\r\n}",
+                      "raw": "{\r\n  \"dmiPlugin\": \"http://{{DMI_HOST_2}}:{{DMI_PORT_2}}\",\r\n  \"removedCmHandles\": [\r\n    \"cm-handle-101\",\r\n    \"cm-handle-102\"\r\n  ]\r\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -1477,13 +1427,17 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "{{basic_auth_171s}}",
-                        "type": "text"
+                        "value": "{{basic_auth_171s}}"
                       }
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": ""
+                      "raw": "",
+                      "options": {
+                        "raw": {
+                          "language": "text"
+                        }
+                      }
                     },
                     "url": {
                       "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules",
@@ -1504,7 +1458,7 @@
                   "response": []
                 },
                 {
-                  "name": "Get module definitions",
+                  "name": "Get module 0 definition",
                   "protocolProfileBehavior": {
                     "disableBodyPruning": true
                   },
@@ -1513,8 +1467,7 @@
                     "header": [
                       {
                         "key": "Authorization",
-                        "value": "{{basic_auth_171s}}",
-                        "type": "text"
+                        "value": "{{basic_auth_171s}}"
                       }
                     ],
                     "body": {
@@ -1527,7 +1480,7 @@
                       }
                     },
                     "url": {
-                      "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules/definitions",
+                      "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules/definitions?module-name=module0&revision=2024-01-01",
                       "protocol": "http",
                       "host": [
                         "{{CPS_HOST}}"
@@ -1540,6 +1493,16 @@
                         "cm-handle-1",
                         "modules",
                         "definitions"
+                      ],
+                      "query": [
+                        {
+                          "key": "module-name",
+                          "value": "module0"
+                        },
+                        {
+                          "key": "revision",
+                          "value": "2024-01-01"
+                        }
                       ]
                     }
                   },
@@ -3008,12 +2971,12 @@
               }
             },
             "url": {
-              "raw": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/data?topic=ncmp-async-m2m&requestId=4753fc1f-7de2-449a-b306-a6204b5370b33",
+              "raw": "http://{{CPS_HOST}}:{{DMI_STUB_1_PORT}}/dmi/v1/data?topic=ncmp-async-m2m&requestId=4753fc1f-7de2-449a-b306-a6204b5370b33",
               "protocol": "http",
               "host": [
-                "{{DMI_HOST}}"
+                "{{CPS_HOST}}"
               ],
-              "port": "{{DMI_PORT}}",
+              "port": "{{DMI_STUB_1_PORT}}",
               "path": [
                 "dmi",
                 "v1",
@@ -3034,13 +2997,13 @@
           "response": []
         },
         {
-          "name": "Get module resources",
+          "name": "Get module resources for TagA",
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{}",
+              "raw": " {\r\n    \"moduleSetTag\": \"tagA\"\r\n  }",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3048,12 +3011,12 @@
               }
             },
             "url": {
-              "raw": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/ch/cm/moduleResources",
+              "raw": "http://{{CPS_HOST}}:{{DMI_STUB_1_PORT}}/dmi/v1/ch/cm/moduleResources",
               "protocol": "http",
               "host": [
-                "{{DMI_HOST}}"
+                "{{CPS_HOST}}"
               ],
-              "port": "{{DMI_PORT}}",
+              "port": "{{DMI_STUB_1_PORT}}",
               "path": [
                 "dmi",
                 "v1",
@@ -3077,8 +3040,7 @@
             "header": [
               {
                 "key": "Accept",
-                "value": "application/json",
-                "type": "text"
+                "value": "application/json"
               }
             ],
             "body": {
@@ -3091,12 +3053,12 @@
               }
             },
             "url": {
-              "raw": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/ch/cm-bookStore/modules",
+              "raw": "http://{{CPS_HOST}}:{{DMI_STUB_1_PORT}}/dmi/v1/ch/cm-bookStore/modules",
               "protocol": "http",
               "host": [
-                "{{DMI_HOST}}"
+                "{{CPS_HOST}}"
               ],
-              "port": "{{DMI_PORT}}",
+              "port": "{{DMI_STUB_1_PORT}}",
               "path": [
                 "dmi",
                 "v1",
@@ -3105,6 +3067,29 @@
                 "modules"
               ]
             }
+          },
+          "response": []
+        },
+        {
+          "name": "Simulate Module Content Change (DMI stub)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{DMI_STUB_1_PORT}}/dmi/v1/simulateModuleContentChange/tagA",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{DMI_STUB_1_PORT}}",
+              "path": [
+                "dmi",
+                "v1",
+                "simulateModuleContentChange",
+                "tagA"
+              ]
+            },
+            "description": "Test/demo only: tells the DMI stub to change the content of one module (module0) for the given module set tag, keeping the module name and revision the same. A subsequent Refresh Modules call will detect and apply the change. Use a real stub tag: tagA..tagE."
           },
           "response": []
         }

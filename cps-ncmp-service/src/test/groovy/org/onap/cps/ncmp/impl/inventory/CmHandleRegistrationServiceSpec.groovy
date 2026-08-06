@@ -46,6 +46,7 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse.Status
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_REFRESH
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 
 class CmHandleRegistrationServiceSpec extends Specification {
@@ -71,6 +72,33 @@ class CmHandleRegistrationServiceSpec extends Specification {
 
         // always can find all cm handles in DB
         mockInventoryPersistence.getYangModelCmHandles(_) >> { args -> args[0].collect { new YangModelCmHandle(id:it) } }
+    }
+
+    def 'Set cm handles to locked for module refresh.'() {
+        given: 'a READY sample, a non-READY handle and a missing handle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-ready') >> new YangModelCmHandle(id: 'ch-ready', compositeState: new CompositeState(cmHandleState: CmHandleState.READY))
+            mockInventoryPersistence.getYangModelCmHandle('ch-locked') >> new YangModelCmHandle(id: 'ch-locked', compositeState: new CompositeState(cmHandleState: CmHandleState.LOCKED))
+            mockInventoryPersistence.getYangModelCmHandle('ch-missing') >> { throw new DataNodeNotFoundException('dataspace', 'anchor', 'ch-missing') }
+        when: 'setting the cm handles to locked for module refresh'
+            objectUnderTest.setCmHandlesToLockedForModuleRefresh(['ch-ready', 'ch-locked', 'ch-missing'])
+        then: 'only the READY cm handle is moved to LOCKED with a MODULE_REFRESH lock reason'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch({ batch ->
+                assert batch.size() == 1
+                def lockedCmHandle = batch.keySet()[0]
+                assert lockedCmHandle.id == 'ch-ready'
+                assert batch[lockedCmHandle] == CmHandleState.LOCKED
+                assert lockedCmHandle.compositeState.lockReason.lockReasonCategory == MODULE_REFRESH
+                return true
+            })
+    }
+
+    def 'Set cm handles to locked for module refresh when none are READY.'() {
+        given: 'a non-READY cm handle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-locked') >> new YangModelCmHandle(id: 'ch-locked', compositeState: new CompositeState(cmHandleState: CmHandleState.LOCKED))
+        when: 'setting the cm handle to locked for module refresh'
+            objectUnderTest.setCmHandlesToLockedForModuleRefresh(['ch-locked'])
+        then: 'no state update is performed'
+            0 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_)
     }
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {

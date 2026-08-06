@@ -27,6 +27,7 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_READY;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_REFRESH;
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
@@ -309,6 +310,37 @@ public class CmHandleRegistrationService {
         } catch (final Exception exception) {
             log.error("Unable to de-register cm-handle id : {} , caused by : {}", cmHandleId, exception.getMessage());
             return CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception);
+        }
+    }
+
+    /**
+     * Lock the given (sample) CM handles for a module refresh by setting them to LOCKED with a MODULE_REFRESH lock
+     * reason. Only CM handles that are currently READY are locked; others (or missing ones) are skipped. The
+     * module-sync watchdog subsequently resets these to ADVISED (retaining the lock reason) and refreshes their
+     * module content.
+     *
+     * @param cmHandleIds the cm handle ids of the samples to lock for refresh
+     */
+    public void setCmHandlesToLockedForModuleRefresh(final Collection<String> cmHandleIds) {
+        final Collection<YangModelCmHandle> cmHandlesToLock = new ArrayList<>(cmHandleIds.size());
+        for (final String cmHandleId : cmHandleIds) {
+            try {
+                final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+                if (yangModelCmHandle.getCompositeState().getCmHandleState() == CmHandleState.READY) {
+                    yangModelCmHandle.setCompositeState(new CompositeStateBuilder()
+                        .withCmHandleState(CmHandleState.READY)
+                        .withLockReason(MODULE_REFRESH, "Refresh requested").build());
+                    cmHandlesToLock.add(yangModelCmHandle);
+                } else {
+                    log.warn("Skipping module refresh lock for CM handle '{}' as it is not in READY state", cmHandleId);
+                }
+            } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
+                log.warn("Skipping module refresh lock for CM handle '{}' as it does not exist", cmHandleId);
+            }
+        }
+        if (!cmHandlesToLock.isEmpty()) {
+            log.info("Moving {} cm handle(s) into locked (for module refresh) state", cmHandlesToLock.size());
+            updateCmHandleStateBatch(cmHandlesToLock, CmHandleState.LOCKED);
         }
     }
 

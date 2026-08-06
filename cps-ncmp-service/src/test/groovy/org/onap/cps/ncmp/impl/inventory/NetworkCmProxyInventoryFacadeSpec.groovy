@@ -412,6 +412,8 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result['tag-A'].find { it.cmHandleReference == 'ch-2' }.selectedForRefresh
             assert !result['tag-A'].find { it.cmHandleReference == 'alt-1' }.selectedForRefresh
             assert result['tag-B'][0].selectedForRefresh
+        and: 'only the selected samples (one per tag) are locked for module refresh'
+            1 * mockCmHandleRegistrationService.setCmHandlesToLockedForModuleRefresh(['ch-2', 'ch-3'])
     }
 
     def 'Refresh modules when a module set tag has no READY cm handle.'() {
@@ -428,6 +430,8 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result['tag-A'].every { !it.selectedForRefresh }
         and: 'each handle still reports its state'
             assert result['tag-A'].cmHandleState == ['LOCKED', 'ADVISED']
+        and: 'nothing is locked for module refresh'
+            0 * mockCmHandleRegistrationService.setCmHandlesToLockedForModuleRefresh(_)
     }
 
     def 'Attempt to refresh modules when the top-level cm handle status is not available (not using required model).'() {
