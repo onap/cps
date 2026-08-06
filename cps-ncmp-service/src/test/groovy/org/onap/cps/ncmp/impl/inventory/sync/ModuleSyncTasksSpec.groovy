@@ -40,6 +40,8 @@ import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_REFRESH
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_REFRESH_FAILED
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
 
@@ -109,6 +111,7 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'module sync service attempts to sync/upgrade the CM handle and throws an exception'
             mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { throw new Exception('some exception') }
             mockModuleSyncService.syncAndUpgradeSchemaSet(_) >> { throw new Exception('some exception') }
+            mockModuleSyncService.refreshModuleContent(_) >> { throw new Exception('some exception') }
         and: 'cm handle is in the in-progress map'
             moduleSyncStartedOnCmHandles.put('cm-handle', 'Started')
         when: 'module sync is executed'
@@ -122,10 +125,12 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'the cm handle is removed from the in-progress map despite the failure'
             assert moduleSyncStartedOnCmHandles.get('cm-handle') == null
         where:
-            scenario         | lockReasonCategory    | lockReasonDetails                              || expectedLockReasonCategory
-            'module sync'    | MODULE_SYNC_FAILED    | 'some lock details'                            || MODULE_SYNC_FAILED
-            'module upgrade' | MODULE_UPGRADE_FAILED | 'Upgrade to ModuleSetTag: some-module-set-tag' || MODULE_UPGRADE_FAILED
-            'module upgrade' | MODULE_UPGRADE        | 'Upgrade in progress'                          || MODULE_UPGRADE_FAILED
+            scenario          | lockReasonCategory    | lockReasonDetails                              || expectedLockReasonCategory
+            'module sync'     | MODULE_SYNC_FAILED    | 'some lock details'                            || MODULE_SYNC_FAILED
+            'module upgrade'  | MODULE_UPGRADE_FAILED | 'Upgrade to ModuleSetTag: some-module-set-tag' || MODULE_UPGRADE_FAILED
+            'module upgrade'  | MODULE_UPGRADE        | 'Upgrade in progress'                          || MODULE_UPGRADE_FAILED
+            'module refresh'  | MODULE_REFRESH        | 'some lock details'                            || MODULE_REFRESH_FAILED
+            'refresh failed'  | MODULE_REFRESH_FAILED | 'some lock details'                            || MODULE_REFRESH_FAILED
     }
 
     def 'Module sync succeeds even if a handle gets deleted during module sync.'() {
@@ -245,6 +250,28 @@ class ModuleSyncTasksSpec extends Specification {
             scenario                | lockReasonCategory
             'module upgrade'        | MODULE_UPGRADE
             'module upgrade failed' | MODULE_UPGRADE_FAILED
+    }
+
+    def 'Refresh module content when CM handle is in a refresh state for #scenario'() {
+        given: 'a CM handle in a refresh lock state'
+            def cmHandle = cmHandleByIdAndState('cm-handle', CmHandleState.ADVISED)
+            cmHandle.compositeState.setLockReason(CompositeState.LockReason.builder().lockReasonCategory(lockReasonCategory).build())
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle') >> cmHandle
+        when: 'module sync is executed'
+            objectUnderTest.performModuleSync(['cm-handle'])
+        then: 'the module sync service refreshes the module content for the CM handle'
+            1 * mockModuleSyncService.refreshModuleContent(_) >> { args -> assert args[0].id == 'cm-handle' }
+        and: 'neither create nor upgrade is invoked'
+            0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_)
+            0 * mockModuleSyncService.syncAndUpgradeSchemaSet(_)
+        and: 'the state handler moves the CM handle to READY'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
+                assertBatch(args, ['cm-handle'], CmHandleState.READY)
+            }
+        where: 'the following refresh lock reasons are used'
+            scenario                | lockReasonCategory
+            'module refresh'        | MODULE_REFRESH
+            'module refresh failed' | MODULE_REFRESH_FAILED
     }
 
     def 'IMap entries are cleaned up even when state persistence fails.'() {

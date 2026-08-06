@@ -152,6 +152,28 @@ step 6 is the isolated "switch on".
 - Now end-to-end works; the watchdog picks the sample handles up and refreshes them,
   and the sample shows the refresh/sync state in the response.
 
+**Commit 7 (follow-up) — Cross-instance yangSchema cache invalidation.**
+- Problem: `refreshModuleContent` updates YANG resource content in place and evicts
+  the `yangSchema` cache (parsed `YangTextSchemaSourceSet`) — but that cache is a
+  local per-instance Caffeine cache (`type: caffeine`, `expireAfterAccess=10m`). So
+  only the instance that processed the refresh gets a fresh parsed model; other
+  instances keep a stale parsed schema for that schema set (a hot entry can stay
+  stale well beyond the 10m idle TTL). The in-place DB update and the
+  `modules/definitions` read path are already correct (DB-direct); this is purely
+  about the parsed-schema cache used for data validation.
+- Proposed approach: broadcast a cache-eviction signal across instances so each
+  instance evicts its local `yangSchema` entry for the affected schema set. Preferred
+  option is a Hazelcast `ITopic` (publish/subscribe): on a content refresh, publish
+  the `(dataspace, schemaSetName)` to evict; every instance subscribes and calls
+  `YangTextSchemaSourceSetCache.removeFromCache`. This is a new, self-contained
+  concern (cache coherence) — it does not touch the module-sync distribution
+  mechanism. Alternatives considered: convert `yangSchema` to a distributed cache
+  (heavier, changes hot-path behaviour), or a per-schema-set content version checked
+  before cache use (more invasive).
+- Scope: applies to any in-place content update, so it also hardens the same-tag
+  upgrade path. Keep it as a separate commit since it is broader than the refresh
+  feature and involves a (scoped) Hazelcast addition.
+
 ## Validated technical notes (for whoever implements)
 - `CompositeStateUtils.setCompositeStateForRetry` retains the lock reason (category +
   details) on the LOCKED→ADVISED transition — so the refresh intent survives to
@@ -195,4 +217,7 @@ step 6 is the isolated "switch on".
   alternate id preferred).
 - Whether to emit an LCM event when content is refreshed, or logging only (currently
   logging only per the story).
+- `yangSchema` cache eviction after in-place content refresh is currently local to the
+  processing instance only; cross-instance invalidation is planned as Commit 7 (see
+  incremental commit plan above).
 - Commit/Jira: include Issue-ID `CPS-3293` in every commit footer.

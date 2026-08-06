@@ -128,6 +128,16 @@ public interface CpsModuleService {
     void updateYangResourceContent(String moduleName, String revision, String newContent);
 
     /**
+     * Remove the (parsed) schema set from the module schema cache so it is rebuilt from the latest stored content
+     * on next use. Intended to be called after updating YANG resource content in place.
+     * Note: the underlying cache is local to each instance, so this only evicts on the current instance.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     */
+    void removeSchemaSetFromModuleCache(String dataspaceName, String schemaSetName);
+
+    /**
      * Retrieve module references for the given dataspace name.
      *
      * @param dataspaceName        dataspace name

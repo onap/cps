@@ -112,9 +112,12 @@ public class ModuleSyncTasks {
 
     private CmHandleState processCmHandle(final YangModelCmHandle yangModelCmHandle) {
         final CompositeState compositeState = yangModelCmHandle.getCompositeState();
+        final boolean inRefresh = ModuleOperationsUtils.inModuleRefreshOrRefreshFailed(compositeState);
         final boolean inUpgrade = ModuleOperationsUtils.inUpgradeOrUpgradeFailed(compositeState);
         try {
-            if (inUpgrade) {
+            if (inRefresh) {
+                moduleSyncService.refreshModuleContent(yangModelCmHandle);
+            } else if (inUpgrade) {
                 moduleSyncService.syncAndUpgradeSchemaSet(yangModelCmHandle);
             } else {
                 moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
@@ -123,9 +126,14 @@ public class ModuleSyncTasks {
             return CmHandleState.READY;
         } catch (final Exception e) {
             log.warn("Module sync failed for CM handle '{}': {}", yangModelCmHandle.getId(), e.getMessage());
-            final LockReasonCategory lockReasonCategory = inUpgrade
-                    ? LockReasonCategory.MODULE_UPGRADE_FAILED
-                    : LockReasonCategory.MODULE_SYNC_FAILED;
+            final LockReasonCategory lockReasonCategory;
+            if (inRefresh) {
+                lockReasonCategory = LockReasonCategory.MODULE_REFRESH_FAILED;
+            } else if (inUpgrade) {
+                lockReasonCategory = LockReasonCategory.MODULE_UPGRADE_FAILED;
+            } else {
+                lockReasonCategory = LockReasonCategory.MODULE_SYNC_FAILED;
+            }
             moduleOperationsUtils.updateLockReasonWithAttempts(compositeState, lockReasonCategory, e.getMessage());
             return CmHandleState.LOCKED;
         }

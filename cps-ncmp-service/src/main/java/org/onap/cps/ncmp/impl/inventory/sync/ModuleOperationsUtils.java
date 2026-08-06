@@ -63,10 +63,12 @@ public class ModuleOperationsUtils {
     private static final String LOCK_REASON_DETAILS_MSG_FORMAT = " Attempt #%d failed: %s";
     private static final Pattern retryAttemptPattern = Pattern.compile("Attempt #(\\d+) failed:.+");
     private static final Pattern moduleSetTagPattern = Pattern.compile("Upgrade to ModuleSetTag: (\\S+)");
-    private static final String CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE = """
+    private static final String CPS_PATH_CM_HANDLES_FOR_RETRY = """
             //lock-reason[@reason="MODULE_SYNC_FAILED"
             or @reason="MODULE_UPGRADE"
-            or @reason="MODULE_UPGRADE_FAILED"]""";
+            or @reason="MODULE_UPGRADE_FAILED"
+            or @reason="MODULE_REFRESH"
+            or @reason="MODULE_REFRESH_FAILED"]""";
 
     /**
      * Query data nodes for cm handles with an "ADVISED" cm handle state.
@@ -101,13 +103,14 @@ public class ModuleOperationsUtils {
     }
 
     /**
-     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason.
+     * Query data nodes for cm handles that are LOCKED for a model operation (sync failure, upgrade or refresh)
+     * so the watchdog can reset them to ADVISED and (re)process them.
      *
-     * @return a random LOCKED yang model cm handle, return null if not found
+     * @return the LOCKED yang model cm handles awaiting (re)processing, empty collection if none found
      */
     public Collection<YangModelCmHandle> getCmHandlesThatFailedModelSyncOrUpgrade() {
         final Collection<DataNode> lockedCmHandlesAsDataNodeList
-                = cmHandleQueryService.queryCmHandleAncestorsByCpsPath(CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE,
+                = cmHandleQueryService.queryCmHandleAncestorsByCpsPath(CPS_PATH_CM_HANDLES_FOR_RETRY,
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
@@ -187,6 +190,19 @@ public class ModuleOperationsUtils {
         return compositeState.getLockReason() != null
                 && (LockReasonCategory.MODULE_UPGRADE.equals(compositeState.getLockReason().getLockReasonCategory())
                 || LockReasonCategory.MODULE_UPGRADE_FAILED.equals(compositeState.getLockReason()
+                .getLockReasonCategory()));
+    }
+
+    /**
+     * Checks if cm handle state module is in refresh or refresh failed.
+     *
+     * @param compositeState current lock reason of cm handle
+     * @return true or false based on lock reason category
+     */
+    public static boolean inModuleRefreshOrRefreshFailed(final CompositeState compositeState) {
+        return compositeState.getLockReason() != null
+                && (LockReasonCategory.MODULE_REFRESH.equals(compositeState.getLockReason().getLockReasonCategory())
+                || LockReasonCategory.MODULE_REFRESH_FAILED.equals(compositeState.getLockReason()
                 .getLockReasonCategory()));
     }
 
