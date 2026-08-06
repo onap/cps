@@ -53,7 +53,7 @@ cps:
     repository: "nexus3.onap.org:10003/onap/cps-and-ncmp"
     tag: "latest" # Overridden by IMAGE_TAG in k6-main.sh (default: latest)
     pullPolicy: Never # Overridden by IMAGE_PULL_POLICY in k6-main.sh (default: IfNotPresent)
-  replicas: 2
+  replicas: 1
   servicePort: 8080
   service:
     type: NodePort
@@ -108,7 +108,7 @@ cps:
     CPS_MONITORING_MICROMETER_JVM_EXTRAS: "true"
     JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
     HAZELCAST_MODE_KUBERNETES_ENABLED: "true"
-    IGNORE_R20260423_MODEL: "true"
+    IGNORE_R20260423_MODEL: "false"  # LOCAL TESTING, use latest model (do not commit)
     APP_LCM_EVENTS_EVENT-SCHEMA-VERSION: "v1"
     # Authentication (set to "true" to enable JWT validation)
     SECURITY_AUTH_ENABLED: "false"
@@ -203,8 +203,8 @@ dmiStub:
   enabled: true
   image:
     repository: nexus3.onap.org:10003/onap/dmi-stub
-    tag: "1.8.0" # Overridden by DMI_STUB_VERSION in k6-main.sh (default: 1.8.0)
-    pullPolicy: IfNotPresent
+    tag: "local-refresh" # LOCAL TESTING: locally-built image, unique tag to avoid nexus collision (do not commit)
+    pullPolicy: Never # LOCAL TESTING: never pull, use local image (do not commit)
   replicaCount: 1
   deployment1:
     containerPort: 8092
@@ -222,7 +222,7 @@ dmiStub:
     KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka-service:9092"
     NCMP_CONSUMER_GROUP_ID: "ncmp-group"
     NCMP_ASYNC_M2M_TOPIC: "ncmp-async-m2m"
-    MODULE_INITIAL_PROCESSING_DELAY_MS: 180000
+    MODULE_INITIAL_PROCESSING_DELAY_MS: 10
     MODULE_REFERENCES_DELAY_MS: 100
     MODULE_RESOURCES_DELAY_MS: 1000
     READ_DATA_FOR_CM_HANDLE_DELAY_MS: 300

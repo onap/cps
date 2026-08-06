@@ -130,6 +130,7 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
                 .add(ncmpServiceCmHandle));
 
         final Map<String, List<RefreshCmHandle>> refreshCmHandlesByModuleSetTag = new LinkedHashMap<>();
+        final List<String> selectedSampleCmHandleIds = new ArrayList<>();
         cmHandlesByModuleSetTag.forEach((moduleSetTag, ncmpServiceCmHandles) -> {
             final NcmpServiceCmHandle sampleCmHandle = firstReadyCmHandle(ncmpServiceCmHandles);
             final List<RefreshCmHandle> refreshCmHandles = new ArrayList<>(ncmpServiceCmHandles.size());
@@ -141,7 +142,13 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
                     ncmpServiceCmHandle == sampleCmHandle));
             }
             refreshCmHandlesByModuleSetTag.put(moduleSetTag, refreshCmHandles);
+            if (sampleCmHandle != null) {
+                selectedSampleCmHandleIds.add(sampleCmHandle.getCmHandleId());
+            }
         });
+        if (!selectedSampleCmHandleIds.isEmpty()) {
+            cmHandleRegistrationService.setCmHandlesToLockedForModuleRefresh(selectedSampleCmHandleIds);
+        }
         return refreshCmHandlesByModuleSetTag;
     }
 
