@@ -354,4 +354,31 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
         and: 'lightweight cm handles are not retrieved'
             0 * mockInventoryPersistence._
     }
+
+    def 'Query inventory lightweight cm handles with dmi plugin condition.'() {
+        given: 'query parameters with a dmi plugin condition'
+            def conditionProperties = new ConditionProperties(
+                    conditionName: 'cmHandleWithDmiPlugin',
+                    conditionParameters: [[dmiPluginName: 'some-dmi-plugin']])
+            def queryParameters = new CmHandleQueryServiceParameters(
+                    cmHandleQueryParameters: [conditionProperties])
+        and: 'a cm handle represented as Yang model without properties'
+            def yangModelCmHandle = new YangModelCmHandle(
+                    id: 'ch-1', alternateId: 'alt-1', cmHandleStatus: 'READY',
+                    moduleSetTag: 'module-set-tag-1', dataProducerIdentifier: 'data-producer-1',
+                    additionalProperties: [], publicProperties: [])
+        and: 'trust level manager applies a trust level'
+            mockTrustLevelManager.applyEffectiveTrustLevels(_) >> { args ->
+                args[0].each { it.currentTrustLevel = TrustLevel.COMPLETE }
+            }
+        when: 'inventory lightweight cm handles are queried'
+            def result = objectUnderTest.queryInventoryForCmHandlesLightweight(queryParameters).collectList().block()
+        then: 'the dmi plugin query is executed'
+            1 * cmHandleQueries.getCmHandleReferencesByDmiPluginIdentifier('some-dmi-plugin', false) >> ['ch-1']
+        and: 'cm handles are retrieved without properties'
+            1 * mockInventoryPersistence.getYangModelCmHandlesWithoutProperties(['ch-1']) >> [yangModelCmHandle]
+        and: 'the expected result is returned'
+            assert result.size() == 1
+            assert result[0].cmHandleId == 'ch-1'
+    }
 }
