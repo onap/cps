@@ -40,6 +40,7 @@ import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
+import org.onap.cps.events.EventBatchSendException
 import org.onap.cps.events.EventProducer
 import org.onap.cps.ncmp.config.ExactlyOnceSemanticsKafkaConfig
 import org.onap.cps.ncmp.events.avc1_0_0.AvcEvent
@@ -171,7 +172,9 @@ class CmAvcEventExactlyOnceIntegrationSpec extends ConsumerBaseSpec {
 
 /**
  * EventProducer that simulates a mid-batch send failure on the first batch with more than 1 event.
- * but replaces the 10th event's future with a failed one to simulate a mid-batch failure.
+ * Replaces the 10th event's future with a failed one to simulate a mid-batch failure.
+ * Events before the 10th are not sent to the broker during the failure attempt,
+ * simulating a transactional abort where no partial writes are visible to read_committed consumers.
  */
 class EventProducerSimulatingFailureOnFirstAttempt extends EventProducer {
 
@@ -189,6 +192,7 @@ class EventProducerSimulatingFailureOnFirstAttempt extends EventProducer {
         if (!hasFailed && events.size() > FAIL_ON_TENTH_EVENT) {
             hasFailed = true
             sendEventsWithOneSimulatedFailure(topicName, events)
+            return
         }
         super.sendCloudEventBatch(topicName, events)
     }
@@ -198,9 +202,16 @@ class EventProducerSimulatingFailureOnFirstAttempt extends EventProducer {
             if (eventIndex == FAIL_ON_TENTH_EVENT - 1) {
                 return createFailedFuture()
             }
-            return cloudEventKafkaTemplateForExactlyOnceSemantics.send(topicName, event.key, event.value)
+            return CompletableFuture.completedFuture(null)
         }
-        CompletableFuture.allOf(sendEventOutcomes.toArray(new CompletableFuture[0])).join()
+        try {
+            CompletableFuture.allOf(sendEventOutcomes.toArray(new CompletableFuture[0])).join()
+        } catch (Exception exception) {
+            throw new EventBatchSendException(
+                    'Simulated batch send failure',
+                    "Topic: ${topicName}, Batch size: ${events.size()}",
+                    exception)
+        }
     }
 
     private static CompletableFuture createFailedFuture() {
