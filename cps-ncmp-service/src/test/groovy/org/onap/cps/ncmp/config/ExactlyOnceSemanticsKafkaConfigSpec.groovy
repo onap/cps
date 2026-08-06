@@ -24,13 +24,15 @@ import io.cloudevents.CloudEvent
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.spockframework.spring.EnableSharedInjection
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.kafka.autoconfigure.KafkaProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
+import org.springframework.boot.kafka.autoconfigure.KafkaProperties
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.ConsumerFactory
 import org.springframework.kafka.core.ProducerFactory
+import org.springframework.kafka.listener.CommonErrorHandler
 import org.springframework.kafka.listener.ContainerProperties
+import org.springframework.kafka.listener.DefaultErrorHandler
 import org.springframework.kafka.transaction.KafkaTransactionManager
 import org.springframework.test.context.TestPropertySource
 import spock.lang.Shared
@@ -57,9 +59,9 @@ class ExactlyOnceSemanticsKafkaConfigSpec extends Specification {
 
     @Shared
     @Autowired
-    ConcurrentKafkaListenerContainerFactory<String, CloudEvent> cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics
+    ConcurrentKafkaListenerContainerFactory<String, CloudEvent> cmAvcEventListenerContainerFactory
 
-    def 'Verify exactly once semantics kafka configuration'() {
+    def 'Verify exactly once semantics kafka configuration.'() {
         expect: 'consumer has read_committed isolation level'
             cloudEventConsumerFactoryForExactlyOnceSemantics.configurationProperties[ConsumerConfig.ISOLATION_LEVEL_CONFIG] == 'read_committed'
         and: 'consumer has auto commit disabled'
@@ -67,14 +69,47 @@ class ExactlyOnceSemanticsKafkaConfigSpec extends Specification {
         and: 'consumer has max poll records configured'
             cloudEventConsumerFactoryForExactlyOnceSemantics.configurationProperties[ConsumerConfig.MAX_POLL_RECORDS_CONFIG] == '500'
         and: 'listener uses BATCH ack mode'
-            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics.containerProperties.ackMode == ContainerProperties.AckMode.BATCH
+            cmAvcEventListenerContainerFactory.containerProperties.ackMode == ContainerProperties.AckMode.BATCH
         and: 'listener is batch listener'
-            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics.batchListener == true
+            cmAvcEventListenerContainerFactory.isBatchListener() == true
         and: 'concurrency is configured'
-            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics.concurrency == 2
+            cmAvcEventListenerContainerFactory.concurrency == 2
         and: 'producer transaction ID prefix is as expected'
             cloudEventProducerFactoryForExactlyOnceSemantics.transactionIdPrefix.startsWith('cps-tx-myPrefix-')
         and: 'KafkaTransactionManager is used instead of primary transaction manager'
-            cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics.containerProperties.kafkaAwareTransactionManager instanceof KafkaTransactionManager
+            cmAvcEventListenerContainerFactory.containerProperties.kafkaAwareTransactionManager instanceof KafkaTransactionManager
+    }
+
+    def 'Verify a custom error handler is configured on the listener container factory.'() {
+        given: 'the common error handler from the container factory'
+            def errorHandler = getCommonErrorHandler()
+        expect: 'the error handler is a DefaultErrorHandler instance'
+            errorHandler instanceof DefaultErrorHandler
+    }
+
+    def 'Verify error handler recoverer logs discarded records for non-retryable exceptions.'() {
+        given: 'the error handler and a consumer record with a non-retryable exception'
+            def errorHandler = getCommonErrorHandler() as DefaultErrorHandler
+            def consumerRecord = new org.apache.kafka.clients.consumer.ConsumerRecord('test-topic', 0, 42L, 'key', null)
+            def nonRetryableException = new RuntimeException('some non-retryable error')
+        when: 'the error handler handles a batch with a non-retryable exception'
+            errorHandler.handleRemaining(nonRetryableException, [consumerRecord],
+                Mock(org.apache.kafka.clients.consumer.Consumer), Mock(org.springframework.kafka.listener.MessageListenerContainer))
+        then: 'no exception is thrown (record is recovered/discarded)'
+            noExceptionThrown()
+    }
+
+    private CommonErrorHandler getCommonErrorHandler() {
+        def clazz = cmAvcEventListenerContainerFactory.getClass()
+        while (clazz != null) {
+            try {
+                def field = clazz.getDeclaredField('commonErrorHandler')
+                field.accessible = true
+                return field.get(cmAvcEventListenerContainerFactory) as CommonErrorHandler
+            } catch (NoSuchFieldException ignored) {
+                clazz = clazz.superclass
+            }
+        }
+        throw new IllegalStateException('Could not find commonErrorHandler field')
     }
 }

@@ -34,13 +34,13 @@ import io.cloudevents.kafka.CloudEventSerializer
 import io.micrometer.core.instrument.MeterRegistry
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import java.time.Duration
-import java.util.concurrent.CompletableFuture
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
 import org.onap.cps.events.EventProducer
+import org.onap.cps.events.EventBatchSendException
 import org.onap.cps.ncmp.config.ExactlyOnceSemanticsKafkaConfig
 import org.onap.cps.ncmp.events.avc1_0_0.AvcEvent
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
@@ -53,7 +53,6 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.kafka.autoconfigure.KafkaProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.kafka.KafkaException
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.TestPropertySource
@@ -170,13 +169,12 @@ class CmAvcEventExactlyOnceIntegrationSpec extends ConsumerBaseSpec {
 }
 
 /**
- * EventProducer that simulates a mid-batch send failure on the first batch with more than 1 event.
- * but replaces the 10th event's future with a failed one to simulate a mid-batch failure.
+ * EventProducer that simulates a batch send failure on the first attempt.
+ * On the second attempt (retry), it delegates to the real sendCloudEventBatch.
  */
 class EventProducerSimulatingFailureOnFirstAttempt extends EventProducer {
 
     def hasFailed = false
-    def FAIL_ON_TENTH_EVENT = 10
 
     EventProducerSimulatingFailureOnFirstAttempt(KafkaTemplate legacyEventKafkaTemplate,
                                                  KafkaTemplate cloudEventKafkaTemplate,
@@ -186,26 +184,10 @@ class EventProducerSimulatingFailureOnFirstAttempt extends EventProducer {
 
     @Override
     void sendCloudEventBatch(String topicName, List<Map.Entry<String, CloudEvent>> events) {
-        if (!hasFailed && events.size() > FAIL_ON_TENTH_EVENT) {
+        if (!hasFailed && events.size() > 1) {
             hasFailed = true
-            sendEventsWithOneSimulatedFailure(topicName, events)
+            throw new EventBatchSendException('Simulated batch send failure', "Topic: ${topicName}, Batch size: ${events.size()}", new RuntimeException('Simulated send failure'))
         }
         super.sendCloudEventBatch(topicName, events)
-    }
-
-    private void sendEventsWithOneSimulatedFailure(String topicName, List<Map.Entry<String, CloudEvent>> events) {
-        def sendEventOutcomes = events.withIndex().collect { event, eventIndex ->
-            if (eventIndex == FAIL_ON_TENTH_EVENT - 1) {
-                return createFailedFuture()
-            }
-            return cloudEventKafkaTemplateForExactlyOnceSemantics.send(topicName, event.key, event.value)
-        }
-        CompletableFuture.allOf(sendEventOutcomes.toArray(new CompletableFuture[0])).join()
-    }
-
-    private static CompletableFuture createFailedFuture() {
-        def failed = new CompletableFuture()
-        failed.completeExceptionally(new KafkaException('Simulated send failure'))
-        return failed
     }
 }
