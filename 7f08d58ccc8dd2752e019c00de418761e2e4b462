@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c18bf883_65b96912",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-06T14:45:11Z",
+      "side": 0,
+      "message": "we do want to keep this idea of the 10th item failing, I think it was for PoC/demo purposes. \nBasically the proposed changes in behavior (ignoring non-retryable exceptions) should NOT affect this integration test unless it used a non-retryable exception at the moment...",
+      "range": {
+        "startLine": 196,
+        "startChar": 17,
+        "endLine": 196,
+        "endChar": 50
+      },
+      "revId": "7f08d58ccc8dd2752e019c00de418761e2e4b462",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
