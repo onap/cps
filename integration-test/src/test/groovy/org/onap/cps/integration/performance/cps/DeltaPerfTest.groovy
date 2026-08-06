@@ -71,9 +71,9 @@ class DeltaPerfTest extends CpsPerfTestBase{
             recordAndAssertResourceUsage("CPS:Delta of 2 anchors ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
-            'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 2.0
-            'direct descendants' | '/'                                                               | DIRECT_CHILDREN_ONLY    || 3.0
-            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 38.0
+            'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 0.4
+            'direct descendants' | '/'                                                               | DIRECT_CHILDREN_ONLY    || 1.0
+            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 32.0
     }
 
     def 'Get delta between 2 anchors with grouping disabled and #scenario'() {
@@ -88,9 +88,9 @@ class DeltaPerfTest extends CpsPerfTestBase{
             recordAndAssertResourceUsage("CPS:Delta of 2 anchors no grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
-            'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 1.0
-            'direct descendants' | '/openroadm-devices'                                              | DIRECT_CHILDREN_ONLY    || 2.0
-            'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 45.0
+            'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 0.15
+            'direct descendants' | '/openroadm-devices'                                              | DIRECT_CHILDREN_ONLY    || 0.5
+            'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 35.0
     }
 
     def 'Get delta between an anchor and JSON payload with grouping enabled and #scenario'() {
@@ -100,12 +100,12 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is returned and operation completes within expected time'
-            recordAndAssertResourceUsage("CPS:Delta of anchor-JSON no grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Delta of anchor-JSON grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration
-            'no descendants'     | OMIT_DESCENDANTS        || 4.0
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 4.0
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 6.0
+            'no descendants'     | OMIT_DESCENDANTS        || 6.0
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 5.0
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 5.0
     }
 
     def 'Get delta between an anchor and JSON payload with grouping disabled and #scenario'() {
@@ -118,9 +118,9 @@ class DeltaPerfTest extends CpsPerfTestBase{
             recordAndAssertResourceUsage("CPS:Delta of anchor-JSON no grouping ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration
-            'no descendants'     | OMIT_DESCENDANTS        || 6.0
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 6.0
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 7.0
+            'no descendants'     | OMIT_DESCENDANTS        || 5.5
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 5.0
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 5.5
     }
 
     def 'Apply delta report to an anchor'() {
