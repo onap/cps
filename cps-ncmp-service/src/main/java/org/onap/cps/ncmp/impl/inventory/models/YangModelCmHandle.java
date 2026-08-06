@@ -181,12 +181,15 @@ public class YangModelCmHandle {
         if (ncmpServiceCmHandle.getDmiProperties() == null) {
             return null;
         }
-        try {
-            return objectMapper.writeValueAsString(ncmpServiceCmHandle.getAdditionalProperties());
-        } catch (final JsonProcessingException jsonProcessingException) {
-            throw new IllegalStateException(
-                    "Failed to serialize additional properties to JSON", jsonProcessingException);
+        if (ncmpServiceCmHandle.getDmiProperties().isEmpty()) {
+            try {
+                return objectMapper.writeValueAsString(ncmpServiceCmHandle.getAdditionalProperties());
+            } catch (final JsonProcessingException jsonProcessingException) {
+                throw new IllegalStateException(
+                        "Failed to serialize additional properties to JSON", jsonProcessingException);
+            }
         }
+        return ncmpServiceCmHandle.getDmiProperties();
     }
 
     public record Property(@JsonProperty() String name, @JsonProperty() String value) { }
