@@ -435,11 +435,11 @@ class CmHandleRegistrationServiceSpec extends Specification {
             'no alternate id'    | null
     }
 
-    def 'Create CM-Handle with dmi-properties derived from additional properties.'() {
+    def 'Updating (migrating) DMI properties from additional properties.'() {
         given: 'a registration with cm handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'cmhandle', additionalProperties: ['key1': 'val1'])
-            ncmpServiceCmHandle.dmiProperties = '{}'
+            ncmpServiceCmHandle.dmiProperties = ''
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
         when: 'registration is updated'
             objectUnderTest.updateDmiRegistration(dmiPluginRegistration)

@@ -82,6 +82,17 @@ public interface ParameterizedCmHandleQueryService {
 
 
     /**
+     * Query and return lightweight cm handle objects for inventory (southbound) searches.
+     * Supported conditions defined by
+     * {@link org.onap.cps.ncmp.impl.inventory.models.SouthboundCmHandleQuerySupportedConditions#CONDITION_NAMES}.
+     *
+     * @param cmHandleQueryServiceParameters the cm handle query parameters
+     * @return lightweight cm handle objects as a reactive stream (flux)
+     */
+    Flux<NcmpServiceCmHandle> queryInventoryForCmHandlesLightweight(
+                                                CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+
+    /**
      * Query and return cm handles that match the given query parameters.
      * Supported query types:
      *      cps-path

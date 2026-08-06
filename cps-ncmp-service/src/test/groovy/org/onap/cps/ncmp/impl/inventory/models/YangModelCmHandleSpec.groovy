@@ -46,7 +46,7 @@ class YangModelCmHandleSpec extends Specification {
             ncmpServiceCmHandle.cmHandleId = 'cm-handle-id01'
             ncmpServiceCmHandle.additionalProperties = [myAdditionalProperty:'value1']
             ncmpServiceCmHandle.publicProperties = [myPublicProperty:'value2']
-            ncmpServiceCmHandle.dmiProperties = '{}'
+            ncmpServiceCmHandle.dmiProperties = ''
         and: 'with a composite state'
             def compositeState = new CompositeStateBuilder()
                 .withCmHandleState(CmHandleState.LOCKED)
@@ -88,11 +88,12 @@ class YangModelCmHandleSpec extends Specification {
         then: 'dmi-properties is correctly resolved'
             assert result.dmiProperties == expectedDmiProperties
         where: 'the following combinations of additional properties and dmi-properties are used'
-            scenario                                               | additionalProperties | dmiProperties || expectedDmiProperties
-            'additional properties present, dmi-properties exists' | ['key1': 'val1']     | '{}'          || '{"key1":"val1"}'
-            'no additional properties, dmi-properties exists'      | [:]                  | '{}'          || '{}'
-            'additional properties present, dmi-properties null'   | ['key1': 'val1']     | null          || null
-            'no additional properties, dmi-properties null'        | [:]                  | null          || null
+            scenario                                            | additionalProperties | dmiProperties     || expectedDmiProperties
+            'dmi-properties empty, serializes additional props' | ['key1': 'val1']     | ''                || '{"key1":"val1"}'
+            'dmi-properties empty, no additional props'         | [:]                  | ''                || '{}'
+            'dmi-properties already populated (read from DB)'   | [:]                  | '{"key1":"val1"}' || '{"key1":"val1"}'
+            'dmi-properties null (old model)'                   | ['key1': 'val1']     | null              || null
+            'dmi-properties null, no additional props'          | [:]                  | null              || null
     }
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
@@ -175,7 +176,7 @@ class YangModelCmHandleSpec extends Specification {
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             ncmpServiceCmHandle.cmHandleId = 'cm-handle-id01'
             ncmpServiceCmHandle.additionalProperties = ['key1': 'val1']
-            ncmpServiceCmHandle.dmiProperties = '{}'
+            ncmpServiceCmHandle.dmiProperties = ''
         when: 'it is converted to a yang model cm handle'
             YangModelCmHandle.toYangModelCmHandle(new DmiPluginRegistration(), ncmpServiceCmHandle, '', '', '', '')
         then: 'an IllegalStateException is thrown'
