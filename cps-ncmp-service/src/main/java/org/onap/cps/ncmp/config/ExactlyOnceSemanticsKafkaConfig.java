@@ -35,13 +35,14 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.onap.cps.events.EventBatchSendException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.kafka.autoconfigure.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.KafkaException;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
@@ -174,8 +175,16 @@ public class ExactlyOnceSemanticsKafkaConfig {
         exponentialBackOffWithMaxRetries.setInitialInterval(TimeUnit.SECONDS.toMillis(1));
         exponentialBackOffWithMaxRetries.setMultiplier(2.0);
         exponentialBackOffWithMaxRetries.setMaxInterval(TimeUnit.SECONDS.toMillis(30));
-        final DefaultErrorHandler defaultErrorHandler = new DefaultErrorHandler(exponentialBackOffWithMaxRetries);
-        defaultErrorHandler.addRetryableExceptions(KafkaException.class);
+        final DefaultErrorHandler defaultErrorHandler = new DefaultErrorHandler(
+            this::logDiscardedRecord, exponentialBackOffWithMaxRetries);
+        defaultErrorHandler.addRetryableExceptions(EventBatchSendException.class);
         return defaultErrorHandler;
+    }
+
+    private void logDiscardedRecord(final ConsumerRecord<?, ?> record, final Exception exception) {
+        log.error("Discarding record from topic: {}, partition: {}, offset: {} due to non-retryable exception: {}",
+                record.topic(), record.partition(), record.offset(), exception.getMessage());
+        log.debug("Full stack trace for discarded record from topic: {}, partition: {}, offset: {}",
+                record.topic(), record.partition(), record.offset(), exception);
     }
 }
