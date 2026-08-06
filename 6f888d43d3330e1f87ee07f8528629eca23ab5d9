@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d890507d_685747c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-06T14:32:05Z",
+      "side": 1,
+      "message": "I would like to discuss some of the changes, maybe I misunderstand...",
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5128091e_8097af11",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-06T14:32:05Z",
+      "side": 1,
+      "message": "any particular reason ou changes this name, I think Lee Anjella and I had good reasons for this name originally... (although I accept its a very convoluted name!)",
+      "range": {
+        "startLine": 62,
+        "startChar": 64,
+        "endLine": 62,
+        "endChar": 98
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f7a8c2_bca45686",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-06T14:32:05Z",
+      "side": 1,
+      "message": "not really following our test slogan convention. it shoudl be a simple scenario statement, no words lik \u0027verify\u0027 or expectations in teh title",
+      "range": {
+        "startLine": 83,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 86
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9093f4d1_2713b863",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-06T14:32:05Z",
+      "side": 1,
+      "message": "not really following our test slogan convention. it shoudl be a simple scenario statement, no words lik \u0027verify\u0027 or expectations in teh title",
+      "range": {
+        "startLine": 90,
+        "startChar": 9,
+        "endLine": 90,
+        "endChar": 92
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7d813b6_5e1dbfda",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-06T14:32:05Z",
+      "side": 1,
+      "message": "why not mock it?",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 31
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5a1a07_68eb9694",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-06T14:32:05Z",
+      "side": 1,
+      "message": "use Groovy def",
+      "range": {
+        "startLine": 102,
+        "startChar": 4,
+        "endLine": 102,
+        "endChar": 12
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e04139cd_3810f44b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-06T14:32:05Z",
+      "side": 1,
+      "message": "NB: i really dislike this name, i know it commonly done but i think there are better alternatives",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 18
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b191a44_424a551a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-06T14:32:05Z",
+      "side": 1,
+      "message": "is thsi all intended to change, you might be right but I would like to dcisuss",
+      "range": {
+        "startLine": 173,
+        "startChar": 2,
+        "endLine": 173,
+        "endChar": 79
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
