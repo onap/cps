@@ -66,7 +66,7 @@ class CmHandleSearchesSouthBoundRestApiSpec extends CpsIntegrationSpecBase {
         and: 'an empty search request body'
             def searchRequest = '{"cmHandleQueryParameters":[]}'
         when: 'the v2 lightweight search is executed'
-            def response = performPost('/ncmpInventory/v2/ch/searches',
+            def response = performPost('/ncmpInventory/v2/ch/searchCmHandles',
                     searchRequest, [outputDmiProperties: outputDmiProperties.toString()])
         then: 'the response contains the registered cm handles'
             assert response.statusCode.is2xxSuccessful()
@@ -79,6 +79,24 @@ class CmHandleSearchesSouthBoundRestApiSpec extends CpsIntegrationSpecBase {
             scenario   | outputDmiProperties
             'enabled'  | true
             'disabled' | false
+    }
+
+    def 'V2 lightweight search for CM Handles using dmi plugin condition.'() {
+        given: 'registered CM Handles'
+            def requestBody = '{"dmiPlugin":"'+DMI1_URL+'","createdCmHandles":[{"cmHandle":"ch-1","cmHandleProperties":{"my-key":"my-value"}},{"cmHandle":"ch-2","cmHandleProperties":{"other-key":"other-value"}}]}'
+            def regResponse = performPost('/ncmpInventory/v1/ch', requestBody)
+            assert regResponse.statusCode.is2xxSuccessful()
+        and: 'a search request with dmi plugin condition'
+            def searchRequest = '{"cmHandleQueryParameters":[{"conditionName":"cmHandleWithDmiPlugin","conditionParameters":[{"dmiPluginName":"'+DMI1_URL+'"}]}]}'
+        when: 'the v2 lightweight search is executed'
+            def response = performPost('/ncmpInventory/v2/ch/searchCmHandles', searchRequest)
+        then: 'the response is successful'
+            assert response.statusCode.is2xxSuccessful()
+            def results = parseResponseBody(response) as List
+            assert results*.cmHandle.containsAll(['ch-1', 'ch-2'])
+        cleanup: 'deregister the CM Handles'
+            def cleanupBody = '{"dmiPlugin":"'+DMI1_URL+'", "removedCmHandles": ["ch-1", "ch-2"]}'
+            performPost('/ncmpInventory/v1/ch', cleanupBody)
     }
 
 }

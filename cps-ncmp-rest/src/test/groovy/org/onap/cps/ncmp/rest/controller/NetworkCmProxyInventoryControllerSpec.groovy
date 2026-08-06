@@ -375,7 +375,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                 new RestOutputCmHandleLightweight(cmHandle: 'ch-1', cmHandleStatus: 'READY')
         when: 'the v2 search endpoint is invoked'
             def response = mvc.perform(
-                    post("/ncmpInventory/v2/ch/searches$queryParameter")
+                    post("/ncmpInventory/v2/ch/searchCmHandles$queryParameter")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(searchRequest)
             ).andReturn().response

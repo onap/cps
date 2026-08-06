@@ -38,7 +38,7 @@ import {
     CONTAINER_COOL_DOWW_TIME_IN_SECONDS
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
-import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
+import { executeCmHandleSearch, executeCmHandleIdSearch, executeCmHandleSearchLightweight } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
 import { executeWriteDataJob, executeWriteDataJobWithPayload, buildDataJobRequestPayload } from "./common/write-data-job.js";
@@ -126,7 +126,7 @@ export function cmHandleIdSearchNoFilterScenario() {
 }
 
 export function cmHandleSearchNoFilterScenario() {
-    const response = executeCmHandleSearch('no-filter');
+    const response = executeCmHandleSearchLightweight('no-filter');
     validateResponseAndRecordMetric(response, 200, 'CM handle no-filter search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_no_filter);
 }
 
@@ -136,7 +136,7 @@ export function cmHandleIdSearchModuleScenario() {
 }
 
 export function cmHandleSearchModuleScenario() {
-    const response = executeCmHandleSearch('module');
+    const response = executeCmHandleSearchLightweight('module');
     validateResponseAndRecordMetric(response, 200, 'CM handle module search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_module_filter);
 }
 
@@ -146,7 +146,7 @@ export function cmHandleIdSearchPropertyScenario() {
 }
 
 export function cmHandleSearchPropertyScenario() {
-    const response = executeCmHandleSearch('property');
+    const response = executeCmHandleSearchLightweight('property');
     validateResponseAndRecordMetric(response, 200, 'CM handle property search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_property_filter);
 }
 
@@ -156,7 +156,7 @@ export function cmHandleIdSearchCpsPathScenario() {
 }
 
 export function cmHandleSearchCpsPathScenario() {
-    const response = executeCmHandleSearch('cps-path-for-ready-cm-handles');
+    const response = executeCmHandleSearchLightweight('cps-path-for-ready-cm-handles');
     validateResponseAndRecordMetric(response, 200, 'CM handle cps path search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_cps_path_filter);
 }
 
@@ -166,7 +166,7 @@ export function cmHandleIdSearchTrustLevelScenario() {
 }
 
 export function cmHandleSearchTrustLevelScenario() {
-    const response = executeCmHandleSearch('trust-level');
+    const response = executeCmHandleSearchLightweight('trust-level');
     validateResponseAndRecordMetric(response, 200, 'CM handle trust level search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_trust_level_filter);
 }
 
