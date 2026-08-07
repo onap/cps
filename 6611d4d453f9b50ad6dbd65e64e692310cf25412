@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58d44f31_18c8b3e0",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryEvaluator.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-07T05:29:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "024714c0_4c52ac79",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 5
+      },
+      "revId": "6611d4d453f9b50ad6dbd65e64e692310cf25412",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9952ebf3_2482f3a6",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45c4c62d_6bd3c743",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryValidator.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-07T05:29:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9952ebf3_2482f3a6",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 5
+      },
+      "revId": "6611d4d453f9b50ad6dbd65e64e692310cf25412",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4cf9e69f_d50323a2",
@@ -77,6 +125,30 @@
       "writtenOn": "2026-08-05T13:40:35Z",
       "side": 1,
       "message": "NB: helper methods usually are at the bottom of  test class (except the setup method)",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "6611d4d453f9b50ad6dbd65e64e692310cf25412",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0660a7f_7e9b5eb7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/query/CompositeQueryExecutionSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-07T05:29:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cf9e69f_d50323a2",
       "range": {
         "startLine": 59,
         "startChar": 0,
