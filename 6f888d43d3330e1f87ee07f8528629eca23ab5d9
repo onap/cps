@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f946cb33_ed10a112",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-07T10:56:00Z",
+      "side": 1,
+      "message": "reverted",
+      "parentUuid": "5128091e_8097af11",
+      "range": {
+        "startLine": 62,
+        "startChar": 64,
+        "endLine": 62,
+        "endChar": 98
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59f7a8c2_bca45686",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87108e16_a35b8435",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-07T10:56:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59f7a8c2_bca45686",
+      "range": {
+        "startLine": 83,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 86
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9093f4d1_2713b863",
@@ -77,6 +125,30 @@
       "writtenOn": "2026-08-06T14:32:05Z",
       "side": 1,
       "message": "not really following our test slogan convention. it shoudl be a simple scenario statement, no words lik \u0027verify\u0027 or expectations in teh title",
+      "range": {
+        "startLine": 90,
+        "startChar": 9,
+        "endLine": 90,
+        "endChar": 92
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce27ddb1_c506ee1f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-07T10:56:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9093f4d1_2713b863",
       "range": {
         "startLine": 90,
         "startChar": 9,
@@ -156,6 +228,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "396bd44f_0ca638fd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-07T10:56:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e04139cd_3810f44b",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 18
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b191a44_424a551a",
@@ -169,6 +265,30 @@
       "writtenOn": "2026-08-06T14:32:05Z",
       "side": 1,
       "message": "is thsi all intended to change, you might be right but I would like to dcisuss",
+      "range": {
+        "startLine": 173,
+        "startChar": 2,
+        "endLine": 173,
+        "endChar": 79
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dcf6756_e0a7a797",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-07T10:56:00Z",
+      "side": 1,
+      "message": "The new changes prevent timing issues where previous events are still visible during the failed attempt creating a event mismatch.",
+      "parentUuid": "2b191a44_424a551a",
       "range": {
         "startLine": 173,
         "startChar": 2,
