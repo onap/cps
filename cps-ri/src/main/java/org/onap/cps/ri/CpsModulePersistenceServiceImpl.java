@@ -213,6 +213,20 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
+    public void updateYangResourceContent(final String moduleName, final String revision, final String newContent) {
+        final YangResourceEntity yangResourceEntity =
+            yangResourceRepository.findByModuleNameAndRevision(moduleName, revision);
+        if (yangResourceEntity == null) {
+            log.warn("Cannot update yang resource content; module {}@{} not found", moduleName, revision);
+            return;
+        }
+        yangResourceEntity.setContent(newContent);
+        yangResourceEntity.setChecksum(DigestUtils.sha256Hex(newContent.getBytes(StandardCharsets.UTF_8)));
+        yangResourceRepository.save(yangResourceEntity);
+    }
+
+    @Override
+    @Transactional
     public void deleteAllUnusedYangModuleData(final String dataspaceName) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         schemaSetRepository.deleteOrphanedSchemaSets(dataspaceEntity.getId());
