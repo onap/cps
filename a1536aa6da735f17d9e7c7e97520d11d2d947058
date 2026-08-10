@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44af7555_710defba",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "you can do like this\ndef response \u003d mvc.perform(get(dataNodeBaseEndpointV2)\n                .contentType(contentType)\n                .accept(contentType)\n                .param(\u0027target-anchor-name\u0027, \u0027targetAnchor\u0027)\n                .param(\u0027xpath\u0027, xpath))\n                .andReturn().response\n                \n Simple and similar to your approach just eliminates need of extra requestParams",
+      "range": {
+        "startLine": 412,
+        "startChar": 16,
+        "endLine": 412,
+        "endChar": 29
+      },
+      "revId": "a1536aa6da735f17d9e7c7e97520d11d2d947058",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d6b4abd_80891fe8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "no need of this",
+      "range": {
+        "startLine": 412,
+        "startChar": 12,
+        "endLine": 415,
+        "endChar": 62
+      },
+      "revId": "a1536aa6da735f17d9e7c7e97520d11d2d947058",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37eed001_4d86ad67",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "repository, don\u0027t use short hands in testware\nI just gave a comment, so not copy paste and use whole words",
+      "range": {
+        "startLine": 57,
+        "startChar": 23,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "a1536aa6da735f17d9e7c7e97520d11d2d947058",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2edcfca_9ec9d638",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "now you can combine it with the test above Get paginated anchors for a dataspace. using where block\nonly a null field differs",
+      "range": {
+        "startLine": 66,
+        "startChar": 9,
+        "endLine": 66,
+        "endChar": 47
+      },
+      "revId": "a1536aa6da735f17d9e7c7e97520d11d2d947058",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11d4eb13_ad6643f4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "NB: remove empty lines",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 109,
+        "endChar": 1
+      },
+      "revId": "a1536aa6da735f17d9e7c7e97520d11d2d947058",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2922fe6_9ca99909",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "Why did you remove cpsAdminPersistenceService.getAnchors(dataspaceName, paginationOption);?",
+      "range": {
+        "startLine": 70,
+        "startChar": 15,
+        "endLine": 70,
+        "endChar": 92
+      },
+      "revId": "a1536aa6da735f17d9e7c7e97520d11d2d947058",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

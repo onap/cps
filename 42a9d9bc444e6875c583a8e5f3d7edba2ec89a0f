@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0001897b_15c3e637",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "what I meant was you can do\ndef schemaSetNames \u003d [\"my-schema-set1\",\"my-schema-set2\"].join(,)",
+      "parentUuid": "859a17ae_3a7cd8c6",
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce4b82c9_8f71bb46",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
         "patchSetId": 23
@@ -261,6 +279,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "bbe701e5_ced4118f",
+      "range": {
+        "startLine": 428,
+        "startChar": 12,
+        "endLine": 431,
+        "endChar": 62
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39fbb9e5_42d55cab",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "only 1 scenario so no need for where block now",
+      "parentUuid": "8aacca20_fe966ed1",
       "range": {
         "startLine": 428,
         "startChar": 12,
@@ -637,6 +679,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60a1ed25_2ba4069e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "restore this",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 84
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fc69f40c_cca33e55",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
         "patchSetId": 23
@@ -813,6 +878,30 @@
       "side": 1,
       "message": "I have defined multiple anchors for all the new test instead of defining one anchor.",
       "parentUuid": "bbef9c25_bbf5c1fe",
+      "range": {
+        "startLine": 205,
+        "startChar": 16,
+        "endLine": 205,
+        "endChar": 23
+      },
+      "revId": "42a9d9bc444e6875c583a8e5f3d7edba2ec89a0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc401993_2cbfd0d8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-10T08:21:47Z",
+      "side": 1,
+      "message": "not done for all tests, check line #210. Once done you can decalre it as a global variable instead of declaring it for all tests",
+      "parentUuid": "cc908f7c_eb71d0ac",
       "range": {
         "startLine": 205,
         "startChar": 16,
