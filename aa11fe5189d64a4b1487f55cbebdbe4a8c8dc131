@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ea5680_08380d83",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-10T14:10:09Z",
+      "side": 1,
+      "message": "theres a relevant metric with EOS, can you confirm this isnt affected/will show inaccurate data?",
+      "range": {
+        "startLine": 177,
+        "startChar": 7,
+        "endLine": 183,
+        "endChar": 82
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5642eb6d_6debe34a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-10T14:10:09Z",
+      "side": 1,
+      "message": "nb: can we add a test that shows EventBatchSendException is retryable ?",
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
