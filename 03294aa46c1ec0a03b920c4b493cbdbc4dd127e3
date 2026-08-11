@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "caeea1f7_1e3355ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-11T13:36:35Z",
+      "side": 1,
+      "message": "I have uploaded patch set for resolving general comments.",
+      "revId": "03294aa46c1ec0a03b920c4b493cbdbc4dd127e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

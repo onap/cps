@@ -47,6 +47,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "983b7518_81522368",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-11T13:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caf8dae7_01684cea",
+      "range": {
+        "startLine": 37,
+        "startChar": 46,
+        "endLine": 38,
+        "endChar": 61
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ffb7bed_f7b2fb2f",
@@ -83,6 +107,30 @@
       "writtenOn": "2026-08-10T08:21:22Z",
       "side": 1,
       "message": "declare it globally once and use everywhere",
+      "range": {
+        "startLine": 176,
+        "startChar": 12,
+        "endLine": 176,
+        "endChar": 23
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "767af84e_b433b79f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-11T13:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd1cccb3_7d64638c",
       "range": {
         "startLine": 176,
         "startChar": 12,
@@ -267,6 +315,30 @@
       "writtenOn": "2026-08-10T08:21:22Z",
       "side": 1,
       "message": "this wont work as it is calling global variable so scenarios never get triggered, rename the global variable to schemaSets",
+      "range": {
+        "startLine": 213,
+        "startChar": 69,
+        "endLine": 213,
+        "endChar": 83
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba02073a_b797d9c9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-11T13:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89538136_daf2e314",
       "range": {
         "startLine": 213,
         "startChar": 69,
