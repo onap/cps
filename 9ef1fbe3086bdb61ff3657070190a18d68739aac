@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de88976b_4ca95cff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T07:55:01Z",
+      "side": 1,
+      "message": "NB, dont use Tabs in commit message",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 1
+      },
+      "revId": "9ef1fbe3086bdb61ff3657070190a18d68739aac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f43f0a14_cda7d1d7",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T07:55:01Z",
+      "side": 1,
+      "message": "can this go into an indefinite loop?! Is there timeout on the Job itself in CI?",
+      "range": {
+        "startLine": 72,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 13
+      },
+      "revId": "9ef1fbe3086bdb61ff3657070190a18d68739aac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
