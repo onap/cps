@@ -52,6 +52,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb0535bd_12ec2cc2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/query/CompositeQueryExecution.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T07:48:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c6b50b69_c24954ce",
+      "revId": "1d664833d62756687dcf143477882f1490033dd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0999391_1a55ca34",
