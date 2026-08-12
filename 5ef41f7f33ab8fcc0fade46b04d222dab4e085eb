@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e80fa6e_de0be88d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "I have combined all four test for the same method into 1 test",
+      "parentUuid": "17a4ae12_0f583349",
+      "range": {
+        "startLine": 367,
+        "startChar": 4,
+        "endLine": 367,
+        "endChar": 30
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caf8dae7_01684cea",
@@ -84,6 +108,30 @@
       "writtenOn": "2026-08-10T08:21:22Z",
       "side": 1,
       "message": "get anchors with pagination and #scenario schema set name\nnull \nempty\nmultiple",
+      "range": {
+        "startLine": 174,
+        "startChar": 9,
+        "endLine": 174,
+        "endChar": 46
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0411875c_180985bd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "I have renamed from def \u0027Get paginated anchors with #scenario\u0027 to def \u0027Get anchors with pagination and #scenario schema set name",
+      "parentUuid": "8ffb7bed_f7b2fb2f",
       "range": {
         "startLine": 174,
         "startChar": 9,
@@ -164,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef72fe8f_a4f0e6e8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "I have removed one method call",
+      "parentUuid": "8d2200d7_13502cda",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 179,
+        "endChar": 129
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f04b88bc_1f3434d4",
@@ -205,6 +277,54 @@
         "startChar": 32,
         "endLine": 187,
         "endChar": 34
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1cea4ab_d24834f8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "Removed extra space",
+      "parentUuid": "96369522_cef0c28b",
+      "range": {
+        "startLine": 187,
+        "startChar": 32,
+        "endLine": 187,
+        "endChar": 34
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5a3fc7e_2554aead",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "We can not change from schemaSetNamesParam to schemaSetNames because schemaSetNames is already declared and assign with schema set names but need to be dynamic values for schema set like null, empty",
+      "parentUuid": "f04b88bc_1f3434d4",
+      "range": {
+        "startLine": 187,
+        "startChar": 36,
+        "endLine": 187,
+        "endChar": 55
       },
       "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -302,6 +422,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7baa88e1_d063c4ab",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "I have renamed method name with def \u0027Get anchors without pagination and #scenario schema set names\u0027",
+      "parentUuid": "76b51c87_889d662b",
+      "range": {
+        "startLine": 208,
+        "startChar": 9,
+        "endLine": 208,
+        "endChar": 55
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89538136_daf2e314",
@@ -372,6 +516,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fc90e0a_dfb64132",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "removed extra space",
+      "parentUuid": "0748ece8_255d6bcc",
+      "range": {
+        "startLine": 219,
+        "startChar": 31,
+        "endLine": 219,
+        "endChar": 34
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d92e7e47_10a7158e",
@@ -385,6 +553,30 @@
       "writtenOn": "2026-08-10T08:21:22Z",
       "side": 1,
       "message": "this can be combined with above test and will be 3rd scenario \nGet anchors with schema set name #scenario\nnull\nempty\nmultiple",
+      "range": {
+        "startLine": 224,
+        "startChar": 9,
+        "endLine": 224,
+        "endChar": 51
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e95beb64_de6eac16",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "This method is combined with the above method with 3rd scenario",
+      "parentUuid": "d92e7e47_10a7158e",
       "range": {
         "startLine": 224,
         "startChar": 9,
@@ -487,6 +679,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c74a2f5_72f2e944",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccfe1693_5dae3175",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 7
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6e2a45c_0308c8e4",
@@ -500,6 +716,30 @@
       "writtenOn": "2026-08-10T08:21:22Z",
       "side": 1,
       "message": "schemaSetNames",
+      "range": {
+        "startLine": 104,
+        "startChar": 52,
+        "endLine": 104,
+        "endChar": 67
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b5f80be_95143016",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "Renamed from schemaSetFilter to schemaSetNames",
+      "parentUuid": "e6e2a45c_0308c8e4",
       "range": {
         "startLine": 104,
         "startChar": 52,
@@ -533,6 +773,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "657a5871_ef0974b4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "567512ae_147ac217",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 105,
+        "endChar": 22
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66653d3b_873c0341",
@@ -546,6 +810,30 @@
       "writtenOn": "2026-08-10T08:21:22Z",
       "side": 1,
       "message": "remove bookstore only schema set names is fine",
+      "range": {
+        "startLine": 107,
+        "startChar": 13,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f22097f7_fe1e7c21",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66653d3b_873c0341",
       "range": {
         "startLine": 107,
         "startChar": 13,

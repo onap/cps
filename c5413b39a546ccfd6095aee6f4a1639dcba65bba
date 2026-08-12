@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfb7dbb7_538c914d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-12T10:33:28Z",
+      "side": 1,
+      "message": "I have uploaded patch set for schema set filtering testware and also common for both filtering \u0026\u0026 pagination testware.",
+      "revId": "c5413b39a546ccfd6095aee6f4a1639dcba65bba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
