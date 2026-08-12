@@ -56,6 +56,29 @@
       "message": "nb: can we add a test that shows EventBatchSendException is retryable ?",
       "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a6ca0a0_91e2bd2d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T07:59:07Z",
+      "side": 1,
+      "message": "Still same comment why not mock it?!\nIf needed use groovy \u0027def\u0027 instead of \u0027private\u0027",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 12
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
