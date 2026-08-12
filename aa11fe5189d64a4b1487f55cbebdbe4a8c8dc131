@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cfae3ae_2f3d299f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T11:01:04Z",
+      "side": 1,
+      "message": "please describe in own word what behavior we are changing",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 62
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c616aa_a63b9fa1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T11:01:04Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 21,
+        "endChar": 61
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "32a2941a_01ec24fb",
@@ -14,6 +60,52 @@
       "writtenOn": "2026-08-07T11:57:58Z",
       "side": 1,
       "message": "recheck",
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ea7d6ec_2a239d3e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T11:01:04Z",
+      "side": 1,
+      "message": "extract out logNonRetryable....\nlog more details (statcktrace etc) on debug level inside that method then",
+      "range": {
+        "startLine": 178,
+        "startChar": 35,
+        "endLine": 180,
+        "endChar": 91
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4af949a_91bcf273",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T11:01:04Z",
+      "side": 1,
+      "message": "add a comment to describe what this does",
+      "range": {
+        "startLine": 182,
+        "startChar": 28,
+        "endLine": 182,
+        "endChar": 40
+      },
       "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -43,6 +135,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c406b3a6_2f4af738",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T11:01:04Z",
+      "side": 1,
+      "message": "Do Check \nbut any impacts will be handled/checked in separate Jira",
+      "parentUuid": "71ea5680_08380d83",
+      "range": {
+        "startLine": 177,
+        "startChar": 7,
+        "endLine": 183,
+        "endChar": 82
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5642eb6d_6debe34a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
         "patchSetId": 2
@@ -54,6 +170,75 @@
       "writtenOn": "2026-08-10T14:10:09Z",
       "side": 1,
       "message": "nb: can we add a test that shows EventBatchSendException is retryable ?",
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f227314_3ec47b18",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T11:01:04Z",
+      "side": 1,
+      "message": "test actual logging instead, no need to check the \u0027internals\u0027",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 5
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b58ac4d1_8341fb13",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T11:01:04Z",
+      "side": 1,
+      "message": "Ai Smell",
+      "range": {
+        "startLine": 96,
+        "startChar": 21,
+        "endLine": 96,
+        "endChar": 55
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b85ac48_6ba437b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T11:01:04Z",
+      "side": 1,
+      "message": "AI Smell: use import",
+      "range": {
+        "startLine": 96,
+        "startChar": 71,
+        "endLine": 96,
+        "endChar": 106
+      },
       "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -76,6 +261,29 @@
         "startChar": 4,
         "endLine": 101,
         "endChar": 12
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "411216f5_f695c4b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-12T11:01:04Z",
+      "side": 1,
+      "message": "Test behavior change, not sure if this is correct please connect with Lee Anjella.",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 0
       },
       "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
