@@ -27,7 +27,7 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANT
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.CompositeQuery
-import org.onap.cps.impl.query.CompositeQueryProcessor
+import org.onap.cps.api.model.DataNode
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.api.parameters.FetchDescendantsOption
@@ -37,9 +37,8 @@ import spock.lang.Specification
 class CpsQueryServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsValidator = Mock(CpsValidator)
-    def compositeQueryProcessor = Mock(CompositeQueryProcessor)
 
-    def objectUnderTest = new CpsQueryServiceImpl(mockCpsDataPersistenceService, mockCpsValidator, compositeQueryProcessor)
+    def objectUnderTest = new CpsQueryServiceImpl(mockCpsDataPersistenceService, mockCpsValidator)
 
     def 'Query data nodes by cps path with #fetchDescendantsOption.'() {
         given: 'a dataspace name, an anchor name and a cps path'
@@ -136,12 +135,15 @@ class CpsQueryServiceImplSpec extends Specification {
     }
 
     def 'Search data nodes with a composite query.'() {
-        given: 'a composite query'
+        given: 'a composite query with no conditions'
             def compositeQuery = new CompositeQuery(cpsPath: '/cps-path', operator: 'and', conditions: [])
+        and: 'persistence returns a matching data node'
+            def dataNode = new DataNode(xpath: '/cps-path', childDataNodes: [])
+            mockCpsDataPersistenceService.queryDataNodes('my-dataspace', 'my-anchor', '/cps-path', OMIT_DESCENDANTS, 0) >> [dataNode]
         when: 'executeCompositeQuery is invoked'
-            objectUnderTest.compositeQueryDataNodes('my-dataspace', 'my-anchor', compositeQuery, OMIT_DESCENDANTS)
-        then: 'the persistence service is called once with the correct parameters'
-            1 * compositeQueryProcessor.processCompositeQuery('my-dataspace', 'my-anchor', compositeQuery, OMIT_DESCENDANTS)
+            def result = objectUnderTest.compositeQueryDataNodes('my-dataspace', 'my-anchor', compositeQuery, OMIT_DESCENDANTS)
+        then: 'the matching data node is returned'
+            result == [dataNode]
         and: 'the CpsValidator is called on the dataspaceName and anchorName'
             1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-anchor')
     }
