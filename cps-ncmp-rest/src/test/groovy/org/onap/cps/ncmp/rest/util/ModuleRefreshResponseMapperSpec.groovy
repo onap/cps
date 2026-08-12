@@ -20,25 +20,33 @@
 
 package org.onap.cps.ncmp.rest.util
 
+import org.onap.cps.ncmp.api.inventory.models.RefreshCmHandle
 import spock.lang.Specification
 
 class ModuleRefreshResponseMapperSpec extends Specification {
 
     def objectUnderTest = new ModuleRefreshResponseMapper()
 
-    def 'Map grouped cm handle references to a rest module refresh response.'() {
-        given: 'references grouped by module set tag'
-            def cmHandleReferencesByModuleSetTag = ['tag-A': ['alt-1', 'ch-2'], 'tag-B': ['alt-3']] as LinkedHashMap
+    def 'Map grouped cm handles to a rest module refresh response.'() {
+        given: 'refresh cm handles grouped by module set tag, with state and the sample flagged'
+            def refreshCmHandlesByModuleSetTag = [
+                'tag-A': [refreshCmHandle('alt-1', 'LOCKED', false), refreshCmHandle('ch-2', 'READY', true)],
+                'tag-B': [refreshCmHandle('alt-3', 'READY', true)]
+            ] as LinkedHashMap
         when: 'mapping to the rest response'
-            def result = objectUnderTest.toRestModuleRefreshResponse(cmHandleReferencesByModuleSetTag)
+            def result = objectUnderTest.toRestModuleRefreshResponse(refreshCmHandlesByModuleSetTag)
         then: 'the response contains an entry per module set tag'
             assert result.cmHandlesByModuleSetTag.size() == 2
-        and: 'the first entry contains the correct tag and references'
+        and: 'the first entry contains the correct tag, references and states'
             def tagA = result.cmHandlesByModuleSetTag.find { it.moduleSetTag == 'tag-A' }
-            assert tagA.cmHandles == ['alt-1', 'ch-2']
-        and: 'the second entry contains the correct tag and references'
+            assert tagA.cmHandles.cmHandleReference == ['alt-1', 'ch-2']
+            assert tagA.cmHandles.cmHandleState == ['LOCKED', 'READY']
+        and: 'only one sample (first READY) is selected for refresh'
+            assert tagA.cmHandles.find { it.cmHandleReference == 'ch-2' }.selectedForRefresh
+            assert tagA.cmHandles.find { it.cmHandleReference == 'alt-1' }.selectedForRefresh == false
+        and: 'the second entry contains the correct tag and reference'
             def tagB = result.cmHandlesByModuleSetTag.find { it.moduleSetTag == 'tag-B' }
-            assert tagB.cmHandles == ['alt-3']
+            assert tagB.cmHandles.cmHandleReference == ['alt-3']
     }
 
     def 'Map an empty grouping.'() {
@@ -46,5 +54,9 @@ class ModuleRefreshResponseMapperSpec extends Specification {
             def result = objectUnderTest.toRestModuleRefreshResponse([:])
         then: 'the response contains an empty list'
             assert result.cmHandlesByModuleSetTag.isEmpty()
+    }
+
+    def refreshCmHandle(reference, state, selected) {
+        return new RefreshCmHandle('some-cm-handle-id', reference, state, selected)
     }
 }

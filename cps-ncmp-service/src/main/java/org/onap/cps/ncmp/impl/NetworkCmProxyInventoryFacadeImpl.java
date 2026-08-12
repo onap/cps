@@ -30,19 +30,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
+import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.inventory.models.RefreshCmHandle;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
 import org.onap.cps.ncmp.impl.dmi.DmiPluginUrlValidator;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
@@ -118,17 +122,27 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     }
 
     @Override
-    public Map<String, Collection<String>> refreshModules(
+    public Map<String, List<RefreshCmHandle>> refreshModules(
         final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
-        final Map<String, Collection<String>> cmHandleReferencesByModuleSetTag = new LinkedHashMap<>();
-        southboundCmHandleSearch(cmHandleQueryApiParameters).toIterable().forEach(ncmpServiceCmHandle -> {
-            final String moduleSetTag = ncmpServiceCmHandle.getModuleSetTag();
-            final String cmHandleReference = StringUtils.isNotBlank(ncmpServiceCmHandle.getAlternateId())
-                ? ncmpServiceCmHandle.getAlternateId() : ncmpServiceCmHandle.getCmHandleId();
-            cmHandleReferencesByModuleSetTag.computeIfAbsent(moduleSetTag, tag -> new ArrayList<>())
-                .add(cmHandleReference);
+        final Map<String, List<NcmpServiceCmHandle>> cmHandlesByModuleSetTag = new LinkedHashMap<>();
+        southboundCmHandleSearchLightweight(cmHandleQueryApiParameters).toIterable().forEach(ncmpServiceCmHandle ->
+            cmHandlesByModuleSetTag.computeIfAbsent(ncmpServiceCmHandle.getModuleSetTag(), tag -> new ArrayList<>())
+                .add(ncmpServiceCmHandle));
+
+        final Map<String, List<RefreshCmHandle>> refreshCmHandlesByModuleSetTag = new LinkedHashMap<>();
+        cmHandlesByModuleSetTag.forEach((moduleSetTag, ncmpServiceCmHandles) -> {
+            final NcmpServiceCmHandle sampleCmHandle = firstReadyCmHandle(ncmpServiceCmHandles);
+            final List<RefreshCmHandle> refreshCmHandles = new ArrayList<>(ncmpServiceCmHandles.size());
+            for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
+                refreshCmHandles.add(new RefreshCmHandle(
+                    ncmpServiceCmHandle.getCmHandleId(),
+                    getCmHandleReference(ncmpServiceCmHandle),
+                    getCmHandleStatusOrThrow(ncmpServiceCmHandle),
+                    ncmpServiceCmHandle == sampleCmHandle));
+            }
+            refreshCmHandlesByModuleSetTag.put(moduleSetTag, refreshCmHandles);
         });
-        return cmHandleReferencesByModuleSetTag;
+        return refreshCmHandlesByModuleSetTag;
     }
 
     @Override
@@ -224,6 +238,30 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
         } catch (final NoAlternateIdMatchFoundException ignored) {
             return alternateIdMatcher.getCmHandleId(cmHandleReference);
         }
+    }
+
+    private static String getCmHandleReference(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        return StringUtils.isNotBlank(ncmpServiceCmHandle.getAlternateId())
+            ? ncmpServiceCmHandle.getAlternateId() : ncmpServiceCmHandle.getCmHandleId();
+    }
+
+    private static String getCmHandleStatusOrThrow(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final String cmHandleStatus = ncmpServiceCmHandle.getCmHandleStatus();
+        if (StringUtils.isBlank(cmHandleStatus)) {
+            throw new ServerNcmpException("Module refresh is not supported by the current inventory data model",
+                "The top-level CM handle status is not available; this feature requires inventory model version "
+                    + "r20260423 or later.");
+        }
+        return cmHandleStatus;
+    }
+
+    private static NcmpServiceCmHandle firstReadyCmHandle(final List<NcmpServiceCmHandle> ncmpServiceCmHandles) {
+        for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
+            if (CmHandleState.READY.name().equals(getCmHandleStatusOrThrow(ncmpServiceCmHandle))) {
+                return ncmpServiceCmHandle;
+            }
+        }
+        return null;
     }
 
 }

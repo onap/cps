@@ -267,8 +267,21 @@ components:
         cmHandles:
           type: array
           items:
-            type: string
-          example: [ "Subnetwork=Europe,ManagedElement=X123", my-cm-handle2 ]
+            $ref: '#/components/schemas/ModuleRefreshCmHandle'
+    ModuleRefreshCmHandle:
+      type: object
+      title: CM Handle within a module refresh group
+      description: A matched CM Handle with its current state. 'selectedForRefresh' marks the single sample (first READY CM Handle) that will be refreshed for this module set tag.
+      properties:
+        cmHandleReference:
+          type: string
+          example: Subnetwork=Europe,ManagedElement=X123
+        cmHandleState:
+          type: string
+          example: READY
+        selectedForRefresh:
+          type: boolean
+          example: true
 
     CmHandleQueryParameters:
       type: object

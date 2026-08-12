@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.inventory;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.model.ModuleReference;
@@ -30,6 +31,7 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.inventory.models.RefreshCmHandle;
 import reactor.core.publisher.Flux;
 
 public interface NetworkCmProxyInventoryFacade {
@@ -94,17 +96,20 @@ public interface NetworkCmProxyInventoryFacade {
                                                                          final String moduleRevision);
 
     /**
-     * Find the CM Handles (references) matching the given (southbound) query and group them by module set tag.
+     * Find the CM Handles matching the given (southbound) query and group them by module set tag, enriched with
+     * each CM Handle's current state and a flag marking the single sample selected to be refreshed per tag.
      *
-     * <p>This is a read-only operation: it runs the existing southbound search and groups the matched
-     * CM Handles by their module set tag. The reference used for each CM Handle is its alternate id where
-     * available, otherwise its cm handle id. No CM Handle state is changed and no asynchronous work is
+     * <p>This is a read-only operation: it runs the existing southbound search and groups the matched CM Handles
+     * by their module set tag. For each group the first READY CM Handle is marked as the sample
+     * ({@code selectedForRefresh}); only that sample needs refreshing since all nodes of a tag are assumed to hold
+     * identical content and YANG resources are shared. The reference used for each CM Handle is its alternate id
+     * where available, otherwise its cm handle id. No CM Handle state is changed and no asynchronous work is
      * triggered.</p>
      *
      * @param cmHandleQueryApiParameters cm handle query parameters
-     * @return a map of module set tag to the collection of matched cm handle references
+     * @return a map of module set tag to the matched CM Handles (with state and sample flag)
      */
-    Map<String, Collection<String>> refreshModules(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
+    Map<String, List<RefreshCmHandle>> refreshModules(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
 
     /**
      * Retrieve cm handles with details for the given query parameters.
