@@ -19,8 +19,7 @@
  */
 
 /**
- * To run this script, ensure docker-compose is started, then run this k6 script:
- *   docker-compose -f docker-compose/docker-compose.yml --profile dmi-stub --project-name kpi up --wait
+ * To run this script, ensure CPS/NCMP is deployed via Helm, then run:
  *   k6 run register-cmhandles-only.js -e TEST_PROFILE=kpi
  * After, the system will be running with 50,000 CM-handles created.
  */

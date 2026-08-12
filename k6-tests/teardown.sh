@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024-2025 OpenInfra Foundation Europe.
+# Copyright 2024-2026 OpenInfra Foundation Europe.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,96 +15,68 @@
 # limitations under the License.
 #
 
-# The default test profile is kpi, and deployment type is k8sHosts
+# The default test profile is kpi
 testProfile=${1:-kpi}
-deploymentType=${2:-dockerHosts}
 
-# Function to clean Docker images based on CLEAN_DOCKER_IMAGES environment variable
-clean_docker_images_if_needed() {
-  if [[ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]]; then
-    echo "Also cleaning up CPS images"
-    remove_cps_images "$deploymentType"
-  fi
-}
+# Use test profile as namespace for k8s deployments
+K8S_NAMESPACE="${K8S_NAMESPACE:-$testProfile}"
 
-# All CPS docker images:
-# nexus3.onap.org:10003/onap/cps-and-ncmp:SNAPSHOT-*
-# nexus3.onap.org:10003/onap/policy-executor-stub:SNAPSHOT-*
-# Note: DMI stub is pulled from Nexus, not built, so we don't clean it
-remove_cps_images() {
-  local deployment_type=$1
-  local cps_image_names=(cps-and-ncmp policy-executor-stub)
-  
-  echo "Cleaning up Docker images..."
-  for cps_image_name in "${cps_image_names[@]}"; do
-    local image_path="nexus3.onap.org:10003/onap/$cps_image_name"
-    
-    # List all images for all tags except 'latest' since it would be in use
-    # For k8sHosts: remove SNAPSHOT-* tags (timestamp-based from Jenkins)
-    # For dockerHosts: remove all non-latest tags
-    if [[ "$deployment_type" == "k8sHosts" ]]; then
-      local snapshot_tags=( $(docker images "$image_path" --format '{{.Tag}}' | grep 'SNAPSHOT-' || true) )
-    else
-      local snapshot_tags=( $(docker images "$image_path" --format '{{.Tag}}' | grep -v '^latest$' || true) )
-    fi
-    
-    if [ ${#snapshot_tags[@]} -gt 0 ]; then
-      echo "Removing images for $image_path: ${snapshot_tags[*]}"
-      for tag in "${snapshot_tags[@]}"; do
-        docker rmi "$image_path:$tag" || echo "  Warning: Failed to remove $image_path:$tag"
-      done
-    else
-      echo "No images to remove for $image_path"
-    fi
-  done
-}
+echo "=========================================="
+echo "TEARDOWN FOR PROFILE: $testProfile"
+echo "NAMESPACE:            $K8S_NAMESPACE"
+echo "=========================================="
 
 # Function to create and store logs
 make_logs() {
-  echo "Creating logs for deployment type: $deploymentType"
+  echo "Creating logs for namespace: $K8S_NAMESPACE ..."
   chmod +x archive-logs.sh
-  ./archive-logs.sh "$deploymentType"
+  ./archive-logs.sh
 }
 
-# Function to teardown docker-compose deployment
-teardown_docker_deployment() {
-  echo '================================== docker info =========================='
-  docker ps -a
-
-  local docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --project-name $testProfile down --volumes"
-
-  # Check env. variable CLEAN_DOCKER_IMAGES=1 to decide removing CPS images
-  echo "Stopping, Removing containers and volumes for $testProfile tests..."
-  eval "$docker_compose_shutdown_cmd"
-
-  # Clean Docker images if requested
-  clean_docker_images_if_needed
+# Force-remove a stuck namespace by clearing its finalizers
+force_remove_namespace() {
+  echo "Forcing removal of namespace '$K8S_NAMESPACE' by clearing finalizers..."
+  kubectl get namespace "$K8S_NAMESPACE" -o json 2>/dev/null | \
+    sed 's/"finalizers": \[[^]]*\]/"finalizers": []/' | \
+    kubectl replace --raw "/api/v1/namespaces/$K8S_NAMESPACE/finalize" -f - 2>/dev/null || true
 }
 
 # Function to teardown kubernetes deployment
 teardown_k8s_deployment() {
-  echo '================================== k8s info =========================='
-  kubectl get all -l app=ncmp
 
-  echo '================================== uninstalling cps... =========================='
-  helm uninstall cps
+  # Check if namespace exists at all
+  if ! kubectl get namespace "$K8S_NAMESPACE" &>/dev/null; then
+    echo "Namespace '$K8S_NAMESPACE' does not exist. Nothing to tear down."
+    return 0
+  fi
 
-  # Clean Docker images if requested
-  clean_docker_images_if_needed
+  echo "================================== k8s info [namespace: $K8S_NAMESPACE] =========================="
+  kubectl get all --namespace "$K8S_NAMESPACE" -l app=ncmp || true
+
+  echo "================================== uninstalling helm release 'cps' [namespace: $K8S_NAMESPACE] =========================="
+  helm uninstall cps --namespace "$K8S_NAMESPACE" --no-hooks 2>/dev/null || echo "Helm release 'cps' not found or already removed in namespace '$K8S_NAMESPACE'."
+
+  echo "================================== cleaning up resources [namespace: $K8S_NAMESPACE] =========================="
+  kubectl delete pods --all --namespace "$K8S_NAMESPACE" --grace-period=0 --force 2>/dev/null || true
+  kubectl delete all --all --namespace "$K8S_NAMESPACE" --grace-period=0 --force 2>/dev/null || true
+  kubectl delete configmaps,secrets,serviceaccounts,roles,rolebindings --all --namespace "$K8S_NAMESPACE" 2>/dev/null || true
+
+  echo "================================== deleting namespace: $K8S_NAMESPACE =========================="
+  kubectl delete namespace "$K8S_NAMESPACE" --ignore-not-found --wait=false
+
+  # Force-remove finalizers immediately to prevent the namespace from getting stuck
+  sleep 5
+  if kubectl get namespace "$K8S_NAMESPACE" &>/dev/null; then
+    force_remove_namespace
+  fi
+
+  echo "Namespace '$K8S_NAMESPACE' deletion initiated."
 }
 
-# Main logic: archive logs and determine which deployment type to teardown
+# Main logic: archive logs and teardown
 make_logs
-case "$deploymentType" in
-  "k8sHosts")
-    teardown_k8s_deployment
-    ;;
-  "dockerHosts")
-    teardown_docker_deployment
-    ;;
-  *)
-    echo "Unknown deployment type: $deploymentType"
-    echo "Supported deployment types: k8sHosts, dockerHosts"
-    exit 1
-    ;;
-esac
+teardown_k8s_deployment
+
+echo "=========================================="
+echo "TEARDOWN COMPLETE FOR: $testProfile (namespace: $K8S_NAMESPACE)"
+echo "=========================================="
