@@ -145,8 +145,9 @@ class ModuleSyncTasksSpec extends Specification {
             noExceptionThrown()
         and: 'the deleted cm-handle did not sync'
             0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
-        and: 'the deleting cm-handle did not sync'
+        and: 'the deleting cm-handle did not sync but its state was reconciled'
             0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2' }
+            1 * mockInventoryPersistence.saveCmHandleStateBatch(['cm-handle-2': _])
         and: 'the advised cm-handle synced'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-3' }
         and: 'the state handler called for only the advised handle'
@@ -157,6 +158,25 @@ class ModuleSyncTasksSpec extends Specification {
             assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
             assert moduleSyncStartedOnCmHandles.get('cm-handle-2') == null
             assert moduleSyncStartedOnCmHandles.get('cm-handle-3') == null
+    }
+
+    def 'Module sync reconciles stale index when cm handle state does not match ADVISED.'() {
+        given: 'a cm handle with stale ADVISED index but actual state is READY'
+            def cmHandle = cmHandleByIdAndState('cm-handle-1', CmHandleState.READY)
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-1') >> cmHandle
+        and: 'cm handle is in the in-progress map'
+            moduleSyncStartedOnCmHandles.put('cm-handle-1', 'Started')
+        when: 'module sync poll is executed'
+            objectUnderTest.performModuleSync(['cm-handle-1'])
+        then: 'no module sync is attempted'
+            0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_)
+            0 * mockModuleSyncService.syncAndUpgradeSchemaSet(_)
+        and: 'the state is reconciled by directly persisting the composite state'
+            1 * mockInventoryPersistence.saveCmHandleStateBatch({
+                it.size() == 1 && it.containsKey('cm-handle-1')
+            })
+        and: 'the cm handle is removed from the in-progress map'
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
     }
 
     def 'Reset failed CM Handles #scenario.'() {

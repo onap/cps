@@ -67,6 +67,8 @@ public class ModuleSyncTasks {
                     } else {
                         log.warn("Skipping module sync for CM handle '{}' as it is in {} state", cmHandleId,
                                 yangModelCmHandle.getCompositeState().getCmHandleState().name());
+                        inventoryPersistence.saveCmHandleStateBatch(
+                                Map.of(cmHandleId, yangModelCmHandle.getCompositeState()));
                     }
                 } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                     log.warn("Skipping module sync for CM handle '{}' as it does not exist", cmHandleId);
