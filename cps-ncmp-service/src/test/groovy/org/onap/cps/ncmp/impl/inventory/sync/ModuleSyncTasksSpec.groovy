@@ -145,8 +145,9 @@ class ModuleSyncTasksSpec extends Specification {
             noExceptionThrown()
         and: 'the deleted cm-handle did not sync'
             0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
-        and: 'the deleting cm-handle did not sync'
+        and: 'the deleting cm-handle did not sync but its state was re-aligned'
             0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2' }
+            1 * mockInventoryPersistence.saveCmHandleStateBatch({ it.containsKey('cm-handle-2') })
         and: 'the advised cm-handle synced'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-3' }
         and: 'the state handler called for only the advised handle'
@@ -157,6 +158,31 @@ class ModuleSyncTasksSpec extends Specification {
             assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
             assert moduleSyncStartedOnCmHandles.get('cm-handle-2') == null
             assert moduleSyncStartedOnCmHandles.get('cm-handle-3') == null
+    }
+
+    def 'Module sync re-aligns state when cm handles are not in ADVISED state.'() {
+        given: 'cm handles with stale ADVISED index but actual states are READY and LOCKED'
+            def readyHandle = cmHandleByIdAndState('cm-handle-1', CmHandleState.READY)
+            def lockedHandle = cmHandleByIdAndState('cm-handle-2', CmHandleState.LOCKED)
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-1') >> readyHandle
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-2') >> lockedHandle
+        and: 'cm handles are in the in-progress map'
+            moduleSyncStartedOnCmHandles.put('cm-handle-1', 'Started')
+            moduleSyncStartedOnCmHandles.put('cm-handle-2', 'Started')
+        when: 'module sync poll is executed'
+            objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'])
+        then: 'no module sync is attempted'
+            0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_)
+            0 * mockModuleSyncService.syncAndUpgradeSchemaSet(_)
+        and: 'the states are re-aligned in a single batch'
+            1 * mockInventoryPersistence.saveCmHandleStateBatch({ Map<String, CompositeState> batch ->
+                batch.size() == 2
+                && batch.containsKey('cm-handle-1')
+                && batch.containsKey('cm-handle-2')
+            })
+        and: 'the cm handles are removed from the in-progress map'
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-2') == null
     }
 
     def 'Reset failed CM Handles #scenario.'() {

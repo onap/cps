@@ -57,6 +57,7 @@ public class ModuleSyncTasks {
      */
     public void performModuleSync(final Collection<String> cmHandleIds) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = HashMap.newHashMap(cmHandleIds.size());
+        final Map<String, CompositeState> compositeStatePerCmHandle = HashMap.newHashMap(cmHandleIds.size());
         try {
             for (final String cmHandleId : cmHandleIds) {
                 try {
@@ -67,6 +68,7 @@ public class ModuleSyncTasks {
                     } else {
                         log.warn("Skipping module sync for CM handle '{}' as it is in {} state", cmHandleId,
                                 yangModelCmHandle.getCompositeState().getCmHandleState().name());
+                        compositeStatePerCmHandle.put(cmHandleId, yangModelCmHandle.getCompositeState());
                     }
                 } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                     log.warn("Skipping module sync for CM handle '{}' as it does not exist", cmHandleId);
@@ -77,6 +79,10 @@ public class ModuleSyncTasks {
         } finally {
             log.warn("Persisting state for {} cm handles", cmHandleStatePerCmHandle.size());
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
+            if (!compositeStatePerCmHandle.isEmpty()) {
+                log.warn("Re-aligning state for {} cm handles", compositeStatePerCmHandle.size());
+                inventoryPersistence.saveCmHandleStateBatch(compositeStatePerCmHandle);
+            }
         }
     }
 
