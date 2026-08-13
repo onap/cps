@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1877e8ef_c77dbfa1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T05:44:44Z",
+      "side": 1,
+      "message": "I have uploaded patch set for pagination testware",
+      "revId": "fbde3381ad6ed5d48b69b7fa62368b8f2852518e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

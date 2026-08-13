@@ -165,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6988ec85_a736b06e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T05:44:44Z",
+      "side": 1,
+      "message": "I have combined unit test with this test \u0027Get paginated anchors for a dataspace\u0027 using where block",
+      "parentUuid": "e2edcfca_9ec9d638",
+      "range": {
+        "startLine": 66,
+        "startChar": 9,
+        "endLine": 66,
+        "endChar": 47
+      },
+      "revId": "a1536aa6da735f17d9e7c7e97520d11d2d947058",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11d4eb13_ad6643f4",

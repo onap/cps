@@ -353,6 +353,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0674ffbd_70024c4a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T05:44:44Z",
+      "side": 1,
+      "message": "Replaced method name with def \u0027Get anchors with no pagination, #scenario\u0027",
+      "parentUuid": "271eb7d9_42a6e38d",
+      "range": {
+        "startLine": 193,
+        "startChar": 9,
+        "endLine": 193,
+        "endChar": 90
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfcea10b_4669b82e",
@@ -389,6 +413,54 @@
       "writtenOn": "2026-08-10T08:21:22Z",
       "side": 1,
       "message": "NB extra space",
+      "range": {
+        "startLine": 202,
+        "startChar": 30,
+        "endLine": 202,
+        "endChar": 33
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adfedc38_e06456da",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T05:44:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfcea10b_4669b82e",
+      "range": {
+        "startLine": 202,
+        "startChar": 45,
+        "endLine": 202,
+        "endChar": 55
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e920c88f_7dceeddb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T05:44:44Z",
+      "side": 1,
+      "message": "removed extra space",
+      "parentUuid": "923ff3e8_47d75c3f",
       "range": {
         "startLine": 202,
         "startChar": 30,
@@ -610,6 +682,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8461f865_17048e67",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T05:44:44Z",
+      "side": 1,
+      "message": "Off course no need to 2 statements here so i have remove that one.",
+      "parentUuid": "6541e5f8_01373ad4",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 244,
+        "endChar": 13
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d63c91f_1634a484",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T05:44:44Z",
+      "side": 1,
+      "message": "Offcourse",
+      "parentUuid": "6541e5f8_01373ad4",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 244,
+        "endChar": 13
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46133520_9ffa50f6",
@@ -651,6 +771,54 @@
         "startChar": 45,
         "endLine": 255,
         "endChar": 67
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bfb5c6d_f7b60c2e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T05:44:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1b88148_7dd96224",
+      "range": {
+        "startLine": 255,
+        "startChar": 45,
+        "endLine": 255,
+        "endChar": 67
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3518483_da33f2da",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T05:44:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46133520_9ffa50f6",
+      "range": {
+        "startLine": 255,
+        "startChar": 13,
+        "endLine": 255,
+        "endChar": 16
       },
       "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
