@@ -118,9 +118,9 @@ class ModuleOperationsUtilsSpec extends Specification{
             'empty module set tag' | ''                 || 'Attempt'
     }
 
-    def 'Get all locked cm-Handles where lock reasons are model sync failed or upgrade'() {
+    def 'Get all locked cm-Handles where lock reasons are model sync failed, upgrade or refresh'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
-            mockCmHandleQueries.queryCmHandleAncestorsByCpsPath(ModuleOperationsUtils.CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE,
+            mockCmHandleQueries.queryCmHandleAncestorsByCpsPath(ModuleOperationsUtils.CPS_PATH_CM_HANDLES_FOR_RETRY,
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get locked Misbehaving cm handle is called'
             def result = objectUnderTest.getCmHandlesThatFailedModelSyncOrUpgrade()

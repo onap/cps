@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_D
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,7 @@ import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.utils.ContentType;
@@ -100,6 +102,57 @@ public class ModuleSyncService {
         }
     }
 
+    /**
+     * Force re-read of the module content from the node and update any changed YANG resource content in place.
+     * The module set tag and revisions are not changed; only the stored content of existing modules is refreshed
+     * when it differs from what the node now returns. This is used to pick up model regenerations where the
+     * revision was (deliberately) not bumped.
+     *
+     * @param yangModelCmHandle the yang model of cm handle.
+     */
+    public void refreshModuleContent(final YangModelCmHandle yangModelCmHandle) {
+        final String cmHandleId = yangModelCmHandle.getId();
+        final String moduleSetTag = yangModelCmHandle.getModuleSetTag();
+        final Collection<ModuleReference> allModuleReferences =
+                dmiModelOperations.getModuleReferences(yangModelCmHandle, moduleSetTag);
+        final Map<String, String> yangResourceContentPerModuleName =
+                dmiModelOperations.getYangResourcesFromDmi(yangModelCmHandle, moduleSetTag, allModuleReferences);
+        final Map<String, ModuleDefinition> storedModuleDefinitionPerModuleName =
+                getStoredModuleDefinitionsPerModuleName(cmHandleId);
+
+        int numberOfChangedModules = 0;
+        for (final ModuleReference moduleReference : allModuleReferences) {
+            final String moduleName = moduleReference.getModuleName();
+            final String contentFromNode = yangResourceContentPerModuleName.get(moduleName);
+            final ModuleDefinition storedModuleDefinition = storedModuleDefinitionPerModuleName.get(moduleName);
+            if (contentFromNode != null && storedModuleDefinition != null
+                    && !contentFromNode.equals(storedModuleDefinition.getContent())) {
+                cpsModuleService.updateYangResourceContent(moduleName, moduleReference.getRevision(), contentFromNode);
+                log.info("YANG module content change detected and refreshed: node (cm handle) '{}', "
+                        + "module set tag '{}', module '{}@{}'",
+                        cmHandleId, moduleSetTag, moduleName, moduleReference.getRevision());
+                numberOfChangedModules++;
+            }
+        }
+        if (numberOfChangedModules > 0) {
+            final String schemaSetName = getSchemaSetNameForModuleSetTag(cmHandleId, moduleSetTag);
+            cpsModuleService.removeSchemaSetFromModuleCache(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName);
+        }
+        log.info("Module refresh completed for CM handle '{}' (module set tag '{}'): {} module(s) changed",
+                cmHandleId, moduleSetTag, numberOfChangedModules);
+    }
+
+    private Map<String, ModuleDefinition> getStoredModuleDefinitionsPerModuleName(final String cmHandleId) {
+        final Collection<ModuleDefinition> storedModuleDefinitions =
+                cpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
+        final Map<String, ModuleDefinition> storedModuleDefinitionPerModuleName =
+                HashMap.newHashMap(storedModuleDefinitions.size());
+        for (final ModuleDefinition storedModuleDefinition : storedModuleDefinitions) {
+            storedModuleDefinitionPerModuleName.put(storedModuleDefinition.getModuleName(), storedModuleDefinition);
+        }
+        return storedModuleDefinitionPerModuleName;
+    }
+
     private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle,
                                         final String schemaSetName,
                                         final String targetModuleSetTag) {
@@ -134,7 +187,7 @@ public class ModuleSyncService {
         final Collection<ModuleReference> newModuleReferences =
                 cpsModuleService.identifyNewModuleReferences(allModuleReferences);
         final Map<String, String> newYangResourceContentPerName =
-            dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, targetModuleSetTag, newModuleReferences);
+            dmiModelOperations.getYangResourcesFromDmi(yangModelCmHandle, targetModuleSetTag, newModuleReferences);
         log.debug("Module delta calculated for CM handle ID: {}. All references: {}. New modules: {}",
             yangModelCmHandle.getId(), allModuleReferences, newYangResourceContentPerName.keySet());
         return new ModuleDelta(allModuleReferences, newYangResourceContentPerName);

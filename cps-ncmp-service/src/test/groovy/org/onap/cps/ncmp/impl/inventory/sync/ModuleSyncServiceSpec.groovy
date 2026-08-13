@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
+import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
@@ -58,7 +59,7 @@ class ModuleSyncServiceSpec extends Specification {
             def moduleReferences =  [ new ModuleReference('module1','1'), new ModuleReference('module2','2') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle, moduleSetTag) >> moduleReferences
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, moduleSetTag, identifiedNewModuleReferences) >> newModuleNameContentToMap
+            mockDmiModelOperations.getYangResourcesFromDmi(yangModelCmHandle, moduleSetTag, identifiedNewModuleReferences) >> newModuleNameContentToMap
         and: 'the module service identifies #identifiedNewModuleReferences.size() new modules'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> identifiedNewModuleReferences
         when: 'module sync is triggered'
@@ -78,7 +79,7 @@ class ModuleSyncServiceSpec extends Specification {
         given: 'a cm handle to be synced'
             def yangModelCmHandle = createAdvisedCmHandle(moduleSetTag)
         and: 'dmi returns no new yang resources'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
+            mockDmiModelOperations.getYangResourcesFromDmi(*_) >> [:]
         and: 'exception occurs when trying to store result'
             def testException = new RuntimeException('test')
             mockCpsModuleService.createSchemaSetFromModules(*_) >> { throw testException }
@@ -97,7 +98,7 @@ class ModuleSyncServiceSpec extends Specification {
         given: 'a cm handle to be synced'
             def yangModelCmHandle = createAdvisedCmHandle('existing tag')
         and: 'dmi returns no new yang resources'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
+            mockDmiModelOperations.getYangResourcesFromDmi(*_) >> [:]
         and: 'already defined exception occurs when creating schema (existing)'
             mockCpsModuleService.createSchemaSetFromModules(*_) >> { throw AlreadyDefinedException.forSchemaSet('', '', null)  }
         when: 'module sync is triggered'
@@ -110,7 +111,7 @@ class ModuleSyncServiceSpec extends Specification {
         given: 'a cm handle to be synced'
             def yangModelCmHandle = createAdvisedCmHandle('existing tag')
         and: 'dmi returns no new yang resources'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
+            mockDmiModelOperations.getYangResourcesFromDmi(*_) >> [:]
         and: 'already defined exception occurs when creating schema (existing)'
             mockCpsAnchorService.createAnchor(*_) >> { throw AlreadyDefinedException.forAnchor('', '', null)  }
         when: 'module sync is triggered'
@@ -123,7 +124,7 @@ class ModuleSyncServiceSpec extends Specification {
         given: 'a cm handle to be synced'
             def yangModelCmHandle = createAdvisedCmHandle('existing tag')
         and: 'dmi returns no new yang resources'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
+            mockDmiModelOperations.getYangResourcesFromDmi(*_) >> [:]
         and: 'duplicate yang resource exception occurs when creating schema'
             def originalException = new DuplicatedYangResourceException('', '', null)
             mockCpsModuleService.createSchemaSetFromModules(*_) >> { throw originalException  }
@@ -145,7 +146,7 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'DMI operations returns some module references for upgraded cm handle'
             def moduleReferences =  [ new ModuleReference('module1','1') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle, NO_MODULE_SET_TAG) >> moduleReferences
-            mockDmiModelOperations.getNewYangResourcesFromDmi(_, NO_MODULE_SET_TAG, []) >> [:]
+            mockDmiModelOperations.getYangResourcesFromDmi(_, NO_MODULE_SET_TAG, []) >> [:]
         and: 'none of these module references are new (all already known to the system)'
             mockCpsModuleService.identifyNewModuleReferences(_) >> []
         when: 'module sync is triggered'
@@ -170,7 +171,7 @@ class ModuleSyncServiceSpec extends Specification {
             def moduleReferences =  [ new ModuleReference('module1','1') ]
             expectedCallsToDmi * mockDmiModelOperations.getModuleReferences(yangModelCmHandle, tagTo) >> moduleReferences
         and: 'dmi returns no new yang resources'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
+            mockDmiModelOperations.getYangResourcesFromDmi(*_) >> [:]
         and: 'none of these module references are new (all already known to the system)'
             expectedCallsToModuleService * mockCpsModuleService.identifyNewModuleReferences(_) >> []
         when: 'module upgrade is triggered'
@@ -183,6 +184,61 @@ class ModuleSyncServiceSpec extends Specification {
             'from tag to other existing tag' | true         | 'oldTag' | 'tagTo'|| 0                  | 0                            | 1
             'to new tag'                     | false        | 'oldTag' | 'tagTo'|| 1                  | 1                            | 1
             'to NO tag'                      | true         | 'oldTag' | ''     || 1                  | 1                            | 0
+    }
+
+    def 'Refresh module content updates only the modules whose content changed.'() {
+        given: 'a cm handle with a module set tag'
+            def yangModelCmHandle = createAdvisedCmHandle('tagA')
+        and: 'the node returns two module references'
+            def moduleReferences = [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
+            mockDmiModelOperations.getModuleReferences(yangModelCmHandle, 'tagA') >> moduleReferences
+        and: 'the node returns content for both modules (module1 changed, module2 unchanged)'
+            mockDmiModelOperations.getYangResourcesFromDmi(yangModelCmHandle, 'tagA', moduleReferences) >>
+                [module1: 'new content 1', module2: 'same content 2']
+        and: 'the stored module definitions have the old content for module1 and the same content for module2'
+            mockCpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1') >>
+                [new ModuleDefinition('module1', '1', 'old content 1'), new ModuleDefinition('module2', '2', 'same content 2')]
+        when: 'module content refresh is triggered'
+            objectUnderTest.refreshModuleContent(yangModelCmHandle)
+        then: 'only the changed module content is updated in place'
+            1 * mockCpsModuleService.updateYangResourceContent('module1', '1', 'new content 1')
+        and: 'the unchanged module is not updated'
+            0 * mockCpsModuleService.updateYangResourceContent('module2', _, _)
+        and: 'the refreshed schema set is evicted from the module cache'
+            1 * mockCpsModuleService.removeSchemaSetFromModuleCache(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'tagA')
+    }
+
+    def 'Refresh module content when nothing changed.'() {
+        given: 'a cm handle with a module set tag'
+            def yangModelCmHandle = createAdvisedCmHandle('tagA')
+        and: 'the node returns one module reference with content identical to what is stored'
+            def moduleReferences = [new ModuleReference('module1', '1')]
+            mockDmiModelOperations.getModuleReferences(yangModelCmHandle, 'tagA') >> moduleReferences
+            mockDmiModelOperations.getYangResourcesFromDmi(yangModelCmHandle, 'tagA', moduleReferences) >> [module1: 'same content']
+            mockCpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1') >>
+                [new ModuleDefinition('module1', '1', 'same content')]
+        when: 'module content refresh is triggered'
+            objectUnderTest.refreshModuleContent(yangModelCmHandle)
+        then: 'no content is updated'
+            0 * mockCpsModuleService.updateYangResourceContent(*_)
+        and: 'the schema set is not evicted from the module cache'
+            0 * mockCpsModuleService.removeSchemaSetFromModuleCache(*_)
+    }
+
+    def 'Refresh module content skips modules with no content from node or not stored.'() {
+        given: 'a cm handle with a module set tag'
+            def yangModelCmHandle = createAdvisedCmHandle('tagA')
+        and: 'the node returns two module references'
+            def moduleReferences = [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
+            mockDmiModelOperations.getModuleReferences(yangModelCmHandle, 'tagA') >> moduleReferences
+        and: 'the node returns content only for module1 (module2 missing)'
+            mockDmiModelOperations.getYangResourcesFromDmi(yangModelCmHandle, 'tagA', moduleReferences) >> [module1: 'content 1']
+        and: 'no module definitions are stored'
+            mockCpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1') >> []
+        when: 'module content refresh is triggered'
+            objectUnderTest.refreshModuleContent(yangModelCmHandle)
+        then: 'nothing is updated'
+            0 * mockCpsModuleService.updateYangResourceContent(*_)
     }
 
     def createAdvisedCmHandle(moduleSetTag) {

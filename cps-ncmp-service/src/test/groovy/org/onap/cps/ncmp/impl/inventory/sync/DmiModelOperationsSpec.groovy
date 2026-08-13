@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -111,7 +111,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             mockDmiRestClient.synchronousPostOperationWithErrorMapping(MODEL, expectedModuleResourcesUrlTemplateWithVariables,
                     '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":{}}', READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get new yang resources from DMI service'
-            def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, newModuleReferences)
+            def result = objectUnderTest.getYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, newModuleReferences)
         then: 'the result has the 2 expected yang (re)sources (order is not guaranteed)'
             assert result.size() == 2
             assert result.get('mod1') == 'some yang source'
@@ -126,7 +126,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             def responseFromDmi = new ResponseEntity(responseFromDmiBody, HttpStatus.NO_CONTENT)
             mockDmiRestClient.synchronousPostOperationWithErrorMapping(*_) >> responseFromDmi
         when: 'get new yang resources from DMI service'
-            def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, newModuleReferences)
+            def result = objectUnderTest.getYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, newModuleReferences)
         then: 'the result is empty'
             assert result == [:]
         where: 'the DMI response body has the following content'
@@ -144,7 +144,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
                     '{"data":{"modules":[{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}]},"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}',
                     READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get new yang resources from DMI service'
-            def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, newModuleReferences)
+            def result = objectUnderTest.getYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, newModuleReferences)
         then: 'the result is the response from DMI service'
             assert result == [mod1:'some yang source']
         where: 'the following additional properties are used'
@@ -161,7 +161,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             mockDmiRestClient.synchronousPostOperationWithErrorMapping(MODEL, expectedModuleResourcesUrlTemplateWithVariables,
                 '{' + expectedModuleSetTagInRequest + '"data":{"modules":[{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}]},"cmHandleProperties":{}}', READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get new yang resources from DMI service'
-            def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, moduleSetTag, newModuleReferences)
+            def result = objectUnderTest.getYangResourcesFromDmi(yangModelCmHandle, moduleSetTag, newModuleReferences)
         then: 'the result is the response from DMI service'
             assert result == [mod1:'some yang source']
         where: 'the following Module Set Tags are used'
@@ -175,7 +175,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval([])
         when: 'a get new yang resources from DMI is called with no module references'
-            def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, [])
+            def result = objectUnderTest.getYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, [])
         then: 'no resources are returned'
             assert result == [:]
         and: 'no request is sent to DMI'
@@ -186,7 +186,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval(null)
         when: 'a get new yang resources from DMI is called'
-            objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, [new ModuleReference('mod1', 'A')])
+            objectUnderTest.getYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, [new ModuleReference('mod1', 'A')])
         then: 'a null pointer is thrown (we might need to address this later)'
             thrown(NullPointerException)
     }
@@ -208,7 +208,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         given: 'a cm handle with an existing module set tag'
             mockYangModelCmHandleRetrieval([], 'OLD-TAG')
         when: 'get new yang resources from DMI service'
-            objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, 'NEW-TAG', newModuleReferences)
+            objectUnderTest.getYangResourcesFromDmi(yangModelCmHandle, 'NEW-TAG', newModuleReferences)
         then: 'a request was sent to DMI with the NEW module set tag in the body'
             1 * mockDmiRestClient.synchronousPostOperationWithErrorMapping(*_) >> { args ->
                 def requestBodyAsJson = args[2] as String

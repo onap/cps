@@ -146,6 +146,11 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
+    public void removeSchemaSetFromModuleCache(final String dataspaceName, final String schemaSetName) {
+        yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
+    }
+
+    @Override
     public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsModulePersistenceService.getYangResourceModuleReferences(dataspaceName);

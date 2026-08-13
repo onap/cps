@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -78,22 +78,22 @@ public class DmiModelOperations {
     }
 
     /**
-     * Retrieve yang resources from dmi for any modules that CPS-NCMP hasn't cached before.
+     * Retrieve yang resources (content) from dmi for the given module references.
      *
      * @param yangModelCmHandle the yangModelCmHandle
      * @param targetModuleSetTag module set tag to send to dmi
-     * @param newModuleReferences the unknown module references
+     * @param moduleReferences the module references to fetch
      * @return yang resources as map of module name to yang(re)source
      */
     @Timed(value = "cps.ncmp.inventory.yang.resources.from.dmi",
         description = "Time taken to get list of yang resources from dmi")
-    public Map<String, String> getNewYangResourcesFromDmi(final YangModelCmHandle yangModelCmHandle,
-                                                          final String targetModuleSetTag,
-                                                          final Collection<ModuleReference> newModuleReferences) {
-        if (newModuleReferences.isEmpty()) {
+    public Map<String, String> getYangResourcesFromDmi(final YangModelCmHandle yangModelCmHandle,
+                                                        final String targetModuleSetTag,
+                                                        final Collection<ModuleReference> moduleReferences) {
+        if (moduleReferences.isEmpty()) {
             return Collections.emptyMap();
         }
-        final String jsonWithDataAndAdditionalProperties = getRequestBodyToFetchYangResources(newModuleReferences,
+        final String jsonWithDataAndAdditionalProperties = getRequestBodyToFetchYangResources(moduleReferences,
                 yangModelCmHandle.getAdditionalProperties(), targetModuleSetTag);
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
             yangModelCmHandle.resolveDmiServiceName(MODEL),

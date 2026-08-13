@@ -205,6 +205,13 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsModulePersistenceService.updateYangResourceContent('my-module', '2024-01-01', 'new content')
     }
 
+    def 'Remove schema set from module cache.'() {
+        when: 'removing a schema set from the module cache'
+            objectUnderTest.removeSchemaSetFromModuleCache('my-dataspace', 'my-schema-set')
+        then: 'the call is delegated to the yang text schema source set cache'
+            1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schema-set')
+    }
+
     def 'Get all yang resources module references.'() {
         given: 'an already present module reference'
             def moduleReferences = getModuleReferences()
