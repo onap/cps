@@ -730,6 +730,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21e2da77_bfdc0b24",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-13T07:15:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d63c91f_1634a484",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 244,
+        "endChar": 13
+      },
+      "revId": "5ef41f7f33ab8fcc0fade46b04d222dab4e085eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46133520_9ffa50f6",
