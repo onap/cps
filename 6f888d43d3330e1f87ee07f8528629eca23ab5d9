@@ -205,6 +205,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f75fc76_b2816e6d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-14T14:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e5a1a07_68eb9694",
+      "range": {
+        "startLine": 102,
+        "startChar": 4,
+        "endLine": 102,
+        "endChar": 12
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e04139cd_3810f44b",
@@ -289,6 +313,30 @@
       "side": 1,
       "message": "The new changes prevent timing issues where previous events are still visible during the failed attempt creating a event mismatch.",
       "parentUuid": "2b191a44_424a551a",
+      "range": {
+        "startLine": 173,
+        "startChar": 2,
+        "endLine": 173,
+        "endChar": 79
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2f49ba2_0a2d0a5d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-14T14:14:58Z",
+      "side": 1,
+      "message": "Further analysis of this revealed the default false was causing a behaviour change that was not intended and broke this test.",
+      "parentUuid": "0dcf6756_e0a7a797",
       "range": {
         "startLine": 173,
         "startChar": 2,
