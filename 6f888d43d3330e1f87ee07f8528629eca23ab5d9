@@ -229,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edb4548b_fe55a466",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-14T14:15:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a7d813b6_5e1dbfda",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 31
+      },
+      "revId": "6f888d43d3330e1f87ee07f8528629eca23ab5d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e04139cd_3810f44b",
