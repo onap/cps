@@ -16,6 +16,1288 @@
       "message": "Resolved all the comments",
       "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc346e02_a9ab3931",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "i\u0027d name this schemaSets and below parameters like requestedSchemaSetNames should be named schemaSetNames because that is the name used in java code so it will be consistent",
+      "range": {
+        "startLine": 99,
+        "startChar": 15,
+        "endLine": 99,
+        "endChar": 29
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "453848ed_0e01e892",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "earlier they were in multiple tests, now they are only used in 1 test so this can be eliminated",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 27
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd637cbd_e711606d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "these are not needed as they are used only in one test",
+      "range": {
+        "startLine": 102,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 29
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fd69a8d_8cc3fde4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "NB: from",
+      "range": {
+        "startLine": 369,
+        "startChar": 23,
+        "endLine": 369,
+        "endChar": 25
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03c3beaf_ef11c055",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "dont use if statements in groovy tests. you can extract it to a builder method like\nbuildAnchorRequest(endpoint, schemaSetNames, pageIndex, pageSize){\ndef requesbuilder\u003dget(enpoint)\nif(//schema set case)\nif(//pagination case)\nreturn builder}",
+      "range": {
+        "startLine": 375,
+        "startChar": 12,
+        "endLine": 375,
+        "endChar": 14
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0752fc8d_d83fcc54",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "NB: is invoked",
+      "range": {
+        "startLine": 382,
+        "startChar": 27,
+        "endLine": 382,
+        "endChar": 41
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "664dc5bd_ad383539",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "pageIndex",
+      "range": {
+        "startLine": 388,
+        "startChar": 88,
+        "endLine": 388,
+        "endChar": 106
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d182390_910322e8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "pageSize",
+      "range": {
+        "startLine": 388,
+        "startChar": 109,
+        "endLine": 388,
+        "endChar": 126
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25701ae_fc73e3d4",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "no need to declare globally as this is only used in one test . so decalre it inside test",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 29
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbb86207_5d11a7bc",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "from",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 28
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cc4474a_d12bbb27",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 66,
+        "startChar": 13,
+        "endLine": 66,
+        "endChar": 22
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90627183_81e8242f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "from",
+      "range": {
+        "startLine": 66,
+        "startChar": 31,
+        "endLine": 66,
+        "endChar": 34
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e201835a_126ed2bb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "this should be 2 tests, as they are 2 unique paths. combine tests when they are checking same path",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 13
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72bf8b18_96154e28",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "test with empty collection []",
+      "range": {
+        "startLine": 80,
+        "startChar": 39,
+        "endLine": 80,
+        "endChar": 43
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f1a6311_96626ad7",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "\u0027from\u0027. do check this everywhere, across files I may have missed some",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 24
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9348d4c5_9e845d5b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "anchor repo returns expected anchors",
+      "range": {
+        "startLine": 85,
+        "startChar": 16,
+        "endLine": 85,
+        "endChar": 41
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cbd9291_d37bae73",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "from",
+      "range": {
+        "startLine": 94,
+        "startChar": 25,
+        "endLine": 94,
+        "endChar": 28
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f14690_1caf83bc",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "an anchor, anchor is never inside schema set",
+      "range": {
+        "startLine": 95,
+        "startChar": 16,
+        "endLine": 95,
+        "endChar": 51
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ddb170d_d6325959",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "achhors associated to a schema set are retrieved",
+      "range": {
+        "startLine": 97,
+        "startChar": 15,
+        "endLine": 97,
+        "endChar": 55
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48af0821_3e296df0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAnchorService.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "Get all anchors in a dataspcae. Anchors can be filtered based on schema set names and can be paginated",
+      "range": {
+        "startLine": 58,
+        "startChar": 7,
+        "endLine": 58,
+        "endChar": 90
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0be0f5b8_7e5ac2be",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAnchorService.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "be more descriptibve of what page index and size do, in one sentence",
+      "range": {
+        "startLine": 62,
+        "startChar": 29,
+        "endLine": 62,
+        "endChar": 39
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f7f70e_ceb5aacb",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsAdminPersistenceService.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "Read anchors from a dataspace. Anchors can be filtered using schema set name and paginated",
+      "range": {
+        "startLine": 94,
+        "startChar": 7,
+        "endLine": 94,
+        "endChar": 68
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "342690d6_73620726",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "rename to pageIndexValue and pageSizeValue, you are using same name in a scenario below hance making the call incorrect",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 20
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b163f1b_607afd95",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "anchor serive retuns anchors",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 30
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88e4a483_533bbc9b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "expected anchors are returned.\nAlso, check with through assertion like names of anchors",
+      "range": {
+        "startLine": 83,
+        "startChar": 15,
+        "endLine": 83,
+        "endChar": 83
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0f401b3_de102911",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 72
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec701d7_49453227",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "not needed instead check if anchor names match",
+      "range": {
+        "startLine": 110,
+        "startChar": 9,
+        "endLine": 112,
+        "endChar": 67
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7fa26df_2ef15f6f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "you do not need if-else condition check. groovy handles what statement gets checked. Just separate them using \u0027and\u0027 statement",
+      "range": {
+        "startLine": 175,
+        "startChar": 12,
+        "endLine": 179,
+        "endChar": 13
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9af0055e_c60df7e1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "check the anchor contents",
+      "range": {
+        "startLine": 183,
+        "startChar": 12,
+        "endLine": 183,
+        "endChar": 29
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d829bf96_b574ee50",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 184,
+        "startChar": 8,
+        "endLine": 185,
+        "endChar": 72
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7654302_ed33a8ae",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "remove params it is adding no value, do it for all tests in the entire patch",
+      "range": {
+        "startLine": 187,
+        "startChar": 48,
+        "endLine": 187,
+        "endChar": 53
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc9690a6_e49eb90a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "smchor service returns anchors",
+      "range": {
+        "startLine": 194,
+        "startChar": 16,
+        "endLine": 194,
+        "endChar": 62
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41be4465_c9d50ba0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 196,
+        "startChar": 48,
+        "endLine": 196,
+        "endChar": 97
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e1536e3_c0e73135",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "anchors match the expected anchors, also vlaidate the anchor names",
+      "range": {
+        "startLine": 198,
+        "startChar": 15,
+        "endLine": 198,
+        "endChar": 83
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f74bfba_0ee8e604",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "this is not testing anyhting as you are using same name for global variables so once you change them this would work",
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02376049_79b88fc0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "anchor service returns anchors",
+      "range": {
+        "startLine": 208,
+        "startChar": 16,
+        "endLine": 208,
+        "endChar": 62
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb153d86_5cc4063e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "you do not need if-else condition check. groovy handles what statement gets checked. Just separate them using \u0027and\u0027 statement",
+      "range": {
+        "startLine": 209,
+        "startChar": 12,
+        "endLine": 213,
+        "endChar": 13
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fe2c9b1_2626eabf",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "is invoked to",
+      "range": {
+        "startLine": 214,
+        "startChar": 27,
+        "endLine": 214,
+        "endChar": 82
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85f70980_988889b1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "the expected anchors are returned\n\nthen match the contents here",
+      "range": {
+        "startLine": 216,
+        "startChar": 15,
+        "endLine": 216,
+        "endChar": 83
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8713e12_f9906243",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 218,
+        "startChar": 8,
+        "endLine": 219,
+        "endChar": 72
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df2e4296_57247d8b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "attempt to get anchors",
+      "range": {
+        "startLine": 227,
+        "startChar": 9,
+        "endLine": 227,
+        "endChar": 67
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c5eba58_89bcc434",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "exception",
+      "range": {
+        "startLine": 228,
+        "startChar": 37,
+        "endLine": 228,
+        "endChar": 104
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d72f2b0_3ecad967",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "attempt to get anchors with pagination",
+      "range": {
+        "startLine": 232,
+        "startChar": 15,
+        "endLine": 232,
+        "endChar": 86
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6561abaa_c653f9ec",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "expected exception is thrown",
+      "range": {
+        "startLine": 234,
+        "startChar": 16,
+        "endLine": 234,
+        "endChar": 55
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ae153a8_7a08cfe5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "anchor service is invoked",
+      "range": {
+        "startLine": 74,
+        "startChar": 15,
+        "endLine": 74,
+        "endChar": 61
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8f91a91_efbee7b2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 76,
+        "startChar": 42,
+        "endLine": 76,
+        "endChar": 57
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55bc7c3d_177e7393",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "returns anchors with",
+      "range": {
+        "startLine": 85,
+        "startChar": 45,
+        "endLine": 85,
+        "endChar": 61
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c2693cd_443428c4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "expectedAnchors",
+      "range": {
+        "startLine": 89,
+        "startChar": 36,
+        "endLine": 89,
+        "endChar": 48
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "886937df_0496c94e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "witjout pagination",
+      "range": {
+        "startLine": 98,
+        "startChar": 50,
+        "endLine": 98,
+        "endChar": 87
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b86020b0_67236205",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "anchor service is invoked",
+      "range": {
+        "startLine": 99,
+        "startChar": 15,
+        "endLine": 99,
+        "endChar": 56
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bccf709_959b1ab1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "expectedAnchors",
+      "range": {
+        "startLine": 102,
+        "startChar": 36,
+        "endLine": 102,
+        "endChar": 48
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffffac2f_527a426a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "attempt to get anchors",
+      "range": {
+        "startLine": 110,
+        "startChar": 15,
+        "endLine": 110,
+        "endChar": 66
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d86c28ec_d784f8fe",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "expected exception is thrown\ndo not use exception names",
+      "range": {
+        "startLine": 112,
+        "startChar": 15,
+        "endLine": 112,
+        "endChar": 51
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f5d4d4_d4a39b42",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 114,
+        "startChar": 60,
+        "endLine": 114,
+        "endChar": 68
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f36c820_9e157420",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 114,
+        "startChar": 30,
+        "endLine": 114,
+        "endChar": 37
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd4f80c_0d10db50",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-14T11:19:15Z",
+      "side": 1,
+      "message": "i dont think you need to check negatives individually, just both negatives will work",
+      "range": {
+        "startLine": 115,
+        "startChar": 12,
+        "endLine": 115,
+        "endChar": 20
+      },
+      "revId": "ef6387bde190af636ba2f01d32deee17fc1aebc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
