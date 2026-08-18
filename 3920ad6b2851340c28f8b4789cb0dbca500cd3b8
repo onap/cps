@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc8bc1a1_6cad2d0b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-18T12:32:27Z",
+      "side": 1,
+      "message": "this is all about expectations :-( Think of it this way: a test header should be maor about the \u0027given:\u0027 instead of the \u0027then:\u0027 \ndef \u0027Consuming a record with non retryable exception\u0027",
+      "range": {
+        "startLine": 101,
+        "startChar": 9,
+        "endLine": 101,
+        "endChar": 81
+      },
+      "revId": "3920ad6b2851340c28f8b4789cb0dbca500cd3b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8a963ba_60b650bb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-18T12:32:27Z",
+      "side": 1,
+      "message": "NB: if possible I prefer more obvious test-values like: 123",
+      "range": {
+        "startLine": 103,
+        "startChar": 64,
+        "endLine": 103,
+        "endChar": 65
+      },
+      "revId": "3920ad6b2851340c28f8b4789cb0dbca500cd3b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e58fe2b_ff96a30b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-18T12:32:27Z",
+      "side": 1,
+      "message": "similar: 456L if possible",
+      "range": {
+        "startLine": 103,
+        "startChar": 67,
+        "endLine": 103,
+        "endChar": 69
+      },
+      "revId": "3920ad6b2851340c28f8b4789cb0dbca500cd3b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac397776_17ac7fd8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-18T12:32:27Z",
+      "side": 1,
+      "message": "this is the same, not so interestign for this block, no need to repeat. \ninstead add something that makes clear tee \u0027full stack trace\u0027 is included",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 59
+      },
+      "revId": "3920ad6b2851340c28f8b4789cb0dbca500cd3b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "549aec76_3f4d43dd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-18T12:32:27Z",
+      "side": 1,
+      "message": "not needed in groovy",
+      "range": {
+        "startLine": 124,
+        "startChar": 29,
+        "endLine": 124,
+        "endChar": 36
+      },
+      "revId": "3920ad6b2851340c28f8b4789cb0dbca500cd3b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b9ab210_28be7d22",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventExactlyOnceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-18T12:32:27Z",
+      "side": 1,
+      "message": "good I see this file is now almost back to base only the exception example has changed that is expected...",
+      "revId": "3920ad6b2851340c28f8b4789cb0dbca500cd3b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

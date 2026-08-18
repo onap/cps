@@ -253,6 +253,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f88951f5_bc443ef7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-18T12:32:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c406b3a6_2f4af738",
+      "range": {
+        "startLine": 177,
+        "startChar": 7,
+        "endLine": 183,
+        "endChar": 82
+      },
+      "revId": "aa11fe5189d64a4b1487f55cbebdbe4a8c8dc131",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5642eb6d_6debe34a",
