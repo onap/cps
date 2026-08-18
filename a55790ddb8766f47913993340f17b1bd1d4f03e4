@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdf7c5e4_0e62971d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-18T16:38:03Z",
+      "side": 1,
+      "message": "that\u0027s what i was looking for :-)",
+      "range": {
+        "startLine": 121,
+        "startChar": 43,
+        "endLine": 121,
+        "endChar": 81
+      },
+      "revId": "a55790ddb8766f47913993340f17b1bd1d4f03e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
