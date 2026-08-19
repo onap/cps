@@ -251,6 +251,42 @@ dmiStub:
     failureThreshold: 3
     timeoutSeconds: 5
 
+kafkaUi:
+  enabled: true
+  image:
+    repository: provectuslabs/kafka-ui
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8080
+    nodePort: 30089
+  env:
+    DYNAMIC_CONFIG_ENABLED: "true"
+    KAFKA_CLUSTERS_0_NAME: "cps-kafka-local"
+    KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "cps-ncmp-kafka-service:9092"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  livenessProbe:
+    tcpSocket:
+      port: 8080
+    initialDelaySeconds: 90
+    periodSeconds: 15
+    failureThreshold: 5
+    timeoutSeconds: 5
+  readinessProbe:
+    tcpSocket:
+      port: 8080
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    failureThreshold: 5
+    timeoutSeconds: 5
+
 policyExecutorStub:
   enabled: true
   image:
