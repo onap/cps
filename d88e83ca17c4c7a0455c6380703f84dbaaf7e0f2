@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab8acb0c_5e1b008b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-19T12:52:47Z",
+      "side": 1,
+      "message": "Looks good, small concern over k6 and endurance impact but should be resolved with future commit",
+      "revId": "d88e83ca17c4c7a0455c6380703f84dbaaf7e0f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dacd2395_c65bc56f",
@@ -14,6 +31,24 @@
       "writtenOn": "2026-08-18T13:46:19Z",
       "side": 1,
       "message": "Ignore changes in this file",
+      "revId": "d88e83ca17c4c7a0455c6380703f84dbaaf7e0f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78676486_8da48e36",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-08-19T12:52:47Z",
+      "side": 1,
+      "message": "This may affect performance/endurance tests until the revert commit is done",
+      "parentUuid": "dacd2395_c65bc56f",
       "revId": "d88e83ca17c4c7a0455c6380703f84dbaaf7e0f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
