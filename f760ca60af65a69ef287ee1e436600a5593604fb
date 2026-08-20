@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96426c69_e0f593a8",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-20T14:54:55Z",
+      "side": 1,
+      "message": "i ddnt see you using this map anywhere\n\nwhy not use TopicConfig instead of MapConfig?",
+      "range": {
+        "startLine": 34,
+        "startChar": 25,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "f760ca60af65a69ef287ee1e436600a5593604fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2d04cc9_2375686c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-20T14:54:55Z",
+      "side": 1,
+      "message": "is this delimiter ok if dataspaceName can have \u0027-\u0027 aswell?",
+      "range": {
+        "startLine": 50,
+        "startChar": 51,
+        "endLine": 50,
+        "endChar": 52
+      },
+      "revId": "f760ca60af65a69ef287ee1e436600a5593604fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
