@@ -23,6 +23,7 @@
 
 package org.onap.cps.impl
 
+import com.hazelcast.topic.ITopic
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.model.Anchor
@@ -46,7 +47,8 @@ class E2ENetworkSliceSpec extends Specification {
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, timedYangTextSchemaSourceSetBuilder)
-    def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder,yangParser)
+    def mockYangSchemaCacheEvictionTopic = Mock(ITopic)
+    def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder,yangParser, mockYangSchemaCacheEvictionTopic)
     def mockCpsDataUpdateEventsProducer = Mock(CpsDataUpdateEventsProducer)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
     def mockGroupedDeltaReportGenerator = Mock(GroupedDeltaReportGenerator)

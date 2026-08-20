@@ -39,16 +39,16 @@ class CpsCommonLocksConfigSpec extends Specification {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
     }
 
-    def 'Hazelcast common locks'() {
+    def 'Hazelcast common locks.'() {
         expect: 'system is able to create an instance of the common locks cache'
             assert null != cpsCommonLocks
         and: 'there is at least 1 instance'
             assert Hazelcast.allHazelcastInstances.size() > 0
-        and: 'Hazelcast cache instance for common locks is present'
-            assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cpsCommonLocks') != null
+        and: 'Hazelcast cache instance for common locks map returns the same bean'
+            assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cpsCommonLocks') == cpsCommonLocks
     }
 
-    def 'Verify network config'() {
+    def 'Verify network config.'() {
         given: 'Synchronization config object and test configuration'
             def objectUnderTest = new CpsCommonLocksConfig()
             def testConfig = new Config()
