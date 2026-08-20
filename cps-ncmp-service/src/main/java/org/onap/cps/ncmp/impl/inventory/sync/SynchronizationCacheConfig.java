@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.impl.inventory.sync;
 
 import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.QueueConfig;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
 import org.onap.cps.impl.cache.HazelcastCacheConfig;
@@ -38,9 +37,7 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
 
     private static final int MODULE_SYNC_STARTED_TTL_SECS = 600;
 
-    private static final QueueConfig commonQueueConfig = createQueueConfig("defaultQueueConfig");
-    private static final MapConfig moduleSyncStartedConfig = createModuleSyncStartedMapConfig();
-    private static final MapConfig dataSyncSemaphoresConfig = createGenericMapConfig("dataSyncSemaphoresConfig");
+    private static final MapConfig moduleSyncStartedMapConfig = createModuleSyncStartedMapConfig();
 
     /**
      * Module Sync Distributed Queue Instance.
@@ -49,7 +46,7 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public BlockingQueue<String> moduleSyncWorkQueue() {
-        return getOrCreateHazelcastInstance(commonQueueConfig).getQueue("moduleSyncWorkQueue");
+        return getOrCreateHazelcastInstance(DEFAULT_QUEUE_CONFIG).getQueue("moduleSyncWorkQueue");
     }
 
     /**
@@ -59,7 +56,7 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, Object> moduleSyncStartedOnCmHandles() {
-        return getOrCreateHazelcastInstance(moduleSyncStartedConfig).getMap("moduleSyncStartedOnCmHandles");
+        return getOrCreateHazelcastInstance(moduleSyncStartedMapConfig).getMap("moduleSyncStartedOnCmHandles");
     }
 
     /**
@@ -69,11 +66,11 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, Boolean> dataSyncSemaphores() {
-        return getOrCreateHazelcastInstance(dataSyncSemaphoresConfig).getMap("dataSyncSemaphores");
+        return getOrCreateHazelcastInstance(DEFAULT_MAP_CONFIG).getMap("dataSyncSemaphores");
     }
 
     private static MapConfig createModuleSyncStartedMapConfig() {
-        final MapConfig mapConfig = createGenericMapConfig("moduleSyncStartedConfig");
+        final MapConfig mapConfig = createDefaultMapConfig("moduleSyncStartedOnCmHandles");
         mapConfig.setTimeToLiveSeconds(MODULE_SYNC_STARTED_TTL_SECS);
         return mapConfig;
     }

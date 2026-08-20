@@ -1,6 +1,6 @@
 /*
- * ============LICENSE_START=======================================================
- *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,27 +18,26 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.cache;
+package org.onap.cps.impl.cache;
 
-import com.hazelcast.map.IMap;
-import org.onap.cps.impl.cache.HazelcastCacheConfig;
+import com.hazelcast.topic.ITopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Hazelcast distributed topic for broadcasting yangSchema cache eviction signals across instances.
+ */
 @Configuration
-public class AlternateIdCacheConfig extends HazelcastCacheConfig {
+public class YangSchemaCacheEvictionConfig extends HazelcastCacheConfig {
 
     /**
-     * Distributed instance of a bidirectional cm handle reference map.
-     * Stores both cmHandleId->cmHandleId and alternateId->cmHandleId
+     * Distributed topic for yangSchema cache eviction events.
+     * Messages are the cache key (dataspace-schemaSetName) to evict.
      *
-     * @return configured CmHandleIdPerReferenceMap wrapper
+     * @return the ITopic instance
      */
     @Bean
-    public CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap() {
-        final IMap<String, String> iMap =
-            getOrCreateHazelcastInstance(DEFAULT_MAP_CONFIG).getMap("cmHandleIdPerReference");
-        return new CmHandleIdPerReferenceMap(iMap);
+    public ITopic<String> yangSchemaCacheEvictionTopic() {
+        return getOrCreateHazelcastInstance(DEFAULT_MAP_CONFIG).getTopic("yangSchemaCacheEvictionTopic");
     }
-
 }
