@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2023 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,33 +21,35 @@
 
 package org.onap.cps.ncmp.impl.inventory
 
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
-import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
-
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.utils.CpsValidator
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.inventory.models.TrustLevel
-import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel
+import org.onap.cps.utils.CpsValidator
 import spock.lang.Specification
+
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 
 class CmHandleQueryServiceImplSpec extends Specification {
 
     def mockCpsQueryService = Mock(CpsQueryService)
     def mockCpsDataService = Mock(CpsDataService)
-    def trustLevelPerDmiPlugin = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('hazelcastInstanceName')).getMap('trustLevelPerDmiPlugin')
-    def trustLevelPerCmHandleId = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('hazelcastInstanceName')).getMap('trustLevelPerCmHandleId')
+    def hazelcastInstance = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('cmHandleQueryServiceImplSpecInstance'))
+    def trustLevelPerDmiPlugin = hazelcastInstance.getMap('trustLevelPerDmiPlugin')
+    def trustLevelPerCmHandleId = hazelcastInstance.getMap('trustLevelPerCmHandleId')
     def mockCpsValidator = Mock(CpsValidator)
 
     def objectUnderTest = new CmHandleQueryServiceImpl(mockCpsDataService, mockCpsQueryService, trustLevelPerDmiPlugin, trustLevelPerCmHandleId, mockCpsValidator)
+
     def static sampleDataNodes = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']"),
                                   new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-2']")]
 
@@ -67,7 +69,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
     }
 
     def cleanupSpec() {
-        Hazelcast.getHazelcastInstanceByName('hazelcastInstanceName').shutdown()
+        Hazelcast.getHazelcastInstanceByName('cmHandleQueryServiceImplSpecInstance').shutdown()
     }
 
     def 'Query CmHandles with public properties query pair.'() {

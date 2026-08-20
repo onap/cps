@@ -23,10 +23,9 @@
 
 package org.onap.cps.impl
 
+import com.hazelcast.topic.ITopic
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
-import org.onap.cps.utils.CpsValidator
-import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelValidationException
 import org.onap.cps.api.exceptions.SchemaSetInUseException
@@ -34,6 +33,8 @@ import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.api.model.SchemaSet
+import org.onap.cps.spi.CpsModulePersistenceService
+import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.YangParser
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
@@ -51,8 +52,9 @@ class CpsModuleServiceImplSpec extends Specification {
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
     def mockYangParser = Mock(YangParser)
+    def mockYangSchemaCacheEvictionTopic = Mock(ITopic)
 
-    def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder,mockYangParser)
+    def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder,mockYangParser, mockYangSchemaCacheEvictionTopic)
 
     def 'Create schema set.'() {
         when: 'Create schema set method is invoked'
@@ -208,8 +210,10 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Remove schema set from module cache.'() {
         when: 'removing a schema set from the module cache'
             objectUnderTest.removeSchemaSetFromModuleCache('my-dataspace', 'my-schema-set')
-        then: 'the call is delegated to the yang text schema source set cache'
+        then: 'the local cache is evicted'
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schema-set')
+        and: 'an eviction signal is published to other instances'
+            1 * mockYangSchemaCacheEvictionTopic.publish('my-dataspace-my-schema-set')
     }
 
     def 'Get all yang resources module references.'() {

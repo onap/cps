@@ -39,13 +39,26 @@ import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_REFRESH
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_REFRESH_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
 
 class ModuleSyncTasksSpec extends Specification {
+
+    def mockInventoryPersistence = Mock(InventoryPersistence)
+
+    def mockSyncUtils = Mock(ModuleOperationsUtils)
+
+    def mockModuleSyncService = Mock(ModuleSyncService)
+
+    def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
+
+    IMap<String, Object> moduleSyncStartedOnCmHandles = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('moduleSyncTasksSpecInstance')).getMap('mapInstanceName')
+
+    def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService,
+        mockLcmEventsCmHandleStateHandler, moduleSyncStartedOnCmHandles)
 
     def logAppender = Spy(ListAppender<ILoggingEvent>)
 
@@ -60,23 +73,8 @@ class ModuleSyncTasksSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(ModuleSyncTasks.class)).detachAndStopAllAppenders()
     }
 
-    def mockInventoryPersistence = Mock(InventoryPersistence)
-
-    def mockSyncUtils = Mock(ModuleOperationsUtils)
-
-    def mockModuleSyncService = Mock(ModuleSyncService)
-
-    def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
-
-    IMap<String, Object> moduleSyncStartedOnCmHandles = HazelcastInstanceFactory
-            .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
-            .getMap('mapInstanceName')
-
-    def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService,
-            mockLcmEventsCmHandleStateHandler, moduleSyncStartedOnCmHandles)
-
     def cleanupSpec() {
-        Hazelcast.getHazelcastInstanceByName('hazelcastInstanceName').shutdown()
+        Hazelcast.getHazelcastInstanceByName('moduleSyncTasksSpecInstance').shutdown()
     }
 
     def 'Module Sync ADVISED cm handles.'() {
