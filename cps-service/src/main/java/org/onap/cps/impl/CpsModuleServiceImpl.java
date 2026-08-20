@@ -23,6 +23,7 @@
 
 package org.onap.cps.impl;
 
+import com.hazelcast.topic.ITopic;
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.Map;
@@ -54,6 +55,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private final CpsValidator cpsValidator;
     private final TimedYangTextSchemaSourceSetBuilder timedYangTextSchemaSourceSetBuilder;
     private final YangParser yangParser;
+    private final ITopic<String> yangSchemaCacheEvictionTopic;
 
     @Override
     @Timed(value = "cps.module.service.schema.create",
@@ -148,6 +150,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Override
     public void removeSchemaSetFromModuleCache(final String dataspaceName, final String schemaSetName) {
         yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
+        yangSchemaCacheEvictionTopic.publish(dataspaceName + "-" + schemaSetName);
     }
 
     @Override

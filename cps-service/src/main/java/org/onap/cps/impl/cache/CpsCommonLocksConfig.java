@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,15 +20,12 @@
 
 package org.onap.cps.impl.cache;
 
-import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CpsCommonLocksConfig extends HazelcastCacheConfig {
-
-    private static final MapConfig cpsCommonLocksMapConfig = createGenericMapConfig("cpsCommonLocksMapConfig");
 
     /**
      * Distributed instance used for locking purpose for various use cases in cps and dependant services.
@@ -38,7 +35,7 @@ public class CpsCommonLocksConfig extends HazelcastCacheConfig {
      */
     @Bean("cpsCommonLocks")
     public IMap<String, String> cpsCommonLocks() {
-        return getOrCreateHazelcastInstance(cpsCommonLocksMapConfig).getMap("cpsCommonLocks");
+        return getOrCreateHazelcastInstance(DEFAULT_MAP_CONFIG).getMap("cpsCommonLocks");
     }
 
 }

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,14 +35,12 @@ class DmiPluginTrustLevelWatchDogSpec extends Specification {
     def mockDmiRestClient = Mock(DmiRestClient)
     def mockCmHandleQueryService = Mock(CmHandleQueryService)
     def mockTrustLevelManager = Mock(TrustLevelManager)
-    def trustLevelPerDmiPlugin = HazelcastInstanceFactory
-        .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
-        .getMap('trustLevelPerDmiPlugin')
+    def trustLevelPerDmiPlugin = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('dmiPluginTrustLevelWatchDogSpecInstance')).getMap('trustLevelPerDmiPlugin')
 
     def objectUnderTest = new DmiPluginTrustLevelWatchDog(mockDmiRestClient, mockCmHandleQueryService, mockTrustLevelManager, trustLevelPerDmiPlugin)
 
     def cleanupSpec() {
-        Hazelcast.getHazelcastInstanceByName('hazelcastInstanceName').shutdown()
+        Hazelcast.getHazelcastInstanceByName('dmiPluginTrustLevelWatchDogSpecInstance').shutdown()
     }
 
     def 'watch dmi plugin health status for #dmiHealhStatus'() {

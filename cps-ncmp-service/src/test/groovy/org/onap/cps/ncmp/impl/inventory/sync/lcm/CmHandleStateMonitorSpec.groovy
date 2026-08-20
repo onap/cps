@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm
 
+import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
@@ -41,15 +42,15 @@ class CmHandleStateMonitorSpec extends Specification {
     def objectUnderTest = new CmHandleStateMonitor(mockCmHandleQueryService, mockCmHandlesByState)
 
     @Shared
-    def entryProcessingMap =  Hazelcast.newHazelcastInstance().getMap('entryProcessingMap')
+    def entryProcessingMap = Hazelcast.getOrCreateHazelcastInstance(new Config('cmHandleStateMonitorSpecInstance')).getMap('entryProcessingMap')
+
+    def cleanupSpec() {
+        Hazelcast.getHazelcastInstanceByName('cmHandleStateMonitorSpecInstance').shutdown()
+    }
 
     def setup() {
         entryProcessingMap.put('zeroCmHandlesCount', 0)
         entryProcessingMap.put('tenCmHandlesCount', 10)
-    }
-
-    def cleanupSpec() {
-        Hazelcast.shutdownAll()
     }
 
     def 'Initialise cm handle state monitor: #scenario'() {
@@ -69,7 +70,6 @@ class CmHandleStateMonitorSpec extends Specification {
             'query service returns zero cm handle id'| []          || 0
             'query service returns 1 cm handle id'   | ['someId']  || 1
     }
-
 
     def 'Update cm handle state metric'() {
         given: 'a cm handle state pair'
