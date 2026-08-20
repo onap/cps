@@ -221,8 +221,8 @@ class ModuleSyncServiceSpec extends Specification {
             objectUnderTest.refreshModuleContent(yangModelCmHandle)
         then: 'no content is updated'
             0 * mockCpsModuleService.updateYangResourceContent(*_)
-        and: 'the schema set is not evicted from the module cache'
-            0 * mockCpsModuleService.removeSchemaSetFromModuleCache(*_)
+        and: 'the schema set is still evicted from the module cache (unconditional for shared-module correctness)'
+            1 * mockCpsModuleService.removeSchemaSetFromModuleCache(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'tagA')
     }
 
     def 'Refresh module content skips modules with no content from node or not stored.'() {
@@ -239,6 +239,8 @@ class ModuleSyncServiceSpec extends Specification {
             objectUnderTest.refreshModuleContent(yangModelCmHandle)
         then: 'nothing is updated'
             0 * mockCpsModuleService.updateYangResourceContent(*_)
+        and: 'the schema set is still evicted from the module cache (unconditional)'
+            1 * mockCpsModuleService.removeSchemaSetFromModuleCache(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'tagA')
     }
 
     def createAdvisedCmHandle(moduleSetTag) {

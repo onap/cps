@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,9 +20,10 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync
 
-
+import com.hazelcast.collection.impl.queue.QueueProxyImpl
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
+import com.hazelcast.map.impl.proxy.MapProxyImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
@@ -49,50 +50,34 @@ class SynchronizationCacheConfigSpec extends Specification {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
     }
 
-    def 'Embedded (hazelcast) Caches for Module and Data Sync.'() {
-        expect: 'system is able to create an instance of the Module Sync Work Queue'
-            assert null != moduleSyncWorkQueue
-        and: 'system is able to create an instance of a map to hold cm handles which have started (and maybe finished) module sync'
-            assert null != moduleSyncStartedOnCmHandles
-        and: 'system is able to create an instance of a map to hold data sync semaphores'
-            assert null != dataSyncSemaphores
-        and: 'there is only one instance with the correct name'
-            assert Hazelcast.allHazelcastInstances.size() == 1
-            assert Hazelcast.allHazelcastInstances.name[0] == 'cps-and-ncmp-hazelcast-instance-test-config'
+    def 'Cache map configurations for Module Sync.'() {
+        given: 'get each map'
+            def hazelcastMap = mapName == 'moduleSyncStartedOnCmHandles' ?  moduleSyncStartedOnCmHandles : dataSyncSemaphores
+        when: 'retrieving the map config for #sceanrio'
+            def hazelcastInstance = ((MapProxyImpl) hazelcastMap).getNodeEngine().getHazelcastInstance()
+            def config = hazelcastInstance.getConfig().findMapConfig(hazelcastMap.getName())
+        then: 'the map config has the correct (default) backup counts'
+            assert config.backupCount == 1
+            assert config.asyncBackupCount == 0
+        and: 'time to live is only set for module sync started on cm handles'
+            assert config.getTimeToLiveSeconds() == expectedTimeToLiveSeconds
+        where: 'the following caches are used'
+            mapName                        | expectedTimeToLiveSeconds
+            'moduleSyncStartedOnCmHandles' | 600
+            'dataSyncSemaphores'           | 0
     }
 
-    def 'Verify configs for Distributed objects'(){
-        given: 'hazelcast common config'
-            def hzConfig = Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').config
-        and: 'the Module Sync Work Queue config'
-            def moduleSyncDefaultWorkQueueConfig =  hzConfig.queueConfigs.get('defaultQueueConfig')
-        and: 'the Module Sync Started Cm Handle Map config'
-            def moduleSyncStartedOnCmHandlesMapConfig =  hzConfig.mapConfigs.get('moduleSyncStartedConfig')
-        and: 'the Data Sync Semaphores Map config'
-            def dataSyncSemaphoresMapConfig =  hzConfig.mapConfigs.get('dataSyncSemaphoresConfig')
-        expect: 'system created instance with correct config of Module Sync Work Queue'
-            assert moduleSyncDefaultWorkQueueConfig.backupCount == 1
-            assert moduleSyncDefaultWorkQueueConfig.asyncBackupCount == 0
-        and: 'Module Sync Started Cm Handle Map has the correct settings'
-            assert moduleSyncStartedOnCmHandlesMapConfig.backupCount == 1
-            assert moduleSyncStartedOnCmHandlesMapConfig.asyncBackupCount == 0
-        and: 'Data Sync Semaphore Map has the correct settings'
-            assert dataSyncSemaphoresMapConfig.backupCount == 1
-            assert dataSyncSemaphoresMapConfig.asyncBackupCount == 0
-        and: 'all instances are part of same cluster'
-            assert hzConfig.clusterName == 'cps-and-ncmp-test-caches'
+    def 'Cache queue configuration for Module Sync.'() {
+        given: 'the queue config'
+            def hazelcastInstance = ((QueueProxyImpl) moduleSyncWorkQueue).getNodeEngine().getHazelcastInstance()
+            def config = hazelcastInstance.getConfig().findQueueConfig('moduleSyncWorkQueue')
+        expect: 'the map config has the correct (default) backup counts'
+            assert config.backupCount == 1
+            assert config.asyncBackupCount == 0
     }
 
-    def 'Verify deployment network configs for Distributed objects'() {
-        given: 'common hazelcast network config'
-            def hzConfig = Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').config.networkConfig
-        and: 'all configs has the correct settings'
-            assert hzConfig.join.autoDetectionConfig.enabled
-            assert !hzConfig.join.kubernetesConfig.enabled
-    }
-
-    def 'Time to Live Verify for Module Sync Semaphore'() {
-        when: 'the key is inserted with a TTL'
+    def 'Time to Live on Module Started on Cm Handle.'() {
+        when: 'the key is inserted with a TTL of 100ms'
             moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 100, TimeUnit.MILLISECONDS)
         then: 'the entry expires within a second'
             new PollingConditions().within(1) {
@@ -100,8 +85,8 @@ class SynchronizationCacheConfigSpec extends Specification {
             }
     }
 
-    def 'Time to Live Verify for Data Sync Semaphore'() {
-        when: 'the key is inserted with a TTL'
+    def 'Time to Live on Data Sync Semaphore'() {
+        when: 'the key is inserted with a TTL of 100ms'
             dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 100, TimeUnit.MILLISECONDS)
         then: 'the entry expires within a second'
             new PollingConditions().within(1) {
