@@ -27,7 +27,6 @@ import ch.qos.logback.core.read.ListAppender
 import io.cloudevents.CloudEvent
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.ConsumerRecord
-import org.onap.cps.events.EventBatchSendException
 import org.slf4j.LoggerFactory
 import org.spockframework.spring.EnableSharedInjection
 import org.springframework.beans.factory.annotation.Autowired
@@ -66,6 +65,10 @@ class ExactlyOnceSemanticsKafkaConfigSpec extends Specification {
     @Autowired
     ConcurrentKafkaListenerContainerFactory<String, CloudEvent> cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics
 
+    @Shared
+    @Autowired
+    KafkaTransactionManager<String, CloudEvent> kafkaExactlyOnceSemanticsTransactionManager
+
     def logger = new ListAppender<ILoggingEvent>()
 
     def setup() {
@@ -96,6 +99,20 @@ class ExactlyOnceSemanticsKafkaConfigSpec extends Specification {
             cloudEventProducerFactoryForExactlyOnceSemantics.transactionIdPrefix.startsWith('cps-tx-myPrefix-')
         and: 'KafkaTransactionManager is used instead of primary transaction manager'
             cloudEventConcurrentKafkaListenerContainerFactoryForExactlyOnceSemantics.containerProperties.kafkaAwareTransactionManager instanceof KafkaTransactionManager
+    }
+
+    def 'Bean creation logs the configured max retries.'() {
+        given: 'a fresh config instance with max retries set'
+            def config = new ExactlyOnceSemanticsKafkaConfig(new KafkaProperties())
+            config.@maxRetries = 10
+            config.@concurrency = 1
+        when: 'the listener container factory bean is created'
+            config.cmAvcEventListenerContainerFactory(
+                cloudEventConsumerFactoryForExactlyOnceSemantics,
+                kafkaExactlyOnceSemanticsTransactionManager)
+        then: 'an info log message contains the configured max retries value'
+            def infoLog = logger.list.find { it.formattedMessage.contains('max retries') }
+            assert infoLog.formattedMessage.contains('max retries: 10')
     }
 
     def 'Consuming a record with non retryable exception'() {

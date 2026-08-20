@@ -81,6 +81,12 @@ public class ExactlyOnceSemanticsKafkaConfig {
     @Value("${ncmp.notifications.avc-event-consumer.max-poll-records:500}")
     private String maxPollRecords;
 
+    @Value("${ncmp.notifications.avc-event-consumer.max-retries:#{T(Integer).MAX_VALUE}}")
+    private int maxRetries;
+
+    private final ExponentialBackOffWithMaxRetries exponentialBackOffWithMaxRetries =
+            new ExponentialBackOffWithMaxRetries(maxRetries);
+
     private static final UUID CPS_NCMP_INSTANCE_UUID = UUID.randomUUID();
 
     /**
@@ -135,7 +141,7 @@ public class ExactlyOnceSemanticsKafkaConfig {
     }
 
     /**
-     * Listener container factory with BATCH acknowledgment mode and infinite retries.
+     * Listener container factory with BATCH acknowledgment mode and bounded retries.
      *
      * @return listener container factory instance
      */
@@ -146,7 +152,8 @@ public class ExactlyOnceSemanticsKafkaConfig {
                     final ConsumerFactory<String, CloudEvent> consumerFactory,
                     @Qualifier("kafkaExactlyOnceSemanticsTransactionManager")
                     final KafkaTransactionManager<String, CloudEvent> transactionManager) {
-        log.info("Configuring CM AVC event listener in batch mode (transactions enabled, exactly-once semantics)");
+        log.info("Configuring CM AVC event listener in batch mode (transactions enabled, exactly-once semantics)"
+                + " with max retries: {}", maxRetries);
         final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(consumerFactory);
@@ -170,8 +177,6 @@ public class ExactlyOnceSemanticsKafkaConfig {
     }
 
     private DefaultErrorHandler kafkaErrorHandlerForExactlyOnceSemantics() {
-        final ExponentialBackOffWithMaxRetries exponentialBackOffWithMaxRetries =
-                new ExponentialBackOffWithMaxRetries(Integer.MAX_VALUE);
         exponentialBackOffWithMaxRetries.setInitialInterval(TimeUnit.SECONDS.toMillis(1));
         exponentialBackOffWithMaxRetries.setMultiplier(2.0);
         exponentialBackOffWithMaxRetries.setMaxInterval(TimeUnit.SECONDS.toMillis(30));

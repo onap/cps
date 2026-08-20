@@ -15,3 +15,4 @@ ncmp.policy-executor.defaultDecision,"The default (fallback) decision in case a 
 ncmp.policy-executor.server.address,"The server address for the external policy executor service.",``http://policy-executor-stub``
 ncmp.policy-executor.server.port,"The port used for the external policy executor service.",8093
 ncmp.dmi.allowed-url-pattern,"Naming pattern that must be adhered to for DMI Plugin names.",Not defined
+ncmp.notifications.avc-event-consumer.max-retries,"Maximum number of retries for the EOS Kafka error handler before a record is discarded. Uses exponential backoff (1s initial, 2x multiplier, 30s max interval).",Integer.MAX_VALUE (unlimited)
