@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.impl.cache;
 
-import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
 import org.onap.cps.impl.cache.HazelcastCacheConfig;
 import org.springframework.context.annotation.Bean;
@@ -29,8 +28,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AdminCacheConfig extends HazelcastCacheConfig {
 
-    private static final MapConfig cmHandleStateCacheMapConfig = createGenericMapConfig("cmHandleStateCacheMapConfig");
-
     /**
      * Distributed instance admin cache map for cm handles by state for use of gauge metrics.
      *
@@ -38,6 +35,6 @@ public class AdminCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, Integer> cmHandlesByState() {
-        return getOrCreateHazelcastInstance(cmHandleStateCacheMapConfig).getMap("cmHandlesByState");
+        return getOrCreateHazelcastInstance(DEFAULT_MAP_CONFIG).getMap("cmHandlesByState");
     }
 }

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 Nordix Foundation.
+ * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.cache
 
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
+import com.hazelcast.map.impl.proxy.MapProxyImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
@@ -36,12 +37,15 @@ class AdminCacheConfigSpec extends Specification {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
     }
 
-    def 'Hazelcast cache for cm handle by state gauge'() {
-        expect: 'system is able to create an instance of the cm handle by state cache'
-            assert null != cmHandlesByState
-        and: 'there is at least 1 instance'
-            assert Hazelcast.allHazelcastInstances.size() > 0
-        and: 'Hazelcast cache instance for cm handle by state is present'
-            assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cmHandlesByState') != null
+    def 'Cache map configuration for cm handle state cache.'() {
+        given: 'get configuration for cm handle state cache'
+            def hazelcastInstance = ((MapProxyImpl) cmHandlesByState).getNodeEngine().getHazelcastInstance()
+            def config = hazelcastInstance.getConfig().findMapConfig(cmHandlesByState.getName())
+        expect: 'the default configuration is used'
+            assert config.name == '*'
+        and: 'the configuration has the correct (default) backup counts'
+            assert config.backupCount == 1
+            assert config.asyncBackupCount == 0
     }
+
 }

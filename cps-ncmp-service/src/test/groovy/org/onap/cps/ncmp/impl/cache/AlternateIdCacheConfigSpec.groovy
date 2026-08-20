@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.impl.cache
 
 import com.hazelcast.core.Hazelcast
+import com.hazelcast.map.impl.proxy.MapProxyImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
@@ -35,12 +36,15 @@ class AlternateIdCacheConfigSpec extends Specification {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
     }
 
-    def 'Hazelcast cache for cm handle references.'() {
-        expect: 'system is able to create an instance of the reference map'
-            assert null != cmHandleIdPerReferenceMap
-        and: 'there is at least 1 instance'
-            assert Hazelcast.allHazelcastInstances.size() > 0
-        and: 'Hazelcast cache instance for alternate ids is present'
-            assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cmHandleIdPerAlternateId') != null
+    def 'Cache map configuration for alternate id mapping.'() {
+        given: 'get configuration for alternate id mapping'
+            def hazelcastInstance = ((MapProxyImpl) cmHandleIdPerReferenceMap.cmHandleIdPerReference).getNodeEngine().getHazelcastInstance()
+            def config = hazelcastInstance.getConfig().findMapConfig(cmHandleIdPerReferenceMap.cmHandleIdPerReference.getName())
+        expect: 'the default configuration is used'
+            assert config.name == '*'
+        and: 'the configuration has the correct (default) backup counts'
+            assert config.backupCount == 1
+            assert config.asyncBackupCount == 0
     }
+
 }

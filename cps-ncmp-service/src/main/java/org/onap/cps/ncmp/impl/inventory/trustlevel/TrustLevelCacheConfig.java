@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -34,11 +34,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
     public static final String TRUST_LEVEL_PER_DMI_PLUGIN = "trustLevelPerDmiPlugin";
 
     public static final String TRUST_LEVEL_PER_CM_HANDLE = "trustLevelPerCmHandle";
-    private static final MapConfig trustLevelPerCmHandleIdNearCacheConfig =
-        createMapConfigsWithNearCache();
-
-    private static final MapConfig trustLevelPerDmiPluginCacheConfig =
-        createGenericMapConfig("trustLevelPerDmiPluginCacheConfig");
+    private static final MapConfig trustLevelPerCmHandleIdNearCacheConfig = createMapConfigsWithNearCache();
 
     /**
      * Distributed instance of trust level cache containing the trust level per cm handle.
@@ -57,13 +53,12 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
      */
     @Bean(TRUST_LEVEL_PER_DMI_PLUGIN)
     public IMap<String, TrustLevel> trustLevelPerDmiPlugin() {
-        return getOrCreateHazelcastInstance(
-                trustLevelPerDmiPluginCacheConfig).getMap(TRUST_LEVEL_PER_DMI_PLUGIN);
+        return getOrCreateHazelcastInstance(DEFAULT_MAP_CONFIG).getMap(TRUST_LEVEL_PER_DMI_PLUGIN);
     }
 
     private static MapConfig createMapConfigsWithNearCache() {
-        final MapConfig mapConfig = createGenericMapConfig("trustLevelPerCmHandleCacheConfig");
-        mapConfig.setNearCacheConfig(new NearCacheConfig("trustLevelPerCmHandleCacheConfig"));
+        final MapConfig mapConfig = createDefaultMapConfig("trustLevelPerCmHandle");
+        mapConfig.setNearCacheConfig(new NearCacheConfig("trustLevelPerCmHandleNearCache"));
         return mapConfig;
     }
 

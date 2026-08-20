@@ -134,12 +134,10 @@ public class ModuleSyncService {
                 numberOfChangedModules++;
             }
         }
-        if (numberOfChangedModules > 0) {
-            final String schemaSetName = getSchemaSetNameForModuleSetTag(cmHandleId, moduleSetTag);
-            cpsModuleService.removeSchemaSetFromModuleCache(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName);
-        }
-        log.info("Module refresh completed for CM handle '{}' (module set tag '{}'): {} module(s) changed",
-                cmHandleId, moduleSetTag, numberOfChangedModules);
+        log.info("Module refresh completed for CM handle '{}' (module set tag '{}'): {} module(s) updated",
+                    cmHandleId, moduleSetTag, numberOfChangedModules);
+        final String schemaSetName = getSchemaSetNameForModuleSetTag(cmHandleId, moduleSetTag);
+        cpsModuleService.removeSchemaSetFromModuleCache(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName);
     }
 
     private Map<String, ModuleDefinition> getStoredModuleDefinitionsPerModuleName(final String cmHandleId) {

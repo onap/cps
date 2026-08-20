@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NamedConfig;
 import com.hazelcast.config.QueueConfig;
-import com.hazelcast.config.SetConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +35,9 @@ import org.springframework.beans.factory.annotation.Value;
  */
 @Slf4j
 public class HazelcastCacheConfig {
+
+    public static final MapConfig DEFAULT_MAP_CONFIG = createDefaultMapConfig("*");
+    public static final QueueConfig DEFAULT_QUEUE_CONFIG = createDefaultQueueConfig("*");
 
     @Value("${hazelcast.cluster-name}")
     protected String clusterName;
@@ -69,9 +71,6 @@ public class HazelcastCacheConfig {
         if (namedConfig instanceof QueueConfig) {
             config.addQueueConfig((QueueConfig) namedConfig);
         }
-        if (namedConfig instanceof SetConfig) {
-            config.addSetConfig((SetConfig) namedConfig);
-        }
     }
 
     private Config getHazelcastInstanceConfig(final String instanceConfigName) {
@@ -82,22 +81,16 @@ public class HazelcastCacheConfig {
         return hazelcastInstance.getConfig();
     }
 
-    protected static MapConfig createGenericMapConfig(final String configName) {
+    protected static MapConfig createDefaultMapConfig(final String configName) {
         final MapConfig mapConfig = new MapConfig(configName);
         mapConfig.setBackupCount(1);
         return mapConfig;
     }
 
-    protected static QueueConfig createQueueConfig(final String configName) {
+    protected static QueueConfig createDefaultQueueConfig(final String configName) {
         final QueueConfig commonQueueConfig = new QueueConfig(configName);
         commonQueueConfig.setBackupCount(1);
         return commonQueueConfig;
-    }
-
-    protected static SetConfig createSetConfig(final String configName) {
-        final SetConfig commonSetConfig = new SetConfig(configName);
-        commonSetConfig.setBackupCount(1);
-        return commonSetConfig;
     }
 
     protected void updateDiscoveryMode(final Config config) {
