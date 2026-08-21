@@ -1,0 +1,39 @@
+{{- if .Values.kafkaUi.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-kafka-ui
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: kafka-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "cps-and-ncmp.name" . }}
+      component: kafka-ui
+  template:
+    metadata:
+      labels:
+        app: {{ include "cps-and-ncmp.name" . }}
+        component: kafka-ui
+    spec:
+      containers:
+        - name: kafka-ui
+          image: "{{ .Values.kafkaUi.image.repository }}:{{ .Values.kafkaUi.image.tag }}"
+          imagePullPolicy: {{ .Values.kafkaUi.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            {{- range $key, $value := .Values.kafkaUi.env }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+            {{- end }}
+          resources:
+            {{- toYaml .Values.kafkaUi.resources | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.kafkaUi.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.kafkaUi.readinessProbe | nindent 12 }}
+{{- end }}

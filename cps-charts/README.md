@@ -165,11 +165,39 @@ Example:
 helm install cps ./<chart-directory> --set cps.replicas=1
 ```
 ---
+## Kafka UI — Viewing Kafka Topics and Messages
+
+This chart includes [Kafka UI](https://github.com/provectus/kafka-ui), a web interface for monitoring Kafka clusters. It is enabled by default.
+
+Once all pods are running, access Kafka UI at:
+```
+http://localhost:30089
+```
+
+> **Note (Linux/Minikube users):** Enable port forwarding first (keep running in a separate terminal):
+> ```bash
+> kubectl port-forward service/cps-ncmp-kafka-ui-service 30089:8080
+> ```
+
+From Kafka UI you can:
+- Browse topics and view messages produced by CPS/NCMP
+- Inspect consumer groups and their lag
+- View broker configuration and cluster health
+- Search and filter messages by key, value, or headers
+
+To disable Kafka UI (e.g. in resource-constrained environments):
+```bash
+helm install cps ./cps-charts --set kafkaUi.enabled=false
+```
+
+---
+
 ## Chart Components
 This Helm chart deploys the following components:
 - postgresql: CPS database
 - cps-and-ncmp: CPS and NCMP backend services
 - kafka: Kafka message broker
+- kafka-ui: Web UI for browsing Kafka topics and messages
 - zookeeper: Zookeeper coordination service for Kafka
 - dmi-stub: Stub service for NCMP device interactions
 - policy-executor-stub: Stub service for Policy Executor interactions

@@ -1,0 +1,19 @@
+{{- if .Values.kafkaUi.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-kafka-ui-service
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: kafka-ui
+spec:
+  type: {{ .Values.kafkaUi.service.type }}
+  ports:
+    - name: http
+      port: {{ .Values.kafkaUi.service.port }}
+      targetPort: 8080
+      nodePort: {{ .Values.kafkaUi.service.nodePort }}
+  selector:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: kafka-ui
+{{- end }}
