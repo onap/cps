@@ -31,10 +31,10 @@ Run the main script. It assumes a Kubernetes environment with Helm is already av
 KPI and endurance can run simultaneously on the same cluster. They use separate namespaces and
 non-conflicting NodePorts:
 
-| Profile   | CPS NodePort | Kafka NodePort |
-|-----------|--------------|----------------|
-| kpi       | 30080        | 30093          |
-| endurance | 30180        | 30193          |
+| Profile   | CPS NodePort | Kafka UI NodePort | Kafka NodePort |
+|-----------|--------------|-------------------|----------------|
+| kpi       | 30080        | 30089             | 30093          |
+| endurance | 30180        | 30189             | 30193          |
 
 The endurance profile uses a Helm values override file (`cps-charts/values-endurance.yaml`) to
 configure its unique NodePorts.
