@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05fad849_59107de4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/AdminCacheConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-25T15:17:14Z",
+      "side": 1,
+      "message": "incomplete sentence?",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 45
+      },
+      "revId": "c3316b5c28e8299e81d576415cd8060e363cd3e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e167d9fc_624f6ae6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/AlternateIdCacheConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-25T15:17:14Z",
+      "side": 1,
+      "message": "same , incomplete sentence",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 46
+      },
+      "revId": "c3316b5c28e8299e81d576415cd8060e363cd3e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3604c329_56f8259b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-25T15:17:14Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 56,
+        "startChar": 44,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "c3316b5c28e8299e81d576415cd8060e363cd3e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
