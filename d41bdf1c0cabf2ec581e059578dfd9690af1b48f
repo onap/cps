@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78dca2ef_c16415b3",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 36
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-25T15:00:29Z",
+      "side": 1,
+      "message": "I have reverted to array type in the components.yml file",
+      "parentUuid": "724c1789_44c34241",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 539,
+        "endChar": 61
+      },
+      "revId": "d41bdf1c0cabf2ec581e059578dfd9690af1b48f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b86ad37d_3d4fb492",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-08-21T13:07:05Z",
       "side": 1,
       "message": "by schema set names",
+      "range": {
+        "startLine": 95,
+        "startChar": 37,
+        "endLine": 95,
+        "endChar": 55
+      },
+      "revId": "d41bdf1c0cabf2ec581e059578dfd9690af1b48f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ca69fd4_2452d4b0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 36
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-25T15:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b86ad37d_3d4fb492",
       "range": {
         "startLine": 95,
         "startChar": 37,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd1e79d_bf61d649",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAnchorService.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-25T15:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07f3dfe8_0207be67",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "d41bdf1c0cabf2ec581e059578dfd9690af1b48f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd3585f2_b73bcfa3",
@@ -100,6 +172,30 @@
       "writtenOn": "2026-08-21T13:07:05Z",
       "side": 1,
       "message": "anchors in line 41 was created with no name so this check isnt as meaningful , just null\u003d\u003dnull which is true for both anchors",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 45
+      },
+      "revId": "d41bdf1c0cabf2ec581e059578dfd9690af1b48f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa4cd681_b2d817b0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 36
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-25T15:00:29Z",
+      "side": 1,
+      "message": "I have defined anchor names in line 41",
+      "parentUuid": "bd3585f2_b73bcfa3",
       "range": {
         "startLine": 86,
         "startChar": 12,
