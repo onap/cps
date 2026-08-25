@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6b8a2ff_138765b6",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-25T15:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b28de14_b09b8b5b",
+      "range": {
+        "startLine": 34,
+        "startChar": 25,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "f760ca60af65a69ef287ee1e436600a5593604fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2d04cc9_2375686c",
