@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b28de14_b09b8b5b",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-25T09:34:50Z",
+      "side": 1,
+      "message": "thank you for that comment; I spent 2 days on refactoring and correcting all the HazelCast Condfig stuff :-) \nDuring which we discovered that some of our config specilizations like TTL of 600 and nearCache never was applied!",
+      "parentUuid": "96426c69_e0f593a8",
+      "range": {
+        "startLine": 34,
+        "startChar": 25,
+        "endLine": 35,
+        "endChar": 66
+      },
+      "revId": "f760ca60af65a69ef287ee1e436600a5593604fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2d04cc9_2375686c",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionListener.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2026-08-20T14:54:55Z",
       "side": 1,
       "message": "is this delimiter ok if dataspaceName can have \u0027-\u0027 aswell?",
+      "range": {
+        "startLine": 50,
+        "startChar": 51,
+        "endLine": 50,
+        "endChar": 52
+      },
+      "revId": "f760ca60af65a69ef287ee1e436600a5593604fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c031b6ee_4c86e6cf",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-25T09:34:50Z",
+      "side": 1,
+      "message": "not in our case",
+      "parentUuid": "c2d04cc9_2375686c",
       "range": {
         "startLine": 50,
         "startChar": 51,
