@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43e0b773_3faf4f4c",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi-inventory.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-26T13:04:10Z",
+      "side": 1,
+      "message": "since this was in v2 already , can you also document this change of   /v2/ch/searches to   /v2/ch/searchCmHandles: in release notes",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "56e4fc8ef8c18ef0952d41aea5f9e8112948f0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "21d8796b_759ae5a9",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
         "patchSetId": 4
