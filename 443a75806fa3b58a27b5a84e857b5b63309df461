@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92df3f2e_3e2eb878",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-08-26T15:39:44Z",
+      "side": 1,
+      "message": "Following up on the unresolved thread above about the TTL(600)/nearCache configs never being applied before this refactor - that\u0027s a notable pre-existing bug discovery. Is there a regression test somewhere that explicitly asserts those settings (TTL, nearCache) are now actually applied to the relevant map configs post-fix? If not, might be worth adding one so this doesn\u0027t silently break again in a future refactor.",
+      "revId": "443a75806fa3b58a27b5a84e857b5b63309df461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c23f27b5_44684cb0",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionListener.java",
         "patchSetId": 5
