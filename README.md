@@ -25,7 +25,6 @@
 
 ## For Developers
 * [Developer Wiki](https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16442177/Configuration+Persistence+Service+Developer+s+Landing+Page)
-* [Building and running CPS using Docker](docker-compose/README.md)
 * [Running CPS locally using Kubernetes](cps-charts/README.md)
 
 ## Compile & Build Project

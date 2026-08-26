@@ -58,7 +58,7 @@ Navigate to cps project directory
 cd ~/<your_git_repo>/cps
 ```
 
-Build a docker image (see also [docker-compose readme](../docker-compose/README.md) ) from your cps directory:
+Build a docker image from your cps directory:
 
 ```bash
 mvn clean install -Dmaven.test.skip=true -Ddocker.repository.push=

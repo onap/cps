@@ -3094,7 +3094,7 @@
           "response": []
         }
       ],
-      "description": "NCMP-DMI-Stub endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/design.html#offered-apis)\n\n**To utilise NCMP-DMI-Stub begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`"
+      "description": "NCMP-DMI-Stub endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/design.html#offered-apis)"
     }
   ],
   "event": [
