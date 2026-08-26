@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c6faf13_8576d008",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 36
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-26T08:27:13Z",
+      "side": 1,
+      "message": "agreed, this seems backward incompatible!",
+      "parentUuid": "724c1789_44c34241",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 539,
+        "endChar": 61
+      },
+      "revId": "d41bdf1c0cabf2ec581e059578dfd9690af1b48f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b86ad37d_3d4fb492",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
         "patchSetId": 36
