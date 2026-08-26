@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "650e604d_392cfc85",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fecdd419_7505f7f4",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 21
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "732541fe_d95cc883",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-08-12T08:13:31Z",
       "side": 1,
       "message": "either comment or extract method  to explain we are reverting to old model. Maybe betterr to use model-enable/disable flag as properties caa simply be empty",
+      "range": {
+        "startLine": 186,
+        "startChar": 55,
+        "endLine": 186,
+        "endChar": 100
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bf5772b_54f7a496",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "732541fe_d95cc883",
       "range": {
         "startLine": 186,
         "startChar": 55,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5456369b_e2e41d26",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6920c55d_84f2f7cc",
+      "range": {
+        "startLine": 438,
+        "startChar": 9,
+        "endLine": 438,
+        "endChar": 81
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "832374c2_a73e04fc",
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afa7afde_f30f57d2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "832374c2_a73e04fc",
+      "range": {
+        "startLine": 362,
+        "startChar": 59,
+        "endLine": 362,
+        "endChar": 63
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9ba50c2_f98df766",
@@ -106,6 +202,30 @@
       "writtenOn": "2026-08-12T08:13:31Z",
       "side": 1,
       "message": "yangModelHandleFromPersistenceService",
+      "range": {
+        "startLine": 366,
+        "startChar": 16,
+        "endLine": 366,
+        "endChar": 34
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "286a55ca_63e92860",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9ba50c2_f98df766",
       "range": {
         "startLine": 366,
         "startChar": 16,
@@ -185,6 +305,78 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2813ccf6_d99720e3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29e128ef_f7bd65a2",
+      "range": {
+        "startLine": 367,
+        "startChar": 32,
+        "endLine": 367,
+        "endChar": 43
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d02442a_5eec4198",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7be5c30a_cca832eb",
+      "range": {
+        "startLine": 367,
+        "startChar": 25,
+        "endLine": 367,
+        "endChar": 29
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc4bee7e_48f155c3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0220674_cf742f65",
+      "range": {
+        "startLine": 367,
+        "startChar": 54,
+        "endLine": 367,
+        "endChar": 68
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e93df44_734e6003",
@@ -221,6 +413,54 @@
       "writtenOn": "2026-08-12T08:13:31Z",
       "side": 1,
       "message": "not asserted so not needed?",
+      "range": {
+        "startLine": 368,
+        "startChar": 20,
+        "endLine": 368,
+        "endChar": 32
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c59ea90_30fecbf0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e93df44_734e6003",
+      "range": {
+        "startLine": 368,
+        "startChar": 54,
+        "endLine": 368,
+        "endChar": 76
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b9f5af_0fc2111d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ce43d8f_5cc71ac5",
       "range": {
         "startLine": 368,
         "startChar": 20,
@@ -277,6 +517,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f97e9dbe_e6a09fe1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1302a051_624c977d",
+      "range": {
+        "startLine": 369,
+        "startChar": 46,
+        "endLine": 369,
+        "endChar": 62
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35399390_4610c7e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0a52fd8_165be510",
+      "range": {
+        "startLine": 369,
+        "startChar": 20,
+        "endLine": 369,
+        "endChar": 40
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f12f806_6fcca00d",
@@ -323,6 +611,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5146d50b_79ff02cd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f12f806_6fcca00d",
+      "range": {
+        "startLine": 377,
+        "startChar": 76,
+        "endLine": 377,
+        "endChar": 80
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66d1b32b_ae0b030b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38373d4e_e8f24f49",
+      "range": {
+        "startLine": 377,
+        "startChar": 106,
+        "endLine": 377,
+        "endChar": 110
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34055e36_590b099d",
@@ -346,6 +682,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc851f9d_16401a9b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34055e36_590b099d",
+      "range": {
+        "startLine": 379,
+        "startChar": 82,
+        "endLine": 379,
+        "endChar": 86
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74c36f89_bbe81069",
@@ -359,6 +719,30 @@
       "writtenOn": "2026-08-12T08:13:31Z",
       "side": 1,
       "message": "the output from the dmi service",
+      "range": {
+        "startLine": 380,
+        "startChar": 18,
+        "endLine": 380,
+        "endChar": 33
+      },
+      "revId": "5ca5b7943ebad0c0b7d550ce3b0be9c6b0282050",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29e97de6_f41911c3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-08-26T08:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74c36f89_bbe81069",
       "range": {
         "startLine": 380,
         "startChar": 18,
