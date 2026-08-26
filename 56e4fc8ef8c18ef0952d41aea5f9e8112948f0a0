@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c6674b1_d8de60ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-26T11:51:51Z",
+      "side": 1,
+      "message": "nothing blocking...",
+      "revId": "56e4fc8ef8c18ef0952d41aea5f9e8112948f0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21d8796b_759ae5a9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-26T11:51:51Z",
+      "side": 1,
+      "message": "NB: \u0027my\u0027, maybe accidently reverted?",
+      "range": {
+        "startLine": 362,
+        "startChar": 59,
+        "endLine": 362,
+        "endChar": 63
+      },
+      "revId": "56e4fc8ef8c18ef0952d41aea5f9e8112948f0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a34e08_90ab08de",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-26T11:51:51Z",
+      "side": 1,
+      "message": "NB: \u0027my\u0027 convention is usually only needed for string content. Not actual variable names",
+      "range": {
+        "startLine": 363,
+        "startChar": 16,
+        "endLine": 363,
+        "endChar": 18
+      },
+      "revId": "56e4fc8ef8c18ef0952d41aea5f9e8112948f0a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
