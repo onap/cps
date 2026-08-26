@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2fd3cad_2f535595",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-08-26T15:39:43Z",
+      "side": 1,
+      "message": "This eviction + topic publish is now unconditional on every module sync call, whereas before it only ran when `numberOfChangedModules \u003e 0`. The test comment explains this is intentional for shared-module correctness (another cm-handle may have changed the shared moduleSetTag schema even if this one didn\u0027t detect changes).\n\nGiven this runs on every sync now, could you confirm this won\u0027t cause excessive Hazelcast topic traffic / cache churn at scale (e.g. large fleets doing frequent module syncs where most calls detect zero changes)? Worth a quick note in the commit message or a comment here explaining the tradeoff, since it\u0027s not obvious from the diff alone why unconditional eviction is required.",
+      "revId": "443a75806fa3b58a27b5a84e857b5b63309df461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c23f27b5_44684cb0",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionListener.java",
         "patchSetId": 5
