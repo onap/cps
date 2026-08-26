@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55ada81a_3141fed6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-26T16:06:20Z",
+      "side": 1,
+      "message": "this uses case is only run infrequently and not expected to affect many tags. Its is crucial to the functionality on otehr isnatcnes to clear the cache unconditonally.",
+      "parentUuid": "e2fd3cad_2f535595",
+      "revId": "443a75806fa3b58a27b5a84e857b5b63309df461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92df3f2e_3e2eb878",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionConfig.java",
         "patchSetId": 5
@@ -73,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3605b5da_21209878",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-26T16:06:20Z",
+      "side": 1,
+      "message": "yes these settins are being tested now",
+      "parentUuid": "92df3f2e_3e2eb878",
+      "revId": "443a75806fa3b58a27b5a84e857b5b63309df461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c23f27b5_44684cb0",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionListener.java",
         "patchSetId": 5
@@ -101,6 +137,24 @@
       "writtenOn": "2026-08-26T16:04:18Z",
       "side": 1,
       "message": "please ignore",
+      "parentUuid": "c23f27b5_44684cb0",
+      "revId": "443a75806fa3b58a27b5a84e857b5b63309df461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d879013_8d7eed95",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/cache/YangSchemaCacheEvictionListener.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-26T16:06:20Z",
+      "side": 1,
+      "message": "i commented on this before. Our names don\u0027t contain dashes so it is safe to use here",
       "parentUuid": "c23f27b5_44684cb0",
       "revId": "443a75806fa3b58a27b5a84e857b5b63309df461",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
