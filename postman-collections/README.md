@@ -26,18 +26,10 @@ To import the CPS collections and environment:
 2. Click "Import" (or click "File" then "Import")
 3. Drag and drop the "postman-collection" folder into the import pop-up
 4. The collections and environment should now be imported
-5. Set the current environment based on your deployment:
-   - For **Docker**: Select "CPS Environment Docker" (CPS_PORT=8883)
-   - For **Kubernetes**: Select "CPS Environment k8s-linux-minikube" (CPS_PORT=30080)
+5. Set the current environment to "CPS Environment k8s-linux-minikube"
 
-## Switching Between Docker and Kubernetes
-The collection now supports both docker-compose and k8s deployments using environment variables:
-- Simply change the active environment in Postman (top right dropdown)
-- All requests will automatically use the correct ports and hosts
-- No need for separate folders or duplicate tests
-
-### Kubernetes Environment Setup
-For Kubernetes deployments, you need to configure the correct host and ports based on your local setup:
+### Environment Setup
+Configure the correct host and ports based on your local setup:
 
 **Linux (minikube):**
 ```bash
@@ -72,7 +64,7 @@ kubectl get svc | grep -E "cps|dmi"
 ```
 
 ## Environment Variables
-Both environments support:
+The environment supports:
 - `CPS_HOST` and `CPS_PORT` - CPS service endpoint
 - `DMI_HOST` and `DMI_PORT` - DMI-Stub-1 endpoint
 - `DMI_HOST_2` and `DMI_PORT_2` - DMI-Stub-2 endpoint
@@ -89,7 +81,7 @@ The collection includes health check endpoints for all services:
 - **DMI-Stub-1**: Liveness and Readiness checks
 - **DMI-Stub-2**: Liveness and Readiness checks
 
-These checks work with both docker and k8s deployments by using environment variables.
+These checks work with k8s deployments by using environment variables.
 
 ## Notes
 When exporting postman collections tabs are used for spacing, so replacing all the tabs is necessary
