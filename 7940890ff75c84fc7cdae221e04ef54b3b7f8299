@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "515d9b48_3adb45b1",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-27T13:46:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ef7beb7_409cabaa",
+      "range": {
+        "startLine": 99,
+        "startChar": 15,
+        "endLine": 99,
+        "endChar": 26
+      },
+      "revId": "7940890ff75c84fc7cdae221e04ef54b3b7f8299",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d706462f_25b85c10",
@@ -71,6 +95,30 @@
       "writtenOn": "2026-08-26T08:27:13Z",
       "side": 1,
       "message": "prefer full names for readability\n@Query(value \u003d \"SELECT anchor.* FROM anchor\"\n              + \" JOIN schema_set ON anchor.schema_set_id \u003d schema_set.id\"\n              + \" WHERE anchor.dataspace_id \u003d :dataspaceId AND schema_set.name IN (:schemaSetNames)\",\n    countQuery \u003d \"SELECT count(anchor.id) FROM anchor\"\n              + \" JOIN schema_set ON anchor.schema_set_id \u003d schema_set.id\"\n              + \" WHERE anchor.dataspace_id \u003d :dataspaceId AND schema_set.name IN (:schemaSetNames)\",\n    nativeQuery \u003d true)\nPage\u003cAnchorEntity\u003e findPageByDataspaceIdAndSchemaSetNameIn(@Param(\"dataspaceId\") int dataspaceId,\n             @Param(\"schemaSetNames\") Collection\u003cString\u003e schemaSetNames, Pageable pageable);",
+      "range": {
+        "startLine": 54,
+        "startChar": 27,
+        "endLine": 54,
+        "endChar": 29
+      },
+      "revId": "7940890ff75c84fc7cdae221e04ef54b3b7f8299",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06da6eee_9253f2de",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-27T13:46:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d706462f_25b85c10",
       "range": {
         "startLine": 54,
         "startChar": 27,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b027ec7_96be84c8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-27T13:46:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cf96680_6329f600",
+      "range": {
+        "startLine": 79,
+        "startChar": 26,
+        "endLine": 79,
+        "endChar": 28
+      },
+      "revId": "7940890ff75c84fc7cdae221e04ef54b3b7f8299",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4904b2f5_3c3629ce",
@@ -117,6 +189,30 @@
       "writtenOn": "2026-08-26T08:27:13Z",
       "side": 1,
       "message": "remove \u0027attempt to\u0027. This term is used for failure scanrios ie where we EXPECT the operation will fail",
+      "range": {
+        "startLine": 59,
+        "startChar": 15,
+        "endLine": 59,
+        "endChar": 26
+      },
+      "revId": "7940890ff75c84fc7cdae221e04ef54b3b7f8299",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "426031b8_70954375",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsAdminPersistenceServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-27T13:46:30Z",
+      "side": 1,
+      "message": "I have removed  \u0027attempt to\u0027.",
+      "parentUuid": "4904b2f5_3c3629ce",
       "range": {
         "startLine": 59,
         "startChar": 15,
@@ -150,6 +246,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a66642e_cb6f4b84",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsAnchorServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-27T13:46:30Z",
+      "side": 1,
+      "message": "We can not use equals method for reverse comparing because PaginationOption.NO_PAGINATION is defined null as below in the PaginationOption class\npublic static final PaginationOption NO_PAGINATION \u003d null;\n\nSo calling NO_PAGINATION.equals(paginationOption) is identical to null.equals(...) → NullPointerException at runtime.\n\nThis PaginationOption class is existing one that we have used.",
+      "parentUuid": "ccabd78c_48a70990",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 46
+      },
+      "revId": "7940890ff75c84fc7cdae221e04ef54b3b7f8299",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e3ea1b1_d9046ac3",
@@ -173,6 +293,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6d36f39_8e307c53",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-27T13:46:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e3ea1b1_d9046ac3",
+      "range": {
+        "startLine": 213,
+        "startChar": 37,
+        "endLine": 213,
+        "endChar": 41
+      },
+      "revId": "7940890ff75c84fc7cdae221e04ef54b3b7f8299",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24737579_be0265a5",
@@ -186,6 +330,30 @@
       "writtenOn": "2026-08-26T08:27:13Z",
       "side": 1,
       "message": "no need to cover all teh edge cases in integration test given they are ceoverd in unit tests! (additional maintenance cost)\nIn integration test you can just test 1 normal happy flow.. Even just update existing tests with pagination would be sufice",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "7940890ff75c84fc7cdae221e04ef54b3b7f8299",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36825a1f_60f54d9f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-27T13:46:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24737579_be0265a5",
       "range": {
         "startLine": 80,
         "startChar": 0,
