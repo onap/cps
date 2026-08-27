@@ -99,8 +99,8 @@ cps:
     SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS: "cps-ncmp-kafka-service:9092"
     notification_enabled: "true"
     ONAP_TRACING_ENABLED: "false"
-    ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: "http://jaeger-service:14250"
-    ONAP_OTEL_EXPORTER_ENDPOINT: "http://jaeger-service:4317"
+    ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: "http://cps-ncmp-jaeger-service:14250"
+    ONAP_OTEL_EXPORTER_ENDPOINT: "http://cps-ncmp-jaeger-service:4317"
     POLICY_SERVICE_ENABLED: "false"
     POLICY_SERVICE_DEFAULT_DECISION: "deny from env"
     POLICY_SERVICE_PORT: "8094"
@@ -305,3 +305,57 @@ policyExecutorStub:
     limits:
       cpu: "1000m"
       memory: "2Gi"
+
+prometheus:
+  enabled: true
+  image:
+    repository: prom/prometheus
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 9090
+    nodePort: 30090
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+grafana:
+  enabled: true
+  image:
+    repository: grafana/grafana
+    tag: latest
+    pullPolicy: IfNotPresent
+  adminPassword: "admin"
+  service:
+    type: NodePort
+    port: 3000
+    nodePort: 30030
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+jaeger:
+  enabled: false
+  image:
+    repository: jaegertracing/all-in-one
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    nodePort: 30086
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"

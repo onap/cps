@@ -1,0 +1,27 @@
+{{- if .Values.jaeger.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-jaeger-service
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: jaeger
+spec:
+  type: {{ .Values.jaeger.service.type }}
+  ports:
+    - name: ui
+      port: 16686
+      targetPort: 16686
+      {{- if eq .Values.jaeger.service.type "NodePort" }}
+      nodePort: {{ .Values.jaeger.service.nodePort }}
+      {{- end }}
+    - name: grpc
+      port: 14250
+      targetPort: 14250
+    - name: otlp
+      port: 4317
+      targetPort: 4317
+  selector:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: jaeger
+{{- end }}

@@ -1,7 +1,7 @@
 # Helm values override for endurance test profile.
 # Uses different NodePorts from kpi (300xx) to allow parallel runs.
-# KPI uses: 30080 (CPS), 30089 (Kafka UI), 30092/30094 (DMI), 30093 (Kafka), 30095 (Policy), 30187 (PG Exporter)
-# Endurance uses: 30180 (CPS), 30189 (Kafka UI), 30192/30194 (DMI), 30193 (Kafka), 30195 (Policy), 30287 (PG Exporter)
+# KPI uses: 30080 (CPS), 30089 (Kafka UI), 30092/30094 (DMI), 30093 (Kafka), 30095 (Policy), 30187 (PG Exporter), 30090 (Prometheus), 30030 (Grafana), 30086 (Jaeger)
+# Endurance uses: 30180 (CPS), 30189 (Kafka UI), 30192/30194 (DMI), 30193 (Kafka), 30195 (Policy), 30287 (PG Exporter), 30190 (Prometheus), 30130 (Grafana), 30186 (Jaeger)
 
 cps:
   service:
@@ -42,3 +42,15 @@ kafkaUi:
 
 postgresql:
   exporterNodePort: 30287
+
+prometheus:
+  service:
+    nodePort: 30190
+
+grafana:
+  service:
+    nodePort: 30130
+
+jaeger:
+  service:
+    nodePort: 30186
