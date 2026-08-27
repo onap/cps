@@ -110,12 +110,16 @@ public interface CpsDataPersistenceService {
 
     /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation.
+     * If none of the target xpaths currently exist for the anchor, the data nodes are created instead.
      *
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      * @param dataNodes     data nodes
+     * @return              {@code true} if the data nodes were newly created (anchor had no matching data),
+     *                      {@code false} if existing data nodes were replaced
      */
-    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, final Collection<DataNode> dataNodes);
+    boolean updateDataNodesAndDescendants(String dataspaceName, String anchorName,
+                                          final Collection<DataNode> dataNodes);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements

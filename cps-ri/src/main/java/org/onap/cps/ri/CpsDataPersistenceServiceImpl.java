@@ -151,7 +151,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
+    public boolean updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
                                               final Collection<DataNode> updatedDataNodes) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
 
@@ -160,6 +160,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final Collection<String> xpaths = xpathToUpdatedDataNode.keySet();
         Collection<FragmentEntity> existingFragmentEntities = getFragmentEntities(anchorEntity, xpaths);
+
+        if (existingFragmentEntities.isEmpty() && !updatedDataNodes.isEmpty()) {
+            storeDataNodes(dataspaceName, anchorName, updatedDataNodes);
+            return true;
+        }
 
         logMissingXPaths(xpaths, existingFragmentEntities);
 
@@ -176,6 +181,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } catch (final ObjectOptimisticLockingFailureException objectOptimisticLockingFailureException) {
             retryUpdateDataNodesIndividually(anchorEntity, existingFragmentEntities);
         }
+        return false;
     }
 
     private void retryUpdateDataNodesIndividually(final AnchorEntity anchorEntity,

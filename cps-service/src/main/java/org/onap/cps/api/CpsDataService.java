@@ -138,7 +138,8 @@ public interface CpsDataService {
         OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
-     * Replaces an existing data node's content including descendants.
+     * Replaces an existing data node's content including descendants. If no data exists for the given anchor, the data
+     * node(s) are created instead.
      *
      * @param dataspaceName     dataspace name
      * @param anchorName        anchor name
@@ -146,9 +147,12 @@ public interface CpsDataService {
      * @param nodeData          node data
      * @param observedTimestamp observedTimestamp
      * @param contentType       JSON/XML content type
+     * @return                  {@code true} if the data was newly created, {@code false} if existing data
+     *                          was replaced
      */
-    void updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
-                                       OffsetDateTime observedTimestamp, ContentType contentType);
+    boolean updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath,
+                                       String nodeData, OffsetDateTime observedTimestamp,
+                                       ContentType contentType);
 
     /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation.

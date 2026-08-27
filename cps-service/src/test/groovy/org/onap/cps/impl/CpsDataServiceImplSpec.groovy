@@ -301,17 +301,30 @@ class CpsDataServiceImplSpec extends Specification {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
-            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp, ContentType.JSON)
+            def result = objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp, ContentType.JSON)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
-                    { dataNode -> dataNode.xpath == expectedNodeXpath})
+                    { dataNode -> dataNode.xpath == expectedNodeXpath}) >> false
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        and: 'the result reflects that existing data was replaced'
+            assert !result
         where: 'following parameters were used'
             scenario         | parentNodeXpath | jsonData                                           || expectedNodeXpath
             'top level node' | '/'             | '{"test-tree": {"branch": []}}'                    || ['/test-tree']
             'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'                    || ['/test-tree/branch[@name=\'Name\']']
             'json list'      | '/test-tree'    | '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
+    }
+
+    def 'Replace data node at root xpath on an anchor with no existing data.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        and: 'the persistence layer reports that the data node was newly created'
+            mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, _) >> true
+        when: 'replace data method is invoked with root xpath and json data'
+            def result = objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, '/', '{"test-tree": {"branch": []}}', observedTimestamp, ContentType.JSON)
+        then: 'the method returns true to indicate data was created, not replaced'
+            assert result
     }
 
     def 'Replace data node and descendants using list element xpath with #scenario.'() {
