@@ -55,6 +55,7 @@ import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
+import org.onap.cps.events.model.EventPayload.Action;
 import org.onap.cps.impl.DataNodeBuilder;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
@@ -151,8 +152,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
-                                              final Collection<DataNode> updatedDataNodes) {
+    public Action updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
+                                                final Collection<DataNode> updatedDataNodes) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
 
         final Map<String, DataNode> xpathToUpdatedDataNode = updatedDataNodes.stream()
@@ -160,6 +161,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final Collection<String> xpaths = xpathToUpdatedDataNode.keySet();
         Collection<FragmentEntity> existingFragmentEntities = getFragmentEntities(anchorEntity, xpaths);
+
+        if (existingFragmentEntities.isEmpty() && !updatedDataNodes.isEmpty()) {
+            storeDataNodes(dataspaceName, anchorName, updatedDataNodes);
+            return Action.CREATE;
+        }
 
         logMissingXPaths(xpaths, existingFragmentEntities);
 
@@ -176,6 +182,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } catch (final ObjectOptimisticLockingFailureException objectOptimisticLockingFailureException) {
             retryUpdateDataNodesIndividually(anchorEntity, existingFragmentEntities);
         }
+        return Action.REPLACE;
     }
 
     private void retryUpdateDataNodesIndividually(final AnchorEntity anchorEntity,
