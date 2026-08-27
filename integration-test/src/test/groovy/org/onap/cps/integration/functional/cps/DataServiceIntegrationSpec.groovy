@@ -30,6 +30,7 @@ import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.events.model.EventPayload.Action
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.utils.ContentType
 import spock.lang.Ignore
@@ -475,6 +476,21 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             result.leaves.'bookstore-name'[0] == 'new bookstore'
         cleanup:
             restoreBookstoreDataAnchor(1)
+    }
+
+    def 'Replace data node at root xpath on an anchor with no existing data.'() {
+        given: 'an anchor with no data at all'
+            cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, 'emptyAnchorForPutTest')
+        when: 'replace is performed at the root xpath with a full data tree'
+            def json = '{ "bookstore": { "bookstore-name": "brand new bookstore" }}'
+            def dataTreeUpdateAction = objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, 'emptyAnchorForPutTest', '/', json, now, ContentType.JSON)
+        then: 'the method reports that data was created (not replaced)'
+            assert dataTreeUpdateAction == Action.CREATE
+        and: 'the data has actually been persisted and is retrievable'
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, 'emptyAnchorForPutTest', '/bookstore', DIRECT_CHILDREN_ONLY)
+            assert result.leaves.'bookstore-name'[0] == 'brand new bookstore'
+        cleanup:
+            cpsAnchorService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'emptyAnchorForPutTest')
     }
 
     def 'Update multiple data node leaves.'() {

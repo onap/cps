@@ -26,6 +26,7 @@ package org.onap.cps.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsFacade
+import org.onap.cps.events.model.EventPayload.Action
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper
@@ -406,7 +407,7 @@ class DataRestControllerSpec extends Specification {
                         .param('xpath', inputXpath))
                     .andReturn().response
         then: 'the cps data service method is invoked with expected parameters'
-            1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, xpathServiceParameter, expectedData, noTimestamp, expectedContentType)
+            1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, xpathServiceParameter, expectedData, noTimestamp, expectedContentType) >> Action.REPLACE
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
@@ -417,6 +418,23 @@ class DataRestControllerSpec extends Specification {
             'XML content: root node by default'  | ''            | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData  | ContentType.XML
             'XML content: root node by choice'   | '/'           | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData  | ContentType.XML
             'XML content: some xpath by parent'  | '/some/xpath' | MediaType.APPLICATION_XML  || '/some/xpath'         | requestBodyXml  | expectedXmlData  | ContentType.XML
+    }
+
+    def 'Replace data node tree on an anchor with no existing data.'() {
+        given: 'endpoint to replace node at root xpath'
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
+        and: 'the cps data service reports that the data was newly created'
+            mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, '/', expectedJsonData, noTimestamp, ContentType.JSON) >> Action.CREATE
+        when: 'put request is performed against the root xpath'
+            def response =
+                mvc.perform(
+                    put(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBodyJson)
+                        .param('xpath', '/'))
+                    .andReturn().response
+        then: 'response status indicates the resource was created'
+            response.status == HttpStatus.CREATED.value()
     }
 
     def 'Validate data using Replace data node API.'() {
