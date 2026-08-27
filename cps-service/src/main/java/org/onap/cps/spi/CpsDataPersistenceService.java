@@ -31,6 +31,7 @@ import java.util.Set;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
+import org.onap.cps.events.model.EventPayload.Action;
 
 /*
     Data Store interface that is responsible for handling yang data.
@@ -110,12 +111,16 @@ public interface CpsDataPersistenceService {
 
     /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation.
+     * If none of the target xpaths currently exist for the anchor, the data nodes are created instead.
      *
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      * @param dataNodes     data nodes
+     * @return              {@link Action#CREATE} if the data nodes were newly created (anchor had no matching
+     *                      data), {@link Action#REPLACE} if existing data nodes were replaced
      */
-    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, final Collection<DataNode> dataNodes);
+    Action updateDataNodesAndDescendants(String dataspaceName, String anchorName,
+                                         final Collection<DataNode> dataNodes);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements

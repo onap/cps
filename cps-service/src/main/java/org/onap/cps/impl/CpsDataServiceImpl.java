@@ -51,6 +51,7 @@ import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.events.CpsDataUpdateEventsProducer;
+import org.onap.cps.events.model.EventPayload.Action;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
@@ -222,9 +223,10 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
-    public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
+    public Action updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
                                              final String parentNodeXpath, final String nodeData,
                                              final OffsetDateTime observedTimestamp, final ContentType contentType) {
+        final Action dataTreeUpdateAction;
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes = dataNodeFactory
@@ -232,11 +234,14 @@ public class CpsDataServiceImpl implements CpsDataService {
         final List<DeltaReport> deltaReports =
             generateDeltaReports(dataspaceName, anchorName, parentNodeXpath, dataNodes);
         if (ROOT_NODE_XPATH.equals(parentNodeXpath) || !isPathToListElement(parentNodeXpath)) {
-            cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
+            dataTreeUpdateAction = cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
+                dataNodes);
         } else {
             cpsDataPersistenceService.replaceAllChildDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+            dataTreeUpdateAction = REPLACE;
         }
-        sendDataUpdatedEvent(anchor, parentNodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
+        sendDataUpdatedEvent(anchor, parentNodeXpath, dataTreeUpdateAction.value(), deltaReports, observedTimestamp);
+        return dataTreeUpdateAction;
     }
 
     @Override

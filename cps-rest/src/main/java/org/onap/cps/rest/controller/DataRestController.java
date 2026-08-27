@@ -36,6 +36,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsFacade;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.events.model.EventPayload.Action;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -169,11 +170,11 @@ public class DataRestController implements CpsDataApi {
         if (Boolean.TRUE.equals(dryRunEnabled)) {
             cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
             return ResponseEntity.ok().build();
-        } else {
-            cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
-                    nodeData, toOffsetDateTime(observedTimestamp), contentType);
         }
-        return ResponseEntity.status(HttpStatus.OK).build();
+        final Action wasCreated = cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName,
+                parentNodeXpath, nodeData, toOffsetDateTime(observedTimestamp), contentType);
+        return ResponseEntity.status(wasCreated == Action.CREATE ? HttpStatus.CREATED : HttpStatus.OK)
+                .build();
     }
 
     @Override
