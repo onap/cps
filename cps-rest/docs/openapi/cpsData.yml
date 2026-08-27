@@ -239,7 +239,7 @@ nodesByDataspaceAndAnchor:
     responses:
       '200':
         $ref: 'components.yml#/components/responses/Ok'
-      '204':
+      '201':
         $ref: 'components.yml#/components/responses/Created'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
