@@ -16,6 +16,29 @@
       "message": "Resolved all the comments.",
       "revId": "5dbe51321a580a313b587e37f3b57399d54415a5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b15e0bf9_203c08cf",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-27T15:37:26Z",
+      "side": 1,
+      "message": "still think thsi si not needed but I wont force you to remove it.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 5
+      },
+      "revId": "5dbe51321a580a313b587e37f3b57399d54415a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
