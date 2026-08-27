@@ -39,6 +39,7 @@ function executeSearchRequest(version, searchType, scenario) {
     return performPostRequest(url, payload, `${version}-${searchType}`);
 }
 
+
 const SEARCH_PARAMETERS_PER_SCENARIO = {
     "no-filter": {
         "cmHandleQueryParameters": []

@@ -379,7 +379,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                                     conditionParameters: [['some key': 'some value']]
                             )])
         and: 'lightweight query returns cm handles'
-            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >>
+            mockParameterizedCmHandleQueryService.queryInventoryForCmHandlesLightweight(_) >>
                 Flux.fromIterable([new NcmpServiceCmHandle(cmHandleId: 'ch-2')])
         when: 'the lightweight search is called'
             def result = objectUnderTest.southboundCmHandleSearchLightweight(apiParams).collectList().block()

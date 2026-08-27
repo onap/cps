@@ -200,7 +200,8 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
                 jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters,
             SouthboundCmHandleQuerySupportedConditions.CONDITION_NAMES);
-        return parameterizedCmHandleQueryService.queryCmHandlesLightweight(cmHandleQueryServiceParameters);
+        return parameterizedCmHandleQueryService.queryInventoryForCmHandlesLightweight(
+                cmHandleQueryServiceParameters);
     }
 
     @Override
