@@ -1,0 +1,58 @@
+{{- if .Values.grafana.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-grafana
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "cps-and-ncmp.name" . }}
+      component: grafana
+  template:
+    metadata:
+      labels:
+        app: {{ include "cps-and-ncmp.name" . }}
+        component: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: "{{ .Values.grafana.image.repository }}:{{ .Values.grafana.image.tag }}"
+          imagePullPolicy: {{ .Values.grafana.image.pullPolicy }}
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              value: "{{ .Values.grafana.adminPassword }}"
+          volumeMounts:
+            - name: grafana-provisioning-dashboards
+              mountPath: /etc/grafana/provisioning/dashboards/dashboard.yaml
+              subPath: dashboard.yaml
+            - name: grafana-provisioning-datasources
+              mountPath: /etc/grafana/provisioning/datasources/datasource.yaml
+              subPath: datasource.yaml
+            - name: grafana-dashboards
+              mountPath: /var/lib/grafana/dashboards
+          resources:
+            {{- toYaml .Values.grafana.resources | nindent 12 }}
+      volumes:
+        - name: grafana-provisioning-dashboards
+          configMap:
+            name: {{ include "cps-and-ncmp.release-name" . }}-grafana-provisioning
+            items:
+              - key: dashboard.yaml
+                path: dashboard.yaml
+        - name: grafana-provisioning-datasources
+          configMap:
+            name: {{ include "cps-and-ncmp.release-name" . }}-grafana-provisioning
+            items:
+              - key: datasource.yaml
+                path: datasource.yaml
+        - name: grafana-dashboards
+          configMap:
+            name: {{ include "cps-and-ncmp.release-name" . }}-grafana-dashboards
+{{- end }}

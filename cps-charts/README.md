@@ -201,4 +201,11 @@ This Helm chart deploys the following components:
 - zookeeper: Zookeeper coordination service for Kafka
 - dmi-stub: Stub service for NCMP device interactions
 - policy-executor-stub: Stub service for Policy Executor interactions
+- prometheus: Metrics collection (disabled by default, see [README-MONITORING-AND-TRACING.md](README-MONITORING-AND-TRACING.md))
+- grafana: Metrics dashboards (disabled by default, see [README-MONITORING-AND-TRACING.md](README-MONITORING-AND-TRACING.md))
+- jaeger: Distributed tracing (disabled by default, see [README-MONITORING-AND-TRACING.md](README-MONITORING-AND-TRACING.md))
 ---
+
+## Monitoring and Tracing
+Prometheus, Grafana, and Jaeger are included as optional components (disabled by default).
+For setup, usage, and troubleshooting, see [README-MONITORING-AND-TRACING.md](README-MONITORING-AND-TRACING.md).
