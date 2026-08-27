@@ -26,6 +26,7 @@ import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.events.model.EventPayload.Action
 import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.ri.models.AnchorEntity
 import org.onap.cps.ri.models.DataspaceEntity
@@ -228,13 +229,34 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
                 new FragmentEntity(1, '/test/xpath', null, '{"id":"testId"}', anchorEntity, [] as Set)
             ]
         when: 'replace data node tree'
-            objectUnderTest.updateDataNodesAndDescendants('dataspaceName', 'anchorName', dataNodes)
+            def result = objectUnderTest.updateDataNodesAndDescendants('dataspaceName', 'anchorName', dataNodes)
         then: 'call fragment repository save all method'
             1 * mockFragmentRepository.saveAll({fragmentEntities -> assert fragmentEntities as List == expectedFragmentEntities})
+        and: 'the result indicates existing data was replaced'
+            assert result == expectedResult
         where: 'the following Data Type is passed'
-            scenario                         | dataNodes                                                                          || expectedFragmentEntities
-            'empty data node list'           | []                                                                                 || []
-            'one data node in list'          | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', anchor: anchorEntity, childFragments: [])]
+            scenario                | dataNodes                                                                          || expectedFragmentEntities                                                                                            | expectedResult
+            'empty data node list'  | []                                                                                 || []                                                                                                                  | Action.REPLACE
+            'one data node in list' | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])] || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', anchor: anchorEntity, childFragments: [])] | Action.REPLACE
+    }
+
+    def 'Replace data node and descendants on an anchor with no existing data.'() {
+        given: 'the fragment repository finds no existing fragments for the requested xpath'
+            mockFragmentRepository.findByAnchorAndXpathIn(_, ['/test/xpath'] as Set) >> []
+            mockFragmentRepository.findListByAnchorAndXpath(_, '/test/xpath') >> []
+        and: 'a data node to write at that xpath'
+            def dataNodes = [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'], childDataNodes: [])]
+        when: 'replacing data node tree at the root of an empty anchor'
+            def result = objectUnderTest.updateDataNodesAndDescendants('dataspaceName', 'anchorName', dataNodes)
+        then: 'the data node is saved as new node, not merged with existing fragments'
+            1 * mockFragmentRepository.saveAll({ fragmentEntities ->
+                assert fragmentEntities.size() == 1
+                def fragmentEntity = fragmentEntities.iterator().next()
+                assert fragmentEntity.xpath == '/test/xpath'
+                assert fragmentEntity.attributes == '{"id":"testId"}'
+            })
+        and: 'the result indicates the data was newly created'
+            assert result == Action.CREATE
     }
 
     def 'Replace data nodes and descendants'() {
