@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35f72c1c_860df3c1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-27T08:10:02Z",
+      "side": 1,
+      "message": "does need to be added to the Yaml fiel as a posisble response or is it present already",
+      "range": {
+        "startLine": 175,
+        "startChar": 54,
+        "endLine": 175,
+        "endChar": 74
+      },
+      "revId": "355a30fb38925f820a30254f27d4bdf0be4dc4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d26c12cb_48c7c18c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-27T08:10:02Z",
+      "side": 1,
+      "message": "is this really possible?",
+      "range": {
+        "startLine": 164,
+        "startChar": 51,
+        "endLine": 164,
+        "endChar": 77
+      },
+      "revId": "355a30fb38925f820a30254f27d4bdf0be4dc4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "562905b1_e0359882",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-27T08:10:02Z",
+      "side": 1,
+      "message": "NB: prefer assert result \u003d\u003d true for better readability",
+      "range": {
+        "startLine": 258,
+        "startChar": 19,
+        "endLine": 258,
+        "endChar": 25
+      },
+      "revId": "355a30fb38925f820a30254f27d4bdf0be4dc4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "596866c5_2d181fc7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-27T08:10:02Z",
+      "side": 1,
+      "message": "this seems counterintuitive the method is called update... so it would make more sense if true was returned it it was a normal update. To rule out any ambiguity it would be best to use a ENUM.\nYou could even use the existing enum for events I think that will be OK: EventPayload.Action.CREATE;",
+      "range": {
+        "startLine": 150,
+        "startChar": 32,
+        "endLine": 151,
+        "endChar": 44
+      },
+      "revId": "355a30fb38925f820a30254f27d4bdf0be4dc4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea7f1ca_6b7687f7",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-27T08:10:02Z",
+      "side": 1,
+      "message": "if you use the same enum I suggest it wil make this code easier too",
+      "range": {
+        "startLine": 242,
+        "startChar": 54,
+        "endLine": 242,
+        "endChar": 70
+      },
+      "revId": "355a30fb38925f820a30254f27d4bdf0be4dc4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "904b1609_0ddbcd60",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-27T08:10:02Z",
+      "side": 1,
+      "message": "as befoer pref \u003d\u003d true. But if this beceoms an enum it wil be easier to read too",
+      "range": {
+        "startLine": 327,
+        "startChar": 12,
+        "endLine": 327,
+        "endChar": 25
+      },
+      "revId": "355a30fb38925f820a30254f27d4bdf0be4dc4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
