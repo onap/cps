@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 package org.onap.cps.impl.cache
 
+import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import spock.lang.Specification
 
@@ -28,34 +29,54 @@ class HazelcastCacheConfigSpec extends Specification {
     def objectUnderTest = new HazelcastCacheConfig()
 
     def cleanupSpec() {
-        Hazelcast.getHazelcastInstanceByName('my instance config').shutdown()
+        Hazelcast.getHazelcastInstanceByName('hazelcastCacheConfigSpecInstance').shutdown()
     }
 
     def 'Create Hazelcast instance with a #scenario'() {
         given: 'a cluster name and instance config name'
             objectUnderTest.clusterName = 'my cluster'
-            objectUnderTest.instanceConfigName = 'my instance config'
+            objectUnderTest.instanceConfigName = 'hazelcastCacheConfigSpecInstance'
         when: 'a hazelcast instance is created (name has to be unique)'
-            def result = objectUnderTest.getOrCreateHazelcastInstance(config)
+            def result = objectUnderTest.getOrCreateHazelcastInstance(hazelcastCacheConfig)
         then: 'the instance is created and has the correct name'
-            assert result.name == 'my instance config'
+            assert result.name == 'hazelcastCacheConfigSpecInstance'
         and: 'if applicable it has a map config with the expected name'
             if (expectMapConfig) {
                 assert result.config.mapConfigs.values()[0].name == 'my map config'
-            }
-        and: 'if applicable it has a queue config with the expected name'
-            if (expectQueueConfig) {
+            } else {
                 assert result.config.queueConfigs.values()[0].name == 'my queue config'
             }
-        and: 'if applicable it has a set config with the expected name'
-            if (expectSetConfig) {
-                assert result.config.setConfigs.values()[0].name == 'my set config'
-            }
         where: 'the following configs are used'
-            scenario       | config                                                       || expectMapConfig | expectQueueConfig | expectSetConfig
-            'Map Config'   | HazelcastCacheConfig.createGenericMapConfig('my map config') || true            | false             | false
-            'Queue Config' | HazelcastCacheConfig.createQueueConfig('my queue config')    || false           | true              | false
-            'Set Config'   | HazelcastCacheConfig.createSetConfig('my set config')        || false           | false             | true
+            scenario       | hazelcastCacheConfig                                             || expectMapConfig
+            'Map Config'   | HazelcastCacheConfig.createDefaultMapConfig('my map config')     || true
+            'Queue Config' | HazelcastCacheConfig.createDefaultQueueConfig('my queue config') || false
+    }
+
+    def 'Verify deployment network configs for Distributed Caches'() {
+        given: 'the Cache config'
+            def networkingConfig = Hazelcast.getHazelcastInstanceByName('hazelcastCacheConfigSpecInstance').config.networkConfig
+        expect: 'system created instance with correct config'
+            assert networkingConfig.join.autoDetectionConfig.enabled
+            assert !networkingConfig.join.kubernetesConfig.enabled
+    }
+
+    def 'Enabling Kubernetes Cache.'() {
+        given: 'a sample configuration'
+            def sampleConfig = new Config()
+        when: 'kubernetes properties are enabled/disabled in teh main hazelcast configuration'
+            objectUnderTest.cacheKubernetesServiceName = scenario
+            objectUnderTest.cacheKubernetesEnabled = cacheKubernetesEnabled
+        and: 'Update the discovery mode on the sample configuration'
+            objectUnderTest.updateDiscoveryMode(sampleConfig)
+        then: 'applied properties are reflected'
+            assert sampleConfig.networkConfig.join.kubernetesConfig.enabled == cacheKubernetesEnabled
+            if (cacheKubernetesEnabled) {
+                assert sampleConfig.networkConfig.join.kubernetesConfig.properties.get('service-name') == scenario
+            }
+        where: 'kubernetes cache enabled/disabled'
+            scenario                    | cacheKubernetesEnabled
+            'kubernetes cache enabled'  | true
+            'kubernetes cache disabled' | false
     }
 
 }

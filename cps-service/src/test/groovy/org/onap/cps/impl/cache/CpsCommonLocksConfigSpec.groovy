@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,45 +20,36 @@
 
 package org.onap.cps.impl.cache
 
-import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
+import com.hazelcast.map.impl.proxy.MapProxyImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.TestPropertySource
 import spock.lang.Specification
 
 @SpringBootTest
 @ContextConfiguration(classes = [CpsCommonLocksConfig])
+@TestPropertySource(properties = ['hazelcast.instance-config-name=cpsCommonLocksCacheConfigSpecInstance'])
 class CpsCommonLocksConfigSpec extends Specification {
 
     @Autowired
     IMap<String, String> cpsCommonLocks
 
     def cleanupSpec() {
-        Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
+        Hazelcast.getHazelcastInstanceByName('cpsCommonLocksCacheConfigSpecInstance').shutdown()
     }
 
-    def 'Hazelcast common locks'() {
-        expect: 'system is able to create an instance of the common locks cache'
-            assert null != cpsCommonLocks
-        and: 'there is at least 1 instance'
-            assert Hazelcast.allHazelcastInstances.size() > 0
-        and: 'Hazelcast cache instance for common locks is present'
-            assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cpsCommonLocks') != null
+    def 'Common Locks cache configuration'() {
+        given: 'retrieving the map config'
+            def hazelcastInstance = ((MapProxyImpl) cpsCommonLocks).getNodeEngine().getHazelcastInstance();
+            def config = hazelcastInstance.getConfig().findMapConfig(cpsCommonLocks.getName())
+        expect: 'the default configuration is used'
+            assert config.name == '*'
+        and: 'the configuration has the correct (default) backup counts'
+            assert config.backupCount == 1
+            assert config.asyncBackupCount == 0
     }
 
-    def 'Verify network config'() {
-        given: 'Synchronization config object and test configuration'
-            def objectUnderTest = new CpsCommonLocksConfig()
-            def testConfig = new Config()
-        when: 'kubernetes properties are enabled'
-            objectUnderTest.cacheKubernetesEnabled = true
-            objectUnderTest.cacheKubernetesServiceName = 'test-service-name'
-        and: 'method called to update the discovery mode'
-            objectUnderTest.updateDiscoveryMode(testConfig)
-        then: 'applied properties are reflected'
-            assert testConfig.networkConfig.join.kubernetesConfig.enabled
-            assert testConfig.networkConfig.join.kubernetesConfig.properties.get('service-name') == 'test-service-name'
-    }
 }

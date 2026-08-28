@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,12 +26,12 @@ import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import spock.lang.Specification
 
 class ModelLoaderLockSpec extends Specification {
-    def cpsCommonLocks = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('hazelcastInstanceName')).getMap('cpsCommonLocks')
+    def cpsCommonLocks = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('modelLoaderLockSpecInstance')).getMap('cpsCommonLocks')
 
     def objectUnderTest = new ModelLoaderLock(cpsCommonLocks)
 
     def cleanupSpec() {
-        Hazelcast.getHazelcastInstanceByName('hazelcastInstanceName').shutdown()
+        Hazelcast.getHazelcastInstanceByName('modelLoaderLockSpecInstance').shutdown()
     }
 
     def 'Locking and unlocking the model loader lock.'() {

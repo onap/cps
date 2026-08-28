@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.impl.inventory.trustlevel
 
+import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
@@ -42,9 +43,11 @@ class TrustLevelManagerSpec extends Specification {
     def mockInventoryEventProducer = Mock(InventoryEventProducer)
 
     def setup() {
-        hazelcastInstance = Hazelcast.newHazelcastInstance()
+        hazelcastInstance = Hazelcast.getOrCreateHazelcastInstance(new Config('trustLevelManagerSpecInstance'))
         trustLevelPerCmHandleId = hazelcastInstance.getMap("trustLevelPerCmHandle")
-        trustLevelPerDmiPlugin = hazelcastInstance.getMap("trustLevelPerCmHandle")
+        trustLevelPerDmiPlugin = hazelcastInstance.getMap("trustLevelPerDmiPlugin")
+        trustLevelPerCmHandleId.clear()
+        trustLevelPerDmiPlugin.clear()
         objectUnderTest = new TrustLevelManager(trustLevelPerCmHandleId, trustLevelPerDmiPlugin, mockInventoryPersistence, mockInventoryEventProducer)
     }
 
