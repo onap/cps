@@ -393,7 +393,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
                 new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
         and: 'the lightweight query returns handles across two tags; tag-A has a LOCKED handle before a READY one, one without an alternate id'
-            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >> Flux.fromIterable([
+            mockParameterizedCmHandleQueryService.queryInventoryForCmHandlesLightweight(_) >> Flux.fromIterable([
                 new NcmpServiceCmHandle(cmHandleId: 'ch-1', moduleSetTag: 'tag-A', alternateId: 'alt-1', cmHandleStatus: 'LOCKED'),
                 new NcmpServiceCmHandle(cmHandleId: 'ch-2', moduleSetTag: 'tag-A', alternateId: '', cmHandleStatus: 'READY'),
                 new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'tag-B', alternateId: 'alt-3', cmHandleStatus: 'READY')])
@@ -421,7 +421,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
                 new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
         and: 'the lightweight query returns only non-READY handles'
-            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >> Flux.fromIterable([
+            mockParameterizedCmHandleQueryService.queryInventoryForCmHandlesLightweight(_) >> Flux.fromIterable([
                 new NcmpServiceCmHandle(cmHandleId: 'ch-1', moduleSetTag: 'tag-A', alternateId: 'alt-1', cmHandleStatus: 'LOCKED'),
                 new NcmpServiceCmHandle(cmHandleId: 'ch-2', moduleSetTag: 'tag-A', alternateId: 'alt-2', cmHandleStatus: 'ADVISED')])
         when: 'refresh modules is called'
@@ -439,7 +439,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
                 new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
         and: 'the lightweight query returns a cm handle without a top-level status (older inventory model)'
-            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >> Flux.fromIterable([
+            mockParameterizedCmHandleQueryService.queryInventoryForCmHandlesLightweight(_) >> Flux.fromIterable([
                 new NcmpServiceCmHandle(cmHandleId: 'ch-1', moduleSetTag: 'tag-A', alternateId: 'alt-1', cmHandleStatus: null)])
         when: 'refresh modules is called'
             objectUnderTest.refreshModules(apiParams)
@@ -454,7 +454,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             def apiParams = new CmHandleQueryApiParameters(cmHandleQueryParameters: [
                 new ConditionApiProperties(conditionName: 'hasAllProperties', conditionParameters: [['some key': 'some value']])])
         and: 'the lightweight query returns no cm handles'
-            mockParameterizedCmHandleQueryService.queryCmHandlesLightweight(_) >> Flux.empty()
+            mockParameterizedCmHandleQueryService.queryInventoryForCmHandlesLightweight(_) >> Flux.empty()
         when: 'refresh modules is called'
             def result = objectUnderTest.refreshModules(apiParams)
         then: 'the result is empty'
