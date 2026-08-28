@@ -15,6 +15,12 @@
 			"enabled": true
 		},
 		{
+			"key": "basic_auth_171s",
+			"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+			"type": "default",
+			"enabled": true
+		},
+		{
 			"key": "DMI_HOST_1",
 			"value": "cps-ncmp-dmi-stub-1-service",
 			"type": "default",
@@ -35,6 +41,42 @@
 		{
 			"key": "DMI_PORT_2",
 			"value": "8092",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "DMI_PLUGIN_HOST",
+			"value": "cps-ncmp-ncmp-dmi-plugin-service",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "DMI_PLUGIN_PORT",
+			"value": "8080",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "DMI_PLUGIN_NODEPORT",
+			"value": "30097",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "SDNC_NODEPORT",
+			"value": "30096",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "SDNC_AUTH",
+			"value": "Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "CM_HANDLE",
+			"value": "ietfYang-PNFDemo",
 			"type": "default",
 			"enabled": true
 		}
