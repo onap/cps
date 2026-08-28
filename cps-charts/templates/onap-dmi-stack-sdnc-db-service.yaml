@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
+#  Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -16,26 +16,22 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-{{- if and .Values.dmiStub.enabled (not .Values.onapDmiStack.enabled) }}
+{{- if .Values.onapDmiStack.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "cps-and-ncmp.release-name" . }}-dmi-stub-2-service
+  name: {{ include "cps-and-ncmp.release-name" . }}-sdnc-db-service
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
-    component: dmi-stub
+    component: sdnc-db
 spec:
-  type: {{ .Values.dmiStub.service2.type }}
+  type: ClusterIP
   ports:
-    - port: {{ .Values.dmiStub.service2.port }}
-      targetPort: {{ .Values.dmiStub.deployment2.containerPort }}
+    - port: 3306
+      targetPort: 3306
       protocol: TCP
-      name: http
-      {{- if and (eq .Values.dmiStub.service2.type "NodePort") .Values.dmiStub.service2.nodePort }}
-      nodePort: {{ .Values.dmiStub.service2.nodePort }}
-      {{- end }}
+      name: mysql
   selector:
     app: {{ include "cps-and-ncmp.name" . }}
-    component: dmi-stub
-    instance: dmi-stub-2
+    component: sdnc-db
 {{- end }}

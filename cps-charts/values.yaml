@@ -200,6 +200,8 @@ zookeeper:
     failureThreshold: 3
 
 dmiStub:
+  # Ignored when onapDmiStack.enabled is true: that stack ships the real
+  # ncmp-dmi-plugin, which replaces this stub as NCMP's DMI.
   enabled: true
   image:
     repository: nexus3.onap.org:10003/onap/dmi-stub
@@ -286,6 +288,168 @@ kafkaUi:
     periodSeconds: 10
     failureThreshold: 5
     timeoutSeconds: 5
+
+onapDmiStack:
+  # This stack (MariaDB + SDNC + a netconf device simulator + a real ncmp-dmi-plugin)
+  # replicates the environment used by the CSIT dmi-integration tests
+  # (see ncmp-dmi-plugin/csit/tests/dmi-integration/), for local demo/K6 use.
+  # Disabled by default: enable with --set onapDmiStack.enabled=true
+  enabled: false
+
+  sdncDb:
+    image: "mariadb:10.5"
+    env:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_USER: "sdnc"
+      MYSQL_PASSWORD: "password"
+      MYSQL_DATABASE: "sdncdb"
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "512Mi"
+      limits:
+        cpu: "1000m"
+        memory: "1Gi"
+    livenessProbe:
+      exec:
+        command: [ "sh", "-c", "healthcheck.sh --connect --innodb_initialized || exit 1" ]
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 3
+    readinessProbe:
+      exec:
+        command: [ "sh", "-c", "healthcheck.sh --connect --innodb_initialized || exit 1" ]
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 3
+
+  sdnc:
+    image: "onap/sdnc-image:3.0.2"
+    service:
+      type: NodePort
+      port: 8181
+      nodePort: 30096
+    env:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_USER: "sdnc"
+      MYSQL_PASSWORD: "password"
+      MYSQL_DATABASE: "sdncdb"
+      SDNC_CONFIG_DIR: "/opt/onap/sdnc/data/properties"
+      SDNC_BIN: "/opt/onap/sdnc/bin"
+      ODL_CERT_DIR: "/opt/opendaylight/certs"
+      ODL_ADMIN_USERNAME: "admin"
+      ODL_ADMIN_PASSWORD: "Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U"
+      SDNC_DB_INIT: "true"
+      SQL_CRYPTKEY: "fakECryptKey"
+    resources:
+      # SDNC/ODL (Karaf) needs a large heap to resolve/install its OSGi
+      # feature bundles at boot; observed OutOfMemoryError with a 3Gi limit.
+      requests:
+        cpu: "1000m"
+        memory: "3Gi"
+      limits:
+        cpu: "3000m"
+        memory: "6Gi"
+    livenessProbe:
+      # SDNC/ODL can take up to ~10 minutes to fully boot (see the 600s timeout
+      # used by the equivalent CSIT wait-loop in csit/plans/dmi/sdnc/sdnc_setup.sh).
+      httpGet:
+        path: /rests/operations/SLI-API:healthcheck
+        port: 8181
+        httpHeaders:
+          - name: Authorization
+            value: "Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ=="
+      initialDelaySeconds: 600
+      periodSeconds: 30
+      failureThreshold: 20
+      timeoutSeconds: 10
+    readinessProbe:
+      httpGet:
+        path: /rests/operations/SLI-API:healthcheck
+        port: 8181
+        httpHeaders:
+          - name: Authorization
+            value: "Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ=="
+      initialDelaySeconds: 300
+      periodSeconds: 20
+      failureThreshold: 30
+      timeoutSeconds: 10
+
+  pnfsim:
+    image: "blueonap/netconf-pnp-simulator:v2.8.6"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+    readinessProbe:
+      tcpSocket:
+        port: 6513
+      initialDelaySeconds: 15
+      periodSeconds: 5
+      failureThreshold: 3
+
+  sdncMountJob:
+    # Mounts the simulated netconf device into SDNC as a node, replacing the
+    # manual curl step in csit/plans/dmi/setup.sh / the sdnc-sidecar container
+    # in docker-compose/dmi-services.yml.
+    nodeId: "ietfYang-PNFDemo"
+    backoffLimit: 6
+
+  ncmpDmiPlugin:
+    image:
+      # nexus3.onap.org:10003 previously rejected anonymous pulls with
+      # "402 Invalid license" (a Sonatype Nexus licensing issue on the
+      # registry side, not project/tag specific), so this temporarily
+      # pointed at Docker Hub's onap/ncmp-dmi-plugin:1.8.0 instead.
+      # Nexus pulls work again, so we are back on the ONAP registry.
+      # Note: Nexus publishes no 1.8.0 release tag for this image (only
+      # <version>-SNAPSHOT-<timestamp> builds and "latest"), so we pin the
+      # newest snapshot rather than track the floating "latest" tag - both
+      # resolve to the same digest (sha256:0029c3a2...).
+      repository: nexus3.onap.org:10003/onap/ncmp-dmi-plugin
+      tag: "1.8.1-SNAPSHOT-20260827T031608Z"
+      pullPolicy: IfNotPresent
+    replicaCount: 1
+    containerPort: 8080
+    service:
+      type: NodePort
+      port: 8080
+      nodePort: 30097
+    env:
+      DMI_SERVICE_URL: "http://ncmp-dmi-plugin:8783"
+      DMI_SERVICE_NAME: "ncmp-dmi-plugin"
+      DMI_USERNAME: "cpsuser"
+      DMI_PASSWORD: "cpsr0cks!"
+      SDNC_USERNAME: "admin"
+      SDNC_PASSWORD: "Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U"
+      KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka-service:9092"
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "512Mi"
+      limits:
+        cpu: "1000m"
+        memory: "1Gi"
+    livenessProbe:
+      httpGet:
+        path: /actuator/health/liveness
+        port: 8080
+      initialDelaySeconds: 30
+      periodSeconds: 15
+      failureThreshold: 3
+      timeoutSeconds: 5
+    readinessProbe:
+      httpGet:
+        path: /actuator/health/readiness
+        port: 8080
+      initialDelaySeconds: 15
+      periodSeconds: 5
+      failureThreshold: 3
+      timeoutSeconds: 5
 
 policyExecutorStub:
   enabled: true
