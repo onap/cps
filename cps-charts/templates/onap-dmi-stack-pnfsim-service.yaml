@@ -1,0 +1,23 @@
+{{- if .Values.onapDmiStack.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-pnfsim-service
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: pnfsim
+spec:
+  type: ClusterIP
+  ports:
+    - port: 830
+      targetPort: 830
+      protocol: TCP
+      name: netconf-ssh
+    - port: 6513
+      targetPort: 6513
+      protocol: TCP
+      name: netconf-tls
+  selector:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: pnfsim
+{{- end }}

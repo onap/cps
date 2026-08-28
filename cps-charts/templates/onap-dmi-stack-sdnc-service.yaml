@@ -1,0 +1,22 @@
+{{- if .Values.onapDmiStack.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-sdnc-service
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: sdnc
+spec:
+  type: {{ .Values.onapDmiStack.sdnc.service.type }}
+  ports:
+    - port: {{ .Values.onapDmiStack.sdnc.service.port }}
+      targetPort: 8181
+      protocol: TCP
+      name: http
+      {{- if and (eq .Values.onapDmiStack.sdnc.service.type "NodePort") .Values.onapDmiStack.sdnc.service.nodePort }}
+      nodePort: {{ .Values.onapDmiStack.sdnc.service.nodePort }}
+      {{- end }}
+  selector:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: sdnc
+{{- end }}

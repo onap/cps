@@ -1,3 +1,4 @@
+{{- if and .Values.dmiStub.enabled (not .Values.onapDmiStack.enabled) }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -19,3 +20,4 @@ spec:
     app: {{ include "cps-and-ncmp.name" . }}
     component: dmi-stub
     instance: dmi-stub-1
+{{- end }}
