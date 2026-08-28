@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd1eccfe_afbe6247",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-28T10:16:04Z",
+      "side": 1,
+      "message": "see comment in CpsDataServiceImpl.java",
+      "range": {
+        "startLine": 173,
+        "startChar": 6,
+        "endLine": 176,
+        "endChar": 25
+      },
+      "revId": "3ad70aed5318b3429fc2c73f043754d7becb8a95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eaf1649_8ba4ccb9",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-08-28T10:16:04Z",
+      "side": 1,
+      "message": "after toines comment -\n\ni see you used enum but this still returns boolean- basically you used the enum and converted it to boolean again in the implementation\n\ni think you can pass the enum so in controller you can have\n\u003d\u003d CREATE ? CREATED : OK",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 5
+      },
+      "revId": "3ad70aed5318b3429fc2c73f043754d7becb8a95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
