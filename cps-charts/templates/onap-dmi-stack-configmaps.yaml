@@ -1,0 +1,38 @@
+{{- if .Values.onapDmiStack.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-sdnc-mount-script
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: sdnc
+data:
+  check_sdnc_mount_node.sh: |-
+{{ .Files.Get "config/sdnc/check_sdnc_mount_node.sh" | indent 4 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-pnfsim-netconf-config
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: pnfsim
+data:
+  stores.yang: |-
+{{ .Files.Get "config/pnfsim/netconf-config/stores.yang" | indent 4 }}
+  subscriber.py: |-
+{{ .Files.Get "config/pnfsim/netconf-config/subscriber.py" | indent 4 }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-pnfsim-tls
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: pnfsim
+type: Opaque
+data:
+  ca.pem: {{ .Files.Get "config/pnfsim/tls/ca.pem" | b64enc }}
+  server_cert.pem: {{ .Files.Get "config/pnfsim/tls/server_cert.pem" | b64enc }}
+  server_key.pem: {{ .Files.Get "config/pnfsim/tls/server_key.pem" | b64enc }}
+{{- end }}

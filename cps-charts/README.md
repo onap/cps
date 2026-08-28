@@ -88,7 +88,7 @@ CPS exposes Spring Boot Actuator health endpoints. You can check them from **out
 ```bash
 http://localhost:30080/actuator/health/liveness
 http://localhost:30080/actuator/health/readiness
-``
+```
 
 Expected response when healthy:
 ```json
@@ -201,4 +201,5 @@ This Helm chart deploys the following components:
 - zookeeper: Zookeeper coordination service for Kafka
 - dmi-stub: Stub service for NCMP device interactions
 - policy-executor-stub: Stub service for Policy Executor interactions
+- onapDmiStack: SDNC, MariaDB, netconf simulator and the real ncmp-dmi-plugin (disabled by default, see DMI-STACK-AND-SDNC.md)
 ---

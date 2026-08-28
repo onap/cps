@@ -1,0 +1,65 @@
+{{- if .Values.onapDmiStack.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-ncmp-dmi-plugin
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: ncmp-dmi-plugin
+spec:
+  replicas: {{ .Values.onapDmiStack.ncmpDmiPlugin.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "cps-and-ncmp.name" . }}
+      component: ncmp-dmi-plugin
+  template:
+    metadata:
+      labels:
+        app: {{ include "cps-and-ncmp.name" . }}
+        component: ncmp-dmi-plugin
+    spec:
+      initContainers:
+        - name: wait-for-dependencies
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for CPS..."
+              until nc -z {{ include "cps-and-ncmp.release-name" . }}-service {{ .Values.cps.servicePort }}; do
+                echo "CPS not ready, waiting..."
+                sleep 2
+              done
+              echo "CPS is ready"
+              echo "Waiting for SDNC..."
+              until nc -z {{ include "cps-and-ncmp.release-name" . }}-sdnc-service {{ .Values.onapDmiStack.sdnc.service.port }}; do
+                echo "SDNC not ready, waiting..."
+                sleep 2
+              done
+              echo "SDNC is ready"
+      containers:
+        - name: ncmp-dmi-plugin
+          image: "{{ .Values.onapDmiStack.ncmpDmiPlugin.image.repository }}:{{ .Values.onapDmiStack.ncmpDmiPlugin.image.tag }}"
+          imagePullPolicy: {{ .Values.onapDmiStack.ncmpDmiPlugin.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.onapDmiStack.ncmpDmiPlugin.containerPort }}
+          env:
+            - name: CPS_CORE_HOST
+              value: "{{ include "cps-and-ncmp.release-name" . }}-service"
+            - name: CPS_CORE_PORT
+              value: "{{ .Values.cps.servicePort }}"
+            - name: SDNC_HOST
+              value: "{{ include "cps-and-ncmp.release-name" . }}-sdnc-service"
+            - name: SDNC_PORT
+              value: "{{ .Values.onapDmiStack.sdnc.service.port }}"
+            {{- range $key, $value := .Values.onapDmiStack.ncmpDmiPlugin.env }}
+            - name: {{ $key | upper }}
+              value: "{{ $value }}"
+            {{- end }}
+          resources:
+            {{- toYaml .Values.onapDmiStack.ncmpDmiPlugin.resources | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.onapDmiStack.ncmpDmiPlugin.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.onapDmiStack.ncmpDmiPlugin.readinessProbe | nindent 12 }}
+{{- end }}
