@@ -93,6 +93,30 @@
       },
       "revId": "3ad70aed5318b3429fc2c73f043754d7becb8a95",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "137fa0b3_ade946a2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-08-28T13:52:13Z",
+      "side": 1,
+      "message": "Oh I forgot, it gives following error\n[ERROR]   Architecture Violation [Priority: MEDIUM] - Rule \u0027classes that reside in a package \u0027org.onap.cps.rest..\u0027 should only depend on classes that reside in any package [\u0027com.fasterxml..\u0027, \u0027com.google..\u0027, \u0027com.hazelcast..\u0027, \u0027edu..\u0027, \u0027io.cloudevents..\u0027, \u0027io.micrometer..\u0027, \u0027io.netty..\u0027, \u0027io.swagger..\u0027, \u0027jakarta..\u0027, \u0027java..\u0027, \u0027lombok..\u0027, \u0027org.apache..\u0027, \u0027org.aspectj..\u0027, \u0027org.mapstruct..\u0027, \u0027org.opendaylight..\u0027, \u0027org.slf4j..\u0027, \u0027org.springframework..\u0027, \u0027reactor..\u0027, \u0027org.onap.cps.rest..\u0027, \u0027org.onap.cps.api..\u0027, \u0027org.onap.cps.utils..\u0027]\u0027 was violated (1 times):\nMethod \u003corg.onap.cps.rest.controller.DataRestController.replaceNode(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Boolean, java.lang.String, java.lang.String)\u003e gets field \u003corg.onap.cps.events.model.EventPayload$Action.CREATE\u003e in (DataRestController.java:176)\n\nBasically Architecture violation, that\u0027s why I had changed to boolean",
+      "parentUuid": "985c0e8b_f6fe33d8",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 5
+      },
+      "revId": "3ad70aed5318b3429fc2c73f043754d7becb8a95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
