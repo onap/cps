@@ -1,6 +1,6 @@
 <!--
  ============LICENSE_START=======================================================
- Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  Modifications Copyright (C) 2025 Deutsche Telekom AG
  ================================================================================
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,19 +59,25 @@
         </encoder>
     </appender>
 
-    <appender name="asyncConsole" class="ch.qos.logback.classic.AsyncAppender">
-        <if condition='property("loggingFormat").equalsIgnoreCase("json")'>
-            <then>
-                <appender-ref ref="jsonConsole"/>
-            </then>
-            <else>
-                <appender-ref ref="CONSOLE"/>
-            </else>
-        </if>
+    <appender name="asyncJsonConsole" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="jsonConsole"/>
     </appender>
 
-    <root level="INFO">
-        <appender-ref ref="asyncConsole"/>
-    </root>
+    <appender name="asyncConsole" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+
+    <if condition='property("loggingFormat").equalsIgnoreCase("json")'>
+        <then>
+            <root level="INFO">
+                <appender-ref ref="asyncJsonConsole"/>
+            </root>
+        </then>
+        <else>
+            <root level="INFO">
+                <appender-ref ref="asyncConsole"/>
+            </root>
+        </else>
+    </if>
 
 </configuration>
