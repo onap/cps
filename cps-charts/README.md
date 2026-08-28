@@ -21,6 +21,10 @@
 
 ## CPS and NCMP Helm Chart
 This Helm chart deploys the **CPS** and **NCMP** ecosystem along with PostgreSQL, Kafka, Zookeeper, and dual DMI Stub services.
+
+For the optional DMI stack (SDNC, MariaDB, a netconf device simulator and the real `ncmp-dmi-plugin`),
+see [README_DMI_STACK.md](README_DMI_STACK.md).
+
 ---
 #### Prerequisites for Windows
 1. Docker Desktop
@@ -88,7 +92,7 @@ CPS exposes Spring Boot Actuator health endpoints. You can check them from **out
 ```bash
 http://localhost:30080/actuator/health/liveness
 http://localhost:30080/actuator/health/readiness
-``
+```
 
 Expected response when healthy:
 ```json
@@ -199,6 +203,10 @@ This Helm chart deploys the following components:
 - kafka: Kafka message broker
 - kafka-ui: Web UI for browsing Kafka topics and messages
 - zookeeper: Zookeeper coordination service for Kafka
-- dmi-stub: Stub service for NCMP device interactions
+- dmi-stub: Stub service for NCMP device interactions (not deployed when `onapDmiStack.enabled=true`)
 - policy-executor-stub: Stub service for Policy Executor interactions
+- onapDmiStack: SDNC, MariaDB, netconf simulator and the real ncmp-dmi-plugin (disabled by default, see [README_DMI_STACK.md](README_DMI_STACK.md))
+
+The `dmi-stub` and the `onapDmiStack` `ncmp-dmi-plugin` are mutually exclusive: both serve as NCMP's DMI, so
+enabling `onapDmiStack` automatically excludes `dmi-stub`, regardless of `dmiStub.enabled`.
 ---

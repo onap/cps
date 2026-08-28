@@ -1,0 +1,44 @@
+{{- if .Values.onapDmiStack.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-pnfsim
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: pnfsim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "cps-and-ncmp.name" . }}
+      component: pnfsim
+  template:
+    metadata:
+      labels:
+        app: {{ include "cps-and-ncmp.name" . }}
+        component: pnfsim
+    spec:
+      containers:
+        - name: pnfsim
+          image: "{{ .Values.onapDmiStack.pnfsim.image }}"
+          ports:
+            - containerPort: 830
+            - containerPort: 6513
+          volumeMounts:
+            - name: pnfsim-netconf-config
+              mountPath: /config/modules/stores
+            - name: pnfsim-tls
+              mountPath: /config/tls
+          resources:
+            {{- toYaml .Values.onapDmiStack.pnfsim.resources | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.onapDmiStack.pnfsim.readinessProbe | nindent 12 }}
+      volumes:
+        - name: pnfsim-netconf-config
+          configMap:
+            name: {{ include "cps-and-ncmp.release-name" . }}-pnfsim-netconf-config
+            defaultMode: 0755
+        - name: pnfsim-tls
+          secret:
+            secretName: {{ include "cps-and-ncmp.release-name" . }}-pnfsim-tls
+{{- end }}
