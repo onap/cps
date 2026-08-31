@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bb93569_654be3a6",
+        "filename": "cps-charts/DMI-STACK-AND-SDNC.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-31T14:51:37Z",
+      "side": 1,
+      "message": "why the uppercase name, seems unusual?",
+      "revId": "2c1cc305731767b848a797a30461cf406c22a625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae4cf7bb_85cf307a",
+        "filename": "cps-charts/DMI-STACK-AND-SDNC.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-31T14:51:37Z",
+      "side": 1,
+      "message": "I think it should be enabled by default\nunless this same chart is uses for the sub?!",
+      "range": {
+        "startLine": 28,
+        "startChar": 27,
+        "endLine": 28,
+        "endChar": 69
+      },
+      "revId": "2c1cc305731767b848a797a30461cf406c22a625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f2974d9_c9cf750a",
+        "filename": "cps-charts/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-31T14:51:37Z",
+      "side": 1,
+      "message": "I presume you moved this existing file...",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "2c1cc305731767b848a797a30461cf406c22a625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121cc380_68193279",
+        "filename": "cps-charts/templates/onap-dmi-stack-configmaps.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-08-31T14:51:37Z",
+      "side": 1,
+      "message": "need to think about copyrights for all these new files. Check what we did in CPS",
+      "revId": "2c1cc305731767b848a797a30461cf406c22a625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
