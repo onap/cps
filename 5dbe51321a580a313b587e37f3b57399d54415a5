@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0a5e817_3b74415a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAnchorService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-31T07:02:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7f87a56_47739670",
+      "range": {
+        "startLine": 62,
+        "startChar": 29,
+        "endLine": 62,
+        "endChar": 109
+      },
+      "revId": "5dbe51321a580a313b587e37f3b57399d54415a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0051c2b5_dd1afdc2",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-08-28T09:52:23Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 63,
+        "startChar": 29,
+        "endLine": 63,
+        "endChar": 94
+      },
+      "revId": "5dbe51321a580a313b587e37f3b57399d54415a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f2c6ea5_f46f1fd7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAnchorService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-31T07:02:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0051c2b5_dd1afdc2",
       "range": {
         "startLine": 63,
         "startChar": 29,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fd5ab54_7531f0e0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-31T07:02:23Z",
+      "side": 1,
+      "message": "I have removed when #scenario from def.",
+      "parentUuid": "256492f2_a2f2e043",
+      "range": {
+        "startLine": 73,
+        "startChar": 40,
+        "endLine": 73,
+        "endChar": 56
+      },
+      "revId": "5dbe51321a580a313b587e37f3b57399d54415a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b15e0bf9_203c08cf",
@@ -100,6 +172,30 @@
       "writtenOn": "2026-08-27T15:37:26Z",
       "side": 1,
       "message": "still think thsi si not needed but I wont force you to remove it.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 5
+      },
+      "revId": "5dbe51321a580a313b587e37f3b57399d54415a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aa37e1a_830191d5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 41
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-08-31T07:02:23Z",
+      "side": 1,
+      "message": "I have removed it.",
+      "parentUuid": "b15e0bf9_203c08cf",
       "range": {
         "startLine": 105,
         "startChar": 0,
