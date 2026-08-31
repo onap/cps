@@ -57,7 +57,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
     }
 
     private static MapConfig createMapConfigsWithNearCache() {
-        final MapConfig mapConfig = createDefaultMapConfig("trustLevelPerCmHandle");
+        final MapConfig mapConfig = createDefaultMapConfig(TRUST_LEVEL_PER_CM_HANDLE);
         mapConfig.setNearCacheConfig(new NearCacheConfig("trustLevelPerCmHandleNearCache"));
         return mapConfig;
     }

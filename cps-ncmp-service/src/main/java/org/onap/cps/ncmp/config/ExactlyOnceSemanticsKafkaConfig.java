@@ -186,10 +186,10 @@ public class ExactlyOnceSemanticsKafkaConfig {
         return defaultErrorHandler;
     }
 
-    private void logDiscardedRecord(final ConsumerRecord<?, ?> record, final Exception exception) {
+    private void logDiscardedRecord(final ConsumerRecord<?, ?> consumerRecord, final Exception exception) {
         log.error("Discarding record from topic: {}, partition: {}, offset: {} due to non-retryable exception: {}",
-                record.topic(), record.partition(), record.offset(), exception.getMessage());
+                consumerRecord.topic(), consumerRecord.partition(), consumerRecord.offset(), exception.getMessage());
         log.debug("Full stack trace for discarded record from topic: {}, partition: {}, offset: {}",
-                record.topic(), record.partition(), record.offset(), exception);
+                consumerRecord.topic(), consumerRecord.partition(), consumerRecord.offset(), exception);
     }
 }
