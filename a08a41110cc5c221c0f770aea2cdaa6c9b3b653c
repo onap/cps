@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "a08a41110cc5c221c0f770aea2cdaa6c9b3b653c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05f28f8c_b2e4f997",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T15:53:38Z",
+      "side": 1,
+      "message": "looks functionally the same to me :-) \nreally silly restriction you have to work around....",
+      "revId": "a08a41110cc5c221c0f770aea2cdaa6c9b3b653c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
