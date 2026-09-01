@@ -16,6 +16,69 @@
       "message": "run-clm",
       "revId": "c22aa3d0141d84aa7c38e82f1eb31cbd9b4e5a8b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4167a0c0_b3c7a199",
+        "filename": "cps-charts/DMI-STACK-AND-SDNC.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T16:13:56Z",
+      "side": 1,
+      "message": "filename still uppercase?!\nthis look like another readme I realize now.\nso mayb README_DMI_STACK.md\nMaybe ask team if this should be added to existing README",
+      "revId": "c22aa3d0141d84aa7c38e82f1eb31cbd9b4e5a8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddf3d9a0_86900acd",
+        "filename": "cps-charts/DMI-STACK-AND-SDNC.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T16:13:56Z",
+      "side": 1,
+      "message": "no point referring to something that is not anyemore. Just describe what it is not what is was or how it evolved...",
+      "range": {
+        "startLine": 40,
+        "startChar": 38,
+        "endLine": 40,
+        "endChar": 125
+      },
+      "revId": "c22aa3d0141d84aa7c38e82f1eb31cbd9b4e5a8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e5c41e2_84de96cb",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T16:13:56Z",
+      "side": 1,
+      "message": "this should be DISABLED when the openDMiStack is enabled!",
+      "range": {
+        "startLine": 202,
+        "startChar": 2,
+        "endLine": 202,
+        "endChar": 10
+      },
+      "revId": "c22aa3d0141d84aa7c38e82f1eb31cbd9b4e5a8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

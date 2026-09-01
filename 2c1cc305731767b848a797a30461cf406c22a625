@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "825cf922_ab963518",
+        "filename": "cps-charts/DMI-STACK-AND-SDNC.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T16:13:56Z",
+      "side": 1,
+      "message": "i stand corrected. I now realize this is all part of the extended CPS chart.",
+      "parentUuid": "ae4cf7bb_85cf307a",
+      "range": {
+        "startLine": 28,
+        "startChar": 27,
+        "endLine": 28,
+        "endChar": 69
+      },
+      "revId": "2c1cc305731767b848a797a30461cf406c22a625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f2974d9_c9cf750a",
@@ -88,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "850805ed_b57cb72f",
+        "filename": "cps-charts/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T16:13:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ed0b1447_1a5c4fa8",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "2c1cc305731767b848a797a30461cf406c22a625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "121cc380_68193279",
@@ -119,6 +167,24 @@
       "side": 1,
       "message": "I will add the copyrights in all yaml files in a separate commit.",
       "parentUuid": "121cc380_68193279",
+      "revId": "2c1cc305731767b848a797a30461cf406c22a625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6daffd68_d434c0ed",
+        "filename": "cps-charts/templates/onap-dmi-stack-configmaps.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T16:13:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d78eeee1_2727eacf",
       "revId": "2c1cc305731767b848a797a30461cf406c22a625",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
