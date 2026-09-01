@@ -117,6 +117,30 @@
       },
       "revId": "3ad70aed5318b3429fc2c73f043754d7becb8a95",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6417e1f5_6e233a28",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T07:57:46Z",
+      "side": 1,
+      "message": "then create a new enum in teh appropriate package pelase",
+      "parentUuid": "137fa0b3_ade946a2",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 5
+      },
+      "revId": "3ad70aed5318b3429fc2c73f043754d7becb8a95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

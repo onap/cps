@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c02d3a_de7918c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T07:57:46Z",
+      "side": 1,
+      "message": "i am a bit confused what you are trying to say here.\nMaybe i understand it better once I see the code changes but the commit message should be easy to understand...",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "c3801f1dceee1899c7341d0d0cd709c10776ce76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49466ae3_b37e8b4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T07:57:46Z",
+      "side": 1,
+      "message": "I am concerned about backward incompatible change, loss of 204 response!\nCan we please discuss",
+      "revId": "c3801f1dceee1899c7341d0d0cd709c10776ce76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3be8c12_7483e69e",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T07:57:46Z",
+      "side": 1,
+      "message": "this would be considered a backward compatible changes. IN this case I am reasonable confident that my stakeholders dont use thi metdod of if so would be strict on the return code but we have to be careful with such changes.\nAlso look at the implementation 204 seem more correct to me. The endpoint is NOT return any data. I am sure 204 was deliberatly chosen here i the past. I think this needs to be discussed...",
+      "range": {
+        "startLine": 242,
+        "startChar": 7,
+        "endLine": 242,
+        "endChar": 10
+      },
+      "revId": "c3801f1dceee1899c7341d0d0cd709c10776ce76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "816be47e_7117616d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T07:57:46Z",
+      "side": 1,
+      "message": "AI response:\n201 Created: correct if the operation creates a new node; \n204 No Content: appropriate when an existing node is successfully replaced and no representation is returned.\n200 OK: also valid, especially if the API contract or existing clients expect it.",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 25
+      },
+      "revId": "c3801f1dceee1899c7341d0d0cd709c10776ce76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95a3f946_2165cbae",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-01T07:57:46Z",
+      "side": 1,
+      "message": "do we stil have a test WITH existing data?!\nI think we need that and then it should return 204 instead of 201!",
+      "range": {
+        "startLine": 243,
+        "startChar": 61,
+        "endLine": 243,
+        "endChar": 78
+      },
+      "revId": "c3801f1dceee1899c7341d0d0cd709c10776ce76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
