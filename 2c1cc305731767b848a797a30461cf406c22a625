@@ -103,6 +103,24 @@
       "message": "need to think about copyrights for all these new files. Check what we did in CPS",
       "revId": "2c1cc305731767b848a797a30461cf406c22a625",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d78eeee1_2727eacf",
+        "filename": "cps-charts/templates/onap-dmi-stack-configmaps.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-01T13:32:41Z",
+      "side": 1,
+      "message": "I will add the copyrights in all yaml files in a separate commit.",
+      "parentUuid": "121cc380_68193279",
+      "revId": "2c1cc305731767b848a797a30461cf406c22a625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
