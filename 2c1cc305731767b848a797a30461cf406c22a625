@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7aa6fc8_1919f672",
+        "filename": "cps-charts/DMI-STACK-AND-SDNC.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-02T10:51:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9bb93569_654be3a6",
+      "revId": "2c1cc305731767b848a797a30461cf406c22a625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae4cf7bb_85cf307a",
