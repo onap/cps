@@ -21,12 +21,10 @@
 package org.onap.cps.impl.cache
 
 import com.hazelcast.core.Hazelcast
-import com.hazelcast.map.IMap
 import com.hazelcast.topic.ITopic
 import com.hazelcast.topic.impl.TopicProxy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestPropertySource
 import spock.lang.Specification

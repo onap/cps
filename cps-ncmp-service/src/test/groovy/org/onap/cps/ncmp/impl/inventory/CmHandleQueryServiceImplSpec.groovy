@@ -283,11 +283,11 @@ class CmHandleQueryServiceImplSpec extends Specification {
         then: 'query service to query data leaf is called once with the correct cps path as parameter'
             1 * mockCpsQueryService.queryDataLeaf(_, _, expectedCpsPathForQuery, _, _)
         where:
-            scenario                                                     | sampleCpsPath                     | outputAlternateId || expectedCpsPathForQuery
-            'cps path suffixes with cm-handles and outputs alternateId'   | '/some/path/ending/in/cm-handles'  | true            || '/some/path/ending/in/cm-handles/@alternate-id'
-            'cps path suffixes without cm-handles and outputs alternateId'| '/some/path/NotEnding/incmhandles'| true             || '/some/path/NotEnding/incmhandles/ancestor::cm-handles/@alternate-id'
-            'cps path suffixes with cm-handles and outputs cmHandleId'    | '/some/path/ending/in/cm-handles'  | false           || '/some/path/ending/in/cm-handles/@id'
-            'cps path suffixes without cm-handles and outputs cmhandleId' | '/some/path/NotEnding/incmhandles'| false            || '/some/path/NotEnding/incmhandles/ancestor::cm-handles/@id'
+            scenario                                                      | sampleCpsPath                      | outputAlternateId || expectedCpsPathForQuery
+            'cps path suffixes with cm-handles and outputs alternateId'   | '/some/path/ending/in/cm-handles'  | true              || '/some/path/ending/in/cm-handles/@alternate-id'
+            'cps path suffixes without cm-handles and outputs alternateId'| '/some/path/NotEnding/incmhandles' | true              || '/some/path/NotEnding/incmhandles/ancestor::cm-handles/@alternate-id'
+            'cps path suffixes with cm-handles and outputs cmHandleId'    | '/some/path/ending/in/cm-handles'  | false             || '/some/path/ending/in/cm-handles/@id'
+            'cps path suffixes without cm-handles and outputs cmhandleId' | '/some/path/NotEnding/incmhandles' | false             || '/some/path/NotEnding/incmhandles/ancestor::cm-handles/@id'
 
     }
 
