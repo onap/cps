@@ -137,7 +137,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@5882f138dd24fcd6cb4ebc8bb3a68cee45a437a6  # v0.3.0
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@d42518f4ad6d71408c9f05ab2d135a9a86bcb548  # v0.3.1
     with:
       # Build before scanning: Nexus IQ identifies far more components
       # from the packaged output than from source alone. Tests and Jib
