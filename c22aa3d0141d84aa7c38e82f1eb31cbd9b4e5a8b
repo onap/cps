@@ -53,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7ea7f61_a14c3ef5",
+        "filename": "cps-charts/DMI-STACK-AND-SDNC.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-02T11:26:36Z",
+      "side": 1,
+      "message": "team suggestion: rename and linkt it to main readme",
+      "parentUuid": "4167a0c0_b3c7a199",
+      "revId": "c22aa3d0141d84aa7c38e82f1eb31cbd9b4e5a8b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddf3d9a0_86900acd",
