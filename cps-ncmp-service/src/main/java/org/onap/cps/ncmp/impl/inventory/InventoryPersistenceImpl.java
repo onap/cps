@@ -126,8 +126,8 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
             }
         }
         if (!cmHandlesJsonDataMap.isEmpty()) {
-            cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                                                         cmHandlesJsonDataMap, now(), JSON);
+            cpsDataService.updateDataNodesAndDescendantsWithoutRetry(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                                                                    cmHandlesJsonDataMap, now(), JSON);
             if (useOptimizedModel && !topLevelStateUpdates.isEmpty()) {
                 cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                                                 cmHandleUpdatesAsJson(topLevelStateUpdates), now(), JSON);
