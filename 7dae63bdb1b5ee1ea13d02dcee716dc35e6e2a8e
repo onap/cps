@@ -70,6 +70,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b9d6e40_e48c1309",
+        "filename": "cps-charts/MONITORING-AND-TRACING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-03T15:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4af72683_1425cb52",
+      "revId": "7dae63bdb1b5ee1ea13d02dcee716dc35e6e2a8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e15f63ba_b7d49731",
