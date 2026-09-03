@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97c1aee8_dd701f8a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-09-03T14:02:05Z",
+      "side": 1,
+      "message": "NB: getCmHandleIds or something equivalent",
+      "revId": "821cfe4a7e054f670f6c4270cdc1eecc80444806",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
