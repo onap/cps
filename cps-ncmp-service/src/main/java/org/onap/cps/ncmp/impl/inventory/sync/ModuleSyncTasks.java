@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
@@ -57,26 +58,34 @@ public class ModuleSyncTasks {
      */
     public void performModuleSync(final Collection<String> cmHandleIds) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = HashMap.newHashMap(cmHandleIds.size());
-        try {
-            for (final String cmHandleId : cmHandleIds) {
-                try {
-                    final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
-                    if (isCmHandleInAdvisedState(yangModelCmHandle)) {
-                        final CmHandleState newCmHandleState = processCmHandle(yangModelCmHandle);
-                        cmHandleStatePerCmHandle.put(yangModelCmHandle, newCmHandleState);
-                    } else {
-                        log.warn("Skipping module sync for CM handle '{}' as it is in {} state", cmHandleId,
-                                yangModelCmHandle.getCompositeState().getCmHandleState().name());
-                    }
-                } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
-                    log.warn("Skipping module sync for CM handle '{}' as it does not exist", cmHandleId);
-                } finally {
-                    moduleSyncStartedOnCmHandles.delete(cmHandleId);
+        for (final String cmHandleId : cmHandleIds) {
+            try {
+                final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+                if (isCmHandleInAdvisedState(yangModelCmHandle)) {
+                    final CmHandleState newCmHandleState = processCmHandle(yangModelCmHandle);
+                    cmHandleStatePerCmHandle.put(yangModelCmHandle, newCmHandleState);
+                } else {
+                    log.warn("Skipping module sync for CM handle '{}' as it is in {} state", cmHandleId,
+                            yangModelCmHandle.getCompositeState().getCmHandleState().name());
                 }
+            } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
+                log.warn("Skipping module sync for CM handle '{}' as it does not exist", cmHandleId);
+            } finally {
+                moduleSyncStartedOnCmHandles.delete(cmHandleId);
             }
-        } finally {
-            log.warn("Persisting state for {} cm handles", cmHandleStatePerCmHandle.size());
+        }
+        persistCmHandleStateBatch(cmHandleStatePerCmHandle);
+    }
+
+    private void persistCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle) {
+        log.info("Persisting state for {} cm handles", cmHandleStatePerCmHandle.size());
+        try {
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
+        } catch (final RuntimeException runtimeException) {
+            log.warn("Failed to persist state / emit LCM events for batch of {} cm handles due to: {}. "
+                    + "Affected cm handles: {}", cmHandleStatePerCmHandle.size(),
+                    runtimeException.getMessage(), cmHandleIds(cmHandleStatePerCmHandle.keySet()));
+            throw runtimeException;
         }
     }
 
@@ -147,4 +156,9 @@ public class ModuleSyncTasks {
     private static boolean isCmHandleInAdvisedState(final YangModelCmHandle yangModelCmHandle) {
         return yangModelCmHandle.getCompositeState().getCmHandleState() == CmHandleState.ADVISED;
     }
+
+    private static String cmHandleIds(final Collection<YangModelCmHandle> yangModelCmHandles) {
+        return yangModelCmHandles.stream().map(YangModelCmHandle::getId).collect(Collectors.joining(","));
+    }
+
 }

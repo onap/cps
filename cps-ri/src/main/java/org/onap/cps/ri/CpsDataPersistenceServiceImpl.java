@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2023 Deutsche Telekom AG
@@ -80,6 +80,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
 
+    private enum ConflictHandling {
+        RETRY_INDIVIDUALLY,
+        FAIL_WHOLE_BATCH
+    }
+
     @Override
     public void storeDataNodes(final String dataspaceName, final String anchorName,
                                final Collection<DataNode> dataNodes) {
@@ -95,21 +100,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             log.warn("Exception occurred : {} , While saving : {} data nodes, Retrying saving data nodes individually",
                 exception, dataNodes.size());
             storeDataNodesIndividually(anchorEntity, dataNodes);
-        }
-    }
-
-    private void storeDataNodesIndividually(final AnchorEntity anchorEntity, final Collection<DataNode> dataNodes) {
-        final Collection<String> failedXpaths = new HashSet<>();
-        for (final DataNode dataNode: dataNodes) {
-            try {
-                final FragmentEntity fragmentEntity = convertToFragmentWithAllDescendants(anchorEntity, dataNode);
-                fragmentRepository.save(fragmentEntity);
-            } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
-                failedXpaths.add(dataNode.getXpath());
-            }
-        }
-        if (!failedXpaths.isEmpty()) {
-            throw AlreadyDefinedException.forDataNodes(failedXpaths, anchorEntity.getName());
         }
     }
 
@@ -153,47 +143,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
                                               final Collection<DataNode> updatedDataNodes) {
-        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-
-        final Map<String, DataNode> xpathToUpdatedDataNode = updatedDataNodes.stream()
-            .collect(Collectors.toMap(DataNode::getXpath, dataNode -> dataNode));
-
-        final Collection<String> xpaths = xpathToUpdatedDataNode.keySet();
-        Collection<FragmentEntity> existingFragmentEntities = getFragmentEntities(anchorEntity, xpaths);
-
-        logMissingXPaths(xpaths, existingFragmentEntities);
-
-        existingFragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, existingFragmentEntities);
-
-        for (final FragmentEntity existingFragmentEntity : existingFragmentEntities) {
-            final DataNode updatedDataNode = xpathToUpdatedDataNode.get(existingFragmentEntity.getXpath());
-            updateFragmentEntityAndDescendantsWithDataNode(existingFragmentEntity, updatedDataNode);
-        }
-
-        try {
-            fragmentRepository.saveAll(existingFragmentEntities);
-        } catch (final ObjectOptimisticLockingFailureException objectOptimisticLockingFailureException) {
-            retryUpdateDataNodesIndividually(anchorEntity, existingFragmentEntities);
-        }
+        replaceDataNodesAndDescendants(dataspaceName, anchorName, updatedDataNodes,
+                                       ConflictHandling.RETRY_INDIVIDUALLY);
     }
 
-    private void retryUpdateDataNodesIndividually(final AnchorEntity anchorEntity,
-                                                  final Collection<FragmentEntity> fragmentEntities) {
-        final Collection<String> failedXpaths = new HashSet<>();
-        for (final FragmentEntity dataNodeFragment : fragmentEntities) {
-            try {
-                fragmentRepository.save(dataNodeFragment);
-            } catch (final ObjectOptimisticLockingFailureException objectOptimisticLockingFailureException) {
-                failedXpaths.add(dataNodeFragment.getXpath());
-            }
-        }
-        if (!failedXpaths.isEmpty()) {
-            final String failedXpathsConcatenated = String.join(",", failedXpaths);
-            throw new ConcurrencyException("Concurrent Transactions", String.format(
-                "DataNodes : %s in Dataspace :'%s' with Anchor : '%s'  are updated by another transaction.",
-                failedXpathsConcatenated, anchorEntity.getDataspace().getName(), anchorEntity.getName()));
-        }
+    @Override
+    public void updateDataNodesAndDescendantsWithoutRetry(final String dataspaceName, final String anchorName,
+                                                          final Collection<DataNode> updatedDataNodes) {
+        replaceDataNodesAndDescendants(dataspaceName, anchorName, updatedDataNodes,
+                                       ConflictHandling.FAIL_WHOLE_BATCH);
     }
 
     @Override
@@ -326,10 +284,62 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Transactional
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
                                 final Collection<String> xpathsToDelete) {
-        deleteDataNodes(dataspaceName, anchorName, xpathsToDelete, false);
+        deleteDataNodesByXpaths(dataspaceName, anchorName, xpathsToDelete, false);
     }
 
-    private void deleteDataNodes(final String dataspaceName, final String anchorName,
+    private void replaceDataNodesAndDescendants(final String dataspaceName,
+                                                final String anchorName,
+                                                final Collection<DataNode> updatedDataNodes,
+                                                final ConflictHandling conflictHandling) {
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+
+        final Map<String, DataNode> xpathToUpdatedDataNode = updatedDataNodes.stream()
+            .collect(Collectors.toMap(DataNode::getXpath, dataNode -> dataNode));
+
+        final Collection<String> xpaths = xpathToUpdatedDataNode.keySet();
+        Collection<FragmentEntity> existingFragmentEntities = getFragmentEntities(anchorEntity, xpaths);
+
+        logMissingXPaths(xpaths, existingFragmentEntities);
+
+        existingFragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(
+            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, existingFragmentEntities);
+
+        for (final FragmentEntity existingFragmentEntity : existingFragmentEntities) {
+            final DataNode updatedDataNode = xpathToUpdatedDataNode.get(existingFragmentEntity.getXpath());
+            updateFragmentEntityAndDescendantsWithDataNode(existingFragmentEntity, updatedDataNode);
+        }
+
+        try {
+            fragmentRepository.saveAll(existingFragmentEntities);
+        } catch (final ObjectOptimisticLockingFailureException objectOptimisticLockingFailureException) {
+            if (ConflictHandling.FAIL_WHOLE_BATCH == conflictHandling) {
+                log.warn("Optimistic-lock conflict on batch update ({} data nodes) for anchor '{}'. "
+                    + "Nothing is committed, the whole batch failed.", existingFragmentEntities.size(), anchorName);
+                throw concurrencyException(anchorEntity, xpathsOf(existingFragmentEntities));
+            }
+            log.info("Optimistic-lock conflict on batch update ({} data nodes) for anchor '{}'. "
+                + "Retrying each data node individually.", existingFragmentEntities.size(), anchorName);
+            retryUpdateDataNodesIndividually(anchorEntity, existingFragmentEntities);
+        }
+    }
+
+
+    private void storeDataNodesIndividually(final AnchorEntity anchorEntity, final Collection<DataNode> dataNodes) {
+        final Collection<String> failedXpaths = new HashSet<>();
+        for (final DataNode dataNode: dataNodes) {
+            try {
+                final FragmentEntity fragmentEntity = convertToFragmentWithAllDescendants(anchorEntity, dataNode);
+                fragmentRepository.save(fragmentEntity);
+            } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
+                failedXpaths.add(dataNode.getXpath());
+            }
+        }
+        if (!failedXpaths.isEmpty()) {
+            throw AlreadyDefinedException.forDataNodes(failedXpaths, anchorEntity.getName());
+        }
+    }
+
+    private void deleteDataNodesByXpaths(final String dataspaceName, final String anchorName,
                                  final Collection<String> xpathsToDelete, final boolean onlySupportListDeletion) {
         final boolean haveRootXpath = xpathsToDelete.stream().anyMatch(CpsDataPersistenceServiceImpl::isRootXpath);
         if (haveRootXpath) {
@@ -371,24 +381,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Transactional
     public void deleteListDataNode(final String dataspaceName, final String anchorName,
                                    final String targetXpath) {
-        deleteDataNode(dataspaceName, anchorName, targetXpath, true);
+        deleteDataNodeByXpath(dataspaceName, anchorName, targetXpath, true);
     }
 
     @Override
     @Transactional
     public void deleteDataNode(final String dataspaceName, final String anchorName, final String targetXpath) {
-        deleteDataNode(dataspaceName, anchorName, targetXpath, false);
-    }
-
-    private void deleteDataNode(final String dataspaceName, final String anchorName, final String targetXpath,
-                                final boolean onlySupportListNodeDeletion) {
-        final String normalizedXpath = getNormalizedXpath(targetXpath);
-        try {
-            deleteDataNodes(dataspaceName, anchorName, Collections.singletonList(normalizedXpath),
-                    onlySupportListNodeDeletion);
-        } catch (final DataNodeNotFoundExceptionBatch dataNodeNotFoundExceptionBatch) {
-            throw new DataNodeNotFoundException(dataspaceName, anchorName, targetXpath);
-        }
+        deleteDataNodeByXpath(dataspaceName, anchorName, targetXpath, false);
     }
 
     @Override
@@ -417,6 +416,39 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
+    private void retryUpdateDataNodesIndividually(final AnchorEntity anchorEntity,
+                                                  final Collection<FragmentEntity> fragmentEntities) {
+        final Collection<String> failedXpaths = new HashSet<>();
+        int recoveredCount = 0;
+        for (final FragmentEntity dataNodeFragment : fragmentEntities) {
+            try {
+                fragmentRepository.save(dataNodeFragment);
+                recoveredCount++;
+            } catch (final ObjectOptimisticLockingFailureException objectOptimisticLockingFailureException) {
+                failedXpaths.add(dataNodeFragment.getXpath());
+            }
+        }
+        if (failedXpaths.isEmpty()) {
+            log.info("Individual retry recovered all {} data nodes for anchor '{}'.",
+                fragmentEntities.size(), anchorEntity.getName());
+        } else {
+            log.warn("Individual retry for anchor '{}': {} recovered, {} still failing after "
+                    + "concurrent modification by another transaction.",
+                anchorEntity.getName(), recoveredCount, failedXpaths.size());
+            throw concurrencyException(anchorEntity, failedXpaths);
+        }
+    }
+
+    private static ConcurrencyException concurrencyException(final AnchorEntity anchorEntity,
+                                                             final Collection<String> failedXpaths) {
+        final String message = "Concurrent Transactions: " + failedXpaths.size()
+            + " data node(s) updated by another transaction in Dataspace :'"
+            + anchorEntity.getDataspace().getName() + "' with Anchor : '" + anchorEntity.getName() + "'";
+        final String details = "DataNodes : " + String.join(",", failedXpaths) + " in Dataspace :'"
+            + anchorEntity.getDataspace().getName() + "' with Anchor : '" + anchorEntity.getName()
+            + "'  are updated by another transaction.";
+        return new ConcurrencyException(message, details);
+    }
 
     private void addChildrenDataNodes(final AnchorEntity anchorEntity, final String parentNodeXpath,
                                       final Collection<DataNode> newChildren) {
@@ -447,6 +479,17 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
             throw AlreadyDefinedException.forDataNodes(Collections.singletonList(newChild.getXpath()),
                     anchorEntity.getName());
+        }
+    }
+
+    private void deleteDataNodeByXpath(final String dataspaceName, final String anchorName, final String targetXpath,
+                                final boolean onlySupportListNodeDeletion) {
+        final String normalizedXpath = getNormalizedXpath(targetXpath);
+        try {
+            deleteDataNodesByXpaths(dataspaceName, anchorName, Collections.singletonList(normalizedXpath),
+                onlySupportListNodeDeletion);
+        } catch (final DataNodeNotFoundExceptionBatch dataNodeNotFoundExceptionBatch) {
+            throw new DataNodeNotFoundException(dataspaceName, anchorName, targetXpath);
         }
     }
 
@@ -715,4 +758,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             log.warn("Cannot update data nodes: Target XPaths {} not found in DB.", missingXPaths);
         }
     }
+
+    private static Collection<String> xpathsOf(final Collection<FragmentEntity> fragmentEntities) {
+        final Collection<String> xpaths = new HashSet<>();
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            xpaths.add(fragmentEntity.getXpath());
+        }
+        return xpaths;
+    }
+
 }

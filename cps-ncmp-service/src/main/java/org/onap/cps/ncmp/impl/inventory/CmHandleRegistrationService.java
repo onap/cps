@@ -203,13 +203,18 @@ public class CmHandleRegistrationService {
             processTrustLevels(ncmpServiceCmHandles, succeededCmHandleIds);
 
         } catch (final AlreadyDefinedException alreadyDefinedException) {
-            log.error("Error while creating CM handles", alreadyDefinedException);
+            log.error("Not all CM handles could be created; some may have been created and committed already. "
+                    + "The module-sync watchdog will pick up any committed CM handles. "
+                    + "CM handles that already existed: {}",
+                alreadyDefinedException.getAlreadyDefinedObjectNames(), alreadyDefinedException);
             failedCmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponsesFromXpaths(
                 alreadyDefinedException.getAlreadyDefinedObjectNames(), CM_HANDLE_ALREADY_EXIST));
         } catch (final Exception exception) {
-            log.error("Error while creating CM handles", exception);
             final Collection<String> cmHandleIds =
                 ncmpServiceCmHandles.stream().map(NcmpServiceCmHandle::getCmHandleId).toList();
+            log.error("Not all CM handles could be created; some may have been created and committed already. "
+                    + "The module-sync watchdog will pick up any committed CM handles. Requested CM handles: {}",
+                cmHandleIds, exception);
             failedCmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse
                 .createFailureResponses(cmHandleIds, exception));
         }
@@ -418,7 +423,17 @@ public class CmHandleRegistrationService {
             }
         }
         addAlternateIdsToCache(yangModelCmHandlesToRegister);
-        lcmEventsCmHandleStateHandler.initiateStateAdvised(yangModelCmHandlesToRegister);
+        try {
+            lcmEventsCmHandleStateHandler.initiateStateAdvised(yangModelCmHandlesToRegister);
+        } catch (final RuntimeException runtimeException) {
+            log.warn("Failed to save (part of) a batch of {} new CM handles. Any CM handle that was committed stays "
+                    + "in ADVISED state and will be picked up by the module-sync watchdog. Its alternate id remains "
+                    + "cached; a cached id for a CM handle that was not committed is harmless and self-corrects. "
+                    + "CM handles in the batch: {}",
+                yangModelCmHandlesToRegister.size(),
+                yangModelCmHandlesToRegister.stream().map(YangModelCmHandle::getId).toList());
+            throw runtimeException;
+        }
         dmiPluginRegistrationResponse.setCreatedCmHandles(cmHandleRegistrationResponses);
         return succeededCmHandleIds;
     }

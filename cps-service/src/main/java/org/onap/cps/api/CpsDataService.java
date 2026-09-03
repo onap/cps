@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022-2025 Deutsche Telekom AG
@@ -161,6 +162,22 @@ public interface CpsDataService {
      */
     void updateDataNodesAndDescendants(String dataspaceName, String anchorName, Map<String, String> nodeDataPerXPath,
                                        OffsetDateTime observedTimestamp, ContentType contentType);
+
+    /**
+     * Replaces multiple existing data nodes' content including descendants in a batch operation, without retrying
+     * the data nodes individually when a concurrent update is detected.
+     * The batch is all or nothing: on a concurrent update nothing is committed and a ConcurrencyException is thrown.
+     * Only use this when the caller can re-attempt the whole batch later (e.g. NCMP's module sync watchdog).
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param nodeDataPerXPath  map of xpath and node JSON/XML data
+     * @param observedTimestamp observedTimestamp
+     * @param contentType       JSON/XML content type
+     */
+    void updateDataNodesAndDescendantsWithoutRetry(String dataspaceName, String anchorName,
+                                                   Map<String, String> nodeDataPerXPath,
+                                                   OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements as json

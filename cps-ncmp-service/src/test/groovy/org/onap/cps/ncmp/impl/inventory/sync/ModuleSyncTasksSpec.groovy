@@ -288,6 +288,11 @@ class ModuleSyncTasksSpec extends Specification {
             objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'])
         then: 'an exception is thrown'
             thrown(RuntimeException)
+        and: 'a warning is logged naming all affected cm handles'
+            def loggingEvent = logAppender.list.find { it.formattedMessage.startsWith('Failed to persist state') }
+            assert loggingEvent.level == Level.WARN
+            assert loggingEvent.formattedMessage.contains('cm-handle-1')
+            assert loggingEvent.formattedMessage.contains('cm-handle-2')
         and: 'the cm handles are still removed from the in-progress map'
             assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
             assert moduleSyncStartedOnCmHandles.get('cm-handle-2') == null

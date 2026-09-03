@@ -61,7 +61,12 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     public void updateCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> targetCmHandleStatePerCmHandle) {
         final Collection<CmHandleTransitionPair> cmHandleTransitionPairs =
                 prepareCmHandleTransitionBatch(targetCmHandleStatePerCmHandle);
-        persistCmHandleBatch(cmHandleTransitionPairs);
+        try {
+            persistCmHandleBatch(cmHandleTransitionPairs);
+        } catch (final RuntimeException runtimeException) {
+            revertCmHandleStateChanges(cmHandleTransitionPairs);
+            throw runtimeException;
+        }
         if (!cmHandleTransitionPairs.isEmpty()) {
             lcmEventProducer.sendLcmEventBatchAsynchronously(cmHandleTransitionPairs);
             cmHandleStateMonitor.updateCmHandleStateMetrics(cmHandleTransitionPairs);
@@ -95,6 +100,23 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
             }
         });
         return cmHandleTransitionPairs;
+    }
+
+    /**
+     * Undo the in-memory state changes made by prepareCmHandleTransitionBatch.
+     * Nothing is committed when persisting the batch fails, so the (cached) cm handles must reflect their old state
+     * again. This includes the cm handle status that is only duplicated in the optimized model.
+     *
+     * @param cmHandleTransitionPairs the state changes that were not persisted
+     */
+    private static void revertCmHandleStateChanges(
+            final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
+        for (final CmHandleTransitionPair cmHandleTransitionPair : cmHandleTransitionPairs) {
+            final YangModelCmHandle oldYangModelCmHandle = cmHandleTransitionPair.currentYangModelCmHandle();
+            final YangModelCmHandle yangModelCmHandle = cmHandleTransitionPair.targetYangModelCmHandle();
+            yangModelCmHandle.setCompositeState(oldYangModelCmHandle.getCompositeState());
+            yangModelCmHandle.setCmHandleStatus(oldYangModelCmHandle.getCmHandleStatus());
+        }
     }
 
     private void persistCmHandleBatch(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2025 Deutsche Telekom AG
@@ -333,7 +333,6 @@ class CpsDataServiceImplSpec extends Specification {
             'XML data'  | ContentType.XML  | '<nest><name>nestName</name></nest>'
     }
 
-    @Ignore('CPS-3257: XML support needs fixing for latest YangTools version')
     def 'Replace data node using singular XML data node: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -367,9 +366,7 @@ class CpsDataServiceImplSpec extends Specification {
             'json list'      | ['/test-tree' : '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}']                                                  || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
-    @Ignore('CPS-3257: XML support needs fixing for latest YangTools version')
-    def 'Replace data node using multiple XML data nodes: #scenario.'() {
-        given: 'schema set for given anchor and dataspace references test-tree model'
+    def 'Replace data node using multiple XML data nodes: #scenario.'() {        given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace data method is invoked with a map of xpaths and XML data'
             objectUnderTest.updateDataNodesAndDescendants(dataspaceName, anchorName, nodeXmlDataPerXPath, observedTimestamp, ContentType.XML)
@@ -383,6 +380,21 @@ class CpsDataServiceImplSpec extends Specification {
             'top level node' | ['/test-tree': '<branch><name>Name</name></branch>']                                                                                                     || ["/test-tree/branch[@name='Name']"]
             'level 2 node'   | ['/test-tree': '<branch><name>Name</name></branch>', '/test-tree/branch[@name=\'Name\']': '<nest><name>nestName</name></nest>']                          || ["/test-tree/branch[@name='Name']", "/test-tree/branch[@name='Name']/nest"]
             'xml list'       | ['/test-tree': '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Name1</name></branch>' + '<branch><name>Name2</name></branch></test-tree>'] || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
+    }
+
+    def 'Replace data nodes without individual retries.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'replace data without retry method is invoked with a map of xpaths and json data'
+            objectUnderTest.updateDataNodesAndDescendantsWithoutRetry(dataspaceName, anchorName,
+                ['/test-tree' : '{"branch": [{"name":"Name"}]}'], observedTimestamp, ContentType.JSON)
+        then: 'the persistence service method without retry is invoked with the correct parameters'
+            1 * mockCpsDataPersistenceService.updateDataNodesAndDescendantsWithoutRetry(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath == ["/test-tree/branch[@name='Name']"]})
+        and: 'the persistence service method with retry is not invoked'
+            0 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(*_)
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
     def 'Replace data node with concurrency exception in persistence layer.'() {
@@ -417,7 +429,6 @@ class CpsDataServiceImplSpec extends Specification {
             2 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
-    @Ignore('CPS-3257: XML support needs fixing for latest YangTools version')
     def 'Replace list content data fragment XML under parent node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')

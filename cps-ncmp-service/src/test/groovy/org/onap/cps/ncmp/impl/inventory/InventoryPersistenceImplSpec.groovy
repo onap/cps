@@ -192,8 +192,8 @@ class InventoryPersistenceImplSpec extends Specification {
             mockCmHandleIdPerReferenceMap.exists(_) >> true
         when: 'update cm handle state is invoked with the #scenario state'
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
-        then: 'update data nodes and descendants is invoked with the correct params'
-            1 * mockCpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['/dmi-registry/cm-handles[@id=\'ch-1\']': expectedJsonData], _ as OffsetDateTime, ContentType.JSON)
+        then: 'update data nodes and descendants (without retry) is invoked with the correct params'
+            1 * mockCpsDataService.updateDataNodesAndDescendantsWithoutRetry(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['/dmi-registry/cm-handles[@id=\'ch-1\']': expectedJsonData], _ as OffsetDateTime, ContentType.JSON)
         and: 'update node leaves is invoked for top-level cm-handle-state'
             1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
         where: 'the following states are used'
@@ -211,8 +211,8 @@ class InventoryPersistenceImplSpec extends Specification {
             mockCmHandleIdPerReferenceMap.exists(_) >> true
         when: 'update cm handle state is invoked'
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
-        then: 'update data nodes and descendants is invoked'
-            1 * mockCpsDataService.updateDataNodesAndDescendants(*_)
+        then: 'update data nodes and descendants (without retry) is invoked'
+            1 * mockCpsDataService.updateDataNodesAndDescendantsWithoutRetry(*_)
         and: 'update node leaves is also invoked for top-level state'
             1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
     }
@@ -226,8 +226,8 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'update cm handle state is invoked with the #scenario state'
             def cmHandleStateMap = ['ch-11' : compositeState1, 'ch-12' : compositeState2]
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
-        then: 'update data nodes and descendants is invoked with the correct params'
-            1 * mockCpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlesJsonDataMap, _ as OffsetDateTime, ContentType.JSON)
+        then: 'update data nodes and descendants (without retry) is invoked with the correct params'
+            1 * mockCpsDataService.updateDataNodesAndDescendantsWithoutRetry(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlesJsonDataMap, _ as OffsetDateTime, ContentType.JSON)
         and: 'update node leaves is invoked for top-level cm-handle-state'
             1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', _, _ as OffsetDateTime, ContentType.JSON)
         where: 'the following states are used'
@@ -246,7 +246,7 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'we update the state of a cm handle when #scenario'
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'the composite state is persisted for existing ids only'
-            expectedCalls * mockCpsDataService.updateDataNodesAndDescendants(*_)
+            expectedCalls * mockCpsDataService.updateDataNodesAndDescendantsWithoutRetry(*_)
         and: 'the top-level cm-handle-state leaf is persisted for existing ids only'
             expectedCalls * mockCpsDataService.updateNodeLeaves(*_)
         where: 'the following cm handle ids are used'
