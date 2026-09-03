@@ -2,18 +2,26 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2026 The Linux Foundation
 
-# Gerrit-triggered Maven verify pipeline for cps.
+# Gerrit-triggered verify pipeline for cps.
 #
 # gerrit_to_platform dispatches this workflow (via the GitHub API) when a
 # patchset is created (or on a `recheck` comment); it then votes Verified
-# +/-1 on the change. It runs the reusable Maven verify lane from
-# lfreleng-actions/java-workflows and is intended to run ALONGSIDE the
-# existing Jenkins verify job during the migration.
+# +/-1 on the change.
 #
 # Discovery is filename-convention based: the name contains BOTH 'gerrit'
 # AND 'verify', so gerrit_to_platform dispatches it on patchset-created.
 # The file must exist on every active branch (dispatch targets
-# refs/heads/{GERRIT_BRANCH}); this initial deployment covers `master`.
+# refs/heads/{GERRIT_BRANCH}); this deployment covers `master`.
+#
+# Both the Maven verify lane and the SonarCloud lane live in this one
+# file, and that is deliberate. gerrit_to_platform dispatches EVERY
+# workflow whose filename matches, so the previous split across
+# gerrit-verify.yaml and gerrit-sonar-verify.yaml produced two runs, each
+# with its own clear-vote/vote pair, both authenticating as the same
+# Gerrit account (GERRIT_SSH_USER). Gerrit keeps one value per account
+# per label, so the slower run simply overwrote the faster one: a failing
+# build could be masked by a passing scan. One workflow, one clear, one
+# vote, and the conclusion covers every lane.
 name: 'Gerrit Verify'
 
 # yamllint disable-line rule:truthy
@@ -79,8 +87,7 @@ concurrency:
   # builds were seen competing for runners at once.
   #
   # The workflow name is part of the group because the group is
-  # repository-wide. Without it the verify and CLM lanes shared a group
-  # and cancelled each other for the same change.
+  # repository-wide, and the CLM lane must not cancel this one.
   # yamllint disable-line rule:line-length
   group: '${{ github.workflow }}-${{ github.event.inputs.GERRIT_CHANGE_ID || github.ref }}'
   cancel-in-progress: true
@@ -89,7 +96,8 @@ permissions: {}
 
 jobs:
   # Clear any previous Verified vote so the change starts from a clean
-  # state on each patchset/recheck.
+  # state on each patchset/recheck. One clear for the whole workflow:
+  # every lane below reports through the single vote job at the end.
   clear-vote:
     name: 'Clear Gerrit Vote'
     if: inputs.GERRIT_DISABLED != true
@@ -100,12 +108,12 @@ jobs:
     steps:
       - name: 'Harden runner'
         # yamllint disable-line rule:line-length
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920  # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1  # v2.21.1
         with:
           egress-policy: audit
       - name: 'Clear votes'
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13  # v1.1.2
+        uses: lfreleng-actions/gerrit-review-action@1e3eae766b3de755a2e87aa216cedebbaf9c8292  # v1.1.3
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_USER }}
@@ -122,7 +130,7 @@ jobs:
   # for a manual GERRIT_DISABLED run they are blanked so it falls back to
   # a standard checkout of the calling repository.
   #
-  # Pinned to v0.1.2. The job timeouts introduced in v0.0.4 remain the
+  # Pinned to v0.2.1. The job timeouts introduced in v0.0.4 remain the
   # reason this lane completes at all: build 45 minutes, and 30 each for
   # tests, SBOM and Grype. The fixed 10 minutes before that killed this
   # reactor at module 18 of 24 while it was still compiling. A full run
@@ -142,6 +150,7 @@ jobs:
   # the code under review, so a credentials file left there was readable
   # by the plugins and tests of the patchset being verified.
   build-test:
+    name: 'Maven Build/Test'
     needs: clear-vote
     if: >-
       always()
@@ -151,7 +160,7 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@cb4d89f992669dbb10c1c016fed9829d41517c5f  # v0.1.2
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@4b446ed14e28392fbc9056f23c7d8cd644de852a  # v0.2.1
     with:
       # master stream builds on Java 21 (paris/Java 17 handled separately).
       java_version: '21'
@@ -174,22 +183,10 @@ jobs:
       mvn_params: "-Djib.skip=true -Ddocker.pull.registry=${{ vars.CONTAINER_PUBLIC_REGISTRY || 'nexus3.onap.org:10001' }} -Ddocker.push.registry=${{ vars.CONTAINER_PUSH_REGISTRY || 'nexus3.onap.org:10002' }}"
       # Run the build job's harden-runner in audit while the egress
       # footprint is characterised, then tighten to block.
-      #
-      # Worth knowing: before java-workflows v0.0.3 this input silently
-      # did nothing, because the workflow chose between two
-      # harden-runner steps with a step-level 'if:' and the action's
-      # pre-phase ignores that. Every build so far therefore ran under a
-      # block policy, and the only endpoint it actually lacked was the
-      # ONAP Docker proxy, now carried by the allow-list in v0.0.3. The
-      # toggle takes effect for the first time here, so keep it on until
-      # a full run has been observed; the reactor has never built past
-      # cps-ncmp-service under block, and the later modules' egress is
-      # still unknown.
       build_permit_egress_traffic: true
       # Grype runs as a supplementary signal here; the authoritative
       # dependency-risk gate remains the Sonatype CLM lane
-      # (gerrit-clm.yaml). Do not fail the Verified vote on Grype findings
-      # while running alongside Jenkins.
+      # (gerrit-clm.yaml), which runs post-merge and weekly.
       grype_permit_fail: true
       # Gerrit-aware checkout inputs. Blanked on a GERRIT_DISABLED manual
       # run so the reusable workflow performs a normal checkout.
@@ -201,12 +198,60 @@ jobs:
       gerrit_branch: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_BRANCH || '' }}
       # gerrit_url falls back to the GERRIT_URL repository variable.
 
+  # SonarCloud analysis, running in parallel with the Maven lane above.
+  # Both build the full reactor, so running them concurrently keeps the
+  # wall clock at roughly one build rather than two.
+  #
+  # The scan publishes to a short-lived branch named for the change and
+  # patchset, so SonarCloud reports the patchset under review rather
+  # than the target branch.
+  #
+  # fail_on_quality_gate stays false for now: this change is about the
+  # vote collision, not about the gate policy. Note that the Jenkins
+  # cps-sonar-verify job has enforced the quality gate since 2022, so
+  # this lane is not yet at parity and that job must stay until it is.
+  sonar:
+    name: 'SonarQube Cloud'
+    needs: clear-vote
+    if: >-
+      always()
+      && (needs.clear-vote.result == 'success'
+          || needs.clear-vote.result == 'skipped')
+    permissions:
+      contents: read
+    # yamllint disable-line rule:line-length
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@0dd3d5f05930b3c782a67f7735fd0133c0fa51d9  # v0.6.1
+    with:
+      sonar_organization: 'onap'
+      sonar_project_key: 'onap_cps'
+      # yamllint disable-line rule:line-length
+      sonar_branch_name: ${{ (!inputs.GERRIT_DISABLED && inputs.GERRIT_CHANGE_NUMBER != '') && format('{0}-{1}', inputs.GERRIT_CHANGE_NUMBER, inputs.GERRIT_PATCHSET_NUMBER) || format('manual-{0}', github.run_id) }}
+      # yamllint disable-line rule:line-length
+      sonar_branch_target: ${{ inputs.GERRIT_BRANCH != '' && inputs.GERRIT_BRANCH || 'master' }}
+      build_type: 'maven'
+      mvn_phases: 'clean install'
+      mvn_params: '-Djib.skip=true'
+      wait_for_quality_gate: true
+      fail_on_quality_gate: false
+      timeout_minutes: 90
+      build_permit_egress_traffic: true
+      # yamllint disable-line rule:line-length
+      gerrit_refspec: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_REFSPEC || '' }}
+      # yamllint disable-line rule:line-length
+      gerrit_project: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_PROJECT || '' }}
+      # yamllint disable-line rule:line-length
+      gerrit_branch: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_BRANCH || '' }}
+    secrets:
+      sonar_token: ${{ secrets.SONAR_TOKEN }}
+      maven_global_settings: ${{ vars.MVN_GLOBAL_SETTINGS }}
+
   # Report the overall workflow conclusion back to Gerrit as a Verified
-  # vote.
+  # vote. workflow-conclusion aggregates every job in the run, so this
+  # single vote covers both lanes above.
   vote:
     name: 'Report Status to Gerrit'
     if: ${{ always() && inputs.GERRIT_DISABLED != true }}
-    needs: [clear-vote, build-test]
+    needs: [clear-vote, build-test, sonar]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -215,7 +260,7 @@ jobs:
     steps:
       - name: 'Harden runner'
         # yamllint disable-line rule:line-length
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920  # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1  # v2.21.1
         with:
           egress-policy: audit
       - name: 'Get workflow conclusion'
@@ -223,7 +268,7 @@ jobs:
         uses: im-open/workflow-conclusion@8eac7f17381a6917bc04fec3e2c92e70ebc37526  # v3.0.0
       - name: 'Set vote'
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13  # v1.1.2
+        uses: lfreleng-actions/gerrit-review-action@1e3eae766b3de755a2e87aa216cedebbaf9c8292  # v1.1.3
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_USER }}
