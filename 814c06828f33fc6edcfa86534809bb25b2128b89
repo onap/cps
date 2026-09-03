@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c93265e_e110755b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-03T13:45:20Z",
+      "side": 1,
+      "message": "Did we find flows where this is triggered?",
+      "revId": "814c06828f33fc6edcfa86534809bb25b2128b89",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
