@@ -16,6 +16,24 @@
       "message": "Did we find flows where this is triggered?",
       "revId": "814c06828f33fc6edcfa86534809bb25b2128b89",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e06d6c86_954d7f40",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-03T13:52:02Z",
+      "side": 1,
+      "message": "1. CM handle property / field updates and state-leaf updates (not creation) — updateCmHandleFields, and the optimized-model state leaf. REST origin: DMI plugin registration update operations.\n  2. CM AVC config-change update \u0026 patch — Kafka event.\n  3. CM data-job subscription create/update — event-driven.\n  4. Model migration leaf write.",
+      "parentUuid": "4c93265e_e110755b",
+      "revId": "814c06828f33fc6edcfa86534809bb25b2128b89",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
