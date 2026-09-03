@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -250,19 +250,29 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             assert getLogMessage(1) == 'cmhandle2 is now in DELETED state'
     }
 
-    def 'Log entries and events are not sent when an error occurs during persistence'() {
-        given: 'A batch of updated cm handles'
-            def cmHandleStateMap = setupBatch('UPDATE')
+    def 'Error occurs during persistence while saving batch of cm handles.'() {
+        given: 'the optimized model is active'
+            objectUnderTest.useOptimizedModel = useOptimizedModel
+        and: 'a cm handle in ADVISED state'
+            currentCompositeState = new CompositeState(cmHandleState: ADVISED)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: currentCompositeState, cmHandleStatus: 'ADVISED')
         and: 'an error will be thrown when trying to persist'
             mockInventoryPersistence.saveCmHandleStateBatch(_) >> { throw new RuntimeException() }
-        when: 'updating a batch of changes'
-            objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
+        when: 'updating the state to READY'
+            objectUnderTest.updateCmHandleStateBatch([(yangModelCmHandle): READY])
         then: 'the exception is not handled'
             thrown(RuntimeException)
         and: 'no events are sent'
-            0 * mockLcmEventProducer.sendLcmEvent(*_)
+            0 * mockLcmEventProducer.sendLcmEventBatchAsynchronously(*_)
+        and: 'no metrics are updated'
+            0 * mockCmHandleStateMonitor.updateCmHandleStateMetrics(*_)
         and: 'no log entries are written'
             assert logAppender.list.empty
+        and: 'the cm handle state and top-level status are reverted to ADVISED'
+            assert yangModelCmHandle.compositeState.cmHandleState == ADVISED
+            assert yangModelCmHandle.cmHandleStatus == 'ADVISED'
+        where:
+            useOptimizedModel << [true, false]
     }
 
     def setupBatch(type) {

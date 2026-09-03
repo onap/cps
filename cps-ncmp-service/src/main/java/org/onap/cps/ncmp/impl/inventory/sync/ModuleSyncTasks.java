@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
@@ -76,8 +77,19 @@ public class ModuleSyncTasks {
             }
         } finally {
             log.warn("Persisting state for {} cm handles", cmHandleStatePerCmHandle.size());
-            lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
+            try {
+                lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
+            } catch (final RuntimeException runtimeException) {
+                log.warn("Failed to persist state / emit LCM events for batch of {} cm handles due to: {}. "
+                        + "Affected cm handles: {}", cmHandleStatePerCmHandle.size(),
+                        runtimeException.getMessage(), cmHandleIds(cmHandleStatePerCmHandle.keySet()));
+                throw runtimeException;
+            }
         }
+    }
+
+    private static String cmHandleIds(final Collection<YangModelCmHandle> yangModelCmHandles) {
+        return yangModelCmHandles.stream().map(YangModelCmHandle::getId).collect(Collectors.joining(","));
     }
 
     /**

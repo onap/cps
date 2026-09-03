@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2020-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022-2023 Deutsche Telekom AG
@@ -116,6 +116,18 @@ public interface CpsDataPersistenceService {
      * @param dataNodes     data nodes
      */
     void updateDataNodesAndDescendants(String dataspaceName, String anchorName, final Collection<DataNode> dataNodes);
+
+    /**
+     * Replaces multiple existing data nodes' content including descendants in a batch operation, without retrying
+     * the data nodes individually when a concurrent update is detected.
+     * The batch is all or nothing: on a concurrent update nothing is committed and a ConcurrencyException is thrown.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param dataNodes     data nodes
+     */
+    void updateDataNodesAndDescendantsWithoutRetry(String dataspaceName, String anchorName,
+                                                   final Collection<DataNode> dataNodes);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements

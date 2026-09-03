@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
- * Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe.
+ * Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe.
  * Modifications Copyright (C) 2022-2023 Deutsche Telekom AG
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -87,10 +87,10 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             objectUnderTest.batchUpdateDataLeaves('some-dataspace', 'some-anchor', updatedLeavesPerXPath)
         then: 'concurrency exception is thrown'
             def thrown = thrown(ConcurrencyException)
-            assert thrown.message == 'Concurrent Transactions'
-        and: 'it does not contain the successful datanode'
+            assert thrown.message.startsWith('Concurrent Transactions: 2 data node(s)')
+        and: 'the details do not contain the successful datanode'
             assert !thrown.details.contains('/node1')
-        and: 'it contains the failed datanodes'
+        and: 'the details contain all the failed datanodes'
             assert thrown.details.contains('/node2')
             assert thrown.details.contains('/node3')
     }
@@ -144,12 +144,33 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             objectUnderTest.updateDataNodesAndDescendants('some-dataspace', 'some-anchor', dataNodes)
         then: 'concurrency exception is thrown'
             def thrown = thrown(ConcurrencyException)
-            assert thrown.message == 'Concurrent Transactions'
-        and: 'it does not contain the successful datanode'
+            assert thrown.message.startsWith('Concurrent Transactions: 2 data node(s)')
+        and: 'the details do not contain the successful datanode'
             assert !thrown.details.contains('/node1')
-        and: 'it contains the failed datanodes'
+        and: 'the details contain all the failed datanodes'
             assert thrown.details.contains('/node2')
             assert thrown.details.contains('/node3')
+    }
+
+    def 'Handling of ObjectOptimisticLockingFailureException (caused by concurrent updates) when individual retry is disabled.'() {
+        given: 'the system can update one datanode and has two more datanodes that throw an exception while updating'
+            def dataNodes = createDataNodesAndMockRepositoryMethodSupportingThem([
+                '/node1': 'OK',
+                '/node2': 'EXCEPTION',
+                '/node3': 'EXCEPTION'])
+        and: 'the batch update will fail'
+            mockFragmentRepository.saveAll(*_) >> { throw new ObjectOptimisticLockingFailureException('concurrent updates', someCause) }
+        when: 'attempt batch update data nodes without retry'
+            objectUnderTest.updateDataNodesAndDescendantsWithoutRetry('some-dataspace', 'some-anchor', dataNodes)
+        then: 'concurrency exception is thrown for the whole batch'
+            def thrown = thrown(ConcurrencyException)
+            assert thrown.message.startsWith('Concurrent Transactions: 3 data node(s)')
+        and: 'the details contain all the data nodes of the batch'
+            assert thrown.details.contains('/node1')
+            assert thrown.details.contains('/node2')
+            assert thrown.details.contains('/node3')
+        and: 'no data node is saved individually'
+            0 * mockFragmentRepository.save(_)
     }
 
     def 'Retrieving a data node with a property JSON value of #scenario'() {
