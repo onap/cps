@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d0a96ce_1ee9e6d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-03T07:14:26Z",
+      "side": 1,
+      "message": "apologies I forgot we were going to update/link new readme..",
+      "revId": "7dae63bdb1b5ee1ea13d02dcee716dc35e6e2a8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4af72683_1425cb52",
@@ -71,6 +88,24 @@
       "writtenOn": "2026-09-02T08:58:26Z",
       "side": 1,
       "message": "Yml files (prefer .yaml actually, maybe we  need a team decision o this)\nSHOULD have copyrights! (just like our OpenAPI yaml files)\nNote from AI:\n.yml and .yaml are equivalent file extensions for YAML. There is no format difference.\n.yaml is the official, clearer extension and is often preferred for new files. .yml remains widely used, especially in existing projects and tools such as GitHub Actions.",
+      "revId": "7dae63bdb1b5ee1ea13d02dcee716dc35e6e2a8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dea1eb9_39edfcac",
+        "filename": "cps-charts/config/grafana/provisioning/dashboards/dashboard.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-03T07:14:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dec33e90_c7164a58",
       "revId": "7dae63bdb1b5ee1ea13d02dcee716dc35e6e2a8e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
