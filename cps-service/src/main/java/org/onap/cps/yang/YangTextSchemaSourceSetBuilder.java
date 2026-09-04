@@ -55,7 +55,7 @@ public final class YangTextSchemaSourceSetBuilder {
 
     // DefaultYangParserFactory is deprecated in YangTools 14.x but no non-deprecated standalone
     // replacement exists. The YangTools team recommends OSGi/Dagger DI which is not applicable here.
-    @SuppressWarnings({"deprecation", "removal"})
+//    @SuppressWarnings({"deprecation", "removal"})
     private static final YangParserFactory YANG_PARSER_FACTORY =
         new DefaultYangParserFactory();
 
