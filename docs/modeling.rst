@@ -56,12 +56,14 @@ Data
 Querying
 
 - **CPS Path** is used to query data nodes.
+- **CPS Composite Query** is used to combine several CPS Path conditions into a single query.
 
 .. toctree::
    :maxdepth: 1
 
    xpath.rst
    cps-path.rst
+   cps-composite-query.rst
 
 Additional information on CPS-Core Interfaces
 ---------------------------------------------
