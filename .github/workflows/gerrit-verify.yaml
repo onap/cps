@@ -181,9 +181,27 @@ jobs:
       # resolved across the reactor.
       # yamllint disable-line rule:line-length
       mvn_params: "-Djib.skip=true -Ddocker.pull.registry=${{ vars.CONTAINER_PUBLIC_REGISTRY || 'nexus3.onap.org:10001' }} -Ddocker.push.registry=${{ vars.CONTAINER_PUSH_REGISTRY || 'nexus3.onap.org:10002' }}"
-      # Run the build job's harden-runner in audit while the egress
-      # footprint is characterised, then tighten to block.
-      build_permit_egress_traffic: true
+      # The build job's harden-runner enforces the shared allow-list
+      # rather than only recording what the build reaches for.
+      #
+      # UNPROVEN. Do not take this out of WIP without first reading the
+      # observed endpoint list off the StepSecurity dashboard for a
+      # recent run and diffing it against the allow-list.
+      #
+      # Reading the allow-list suggests it is sufficient: it carries
+      # repo.maven.apache.org, repo1.maven.org, the ONAP nexus ports,
+      # api.adoptium.net, the Docker Hub CDN hosts, and wildcarded
+      # Ubuntu archives covering the Azure mirror failover. Against
+      # that, no project anywhere runs this lane under block. cps and
+      # cps-ncmp-dmi-plugin are its only two consumers and both set
+      # this hatch, and java-workflows' own self-test runs the lane
+      # with harden_runner_egress set to audit. This reactor has never
+      # built past cps-ncmp-service under block.
+      #
+      # Package and image repositories sit behind CDNs that resolve to
+      # geographically local names, so a sufficient allow-list cannot
+      # be derived by reading one. It has to be observed.
+      build_permit_egress_traffic: false
       # No SBOM, and therefore no Grype scan, on the verify lane. The
       # project captures dependency-risk evidence elsewhere: the
       # Sonatype CLM lane (gerrit-clm.yaml) scans the resolved Maven
@@ -252,6 +270,10 @@ jobs:
       wait_for_quality_gate: true
       fail_on_quality_gate: true
       timeout_minutes: 90
+      # The Sonar lane stays in audit deliberately. Its pre-scan Maven
+      # build has the same uncharacterised egress as the lane above,
+      # and flipping both at once would leave a failure impossible to
+      # attribute. Tighten this once block is proven on the build lane.
       build_permit_egress_traffic: true
       # yamllint disable-line rule:line-length
       gerrit_refspec: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_REFSPEC || '' }}
