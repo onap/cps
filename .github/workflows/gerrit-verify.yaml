@@ -184,10 +184,21 @@ jobs:
       # Run the build job's harden-runner in audit while the egress
       # footprint is characterised, then tighten to block.
       build_permit_egress_traffic: true
-      # Grype runs as a supplementary signal here; the authoritative
-      # dependency-risk gate remains the Sonatype CLM lane
-      # (gerrit-clm.yaml), which runs post-merge and weekly.
-      grype_permit_fail: true
+      # No SBOM, and therefore no Grype scan, on the verify lane. The
+      # project captures dependency-risk evidence elsewhere: the
+      # Sonatype CLM lane (gerrit-clm.yaml) scans the resolved Maven
+      # graph post-merge and weekly, and that is the authoritative
+      # signal. Skipping generation stops the scan too, because Grype
+      # reads the SBOM and would otherwise have nothing to read.
+      #
+      # The SBOM this lane produced was not worth gating on regardless.
+      # It came from Syft run against an unbuilt source checkout, which
+      # for Maven resolves no transitive dependencies and emits UNKNOWN
+      # for any version supplied by dependencyManagement or an imported
+      # BOM. cps manages versions centrally through cps-parent, so most
+      # of its graph was unscannable. java-workflows issue 47 measures
+      # the loss at 93% of Grype matches on a reference project.
+      sbom_enabled: false
       # Gerrit-aware checkout inputs. Blanked on a GERRIT_DISABLED manual
       # run so the reusable workflow performs a normal checkout.
       # yamllint disable-line rule:line-length
