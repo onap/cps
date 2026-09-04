@@ -122,8 +122,9 @@ cps-ncmp-ncmp-dmi-plugin-...   1/1  Running
 ```
 
 `cps-ncmp-sdnc-mount-node-...` shows `0/1 Completed`. It is a run-once Helm hook Job, so it is not part of the
-release manifest and `helm uninstall` does not remove it. It stays in the cluster until the next install of the
-stack replaces it, or you delete it yourself:
+release manifest and `helm uninstall` does not remove it. Kubernetes deletes it an hour after it finishes, via
+`onapDmiStack.sdncMountJob.ttlSecondsAfterFinished`, which also leaves time to inspect its logs. To remove it
+sooner:
 
 ```bash
 kubectl delete job cps-ncmp-sdnc-mount-node
@@ -225,7 +226,8 @@ To uninstall the chart and delete all related resources:
 helm uninstall cps
 ```
 
-The `sdnc-mount-node` hook Job is not removed by `helm uninstall`. Delete it separately if you want a clean cluster:
+The `sdnc-mount-node` hook Job is not removed by `helm uninstall`, but Kubernetes deletes it an hour after it
+finished. To remove it immediately:
 ```bash
 kubectl delete job cps-ncmp-sdnc-mount-node
 ```
