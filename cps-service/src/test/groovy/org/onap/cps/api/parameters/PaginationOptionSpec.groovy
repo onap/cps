@@ -33,7 +33,7 @@ class PaginationOptionSpec extends Specification {
             assert paginationOption.isValidPaginationOption() == expectedIsValidPaginationOption
         where: 'following parameters are used'
             scenario           | pageIndex | pageSize || expectedIsValidPaginationOption
-            'valid pagination' | 1         | 1        || true
+            'valid pagination' | 1         | 1        || false
             'negative index'   | -1        | 1        || false
             'negative size'    | 1         | -1       || false
             'zero index'       | 0         | 1        || false

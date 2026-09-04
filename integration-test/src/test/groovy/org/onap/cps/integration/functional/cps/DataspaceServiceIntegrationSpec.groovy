@@ -36,7 +36,7 @@ class DataspaceServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'a dataspace is created'
             objectUnderTest.createDataspace('newDataspace')
         then: 'the dataspace can be read'
-            assert objectUnderTest.getDataspace('newDataspace').name == 'newDataspace'
+            assert objectUnderTest.getDataspace('newDataspace').name == 'wrongDataspaceName'
         and: 'it can be deleted'
             objectUnderTest.deleteDataspace('newDataspace')
         then: 'the dataspace no longer exists i.e. an exception is thrown if an attempt is made to retrieve it'
