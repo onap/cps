@@ -76,7 +76,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
 
     @Override
     @Timed(value = "cps.delta.service.get.delta",
-        description = "Time taken to get delta between anchors")
+            description = "Time taken to get delta between anchors")
     public List<DeltaReport> getDeltaByDataspaceAndAnchors(final String dataspaceName,
                                                            final String sourceAnchorName,
                                                            final String targetAnchorName,
@@ -86,25 +86,26 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
 
         final String normalizedXpath = getNormalizedXpath(xpath);
         final CompletableFuture<Collection<DataNode>> sourceFuture = CompletableFuture.supplyAsync(() ->
-            cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-                sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption));
+                cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+                        sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption));
         final CompletableFuture<Collection<DataNode>> targetFuture = CompletableFuture.supplyAsync(() ->
-            cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-                targetAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption));
+                cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+                        targetAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption));
         try {
             final Collection<DataNode> sourceDataNodes = sourceFuture.join();
             final Collection<DataNode> targetDataNodes = targetFuture.join();
             return getDeltaReports(sourceDataNodes, targetDataNodes, groupDataNodes);
         } catch (final CompletionException completionException) {
             throw CompletionExceptionConverter.convertCompletionException(completionException,
-                "Failed to compute delta between anchors",
-                String.format("Unexpected error during delta computation for dataspace %s between anchors %s and %s "
-                    + "using xpath %s", dataspaceName, sourceAnchorName, targetAnchorName, normalizedXpath));
+                    "Failed to compute delta between anchors",
+                    String.format(
+                            "Unexpected error during delta computation for dataspace %s between anchors %s and %s "
+                            + "using xpath %s", dataspaceName, sourceAnchorName, targetAnchorName, normalizedXpath));
         }
     }
 
     @Timed(value = "cps.delta.service.get.delta",
-        description = "Time taken to get delta between anchor and a payload")
+            description = "Time taken to get delta between anchor and a payload")
     @Override
     public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
                                                                  final String sourceAnchorName,
@@ -117,11 +118,12 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         final String normalizedXpath = getNormalizedXpath(xpath);
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
         final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
+                sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
         final Collection<DataNode> sourceDataNodesRebuilt =
-            rebuildSourceDataNodes(normalizedXpath, sourceAnchor, sourceDataNodes);
+                rebuildSourceDataNodes(normalizedXpath, sourceAnchor, sourceDataNodes);
         final Collection<DataNode> targetDataNodes = new ArrayList<>(
-            buildTargetDataNodes(sourceAnchor, normalizedXpath, yangResourceContentPerName, targetData, contentType));
+                buildTargetDataNodes(sourceAnchor, normalizedXpath, yangResourceContentPerName, targetData,
+                        contentType));
         return getDeltaReports(sourceDataNodesRebuilt, targetDataNodes, groupDataNodes);
     }
 
@@ -141,7 +143,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                     deltaReportAsString, contentType);
         } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
             throw new DataInUseException("Duplicate key error",
-                dataIntegrityViolationException.getRootCause().getMessage());
+                    dataIntegrityViolationException.getRootCause().getMessage());
         }
     }
 
@@ -162,7 +164,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
             final Map<String, Object> sourceDataNodesAsMap = dataMapper.toFlatDataMap(sourceAnchor, sourceDataNodes);
             final String sourceDataNodesAsJson = jsonObjectMapper.asJsonString(sourceDataNodesAsMap);
             final Collection<DataNode> dataNodes = dataNodeFactory
-                .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, sourceDataNodesAsJson, JSON);
+                    .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, sourceDataNodesAsJson, JSON);
             sourceDataNodesRebuilt.addAll(dataNodes);
         }
         return sourceDataNodesRebuilt;
@@ -173,10 +175,10 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                       final String targetData, final ContentType contentType) {
         if (yangResourceContentPerName.isEmpty()) {
             return dataNodeFactory
-                .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, contentType);
+                    .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, contentType);
         } else {
             return dataNodeFactory
-                .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName,
+                    .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName,
                             xpath, targetData, contentType);
         }
     }
@@ -186,7 +188,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
             return ROOT_NODE_XPATH.equals(xpath) ? ROOT_NODE_XPATH : CpsPathUtil.getNormalizedXpath(xpath);
         } catch (final PathParsingException pathParsingException) {
             throw new DataValidationException("Invalid xpath: " + xpath, pathParsingException.getMessage(),
-                pathParsingException);
+                    pathParsingException);
         }
     }
 }

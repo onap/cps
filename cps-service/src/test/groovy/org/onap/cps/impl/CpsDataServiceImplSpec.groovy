@@ -41,6 +41,7 @@ import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
+import org.onap.cps.utils.deltareport.DeltaReportGeneratorFacade
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
@@ -63,9 +64,10 @@ class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataUpdateEventsProducer = Mock(CpsDataUpdateEventsProducer)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
     def mockGroupedDeltaReportGenerator = Mock(GroupedDeltaReportGenerator)
+    def mockDeltaReportGeneratorFacade = Mock(DeltaReportGeneratorFacade)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService,
-            dataNodeFactory, mockCpsValidator, yangParser, mockGroupedDeltaReportGenerator)
+            dataNodeFactory, mockCpsValidator, yangParser, mockGroupedDeltaReportGenerator, mockDeltaReportGeneratorFacade)
 
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
@@ -620,7 +622,7 @@ class CpsDataServiceImplSpec extends Specification {
         when: 'save data method is invoked with json data'
             objectUnderTest.saveData(dataspaceName, anchorName, jsonData, observedTimestamp)
         then: 'the delta report generator returns delta reports'
-            mockGroupedDeltaReportGenerator.createCondensedDeltaReports(*_) >> deltaReports
+                mockDeltaReportGeneratorFacade.createDeltaReports(*_) >> deltaReports
         and: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, _)
         and: 'the event producer is invoked with correct parameters including the correct delta reports'

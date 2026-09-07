@@ -56,6 +56,7 @@ import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.YangParser;
+import org.onap.cps.utils.deltareport.DeltaReportGeneratorFacade;
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -78,6 +79,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final CpsValidator cpsValidator;
     private final YangParser yangParser;
     private final GroupedDeltaReportGenerator groupedDeltaReportGenerator;
+    private final DeltaReportGeneratorFacade deltaReportGeneratorFacade;
 
     @Value("${app.cps.data-updated.delta-notification:false}")
     private boolean deltaNotificationEnabled;
@@ -96,8 +98,14 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes = dataNodeFactory
                 .createDataNodesWithAnchorParentXpathAndNodeData(anchor, ROOT_NODE_XPATH, nodeData, contentType);
-        final List<DeltaReport> deltaReports =
-            generateDeltaReports(dataspaceName, anchorName, ROOT_NODE_XPATH, dataNodes);
+        final List<DeltaReport> deltaReports;
+        if (deltaNotificationEnabled) {
+            final Collection<DataNode> sourceDataNodes = getDataNodesForMultipleXpaths(dataspaceName, anchorName,
+                    Collections.singletonList(ROOT_NODE_XPATH), INCLUDE_ALL_DESCENDANTS);
+            deltaReports = deltaReportGeneratorFacade.createDeltaReports(sourceDataNodes, dataNodes, true);
+        } else {
+            deltaReports = NO_DELTA_REPORTS;
+        }
         cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, dataNodes);
         sendDataUpdatedEvent(anchor, ROOT_NODE_XPATH, CREATE_ACTION, deltaReports, observedTimestamp);
     }
