@@ -56,7 +56,7 @@ public class CpsFacadeImpl implements CpsFacade {
                                                         final String xpath,
                                                         final FetchDescendantsOption fetchDescendantsOption) {
         final DataNode dataNode = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption).iterator().next();
+                fetchDescendantsOption).iterator().next();
         return dataMapper.toDataMap(dataspaceName, anchorName, dataNode);
     }
 
@@ -66,7 +66,7 @@ public class CpsFacadeImpl implements CpsFacade {
                                                           final String xpath,
                                                           final FetchDescendantsOption fetchDescendantsOption) {
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption);
+                fetchDescendantsOption);
         return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
     }
 
@@ -76,7 +76,7 @@ public class CpsFacadeImpl implements CpsFacade {
                                                       final String xpath,
                                                       final FetchDescendantsOption fetchDescendantsOption) {
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption);
+                fetchDescendantsOption);
         return dataMapper.toDataMapForApiV3(dataspaceName, anchorName, dataNodes);
     }
 
@@ -94,7 +94,7 @@ public class CpsFacadeImpl implements CpsFacade {
             return dataMapper.toAttributeMaps(attributeName, attributeValues);
         }
         final Collection<DataNode> dataNodes =
-            cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+                cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
     }
 
@@ -104,7 +104,7 @@ public class CpsFacadeImpl implements CpsFacade {
                                                            final FetchDescendantsOption fetchDescendantsOption,
                                                            final PaginationOption paginationOption) {
         final Collection<DataNode> dataNodes = cpsQueryService.queryDataNodesAcrossAnchors(dataspaceName,
-            cpsPath, fetchDescendantsOption, paginationOption);
+                cpsPath, fetchDescendantsOption, paginationOption);
         return dataMapper.toDataMaps(dataspaceName, dataNodes);
     }
 
@@ -117,7 +117,7 @@ public class CpsFacadeImpl implements CpsFacade {
         }
         final int totalAnchors = cpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
         return totalAnchors <= paginationOption.getPageSize() ? 1
-            : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
+                : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
     }
 
     @Override
@@ -126,10 +126,10 @@ public class CpsFacadeImpl implements CpsFacade {
                                                            final String compositeQueryString,
                                                            final FetchDescendantsOption fetchDescendantsOption) {
         final CompositeQuery compositeQuery = jsonObjectMapper
-            .convertJsonString(compositeQueryString, CompositeQuery.class);
+                .convertJsonString(compositeQueryString, CompositeQuery.class);
         final Collection<DataNode> dataNodes =
                 cpsQueryService
-                    .compositeQueryDataNodes(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption);
+                        .compositeQueryDataNodes(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption);
         return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
     }
 
