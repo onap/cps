@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8b2e8fc_28f2bec8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-09-07T12:24:30Z",
+      "side": 1,
+      "message": "looks good, just one question to Toine, would the zip file count as a binary for the openssf baseline 1 ranking",
+      "revId": "da6e50f29f0b4879c2ab0a04bc99aacb8d114e7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
