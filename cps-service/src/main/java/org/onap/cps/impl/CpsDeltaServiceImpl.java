@@ -35,8 +35,8 @@ import java.util.concurrent.CompletionException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
-import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDeltaService;
+import org.onap.cps.api.CpsFacade;
 import org.onap.cps.api.DataNodeFactory;
 import org.onap.cps.api.exceptions.DataInUseException;
 import org.onap.cps.api.exceptions.DataValidationException;
@@ -66,7 +66,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
     private final DeltaReportExecutor deltaReportExecutor;
     private final CpsAnchorService cpsAnchorService;
     private final CpsValidator cpsValidator;
-    private final CpsDataService cpsDataService;
+    private final CpsFacade cpsFacade;
     private final DataNodeFactory dataNodeFactory;
     private final DataMapper dataMapper;
     private final JsonObjectMapper jsonObjectMapper;
@@ -86,10 +86,10 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
 
         final String normalizedXpath = getNormalizedXpath(xpath);
         final CompletableFuture<Collection<DataNode>> sourceFuture = CompletableFuture.supplyAsync(() ->
-            cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+            cpsFacade.getDataNodesForMultipleXpaths(dataspaceName,
                 sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption));
         final CompletableFuture<Collection<DataNode>> targetFuture = CompletableFuture.supplyAsync(() ->
-            cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+                cpsFacade.getDataNodesForMultipleXpaths(dataspaceName,
                 targetAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption));
         try {
             final Collection<DataNode> sourceDataNodes = sourceFuture.join();
@@ -116,7 +116,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         final FetchDescendantsOption fetchDescendantsOption = INCLUDE_ALL_DESCENDANTS;
         final String normalizedXpath = getNormalizedXpath(xpath);
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
-        final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+        final Collection<DataNode> sourceDataNodes = cpsFacade.getDataNodesForMultipleXpaths(dataspaceName,
             sourceAnchorName, Collections.singletonList(normalizedXpath), fetchDescendantsOption);
         final Collection<DataNode> sourceDataNodesRebuilt =
             rebuildSourceDataNodes(normalizedXpath, sourceAnchor, sourceDataNodes);
