@@ -1,0 +1,12 @@
+{{- if .Values.prometheus.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-prometheus-config
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: prometheus
+data:
+  prometheus.yaml: |
+    {{- .Files.Get "config/prometheus.yaml" | nindent 4 }}
+{{- end }}

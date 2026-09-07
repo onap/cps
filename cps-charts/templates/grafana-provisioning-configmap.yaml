@@ -1,0 +1,14 @@
+{{- if .Values.grafana.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-grafana-provisioning
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: grafana
+data:
+  dashboard.yaml: |
+    {{- .Files.Get "config/grafana/provisioning/dashboards/dashboard.yaml" | nindent 4 }}
+  datasource.yaml: |
+    {{- .Files.Get "config/grafana/provisioning/datasources/datasource.yaml" | nindent 4 }}
+{{- end }}

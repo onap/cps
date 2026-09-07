@@ -1,0 +1,21 @@
+{{- if .Values.prometheus.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-prometheus-service
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: prometheus
+spec:
+  type: {{ .Values.prometheus.service.type }}
+  ports:
+    - name: http
+      port: {{ .Values.prometheus.service.port }}
+      targetPort: 9090
+      {{- if eq .Values.prometheus.service.type "NodePort" }}
+      nodePort: {{ .Values.prometheus.service.nodePort }}
+      {{- end }}
+  selector:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: prometheus
+{{- end }}

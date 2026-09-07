@@ -1,0 +1,21 @@
+{{- if .Values.grafana.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cps-and-ncmp.release-name" . }}-grafana-service
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: grafana
+spec:
+  type: {{ .Values.grafana.service.type }}
+  ports:
+    - name: http
+      port: {{ .Values.grafana.service.port }}
+      targetPort: 3000
+      {{- if eq .Values.grafana.service.type "NodePort" }}
+      nodePort: {{ .Values.grafana.service.nodePort }}
+      {{- end }}
+  selector:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: grafana
+{{- end }}
