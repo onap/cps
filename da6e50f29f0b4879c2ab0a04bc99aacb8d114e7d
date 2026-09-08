@@ -16,6 +16,24 @@
       "message": "looks good, just one question to Toine, would the zip file count as a binary for the openssf baseline 1 ranking",
       "revId": "da6e50f29f0b4879c2ab0a04bc99aacb8d114e7d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b5f7d80_da3da29e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-08T10:32:29Z",
+      "side": 1,
+      "message": "i\u0027ll look into that\n(but it was always there already so not affectin this commit)",
+      "parentUuid": "f8b2e8fc_28f2bec8",
+      "revId": "da6e50f29f0b4879c2ab0a04bc99aacb8d114e7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
