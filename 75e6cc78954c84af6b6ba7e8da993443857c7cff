@@ -39,6 +39,30 @@
       },
       "revId": "75e6cc78954c84af6b6ba7e8da993443857c7cff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5faca19_7fb96956",
+        "filename": "docs/cps-composite-query.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-08T10:35:57Z",
+      "side": 1,
+      "message": "sorry pressed send by accident before I was ready...\n\nCan you confirm that conditions grouped in one array are effectively treated as surrounded by brackets (... ) this is very important when mixing AND and ORs...",
+      "parentUuid": "e2be69cb_effa9489",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 101
+      },
+      "revId": "75e6cc78954c84af6b6ba7e8da993443857c7cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
