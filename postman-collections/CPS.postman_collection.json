@@ -152,6 +152,66 @@
               "response": []
             }
           ]
+        },
+        {
+          "name": "ONAP-DMI-Stack",
+          "item": [
+            {
+              "name": "DMI Plugin Health Check",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{DMI_PLUGIN_NODEPORT}}/actuator/health",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{DMI_PLUGIN_NODEPORT}}",
+                  "path": [
+                    "actuator",
+                    "health"
+                  ]
+                },
+                "description": "Check if the real ncmp-dmi-plugin service is healthy. Only deployed when onapDmiStack.enabled=true."
+              },
+              "response": []
+            },
+            {
+              "name": "SDNC Mounted Node Check",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{SDNC_AUTH}}"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{SDNC_NODEPORT}}/rests/data/network-topology:network-topology/topology=topology-netconf?content=nonconfig",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{SDNC_NODEPORT}}",
+                  "path": [
+                    "rests",
+                    "data",
+                    "network-topology:network-topology",
+                    "topology=topology-netconf"
+                  ],
+                  "query": [
+                    {
+                      "key": "content",
+                      "value": "nonconfig"
+                    }
+                  ]
+                },
+                "description": "Check the simulated netconf device is mounted in SDNC. Look for \"node-id\":\"ietfYang-PNFDemo\" with \"connection-status\":\"connected\"."
+              },
+              "response": []
+            }
+          ]
         }
       ],
       "description": "Health check endpoints for CPS and DMI-Stub services. Use environment variables to switch between docker and k8s deployments."

@@ -16,6 +16,7 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
+{{- if and .Values.dmiStub.enabled (not .Values.onapDmiStack.enabled) }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -56,3 +57,4 @@ spec:
             {{- toYaml .Values.dmiStub.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.dmiStub.readinessProbe | nindent 12 }}
+{{- end }}

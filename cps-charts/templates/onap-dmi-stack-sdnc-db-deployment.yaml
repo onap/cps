@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
+#  Copyright (C) 2026 OpenInfra Foundation Europe. All rights reserved.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -16,45 +16,40 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-{{- if and .Values.dmiStub.enabled (not .Values.onapDmiStack.enabled) }}
+{{- if .Values.onapDmiStack.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.release-name" . }}-dmi-stub-2
+  name: {{ include "cps-and-ncmp.release-name" . }}-sdnc-db
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
-    component: dmi-stub
+    component: sdnc-db
 spec:
-  replicas: {{ .Values.dmiStub.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
       app: {{ include "cps-and-ncmp.name" . }}
-      component: dmi-stub
-      instance: dmi-stub-2
+      component: sdnc-db
   template:
     metadata:
       labels:
         app: {{ include "cps-and-ncmp.name" . }}
-        component: dmi-stub
-        instance: dmi-stub-2
+        component: sdnc-db
     spec:
       containers:
-        - name: dmi-stub
-          image: "{{ .Values.dmiStub.image.repository }}:{{ .Values.dmiStub.image.tag }}"
-          imagePullPolicy: {{ .Values.dmiStub.image.pullPolicy }}
+        - name: sdnc-db
+          image: "{{ .Values.onapDmiStack.sdncDb.image }}"
           ports:
-            - containerPort: {{ .Values.dmiStub.deployment2.containerPort }}
+            - containerPort: 3306
           env:
-            {{- range $key, $value := .Values.dmiStub.env }}
+            {{- range $key, $value := .Values.onapDmiStack.sdncDb.env }}
             - name: {{ $key | upper }}
               value: "{{ $value }}"
             {{- end }}
-            - name: DMI_STUB_SERVER_PORT
-              value: "{{ .Values.dmiStub.deployment2.containerPort }}"
           resources:
-            {{- toYaml .Values.dmiStub.resources | nindent 12 }}
+            {{- toYaml .Values.onapDmiStack.sdncDb.resources | nindent 12 }}
           livenessProbe:
-            {{- toYaml .Values.dmiStub.livenessProbe.deployment2 | nindent 12 }}
+            {{- toYaml .Values.onapDmiStack.sdncDb.livenessProbe | nindent 12 }}
           readinessProbe:
-            {{- toYaml .Values.dmiStub.readinessProbe.deployment2 | nindent 12 }}
+            {{- toYaml .Values.onapDmiStack.sdncDb.readinessProbe | nindent 12 }}
 {{- end }}
