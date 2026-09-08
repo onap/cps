@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "75e6cc78954c84af6b6ba7e8da993443857c7cff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2be69cb_effa9489",
+        "filename": "docs/cps-composite-query.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-08T10:33:54Z",
+      "side": 1,
+      "message": "can you discribe it more simply like so:\ncategories\u003dSciFi and (price\u003d5 or label\u003dclassic)\n\nCan you confirm that conditiosn grouped",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 101
+      },
+      "revId": "75e6cc78954c84af6b6ba7e8da993443857c7cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
