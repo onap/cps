@@ -19,7 +19,7 @@
 testProfile=${1:-kpi}
 
 # Use test profile as namespace for k8s deployments
-K8S_NAMESPACE="${K8S_NAMESPACE:-$testProfile}"
+export K8S_NAMESPACE="${K8S_NAMESPACE:-$testProfile}"
 
 echo "=========================================="
 echo "TEARDOWN FOR PROFILE: $testProfile"
