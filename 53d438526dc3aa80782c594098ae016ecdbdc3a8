@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36f72144_d5019518",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/LogbackConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-09T13:28:16Z",
+      "side": 1,
+      "message": "No — the K6 tests would not catch broken logging. They drive the CPS HTTP\n  API and assert on status codes and latency; they only archive pod logs for\n  post-mortem inspection, never asserting on log content or that appenders are\n  attached. A pod with completely broken logging would still pass every K6\n  scenario. This is precisely the gap this test closes: it loads the real\n  logback-spring.xml and asserts the root logger has an appender attached, for\n  both console and json formats.",
+      "parentUuid": "440aa5ca_08322009",
+      "revId": "53d438526dc3aa80782c594098ae016ecdbdc3a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e78a26f_0a639ab3",
         "filename": "cps-service/src/test/groovy/org/onap/cps/config/LogbackConfigSpec.groovy",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2026-09-03T07:11:50Z",
       "side": 1,
       "message": "NB: expectation in slogan\nSugegstion: Root logger configuration for format: #loggingFormat",
+      "range": {
+        "startLine": 40,
+        "startChar": 14,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "53d438526dc3aa80782c594098ae016ecdbdc3a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f512e502_33526e50",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/LogbackConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-09T13:28:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e78a26f_0a639ab3",
       "range": {
         "startLine": 40,
         "startChar": 14,
@@ -54,6 +96,30 @@
       "writtenOn": "2026-09-03T07:11:50Z",
       "side": 1,
       "message": "NB: (table) not needed, use loggingFormat \u003c\u003c [...] instead",
+      "range": {
+        "startLine": 52,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 22
+      },
+      "revId": "53d438526dc3aa80782c594098ae016ecdbdc3a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0f7d6bf_ce9bd867",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/LogbackConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-09T13:28:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf54c5db_163fb86b",
       "range": {
         "startLine": 52,
         "startChar": 12,
