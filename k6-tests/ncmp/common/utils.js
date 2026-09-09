@@ -29,6 +29,7 @@ export const scenarioMetaData = JSON.parse(open(`../config/scenario-metadata.jso
 export const KAFKA_BOOTSTRAP_SERVERS = __ENV.KAFKA_BOOTSTRAP_SERVERS || testConfig.kafkaBootstrapServer;
 export const NCMP_BASE_URL = __ENV.NCMP_BASE_URL || testConfig.ncmpBaseUrl;
 export const DMI_PLUGIN_URL = __ENV.DMI_PLUGIN_URL || testConfig.dmiStubUrl;
+export const ACTUATOR_PROMETHEUS_URL = `${NCMP_BASE_URL}/actuator/prometheus`;
 export const CONTAINER_COOL_DOWW_TIME_IN_SECONDS = testConfig.containerCoolDownTimeInSeconds || 10;
 export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
 export const TOTAL_CM_HANDLES = __ENV.TOTAL_CM_HANDLES ? parseInt(__ENV.TOTAL_CM_HANDLES) : 50000;

@@ -197,6 +197,7 @@
     }
   },
   "thresholds": {
+    "checks{assertion:cmhandles_ready}": ["rate==1"],
     "http_req_failed": ["rate <= 0.01"],
     "cm_handles_created": ["avg >= 22"],
     "cm_handles_deleted": ["avg >= 22"],

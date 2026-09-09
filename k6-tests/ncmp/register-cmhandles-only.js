@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,5 +39,7 @@ export default function () {
         const response = createCmHandles(nextBatchOfCmHandleIds);
         check(response, { 'create CM-handles status equals 200': (r) => r.status === 200 });
     }
-    waitForAllCmHandlesToBeReady();
+    const readyCount = waitForAllCmHandlesToBeReady();
+    console.log(`${readyCount}/${TOTAL_CM_HANDLES} CM handles reached READY (per instrumentation)`);
+    check(readyCount, { 'all registered CM handles reached READY per instrumentation': (c) => c === TOTAL_CM_HANDLES }, { assertion: 'cmhandles_ready' });
 }
