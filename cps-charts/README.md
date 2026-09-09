@@ -160,6 +160,12 @@ To uninstall the chart and delete all related resources:
 ```bash
 helm uninstall cps
 ```
+
+> **Note:** If you deployed the optional DMI stack, its `sdnc-mount-node` hook Job is not removed by
+> `helm uninstall`. Kubernetes deletes it an hour after it finished. To remove it immediately:
+> ```bash
+> kubectl delete job cps-ncmp-sdnc-mount-node
+> ```
 ---
 
 ## Configuration

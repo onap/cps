@@ -398,6 +398,10 @@ onapDmiStack:
     # in docker-compose/dmi-services.yml.
     nodeId: "ietfYang-PNFDemo"
     backoffLimit: 6
+    # Seconds the finished Job (and its logs) are kept before Kubernetes
+    # deletes it. Helm does not remove hook resources on uninstall, so
+    # without this the Job outlives the release indefinitely.
+    ttlSecondsAfterFinished: 3600
 
   ncmpDmiPlugin:
     image:

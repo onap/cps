@@ -30,6 +30,7 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 spec:
   backoffLimit: {{ .Values.onapDmiStack.sdncMountJob.backoffLimit }}
+  ttlSecondsAfterFinished: {{ .Values.onapDmiStack.sdncMountJob.ttlSecondsAfterFinished }}
   template:
     metadata:
       labels:
