@@ -36,6 +36,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f73c626f_2429f749",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/config/LogbackConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-09T15:38:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "36f72144_d5019518",
+      "revId": "53d438526dc3aa80782c594098ae016ecdbdc3a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e78a26f_0a639ab3",
