@@ -217,10 +217,7 @@ jobs:
   # patchset, so SonarCloud reports the patchset under review rather
   # than the target branch.
   #
-  # fail_on_quality_gate stays false for now: this change is about the
-  # vote collision, not about the gate policy. Note that the Jenkins
-  # cps-sonar-verify job has enforced the quality gate since 2022, so
-  # this lane is not yet at parity and that job must stay until it is.
+  # A failing quality gate fails this lane, which votes Verified-1.
   sonar:
     name: 'SonarQube Cloud'
     needs: clear-vote
@@ -243,7 +240,7 @@ jobs:
       mvn_phases: 'clean install'
       mvn_params: '-Djib.skip=true'
       wait_for_quality_gate: true
-      fail_on_quality_gate: false
+      fail_on_quality_gate: true
       timeout_minutes: 90
       build_permit_egress_traffic: true
       # yamllint disable-line rule:line-length
