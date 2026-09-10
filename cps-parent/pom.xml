@@ -481,6 +481,14 @@
                          -->
                         <TESTCONTAINERS_RYUK_DISABLED>true</TESTCONTAINERS_RYUK_DISABLED>
                         <TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>${docker.pull.registry}/</TESTCONTAINERS_HUB_IMAGE_NAME_PREFIX>
+                        <!--
+                            Hazelcast and Liquibase both contact vendor
+                            analytics endpoints from the test JVM. Neither
+                            call contributes to the build, and CI should not
+                            phone home while running an untrusted patchset.
+                         -->
+                        <HZ_PHONE_HOME_ENABLED>false</HZ_PHONE_HOME_ENABLED>
+                        <LIQUIBASE_ANALYTICS_ENABLED>false</LIQUIBASE_ANALYTICS_ENABLED>
                     </environmentVariables>
                 </configuration>
             </plugin>
