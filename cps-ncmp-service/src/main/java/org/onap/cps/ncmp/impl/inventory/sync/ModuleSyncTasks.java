@@ -50,6 +50,7 @@ public class ModuleSyncTasks {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
 
     private static final int RESET_BATCH_SIZE = 300;
+    private static final CmHandleState NO_CHANGE = null;
 
     /**
      * Perform module sync on a batch of cm handles.
@@ -63,7 +64,12 @@ public class ModuleSyncTasks {
                 final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
                 if (isCmHandleInAdvisedState(yangModelCmHandle)) {
                     final CmHandleState newCmHandleState = processCmHandle(yangModelCmHandle);
-                    cmHandleStatePerCmHandle.put(yangModelCmHandle, newCmHandleState);
+                    if (newCmHandleState == NO_CHANGE) {
+                        log.info("Skipping state change for CM handle '{}' as it was already synced by another "
+                                + "instance", cmHandleId);
+                    } else {
+                        cmHandleStatePerCmHandle.put(yangModelCmHandle, newCmHandleState);
+                    }
                 } else {
                     log.warn("Skipping module sync for CM handle '{}' as it is in {} state", cmHandleId,
                             yangModelCmHandle.getCompositeState().getCmHandleState().name());
@@ -129,7 +135,10 @@ public class ModuleSyncTasks {
             } else if (inUpgrade) {
                 moduleSyncService.syncAndUpgradeSchemaSet(yangModelCmHandle);
             } else {
-                moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
+                final boolean anchorNewlyCreated = moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
+                if (!anchorNewlyCreated) {
+                    return NO_CHANGE;
+                }
             }
             compositeState.setLockReason(null);
             return CmHandleState.READY;

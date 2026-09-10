@@ -63,11 +63,13 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'the module service identifies #identifiedNewModuleReferences.size() new modules'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> identifiedNewModuleReferences
         when: 'module sync is triggered'
-            objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
+            def anchorNewlyCreated = objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked with correct parameters'
             1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, expectedSchemaSetName, newModuleNameContentToMap, moduleReferences)
         and: 'anchor is created with the correct parameters'
             1 * mockCpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, expectedSchemaSetName, 'ch-1')
+        and: 'the method reports that the anchor was newly created'
+            assert anchorNewlyCreated == true
         where: 'the following parameters are used'
             scenario                  | identifiedNewModuleReferences         | newModuleNameContentToMap     | moduleSetTag | existingModuleReferences                                                   || expectedSchemaSetName
             'one new module, new tag' | [new ModuleReference('module1', '1')] | [module1: 'some yang source'] | ''           | []                                                                         || 'ch-1'
@@ -115,9 +117,11 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'already defined exception occurs when creating schema (existing)'
             mockCpsAnchorService.createAnchor(*_) >> { throw AlreadyDefinedException.forAnchor('', '', null)  }
         when: 'module sync is triggered'
-            objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
+            def anchorNewlyCreated = objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
         then: 'the exception is ignored'
             noExceptionThrown()
+        and: 'the method reports that the anchor already existed (not newly created)'
+            assert anchorNewlyCreated == false
     }
 
     def 'Attempt Sync models for a cm handle with duplicate yang resources exception).'() {

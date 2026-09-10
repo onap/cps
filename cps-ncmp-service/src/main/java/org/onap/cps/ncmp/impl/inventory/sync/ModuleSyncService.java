@@ -65,17 +65,21 @@ public class ModuleSyncService {
      * Creates a CM handle and initiates the synchronization of modules to create a schema set and anchor.
      *
      * @param yangModelCmHandle the yang model of cm handle.
+     * @return {@code true} if the anchor was newly created; {@code false} if it already existed, which means
+     *         another instance already synced this CM handle (duplicate processing).
      */
-    public void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
+    public boolean syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
         final String cmHandleId = yangModelCmHandle.getId();
         final String targetModuleSetTag = yangModelCmHandle.getModuleSetTag();
         final String schemaSetName = getSchemaSetNameForModuleSetTag(cmHandleId, targetModuleSetTag);
         syncAndCreateSchemaSet(yangModelCmHandle, schemaSetName, targetModuleSetTag);
         try {
             cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName, cmHandleId);
+            return true;
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             log.warn("Ignoring (Anchor) already exists exception for {}. Exception details: {}", cmHandleId,
                     alreadyDefinedException.getDetails());
+            return false;
         }
     }
 
