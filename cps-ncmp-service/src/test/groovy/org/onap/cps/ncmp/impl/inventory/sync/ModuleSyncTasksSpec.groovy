@@ -90,13 +90,39 @@ class ModuleSyncTasksSpec extends Specification {
         when: 'module sync poll is executed'
             objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'])
         then: 'module sync service is invoked for each cm handle'
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2' }
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1'; true }
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2'; true }
         and: 'the state handler is called for the both cm handles'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle-1', 'cm-handle-2'], CmHandleState.READY)
             }
         and: 'the cm handles are removed from the in-progress map'
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
+            assert moduleSyncStartedOnCmHandles.get('cm-handle-2') == null
+    }
+
+    def 'Module Sync ADVISED cm handle already synced by another instance is excluded from the state batch.'() {
+        given: 'two cm handles in an ADVISED state'
+            def cmHandle1 = cmHandleByIdAndState('cm-handle-1', CmHandleState.ADVISED)
+            def cmHandle2 = cmHandleByIdAndState('cm-handle-2', CmHandleState.ADVISED)
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-1') >> cmHandle1
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-2') >> cmHandle2
+        and: 'cm handles are in the in-progress map'
+            moduleSyncStartedOnCmHandles.put('cm-handle-1', 'Started')
+            moduleSyncStartedOnCmHandles.put('cm-handle-2', 'Started')
+        and: 'module sync reports cm-handle-1 as newly created but cm-handle-2 as already synced by another instance'
+            mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(cmHandle1) >> true
+            mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(cmHandle2) >> false
+        when: 'module sync poll is executed'
+            objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'])
+        then: 'the state handler is called only for the newly created cm handle'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
+                assertBatch(args, ['cm-handle-1'], CmHandleState.READY)
+            }
+        and: 'a log message explains the duplicate was skipped'
+            def loggingEvent = logAppender.list.find { it.formattedMessage.contains('already synced by another instance') }
+            assert loggingEvent.formattedMessage.contains('cm-handle-2')
+        and: 'both cm handles are removed from the in-progress map'
             assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
             assert moduleSyncStartedOnCmHandles.get('cm-handle-2') == null
     }
@@ -151,7 +177,7 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'the deleting cm-handle did not sync'
             0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2' }
         and: 'the advised cm-handle synced'
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-3' }
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-3'; true }
         and: 'the state handler called for only the advised handle'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle-3'], CmHandleState.READY)
@@ -282,6 +308,8 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'cm handles are in the in-progress map'
             moduleSyncStartedOnCmHandles.put('cm-handle-1', 'Started')
             moduleSyncStartedOnCmHandles.put('cm-handle-2', 'Started')
+        and: 'module sync reports both anchors as newly created'
+            mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> true
         and: 'state persistence throws an exception'
             mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { throw new RuntimeException('DB error') }
         when: 'module sync is executed'
