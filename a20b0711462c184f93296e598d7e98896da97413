@@ -34,6 +34,24 @@
       "parentUuid": "d13edbe5_5fdf8404",
       "revId": "a20b0711462c184f93296e598d7e98896da97413",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc46c94c_8ecb8161",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-11T07:46:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c9890b0a_9bb9d392",
+      "revId": "a20b0711462c184f93296e598d7e98896da97413",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
