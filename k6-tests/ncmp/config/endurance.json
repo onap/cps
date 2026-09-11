@@ -96,5 +96,8 @@
       "vus": 10,
       "duration": "2h"
     }
+  },
+  "thresholds": {
+    "checks{assertion:cmhandles_ready}": ["rate==1"]
   }
 }
