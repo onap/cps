@@ -137,13 +137,12 @@ awk -F',' -v OFS=',' -v enduranceWindow="$enduranceWindow" '
 
     { # block for every data row
         initRowVariables()
-        isThroughput = (testNumber=="0" || testNumber=="1" || \
-                        testNumber=="2" || testNumber=="7")
+        isThroughput = (testNumber=="1" || testNumber=="2" || testNumber=="7")
         isKafkaVerification = (testNumber=="12")
-        isCmHandleSearch = (testNumber=="4a" || testNumber=="4b" || \
-                            testNumber=="4c" || testNumber=="4d" || testNumber=="4e")
+        isAllowedToBreakKpiDuringEndurance = (testNumber=="3b" || testNumber=="4a" || testNumber=="4b" || \
+                                              testNumber=="4c" || testNumber=="4d" || testNumber=="4e")
 
-        if (enduranceWindow == 1 && isCmHandleSearch) {
+        if (enduranceWindow == 1 && isAllowedToBreakKpiDuringEndurance) {
             # Endurance test is running concurrently; result is not representative.
             print titleRow, "⏭️ (endurance)"
             next

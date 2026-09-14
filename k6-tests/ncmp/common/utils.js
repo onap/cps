@@ -167,7 +167,9 @@ function makeSummaryCsvLine(testNumber, testName, unit, measurementName, current
     const thresholdArray = JSON.parse(JSON.stringify(scenarioConfig.thresholds[measurementName]));
     const thresholdString = thresholdArray[0];
     const [thresholdKey, thresholdOperator, thresholdValue] = thresholdString.split(/\s+/);
-    const actualValue = testResults.metrics[measurementName].values[thresholdKey].toFixed(3);
+    const rawValue = testResults.metrics[measurementName].values[thresholdKey];
+    const decimals = (measurementName === 'http_req_failed') ? 6 : 3;
+    const actualValue = rawValue.toFixed(decimals);
     return `${testNumber},${testName},${unit},${thresholdValue},${currentExpectation},${actualValue}`;
 }
 
