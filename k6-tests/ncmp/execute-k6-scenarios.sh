@@ -121,8 +121,7 @@ awk -F',' -v OFS=',' '
 
     { # block for every data row
         initRowVariables()
-        isThroughput = (testNumber=="0" || testNumber=="1" || \
-                        testNumber=="2" || testNumber=="7")
+        isThroughput = (testNumber=="1" || testNumber=="2" || testNumber=="7")
         isKafkaVerification = (testNumber=="12")
 
         if (isKafkaVerification)
