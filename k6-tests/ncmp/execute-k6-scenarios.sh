@@ -105,7 +105,23 @@ addResultColumn() {
   local tmp
   tmp=$(mktemp)
 
-awk -F',' -v OFS=',' '
+  # Detect whether we are inside the midnight endurance-test window (UTC).
+  # During this window the shared infrastructure also runs the endurance test,
+  # which contends for resources and inflates the CM-handle search timings
+  # (tests 4a-4e). We skip evaluating those tests rather than fail the gate.
+  # Window: 23:30 .. 02:30 UTC (wraps midnight).
+  local nowHourUtc nowMinuteUtc nowMinutesUtc
+  # 10# forces base-10 so values like 08/09 are not misread as invalid octal.
+  nowHourUtc=$(date -u +'%H')
+  nowMinuteUtc=$(date -u +'%M')
+  nowMinutesUtc=$(( 10#$nowHourUtc * 60 + 10#$nowMinuteUtc ))
+  local enduranceWindow=0
+  if (( nowMinutesUtc >= 1410 || nowMinutesUtc <= 150 )); then
+    enduranceWindow=1
+    echo "ℹ️  Within endurance window (23:30-02:30 UTC): skipping evaluation of tests 4a-4e."
+  fi
+
+awk -F',' -v OFS=',' -v enduranceWindow="$enduranceWindow" '
     function initRowVariables() {
         titleRow      = $0
         testNumber    = $1
@@ -124,6 +140,14 @@ awk -F',' -v OFS=',' '
         isThroughput = (testNumber=="0" || testNumber=="1" || \
                         testNumber=="2" || testNumber=="7")
         isKafkaVerification = (testNumber=="12")
+        isCmHandleSearch = (testNumber=="4a" || testNumber=="4b" || \
+                            testNumber=="4c" || testNumber=="4d" || testNumber=="4e")
+
+        if (enduranceWindow == 1 && isCmHandleSearch) {
+            # Endurance test is running concurrently; result is not representative.
+            print titleRow, "⏭️ (endurance)"
+            next
+        }
 
         if (isKafkaVerification)
             pass = (actual >= fsRequirement)
