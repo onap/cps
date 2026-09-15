@@ -63,6 +63,30 @@
       },
       "revId": "75e6cc78954c84af6b6ba7e8da993443857c7cff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6457609_4b229fff",
+        "filename": "docs/cps-composite-query.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-15T12:48:43Z",
+      "side": 1,
+      "message": "Done. Added a block explaining logical grouping as requested.",
+      "parentUuid": "e5faca19_7fb96956",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 101
+      },
+      "revId": "75e6cc78954c84af6b6ba7e8da993443857c7cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
