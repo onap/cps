@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
@@ -49,6 +50,7 @@ import org.onap.cps.ncmp.rest.util.ModuleRefreshResponseMapper;
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper;
 import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,12 +61,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class NetworkCmProxyInventoryController implements NetworkCmProxyInventoryApi {
 
+    private static final String TOTAL_COUNT_HEADER = "X-Total-Count";
+
     private final NetworkCmProxyInventoryFacade networkCmProxyInventoryFacade;
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final DeprecationHelper deprecationHelper;
     private final RestOutputCmHandleMapper restOutputCmHandleMapper;
     private final ModuleRefreshResponseMapper moduleRefreshResponseMapper;
     private final JsonObjectMapper jsonObjectMapper;
+
+    @Value("${ncmp.cm-handle-query-max:100000}")
+    private int cmHandleQueryMax;
 
     /**
      * Get CM handle details by distinguished name.
@@ -101,7 +108,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
         final Collection<String> cmHandleIds = networkCmProxyInventoryFacade
                 .southboundCmHandleIdSearch(cmHandleQueryServiceParameters, outputAlternateId);
-        return ResponseEntity.ok(List.copyOf(cmHandleIds));
+        return buildLimitedResponse(cmHandleIds);
     }
 
     /**
@@ -124,7 +131,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
                         .map(handle -> restOutputCmHandleMapper
                                 .toRestOutputCmHandle(handle, outputDmiPropertiesAsPrimitive))
                         .collectList().block();
-        return ResponseEntity.ok(restOutputCmHandles);
+        return buildLimitedResponse(restOutputCmHandles);
     }
 
     /**
@@ -163,7 +170,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final Collection<String> cmHandleIds =
             networkCmProxyInventoryFacade.getAllCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifier,
                 outputAlternateId);
-        return ResponseEntity.ok(List.copyOf(cmHandleIds));
+        return buildLimitedResponse(cmHandleIds);
     }
 
     /**
@@ -177,6 +184,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         description = "Time taken to handle registration request")
     public ResponseEntity updateDmiPluginRegistration(
         final @Valid RestDmiPluginRegistration restDmiPluginRegistration) {
+        validateRegistrationArraySizes(restDmiPluginRegistration);
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse =
             networkCmProxyInventoryFacade.updateDmiRegistration(
                 ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
@@ -206,7 +214,36 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
                         .map(handle -> restOutputCmHandleMapper
                                 .toRestOutputCmHandleLightweight(handle, includeDmiProperties))
                         .collectList().block();
-        return ResponseEntity.ok(restOutputCmHandles);
+        return buildLimitedResponse(restOutputCmHandles);
+    }
+
+    private <T> ResponseEntity<List<T>> buildLimitedResponse(final Collection<T> results) {
+        final int totalCount = results.size();
+        final List<T> allResults = List.copyOf(results);
+        if (totalCount <= cmHandleQueryMax) {
+            return ResponseEntity.ok(allResults);
+        }
+        final List<T> limitedResults = allResults.subList(0, cmHandleQueryMax);
+        return ResponseEntity.ok()
+                .header(TOTAL_COUNT_HEADER, String.valueOf(totalCount))
+                .body(limitedResults);
+    }
+
+    private void validateRegistrationArraySizes(final RestDmiPluginRegistration restDmiPluginRegistration) {
+        rejectIfTooLarge("createdCmHandles", restDmiPluginRegistration.getCreatedCmHandles().size());
+        rejectIfTooLarge("updatedCmHandles", restDmiPluginRegistration.getUpdatedCmHandles().size());
+        rejectIfTooLarge("removedCmHandles", restDmiPluginRegistration.getRemovedCmHandles().size());
+        if (restDmiPluginRegistration.getUpgradedCmHandles() != null) {
+            rejectIfTooLarge("upgradedCmHandles",
+                    restDmiPluginRegistration.getUpgradedCmHandles().getCmHandles().size());
+        }
+    }
+
+    private void rejectIfTooLarge(final String arrayName, final int size) {
+        if (size > cmHandleQueryMax) {
+            throw new PayloadTooLargeException("Registration '" + arrayName + "' contains too many (" + size
+                    + ") cm handles. Maximum allowed is " + cmHandleQueryMax + ".");
+        }
     }
 
     private boolean allRegistrationsSuccessful(

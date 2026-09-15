@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -41,6 +42,9 @@ import reactor.core.publisher.Mono;
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
     private final DmiDataOperations dmiDataOperations;
+
+    @Value("${ncmp.cm-handle-query-max:100000}")
+    private int cmHandleQueryMax;
 
     private static final int MAXIMUM_CM_HANDLES_PER_OPERATION = 200;
     private static final String PAYLOAD_TOO_LARGE_TEMPLATE = "Operation '%s' affects too many (%d) cm handles";
@@ -81,7 +85,8 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     private void validateDataOperationRequest(final String topicParamInQuery,
                                               final DataOperationRequest dataOperationRequest) {
         topicValidator.validateTopicName(topicParamInQuery);
-        dataOperationRequest.getDataOperationDefinitions().forEach(dataOperationDefinition -> {
+        int totalCmHandleReferences = 0;
+        for (final var dataOperationDefinition : dataOperationRequest.getDataOperationDefinitions()) {
             if (OperationType.fromOperationName(dataOperationDefinition.getOperation()) != READ) {
                 throw new OperationNotSupportedException(
                         dataOperationDefinition.getOperation() + " operation not yet supported");
@@ -96,6 +101,11 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                         dataOperationDefinition.getCmHandleReferences().size());
                 throw new PayloadTooLargeException(errorMessage);
             }
-        });
+            totalCmHandleReferences += dataOperationDefinition.getCmHandleReferences().size();
+        }
+        if (totalCmHandleReferences > cmHandleQueryMax) {
+            throw new PayloadTooLargeException("Data operation request affects too many (" + totalCmHandleReferences
+                    + ") cm handles. Maximum allowed is " + cmHandleQueryMax + ".");
+        }
     }
 }

@@ -197,6 +197,7 @@ logging:
             onap:
                 cps: INFO
 ncmp:
+    cm-handle-query-max: 100000
     notifications:
         avc-event-producer:
             transaction-id-prefix: tx-

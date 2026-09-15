@@ -41,6 +41,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def setup() {
         objectUnderTest.topicValidator = new TopicValidator()
+        objectUnderTest.cmHandleQueryMax = 100_000
     }
 
     def NO_TOPIC = null
@@ -129,6 +130,35 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             def exceptionThrown = thrown(PayloadTooLargeException)
         and: 'the error message contains the offending number of cm handles'
             assert exceptionThrown.message == "Operation 'abc' affects too many (${tooMany}) cm handles"
+    }
+
+    def 'Execute async data operation request with total cm handles across definitions #scenario the configured maximum.'() {
+        given: 'notification feature is turned on'
+            objectUnderTest.notificationFeatureEnabled = true
+        and: 'the configured maximum is set to #cmHandleQueryMax'
+            objectUnderTest.cmHandleQueryMax = cmHandleQueryMax
+        and: 'two data operation definitions whose combined cm handle references total 4'
+            def firstDefinition = new DataOperationDefinition(operationId: 'op-1', operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleReferences: ['ch-1', 'ch-2'])
+            def secondDefinition = new DataOperationDefinition(operationId: 'op-2', operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleReferences: ['ch-3', 'ch-4'])
+        when: 'data operation request is executed'
+            def caughtException = null
+            def result = null
+            try {
+                result = objectUnderTest.executeAsynchronousRequest('someTopic', new DataOperationRequest(dataOperationDefinitions: [firstDefinition, secondDefinition]), NO_AUTH_HEADER)
+            } catch (PayloadTooLargeException payloadTooLargeException) {
+                caughtException = payloadTooLargeException
+            }
+        then: 'a payload too large exception is captured only when the total exceeds the maximum'
+            if (expectPayloadTooLarge) {
+                assert caughtException.message == 'Data operation request affects too many (4) cm handles. Maximum allowed is 3.'
+            } else {
+                assert result.keySet()[0] == 'requestId'
+                assert caughtException == null
+            }
+        where: 'the following maximums are used'
+            scenario  | cmHandleQueryMax || expectPayloadTooLarge
+            'exceeds' | 3                || true
+            'equals'  | 4                || false
     }
 
 }

@@ -74,10 +74,16 @@ components:
           default: ""
         createdCmHandles:
           type: array
+          description: >-
+            Capped by the configurable maximum ncmp.cm-handle-query-max (default 100,000). A request exceeding this
+            limit is rejected with HTTP 413 (Payload Too Large).
           items:
             $ref: '#/components/schemas/RestInputCmHandle'
         updatedCmHandles:
           type: array
+          description: >-
+            Capped by the configurable maximum ncmp.cm-handle-query-max (default 100,000). A request exceeding this
+            limit is rejected with HTTP 413 (Payload Too Large).
           items:
             $ref: '#/components/schemas/RestInputCmHandle'
             example:
@@ -92,6 +98,9 @@ components:
                 delete-my-property: '~'
         removedCmHandles:
           type: array
+          description: >-
+            Capped by the configurable maximum ncmp.cm-handle-query-max (default 100,000). A request exceeding this
+            limit is rejected with HTTP 413 (Payload Too Large).
           items:
             type: string
           example: [ my-cm-handle1, my-cm-handle2, my-cm-handle3 ]
@@ -911,3 +920,13 @@ components:
             dmi-response:
               http-code: 400
               body: "Bad Request"
+
+  headers:
+    XTotalCount:
+      description: >-
+        The actual total number of matching results. Included only when the result set exceeds the configured
+        maximum (ncmp.cm-handle-query-max) and the returned body has been truncated to that maximum.
+      required: false
+      schema:
+        type: integer
+      example: 75000
