@@ -23,21 +23,23 @@ package org.onap.cps.ncmp.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.CmHandlesByModuleSetTag
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
+import org.onap.cps.ncmp.rest.model.RestInputCmHandle
 import org.onap.cps.ncmp.rest.model.RestModuleRefreshResponse
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight
+import org.onap.cps.ncmp.rest.model.UpgradedCmHandles
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.ncmp.rest.util.ModuleRefreshResponseMapper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
@@ -88,6 +90,9 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
 
     @Value('${rest.api.ncmp-inventory-base-path}/v1')
     def ncmpBasePathV1
+
+    static tooManyInputCmHandles = [new RestInputCmHandle(cmHandle: 'ch-1'), new RestInputCmHandle(cmHandle: 'ch-2'), new RestInputCmHandle(cmHandle: 'ch-3')]
+    static tooManyCmHandleIds = ['ch-1', 'ch-2', 'ch-3']
 
     def 'Dmi plugin registration #scenario'() {
         given: 'a dmi plugin registration with #scenario'
@@ -354,7 +359,6 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     def expectedUnknownErrorResponse(cmHandle) {
         return new CmHandlerRegistrationErrorResponse('cmHandle': cmHandle, 'errorCode': '108', 'errorText': 'Failed')
     }
-
     def expectedFailedResponse(cmHandle) {
         return CmHandleRegistrationResponse.createFailureResponse(cmHandle, new RuntimeException('Failed'))
     }
@@ -389,6 +393,146 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             'no outputDmiProperties parameter'       | ''                           || false
             'dmi properties are requested'           | '?outputDmiProperties=true'  || true
             'dmi properties are explicitly excluded' | '?outputDmiProperties=false' || false
+    }
+
+    def 'Search cm handle ids result #scenario the configured maximum (2).'() {
+        given: 'the mapper service returns a converted object'
+            ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
+        and: 'the service returns the given references'
+            mockNetworkCmProxyInventoryFacade.southboundCmHandleIdSearch(cmHandleQueryServiceParameters, _) >> serviceReferences
+        when: 'the id search endpoint is invoked'
+            def response = mvc.perform(
+                    post("$ncmpBasePathV1/ch/searches")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content('{}')
+            ).andReturn().response
+        then: 'response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains the expected (possibly truncated) references'
+            assert jsonObjectMapper.convertJsonString(response.getContentAsString(), List) == expectedReferences
+        and: 'the X-Total-Count header is only present when the result was truncated'
+            assert response.getHeader('X-Total-Count') == expectedTotalCountHeader
+        where:
+            scenario    | serviceReferences        || expectedReferences | expectedTotalCountHeader
+            'exceeds'   | ['ch-1', 'ch-2', 'ch-3'] || ['ch-1', 'ch-2']   | '3'
+            'is within' | ['ch-1', 'ch-2']         || ['ch-1', 'ch-2']   | null
+    }
+
+    def 'Get all cm handle references for a registered DMI is truncated when it exceeds the configured maximum.'() {
+        given: 'the service returns more references (3) than the configured maximum (2)'
+            mockNetworkCmProxyInventoryFacade.getAllCmHandleReferencesByDmiPluginIdentifier('some-dmi', false) >> ['ch-1', 'ch-2', 'ch-3']
+        when: 'the endpoint is invoked'
+            def response = mvc.perform(
+                    get("$ncmpBasePathV1/ch/cmHandles?dmi-plugin-identifier=some-dmi")
+                            .accept(MediaType.APPLICATION_JSON_VALUE)
+            ).andReturn().response
+        then: 'response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response is truncated to the configured maximum'
+            assert jsonObjectMapper.convertJsonString(response.getContentAsString(), List) == ['ch-1', 'ch-2']
+        and: 'the X-Total-Count header reflects the actual total'
+            assert response.getHeader('X-Total-Count') == '3'
+    }
+
+    def 'Search cm handles (with details) exceeding the configured maximum.'() {
+        given: 'the deprecation helper maps the request to api parameters'
+            deprecationHelper.mapOldConditionProperties(_) >> new CmHandleQueryApiParameters()
+        and: 'the facade returns more cm handles (3) than the configured maximum (2)'
+            def ch1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
+            def ch2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2')
+            def ch3 = new NcmpServiceCmHandle(cmHandleId: 'ch-3')
+            mockNetworkCmProxyInventoryFacade.southboundCmHandleSearch(_) >> Flux.fromIterable([ch1, ch2, ch3])
+        and: 'the mapper converts each cm handle'
+            mockRestOutputCmHandleMapper.toRestOutputCmHandle(ch1, false) >> new RestOutputCmHandle(cmHandle: 'ch-1')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandle(ch2, false) >> new RestOutputCmHandle(cmHandle: 'ch-2')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandle(ch3, false) >> new RestOutputCmHandle(cmHandle: 'ch-3')
+        when: 'the searchCmHandles endpoint is invoked'
+            def response = mvc.perform(
+                    post("$ncmpBasePathV1/ch/searchCmHandles")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content('{}')
+            ).andReturn().response
+        then: 'response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the X-Total-Count header reflects the actual total'
+            assert response.getHeader('X-Total-Count') == '3'
+        and: 'only the first two cm handles are returned'
+            assert response.contentAsString.contains('ch-1')
+            assert response.contentAsString.contains('ch-2')
+        and: 'it does not contain the third cm -handle'
+            assert !response.contentAsString.contains('ch-3')
+    }
+
+    def 'Lightweight cm handle search result exceeding the configured maximum.'() {
+        given: 'the facade returns more lightweight cm handles (3) than the configured maximum (2)'
+            def ch1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
+            def ch2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2')
+            def ch3 = new NcmpServiceCmHandle(cmHandleId: 'ch-3')
+            mockNetworkCmProxyInventoryFacade.southboundCmHandleSearchLightweight(_) >> Flux.fromIterable([ch1, ch2, ch3])
+        and: 'the mapper converts each cm handle to lightweight output'
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ch1, false) >> new RestOutputCmHandleLightweight(cmHandle: 'ch-1')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ch2, false) >> new RestOutputCmHandleLightweight(cmHandle: 'ch-2')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ch3, false) >> new RestOutputCmHandleLightweight(cmHandle: 'ch-3')
+        when: 'the v2 lightweight search endpoint is invoked'
+            def response = mvc.perform(
+                    post('/ncmpInventory/v2/ch/searchCmHandles')
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content('{"cmHandleQueryParameters":[]}')
+            ).andReturn().response
+        then: 'response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the X-Total-Count header reflects the actual total'
+            assert response.getHeader('X-Total-Count') == '3'
+        and: 'only the first two cm handles are returned'
+            assert response.contentAsString.contains('ch-1')
+            assert response.contentAsString.contains('ch-2')
+        and: 'it does not contain the third cm -handle'
+            assert !response.contentAsString.contains('ch-3')
+    }
+
+    def 'Dmi plugin registration with #scenario array exceeding the configured maximum.'() {
+        given: 'a registration where #scenario exceeds the configured maximum (2)'
+            def restDmiPluginRegistration = new RestDmiPluginRegistration(
+                createdCmHandles: createdCmHandles,
+                updatedCmHandles: updatedCmHandles,
+                removedCmHandles: removedCmHandles,
+                upgradedCmHandles: upgradedCmHandles)
+            def jsonData = jsonObjectMapper.asJsonString(restDmiPluginRegistration)
+        when: 'the registration endpoint is invoked'
+            def response = mvc.perform(
+                post("$ncmpBasePathV1/ch")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(jsonData)
+            ).andReturn().response
+        then: 'response status is payload too large'
+            assert response.status == HttpStatus.CONTENT_TOO_LARGE.value()
+        and: 'the registration service is never called'
+            0 * mockNetworkCmProxyInventoryFacade.updateDmiRegistration(_)
+        where: 'the following oversized arrays are used'
+            scenario   | createdCmHandles      | updatedCmHandles      | removedCmHandles   | upgradedCmHandles
+            'created'  | tooManyInputCmHandles | []                    | []                 | null
+            'updated'  | []                    | tooManyInputCmHandles | []                 | null
+            'removed'  | []                    | []                    | tooManyCmHandleIds | null
+            'upgraded' | []                    | []                    | []                 | new UpgradedCmHandles(cmHandles: tooManyCmHandleIds)
+    }
+
+    def 'Dmi plugin registration with all arrays within the configured maximum.'() {
+        given: 'a registration where every array is within the configured maximum (2)'
+            def restDmiPluginRegistration = new RestDmiPluginRegistration(
+                createdCmHandles: [new RestInputCmHandle(cmHandle: 'ch-1'), new RestInputCmHandle(cmHandle: 'ch-2')],
+                removedCmHandles: ['ch-3', 'ch-4'],
+                upgradedCmHandles: new UpgradedCmHandles(cmHandles: ['ch-5', 'ch-6']))
+            def jsonData = jsonObjectMapper.asJsonString(restDmiPluginRegistration)
+        and: 'the registration service returns a response'
+            mockNetworkCmProxyInventoryFacade.updateDmiRegistration(_) >> new DmiPluginRegistrationResponse()
+        when: 'the registration endpoint is invoked'
+            def response = mvc.perform(
+                post("$ncmpBasePathV1/ch")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(jsonData)
+            ).andReturn().response
+        then: 'response status is OK'
+            assert response.status == HttpStatus.OK.value()
     }
 
 }
