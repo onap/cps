@@ -29,6 +29,14 @@ spec:
     app: {{ include "cps-and-ncmp.name" . }}
     component: cps
   ports:
-    - port: {{ .Values.cps.servicePort }}
+    - name: http
+      port: {{ .Values.cps.servicePort }}
       targetPort: 8080
       nodePort: {{ .Values.cps.service.nodePort | default nil }}
+    {{- if .Values.cps.debug.enabled }}
+    # Exposes the JVM debug port so a remote debugger can attach from the host.
+    - name: jvm-debug
+      port: {{ .Values.cps.debug.port }}
+      targetPort: {{ .Values.cps.debug.port }}
+      nodePort: {{ .Values.cps.debug.nodePort }}
+    {{- end }}
