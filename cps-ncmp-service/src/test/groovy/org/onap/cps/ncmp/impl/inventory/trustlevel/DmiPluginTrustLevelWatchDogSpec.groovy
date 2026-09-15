@@ -49,6 +49,8 @@ class DmiPluginTrustLevelWatchDogSpec extends Specification {
         and: 'dmi client returns health status #dmiHealhStatus'
             def urlTemplateParameters = new UrlTemplateParameters('dmi-1/actuator/health', [:])
             mockDmiRestClient.getDmiHealthStatus(urlTemplateParameters) >> Mono.just(dmiHealhStatus)
+        and: 'the query returns the cm-handle references belonging to dmi-1'
+            mockCmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier('dmi-1', false) >> ['ch-1', 'ch-2']
         when: 'dmi watch dog method runs'
             objectUnderTest.checkDmiAvailability()
         then: 'the update delegated to manager'

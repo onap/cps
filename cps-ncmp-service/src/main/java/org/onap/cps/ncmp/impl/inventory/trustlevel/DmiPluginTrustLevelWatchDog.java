@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public class DmiPluginTrustLevelWatchDog {
         trustLevelPerDmiPlugin.forEach((dmiServiceName, oldDmiTrustLevel) -> {
             final TrustLevel newDmiTrustLevel;
             final String dmiHealthStatus = getDmiHealthStatus(dmiServiceName);
-            log.debug("The health status for dmi-plugin: {} is {}", dmiServiceName, dmiHealthStatus);
+            log.info("The health status for dmi-plugin: {} is {}", dmiServiceName, dmiHealthStatus);
 
             if ("UP".equals(dmiHealthStatus)) {
                 newDmiTrustLevel = TrustLevel.COMPLETE;
@@ -67,6 +67,9 @@ public class DmiPluginTrustLevelWatchDog {
             } else {
                 final Collection<String> cmHandleIds =
                     cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiServiceName, false);
+                log.info("Trust level for dmi-plugin: {} changed from {} to {} (health status: {}); "
+                        + "updating {} affected cm-handle(s)",
+                    dmiServiceName, oldDmiTrustLevel, newDmiTrustLevel, dmiHealthStatus, cmHandleIds.size());
                 trustLevelManager.updateDmi(dmiServiceName, cmHandleIds, newDmiTrustLevel);
             }
         });
