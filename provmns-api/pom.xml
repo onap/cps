@@ -108,8 +108,8 @@
                 Merges the pre-built generated-only JAR from local-repo with the hand-written compiled classes
                 into the final JAR during the compile phase. The hand-written classes (Resource,
                 ClassNameIdGetDataNodeSelectorParameter) override any stale versions from the lib JAR.
-                After install, the merged JAR is copied back to local-repo so it stays up to date
-                for subsequent builds (e.g. IntelliJ), avoiding the 'missing classes' issue.
+                This writes to target/ only: the JAR in local-repo is a committed build input and must
+                not be modified by a build. Regenerate it with -Pgenerate-provmns-api when the spec changes.
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -130,19 +130,6 @@
                                 </jar>
                                 <unzip src="${project.build.outputDirectory}/../provmns-api-merged.jar"
                                        dest="${project.build.outputDirectory}" overwrite="true"/>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <!-- Syncs the merged JAR back to local-repo so IntelliJ and subsequent builds see the full jar -->
-                    <execution>
-                        <id>update-local-repo-jar</id>
-                        <phase>install</phase>
-                        <goals><goal>run</goal></goals>
-                        <configuration>
-                            <target>
-                                <copy file="${project.build.directory}/${project.build.finalName}.jar"
-                                      tofile="${project.basedir}/local-repo/org/onap/cps/provmns-api/${provmns.lib.version}/provmns-api-${provmns.lib.version}.jar"
-                                      overwrite="true"/>
                             </target>
                         </configuration>
                     </execution>
