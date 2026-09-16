@@ -39,9 +39,6 @@ tmp/
 
 /test-tools/metrics-reports/
 
-csit/env.properties
-csit/archives/
-
 /k6-tests/logs/
 /k6-tests/image/
 
