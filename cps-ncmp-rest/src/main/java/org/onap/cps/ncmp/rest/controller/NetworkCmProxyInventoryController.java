@@ -70,7 +70,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private final ModuleRefreshResponseMapper moduleRefreshResponseMapper;
     private final JsonObjectMapper jsonObjectMapper;
 
-    @Value("${ncmp.cm-handle-query-max:100000}")
+    @Value("${ncmp.cm-handle-query-max:120000}")
     private int cmHandleQueryMax;
 
     /**
