@@ -24,7 +24,9 @@ metadata:
     app: {{ include "cps-and-ncmp.name" . }}
     component: cps-and-ncmp
 spec:
-  replicas: {{ .Values.cps.replicas }}
+  # Remote JVM debug attaches to a single JVM, so a debug session must target
+  # exactly one CPS instance. Force a single replica when debug is enabled.
+  replicas: {{ if .Values.cps.debug.enabled }}1{{ else }}{{ .Values.cps.replicas }}{{ end }}
   selector:
     matchLabels:
       app: {{ include "cps-and-ncmp.name" . }}
@@ -64,11 +66,22 @@ spec:
           ports:
             - containerPort: 8080
             - containerPort: 5701
+            {{- if .Values.cps.debug.enabled }}
+            - containerPort: {{ .Values.cps.debug.port }}
+              name: jvm-debug
+            {{- end }}
           env:
             {{- range $envName, $envValue := .Values.cps.env }}
+            {{- if ne $envName "JAVA_TOOL_OPTIONS" }}
             - name: {{ $envName | upper }}
               value: "{{ $envValue }}"
             {{- end }}
+            {{- end }}
+            # JAVA_TOOL_OPTIONS is emitted once here so the remote-debug JDWP agent
+            # can be appended when cps.debug.enabled is true. A debugger attaches over
+            # this agent; suspend=n lets CPS start normally until a debugger connects.
+            - name: JAVA_TOOL_OPTIONS
+              value: "{{ .Values.cps.env.JAVA_TOOL_OPTIONS }}{{ if .Values.cps.debug.enabled }} -agentlib:jdwp=transport=dt_socket,server=y,suspend={{ .Values.cps.debug.suspend }},address=*:{{ .Values.cps.debug.port }}{{ end }}"
             - name: CPS_NCMP_SERVICE_NAME
               value: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast-service
           resources:

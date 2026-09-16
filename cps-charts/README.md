@@ -220,6 +220,50 @@ The `dmi-stub` and the `onapDmiStack` `ncmp-dmi-plugin` are mutually exclusive: 
 enabling `onapDmiStack` automatically excludes `dmi-stub`, regardless of `dmiStub.enabled`.
 ---
 
+## Remote JVM Debugging
+
+The CPS container can expose a remote JVM debug (JDWP) port so you can set breakpoints
+and step through the running image from your IDE. It is **disabled by default** and is
+activated at install time with a single `--set` flag — no config file changes required.
+
+Enable it when installing:
+```bash
+helm install cps ./cps-charts --set cps.debug.enabled=true
+```
+
+When debug is enabled the chart:
+- forces a **single CPS replica** so the debugger attaches to a known JVM (a Service load-balancing
+  across multiple pods would make breakpoints fire non-deterministically);
+- starts the JVM with the JDWP agent appended to `JAVA_TOOL_OPTIONS`;
+- exposes the debug port (default **5005**) on **NodePort 30085**.
+
+By default `suspend=n`, so CPS boots normally and you can attach a debugger at any time.
+To make the JVM wait for a debugger before starting, set `--set cps.debug.suspend=y`.
+
+### Attaching a debugger (IntelliJ IDEA)
+1. Ensure the debug port is reachable from your host:
+   ```bash
+   kubectl port-forward service/cps-ncmp-service 5005:5005
+   ```
+   > **Note (Windows/Docker Desktop):** NodePort 30085 is reachable directly at
+   > `localhost:30085`; port forwarding is only required on Linux/Minikube.
+2. In IntelliJ, create a **Run/Debug Configuration** of type **Remote JVM Debug**.
+3. Set **Host** to `localhost` and **Port** to `5005` (or `30085` if connecting via NodePort
+   without port forwarding). Use debugger mode **Attach to remote JVM**.
+4. Start the configuration. Set a breakpoint in the CPS source, then send a request
+   (e.g. `http://localhost:30080/cps/api/v2/admin/dataspaces`) and execution will pause
+   at your breakpoint.
+
+### Configuration options
+| Value | Default | Description |
+| --- | --- | --- |
+| `cps.debug.enabled` | `false` | Enable the remote JVM debug agent. |
+| `cps.debug.port` | `5005` | JDWP port inside the container and on the service. |
+| `cps.debug.nodePort` | `30085` | NodePort used to reach the debug port from the host. |
+| `cps.debug.suspend` | `"n"` | `y` makes the JVM wait for a debugger before starting. |
+
+---
+
 ## Monitoring and Tracing
 Prometheus, Grafana, and Jaeger are included as optional components (disabled by default).
 For setup, usage, and troubleshooting, see [README-MONITORING-AND-TRACING.md](README-MONITORING-AND-TRACING.md).
