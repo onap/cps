@@ -115,6 +115,8 @@ app:
             inventory-events-topic: ncmp-inventory-events
         provmns:
             max-patch-operations: 10
+        data:
+            max-operations-per-request: 200
     lcm:
         events:
             topic: ${LCM_EVENTS_TOPIC:ncmp-events}
@@ -197,7 +199,7 @@ logging:
             onap:
                 cps: INFO
 ncmp:
-    cm-handle-query-max: 100000
+    cm-handle-query-max: 120000
     notifications:
         avc-event-producer:
             transaction-id-prefix: tx-

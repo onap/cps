@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -71,8 +72,8 @@ public class DmiDataOperationsHelper {
         final Map<String, List<DmiDataOperation>> dmiDataOperationsOutPerDmiServiceName = new HashMap<>();
         final MultiValueMap<DmiDataOperation, Map<NcmpResponseStatus,
                 List<String>>> cmHandleReferencesPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
-        final Map<String, String> nonReadyAlternateIdPerCmHandleId =
-            filterAndGetNonReadyAlternateIdPerCmHandleId(yangModelCmHandles);
+        final Set<String> nonReadyCmHandleReferences = getNonReadyCmHandleReferences(yangModelCmHandles);
+        final Map<String, String> cmHandleIdPerReference = getCmHandleIdPerReference(yangModelCmHandles);
 
         final Map<String, Map<String, Map<String, String>>> additionalPropertiesPerCmHandleIdPerDmiServiceName =
                 DmiServiceNameOrganizer.getAdditionalPropertiesPerCmHandleIdPerDmiServiceName(yangModelCmHandles);
@@ -85,13 +86,12 @@ public class DmiDataOperationsHelper {
         for (final DataOperationDefinition dataOperationDefinitionIn :
                 dataOperationRequestIn.getDataOperationDefinitions()) {
             final List<String> nonExistingCmHandleReferences = new ArrayList<>();
-            final List<String> nonReadyCmHandleReferences = new ArrayList<>();
+            final List<String> nonReadyCmHandleReferencesForOperation = new ArrayList<>();
             for (final String cmHandleReference : dataOperationDefinitionIn.getCmHandleReferences()) {
-                if (nonReadyAlternateIdPerCmHandleId.containsKey(cmHandleReference)
-                    || nonReadyAlternateIdPerCmHandleId.containsValue(cmHandleReference)) {
-                    nonReadyCmHandleReferences.add(cmHandleReference);
+                if (nonReadyCmHandleReferences.contains(cmHandleReference)) {
+                    nonReadyCmHandleReferencesForOperation.add(cmHandleReference);
                 } else {
-                    final String cmHandleId = getCmHandleId(cmHandleReference, yangModelCmHandles);
+                    final String cmHandleId = cmHandleIdPerReference.getOrDefault(cmHandleReference, cmHandleReference);
                     final String dmiServiceName = dmiServiceNamesPerCmHandleId.get(cmHandleId);
                     final Map<String, String> additionalProperties
                             = additionalPropertiesPerCmHandleIdPerDmiServiceName.get(dmiServiceName).get(cmHandleId);
@@ -112,7 +112,7 @@ public class DmiDataOperationsHelper {
                     CM_HANDLES_NOT_FOUND, nonExistingCmHandleReferences);
             populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleReferencesPerResponseCodesPerOperation,
                     DmiDataOperation.buildDmiDataOperationRequestBodyWithoutCmHandles(dataOperationDefinitionIn),
-                    CM_HANDLES_NOT_READY, nonReadyCmHandleReferences);
+                    CM_HANDLES_NOT_READY, nonReadyCmHandleReferencesForOperation);
         }
         sendErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleReferencesPerResponseCodesPerOperation);
         return dmiDataOperationsOutPerDmiServiceName;
@@ -186,26 +186,30 @@ public class DmiDataOperationsHelper {
         return dmiBatchOperationsOut.get(dmiBatchOperationsOut.size() - 1);
     }
 
-    private static Map<String, String> filterAndGetNonReadyAlternateIdPerCmHandleId(
+    private static Set<String> getNonReadyCmHandleReferences(
         final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<String, String> cmHandleReferenceMap = HashMap.newHashMap(0);
-        for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
+        final Set<String> nonReadyCmHandleReferences = new HashSet<>();
+        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
             if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {
-                cmHandleReferenceMap.put(yangModelCmHandle.getId(), yangModelCmHandle.getAlternateId());
+                nonReadyCmHandleReferences.add(yangModelCmHandle.getId());
+                if (yangModelCmHandle.getAlternateId() != null) {
+                    nonReadyCmHandleReferences.add(yangModelCmHandle.getAlternateId());
+                }
             }
         }
-        return cmHandleReferenceMap;
+        return nonReadyCmHandleReferences;
     }
 
-    private static String getCmHandleId(final String cmHandleReference,
-                                        final Collection<YangModelCmHandle> yangModelCmHandles) {
-        for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
-            if (cmHandleReference.equals(yangModelCmHandle.getId())
-                || cmHandleReference.equals(yangModelCmHandle.getAlternateId())) {
-                return yangModelCmHandle.getId();
+    private static Map<String, String> getCmHandleIdPerReference(
+        final Collection<YangModelCmHandle> yangModelCmHandles) {
+        final Map<String, String> cmHandleIdPerReference = HashMap.newHashMap(yangModelCmHandles.size());
+        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
+            cmHandleIdPerReference.put(yangModelCmHandle.getId(), yangModelCmHandle.getId());
+            if (yangModelCmHandle.getAlternateId() != null) {
+                cmHandleIdPerReference.put(yangModelCmHandle.getAlternateId(), yangModelCmHandle.getId());
             }
         }
-        return cmHandleReference;
+        return cmHandleIdPerReference;
     }
 
     private static void populateCmHandleIdsPerOperationIdPerResponseCode(final MultiValueMap<DmiDataOperation,

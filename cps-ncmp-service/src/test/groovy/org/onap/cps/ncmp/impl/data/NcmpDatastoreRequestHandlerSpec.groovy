@@ -41,7 +41,8 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def setup() {
         objectUnderTest.topicValidator = new TopicValidator()
-        objectUnderTest.cmHandleQueryMax = 100_000
+        objectUnderTest.cmHandleQueryMax = 120_000
+        objectUnderTest.maxNumberOfOperationsPerRequest = 200
     }
 
     def NO_TOPIC = null
@@ -157,8 +158,38 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             }
         where: 'the following maximums are used'
             scenario  | cmHandleQueryMax || expectPayloadTooLarge
-            'exceeds' | 3                || true
             'equals'  | 4                || false
+            'exceeds' | 3                || true
+    }
+
+    def 'Execute async data operation request with number of operations #scenario the configured maximum.'() {
+        given: 'notification feature is turned on'
+            objectUnderTest.notificationFeatureEnabled = true
+        and: 'the configured maximum number of operations is set to 2'
+            objectUnderTest.maxNumberOfOperationsPerRequest = 2
+        and: 'a request with #numberOfOperations single-cm-handle read operations'
+            def dataOperationDefinitions = (1..numberOfOperations).collect {
+                new DataOperationDefinition(operationId: "op-$it", operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleReferences: ['ch-1'])
+            }
+        when: 'data operation request is executed'
+            def caughtException = null
+            def result = null
+            try {
+                result = objectUnderTest.executeAsynchronousRequest('someTopic', new DataOperationRequest(dataOperationDefinitions: dataOperationDefinitions), NO_AUTH_HEADER)
+            } catch (PayloadTooLargeException payloadTooLargeException) {
+                caughtException = payloadTooLargeException
+            }
+        then: 'a payload too large exception is captured only when the number of operations exceeds the maximum'
+            if (expectPayloadTooLarge) {
+                assert caughtException.message == "Data operation request contains too many ($numberOfOperations) operations. Maximum allowed is 2."
+            } else {
+                assert caughtException == null
+                assert result.keySet()[0] == 'requestId'
+            }
+        where: 'the following operation counts are used'
+            scenario  | numberOfOperations || expectPayloadTooLarge
+            'equals'  | 2                  || false
+            'exceeds' | 3                  || true
     }
 
 }

@@ -43,11 +43,13 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
 
     private final DmiDataOperations dmiDataOperations;
 
-    @Value("${ncmp.cm-handle-query-max:100000}")
+    @Value("${ncmp.cm-handle-query-max:120000}")
     private int cmHandleQueryMax;
 
+    @Value("${app.ncmp.data.max-operations-per-request:200}")
+    private int maxNumberOfOperationsPerRequest;
+
     private static final int MAXIMUM_CM_HANDLES_PER_OPERATION = 200;
-    private static final String PAYLOAD_TOO_LARGE_TEMPLATE = "Operation '%s' affects too many (%d) cm handles";
 
     /**
      * Executes asynchronous request for group of cm handles to resource data.
@@ -85,6 +87,11 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     private void validateDataOperationRequest(final String topicParamInQuery,
                                               final DataOperationRequest dataOperationRequest) {
         topicValidator.validateTopicName(topicParamInQuery);
+        final int numberOfOperations = dataOperationRequest.getDataOperationDefinitions().size();
+        if (numberOfOperations > maxNumberOfOperationsPerRequest) {
+            throw new PayloadTooLargeException("Data operation request contains too many (" + numberOfOperations
+                    + ") operations. Maximum allowed is " + maxNumberOfOperationsPerRequest + ".");
+        }
         int totalCmHandleReferences = 0;
         for (final var dataOperationDefinition : dataOperationRequest.getDataOperationDefinitions()) {
             if (OperationType.fromOperationName(dataOperationDefinition.getOperation()) != READ) {
@@ -96,10 +103,9 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                         + " datastore is not supported");
             }
             if (dataOperationDefinition.getCmHandleReferences().size() > MAXIMUM_CM_HANDLES_PER_OPERATION) {
-                final String errorMessage = String.format(PAYLOAD_TOO_LARGE_TEMPLATE,
-                        dataOperationDefinition.getOperationId(),
-                        dataOperationDefinition.getCmHandleReferences().size());
-                throw new PayloadTooLargeException(errorMessage);
+                throw new PayloadTooLargeException("Operation '" + dataOperationDefinition.getOperationId()
+                        + "' affects too many (" + dataOperationDefinition.getCmHandleReferences().size()
+                        + ") cm handles");
             }
             totalCmHandleReferences += dataOperationDefinition.getCmHandleReferences().size();
         }

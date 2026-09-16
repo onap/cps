@@ -133,6 +133,18 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
             jsonObjectMapper.asJsonString(dataOperationResponseEvent.data.responses) == dataOperationResponseEventJson
     }
 
+    def 'Process data operation request referencing a non-ready cm handle by its alternate id.'() {
+        given: 'a data operation request targeting the alternate id of a non-ready cm handle'
+            def dataOperationDefinition = new org.onap.cps.ncmp.api.data.models.DataOperationDefinition(
+                operation: 'read', operationId: 'op-1', datastore: 'ncmp-datastore:passthrough-running',
+                cmHandleReferences: ['non-ready-alternate'])
+            def dataOperationRequest = new DataOperationRequest(dataOperationDefinitions: [dataOperationDefinition])
+        when: 'the data operation request is processed'
+            def operationsOutPerDmiServiceName = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(clientTopic, 'request-id', dataOperationRequest, getYangModelCmHandles())
+        then: 'no dmi operation is produced for the non-ready reference (it is classified non-ready, not dispatched)'
+            assert operationsOutPerDmiServiceName.isEmpty()
+    }
+
     static def getYangModelCmHandles() {
         def additionalProperties = [new YangModelCmHandle.Property('prop', 'some additional property')]
         def readyState = new CompositeStateBuilder().withCmHandleState(READY).withLastUpdatedTimeNow().build()

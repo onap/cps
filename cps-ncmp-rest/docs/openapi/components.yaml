@@ -75,14 +75,14 @@ components:
         createdCmHandles:
           type: array
           description: >-
-            Capped by the configurable maximum ncmp.cm-handle-query-max (default 100,000). A request exceeding this
+            Capped by the configurable maximum ncmp.cm-handle-query-max (default 120,000). A request exceeding this
             limit is rejected with HTTP 413 (Payload Too Large).
           items:
             $ref: '#/components/schemas/RestInputCmHandle'
         updatedCmHandles:
           type: array
           description: >-
-            Capped by the configurable maximum ncmp.cm-handle-query-max (default 100,000). A request exceeding this
+            Capped by the configurable maximum ncmp.cm-handle-query-max (default 120,000). A request exceeding this
             limit is rejected with HTTP 413 (Payload Too Large).
           items:
             $ref: '#/components/schemas/RestInputCmHandle'
@@ -99,7 +99,7 @@ components:
         removedCmHandles:
           type: array
           description: >-
-            Capped by the configurable maximum ncmp.cm-handle-query-max (default 100,000). A request exceeding this
+            Capped by the configurable maximum ncmp.cm-handle-query-max (default 120,000). A request exceeding this
             limit is rejected with HTTP 413 (Payload Too Large).
           items:
             type: string
@@ -469,7 +469,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DataOperationDefinition'
-          description: contains group of data operation requests
+          description: contains group of data operation requests; the number of operations is capped by the configurable maximum app.ncmp.data.max-operations-per-request (default 200). If this limit is exceeded the request is refused with HTTP 413 (Payload Too Large).
     DataOperationDefinition:
       required:
         - operation
