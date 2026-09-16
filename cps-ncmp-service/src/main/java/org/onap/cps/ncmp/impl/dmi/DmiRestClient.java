@@ -235,8 +235,8 @@ public class DmiRestClient {
                     }
                 })
                 .onErrorResume(Exception.class, e -> {
-                    log.warn("Failed to retrieve health status from {}. Status: {}",
-                            urlTemplateParameters.urlTemplate(), e.getMessage());
+                    log.warn("Failed to retrieve health status from {}. Exception type: {}, message: {}",
+                            urlTemplateParameters.urlTemplate(), e.getClass().getName(), e.getMessage());
                     return Mono.empty();
                 })
                 .defaultIfEmpty(NOT_SPECIFIED);
