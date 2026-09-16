@@ -59,6 +59,20 @@ cps:
     type: NodePort
     port: 8080
     nodePort: 30080
+  # Remote JVM debugging (JDWP). Disabled by default.
+  # Enable at install time without editing any file, e.g.:
+  #   helm install cps ./cps-charts --set cps.debug.enabled=true
+  # When enabled the chart forces a single CPS replica so the debugger
+  # attaches to a known JVM, and exposes the debug port on debug.nodePort.
+  debug:
+    enabled: false
+    # JDWP listen port inside the container and on the service.
+    port: 5005
+    # NodePort used to reach the debug port from the host.
+    nodePort: 30085
+    # suspend=y makes the JVM wait for a debugger before starting;
+    # suspend=n (default) lets CPS boot normally and attach later.
+    suspend: "n"
   resources:
     requests:
       cpu: "1100m"
