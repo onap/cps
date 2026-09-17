@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d1fb39e_87fd4070",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-17T13:46:39Z",
+      "side": 1,
+      "message": "it is the issue from the bug \n\n\u0027Both PATCH and PUT on /ncmp/v1/ch/{cm-handle}/data/ds/{datastore} should return the DMI plugin\u0027s response body as the HTTP response body, consistent with how\nGET /ncmp/v1/ch/{cm-handle}/data/ds/{datastore} forwards the DMI body. For the examples above, the expected 200 OK body is the JSON object returned by the DMI plugin, e.g.: {}\n\nThis matches the OpenAPI specification, which defines the 200 response of both operations as application/json with schema: type: object.\u0027",
+      "parentUuid": "e35bbecd_3df41372",
+      "range": {
+        "startLine": 226,
+        "startChar": 33,
+        "endLine": 226,
+        "endChar": 47
+      },
+      "revId": "23214f9a2f412317f6311cb123c34484a8f81db0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "132d87f2_1b5b7df6",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "030305b7_305f3ee3",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-17T13:46:39Z",
+      "side": 1,
+      "message": "no , it had empty body (discarded)",
+      "parentUuid": "132d87f2_1b5b7df6",
+      "range": {
+        "startLine": 246,
+        "startChar": 43,
+        "endLine": 246,
+        "endChar": 73
+      },
+      "revId": "23214f9a2f412317f6311cb123c34484a8f81db0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d68496c_abd21ee4",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 1
@@ -77,6 +125,30 @@
       "writtenOn": "2026-09-17T13:18:44Z",
       "side": 1,
       "message": "as above",
+      "range": {
+        "startLine": 385,
+        "startChar": 44,
+        "endLine": 385,
+        "endChar": 52
+      },
+      "revId": "23214f9a2f412317f6311cb123c34484a8f81db0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb92cca1_7cdd098a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-17T13:46:39Z",
+      "side": 1,
+      "message": "yes this wouldve",
+      "parentUuid": "0d68496c_abd21ee4",
       "range": {
         "startLine": 385,
         "startChar": 44,
