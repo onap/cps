@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc33e96a_e1deb0a8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-17T13:49:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2d1fb39e_87fd4070",
+      "range": {
+        "startLine": 226,
+        "startChar": 33,
+        "endLine": 226,
+        "endChar": 47
+      },
+      "revId": "23214f9a2f412317f6311cb123c34484a8f81db0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "132d87f2_1b5b7df6",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "no , it had empty body (discarded)",
       "parentUuid": "132d87f2_1b5b7df6",
+      "range": {
+        "startLine": 246,
+        "startChar": 43,
+        "endLine": 246,
+        "endChar": 73
+      },
+      "revId": "23214f9a2f412317f6311cb123c34484a8f81db0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "133c567e_4ae44152",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-17T13:49:13Z",
+      "side": 1,
+      "message": "but it is better to check it just is teh orginal body and not wrapped into anything else. SO .contains is an unsafe method to verify this.\nFor both tests!",
+      "parentUuid": "030305b7_305f3ee3",
       "range": {
         "startLine": 246,
         "startChar": 43,
