@@ -200,11 +200,12 @@ curl -X POST "http://$(minikube ip):30080/ncmpInventory/v1/ch" \
        "removedCmHandles":["ietfYang-PNFDemo"]}'
 ```
 
-> **Note:** The same flow is available in Postman. Import
-> `postman-collections/CPS_DMI_Stack.postman_collection.json` with the
-> `postman-collections/Env_k8s.json` environment. On Linux/Minikube, set `CPS_HOST` to the output of `minikube ip`,
-> or use the port-forward commands above. The main `CPS.postman_collection.json` targets `dmi-stub` only, which is
-> not deployed when this stack is enabled.
+> **Note:** The same flow is available in Postman, in the `ONAP-DMI-Stack` folder of
+> `postman-collections/CPS.postman_collection.json`. Select the
+> `postman-collections/Env_onap_dmi_stack.json` environment ("CPS Environment ONAP DMI Stack (k8s)"),
+> not `Env_k8s.json` — that one holds the `dmi-stub` endpoints, which are not deployed when this stack
+> is enabled. On Linux/Minikube, set `CPS_HOST` to the output of `minikube ip`, or use the port-forward
+> commands above.
 
 ---
 
