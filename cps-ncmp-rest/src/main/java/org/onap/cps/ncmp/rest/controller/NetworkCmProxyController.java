@@ -219,9 +219,11 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final String contentType,
                                                                        final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
-        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
-                resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
-        return new ResponseEntity<>(HttpStatus.OK);
+        final Object responseObject = networkCmProxyFacade
+                .writeResourceDataPassThroughRunningForCmHandle(
+                        cmHandleReference, resourceIdentifier, UPDATE,
+                        jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
+        return ResponseEntity.ok(responseObject);
     }
 
     /**

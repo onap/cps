@@ -168,14 +168,14 @@ public class DmiDataOperations {
      * @param requestData       the request data
      * @param dataType          data type
      * @param authorization     contents of Authorization header, or null if not present
-     * @return {@code ResponseEntity} response entity
+     * @return {@code Object} the response body returned by the DMI plugin
      */
-    public ResponseEntity<Object> writeResourceDataPassThroughRunningFromDmi(final String cmHandleReference,
-                                                                             final String resourceId,
-                                                                             final OperationType operationType,
-                                                                             final String requestData,
-                                                                             final String dataType,
-                                                                             final String authorization) {
+    public Object writeResourceDataPassThroughRunningFromDmi(final String cmHandleReference,
+                                                             final String resourceId,
+                                                             final OperationType operationType,
+                                                             final String requestData,
+                                                             final String dataType,
+                                                             final String authorization) {
         final CmResourceAddress cmResourceAddress =
                 new CmResourceAddress(PASSTHROUGH_RUNNING.getDatastoreName(), cmHandleReference, resourceId);
 
@@ -193,7 +193,7 @@ public class DmiDataOperations {
                 PASSTHROUGH_RUNNING.getDatastoreName(), yangModelCmHandle, resourceId, null,
                 null);
         return dmiRestClient.synchronousPostOperationWithErrorMapping(DATA, urlTemplateParameters, jsonRequestBody,
-                operationType, authorization);
+                operationType, authorization).getBody();
     }
 
     private YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {

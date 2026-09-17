@@ -239,9 +239,11 @@ class NetworkCmProxyControllerSpec extends Specification {
         when: 'update data resource request is performed'
             def response = mvc.perform(put(updateUrl).contentType(APPLICATION_JSON).content(validRequestBody)).andReturn().response
         then: 'the ncmp facade method to update resource is called'
-            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle','parent/child', UPDATE, validRequestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
+            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle','parent/child', UPDATE, validRequestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)  >> 'dmi response body'
         and: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
+        and: 'the response body is the DMI response body'
+            assert response.contentAsString.contains('dmi response body')
     }
 
     def 'Create Resource Data from pass-through running with #scenario.'() {
@@ -376,9 +378,11 @@ class NetworkCmProxyControllerSpec extends Specification {
         when: 'patch data resource request is performed'
             def response = mvc.perform(patch(url).contentType(APPLICATION_JSON).accept(APPLICATION_JSON).content(validRequestBody)).andReturn().response
         then: 'the inventory facade method to update resource is called'
-            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle', 'parent/child', PATCH, validRequestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
+            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle', 'parent/child', PATCH, validRequestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER) >> 'dmi response body'
         and: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
+        and: 'the response body is the DMI response body'
+            assert response.contentAsString.contains('dmi response body')
     }
 
     def 'Delete resource data in pass-through running datastore.'() {
