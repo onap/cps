@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e735af6_9e2bed17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-18T14:30:21Z",
+      "side": 1,
+      "message": "-1 as this is NBC change , can you confirm stakeholder readiness for this",
+      "revId": "4219fc7046214eb5bdd262395865014cdca22445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
