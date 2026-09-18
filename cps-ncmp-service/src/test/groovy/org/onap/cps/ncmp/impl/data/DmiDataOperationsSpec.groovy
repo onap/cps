@@ -176,12 +176,12 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def expectedUrlTemplateParameters = new UrlTemplateParameters('myServiceName/dmi/v1/ch/{cmHandleId}/data/ds/{datastore}?resourceIdentifier={resourceIdentifier}', ['resourceIdentifier': resourceIdentifier, 'datastore': 'ncmp-datastore:passthrough-running', 'cmHandleId': cmHandleId])
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}'
-            def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
+            def responseFromDmi = new ResponseEntity<Object>('some dmi body', HttpStatus.OK)
             mockDmiRestClient.synchronousPostOperationWithErrorMapping(DATA, expectedUrlTemplateParameters, expectedJson, operation, NO_AUTH_HEADER) >> responseFromDmi
         when: 'write resource method is invoked'
             def result = objectUnderTest.writeResourceDataPassThroughRunningFromDmi(cmHandleId, 'parent/child', operation, 'requestData', 'some data type', NO_AUTH_HEADER)
-        then: 'the result is the response from the DMI service'
-            assert result == responseFromDmi
+        then: 'the result is the response body from the DMI service'
+            assert result == 'some dmi body'
         and: 'the permission was checked with the policy executor'
             1 * mockPolicyExecutor.checkPermission(_, operation, NO_AUTH_HEADER, resourceIdentifier, 'requestData' )
         where: 'the following operation is performed'
