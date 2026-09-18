@@ -11,6 +11,29 @@ CPS Release Notes
 .. contents::
     :depth: 2
 
+Version: 3.8.4
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:3.8.4                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 3.8.4                                                  |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | Not yet released                                       |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Features
+--------
+
 Version: 3.8.3
 ==============
 
@@ -27,12 +50,28 @@ Release Data
 | **Release designation**              | 3.8.3                                                  |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not yet released                                       |
+| **Release date**                     | 2026 September 18                                      |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
-Features
---------
+Bug Fixes
+---------
+    - `CPS-3419 <https://lf-onap.atlassian.net/browse/CPS-3419>`_ PATCH and PUT on passthrough-running now return the DMI plugin response body (backward-incompatible); previously PATCH returned an internal wrapper object and PUT returned an empty body
+
+Notes
+-----
+**Backward-incompatible change (CPS-3419).**
+    The `200 OK` response body of the following passthrough-running write
+    operations has changed to conform to the OpenAPI specification:
+
+    - `PATCH /ncmp/v1/ch/{cm-handle}/data/ds/{datastore}`
+    - `PUT /ncmp/v1/ch/{cm-handle}/data/ds/{datastore}`
+
+**Action required:**
+    clients that parsed the DMI body out of the PATCH
+    wrapper object, or that relied on an empty PUT body, must be updated to
+    read the DMI body directly from the response.
+
 
 Version: 3.8.2
 ==============
