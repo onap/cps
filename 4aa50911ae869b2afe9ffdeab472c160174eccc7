@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6f60908_1b70a321",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-18T14:27:56Z",
+      "side": 1,
+      "message": "no description in capping unlike the above",
+      "range": {
+        "startLine": 107,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 56
+      },
+      "revId": "4aa50911ae869b2afe9ffdeab472c160174eccc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e167ce84_05051140",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-18T14:27:56Z",
+      "side": 1,
+      "message": "why only check for null on upgrade? :o",
+      "range": {
+        "startLine": 233,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 71
+      },
+      "revId": "4aa50911ae869b2afe9ffdeab472c160174eccc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
