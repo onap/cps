@@ -24,6 +24,9 @@ rest:
         provmns-base-path: /ProvMnS
         provmns-extensions-base-path: /prov-mns-extensions
 
+ncmp:
+    cm-handle-query-max: 2
+
 notification:
     enabled: true
     async:

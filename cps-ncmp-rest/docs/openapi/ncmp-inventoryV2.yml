@@ -33,6 +33,9 @@ searchCmHandlesLightweight:
     responses:
       200:
         description: OK
+        headers:
+          X-Total-Count:
+            $ref: 'components.yaml#/components/headers/XTotalCount'
         content:
           application/json:
             schema:
