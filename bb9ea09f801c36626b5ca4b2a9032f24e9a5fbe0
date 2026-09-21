@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbb2e26c_80faba4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-21T15:17:51Z",
+      "side": 1,
+      "message": "No issues except why the AGENTS is in this patch",
+      "revId": "bb9ea09f801c36626b5ca4b2a9032f24e9a5fbe0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a366b28_3ddfc513",
+        "filename": "AGENTS.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-21T15:17:51Z",
+      "side": 1,
+      "message": "Why has this change come into this patch? Is it a rebase issue?",
+      "revId": "bb9ea09f801c36626b5ca4b2a9032f24e9a5fbe0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
