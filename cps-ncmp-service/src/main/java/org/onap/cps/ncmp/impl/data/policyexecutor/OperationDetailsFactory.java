@@ -44,6 +44,7 @@ import org.springframework.stereotype.Service;
 public class OperationDetailsFactory {
 
     private static final String ATTRIBUTE_NAME_SEPARATOR = "/";
+    private static final String ATTRIBUTES_MARKER = "/attributes";
     private static final String REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS = "(^/)|(/$)";
 
     private final JsonObjectMapper jsonObjectMapper;
@@ -63,11 +64,7 @@ public class OperationDetailsFactory {
                 operationDetails = buildOperationDetails(CREATE, requestParameters, patchItem.getValue());
                 break;
             case REPLACE:
-                if (patchItem.getPath().contains("#/attributes")) {
-                    operationDetails = buildOperationDetailsForPatchItemWithHash(requestParameters, patchItem);
-                } else {
-                    operationDetails = buildOperationDetailsForPatchItem(requestParameters, patchItem);
-                }
+                operationDetails = buildOperationDetailsForReplace(requestParameters, patchItem);
                 break;
             case REMOVE:
                 operationDetails = buildOperationDetailsForDelete(requestParameters.fdn());
@@ -109,26 +106,26 @@ public class OperationDetailsFactory {
     }
 
     /**
-     * Build OperationDetails for a specific patch item.
+     * Build OperationDetails for a replace patch item.
+     * The attribute name(s) are taken from the patch item path (the segments after the "/attributes" marker).
+     * When the path targets a specific attribute (e.g. "/attributes/userLabel") a nested attributes map is built.
+     * When the path is the "/attributes" object itself the patch item value is used as the whole attributes object.
      *
      * @param requestParameters request parameters including uri-ldn-first-part, className and id
      * @param patchItem         the patch item containing operation details
      * @return OperationDetails object for the patch item
      */
-    public OperationDetails buildOperationDetailsForPatchItem(final RequestParameters requestParameters,
-                                                              final PatchItem patchItem) {
-        final Map<String, Object> resourceAsObject = HashMap.newHashMap(2);
-        resourceAsObject.put("id", requestParameters.id());
-        resourceAsObject.put("attributes", patchItem.getValue());
-        return buildOperationDetails(UPDATE, requestParameters, resourceAsObject);
-    }
-
-    private OperationDetails buildOperationDetailsForPatchItemWithHash(final RequestParameters requestParameters,
-                                                                       final PatchItem patchItem) {
-        final Map<String, Object> attributeHierarchyAsMap = createNestedMap(patchItem);
+    public OperationDetails buildOperationDetailsForReplace(final RequestParameters requestParameters,
+                                                            final PatchItem patchItem) {
+        final Object attributes;
+        if (pathTargetsSpecificAttribute(patchItem.getPath())) {
+            attributes = createNestedMap(patchItem);
+        } else {
+            attributes = patchItem.getValue();
+        }
         final String parentFdn = ParameterHelper.extractParentFdn(requestParameters.fdn());
         final List<ClassInstance> classInstances
-            = List.of(new ClassInstance(requestParameters.id(), attributeHierarchyAsMap));
+            = List.of(new ClassInstance(requestParameters.id(), attributes));
         return new OperationDetails(UPDATE, parentFdn, requestParameters.className(), classInstances);
     }
 
@@ -142,10 +139,14 @@ public class OperationDetailsFactory {
                                          resourceAsMap.get("attributes"));
     }
 
+    private boolean pathTargetsSpecificAttribute(final String path) {
+        return extractAttributeHierarchy(path).length > 1;
+    }
+
     private Map<String, Object> createNestedMap(final PatchItem patchItem) {
         final Map<String, Object> attributeHierarchyMap = new HashMap<>();
         Map<String, Object> currentLevel = attributeHierarchyMap;
-        final String[] attributeHierarchyNames = patchItem.getPath().split("#/attributes")[1]
+        final String[] attributeHierarchyNames = extractAttributeHierarchy(patchItem.getPath())[1]
                 .replaceAll(REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS, "")
                 .split(ATTRIBUTE_NAME_SEPARATOR);
         for (int level = 0; level < attributeHierarchyNames.length; level++) {
@@ -159,6 +160,10 @@ public class OperationDetailsFactory {
             }
         }
         return attributeHierarchyMap;
+    }
+
+    private String[] extractAttributeHierarchy(final String path) {
+        return path.split(ATTRIBUTES_MARKER);
     }
 
     private boolean isLastLevel(final String[] attributeNamesArray, final int level) {

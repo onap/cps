@@ -75,12 +75,13 @@ class OperationDetailsFactorySpec extends Specification {
             def patchItem = new PatchItem(op: 'REPLACE', 'path':"some uri${suffix}", value: value)
         when: 'patch operation details are checked'
             def result = objectUnderTest.buildOperationDetails(requestPathParameters, patchItem)
-        then: 'Attribute value is correct'
+        then: 'the attributes are correct'
             result.ClassInstances[0].attributes == [attr1:456]
-        where: 'attributes are set using # or resource'
-            scenario                            | suffix               | value
-            'set simple value using #'          | '#/attributes/attr1' | 456
-            'set complex value using resource'  | '/attributes'        | [attr1:456]
+        where: 'attributes are set using #, / or a whole resource object'
+            scenario                                     | suffix               | value
+            'set specific attribute using / (RFC 6902)'  | '/attributes/attr1'  | 456
+            'set specific attribute using # (3gpp)'      | '#/attributes/attr1' | 456
+            'set whole attributes object using resource' | '/attributes'        | [attr1:456]
     }
 
     def 'Build an attribute map with different depths of hierarchy with #scenario.'() {
@@ -90,11 +91,13 @@ class OperationDetailsFactorySpec extends Specification {
             def hierarchyMap = objectUnderTest.createNestedMap(patchItem)
         then: 'the map depth is equal to the expected number of attributes'
             assert hierarchyMap.get(expectedAttributeName).toString() == expectedAttributeValue
-        where: 'simple and complex attributes are tested'
+        where: 'simple and complex attributes are tested using both # (3gpp) and / (RFC 6902) separators'
             scenario                                   | path                                                             || expectedAttributeName || expectedAttributeValue
-            'set a simple attribute'                   | 'myUriLdnFirstPart#/attributes/simpleAttribute'                  || 'simpleAttribute'     || '123'
+            'set a simple attribute using /'           | 'myUriLdnFirstPart/attributes/simpleAttribute'                   || 'simpleAttribute'     || '123'
+            'set a complex attribute using /'          | 'myUriLdnFirstPart/attributes/complexAttribute/simpleAttribute'  || 'complexAttribute'    || '[simpleAttribute:123]'
+            'set a simple attribute using #'           | 'myUriLdnFirstPart#/attributes/simpleAttribute'                  || 'simpleAttribute'     || '123'
             'set a simple attribute with a trailing /' | 'myUriLdnFirstPart#/attributes/simpleAttribute/'                 || 'simpleAttribute'     || '123'
-            'set a complex attribute'                  | 'myUriLdnFirstPart#/attributes/complexAttribute/simpleAttribute' || 'complexAttribute'    || '[simpleAttribute:123]'
+            'set a complex attribute using #'          | 'myUriLdnFirstPart#/attributes/complexAttribute/simpleAttribute' || 'complexAttribute'    || '[simpleAttribute:123]'
     }
 
     def 'Attempt to Build Operation details with unsupported op (MOVE).'() {
