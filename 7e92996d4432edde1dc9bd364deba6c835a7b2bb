@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e99aaab_a3bd1c3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-21T16:14:39Z",
+      "side": 1,
+      "message": "wrong ticket",
+      "range": {
+        "startLine": 17,
+        "startChar": 10,
+        "endLine": 17,
+        "endChar": 18
+      },
+      "revId": "7e92996d4432edde1dc9bd364deba6c835a7b2bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
