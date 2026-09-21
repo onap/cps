@@ -356,9 +356,6 @@ components:
         dataProducerIdentifier:
           type: string
           example: my-data-producer-identifier
-        cmHandleStatus:
-          type: string
-          example: "READY"
         dmiProperties:
           type: string
           example: my-dmi-property
