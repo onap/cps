@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "752ae403_730c3823",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-21T08:26:09Z",
+      "side": 1,
+      "message": "increase to 120,000 for margin with Core nodes and mirror duplciation...",
+      "range": {
+        "startLine": 9,
+        "startChar": 44,
+        "endLine": 9,
+        "endChar": 51
+      },
+      "revId": "4aa50911ae869b2afe9ffdeab472c160174eccc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6f60908_1b70a321",
@@ -24,6 +47,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae68bfa1_332f1784",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-21T08:26:09Z",
+      "side": 1,
+      "message": "added now in components.yaml",
+      "parentUuid": "c6f60908_1b70a321",
+      "range": {
+        "startLine": 107,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 56
+      },
+      "revId": "4aa50911ae869b2afe9ffdeab472c160174eccc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e167ce84_05051140",
@@ -37,6 +84,30 @@
       "writtenOn": "2026-09-18T14:27:56Z",
       "side": 1,
       "message": "why only check for null on upgrade? :o",
+      "range": {
+        "startLine": 233,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 71
+      },
+      "revId": "4aa50911ae869b2afe9ffdeab472c160174eccc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e5b0ca4_e68fd3f7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-21T08:26:09Z",
+      "side": 1,
+      "message": "- createdCmHandles, updatedCmHandles, removedCmHandles are each initialised to new ArrayList\u003c\u003e() — the generator gives list-type properties a non-null default. Even if the JSON omits them, the field is an\n  empty list, never null. So .getXxx().size() is safe without a null check.\n  - upgradedCmHandles is @Nullable UpgradedCmHandles (it is an object to wrap the list and the tag!) with no initialiser (it\u0027s a single object, not a list, and it\u0027s an optional nested schema). If the JSON omits it, it stays null. Hence the null check",
+      "parentUuid": "e167ce84_05051140",
       "range": {
         "startLine": 233,
         "startChar": 8,
