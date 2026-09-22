@@ -179,6 +179,21 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result.cmHandleId == 'cm-handle-from-persistence'
     }
 
+    def 'Get lightweight cm handle details delegates to persistence without properties.'() {
+        given: 'a cm handle reference resolves to a cm handle id'
+            1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('some-reference', '/') >> 'resolved-cm-handle-id'
+        and: 'the persistence service returns a cm handle for that id'
+            def yangModelCmHandle = new YangModelCmHandle(id: 'cm-handle-from-persistence', publicProperties: [], additionalProperties: [])
+        when: 'getting lightweight cm handle details'
+            def result = objectUnderTest.getNcmpServiceCmHandleLightweight('some-reference')
+        then: 'the lightweight (without-properties) persistence method is called with the resolved id'
+            1 * mockInventoryPersistence.getYangModelCmHandleWithoutProperties('resolved-cm-handle-id') >> yangModelCmHandle
+        and: 'the trust level is applied'
+            1 * mockTrustLevelManager.applyEffectiveTrustLevel(_)
+        and: 'the cm handle from persistence is returned'
+            assert result.cmHandleId == 'cm-handle-from-persistence'
+    }
+
     def 'Get cm handle public properties using #scenario'() {
         given: 'a yang modelled cm handle'
             def additionalProperties = [new YangModelCmHandle.Property('prop', 'some additional property')]

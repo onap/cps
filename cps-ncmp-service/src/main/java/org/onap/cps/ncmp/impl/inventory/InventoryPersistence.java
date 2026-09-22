@@ -66,6 +66,15 @@ public interface InventoryPersistence extends NcmpPersistence {
     YangModelCmHandle getYangModelCmHandle(String cmHandleId);
 
     /**
+     * This method retrieves DMI service name, composite state and top-level leaves for a given cm handle.
+     * This variant does not include the additional and public properties (descendants are omitted).
+     *
+     * @param cmHandleId the id of the cm handle
+     * @return yang model cm handle
+     */
+    YangModelCmHandle getYangModelCmHandleWithoutProperties(String cmHandleId);
+
+    /**
      * This method retrieves YangModelCmHandles for a given collection of cm handle ids.
      *
      * @param cmHandleIds a list of the ids of the cm handles
