@@ -79,9 +79,12 @@ export function setup() {
     // Generate DCM Write large payload while waiting for node to be ready anyway
     const largeWriteJobPayload = JSON.stringify(buildDataJobRequestPayload(100000));
 
-    const readyCount = waitForAllCmHandlesToBeReady();
-    console.log(`${readyCount}/${TOTAL_CM_HANDLES} CM handles reached READY (per instrumentation)`);
-    check(readyCount, { 'all registered CM handles reached READY per instrumentation': (c) => c === TOTAL_CM_HANDLES }, { assertion: 'cmhandles_ready' });
+    const readyCounts = waitForAllCmHandlesToBeReady();
+    console.log(`${readyCounts.ready}/${TOTAL_CM_HANDLES} CM handles reached READY (per cps-path query)`);
+    check(readyCounts, {
+        'all registered CM handles reached READY and none stuck in ADVISED/LOCKED': (c) =>
+            c.ready === TOTAL_CM_HANDLES && c.advised === 0 && c.locked === 0
+    }, { assertion: 'cmhandles_ready' });
 
     const endTimeInMillis = Date.now();
     const totalRegistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
