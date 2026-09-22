@@ -156,6 +156,14 @@ public interface NetworkCmProxyInventoryFacade {
     NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleReference);
 
     /**
+     * Retrieve lightweight cm handle details (top-level leaves only) for a given cm handle reference.
+     *
+     * @param cmHandleReference cm handle id, alternate identifier or fdn (child of alternate id)
+     * @return lightweight cm handle details
+     */
+    NcmpServiceCmHandle getNcmpServiceCmHandleLightweight(final String cmHandleReference);
+
+    /**
      * Get cm handle public properties for a given cm handle or alternate id.
      *
      * @param cmHandleReference cm handle or alternate identifier
