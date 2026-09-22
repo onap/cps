@@ -147,6 +147,24 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
     }
 
+    def 'Retrieve CmHandle without properties (top-level leaves only).'() {
+        given: 'the cps data service returns a data node without descendants from the DMI registry'
+            def dataNode = new DataNode(childDataNodes:[], leaves: leaves)
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, OMIT_DESCENDANTS) >> [dataNode]
+        when: 'retrieving the lightweight yang modelled cm handle'
+            def result = objectUnderTest.getYangModelCmHandleWithoutProperties(cmHandleId)
+        then: 'the result has the correct id and service names'
+            result.id == cmHandleId
+            result.dmiServiceName == 'common service name'
+            result.dmiDataServiceName == 'data service name'
+            result.dmiModelServiceName == 'model service name'
+        and: 'no additional or public properties are returned'
+            result.additionalProperties.isEmpty()
+            result.publicProperties.isEmpty()
+        and: 'the CM Handle ID is validated'
+            1 * mockCpsValidator.validateNameCharacters(cmHandleId)
+    }
+
     def 'Retrieve multiple YangModelCmHandles using cm handle ids.'() {
         given: 'the cps data service returns 2 data nodes from the DMI registry'
             def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2])]

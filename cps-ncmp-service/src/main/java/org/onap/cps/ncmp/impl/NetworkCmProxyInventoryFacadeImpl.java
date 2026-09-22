@@ -228,6 +228,15 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     }
 
     @Override
+    public NcmpServiceCmHandle getNcmpServiceCmHandleLightweight(final String cmHandleReference) {
+        final String cmHandleId = getCmHandleIdByReference(cmHandleReference);
+        final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(
+                inventoryPersistence.getYangModelCmHandleWithoutProperties(cmHandleId));
+        trustLevelManager.applyEffectiveTrustLevel(ncmpServiceCmHandle);
+        return ncmpServiceCmHandle;
+    }
+
+    @Override
     public Map<String, String> getPublicCmHandleProperties(final String cmHandleReference) {
         final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);

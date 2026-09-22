@@ -179,6 +179,30 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result.cmHandleId == 'cm-handle-from-persistence'
     }
 
+    def 'Get lightweight cm handle details by reference (top-level leaves only).'() {
+        given: 'a yang modelled cm handle with top-level leaves'
+            def yangModelCmHandle = new YangModelCmHandle(id: 'cm-handle-from-persistence', publicProperties: [], additionalProperties: [],
+                moduleSetTag: 'my-module-set-tag', alternateId: 'my-alternate-id')
+            1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(cmHandleRef, '/') >> 'cm-handle-from-matcher'
+        and: 'the persistence service returns the cm handle without properties'
+            1 * mockInventoryPersistence.getYangModelCmHandleWithoutProperties('cm-handle-from-matcher') >> yangModelCmHandle
+        and: 'the trust level is applied'
+            1 * mockTrustLevelManager.applyEffectiveTrustLevel(_) >> { args -> args[0].currentTrustLevel = TrustLevel.COMPLETE }
+        when: 'getting lightweight cm handle details for a given cm handle reference from ncmp service'
+            def result = objectUnderTest.getNcmpServiceCmHandleLightweight(cmHandleRef)
+        then: 'the result is a ncmpServiceCmHandle with the correct top-level details'
+            assert result.class == NcmpServiceCmHandle.class
+            assert result.cmHandleId == 'cm-handle-from-persistence'
+            assert result.alternateId == 'my-alternate-id'
+            assert result.moduleSetTag == 'my-module-set-tag'
+        and: 'the trust level from the cache is applied'
+            assert result.currentTrustLevel == TrustLevel.COMPLETE
+        where: 'following cm handle reference is used'
+            scenario                              | cmHandleRef
+            'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
+            'Cm Handle Reference as alternate-id' | 'some-alternate-id'
+    }
+
     def 'Get cm handle public properties using #scenario'() {
         given: 'a yang modelled cm handle'
             def additionalProperties = [new YangModelCmHandle.Property('prop', 'some additional property')]
