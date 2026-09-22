@@ -81,7 +81,7 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockReadinessManager.isReady() >> true
         and: 'module sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(numberOfAdvisedCmHandles)
-        and: 'module sync utilities returns no failed (locked) cm handles'
+        and: 'there are no locked cm handles'
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
         and: 'the work queue can be locked'
             mockCpsCommonLocks.tryLock('workQueueLock') >> true
@@ -106,6 +106,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockReadinessManager.isReady() >> true
         and: 'module sync utilities returns a advise cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
+        and: 'there are no locked cm handles'
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
         and: 'the work queue can be locked'
             mockCpsCommonLocks.tryLock('workQueueLock') >> true
         when: ' module sync is started'
@@ -119,6 +121,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockReadinessManager.isReady() >> true
         and: 'module sync utilities returns an advised cm handle'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
+        and: 'there are no locked cm handles'
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
         and: 'the work queue can be locked'
             mockCpsCommonLocks.tryLock('workQueueLock') >> true
         and: 'the semaphore cache indicates the cm handle is already being processed'
@@ -137,6 +141,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockReadinessManager.isReady() >> true
         and: 'module sync utilities returns 3 advised cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(3)
+        and: 'there are no locked cm handles'
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
         and: 'the work queue can be locked'
             mockCpsCommonLocks.tryLock('workQueueLock') >> true
         and: '2 of the 3 handles are already in progress'
@@ -175,11 +181,47 @@ class ModuleSyncWatchdogSpec extends Specification {
             1 * mockModuleSyncTasks.setCmHandlesToAdvised(failedCmHandles)
     }
 
+    def 'Locked cm handles are reset even when there are advised cm handles to process (CPS-3344 regression).'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'the work queue can be locked'
+            mockCpsCommonLocks.tryLock('workQueueLock') >> true
+        and: 'there are advised cm handles (so the work queue does not become empty after populating)'
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
+        and: 'there are also locked cm handles awaiting retry'
+            def failedCmHandles = [new YangModelCmHandle()]
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> failedCmHandles
+        when: 'the work queue is populated'
+            objectUnderTest.populateWorkQueueIfNeeded()
+        then: 'the locked cm handles are still reset to ADVISED for retry'
+            1 * mockModuleSyncTasks.setCmHandlesToAdvised(failedCmHandles)
+    }
+
+    def 'Locked cm handle reset is throttled to the configured interval.'() {
+        given: 'system is ready and the work queue can be locked'
+            mockReadinessManager.isReady() >> true
+            mockCpsCommonLocks.tryLock('workQueueLock') >> true
+        and: 'no advised cm handles (so the queue stays empty and every call reaches the reset gate)'
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> []
+        and: 'there are locked cm handles awaiting retry'
+            def failedCmHandles = [new YangModelCmHandle()]
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> failedCmHandles
+        and: 'a long locked-modules-sync interval is configured'
+            objectUnderTest.lockedModulesSyncIntervalInMs = 60_000L
+        when: 'the work queue is populated twice in quick succession'
+            objectUnderTest.populateWorkQueueIfNeeded()
+            objectUnderTest.populateWorkQueueIfNeeded()
+        then: 'the locked cm handles are reset only once (the second call is within the interval)'
+            1 * mockModuleSyncTasks.setCmHandlesToAdvised(failedCmHandles)
+    }
+
     def 'Module Sync Locking.'() {
         given: 'system is ready to accept traffic'
             mockReadinessManager.isReady() >> true
         and: 'module sync utilities returns an advised cm handle'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
+        and: 'there are no locked cm handles'
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
         and: 'can be locked is : #canLock'
             mockCpsCommonLocks.tryLock('workQueueLock') >> canLock
         when: 'attempt to populate the work queue'

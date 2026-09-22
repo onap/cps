@@ -58,30 +58,59 @@ export function deleteCmHandles(cmHandleIds) {
  *
  * @returns {number} The final instrumented ready CM-handle count, for the caller to assert on.
  */
+/**
+ * Polls the CM-handle state until every registered CM handle has actually reached READY in the DB, and none is
+ * left stuck in ADVISED or LOCKED.
+ *
+ * The source of truth here is the cps-path query (actual persisted CM-handle state), NOT the
+ * `cps_ncmp_inventory_cm_handles_by_state{state="READY"}` instrumentation gauge. The gauge counts READY LCM events
+ * sent, which on a multi-instance deployment can reach TOTAL_CM_HANDLES even when an individual handle is stuck
+ * ADVISED (the instance that won an anchor-creation race still emits the event). Only a per-state DB query can
+ * detect a handle that never transitioned - which is exactly the CPS-3344 multi-instance regression.
+ *
+ * There is deliberately NO timeout on the shortfall case: if some handles never reach READY the loop keeps polling
+ * and the overall job execution timeout ends the run. Failing the whole (hourly) job is the intended, stronger
+ * signal that something is wrong.
+ *
+ * On every run (whether all handles converged or not) a final summary is logged with all per-state DB counts and
+ * the instrumentation gauge, so the full picture is always visible; a discrepancy is additionally logged as an error.
+ *
+ * @returns {{ready: number, advised: number, locked: number}} the final per-state counts, for the caller to assert on.
+ */
 export function waitForAllCmHandlesToBeReady() {
     const POLLING_INTERVAL_SECONDS = 5;
-    let readyCountFromInstrumentation = 0;
+    let readyCount = 0;
+    let advisedCount = 0;
+    let lockedCount = 0;
     do {
         sleep(POLLING_INTERVAL_SECONDS);
-        readyCountFromInstrumentation = getReadyCmHandlesCountFromInstrumentation();
-        console.log(`${readyCountFromInstrumentation}/${TOTAL_CM_HANDLES} CM handles are READY (instrumentation)`);
-        if (readyCountFromInstrumentation > TOTAL_CM_HANDLES) {
-            console.error(`❌ More CM handles are READY (${readyCountFromInstrumentation}) than were registered (${TOTAL_CM_HANDLES}). Check logs for duplication between instances.`);
+        readyCount = getCmHandleCountByState('cps-path-for-ready-cm-handles');
+        advisedCount = getCmHandleCountByState('cps-path-for-advised-cm-handles');
+        lockedCount = getCmHandleCountByState('cps-path-for-locked-cm-handles');
+        console.log(`${readyCount}/${TOTAL_CM_HANDLES} CM handles are READY (advised: ${advisedCount}, `
+            + `locked: ${lockedCount}) per cps-path query`);
+        if (readyCount > TOTAL_CM_HANDLES) {
+            console.error(`❌ More CM handles are READY (${readyCount}) than were registered (${TOTAL_CM_HANDLES}). `
+                + `Check logs for duplication between instances.`);
             break;
         }
-    } while (readyCountFromInstrumentation < TOTAL_CM_HANDLES);
+    } while (readyCount < TOTAL_CM_HANDLES || advisedCount > 0 || lockedCount > 0);
 
-    if (readyCountFromInstrumentation !== TOTAL_CM_HANDLES) {
-        // Report both figures to help explain the discrepancy:
-        //  - instrumentation: number of READY LCM events sent (source of truth)
-        //  - cps-path query : number of cm handles in READY state per the DB query
-        const readyCountFromCpsPathQuery = getNumberOfReadyCmHandlesFromCpsPathQuery();
-        console.error(`❌ READY CM handle count mismatch. Registered: ${TOTAL_CM_HANDLES}, `
-            + `Instrumentation (LCM events sent): ${readyCountFromInstrumentation}, `
-            + `Cps-path query: ${readyCountFromCpsPathQuery}`);
+    // Always log the final counts (DB per-state plus the instrumentation gauge) whether the outcome is correct or
+    // not, so every run shows the full picture. A discrepancy is additionally flagged as an error.
+    const readyGaugeFromInstrumentation = getReadyCmHandlesCountFromInstrumentation();
+    const converged = readyCount === TOTAL_CM_HANDLES && advisedCount === 0 && lockedCount === 0;
+    const summary = `Final CM handle state. Registered: ${TOTAL_CM_HANDLES}, `
+        + `READY (cps-path): ${readyCount}, ADVISED: ${advisedCount}, LOCKED: ${lockedCount}, `
+        + `READY LCM events sent (instrumentation): ${readyGaugeFromInstrumentation}.`;
+    if (converged) {
+        console.log(`✅ ${summary} All CM handles reached READY.`);
+    } else {
+        console.error(`❌ ${summary} Handles stuck in ADVISED/LOCKED indicate the multi-instance `
+            + `module-sync race (CPS-3344).`);
     }
 
-    return readyCountFromInstrumentation;
+    return { ready: readyCount, advised: advisedCount, locked: lockedCount };
 }
 
 function createCmHandlePayload(cmHandleIds) {
@@ -140,8 +169,8 @@ function getReadyCmHandlesCountFromInstrumentation() {
     return Math.round(parseFloat(match[1]));
 }
 
-function getNumberOfReadyCmHandlesFromCpsPathQuery() {
-    const response = executeCmHandleIdSearch('cps-path-for-ready-cm-handles');
+function getCmHandleCountByState(scenario) {
+    const response = executeCmHandleIdSearch(scenario);
     const arrayOfCmHandleIds = JSON.parse(response.body);
     return arrayOfCmHandleIds.length;
 }
