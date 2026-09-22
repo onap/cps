@@ -160,7 +160,7 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@4b446ed14e28392fbc9056f23c7d8cd644de852a  # v0.2.1
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@ed7e52b3ecc60198db8df758fad01b7d688b8ed3  # v0.3.0
     with:
       # master stream builds on Java 21 (paris/Java 17 handled separately).
       java_version: '21'
@@ -228,7 +228,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@0dd3d5f05930b3c782a67f7735fd0133c0fa51d9  # v0.6.1
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@7483557cf53b18109e679b8a3da42ce8e6dff219  # v0.8.0
     with:
       sonar_organization: 'onap'
       sonar_project_key: 'onap_cps'
