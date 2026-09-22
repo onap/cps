@@ -16,6 +16,46 @@
       "message": "I am just going to download and test it on my machine now",
       "revId": "78d1401f717e7a01946697edc3bb53531c6b2416",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05b27205_1b2572ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-22T08:27:20Z",
+      "side": 1,
+      "message": "two minor issues in the description for the new collection\nBest visible in POstman itself",
+      "revId": "78d1401f717e7a01946697edc3bb53531c6b2416",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35a46f5a_2fc64633",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-22T08:27:20Z",
+      "side": 1,
+      "message": "description mention: Use the \"CPS Environment k8s (linux and windows)\" environment (Env_k8s.json).\n\nalso a note no longer needed: Note: this collection targets the real ncmp-dmi-plugin, not dmi-stub. The dmi-stub is not deployed when onapDmiStack is enabled, so the DMI_HOST_1/DMI_HOST_2 variables are unused here.",
+      "range": {
+        "startLine": 5,
+        "startChar": 1,
+        "endLine": 5,
+        "endChar": 314
+      },
+      "revId": "78d1401f717e7a01946697edc3bb53531c6b2416",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
