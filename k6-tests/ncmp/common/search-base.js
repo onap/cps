@@ -75,5 +75,21 @@ const SEARCH_PARAMETERS_PER_SCENARIO = {
                 "conditionParameters": [{"cpsPath": "//state[@cm-handle-state='READY']"}]
             }
         ]
+    },
+    "cps-path-for-advised-cm-handles": {
+        "cmHandleQueryParameters": [
+            {
+                "conditionName": "cmHandleWithCpsPath",
+                "conditionParameters": [{"cpsPath": "//state[@cm-handle-state='ADVISED']"}]
+            }
+        ]
+    },
+    "cps-path-for-locked-cm-handles": {
+        "cmHandleQueryParameters": [
+            {
+                "conditionName": "cmHandleWithCpsPath",
+                "conditionParameters": [{"cpsPath": "//state[@cm-handle-state='LOCKED']"}]
+            }
+        ]
     }
 };

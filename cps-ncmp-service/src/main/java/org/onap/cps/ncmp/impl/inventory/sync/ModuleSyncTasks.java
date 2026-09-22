@@ -50,7 +50,7 @@ public class ModuleSyncTasks {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
 
     private static final int RESET_BATCH_SIZE = 300;
-    private static final CmHandleState NO_CHANGE = null;
+    private static final CmHandleState NO_STATE_CHANGE = null;
 
     /**
      * Perform module sync on a batch of cm handles.
@@ -64,7 +64,7 @@ public class ModuleSyncTasks {
                 final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
                 if (isCmHandleInAdvisedState(yangModelCmHandle)) {
                     final CmHandleState newCmHandleState = processCmHandle(yangModelCmHandle);
-                    if (newCmHandleState == NO_CHANGE) {
+                    if (newCmHandleState == NO_STATE_CHANGE) {
                         log.info("Skipping state change for CM handle '{}' as it was already synced by another "
                                 + "instance", cmHandleId);
                     } else {
@@ -135,15 +135,15 @@ public class ModuleSyncTasks {
             } else if (inUpgrade) {
                 moduleSyncService.syncAndUpgradeSchemaSet(yangModelCmHandle);
             } else {
-                final boolean anchorNewlyCreated = moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
-                if (!anchorNewlyCreated) {
-                    return NO_CHANGE;
-                }
+                moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
             }
             compositeState.setLockReason(null);
             return CmHandleState.READY;
         } catch (final Exception e) {
             log.warn("Module sync failed for CM handle '{}': {}", yangModelCmHandle.getId(), e.getMessage());
+            if (isNoLongerLockable(yangModelCmHandle.getId())) {
+                return NO_STATE_CHANGE;
+            }
             final LockReasonCategory lockReasonCategory;
             if (inRefresh) {
                 lockReasonCategory = LockReasonCategory.MODULE_REFRESH_FAILED;
@@ -154,6 +154,28 @@ public class ModuleSyncTasks {
             }
             moduleOperationsUtils.updateLockReasonWithAttempts(compositeState, lockReasonCategory, e.getMessage());
             return CmHandleState.LOCKED;
+        }
+    }
+
+    /**
+     * Determine whether a CM handle should NOT be locked after a local sync failure. This is the case when another
+     * instance already synced it to READY (so locking would overwrite a good state and emit a wrong event), or when
+     * the CM handle no longer exists (it was deleted during sync).
+     *
+     * @param cmHandleId the CM handle id
+     * @return true if the CM handle must not be locked
+     */
+    private boolean isNoLongerLockable(final String cmHandleId) {
+        try {
+            if (inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState().getCmHandleState()
+                    == CmHandleState.READY) {
+                log.info("CM handle '{}' is READY (synced by another instance); lock/retry not required", cmHandleId);
+                return true;
+            }
+            return false;
+        } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
+            log.info("CM handle '{}' no longer exists; lock/retry not applicable", cmHandleId);
+            return true;
         }
     }
 

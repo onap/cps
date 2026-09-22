@@ -39,7 +39,10 @@ export default function () {
         const response = createCmHandles(nextBatchOfCmHandleIds);
         check(response, { 'create CM-handles status equals 200': (r) => r.status === 200 });
     }
-    const readyCount = waitForAllCmHandlesToBeReady();
-    console.log(`${readyCount}/${TOTAL_CM_HANDLES} CM handles reached READY (per instrumentation)`);
-    check(readyCount, { 'all registered CM handles reached READY per instrumentation': (c) => c === TOTAL_CM_HANDLES }, { assertion: 'cmhandles_ready' });
+    const readyCounts = waitForAllCmHandlesToBeReady();
+    console.log(`${readyCounts.ready}/${TOTAL_CM_HANDLES} CM handles reached READY (per cps-path query)`);
+    check(readyCounts, {
+        'all registered CM handles reached READY and none stuck in ADVISED/LOCKED': (c) =>
+            c.ready === TOTAL_CM_HANDLES && c.advised === 0 && c.locked === 0
+    }, { assertion: 'cmhandles_ready' });
 }

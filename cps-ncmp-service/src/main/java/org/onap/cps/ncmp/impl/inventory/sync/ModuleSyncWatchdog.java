@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,11 @@ public class ModuleSyncWatchdog {
     private final ModuleSyncTasks moduleSyncTasks;
     @Qualifier("cpsCommonLocks") private final IMap<String, String> cpsCommonLocks;
     private final ReadinessManager readinessManager;
+
+    @Value("${ncmp.timers.locked-modules-sync.sleep-time-ms:15000}")
+    private long lockedModulesSyncIntervalInMs;
+
+    private volatile long lastLockedCmHandlesResetEpochMs = 0;
 
     private static final int MODULE_SYNC_BATCH_SIZE = 300;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
@@ -91,14 +97,27 @@ public class ModuleSyncWatchdog {
         if (moduleSyncWorkQueue.isEmpty() && cpsCommonLocks.tryLock(MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME)) {
             log.debug("Lock acquired by thread : {}", Thread.currentThread().getName());
             try {
+                resetPreviouslyLockedCmHandlesIfIntervalElapsed();
                 populateWorkQueue();
-                if (moduleSyncWorkQueue.isEmpty()) {
-                    setPreviouslyLockedCmHandlesToAdvised();
-                }
             } finally {
                 cpsCommonLocks.unlock(MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME);
                 log.debug("Lock released by thread : {}", Thread.currentThread().getName());
             }
+        }
+    }
+
+    /**
+     * Reset previously LOCKED cm handles to ADVISED, but no more often than the configured
+     * locked-modules-sync interval. This is decoupled from the ADVISED backlog (it no longer waits for the work
+     * queue to be empty) so a stuck/steady advised backlog cannot starve LOCKED-handle recovery, while the interval
+     * throttle avoids re-advising (and re-failing) LOCKED handles on every short watchdog cycle - important during a
+     * sustained DMI outage when all handles fail.
+     */
+    private void resetPreviouslyLockedCmHandlesIfIntervalElapsed() {
+        final long now = System.currentTimeMillis();
+        if (now - lastLockedCmHandlesResetEpochMs >= lockedModulesSyncIntervalInMs) {
+            lastLockedCmHandlesResetEpochMs = now;
+            setPreviouslyLockedCmHandlesToAdvised();
         }
     }
 
