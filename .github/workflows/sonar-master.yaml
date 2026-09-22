@@ -1,0 +1,59 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 The Linux Foundation
+
+# SonarCloud analysis of the master branch itself.
+#
+# The verify lane in gerrit-verify.yaml analyses each patchset under a
+# short-lived branch named for the change, and never the long-lived
+# branch. Something has to analyse master directly, or SonarCloud's
+# project view, its badge and the new-code baseline that short-lived
+# analyses compare against all go stale. This does that, replacing the
+# Jenkins cps-sonar job.
+#
+# The filename deliberately omits 'gerrit'. gerrit_to_platform selects
+# workflows to dispatch by filename, and this one must not run against
+# a patchset.
+name: 'SonarCloud Master Analysis'
+
+# yamllint disable-line rule:truthy
+on:
+  schedule:
+    # Daily, matching the cadence of the Jenkins job this replaces.
+    # Chosen to avoid the CLM (00:37 Sat) and Scorecard (04:50 Sun)
+    # schedules already in this repository.
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: '${{ github.workflow }}-${{ github.ref }}'
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  sonar:
+    name: 'SonarQube Cloud'
+    permissions:
+      contents: read
+    # yamllint disable-line rule:line-length
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@7483557cf53b18109e679b8a3da42ce8e6dff219  # v0.8.0
+    with:
+      sonar_organization: 'onap'
+      sonar_project_key: 'onap_cps'
+      # sonar_branch_name and sonar_branch_target are deliberately
+      # unset. Left empty the scanner omits sonar.branch.name, and
+      # SonarCloud records the result against the project's main
+      # branch, which is the whole point of this lane.
+      build_type: 'maven'
+      mvn_phases: 'clean install'
+      mvn_params: '-Djib.skip=true'
+      # Nothing votes on a scheduled run, so there is no verdict to
+      # wait for. The gate is enforced per patchset by the verify lane.
+      wait_for_quality_gate: false
+      fail_on_quality_gate: false
+      timeout_minutes: 90
+      build_permit_egress_traffic: true
+    secrets:
+      sonar_token: ${{ secrets.SONAR_TOKEN }}
+      maven_global_settings: ${{ vars.MVN_GLOBAL_SETTINGS }}
