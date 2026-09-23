@@ -63,23 +63,29 @@ public class ModuleSyncService {
 
     /**
      * Creates a CM handle and initiates the synchronization of modules to create a schema set and anchor.
+     * When another instance already created the anchor for this CM handle (concurrent duplicate processing) the
+     * resulting AlreadyDefinedException is ignored: the schema set and anchor exist either way, so the CM handle
+     * can still be promoted to READY by the caller.
+     *
+     * <p>Promoting to READY when the anchor already exists is safe because schema set creation
+     * ({@code createSchemaSetFromNewAndExistingModules}) is transactional: a schema set can only be observed to
+     * exist once its transaction has committed with all its module content, so there is no committed state where
+     * the schema set (or the anchor that follows it) exists but the modules are incomplete. The
+     * {@code isNewSchemaSet} short-circuit in {@link #syncAndCreateSchemaSet} relies on the same property.
      *
      * @param yangModelCmHandle the yang model of cm handle.
-     * @return {@code true} if the anchor was newly created; {@code false} if it already existed, which means
-     *         another instance already synced this CM handle (duplicate processing).
      */
-    public boolean syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
+    public void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
         final String cmHandleId = yangModelCmHandle.getId();
         final String targetModuleSetTag = yangModelCmHandle.getModuleSetTag();
         final String schemaSetName = getSchemaSetNameForModuleSetTag(cmHandleId, targetModuleSetTag);
         syncAndCreateSchemaSet(yangModelCmHandle, schemaSetName, targetModuleSetTag);
         try {
             cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName, cmHandleId);
-            return true;
         } catch (final AlreadyDefinedException alreadyDefinedException) {
-            log.warn("Ignoring (Anchor) already exists exception for {}. Exception details: {}", cmHandleId,
+            log.warn("Anchor already exists for {} (likely created concurrently by another instance); "
+                    + "continuing to promote CM handle to READY. Exception details: {}", cmHandleId,
                     alreadyDefinedException.getDetails());
-            return false;
         }
     }
 

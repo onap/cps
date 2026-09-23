@@ -91,10 +91,8 @@ public class ModuleSyncWatchdog {
         if (moduleSyncWorkQueue.isEmpty() && cpsCommonLocks.tryLock(MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME)) {
             log.debug("Lock acquired by thread : {}", Thread.currentThread().getName());
             try {
+                setPreviouslyLockedCmHandlesToAdvised();
                 populateWorkQueue();
-                if (moduleSyncWorkQueue.isEmpty()) {
-                    setPreviouslyLockedCmHandlesToAdvised();
-                }
             } finally {
                 cpsCommonLocks.unlock(MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME);
                 log.debug("Lock released by thread : {}", Thread.currentThread().getName());
