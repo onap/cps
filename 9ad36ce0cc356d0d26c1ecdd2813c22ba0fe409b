@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95959425_4f251790",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-23T17:05:26Z",
+      "side": 1,
+      "message": "next time 😊",
+      "parentUuid": "7d881b11_50712a92",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "9ad36ce0cc356d0d26c1ecdd2813c22ba0fe409b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1511ea65_982de1d3",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "just saw the commit message",
       "parentUuid": "1511ea65_982de1d3",
+      "range": {
+        "startLine": 36,
+        "startChar": 37,
+        "endLine": 36,
+        "endChar": 43
+      },
+      "revId": "9ad36ce0cc356d0d26c1ecdd2813c22ba0fe409b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1d3c9e4_8602f7c1",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-23T17:05:26Z",
+      "side": 1,
+      "message": "yes is closer to stakeholder actual batch size",
+      "parentUuid": "687b8138_163c4735",
       "range": {
         "startLine": 36,
         "startChar": 37,
