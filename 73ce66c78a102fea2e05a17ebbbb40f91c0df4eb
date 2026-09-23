@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d148b737_81fd1afb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-23T11:41:15Z",
+      "side": 1,
+      "message": "i am confused, instead of just updatign a description you removed a file and added anew description somewhere else. PLease explain",
+      "revId": "73ce66c78a102fea2e05a17ebbbb40f91c0df4eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
