@@ -1,0 +1,64 @@
+{
+	"id": "309b42dd-8bd2-4d24-9ca4-03a5fd2e28cb",
+	"name": "CPS Environment ONAP DMI Stack (k8s)",
+	"values": [
+		{
+			"key": "CPS_HOST",
+			"value": "localhost",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "CPS_PORT",
+			"value": "30080",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "basic_auth_171s",
+			"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "DMI_PLUGIN_HOST",
+			"value": "cps-ncmp-ncmp-dmi-plugin-service",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "DMI_PLUGIN_PORT",
+			"value": "8080",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "DMI_PLUGIN_NODEPORT",
+			"value": "30097",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "SDNC_NODEPORT",
+			"value": "30096",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "SDNC_AUTH",
+			"value": "Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "CM_HANDLE",
+			"value": "ietfYang-PNFDemo",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"color": null,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-09-17T08:57:44.000Z",
+	"_postman_exported_using": "Postman/11.73.4"
+}
