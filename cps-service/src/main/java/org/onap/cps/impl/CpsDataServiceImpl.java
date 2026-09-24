@@ -47,6 +47,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.DataNodeFactory;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.DataNodeOperation;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
@@ -222,21 +223,27 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
-    public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
-                                             final String parentNodeXpath, final String nodeData,
-                                             final OffsetDateTime observedTimestamp, final ContentType contentType) {
+    public DataNodeOperation updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
+                                                          final String parentNodeXpath, final String nodeData,
+                                                          final OffsetDateTime observedTimestamp,
+                                                          final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes = dataNodeFactory
                 .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, nodeData, contentType);
         final List<DeltaReport> deltaReports =
             generateDeltaReports(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+        final DataNodeOperation dataNodeOperation;
         if (ROOT_NODE_XPATH.equals(parentNodeXpath) || !isPathToListElement(parentNodeXpath)) {
-            cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
+            dataNodeOperation =
+                cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
         } else {
             cpsDataPersistenceService.replaceAllChildDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+            dataNodeOperation = DataNodeOperation.REPLACE;
         }
-        sendDataUpdatedEvent(anchor, parentNodeXpath, REPLACE_ACTION, deltaReports, observedTimestamp);
+        final String eventAction = dataNodeOperation == DataNodeOperation.CREATE ? CREATE_ACTION : REPLACE_ACTION;
+        sendDataUpdatedEvent(anchor, parentNodeXpath, eventAction, deltaReports, observedTimestamp);
+        return dataNodeOperation;
     }
 
     @Override
