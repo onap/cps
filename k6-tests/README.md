@@ -9,6 +9,12 @@ Follow the instructions in the [build from source guide](https://github.com/most
 ## Running k6 test suites
 The CPS k6 tests measure the system capabilities as per requirements.
 
+### Test Suites
+There are two test suites, each with its own scenarios/config, kept as separate k6 invocations so results aren't
+contaminated by shared CPS container/DB contention:
+1. ncmp — the test scenarios specific to NCMP (default).
+2. cps-core — CPS-Core scenarios (scaffold only for now; no scenarios executed yet).
+
 ### Test Profiles
 There are three test profiles that can be run:
 1. kpi — The test profile is to evaluate overall performance.
@@ -29,7 +35,7 @@ See [Prerequisites for Windows](../cps-charts/README.md#prerequisites-for-window
 ### Running the k6 test suites
 Run the main script. It assumes a Kubernetes environment with Helm is already available.
 ```shell
-./k6-main.sh [kpi|endurance|onapDmiStack]
+./k6-main.sh [kpi|endurance|onapDmiStack] [ncmp|cps-core]
 ```
 
 ### Parallel runs
@@ -53,4 +59,9 @@ helm install cps ../cps-charts --namespace kpi --create-namespace
 To run an individual test from the command line, use:
 ```shell
 k6 run ncmp/scenarios-config.js -e TEST_PROFILE=kpi
+```
+
+or, for cps-core:
+```shell
+cd cps-core && k6 run cps-core-test-runner.js -e TEST_PROFILE=kpi
 ```

@@ -1,0 +1,6 @@
+{
+  "cpsCoreBaseUrl": "http://localhost:30180/cps/api",
+  "containerCoolDownTimeInSeconds": 420,
+  "scenarios": {},
+  "_seedDataTodo": "Placeholder default (e.g. 1 dataspace, 1 schema-set, a handful of anchors, ~1k-5k data nodes) until real KPI targets exist. Tune here without code changes."
+}
