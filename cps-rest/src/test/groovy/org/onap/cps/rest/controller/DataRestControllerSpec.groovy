@@ -26,6 +26,7 @@ package org.onap.cps.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsFacade
+import org.onap.cps.api.model.DataNodeOperation
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper
@@ -406,17 +407,18 @@ class DataRestControllerSpec extends Specification {
                         .param('xpath', inputXpath))
                     .andReturn().response
         then: 'the cps data service method is invoked with expected parameters'
-            1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, xpathServiceParameter, expectedData, noTimestamp, expectedContentType)
+            1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, xpathServiceParameter,
+                expectedData, noTimestamp, expectedContentType) >> dataNodeOperation
         and: 'response status indicates success'
-            response.status == HttpStatus.OK.value()
+            response.status == expectedHttpStatus.value()
         where:
-            scenario                             | inputXpath    | contentType                || xpathServiceParameter | requestBody     | expectedData     | expectedContentType
-            'JSON content: root node by default' | ''            | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData | ContentType.JSON
-            'JSON content: root node by choice'  | '/'           | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData | ContentType.JSON
-            'JSON content: some xpath by parent' | '/some/xpath' | MediaType.APPLICATION_JSON || '/some/xpath'         | requestBodyJson | expectedJsonData | ContentType.JSON
-            'XML content: root node by default'  | ''            | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData  | ContentType.XML
-            'XML content: root node by choice'   | '/'           | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData  | ContentType.XML
-            'XML content: some xpath by parent'  | '/some/xpath' | MediaType.APPLICATION_XML  || '/some/xpath'         | requestBodyXml  | expectedXmlData  | ContentType.XML
+            scenario                        | inputXpath    | contentType                || xpathServiceParameter | requestBody     | expectedData     | expectedContentType | dataNodeOperation         | expectedHttpStatus
+            'JSON content is created'       | ''            | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData | ContentType.JSON    | DataNodeOperation.CREATE  | HttpStatus.CREATED
+            'JSON root node is replaced'    | '/'           | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData | ContentType.JSON    | DataNodeOperation.REPLACE | HttpStatus.NO_CONTENT
+            'JSON parent node is replaced'  | '/some/xpath' | MediaType.APPLICATION_JSON || '/some/xpath'         | requestBodyJson | expectedJsonData | ContentType.JSON    | DataNodeOperation.REPLACE | HttpStatus.NO_CONTENT
+            'JSON parent node is unchanged' | '/some/xpath' | MediaType.APPLICATION_JSON || '/some/xpath'         | requestBodyJson | expectedJsonData | ContentType.JSON    | DataNodeOperation.UPDATE  | HttpStatus.OK
+            'XML root node is replaced'     | ''            | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData  | ContentType.XML     | DataNodeOperation.REPLACE | HttpStatus.NO_CONTENT
+            'XML parent node is replaced'   | '/some/xpath' | MediaType.APPLICATION_XML  || '/some/xpath'         | requestBodyXml  | expectedXmlData  | ContentType.XML     | DataNodeOperation.REPLACE | HttpStatus.NO_CONTENT
     }
 
     def 'Validate data using Replace data node API.'() {
