@@ -49,6 +49,54 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "786862f8_fb7ddc70",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-24T14:37:14Z",
+      "side": 1,
+      "message": "Done 147739: chore: resolve minor comments from previous patch | https://gerrit.onap.org/r/c/cps/+/147739",
+      "parentUuid": "309cc454_917e38e4",
+      "range": {
+        "startLine": 132,
+        "startChar": 73,
+        "endLine": 132,
+        "endChar": 74
+      },
+      "revId": "f77834978bdd29e7a24b857309f8de10b63e8579",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19eb864a_0694a84f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-24T14:37:14Z",
+      "side": 1,
+      "message": "Done 147739: chore: resolve minor comments from previous patch | https://gerrit.onap.org/r/c/cps/+/147739",
+      "parentUuid": "3b67fd13_f3480a01",
+      "range": {
+        "startLine": 132,
+        "startChar": 42,
+        "endLine": 132,
+        "endChar": 74
+      },
+      "revId": "f77834978bdd29e7a24b857309f8de10b63e8579",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "aeaa9ff3_4f5875ef",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
         "patchSetId": 1
