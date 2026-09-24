@@ -32,6 +32,7 @@ import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
 
 import java.util.concurrent.BlockingQueue
+import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.TimeUnit
 
 @SpringBootTest
@@ -80,6 +81,20 @@ class SynchronizationCacheConfigSpec extends Specification {
         and: 'the configuration has the correct (default) backup counts'
             assert config.backupCount == 1
             assert config.asyncBackupCount == 0
+    }
+
+    def 'Cache queue configuration for Module Sync with master-only enabled.'() {
+        given: 'a configuration instance'
+            def objectUnderTest = new SynchronizationCacheConfig()
+        when: 'the work queue bean is created with cross-instance coordination disabled (master-only)'
+            def queue = objectUnderTest.moduleSyncWorkQueue(false)
+        then: 'it is a plain in-memory blocking queue, not a distributed Hazelcast queue'
+            assert queue instanceof LinkedBlockingQueue
+    }
+
+    def 'Cache queue configuration for Module Sync with master-only disabled.'() {
+        expect: 'the autowired work queue (cross-instance coordination enabled by default) is the distributed Hazelcast queue'
+            assert moduleSyncWorkQueue instanceof QueueProxyImpl
     }
 
     def 'Time to Live on Module Started on Cm Handle.'() {

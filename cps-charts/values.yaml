@@ -122,8 +122,10 @@ cps:
     CPS_MONITORING_MICROMETER_JVM_EXTRAS: "true"
     JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
     HAZELCAST_MODE_KUBERNETES_ENABLED: "true"
-    IGNORE_R20260423_MODEL: "true"
-    APP_LCM_EVENTS_EVENT-SCHEMA-VERSION: "v1"
+    IGNORE_R20260423_MODEL: "false"
+    APP_LCM_EVENTS_EVENT_SCHEMA_VERSION: "v1"
+    # Instance coordination set to "false" to test single instance performance
+    NCMP_TIMERS_ADVISED_MODULES_SYNC_CROSS_INSTANCE_COORDINATION_ENABLED: "false"
     # Authentication (set to "true" to enable JWT validation)
     SECURITY_AUTH_ENABLED: "false"
     SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: "http://host.docker.internal:8484/realms/cps-realm/protocol/openid-connect/certs"
