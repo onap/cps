@@ -91,6 +91,23 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     }
 
     /**
+     * Get lightweight CM handle details (top-level leaves only) by distinguished name.
+     *
+     * @param distinguishedName   fully distinguished name to any cm object
+     * @param outputDmiProperties boolean to determine the inclusion of dmi properties
+     * @return lightweight cm handle details
+     */
+    @Override
+    public ResponseEntity<RestOutputCmHandleLightweight> getCmHandleByDistinguishedNameLightweight(
+            final String distinguishedName, final Boolean outputDmiProperties) {
+        final NcmpServiceCmHandle ncmpServiceCmHandle =
+                networkCmProxyInventoryFacade.getNcmpServiceCmHandleLightweight(distinguishedName);
+        final RestOutputCmHandleLightweight restOutputCmHandleLightweight = restOutputCmHandleMapper
+                .toRestOutputCmHandleLightweight(ncmpServiceCmHandle, Boolean.TRUE.equals(outputDmiProperties));
+        return ResponseEntity.ok(restOutputCmHandleLightweight);
+    }
+
+    /**
      * Get all cm handle references under a registered DMI plugin.
      *
      * @param cmHandleQueryParameters DMI plugin identifier
