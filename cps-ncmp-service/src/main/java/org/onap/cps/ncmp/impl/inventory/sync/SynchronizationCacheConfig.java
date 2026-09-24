@@ -23,7 +23,9 @@ package org.onap.cps.ncmp.impl.inventory.sync;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import org.onap.cps.impl.cache.HazelcastCacheConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,13 +42,23 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     private static final MapConfig moduleSyncStartedMapConfig = createModuleSyncStartedMapConfig();
 
     /**
-     * Module Sync Distributed Queue Instance.
+     * Module Sync work queue holding the cm handle ids that need module sync.
+     * When cross-instance coordination is enabled (the default) the shared Hazelcast queue is used so work can be
+     * populated/drained across instances. When it is disabled only one instance runs module sync,
+     * so a plain in-memory queue is used and the distributed Hazelcast queue (and its overhead) is avoided.
      *
+     * @param crossInstanceCoordinationEnabled whether module sync is coordinated across instances (default true);
+     *                                          false when module sync runs on the master instance only
      * @return queue of cm handle ids that need module sync
      */
     @Bean
-    public BlockingQueue<String> moduleSyncWorkQueue() {
-        return getOrCreateHazelcastInstance(DEFAULT_QUEUE_CONFIG).getQueue("moduleSyncWorkQueue");
+    public BlockingQueue<String> moduleSyncWorkQueue(
+            @Value("${ncmp.timers.advised-modules-sync.cross-instance-coordination-enabled:true}")
+            final boolean crossInstanceCoordinationEnabled) {
+        if (crossInstanceCoordinationEnabled) {
+            return getOrCreateHazelcastInstance(DEFAULT_QUEUE_CONFIG).getQueue("moduleSyncWorkQueue");
+        }
+        return new LinkedBlockingQueue<>();
     }
 
     /**

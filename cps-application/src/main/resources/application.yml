@@ -253,6 +253,8 @@ ncmp:
     timers:
         advised-modules-sync:
             sleep-time-ms: 5000
+            # legacy behavior: true | single instance module sync: false
+            cross-instance-coordination-enabled: true
         cm-handle-data-sync:
             sleep-time-ms: 30000
         cm-handle-state-metrics-reconciliation:
