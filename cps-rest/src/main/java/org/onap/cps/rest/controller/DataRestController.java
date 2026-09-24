@@ -23,6 +23,8 @@
 
 package org.onap.cps.rest.controller;
 
+import static org.onap.cps.api.model.DataNodeOperation.CREATE;
+import static org.onap.cps.api.model.DataNodeOperation.REPLACE;
 import static org.onap.cps.utils.XmlUtils.convertDataMapsToXml;
 
 import io.micrometer.core.annotation.Timed;
@@ -35,6 +37,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsFacade;
+import org.onap.cps.api.model.DataNodeOperation;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.utils.ContentType;
@@ -169,11 +172,19 @@ public class DataRestController implements CpsDataApi {
         if (Boolean.TRUE.equals(dryRunEnabled)) {
             cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
             return ResponseEntity.ok().build();
-        } else {
-            cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
-                    nodeData, toOffsetDateTime(observedTimestamp), contentType);
         }
-        return ResponseEntity.status(HttpStatus.OK).build();
+        final DataNodeOperation dataNodeOperation =
+            cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
+                nodeData, toOffsetDateTime(observedTimestamp), contentType);
+        final HttpStatus httpStatus;
+        if (CREATE == dataNodeOperation) {
+            httpStatus = HttpStatus.CREATED;
+        } else if (REPLACE == dataNodeOperation) {
+            httpStatus = HttpStatus.NO_CONTENT;
+        } else {
+            httpStatus = HttpStatus.OK;
+        }
+        return ResponseEntity.status(httpStatus).build();
     }
 
     @Override

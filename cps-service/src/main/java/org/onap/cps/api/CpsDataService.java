@@ -28,6 +28,7 @@ import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Map;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.DataNodeOperation;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.utils.ContentType;
 
@@ -147,9 +148,11 @@ public interface CpsDataService {
      * @param nodeData          node data
      * @param observedTimestamp observedTimestamp
      * @param contentType       JSON/XML content type
+     * @return the operation performed
      */
-    void updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
-                                       OffsetDateTime observedTimestamp, ContentType contentType);
+    DataNodeOperation updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath,
+                                                   String nodeData, OffsetDateTime observedTimestamp,
+                                                   ContentType contentType);
 
     /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation.
