@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.DataNodeOperation;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 
@@ -114,8 +115,10 @@ public interface CpsDataPersistenceService {
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      * @param dataNodes     data nodes
+     * @return the operation performed
      */
-    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, final Collection<DataNode> dataNodes);
+    DataNodeOperation updateDataNodesAndDescendants(String dataspaceName, String anchorName,
+                                                    Collection<DataNode> dataNodes);
 
     /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation, without retrying

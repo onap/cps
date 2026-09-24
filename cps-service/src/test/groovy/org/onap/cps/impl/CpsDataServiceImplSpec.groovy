@@ -33,6 +33,7 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.SessionManagerException
 import org.onap.cps.api.exceptions.SessionTimeoutException
 import org.onap.cps.api.model.Anchor
+import org.onap.cps.api.model.DataNodeOperation
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.events.CpsDataUpdateEventsProducer
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -301,17 +302,20 @@ class CpsDataServiceImplSpec extends Specification {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
-            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp, ContentType.JSON)
+            def result = objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData,
+                observedTimestamp, ContentType.JSON)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
-                    { dataNode -> dataNode.xpath == expectedNodeXpath})
+                    { dataNode -> dataNode.xpath == expectedNodeXpath}) >> expectedDataNodeOperation
+        and: 'the data-node operation is reported'
+            assert result == expectedDataNodeOperation
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
-            scenario         | parentNodeXpath | jsonData                                           || expectedNodeXpath
-            'top level node' | '/'             | '{"test-tree": {"branch": []}}'                    || ['/test-tree']
-            'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'                    || ['/test-tree/branch[@name=\'Name\']']
-            'json list'      | '/test-tree'    | '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
+            scenario         | parentNodeXpath | jsonData                                           || expectedNodeXpath                                    | expectedDataNodeOperation
+            'top level node' | '/'             | '{"test-tree": {"branch": []}}'                    || ['/test-tree']                                      | DataNodeOperation.CREATE
+            'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'                    || ['/test-tree/branch[@name=\'Name\']']               | DataNodeOperation.REPLACE
+            'json list'      | '/test-tree'    | '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"] | DataNodeOperation.REPLACE
     }
 
     def 'Replace data node and descendants using list element xpath with #scenario.'() {

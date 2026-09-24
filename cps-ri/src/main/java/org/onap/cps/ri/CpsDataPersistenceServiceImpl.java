@@ -25,6 +25,9 @@ package org.onap.cps.ri;
 
 import static org.onap.cps.api.CpsQueryService.NO_LIMIT;
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
+import static org.onap.cps.cpspath.parser.CpsPathUtil.NO_PARENT_PATH;
+import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
+import static org.onap.cps.cpspath.parser.CpsPathUtil.getNormalizedParentXpath;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
@@ -50,6 +53,7 @@ import org.onap.cps.api.exceptions.CpsPathException;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.DataNodeOperation;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
@@ -141,10 +145,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
-                                              final Collection<DataNode> updatedDataNodes) {
-        replaceDataNodesAndDescendants(dataspaceName, anchorName, updatedDataNodes,
-                                       ConflictHandling.RETRY_INDIVIDUALLY);
+    public DataNodeOperation updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
+                                                           final Collection<DataNode> updatedDataNodes) {
+        return replaceDataNodesAndDescendants(dataspaceName, anchorName, updatedDataNodes,
+                                              ConflictHandling.RETRY_INDIVIDUALLY);
     }
 
     @Override
@@ -287,10 +291,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         deleteDataNodesByXpaths(dataspaceName, anchorName, xpathsToDelete, false);
     }
 
-    private void replaceDataNodesAndDescendants(final String dataspaceName,
-                                                final String anchorName,
-                                                final Collection<DataNode> updatedDataNodes,
-                                                final ConflictHandling conflictHandling) {
+    private DataNodeOperation replaceDataNodesAndDescendants(final String dataspaceName,
+                                                             final String anchorName,
+                                                             final Collection<DataNode> updatedDataNodes,
+                                                             final ConflictHandling conflictHandling) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
 
         final Map<String, DataNode> xpathToUpdatedDataNode = updatedDataNodes.stream()
@@ -298,6 +302,18 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final Collection<String> xpaths = xpathToUpdatedDataNode.keySet();
         Collection<FragmentEntity> existingFragmentEntities = getFragmentEntities(anchorEntity, xpaths);
+
+        if (existingFragmentEntities.isEmpty() && !updatedDataNodes.isEmpty()
+            && fragmentRepository.findRootsByAnchorId(anchorEntity.getId()).isEmpty()) {
+            if (!areAllTopLevelXpaths(xpaths)) {
+                throw new DataNodeNotFoundExceptionBatch(dataspaceName, anchorName, xpaths);
+            }
+            storeDataNodes(dataspaceName, anchorName, updatedDataNodes);
+            return DataNodeOperation.CREATE;
+        }
+        if (existingFragmentEntities.isEmpty() && !updatedDataNodes.isEmpty()) {
+            throw new DataNodeNotFoundExceptionBatch(dataspaceName, anchorName, xpaths);
+        }
 
         logMissingXPaths(xpaths, existingFragmentEntities);
 
@@ -321,6 +337,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 + "Retrying each data node individually.", existingFragmentEntities.size(), anchorName);
             retryUpdateDataNodesIndividually(anchorEntity, existingFragmentEntities);
         }
+        return DataNodeOperation.REPLACE;
     }
 
 
@@ -746,6 +763,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         } catch (final PathParsingException e) {
             throw new CpsPathException(e.getMessage());
         }
+    }
+
+    private static boolean areAllTopLevelXpaths(final Collection<String> xpaths) {
+        for (final String xpath : xpaths) {
+            if (!ROOT_NODE_XPATH.equals(xpath)
+                && !NO_PARENT_PATH.equals(getNormalizedParentXpath(xpath))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static void logMissingXPaths(final Collection<String> xpaths,
