@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40601edf_fba6a396",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T14:34:58Z",
+      "side": 1,
+      "message": "minor suggestion on test",
+      "revId": "6f6adb818da24f7ff747edf1607e17d5563d5f3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "defb24b7_b5c6da75",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T14:34:58Z",
+      "side": 1,
+      "message": "general rule for \u0027additional\u0027 data fields (not relevant to test) in order of preference (depend on production code validation during tests)\n1) dont add at all\n2) add value indicating it is not relevant e.g \u0027some state\u0027\n3) add \u0027minimimum\u0027 acceptable value in this case \u0027READY\u0027 might be whats needed...\n(but dont assert it)",
+      "range": {
+        "startLine": 345,
+        "startChar": 85,
+        "endLine": 345,
+        "endChar": 108
+      },
+      "revId": "6f6adb818da24f7ff747edf1607e17d5563d5f3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2cec6d3_0785e50f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T14:34:58Z",
+      "side": 1,
+      "message": "mocked, shoudl not be asserted",
+      "range": {
+        "startLine": 354,
+        "startChar": 12,
+        "endLine": 354,
+        "endChar": 61
+      },
+      "revId": "6f6adb818da24f7ff747edf1607e17d5563d5f3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
