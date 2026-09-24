@@ -124,14 +124,17 @@ class DmiRestClientIntegrationSpec extends Specification {
             mockWebServer.enqueue(new MockResponse().setResponseCode(responseCode.value))
         when: 'a synchronous post request is attempted'
             objectUnderTest.synchronousPostOperationWithErrorMapping(DATA, urlTemplateParameters,'body', CREATE, '')
-        then: 'a DMI client request exception is thrown with the right status'
+        then: 'a DMI client request exception is thrown with the right status and mapped NCMP code'
             def thrown = thrown(DmiClientRequestException)
             assert thrown.httpStatusCode == expectedStatus
+            assert thrown.ncmpResponseStatus.code == expectedNcmpCode
         where: 'the following HTTP Errors are applied'
-            scenario             | responseCode                   || expectedStatus
-            'Client error (418)' | HttpStatus.I_AM_A_TEAPOT       || 418
-            'Timeout (408)'      | HttpStatus.REQUEST_TIMEOUT     || 408
-            'Server error (503)' | HttpStatus.SERVICE_UNAVAILABLE || 503
+            scenario                    | responseCode                    || expectedStatus | expectedNcmpCode
+            'Service Unavailable (503)' | HttpStatus.SERVICE_UNAVAILABLE   || 503            | '107'
+            'Too Many Requests (429)'   | HttpStatus.TOO_MANY_REQUESTS     || 429            | '107'
+            'Timeout (408)'             | HttpStatus.REQUEST_TIMEOUT       || 408            | '102'
+            'Client error (418)'        | HttpStatus.I_AM_A_TEAPOT         || 418            | '103'
+            'Server error (500)'        | HttpStatus.INTERNAL_SERVER_ERROR || 500            | '103'
     }
 
     def 'DMI Request with unexpected runtime exception.'() {
