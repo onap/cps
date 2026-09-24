@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Copyright 2024-2026 OpenInfra Foundation Europe. All rights reserved.
+# Modifications Copyright (C) 2026 Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,6 +29,17 @@ testProfile=${1:-kpi}
 # not allow the capitals in camelCase profile names such as onapDmiStack.
 export K8S_NAMESPACE="${testProfile,,}"
 
+# The default suite is ncmp (existing behaviour); cps-core runs as its own suite/profile.
+suite=${2:-ncmp}
+if [[ "$suite" != "ncmp" && "$suite" != "cps-core" ]]; then
+  echo "Unknown suite '$suite'. Usage: $0 [kpi|endurance|onapDmiStack] [ncmp|cps-core]" >&2
+  exit 1
+fi
+if [[ "$suite" == "cps-core" && "$testProfile" == "onapDmiStack" ]]; then
+  echo "The onapDmiStack profile is only supported for the ncmp suite." >&2
+  exit 1
+fi
+
 # Cleanup handler: capture exit status, run teardown,
 # and restore directory, report failures, and exit with original code.
 on_exit() {
@@ -43,7 +55,7 @@ trap on_exit EXIT SIGINT SIGTERM SIGQUIT
 pushd "$(dirname "$0")" || exit 1
 
 # Install needed dependencies
-source ./install-deps.sh
+source ./install-deps.sh "$suite"
 
 # Set default values for local development if not provided by Jenkins
 IMAGE_TAG="${IMAGE_TAG:-latest}"
@@ -164,15 +176,16 @@ fi
 echo "NodePort host: ${NODEPORT_HOST}"
 
 # Run k6 test suite. The onapDmiStack profile exercises the DMI API against the
-# ONAP DMI stack; the kpi/endurance profiles exercise NCMP against dmi-stub.
+# ONAP DMI stack; the kpi/endurance profiles exercise the selected suite (ncmp
+# against dmi-stub, or cps-core).
 if [[ "$testProfile" == "onapDmiStack" ]]; then
     export DMI_BASE_URL="${DMI_BASE_URL:-http://${NODEPORT_HOST}:30097}"
     export NCMP_BASE_URL="${NCMP_BASE_URL:-http://${NODEPORT_HOST}:30080}"
     ./onap-dmi-stack/execute-k6-scenarios.sh "$testProfile"
 else
-    ./ncmp/execute-k6-scenarios.sh "$testProfile"
+    "./$suite/execute-k6-scenarios.sh" "$testProfile"
 fi
-NCMP_RESULT=$?
+SUITE_RESULT=$?
 
 # Note that the final steps are done in on_exit function after this exit!
-exit $NCMP_RESULT
+exit $SUITE_RESULT
