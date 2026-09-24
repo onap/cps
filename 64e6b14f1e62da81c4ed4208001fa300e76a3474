@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b6f2dda_4fbfb81b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T07:49:45Z",
+      "side": 1,
+      "message": "as discussed today.\nAdd 204 back to the REST if definition and return 201 OR 204 depending on whether data was present before or not. \nIf you do that it is \u0027more\u0027 compatible.\nIst still not 100% backward compatible because you change the behavior returning 201 instead of 204 in some cases. But is seem an edgecase an it is still a 2xx repsonse. Make sure you update the release notes to highlight this slight change",
+      "revId": "64e6b14f1e62da81c4ed4208001fa300e76a3474",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
