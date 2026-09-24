@@ -144,6 +144,14 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
+    public YangModelCmHandle getYangModelCmHandleWithoutProperties(final String cmHandleId) {
+        cpsValidator.validateNameCharacters(cmHandleId);
+        final DataNode dataNode =
+                getCmHandleDataNodeByCmHandleId(cmHandleId, OMIT_DESCENDANTS).iterator().next();
+        return YangDataConverter.toYangModelCmHandle(dataNode);
+    }
+
+    @Override
     public Collection<YangModelCmHandle> getYangModelCmHandles(final Collection<String> cmHandleIds) {
         return getYangModelCmHandlesWithDescendantsOption(cmHandleIds, INCLUDE_ALL_DESCENDANTS);
     }
