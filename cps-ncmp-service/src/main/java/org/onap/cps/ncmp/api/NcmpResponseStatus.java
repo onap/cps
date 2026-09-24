@@ -32,6 +32,7 @@ public enum NcmpResponseStatus {
     DMI_SERVICE_NOT_RESPONDING("102", "dmi plugin service is not responding"),
     UNABLE_TO_READ_RESOURCE_DATA("103", "dmi plugin service is not able to read resource data"),
     CM_DATA_SUBSCRIPTION_REJECTED("104", "REJECTED"),
+    SOUTHBOUND_SYSTEM_BUSY("107", "southbound system is busy"),
     UNKNOWN_ERROR("108", "Unknown error"),
     CM_HANDLE_ALREADY_EXIST("109", "cm-handle already exists"),
     CM_HANDLE_INVALID_ID("110", "cm handle reference has an invalid character(s) in id"),

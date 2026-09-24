@@ -22,12 +22,15 @@
 package org.onap.cps.ncmp.impl.dmi;
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING;
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.SOUTHBOUND_SYSTEM_BUSY;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR;
 import static org.onap.cps.ncmp.api.data.models.OperationType.READ;
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.REQUEST_TIMEOUT;
+import static org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE;
+import static org.springframework.http.HttpStatus.TOO_MANY_REQUESTS;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,6 +46,7 @@ import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -295,8 +299,8 @@ public class DmiRestClient {
 
     private DmiClientRequestException handleDmiClientException(final Throwable throwable, final String operationType) {
         if (throwable instanceof WebClientResponseException webClientResponseException) {
-            final NcmpResponseStatus ncmpResponseStatus =  webClientResponseException.getStatusCode()
-                .isSameCodeAs(REQUEST_TIMEOUT) ? DMI_SERVICE_NOT_RESPONDING : UNABLE_TO_READ_RESOURCE_DATA;
+            final NcmpResponseStatus ncmpResponseStatus =
+                mapHttpStatusToNcmpResponseStatus(webClientResponseException.getStatusCode());
             return new DmiClientRequestException(webClientResponseException.getStatusCode().value(),
                     webClientResponseException.getMessage(),
                     jsonObjectMapper.asJsonString(webClientResponseException.getResponseBodyAsString()),
@@ -309,6 +313,16 @@ public class DmiRestClient {
         }
         return new DmiClientRequestException(INTERNAL_SERVER_ERROR.value(), exceptionMessage, throwable.getMessage(),
                 UNKNOWN_ERROR);
+    }
+
+    private NcmpResponseStatus mapHttpStatusToNcmpResponseStatus(final HttpStatusCode httpStatusCode) {
+        if (httpStatusCode.isSameCodeAs(SERVICE_UNAVAILABLE) || httpStatusCode.isSameCodeAs(TOO_MANY_REQUESTS)) {
+            return SOUTHBOUND_SYSTEM_BUSY;
+        }
+        if (httpStatusCode.isSameCodeAs(REQUEST_TIMEOUT)) {
+            return DMI_SERVICE_NOT_RESPONDING;
+        }
+        return UNABLE_TO_READ_RESOURCE_DATA;
     }
 
     private Mono<ResponseEntity<Object>> createIdenticalResponseForClient(final ClientResponse clientResponse) {
