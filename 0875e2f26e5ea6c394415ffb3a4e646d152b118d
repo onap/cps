@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "279ce575_7d3abee6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-24T10:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f22ed4e_156c1308",
+      "range": {
+        "startLine": 70,
+        "startChar": 41,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "0875e2f26e5ea6c394415ffb3a4e646d152b118d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88b1d36f_fdf975ac",
@@ -78,6 +102,30 @@
       "writtenOn": "2026-09-23T16:10:04Z",
       "side": 1,
       "message": "NB: assert keyword is missing\n(AI smell but should be in the AGENTS.md as a rule, maybe check)",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 62
+      },
+      "revId": "0875e2f26e5ea6c394415ffb3a4e646d152b118d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a97b1bf_5b7063a3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-24T10:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88b1d36f_fdf975ac",
       "range": {
         "startLine": 157,
         "startChar": 0,
@@ -111,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "885197d6_7918dd34",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-24T10:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8147f834_df3bdb88",
+      "range": {
+        "startLine": 182,
+        "startChar": 9,
+        "endLine": 182,
+        "endChar": 79
+      },
+      "revId": "0875e2f26e5ea6c394415ffb3a4e646d152b118d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b2f6848_290c970f",
@@ -134,6 +206,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dffb139_f6f50e7c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-24T10:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b2f6848_290c970f",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 61
+      },
+      "revId": "0875e2f26e5ea6c394415ffb3a4e646d152b118d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65ed0292_cb3417b7",
@@ -147,6 +243,30 @@
       "writtenOn": "2026-09-23T16:10:04Z",
       "side": 1,
       "message": "since this is mocked on line 186 you are/dont need to test 2 scenarios",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 71
+      },
+      "revId": "0875e2f26e5ea6c394415ffb3a4e646d152b118d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ab0f738_eef17642",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-09-24T10:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65ed0292_cb3417b7",
       "range": {
         "startLine": 202,
         "startChar": 0,
