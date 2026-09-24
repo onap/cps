@@ -1,0 +1,24 @@
+{
+  "dmiBaseUrl": "http://localhost:30097",
+  "dmiUsername": "cpsuser",
+  "dmiPassword": "cpsr0cks!",
+  "ncmpBaseUrl": "http://localhost:30080",
+  "dmiPluginInClusterUrl": "http://cps-ncmp-ncmp-dmi-plugin-service:8080",
+  "cmHandle": "ietfYang-PNFDemo",
+  "expectedNumberOfModules": 22,
+  "cmHandleReadyTimeoutInSeconds": 180,
+  "cmHandleReadyPollIntervalInSeconds": 5,
+  "scenarios": {
+    "onap_dmi_stack_scenario": {
+      "executor": "per-vu-iterations",
+      "exec": "onapDmiStackScenario",
+      "vus": 1,
+      "iterations": 1,
+      "maxDuration": "10m"
+    }
+  },
+  "thresholds": {
+    "checks": ["rate==1"],
+    "http_req_failed": ["rate==0"]
+  }
+}

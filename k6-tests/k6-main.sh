@@ -23,8 +23,10 @@ set -o pipefail # Use last non-zero exit code in a pipeline
 # Default test profile is kpi.
 testProfile=${1:-kpi}
 
-# Use test profile as namespace to allow parallel runs (e.g., kpi and endurance)
-export K8S_NAMESPACE="${testProfile}"
+# Use test profile as namespace to allow parallel runs (e.g., kpi and endurance).
+# Lowercased because a namespace must be a valid RFC 1123 DNS label, which does
+# not allow the capitals in camelCase profile names such as onapDmiStack.
+export K8S_NAMESPACE="${testProfile,,}"
 
 # Cleanup handler: capture exit status, run teardown,
 # and restore directory, report failures, and exit with original code.
@@ -102,10 +104,23 @@ if [[ -f "$VALUES_OVERRIDE_FILE" ]]; then
     HELM_VALUES_FLAG="--values $VALUES_OVERRIDE_FILE"
 fi
 
+# The onapDmiStack profile targets the ONAP DMI stack (DMI + cps-ncmp + SDNC +
+# pnfsim) rather than dmi-stub. Enabling that stack excludes dmi-stub, so NCMP has
+# exactly one DMI to talk to. SDNC/Karaf takes 5-10+ minutes to boot and the
+# sdnc-mount-node hook waits for it, hence the longer timeout.
+HELM_EXTRA_FLAGS=""
+HELM_TIMEOUT_FLAG=""
+if [[ "$testProfile" == "onapDmiStack" ]]; then
+    HELM_EXTRA_FLAGS="--set onapDmiStack.enabled=true"
+    HELM_TIMEOUT_FLAG="--timeout 20m"
+fi
+
 # Deploy cps charts for k8s in profile-specific namespace
 helm install cps ../cps-charts \
   --namespace "$K8S_NAMESPACE" \
   $HELM_VALUES_FLAG \
+  $HELM_EXTRA_FLAGS \
+  $HELM_TIMEOUT_FLAG \
   --set cps.image.tag="${IMAGE_TAG}" \
   --set cps.image.pullPolicy="${IMAGE_PULL_POLICY}" \
   --set dmiStub.image.tag="${DMI_STUB_VERSION}" \
@@ -114,7 +129,13 @@ helm install cps ../cps-charts \
 
 # Wait for pods and services until becomes ready
 echo "Waiting for cps and ncmp pods to be ready..."
-kubectl wait --namespace "$K8S_NAMESPACE" --for=condition=available deploy -l app=ncmp --timeout=300s
+kubectl wait --namespace "$K8S_NAMESPACE" --for=condition=available deploy -l app=ncmp --timeout=600s
+
+if [[ "$testProfile" == "onapDmiStack" ]]; then
+    echo "Waiting for the ncmp-dmi-plugin to be ready..."
+    kubectl wait --namespace "$K8S_NAMESPACE" --for=condition=available \
+      deploy -l component=ncmp-dmi-plugin --timeout=600s
+fi
 
 # Verify actual images running in pods
 cat << EOF
@@ -128,8 +149,29 @@ kubectl get pods --namespace "$K8S_NAMESPACE" -l app=ncmp -o jsonpath='{range .i
 done
 echo "=========================================="
 
-# Run k6 test suite
-./ncmp/execute-k6-scenarios.sh "$testProfile"
+# Resolve the host the NodePorts are reachable on. On minikube they bind to the
+# cluster node's IP rather than localhost, so defaulting to localhost gives
+# "connection refused" even though the deployment is healthy. Docker Desktop and
+# k3s publish NodePorts on localhost, so that stays the fallback.
+if [[ -z "${NODEPORT_HOST:-}" ]]; then
+    nodeInternalIp=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}' 2>/dev/null || true)
+    if [[ "$(kubectl config current-context 2>/dev/null)" == "minikube" && -n "$nodeInternalIp" ]]; then
+        NODEPORT_HOST="$nodeInternalIp"
+    else
+        NODEPORT_HOST="localhost"
+    fi
+fi
+echo "NodePort host: ${NODEPORT_HOST}"
+
+# Run k6 test suite. The onapDmiStack profile exercises the DMI API against the
+# ONAP DMI stack; the kpi/endurance profiles exercise NCMP against dmi-stub.
+if [[ "$testProfile" == "onapDmiStack" ]]; then
+    export DMI_BASE_URL="${DMI_BASE_URL:-http://${NODEPORT_HOST}:30097}"
+    export NCMP_BASE_URL="${NCMP_BASE_URL:-http://${NODEPORT_HOST}:30080}"
+    ./onap-dmi-stack/execute-k6-scenarios.sh "$testProfile"
+else
+    ./ncmp/execute-k6-scenarios.sh "$testProfile"
+fi
 NCMP_RESULT=$?
 
 # Note that the final steps are done in on_exit function after this exit!
