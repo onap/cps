@@ -59,6 +59,16 @@ Bug Fixes
     - `CPS-3435 <https://lf-onap.atlassian.net/browse/CPS-3435>`_ stop CM handles getting stuck in ADVISED on multi-instance sync
     - `CPS-3428 <https://lf-onap.atlassian.net/browse/CPS-3428>`_ preserve attribute name in RFC 6902 ProvMnS patch
 
+Bug Fixes
+---------
+    - `CPS-3328 <https://lf-onap.atlassian.net/browse/CPS-3328>`_ PUT now creates data on an empty anchor instead of silently succeeding without persisting it.
+
+Notes
+-----
+**Response code compatibility change (CPS-3328).**
+    A successful PUT that creates the first data under an anchor now returns `201 Created`. A PUT that replaces existing data returns `204 No Content`;
+    other successful PUT operations continue to return `200 OK`.
+
 Version: 3.8.3
 ==============
 

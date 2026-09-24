@@ -29,10 +29,10 @@ import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
+import org.onap.cps.api.model.DataNodeOperation
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.utils.ContentType
-import spock.lang.Ignore
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -445,6 +445,25 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             restoreBookstoreDataAnchor(1)
     }
 
+    def 'Update data nodes on an empty anchor.'() {
+        given: 'an anchor with no data'
+            def anchorName = 'empty-anchor-for-put-test'
+            cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, anchorName)
+        and: 'data for the bookstore root node'
+            def json = '{"bookstore": {"bookstore-name": "new bookstore" }}'
+        when: 'the data node tree is updated'
+            def result = objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, anchorName, '/',
+                json, now, ContentType.JSON)
+        then: 'the data-node operation is creation'
+            assert result == DataNodeOperation.CREATE
+        and: 'the data is persisted'
+            def dataNodes = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, anchorName, '/bookstore',
+                DIRECT_CHILDREN_ONLY)
+            assert dataNodes.leaves.'bookstore-name'[0] == 'new bookstore'
+        cleanup:
+            cpsAnchorService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_1, anchorName)
+    }
+
     def 'Update list items.'() {
         given: 'list of books'
             def existingJsonData = '{"books": [ {"title":"Existing Book", "lang":"English"}, {"title":"Another existing book", "lang":"French"} ] }'
@@ -469,10 +488,14 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Update bookstore top-level container data node.'() {
         when: 'the bookstore top-level container is updated'
             def json = '{ "bookstore": { "bookstore-name": "new bookstore" }}'
-            objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/', json, now, ContentType.JSON)
+            def result = objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1,
+                '/', json, now, ContentType.JSON)
         then: 'bookstore name has been updated'
-            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', DIRECT_CHILDREN_ONLY)
-            result.leaves.'bookstore-name'[0] == 'new bookstore'
+            def dataNodes = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore',
+                DIRECT_CHILDREN_ONLY)
+            assert dataNodes.leaves.'bookstore-name'[0] == 'new bookstore'
+        and: 'the data-node operation is replacement'
+            assert result == DataNodeOperation.REPLACE
         cleanup:
             restoreBookstoreDataAnchor(1)
     }
