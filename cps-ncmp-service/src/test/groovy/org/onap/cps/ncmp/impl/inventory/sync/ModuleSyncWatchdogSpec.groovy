@@ -33,11 +33,14 @@ import spock.lang.Specification
 
 import java.util.concurrent.ArrayBlockingQueue
 
+import static java.util.concurrent.TimeUnit.SECONDS
+import static org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE
+
 class ModuleSyncWatchdogSpec extends Specification {
 
     def mockModuleOperationsUtils = Mock(ModuleOperationsUtils)
 
-    def static testQueueCapacity = 50 + 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE
+    def static testQueueCapacity = 50 + 2 * MODULE_SYNC_BATCH_SIZE
 
     def moduleSyncWorkQueue = new ArrayBlockingQueue(testQueueCapacity)
 
@@ -76,6 +79,77 @@ class ModuleSyncWatchdogSpec extends Specification {
             assert loggingEvent.formattedMessage == 'System is not ready yet'
     }
 
+    def 'Scheduled module sync with master enabled.'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'cross-instance coordination is disabled (master-only module sync)'
+            objectUnderTest.crossInstanceCoordinationEnabled = false
+        and: 'this instance acquires the module-sync master lock'
+            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', _, _, _, _) >> true
+        and: 'there is an advised cm handle to process'
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
+        when: 'the scheduled module sync is triggered'
+            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
+        then: 'module sync is performed'
+            1 * mockModuleSyncTasks.performModuleSync(*_)
+        and: 'the distributed work queue lock is not used'
+            0 * mockCpsCommonLocks.tryLock('workQueueLock')
+    }
+
+    def 'Scheduled module sync on non-master instance.'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'cross-instance coordination is disabled (master-only module sync)'
+            objectUnderTest.crossInstanceCoordinationEnabled = false
+        and: 'this instance cannot acquire the module-sync master lock (another instance is master)'
+            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', _, _, _, _) >> false
+        when: 'the scheduled module sync is triggered'
+            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
+        then: 'no advised cm handles are fetched and no module sync task is performed'
+            0 * mockModuleOperationsUtils.getAdvisedCmHandleIds()
+            0 * mockModuleSyncTasks.performModuleSync(*_)
+    }
+
+    def 'Scheduled module sync on master instance renews the master lock each cycle.'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'cross-instance coordination is disabled (master-only module sync)'
+            objectUnderTest.crossInstanceCoordinationEnabled = false
+        and: 'this instance holds (acquires or renews) the master lock with a lease on every attempt'
+            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', 0, SECONDS, 25, SECONDS) >> true
+        and: 'there are no cm handles to process so each cycle does no sync work'
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> []
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
+        when: 'the scheduled module sync runs for two consecutive cycles'
+            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
+            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
+        then: 'the master lock is (re)acquired with its lease once per cycle (renewed, not held blindly)'
+            2 * mockCpsCommonLocks.tryLock('moduleSyncMasterLock', 0, SECONDS, 25, SECONDS) >> true
+        and: 'the distributed work queue lock is never used on the master-only path'
+            0 * mockCpsCommonLocks.tryLock('workQueueLock')
+    }
+
+    def 'Scheduled module sync when interrupted acquiring the master lock.'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'cross-instance coordination is disabled (master-only module sync)'
+            objectUnderTest.crossInstanceCoordinationEnabled = false
+        and: 'acquiring the module-sync master lock is interrupted'
+            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', _, _, _, _) >> { throw new InterruptedException() }
+        when: 'the scheduled module sync is triggered'
+            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
+        then: 'no module sync task is performed this cycle'
+            0 * mockModuleSyncTasks.performModuleSync(*_)
+        and: 'the thread interrupt status is restored'
+            assert Thread.currentThread().isInterrupted()
+        and: 'a warning is logged about the interruption'
+            def warningEvents = logAppender.list.findAll { it.level == Level.WARN }
+            assert warningEvents.any { it.formattedMessage.contains('Interrupted while acquiring the module-sync master lock') }
+        cleanup: 'clear the interrupt flag so it does not leak into other tests'
+            Thread.interrupted()
+    }
+
     def 'Module sync advised cm handles with #scenario.'() {
         given: 'system is ready to accept traffic'
             mockReadinessManager.isReady() >> true
@@ -92,13 +166,13 @@ class ModuleSyncWatchdogSpec extends Specification {
         and: 'the executing thread is unlocked'
             1 * mockCpsCommonLocks.unlock('workQueueLock')
         where: 'the following parameter are used'
-            scenario              | numberOfAdvisedCmHandles                                          || expectedNumberOfTaskExecutions
-            'none at all'         | 0                                                                 || 0
-            'less then 1 batch'   | 1                                                                 || 1
-            'exactly 1 batch'     | ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                         || 1
-            '2 batches'           | 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                     || 2
-            'queue capacity'      | testQueueCapacity                                                 || 3
-            'over queue capacity' | testQueueCapacity + 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE || 3
+            scenario              | numberOfAdvisedCmHandles                       || expectedNumberOfTaskExecutions
+            'none at all'         | 0                                              || 0
+            'less then 1 batch'   | 1                                              || 1
+            'exactly 1 batch'     | MODULE_SYNC_BATCH_SIZE                         || 1
+            '2 batches'           | 2 * MODULE_SYNC_BATCH_SIZE                     || 2
+            'queue capacity'      | testQueueCapacity                              || 3
+            'over queue capacity' | testQueueCapacity + 2 * MODULE_SYNC_BATCH_SIZE || 3
     }
 
     def 'Module sync cm handles starts with no available threads.'() {
@@ -114,6 +188,24 @@ class ModuleSyncWatchdogSpec extends Specification {
             objectUnderTest.moduleSyncAdvisedCmHandles()
         then: 'it performs one task'
             1 * mockModuleSyncTasks.performModuleSync(*_)
+    }
+
+    def 'Module sync processing with master enabled.'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'cross-instance coordination is disabled (master-only module sync)'
+            objectUnderTest.crossInstanceCoordinationEnabled = false
+        and: 'module sync utilities returns 3 advised cm handles and no locked cm handles'
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(3)
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
+        when: 'module sync is started'
+            objectUnderTest.moduleSyncAdvisedCmHandles()
+        then: 'the in-progress map is never consulted or populated'
+            0 * mockModuleSyncStartedOnCmHandles.putIfAbsent(*_)
+        and: 'the distributed work queue lock is not used'
+            0 * mockCpsCommonLocks.tryLock('workQueueLock')
+        and: 'all 3 advised cm handles are processed in a single batch'
+            1 * mockModuleSyncTasks.performModuleSync({ it.size() == 3 })
     }
 
     def 'Module sync advised cm handle already handled by other thread.'() {

@@ -31,12 +31,15 @@ This document describes important aspects of our Spock/Groovy test framework, co
 - Follow pattern: `def 'Description of what is being tested'()`
 - **Do NOT include expectations in the test name** (e.g., "throws exception", "returns true")
 - Use `then:` blocks with descriptions to express expectations instead
+- Use a **slogan only**: the happy-path test for a method comes first with the plain slogan; additional tests for the same method use a `with ...`/`on ...` qualifier indicating what differs from the others (not the expected outcome)
 - Examples:
   - ✅ `def 'Registration with invalid cm handle name.'()`
   - ❌ `def 'Registration of invalid cm handle throws exception.'()`
   - ✅ `def 'Read data job request.'()`
   - ✅ `def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'()`
   - ✅ `def 'Initial cm handle registration with a cm handle that is not trusted'()`
+  - ✅ happy path first, then variant: `def 'Scheduled module sync with master enabled.'()` then `def 'Scheduled module sync on non-master instance.'()`
+  - ❌ `def 'Scheduled module sync is skipped when this instance is not the master.'()` (expectation in title)
 
 ### Variable Naming
 - Mock objects: Prefix with `mock` (e.g., `mockInventoryPersistence`, `mockDmiSubJobRequestHandler`)
@@ -259,11 +262,13 @@ def 'Refresh modules endpoint delegation.'() {
 - Use natural language that describes the scenario being tested
 - **Do NOT include expectations** - use `then:` blocks with descriptions instead
 - Keeping expectations out of the title makes titles shorter and easier to read, and easier to maintain: when an expectation changes you update only the `then:` block, not the test name
+- Put the happy path first with a plain slogan; give additional tests for the same method a `with ...`/`on ...` qualifier that says what differs (not the outcome)
 - Include context about what's being tested
 - Examples:
   - ✅ `def 'Registration with invalid cm handle name.'()` with `then: 'a validation exception is thrown'`
   - ❌ `def 'Registration of invalid cm handle throws exception.'()`
   - ✅ `def 'Initial cm handle registration with a cm handle that is not trusted'()`
+  - ✅ `def 'Scheduled module sync with master enabled.'()` then `def 'Scheduled module sync on non-master instance.'()`
   - ❌ `def 'test1'()`
 
 ### 2. Clear Given-When-Then Structure
