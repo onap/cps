@@ -31,7 +31,6 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.http.codec.json.Jackson2JsonDecoder
-import org.springframework.http.codec.json.Jackson2JsonEncoder
 import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.util.InvalidUrlException
 import spock.lang.Specification
@@ -121,7 +120,7 @@ class DmiRestClientIntegrationSpec extends Specification {
 
     def 'DMI Request with #scenario.'() {
         given: 'the mock server or exception setup'
-            mockWebServer.enqueue(new MockResponse().setResponseCode(responseCode.value))
+            mockWebServer.enqueue(new MockResponse().setResponseCode(httpResponseCode.value))
         when: 'a synchronous post request is attempted'
             objectUnderTest.synchronousPostOperationWithErrorMapping(DATA, urlTemplateParameters,'body', CREATE, '')
         then: 'a DMI client request exception is thrown with the right status and mapped NCMP code'
@@ -129,7 +128,7 @@ class DmiRestClientIntegrationSpec extends Specification {
             assert thrown.httpStatusCode == expectedStatus
             assert thrown.ncmpResponseStatus.code == expectedNcmpCode
         where: 'the following HTTP Errors are applied'
-            scenario                    | responseCode                    || expectedStatus | expectedNcmpCode
+            scenario                    | httpResponseCode                 || expectedStatus | expectedNcmpCode
             'Service Unavailable (503)' | HttpStatus.SERVICE_UNAVAILABLE   || 503            | '107'
             'Too Many Requests (429)'   | HttpStatus.TOO_MANY_REQUESTS     || 429            | '107'
             'Timeout (408)'             | HttpStatus.REQUEST_TIMEOUT       || 408            | '102'
