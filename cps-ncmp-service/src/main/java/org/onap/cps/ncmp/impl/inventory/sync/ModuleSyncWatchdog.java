@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -45,9 +46,17 @@ public class ModuleSyncWatchdog {
     @Qualifier("cpsCommonLocks") private final IMap<String, String> cpsCommonLocks;
     private final ReadinessManager readinessManager;
 
+    @Value("${ncmp.timers.advised-modules-sync.master-only:false}")
+    private boolean masterOnlyModuleSync;
+
     private static final int MODULE_SYNC_BATCH_SIZE = 300;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
     private static final String MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME = "workQueueLock";
+    private static final String MODULE_SYNC_MASTER_LOCK_NAME = "moduleSyncMasterLock";
+
+    // PoC (CPS-3437): when master-only module sync is enabled, once this instance has become the module-sync master
+    // it stays master for its lifetime.
+    private volatile boolean isThisInstanceModuleSyncMaster = false;
 
     /**
      * Check DB for any cm handles in 'ADVISED' state.
@@ -62,7 +71,41 @@ public class ModuleSyncWatchdog {
             log.info("System is not ready yet");
             return;
         }
+        if (!isModuleSyncEnabledOnThisInstance()) {
+            log.debug("This instance is not the module-sync master; skipping module sync");
+            return;
+        }
         moduleSyncAdvisedCmHandles();
+    }
+
+    /**
+     * Determine whether this instance should run module sync (PoC, CPS-3437).
+     * When master-only module sync is disabled (default) every instance runs module sync, as before. When it is
+     * enabled only the master instance runs module sync, so there is no concurrency on the same cm handle. Master
+     * election reuses the shared cpsCommonLocks map: the first instance to acquire the module-sync master lock
+     * becomes master and stays master for its lifetime. A non-master re-attempts the lock every cycle.
+     *
+     * <p>Re-election needs no extra code and no lock TTL/lease. The lock is a Hazelcast IMap key lock, which
+     * Hazelcast releases automatically when the owning member leaves the cluster. So if the master pod dies (or is
+     * restarted by Kubernetes after a failed liveness probe, e.g. because it hung) it leaves the cluster, the lock
+     * is freed, and a surviving instance acquires it on its next {@code tryLock} attempt. Do NOT add a time-based
+     * lease to "hand over" the lock: a lease would expire on a healthy but idle master (it only re-checks the lock
+     * once per interval, it does not renew it), letting a second instance also become master and reintroducing the
+     * concurrent-sync race this design removes.
+     *
+     * @return true if this instance should run module sync
+     */
+    private boolean isModuleSyncEnabledOnThisInstance() {
+        if (!masterOnlyModuleSync) {
+            return true;
+        }
+        if (!isThisInstanceModuleSyncMaster) {
+            isThisInstanceModuleSyncMaster = cpsCommonLocks.tryLock(MODULE_SYNC_MASTER_LOCK_NAME);
+            if (isThisInstanceModuleSyncMaster) {
+                log.info("This instance is now the module-sync master");
+            }
+        }
+        return isThisInstanceModuleSyncMaster;
     }
 
     /**
@@ -88,6 +131,15 @@ public class ModuleSyncWatchdog {
      * So it can be tested without the queue being emptied immediately as the main public method does.
      */
     public void populateWorkQueueIfNeeded() {
+        if (masterOnlyModuleSync) {
+            // Single master: no other instance populates the (local) work queue, so the distributed workQueueLock
+            // is not needed. A local boolean check replaces a distributed lock attempt (a network round-trip).
+            if (moduleSyncWorkQueue.isEmpty()) {
+                setPreviouslyLockedCmHandlesToAdvised();
+                populateWorkQueue();
+            }
+            return;
+        }
         if (moduleSyncWorkQueue.isEmpty() && cpsCommonLocks.tryLock(MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME)) {
             log.debug("Lock acquired by thread : {}", Thread.currentThread().getName());
             try {
@@ -135,6 +187,14 @@ public class ModuleSyncWatchdog {
         final Collection<String> nextBatch = HashSet.newHashSet(MODULE_SYNC_BATCH_SIZE);
         moduleSyncWorkQueue.drainTo(nextBatchCandidates, MODULE_SYNC_BATCH_SIZE);
         log.info("nextBatchCandidates size : {}", nextBatchCandidates.size());
+        if (masterOnlyModuleSync) {
+            // Single-instance sync: no other instance can be processing these cm handles, so the cross-instance
+            // in-progress map (moduleSyncStartedOnCmHandles) serves no purpose and is not populated, avoiding two
+            // distributed map operations per cm handle.
+            nextBatch.addAll(nextBatchCandidates);
+            log.info("nextBatch size : {}", nextBatch.size());
+            return nextBatch;
+        }
         int skippedCount = 0;
         for (final String cmHandleId : nextBatchCandidates) {
             final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP.equals(

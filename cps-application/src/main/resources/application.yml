@@ -253,6 +253,8 @@ ncmp:
     timers:
         advised-modules-sync:
             sleep-time-ms: 5000
+            # PoC (CPS-3437): run module sync on the master instance only. Enabled for k6/endurance via cps-charts.
+            master-only: false
         cm-handle-data-sync:
             sleep-time-ms: 30000
         model-loader:

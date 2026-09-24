@@ -82,6 +82,15 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert config.asyncBackupCount == 0
     }
 
+    def 'Cache queue configuration for Module Sync with master-only enabled.'() {
+        given: 'a configuration instance'
+            def objectUnderTest = new SynchronizationCacheConfig()
+        when: 'the work queue bean is created with master-only enabled'
+            def queue = objectUnderTest.moduleSyncWorkQueue(true)
+        then: 'it is a plain in-memory blocking queue, not a distributed Hazelcast queue'
+            assert queue instanceof java.util.concurrent.LinkedBlockingQueue
+    }
+
     def 'Time to Live on Module Started on Cm Handle.'() {
         when: 'the key is inserted with a TTL of 100ms'
             moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 100, TimeUnit.MILLISECONDS)

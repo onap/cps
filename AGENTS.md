@@ -32,6 +32,11 @@
 - Cover the happy/normal path first, then the negative/error paths.
 - This applies to the order of test methods within a spec AND to the row order of data-driven `where:` tables (put the accepted/success case before the rejected/failure case).
 
+## Test Titles (slogans)
+- Use a slogan only; do NOT put the expectation in the test title. Express expectations in the `then:`/`and:` blocks (Spock has a clear structure for this, and titles with expectations tend not to be maintained).
+- The happy-path test for a method comes first with the plain slogan (e.g. `Scheduled module sync with master enabled`).
+- Additional tests for the same method use a `with ...`/`on ...` qualifier to indicate what differs from the others (e.g. `Scheduled module sync on non-master instance`), rather than describing the expected outcome.
+
 ## Specialized Skills
 The following specialized playbooks are available in `.kiro/skills/`:
 - **copyright-manager**: Follow this for all file headers.

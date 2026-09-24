@@ -123,7 +123,10 @@ cps:
     JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
     HAZELCAST_MODE_KUBERNETES_ENABLED: "true"
     IGNORE_R20260423_MODEL: "true"
-    APP_LCM_EVENTS_EVENT-SCHEMA-VERSION: "v1"
+    APP_LCM_EVENTS_EVENT_SCHEMA_VERSION: "v1"
+    # PoC (CPS-3437): run module sync on the master instance only. Enabled here for the k6 and endurance
+    # performance profiles; defaults to false in the application so production is unaffected.
+    NCMP_TIMERS_ADVISED_MODULES_SYNC_MASTER_ONLY: "true"
     # Authentication (set to "true" to enable JWT validation)
     SECURITY_AUTH_ENABLED: "false"
     SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: "http://host.docker.internal:8484/realms/cps-realm/protocol/openid-connect/certs"

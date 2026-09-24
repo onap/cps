@@ -23,7 +23,9 @@ package org.onap.cps.ncmp.impl.inventory.sync;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import org.onap.cps.impl.cache.HazelcastCacheConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,12 +42,21 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     private static final MapConfig moduleSyncStartedMapConfig = createModuleSyncStartedMapConfig();
 
     /**
-     * Module Sync Distributed Queue Instance.
+     * Module Sync work queue holding the cm handle ids that need module sync.
+     * When master-only module sync is enabled (PoC, CPS-3437) only one instance runs module sync, so a plain
+     * in-memory queue is used and the distributed Hazelcast queue (and its per-operation replication overhead) is
+     * avoided. When master-only is disabled the shared Hazelcast queue is used so work can be populated/drained
+     * across instances as before.
      *
+     * @param masterOnlyModuleSync whether module sync runs on the master instance only
      * @return queue of cm handle ids that need module sync
      */
     @Bean
-    public BlockingQueue<String> moduleSyncWorkQueue() {
+    public BlockingQueue<String> moduleSyncWorkQueue(
+            @Value("${ncmp.timers.advised-modules-sync.master-only:false}") final boolean masterOnlyModuleSync) {
+        if (masterOnlyModuleSync) {
+            return new LinkedBlockingQueue<>();
+        }
         return getOrCreateHazelcastInstance(DEFAULT_QUEUE_CONFIG).getQueue("moduleSyncWorkQueue");
     }
 

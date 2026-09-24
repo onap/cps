@@ -76,6 +76,38 @@ class ModuleSyncWatchdogSpec extends Specification {
             assert loggingEvent.formattedMessage == 'System is not ready yet'
     }
 
+    def 'Scheduled module sync with master enabled.'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'master-only module sync is enabled'
+            objectUnderTest.masterOnlyModuleSync = true
+        and: 'this instance acquires the module-sync master lock'
+            mockCpsCommonLocks.tryLock('moduleSyncMasterLock') >> true
+        and: 'there is an advised cm handle to process'
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
+        when: 'the scheduled module sync is triggered'
+            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
+        then: 'module sync is performed'
+            1 * mockModuleSyncTasks.performModuleSync(*_)
+        and: 'the distributed work queue lock is not used'
+            0 * mockCpsCommonLocks.tryLock('workQueueLock')
+    }
+
+    def 'Scheduled module sync on non-master instance.'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'master-only module sync is enabled'
+            objectUnderTest.masterOnlyModuleSync = true
+        and: 'this instance cannot acquire the module-sync master lock (another instance is master)'
+            mockCpsCommonLocks.tryLock('moduleSyncMasterLock') >> false
+        when: 'the scheduled module sync is triggered'
+            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
+        then: 'no advised cm handles are fetched and no module sync task is performed'
+            0 * mockModuleOperationsUtils.getAdvisedCmHandleIds()
+            0 * mockModuleSyncTasks.performModuleSync(*_)
+    }
+
     def 'Module sync advised cm handles with #scenario.'() {
         given: 'system is ready to accept traffic'
             mockReadinessManager.isReady() >> true
@@ -114,6 +146,24 @@ class ModuleSyncWatchdogSpec extends Specification {
             objectUnderTest.moduleSyncAdvisedCmHandles()
         then: 'it performs one task'
             1 * mockModuleSyncTasks.performModuleSync(*_)
+    }
+
+    def 'Module sync processing with master enabled.'() {
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'master-only module sync is enabled'
+            objectUnderTest.masterOnlyModuleSync = true
+        and: 'module sync utilities returns 3 advised cm handles and no locked cm handles'
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(3)
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
+        when: 'module sync is started'
+            objectUnderTest.moduleSyncAdvisedCmHandles()
+        then: 'the in-progress map is never consulted or populated'
+            0 * mockModuleSyncStartedOnCmHandles.putIfAbsent(*_)
+        and: 'the distributed work queue lock is not used'
+            0 * mockCpsCommonLocks.tryLock('workQueueLock')
+        and: 'all 3 advised cm handles are processed in a single batch'
+            1 * mockModuleSyncTasks.performModuleSync({ it.size() == 3 })
     }
 
     def 'Module sync advised cm handle already handled by other thread.'() {
