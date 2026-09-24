@@ -438,7 +438,12 @@ onapDmiStack:
       port: 8080
       nodePort: 30097
     env:
-      DMI_SERVICE_URL: "http://ncmp-dmi-plugin:8783"
+      # Note: DMI_SERVICE_URL is deliberately not set here. It is templated in
+      # onap-dmi-stack-ncmp-dmi-plugin-deployment.yaml from the release name, so it
+      # always matches the actual service. NCMP stores that URL against the
+      # cm-handle and resolves it from inside the cluster, so a wrong value makes
+      # module sync retry forever with MODULE_SYNC_FAILED, leaving the cm-handle
+      # cycling ADVISED <-> LOCKED.
       DMI_SERVICE_NAME: "ncmp-dmi-plugin"
       DMI_USERNAME: "cpsuser"
       DMI_PASSWORD: "cpsr0cks!"

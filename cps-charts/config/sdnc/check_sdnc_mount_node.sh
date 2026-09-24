@@ -32,37 +32,52 @@ PNF_SIM_HOST=${PNF_SIM_HOST:-'pnf-simulator'}
 PNF_SIM_PORT=${PNF_SIM_PORT:-6513}
 NODE_ID=${NODE_ID:-'ietfYang-PNFDemo'}
 
-echo "Attempting to mount node with id '$NODE_ID' to SDNC using RestConf"
-curl --request PUT "http://$SDNC_HOST:$SDNC_PORT/rests/data/network-topology:network-topology/topology=topology-netconf/node=$NODE_ID" \
---silent --location \
---header "$SDNC_AUTH_HEADER" \
---header 'Content-Type: application/json' \
---data-raw '{
-  "node": [
-  {
-    "node-id": "'$NODE_ID'",
-    "netconf-node-topology:protocol": {
-    "name": "TLS"
-    },
-    "netconf-node-topology:host": "'$PNF_SIM_HOST'",
-    "netconf-node-topology:key-based": {
-    "username": "netconf",
-    "key-id": "ODL_private_key_0"
-    },
-    "netconf-node-topology:port": '$PNF_SIM_PORT',
-    "netconf-node-topology:tcp-only": false,
-    "netconf-node-topology:max-connection-attempts": 5
-  }
-  ]
-}'
+mount_node() {
+  curl --request PUT "http://$SDNC_HOST:$SDNC_PORT/rests/data/network-topology:network-topology/topology=topology-netconf/node=$NODE_ID" \
+  --silent --location \
+  --header "$SDNC_AUTH_HEADER" \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+    "node": [
+    {
+      "node-id": "'$NODE_ID'",
+      "netconf-node-topology:protocol": {
+      "name": "TLS"
+      },
+      "netconf-node-topology:host": "'$PNF_SIM_HOST'",
+      "netconf-node-topology:key-based": {
+      "username": "netconf",
+      "key-id": "ODL_private_key_0"
+      },
+      "netconf-node-topology:port": '$PNF_SIM_PORT',
+      "netconf-node-topology:tcp-only": false,
+      "netconf-node-topology:max-connection-attempts": 5
+    }
+    ]
+  }'
+}
 
-# Verify node has been mounted
-RESPONSE=$(curl --silent --location --request GET "http://$SDNC_HOST:$SDNC_PORT/rests/data/network-topology:network-topology/topology=topology-netconf?content=config" --header "$SDNC_AUTH_HEADER")
+is_node_mounted() {
+  curl --silent --location --request GET \
+    "http://$SDNC_HOST:$SDNC_PORT/rests/data/network-topology:network-topology/topology=topology-netconf?content=config" \
+    --header "$SDNC_AUTH_HEADER" | grep -q "$NODE_ID"
+}
 
-if echo "$RESPONSE" | grep -q "$NODE_ID"; then
-  echo "Node mounted successfully"
-  exit 0
-else
-  echo "Could not mount node to SNDC"
-  exit 1
-fi
+# A PUT can be accepted and then silently dropped if Karaf is still settling, so
+# re-check after a pause rather than trusting the write, and retry if it was lost.
+ATTEMPTS=12
+attempt=1
+while [ "$attempt" -le "$ATTEMPTS" ]; do
+  echo "Attempting to mount node with id '$NODE_ID' to SDNC using RestConf (attempt $attempt/$ATTEMPTS)"
+  mount_node
+  sleep 15
+  if is_node_mounted; then
+    echo "Node mounted successfully"
+    exit 0
+  fi
+  echo "Mount did not persist, retrying..."
+  attempt=$((attempt + 1))
+done
+
+echo "Could not mount node to SDNC after $ATTEMPTS attempts"
+exit 1

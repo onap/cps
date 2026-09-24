@@ -36,4 +36,15 @@ else
 fi
 echo " Checking k6 Version:"
 k6 --version
-sudo apt-get install -y kafkacat jq
+
+# Only shell out to apt (and prompt for sudo) when something is actually missing,
+# so repeat local runs don't block on a password prompt.
+missingPackages=""
+command -v kafkacat >/dev/null 2>&1 || missingPackages="$missingPackages kafkacat"
+command -v jq >/dev/null 2>&1 || missingPackages="$missingPackages jq"
+if [ -n "$missingPackages" ]; then
+  echo " Installing:$missingPackages"
+  sudo apt-get install -y $missingPackages
+else
+  echo " kafkacat and jq already installed"
+fi
