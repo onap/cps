@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd4c88d_d2b4fc17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T16:39:24Z",
+      "side": 1,
+      "message": "looks good just a few minor things. Bit of refactoring to make one complex method a bit more readable is the main issue",
+      "revId": "402bff811ccf284602d04426b8dd5a3ba0de5114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5936eb34_813efd54",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T16:39:24Z",
+      "side": 1,
+      "message": "i would set a httpStatus variable and then you need only one\nreturn ResponseEntity.status(httpStatus).build(); at the end",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 9
+      },
+      "revId": "402bff811ccf284602d04426b8dd5a3ba0de5114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eef9738_38d0e9db",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T16:39:24Z",
+      "side": 1,
+      "message": "mediatYpe for clarity ?",
+      "range": {
+        "startLine": 415,
+        "startChar": 62,
+        "endLine": 415,
+        "endChar": 74
+      },
+      "revId": "402bff811ccf284602d04426b8dd5a3ba0de5114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abb7ac85_bec16b05",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T16:39:24Z",
+      "side": 1,
+      "message": "NB: consider static imports to reduce column widths",
+      "range": {
+        "startLine": 416,
+        "startChar": 62,
+        "endLine": 416,
+        "endChar": 72
+      },
+      "revId": "402bff811ccf284602d04426b8dd5a3ba0de5114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bcd4dd6_a9708645",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T16:39:24Z",
+      "side": 1,
+      "message": "NB: consider static imports to reduce column widths",
+      "range": {
+        "startLine": 416,
+        "startChar": 175,
+        "endLine": 416,
+        "endChar": 193
+      },
+      "revId": "402bff811ccf284602d04426b8dd5a3ba0de5114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a8343b0_9510cda7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T16:39:24Z",
+      "side": 1,
+      "message": "method got very long (hadr to review!) can you break it up into smaller methods with meaningful names?",
+      "range": {
+        "startLine": 294,
+        "startChar": 30,
+        "endLine": 294,
+        "endChar": 60
+      },
+      "revId": "402bff811ccf284602d04426b8dd5a3ba0de5114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "533a4973_502a578e",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T16:39:24Z",
+      "side": 1,
+      "message": "prefer not to include expectation in test title",
+      "range": {
+        "startLine": 279,
+        "startChar": 74,
+        "endLine": 279,
+        "endChar": 90
+      },
+      "revId": "402bff811ccf284602d04426b8dd5a3ba0de5114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1f9e7b5_e66f9b77",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-09-24T16:39:24Z",
+      "side": 1,
+      "message": "prefer not to include expectation in test title",
+      "range": {
+        "startLine": 294,
+        "startChar": 67,
+        "endLine": 294,
+        "endChar": 83
+      },
+      "revId": "402bff811ccf284602d04426b8dd5a3ba0de5114",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
