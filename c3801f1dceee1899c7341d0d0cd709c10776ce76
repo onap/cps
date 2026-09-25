@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "815de080_b9cab0e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-25T07:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62c02d3a_de7918c4",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "c3801f1dceee1899c7341d0d0cd709c10776ce76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "49466ae3_b37e8b4d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "Feel free to ping me on Slack 😊",
       "parentUuid": "49466ae3_b37e8b4d",
+      "revId": "c3801f1dceee1899c7341d0d0cd709c10776ce76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0109e3a3_03719079",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-25T07:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43cd60b0_67906305",
       "revId": "c3801f1dceee1899c7341d0d0cd709c10776ce76",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -143,6 +185,30 @@
       "side": 1,
       "message": "the bug fix targets a specific scenario: \"when no data exists under an anchor\". A replace in such a situation is basically storing entire data tree under the anchor hence 201 CREATE is response.\nIf some data already exists under an anchor and some nodes are replaced then according to existing contract it is 200 OK",
       "parentUuid": "816be47e_7117616d",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 25
+      },
+      "revId": "c3801f1dceee1899c7341d0d0cd709c10776ce76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eda71957_8ef4e571",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-25T07:21:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fb12a888_2ea72824",
       "range": {
         "startLine": 175,
         "startChar": 0,
