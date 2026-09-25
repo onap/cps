@@ -334,6 +334,30 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             'additional properties explicitly excluded' | '&outputDmiProperties=false' || false
     }
 
+    def 'Get lightweight cm handle details by distinguished name when #scenario.'() {
+        given: 'a distinguished name'
+            def distinguishedName = 'input distinguished-name'
+        and: 'the facade returns a lightweight cm handle'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
+            mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandleLightweight(distinguishedName) >> ncmpServiceCmHandle
+        and: 'the mapper converts the cm handle to lightweight output'
+            mockRestOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle, expectedIncludeDmiProperties) >>
+                new RestOutputCmHandleLightweight(cmHandle: 'cm-handle from mapper')
+        when: 'the v2 endpoint is invoked'
+            def response = mvc.perform(
+                get("/ncmpInventory/v2/ch?distinguishedName=$distinguishedName$additionalQueryParameter")
+                    .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn().response
+        then: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains the expected cm handle details (from the mapper)'
+            assert response.contentAsString.contains('cm-handle from mapper')
+        where: 'the following additional query parameters are used'
+            scenario                                 | additionalQueryParameter     || expectedIncludeDmiProperties
+            'dmi properties are not requested'       | ''                           || false
+            'dmi properties are requested'           | '&outputDmiProperties=true'  || true
+            'dmi properties are explicitly excluded' | '&outputDmiProperties=false' || false
+    }
+
     def 'Refresh modules endpoint delegation.'() {
         given: 'the deprecation helper maps the request to api parameters'
             def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
