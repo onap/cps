@@ -1,6 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Bell Canada.
 # Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+# Modifications Copyright (C) 2026 Deutsche Telekom AG
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,3 +29,5 @@ databaseChangeLog:
       changes:
         - tagDatabase:
             tag: 24-initial database tag
+  - include:
+      file: changelog/db/changes/25-fragment-attributes-index.yaml
