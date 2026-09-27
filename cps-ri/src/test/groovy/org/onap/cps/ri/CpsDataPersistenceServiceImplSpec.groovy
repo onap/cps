@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
  * Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe.
- * Modifications Copyright (C) 2022-2023 Deutsche Telekom AG
+ * Modifications Copyright (C) 2022-2026 Deutsche Telekom AG
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
 */
 
 package org.onap.cps.ri
+
+import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.exceptions.ConcurrencyException
@@ -217,6 +219,25 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             def result = objectUnderTest.getDataNodesForMultipleXpaths('some-dataspace', 'some-anchor', ['/xpath1', '/xpath2'], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: '2 data nodes are returned'
             assert result.size() == 2
+    }
+
+    def 'Query data nodes across anchors.'() {
+        given: 'the fragment repository returns three fragments on two anchors (as unloaded anchors)'
+            mockFragmentRepository.findByDataspaceAndCpsPath(_, _, []) >> [
+                new FragmentEntity(1, '/xpath1', null, null, new AnchorEntity(id: 11), [] as Set),
+                new FragmentEntity(2, '/xpath2', null, null, new AnchorEntity(id: 11), [] as Set),
+                new FragmentEntity(3, '/xpath3', null, null, new AnchorEntity(id: 22), [] as Set)
+            ]
+        when: 'data nodes are queried across all anchors'
+            def result = objectUnderTest.queryDataNodesAcrossAnchors('my-dataspace', '/xpath', FetchDescendantsOption.OMIT_DESCENDANTS, NO_PAGINATION)
+        then: 'both anchors are fetched with a single repository call'
+            1 * mockAnchorRepository.findAllById([11L, 22L] as Set) >> [
+                new AnchorEntity(id: 11, name: 'anchor-1', dataspace: new DataspaceEntity(name: 'my-dataspace')),
+                new AnchorEntity(id: 22, name: 'anchor-2', dataspace: new DataspaceEntity(name: 'my-dataspace'))
+            ]
+        and: 'each data node carries the name of its fetched anchor and dataspace'
+            assert result.collect { it.anchorName } == ['anchor-1', 'anchor-1', 'anchor-2']
+            assert result.every { it.dataspace == 'my-dataspace' }
     }
 
     def 'start session'() {
