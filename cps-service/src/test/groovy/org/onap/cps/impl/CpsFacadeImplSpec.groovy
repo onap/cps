@@ -31,6 +31,7 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.api.parameters.PaginationOption
 import org.onap.cps.utils.DataMapper
@@ -113,7 +114,10 @@ class CpsFacadeImplSpec extends Specification {
             mockCpsQueryService.queryDataNodesAcrossAnchors('my dataspace', 'my cps path', myFetchDescendantsOption, myPaginationOption) >> [ dataNode1, dataNode2, dataNode3 ]
         when: 'get data node by dataspace and anchor'
             def result = objectUnderTest.executeDataspaceQuery('my dataspace', 'my cps path', myFetchDescendantsOption, myPaginationOption)
-        then: 'all nodes (from the query service result) are returned, grouped by anchor'
+        then: 'both anchors are fetched with a single call'
+            1 * mockCpsAnchorService.getAnchors('my dataspace', ['my anchor', 'other anchor'] as Set) >> [ new Anchor(name: 'my anchor'), new Anchor(name: 'other anchor') ]
+            0 * mockCpsAnchorService.getAnchor(*_)
+        and: 'all nodes (from the query service result) are returned, grouped by anchor'
             assert result.size() == 2
             assert result[0].toString() == '{anchorName=my anchor, dataNodes=[{prefix1:path1={}}, {prefix1:path2={}}]}'
             assert result[1].toString() == '{anchorName=other anchor, dataNodes=[{prefix3:path3={}}]}'
