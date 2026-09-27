@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 Nordix Foundation.
- *  Modifications Copyright (C) 2025 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -96,9 +96,10 @@ public class DataMapper {
     public List<Map<String, Object>> toDataMaps(final String dataspaceName, final Collection<DataNode> dataNodes) {
         final List<Map<String, Object>> dataNodesAsMaps = new ArrayList<>(dataNodes.size());
         final Map<String, List<DataNode>> dataNodesPerAnchor = groupDataNodesPerAnchor(dataNodes);
+        final Map<String, Anchor> anchorPerName = getAnchorPerName(dataspaceName, dataNodesPerAnchor.keySet());
         for (final Map.Entry<String, List<DataNode>> dataNodesPerAnchorEntry : dataNodesPerAnchor.entrySet()) {
             final String anchorName = dataNodesPerAnchorEntry.getKey();
-            final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+            final Anchor anchor = anchorPerName.get(anchorName);
             final DataNode dataNode = dataNodesPerAnchorEntry.getValue().get(0);
             final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
             final Map<String, Object> dataNodeAsMap = DataMapUtils.toDataMapWithIdentifierAndAnchor(
@@ -161,6 +162,15 @@ public class DataMapper {
             dataNodesAsFlatMap.putAll(dataNodeAsMap);
         }
         return dataNodesAsFlatMap;
+    }
+
+    private Map<String, Anchor> getAnchorPerName(final String dataspaceName, final Collection<String> anchorNames) {
+        final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName, anchorNames);
+        final Map<String, Anchor> anchorPerName = new HashMap<>(anchors.size());
+        for (final Anchor anchor : anchors) {
+            anchorPerName.put(anchor.getName(), anchor);
+        }
+        return anchorPerName;
     }
 
     private static Map<String, List<DataNode>> groupDataNodesPerAnchor(final Collection<DataNode> dataNodes) {

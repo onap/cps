@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
- *  Modifications Copyright (C) 2022-2023 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2022-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -201,7 +201,23 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         final Collection<FragmentEntity> fragmentEntities =
                 fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery, anchorIds);
+        // otherwise toDataNode initialises each lazy anchor (and its dataspace) with its own query and session
+        replaceAnchorProxiesWithFetchedAnchors(fragmentEntities);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
+    }
+
+    private void replaceAnchorProxiesWithFetchedAnchors(final Collection<FragmentEntity> fragmentEntities) {
+        final Set<Long> anchorIds = new HashSet<>();
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            anchorIds.add(fragmentEntity.getAnchor().getId());
+        }
+        final Map<Long, AnchorEntity> anchorEntityPerId = new HashMap<>(anchorIds.size());
+        for (final AnchorEntity anchorEntity : anchorRepository.findAllById(anchorIds)) {
+            anchorEntityPerId.put(anchorEntity.getId(), anchorEntity);
+        }
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            fragmentEntity.setAnchor(anchorEntityPerId.get(fragmentEntity.getAnchor().getId()));
+        }
     }
 
     @Override
