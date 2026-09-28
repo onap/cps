@@ -20,16 +20,19 @@
 
 package org.onap.cps.ncmp.rest.util
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.rest.model.CmHandleCompositeState
+import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 class RestOutputCmHandleMapperSpec extends Specification {
 
     CmHandleStateMapper mockCmHandleStateMapper = Mock()
-    RestOutputCmHandleMapper objectUnderTest = new RestOutputCmHandleMapper(mockCmHandleStateMapper)
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    RestOutputCmHandleMapper objectUnderTest = new RestOutputCmHandleMapper(mockCmHandleStateMapper, jsonObjectMapper)
 
     def 'Map cm handles to rest output #scenario.'() {
         given: 'a cm handle with different states'
@@ -63,14 +66,29 @@ class RestOutputCmHandleMapperSpec extends Specification {
                 dmiProperties: 'dmi property')
     }
 
-    def 'Map cm handle to lightweight rest output when #scenario.'() {
+    def 'Map cm handle to lightweight rest output dmi properties when #scenario.'() {
+        given: 'a cm handle with dmi properties'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1', dmiProperties: dmiProperties)
+        when: 'the lightweight mapper is called'
+            def result = objectUnderTest.toRestOutputCmHandleLightweight(ncmpServiceCmHandle, includeDmiProperties)
+        then: 'dmi properties are included as a key-value map or excluded as expected'
+            assert result.dmiProperties == expectedDmiProperties
+        where:
+            scenario                              | includeDmiProperties | dmiProperties           || expectedDmiProperties
+            'dmi properties included'             | true                 | '{"my-key":"my-value"}' || ['my-key': 'my-value']
+            'empty dmi properties included as {}' | true                 | '{}'                    || [:]
+            'null dmi properties included as {}'  | true                 | null                    || [:]
+            'dmi properties excluded'             | false                | '{"my-key":"my-value"}' || null
+    }
+
+    def 'Map cm handle to lightweight rest output without specifying dmiProperties flag.'() {
         given: 'a cm handle with all fields'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle(
                     cmHandleId: 'ch-1', alternateId: 'alt-1', cmHandleStatus: 'READY',
                     moduleSetTag: 'tag-1', dataProducerIdentifier: 'producer-1',
                     currentTrustLevel: TrustLevel.COMPLETE, dmiProperties: '{"my-key":"my-value"}')
-        when: 'the lightweight mapper is called'
-            def result = objectUnderTest.toRestOutputCmHandleLightweight(ncmpServiceCmHandle, includeDmiProperties)
+        when: 'the lightweight mapper is called without the dmiProperties flag'
+            def result = objectUnderTest.toRestOutputCmHandleLightweight(ncmpServiceCmHandle)
         then: 'all lightweight fields are populated'
             assert result.cmHandle == 'ch-1'
             assert result.alternateId == 'alt-1'
@@ -78,27 +96,7 @@ class RestOutputCmHandleMapperSpec extends Specification {
             assert result.moduleSetTag == 'tag-1'
             assert result.dataProducerIdentifier == 'producer-1'
             assert result.trustLevel == 'COMPLETE'
-        and: 'dmi properties are included or excluded as expected'
-            assert result.dmiProperties == expectedDmiProperties
-        where:
-            scenario                  | includeDmiProperties || expectedDmiProperties
-            'dmi properties included' | true                 || '{"my-key":"my-value"}'
-            'dmi properties excluded' | false                || null
-    }
-
-    def 'Map cm handle to lightweight rest output without specifying dmiProperties flag.'() {
-        given: 'a cm handle with dmi properties'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(
-                    cmHandleId: 'ch-1', alternateId: 'alt-1', cmHandleStatus: 'READY',
-                    moduleSetTag: 'tag-1', dataProducerIdentifier: 'producer-1',
-                    currentTrustLevel: TrustLevel.COMPLETE, dmiProperties: '{"my-key":"my-value"}')
-        when: 'the lightweight mapper is called without the dmiProperties flag'
-            def result = objectUnderTest.toRestOutputCmHandleLightweight(ncmpServiceCmHandle)
-        then: 'dmi properties are not included'
+        and: 'dmi properties are not included'
             assert result.dmiProperties == null
-        and: 'all lightweight fields are populated'
-            assert result.cmHandle == 'ch-1'
-            assert result.alternateId == 'alt-1'
-            assert result.cmHandleStatus == 'READY'
     }
 }

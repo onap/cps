@@ -21,10 +21,12 @@
 package org.onap.cps.ncmp.rest.util;
 
 import java.util.Collections;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleLightweight;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -32,6 +34,7 @@ import org.springframework.stereotype.Component;
 public class RestOutputCmHandleMapper {
 
     private final CmHandleStateMapper cmHandleStateMapper;
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Map NcmpServiceCmHandle to a RestOutputCmHandle object.
@@ -82,7 +85,10 @@ public class RestOutputCmHandleMapper {
             restOutputCmHandleLightweight.setTrustLevel(ncmpServiceCmHandle.getCurrentTrustLevel().toString());
         }
         if (includeDmiProperties) {
-            restOutputCmHandleLightweight.setDmiProperties(ncmpServiceCmHandle.getDmiProperties());
+            restOutputCmHandleLightweight.setDmiProperties(
+                    toDmiPropertiesMap(ncmpServiceCmHandle.getDmiProperties()));
+        } else {
+            restOutputCmHandleLightweight.setDmiProperties(null);
         }
         return restOutputCmHandleLightweight;
     }
@@ -97,5 +103,13 @@ public class RestOutputCmHandleMapper {
     public RestOutputCmHandleLightweight toRestOutputCmHandleLightweight(
             final NcmpServiceCmHandle ncmpServiceCmHandle) {
         return toRestOutputCmHandleLightweight(ncmpServiceCmHandle, false);
+    }
+
+    @SuppressWarnings("unchecked")
+    private Map<String, String> toDmiPropertiesMap(final String dmiPropertiesAsJsonString) {
+        if (dmiPropertiesAsJsonString == null || dmiPropertiesAsJsonString.isEmpty()) {
+            return Collections.emptyMap();
+        }
+        return jsonObjectMapper.convertJsonString(dmiPropertiesAsJsonString, Map.class);
     }
 }
