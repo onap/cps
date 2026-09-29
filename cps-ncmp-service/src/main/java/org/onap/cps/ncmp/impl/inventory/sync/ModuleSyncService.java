@@ -74,18 +74,23 @@ public class ModuleSyncService {
      * {@code isNewSchemaSet} short-circuit in {@link #syncAndCreateSchemaSet} relies on the same property.
      *
      * @param yangModelCmHandle the yang model of cm handle.
+     * @return true when this instance created the anchor, false when another instance had already created it.
+     *     The caller uses this to avoid emitting a duplicate READY event and inflating the state metrics for a
+     *     CM handle another instance has already promoted.
      */
-    public void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
+    public boolean syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
         final String cmHandleId = yangModelCmHandle.getId();
         final String targetModuleSetTag = yangModelCmHandle.getModuleSetTag();
         final String schemaSetName = getSchemaSetNameForModuleSetTag(cmHandleId, targetModuleSetTag);
         syncAndCreateSchemaSet(yangModelCmHandle, schemaSetName, targetModuleSetTag);
         try {
             cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName, cmHandleId);
+            return true;
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             log.warn("Anchor already exists for {} (likely created concurrently by another instance); "
                     + "continuing to promote CM handle to READY. Exception details: {}", cmHandleId,
                     alreadyDefinedException.getDetails());
+            return false;
         }
     }
 

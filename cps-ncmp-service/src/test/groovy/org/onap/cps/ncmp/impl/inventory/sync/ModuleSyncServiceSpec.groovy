@@ -115,9 +115,11 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'already defined exception occurs when creating schema (existing)'
             mockCpsAnchorService.createAnchor(*_) >> { throw AlreadyDefinedException.forAnchor('', '', null)  }
         when: 'module sync is triggered'
-            objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
+            def result = objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
         then: 'the exception is ignored so the cm handle can still be promoted to READY'
             noExceptionThrown()
+        and: 'the anchor is reported as not newly created by this instance'
+            assert result == false
     }
 
     def 'Attempt Sync models for a cm handle with duplicate yang resources exception).'() {

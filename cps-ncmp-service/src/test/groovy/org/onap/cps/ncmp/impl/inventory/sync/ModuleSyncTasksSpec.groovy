@@ -110,8 +110,11 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'cm handles are in the in-progress map'
             moduleSyncStartedOnCmHandles.put('cm-handle-1', 'Started')
             moduleSyncStartedOnCmHandles.put('cm-handle-2', 'Started')
-        and: 'module sync succeeds for cm-handle-1 and cm-handle-2 was already synced by another instance (no error)'
-            mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { }
+        and: 'this instance created the anchor for cm-handle-1 but lost the race for cm-handle-2'
+            mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(cmHandle1) >> true
+            mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(cmHandle2) >> false
+        and: 'the stored state of cm-handle-2 is not yet READY because the winning instance has not committed'
+            mockInventoryPersistence.getCmHandleState('cm-handle-2') >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
         when: 'module sync poll is executed'
             objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'])
         then: 'the state handler is called to promote both cm handles to READY'
@@ -121,6 +124,27 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'both cm handles are removed from the in-progress map'
             assert moduleSyncStartedOnCmHandles.get('cm-handle-1') == null
             assert moduleSyncStartedOnCmHandles.get('cm-handle-2') == null
+    }
+
+    def 'Module Sync ADVISED cm handle already promoted to READY by another instance.'() {
+        given: 'a cm handle that is ADVISED on this instance'
+            def advisedCmHandle = cmHandleByIdAndState('ch-1', CmHandleState.ADVISED)
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> advisedCmHandle
+        and: 'the stored state is already READY because another instance promoted it'
+            mockInventoryPersistence.getCmHandleState('ch-1') >> new CompositeState(cmHandleState: CmHandleState.READY)
+        and: 'the cm handle is in the in-progress map'
+            moduleSyncStartedOnCmHandles.put('ch-1', 'Started')
+        and: 'another instance had already created the anchor'
+            mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(advisedCmHandle) >> false
+        when: 'module sync poll is executed'
+            objectUnderTest.performModuleSync(['ch-1'])
+        then: 'the state handler is called with an empty batch so no duplicate event or metric is produced'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch({ it.isEmpty() })
+        and: 'a log message explains the duplicate state change was skipped'
+            def loggingEvent = logAppender.list.find { it.formattedMessage.contains('skipping duplicate state change') }
+            assert loggingEvent.formattedMessage.contains("'ch-1'")
+        and: 'the cm handle is removed from the in-progress map'
+            assert moduleSyncStartedOnCmHandles.get('ch-1') == null
     }
 
     def 'Handle CM handle failure during #scenario and log MODULE_UPGRADE lock reason'() {
