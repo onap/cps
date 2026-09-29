@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Modifications Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,10 +34,12 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.events.EventProducer
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
@@ -136,11 +138,15 @@ class NetworkCmProxyControllerSpec extends Specification {
     def NO_TOPIC = null
     def NO_OPTIONS = null
     def NO_AUTH_HEADER = null
+    def ALTERNATE_ID = '/Subnetwork=Europe/ManagedElement=ME1'
+    def ENCODED_ALTERNATE_ID = 'L1N1Ym5ldHdvcms9RXVyb3BlL01hbmFnZWRFbGVtZW50PU1FMQ'
 
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     def setup() {
         setupLogger()
+        mockAlternateIdMatcher.getCmHandleId(_) >> { String alternateId -> throw new CmHandleNotFoundException(alternateId) }
+        mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(_, '/') >> { String alternateId, String separator -> throw new NoAlternateIdMatchFoundException(alternateId) }
     }
 
     def cleanup() {
@@ -477,7 +483,53 @@ class NetworkCmProxyControllerSpec extends Specification {
             assert response.status == HttpStatus.CREATED.value()
     }
 
+    def 'Get resource data with an encoded alternate id in the path.'() {
+        given: 'resource data url with a Base64URL encoded alternate id'
+            def getUrl = "$ncmpBasePathV1/ch/$ENCODED_ALTERNATE_ID/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child"
+        when: 'get data resource request is performed'
+            mvc.perform(get(getUrl).contentType(APPLICATION_JSON)).andReturn().response
+        then: 'the decoded alternate id is resolved to a cm handle id'
+            1 * mockAlternateIdMatcher.getCmHandleId(ALTERNATE_ID) >> 'ch-1'
+        and: 'the NCMP facade is called with the cm handle id'
+            1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle({ it.cmHandleReference() == 'ch-1' }, *_)
+    }
+
+    def 'Encoded alternate id in the path for #scenario.'() {
+        when: 'the request is performed with a Base64URL encoded alternate id'
+            mvc.perform(executeRestOperation(operation, "$basePath/ch/$ENCODED_ALTERNATE_ID$pathSuffix")).andReturn().response
+        then: 'the decoded alternate id is resolved to a cm handle id'
+            expectedExactMatchCalls * mockAlternateIdMatcher.getCmHandleId(ALTERNATE_ID) >> 'ch-1'
+            expectedLongestMatchCalls * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(ALTERNATE_ID, '/') >> 'ch-1'
+        and: 'the facade is called with the cm handle id'
+            1 * _._('ch-1', *_)
+        where: 'the following endpoints are used'
+            scenario                       | operation | basePath   | pathSuffix                                                                    || expectedExactMatchCalls | expectedLongestMatchCalls
+            'create resource data'         | 'POST'    | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || 1                       | 0
+            'update resource data'         | 'PUT'     | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || 1                       | 0
+            'patch resource data'          | 'PATCH'   | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || 1                       | 0
+            'delete resource data'         | 'DELETE'  | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || 1                       | 0
+            'module references'            | 'GET'     | '/ncmp/v1' | '/modules'                                                                    || 1                       | 0
+            'module definitions'           | 'GET'     | '/ncmp/v1' | '/modules/definitions'                                                        || 1                       | 0
+            'module definitions by module' | 'GET'     | '/ncmp/v1' | '/modules/definitions?module-name=my-module'                                  || 1                       | 0
+            'cm handle properties'         | 'GET'     | '/ncmp/v1' | '/properties'                                                                 || 1                       | 0
+            'cm handle state'              | 'GET'     | '/ncmp/v1' | '/state'                                                                      || 1                       | 0
+            'cm handle details'            | 'GET'     | '/ncmp/v1' | ''                                                                            || 0                       | 1
+            'cm handle details (v2)'       | 'GET'     | '/ncmp/v2' | ''                                                                            || 0                       | 1
+    }
+
+    def 'Cm handle id in the path that is not valid Base64URL.'() {
+        when: 'the cm handle state is requested with a cm handle id that cannot be decoded'
+            mvc.perform(get("$ncmpBasePathV1/ch/ch-12/state")).andReturn().response
+        then: 'no alternate id lookup is performed'
+            0 * mockAlternateIdMatcher._
+        and: 'the inventory facade is called with the cm handle id as given'
+            1 * mockNetworkCmProxyInventoryFacade.getCmHandleCompositeState('ch-12') >> testCompositeState
+    }
+
     def executeRestOperation(operation, url) {
+        if (operation == 'GET') {
+            return get(url)
+        }
         if (operation == 'POST') {
             return post(url).contentType(APPLICATION_JSON).content(validRequestBody)
         }
