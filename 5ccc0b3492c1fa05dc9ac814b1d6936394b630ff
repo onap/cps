@@ -16,6 +16,23 @@
       "message": "Resolved comments",
       "revId": "5ccc0b3492c1fa05dc9ac814b1d6936394b630ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4e48809_11f39070",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-09-30T08:41:47Z",
+      "side": 1,
+      "message": "This will need to be moved under the release notes for 3.8.5",
+      "revId": "5ccc0b3492c1fa05dc9ac814b1d6936394b630ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
