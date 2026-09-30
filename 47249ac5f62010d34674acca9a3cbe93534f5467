@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "baeecf88_de28f0ee",
+        "filename": "cps-charts/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T09:01:35Z",
+      "side": 1,
+      "message": "Karaf is the OSGi container SDNC/OpenDaylight runs on, loading its functionality as bundles at boot.\n\nKaraf serves RESTCONF before the netconf mount bundles are active, so a PUT in that window returns 2xx but gets silently dropped — hence read the node back and retry instead of trusting the response.",
+      "parentUuid": "b15d6dfa_dc62e7a8",
+      "range": {
+        "startLine": 66,
+        "startChar": 53,
+        "endLine": 66,
+        "endChar": 58
+      },
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d43861f_4518e286",
         "filename": "cps-charts/config/sdnc/check_sdnc_mount_node.sh",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2026-09-28T16:54:38Z",
       "side": 1,
       "message": "im confused about this , which line/lines is this referring to?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 82
+      },
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6d16d28_a38a52c3",
+        "filename": "cps-charts/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T09:01:35Z",
+      "side": 1,
+      "message": "ignore few comments added by AI",
+      "parentUuid": "8d43861f_4518e286",
       "range": {
         "startLine": 66,
         "startChar": 0,
@@ -83,6 +131,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "495a2105_fa2d32b6",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T09:01:35Z",
+      "side": 1,
+      "message": "nope we can discuss with team.",
+      "parentUuid": "ae400315_98a9983d",
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e9bd6b8_684f1f92",
         "filename": "k6-tests/onap-dmi-stack/onap-dmi-stack-test-runner.js",
         "patchSetId": 1
@@ -94,6 +160,30 @@
       "writtenOn": "2026-09-28T16:54:38Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 64
+      },
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a1710ec_ed25b189",
+        "filename": "k6-tests/onap-dmi-stack/onap-dmi-stack-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T09:01:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e9bd6b8_684f1f92",
       "range": {
         "startLine": 25,
         "startChar": 1,
@@ -127,6 +217,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d669e61_167d36c7",
+        "filename": "k6-tests/onap-dmi-stack/onap-dmi-stack-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T09:01:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "31f12f3f_0a0c3537",
+      "range": {
+        "startLine": 89,
+        "startChar": 3,
+        "endLine": 89,
+        "endChar": 8
+      },
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "656d57e8_488ed36d",
@@ -140,6 +254,30 @@
       "writtenOn": "2026-09-28T16:54:38Z",
       "side": 1,
       "message": "remove \n\nsame for all other ones \u0027A/C\u0027",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 8
+      },
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2708b3db_d8e7b6be",
+        "filename": "k6-tests/onap-dmi-stack/onap-dmi-stack-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T09:01:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "656d57e8_488ed36d",
       "range": {
         "startLine": 104,
         "startChar": 2,
@@ -173,6 +311,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc3ecd12_e3248297",
+        "filename": "k6-tests/onap-dmi-stack/onap-dmi-stack-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T09:01:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2ac5a751_7d6d4fbd",
+      "range": {
+        "startLine": 121,
+        "startChar": 1,
+        "endLine": 122,
+        "endChar": 51
+      },
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "740aec7d_a03ea431",
@@ -196,6 +358,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "374890d2_d8d2844b",
+        "filename": "k6-tests/onap-dmi-stack/onap-dmi-stack-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T09:01:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "740aec7d_a03ea431",
+      "range": {
+        "startLine": 143,
+        "startChar": 52,
+        "endLine": 143,
+        "endChar": 60
+      },
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad8260f2_b8b8e989",
@@ -209,6 +395,30 @@
       "writtenOn": "2026-09-28T16:54:38Z",
       "side": 1,
       "message": "no need if comment above applied",
+      "range": {
+        "startLine": 145,
+        "startChar": 1,
+        "endLine": 146,
+        "endChar": 29
+      },
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da4d5560_98e02f89",
+        "filename": "k6-tests/onap-dmi-stack/onap-dmi-stack-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T09:01:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad8260f2_b8b8e989",
       "range": {
         "startLine": 145,
         "startChar": 1,
