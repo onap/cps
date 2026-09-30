@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f5dabd0_90d32f3f",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-09-30T08:49:20Z",
+      "side": 1,
+      "message": "onapDmiStack",
+      "range": {
+        "startLine": 132,
+        "startChar": 25,
+        "endLine": 132,
+        "endChar": 35
+      },
+      "revId": "6504df60f334fa83ffe0b66fb2e752392b6d1a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
