@@ -22,6 +22,30 @@
       },
       "revId": "6504df60f334fa83ffe0b66fb2e752392b6d1a9d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af9274c4_1667e32b",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2026-09-30T10:20:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6f5dabd0_90d32f3f",
+      "range": {
+        "startLine": 132,
+        "startChar": 25,
+        "endLine": 132,
+        "endChar": 35
+      },
+      "revId": "6504df60f334fa83ffe0b66fb2e752392b6d1a9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
