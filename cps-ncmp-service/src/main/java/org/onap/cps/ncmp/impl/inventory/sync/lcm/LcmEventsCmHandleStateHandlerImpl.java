@@ -61,15 +61,16 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     public void updateCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> targetCmHandleStatePerCmHandle) {
         final Collection<CmHandleTransitionPair> cmHandleTransitionPairs =
                 prepareCmHandleTransitionBatch(targetCmHandleStatePerCmHandle);
+        final Collection<CmHandleTransitionPair> persistedCmHandleTransitionPairs;
         try {
-            persistCmHandleBatch(cmHandleTransitionPairs);
+            persistedCmHandleTransitionPairs = persistCmHandleBatch(cmHandleTransitionPairs);
         } catch (final RuntimeException runtimeException) {
             revertCmHandleStateChanges(cmHandleTransitionPairs);
             throw runtimeException;
         }
-        if (!cmHandleTransitionPairs.isEmpty()) {
-            lcmEventProducer.sendLcmEventBatchAsynchronously(cmHandleTransitionPairs);
-            cmHandleStateMonitor.updateCmHandleStateMetrics(cmHandleTransitionPairs);
+        if (!persistedCmHandleTransitionPairs.isEmpty()) {
+            lcmEventProducer.sendLcmEventBatchAsynchronously(persistedCmHandleTransitionPairs);
+            cmHandleStateMonitor.updateCmHandleStateMetrics(persistedCmHandleTransitionPairs);
         }
     }
 
@@ -119,7 +120,16 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         }
     }
 
-    private void persistCmHandleBatch(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
+    /**
+     * Persist the given state changes and report back the ones that were actually stored.
+     * A cm handle deleted while its state change was in flight is skipped by the persistence layer without an
+     * exception, so the caller must not emit events or count metrics for it.
+     *
+     * @param cmHandleTransitionPairs the prepared state changes
+     * @return the state changes that were persisted
+     */
+    private Collection<CmHandleTransitionPair> persistCmHandleBatch(
+            final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
 
         final List<YangModelCmHandle> newCmHandles = new ArrayList<>();
         final Map<String, CompositeState> compositeStatePerCmHandleId = new LinkedHashMap<>();
@@ -133,8 +143,41 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
             }
         });
         inventoryPersistence.saveCmHandleBatch(newCmHandles);
-        inventoryPersistence.saveCmHandleStateBatch(compositeStatePerCmHandleId);
-        logCmHandleStateChanges(cmHandleTransitionPairs);
+        final Collection<String> persistedCmHandleIds =
+                inventoryPersistence.saveCmHandleStateBatch(compositeStatePerCmHandleId);
+        final Collection<CmHandleTransitionPair> persistedCmHandleTransitionPairs =
+                selectPersisted(cmHandleTransitionPairs, persistedCmHandleIds);
+        logCmHandleStateChanges(persistedCmHandleTransitionPairs);
+        return persistedCmHandleTransitionPairs;
+    }
+
+    /**
+     * Select the state changes that reached the database.
+     * New cm handles and cm handles transitioning to DELETED are always included: the former are saved as a whole
+     * cm handle, the latter are intentionally not persisted because the cm handle itself is being removed, but both
+     * are real state changes that must be reported and counted.
+     *
+     * @param cmHandleTransitionPairs the prepared state changes
+     * @param persistedCmHandleIds    the ids of the cm handles whose state was persisted
+     * @return the state changes that were persisted
+     */
+    private Collection<CmHandleTransitionPair> selectPersisted(
+            final Collection<CmHandleTransitionPair> cmHandleTransitionPairs,
+            final Collection<String> persistedCmHandleIds) {
+        final List<CmHandleTransitionPair> persistedCmHandleTransitionPairs
+            = new ArrayList<>(cmHandleTransitionPairs.size());
+        for (final CmHandleTransitionPair cmHandleTransitionPair : cmHandleTransitionPairs) {
+            final YangModelCmHandle targetCmHandle = cmHandleTransitionPair.targetYangModelCmHandle();
+            if (isNew(cmHandleTransitionPair.currentYangModelCmHandle().getCompositeState())
+                    || isDeleted(targetCmHandle.getCompositeState())
+                    || persistedCmHandleIds.contains(targetCmHandle.getId())) {
+                persistedCmHandleTransitionPairs.add(cmHandleTransitionPair);
+            } else {
+                log.warn("Skipping LCM event and metric update for cm handle {}: its {} state change was not persisted",
+                        targetCmHandle.getId(), targetCmHandle.getCompositeState().getCmHandleState().name());
+            }
+        }
+        return persistedCmHandleTransitionPairs;
     }
 
     private void updateCmHandleState(final YangModelCmHandle yangModelCmHandle,

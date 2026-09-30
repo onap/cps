@@ -262,15 +262,17 @@ class InventoryPersistenceImplSpec extends Specification {
         and: 'alternate id cache returns #scenario'
             mockCmHandleIdPerReferenceMap.exists(_) >> existsInCache
         when: 'we update the state of a cm handle when #scenario'
-            objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
+            def result = objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'the composite state is persisted for existing ids only'
             expectedCalls * mockCpsDataService.updateDataNodesAndDescendantsWithoutRetry(*_)
         and: 'the top-level cm-handle-state leaf is persisted for existing ids only'
             expectedCalls * mockCpsDataService.updateNodeLeaves(*_)
+        and: 'only the persisted cm handle ids are returned'
+            assert result == expectedPersistedCmHandleIds
         where: 'the following cm handle ids are used'
-            scenario            | existsInCache || expectedCalls
-            'id exists in cache'| true          || 1
-            'id does not exist' | false         || 0
+            scenario            | existsInCache || expectedCalls | expectedPersistedCmHandleIds
+            'id exists in cache'| true          || 1             | ['ch-1']
+            'id does not exist' | false         || 0             | []
     }
 
     def 'Update Cm Handle State batch when cm handle does not exist with optimized model.'() {
