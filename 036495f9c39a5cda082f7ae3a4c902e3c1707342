@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39a6cbb4_a1961cb4",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsFacade.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "This method is not needed as we have same method in CpsDataService so this is line another public entry point for same public interface.",
+      "range": {
+        "startLine": 147,
+        "startChar": 25,
+        "endLine": 147,
+        "endChar": 54
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51c11350_e6416518",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "General suggestion: Root saveData could read the source with getDataNodesForMultipleXpaths(dataspaceName, anchorName, List.of(ROOT_NODE_XPATH), INCLUDE_ALL_DESCENDANTS) when the flag is on. It would then call facade.createDeltaReports(source, dataNodes, true). The follow-up patches can then swap generateDeltaReports internals in one place.",
+      "range": {
+        "startLine": 66,
+        "startChar": 13,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ffe33d9_a82f083c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "This is the reason for cyclcic dependency down the line. As per my plan this class must not depend on CpsDeltaService. Inject DeltaReportGeneratorFacade instead and keep reading the source and target nodes in this class.",
+      "range": {
+        "startLine": 81,
+        "startChar": 18,
+        "endLine": 81,
+        "endChar": 33
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eef7b058_73ded792",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "NB: remove extra lines",
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d84d7688_7c1de8c5",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "Declare and assign on one line, or drop the variable once the facade is used.",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 49
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2649d940_7301d0db",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "Four problems here.\n    - The deltaNotificationEnabled check is gone, so every root save now reads all descendants and parses the payload twice, even when the flag is off. Read the source only if the flag is on.\n    - groupDataNodes \u003d false changes the events from condensed to detailed. The plan keeps true.\n    - It passes an empty yang map and the raw nodeData. Use the dataNodes already built as the target.",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 29
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4779cf4a_ce0897a7",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "Put getDataNodesForMultipleXpaths back at line 167, where it was. The move makes the diff noisy and is unrelated to this task. It is also a public @Override, so it doesn\u0027t belong among the private helpers.",
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26195aba_16d16b20",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "Remove both fields. Facade is just a REST layer helper and should not read persistence layer directly.",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 70
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e2e4863_2359354c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "It is never used, so remove it. For now the flag belongs in CpsDataServiceImpl, and in CpsDataUpdateNotifier in the async step.",
+      "range": {
+        "startLine": 61,
+        "startChar": 20,
+        "endLine": 61,
+        "endChar": 44
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df4de5da_a28969f8",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-09-30T10:06:14Z",
+      "side": 1,
+      "message": "Remove this as it duplicates CpsDataServiceImpl.getDataNodesForMultipleXpaths and reuses the metric name cps.data.service.datanode.batch.get, so two beans report under one name.",
+      "range": {
+        "startLine": 148,
+        "startChar": 32,
+        "endLine": 148,
+        "endChar": 61
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
