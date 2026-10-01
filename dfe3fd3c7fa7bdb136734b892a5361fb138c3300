@@ -16,6 +16,29 @@
       "message": "resolved comments",
       "revId": "dfe3fd3c7fa7bdb136734b892a5361fb138c3300",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c0a7af_e07ef302",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/DataNodeOperation.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-10-01T12:38:11Z",
+      "side": 1,
+      "message": "nb: this isnt used",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 10
+      },
+      "revId": "dfe3fd3c7fa7bdb136734b892a5361fb138c3300",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
