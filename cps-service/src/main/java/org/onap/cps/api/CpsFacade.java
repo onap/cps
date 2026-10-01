@@ -21,10 +21,8 @@
 
 package org.onap.cps.api;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 
@@ -133,20 +131,4 @@ public interface CpsFacade {
                                                     String anchorName,
                                                     String compositeQuery,
                                                     FetchDescendantsOption fetchDescendantsOption);
-
-    /**
-     * Retrieves all the data nodes for multiple XPaths for given dataspace and anchor.
-     *
-     * @param dataspaceName           dataspace name
-     * @param anchorName              anchor name
-     * @param xpaths                  collection of xpaths
-     * @param fetchDescendantsOption  defines the scope of data to fetch: either single node or all the descendant nodes
-     *                                (recursively) as well
-     * @return collection of data node objects
-     */
-    Collection<DataNode> getDataNodesForMultipleXpaths(String dataspaceName, String anchorName,
-                                                       Collection<String> xpaths,
-                                                       FetchDescendantsOption fetchDescendantsOption);
-
-
 }

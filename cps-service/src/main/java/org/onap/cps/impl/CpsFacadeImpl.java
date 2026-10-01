@@ -23,7 +23,6 @@ package org.onap.cps.impl;
 
 import static org.onap.cps.api.CpsQueryService.SKIP_LEAF_CONDITION_VALIDATION;
 
-import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -38,13 +37,9 @@ import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
-import org.onap.cps.spi.CpsDataPersistenceService;
-import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 
 @RequiredArgsConstructor
 @Service
@@ -54,11 +49,6 @@ public class CpsFacadeImpl implements CpsFacade {
     private final CpsQueryService cpsQueryService;
     private final DataMapper dataMapper;
     private final JsonObjectMapper jsonObjectMapper;
-    private final CpsValidator cpsValidator;
-    private final CpsDataPersistenceService cpsDataPersistenceService;
-
-    @Value("${app.cps.data-updated.delta-notification:false}")
-    private boolean deltaNotificationEnabled;
 
     @Override
     public Map<String, Object> getFirstDataNodeByAnchor(final String dataspaceName,
@@ -66,7 +56,7 @@ public class CpsFacadeImpl implements CpsFacade {
                                                         final String xpath,
                                                         final FetchDescendantsOption fetchDescendantsOption) {
         final DataNode dataNode = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption).iterator().next();
+                fetchDescendantsOption).iterator().next();
         return dataMapper.toDataMap(dataspaceName, anchorName, dataNode);
     }
 
@@ -76,7 +66,7 @@ public class CpsFacadeImpl implements CpsFacade {
                                                           final String xpath,
                                                           final FetchDescendantsOption fetchDescendantsOption) {
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption);
+                fetchDescendantsOption);
         return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
     }
 
@@ -86,7 +76,7 @@ public class CpsFacadeImpl implements CpsFacade {
                                                       final String xpath,
                                                       final FetchDescendantsOption fetchDescendantsOption) {
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption);
+                fetchDescendantsOption);
         return dataMapper.toDataMapForApiV3(dataspaceName, anchorName, dataNodes);
     }
 
@@ -104,7 +94,7 @@ public class CpsFacadeImpl implements CpsFacade {
             return dataMapper.toAttributeMaps(attributeName, attributeValues);
         }
         final Collection<DataNode> dataNodes =
-            cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+                cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
     }
 
@@ -114,7 +104,7 @@ public class CpsFacadeImpl implements CpsFacade {
                                                            final FetchDescendantsOption fetchDescendantsOption,
                                                            final PaginationOption paginationOption) {
         final Collection<DataNode> dataNodes = cpsQueryService.queryDataNodesAcrossAnchors(dataspaceName,
-            cpsPath, fetchDescendantsOption, paginationOption);
+                cpsPath, fetchDescendantsOption, paginationOption);
         return dataMapper.toDataMaps(dataspaceName, dataNodes);
     }
 
@@ -127,7 +117,7 @@ public class CpsFacadeImpl implements CpsFacade {
         }
         final int totalAnchors = cpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
         return totalAnchors <= paginationOption.getPageSize() ? 1
-            : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
+                : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
     }
 
     @Override
@@ -136,21 +126,11 @@ public class CpsFacadeImpl implements CpsFacade {
                                                            final String compositeQueryString,
                                                            final FetchDescendantsOption fetchDescendantsOption) {
         final CompositeQuery compositeQuery = jsonObjectMapper
-            .convertJsonString(compositeQueryString, CompositeQuery.class);
+                .convertJsonString(compositeQueryString, CompositeQuery.class);
         final Collection<DataNode> dataNodes =
                 cpsQueryService
-                    .compositeQueryDataNodes(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption);
+                        .compositeQueryDataNodes(dataspaceName, anchorName, compositeQuery, fetchDescendantsOption);
         return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
-    }
-
-    @Override
-    @Timed(value = "cps.data.service.datanode.batch.get", description = "Time taken to get a batch of data nodes")
-    public Collection<DataNode> getDataNodesForMultipleXpaths(final String dataspaceName, final String anchorName,
-                                                              final Collection<String> xpaths,
-                                                              final FetchDescendantsOption fetchDescendantsOption) {
-        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, anchorName, xpaths,
-                fetchDescendantsOption);
     }
 
 }
