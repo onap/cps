@@ -16,6 +16,29 @@
       "message": "NB Do we need any logging around the two ignored catches?",
       "revId": "7e42ea2df6ebe2219e62e5222fc1568569ac7ceb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "560f16f7_9919a5fc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-10-01T11:33:58Z",
+      "side": 1,
+      "message": "theres lots of duplicated code here and the method above, can this not be merged somehow",
+      "range": {
+        "startLine": 448,
+        "startChar": 19,
+        "endLine": 448,
+        "endChar": 57
+      },
+      "revId": "7e42ea2df6ebe2219e62e5222fc1568569ac7ceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
