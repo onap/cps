@@ -3,6 +3,7 @@ ncmp.timers.advised-modules-sync.sleep-time-ms,"Specifies the delay in milliseco
 ncmp.timers.advised-modules-sync.initial-delay-ms,"Specifies the delay in milliseconds in which the module sync watch dog will wake up for the first time.",40000
 ncmp.timers.cm-handle-data-sync.sleep-time-ms,"Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.",30000
 ncmp.timers.cm-handle-data-sync.initial-delay-ms,"Specifies the delay in milliseconds in which the data sync watch dog will wake up for the first time.",40000
+ncmp.timers.cm-handle-state-metrics-reconciliation.sleep-time-ms,"Specifies the delay in milliseconds in which the cm handle state metrics are reset to the counts held in the database. This makes the cm handle state gauge converge to the database even if a state transition was miscounted.",300000
 ncmp.[app].httpclient.[services].maximumInMemorySizeInMegabytes,"Maximum size (in MB) of the in-memory buffer for HTTP response data.",16
 ncmp.[app].httpclient.[services].maximumConnectionsTotal,"Maximum number of simultaneous connections allowed in the connection pool.",100
 ncmp.[app].httpclient.[services].pendingAcquireMaxCount,"Maximum number of pending requests when the connection pool is full.",50
