@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfa2150e_91baa0fb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-01T12:02:58Z",
+      "side": 1,
+      "message": "I decided to no do any logging as its part of the normal (happy) path for a cmHandleId",
+      "parentUuid": "b07e39f9_d417f669",
+      "revId": "7e42ea2df6ebe2219e62e5222fc1568569ac7ceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "560f16f7_9919a5fc",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2026-10-01T11:33:58Z",
       "side": 1,
       "message": "theres lots of duplicated code here and the method above, can this not be merged somehow",
+      "range": {
+        "startLine": 448,
+        "startChar": 19,
+        "endLine": 448,
+        "endChar": 57
+      },
+      "revId": "7e42ea2df6ebe2219e62e5222fc1568569ac7ceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21592459_d2ae6e10",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-01T12:02:58Z",
+      "side": 1,
+      "message": "The method above can be removed with the longest matching epic as it\u0027ll no longer be necessary. I can make those changes in this patch or we can accept it temporarily and fix it that epic",
+      "parentUuid": "560f16f7_9919a5fc",
       "range": {
         "startLine": 448,
         "startChar": 19,
