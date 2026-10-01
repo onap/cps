@@ -83,6 +83,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69819709_6dfaff9f",
+        "filename": "cps-charts/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-10-01T11:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baeecf88_de28f0ee",
+      "range": {
+        "startLine": 66,
+        "startChar": 53,
+        "endLine": 66,
+        "endChar": 58
+      },
+      "revId": "47249ac5f62010d34674acca9a3cbe93534f5467",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d43861f_4518e286",
