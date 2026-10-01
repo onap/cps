@@ -140,6 +140,8 @@ ncmp:
       sleep-time-ms: 1000000
     cm-handle-data-sync:
       sleep-time-ms: 30000
+    cm-handle-state-metrics-reconciliation:
+      sleep-time-ms: 1000000
     model-loader:
       retry-time-ms: 1000
     trust-level:

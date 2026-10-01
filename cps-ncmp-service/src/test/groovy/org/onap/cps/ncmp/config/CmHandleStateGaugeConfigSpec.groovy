@@ -23,6 +23,8 @@ package org.onap.cps.ncmp.config
 import com.hazelcast.map.IMap
 import io.micrometer.core.instrument.MeterRegistry
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry
+import org.onap.cps.impl.cache.CpsCommonLocksConfig
+import org.onap.cps.init.actuator.ReadinessManager
 import org.onap.cps.ncmp.impl.cache.AdminCacheConfig
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.CmHandleStateMonitor
@@ -33,7 +35,7 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestPropertySource
 import spock.lang.Specification
 
-@SpringBootTest(classes = [CmHandleStateGaugeConfig, CmHandleStateMonitor, AdminCacheConfig])
+@SpringBootTest(classes = [CmHandleStateGaugeConfig, CmHandleStateMonitor, AdminCacheConfig, CpsCommonLocksConfig])
 @ContextConfiguration(classes = [CpsApplicationContext])
 @TestPropertySource(properties = ["hazelcast.mode.kubernetes.enabled=false"])
 class CmHandleStateGaugeConfigSpec extends Specification {
@@ -44,6 +46,8 @@ class CmHandleStateGaugeConfigSpec extends Specification {
     CmHandleQueryService cmHandleQueryService = Mock()
     @SpringBean
     MeterRegistry meterRegistry = Mock()
+    @SpringBean
+    ReadinessManager readinessManager = Mock()
 
     def cmHandlesByState = Mock(IMap)
     def objectUnderTest = new CmHandleStateGaugeConfig(cmHandlesByState)

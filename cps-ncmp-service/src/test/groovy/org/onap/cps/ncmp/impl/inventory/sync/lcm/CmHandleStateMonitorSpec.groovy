@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.inventory.sync.lcm
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
+import org.onap.cps.init.actuator.ReadinessManager
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
@@ -33,13 +34,17 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.DELETING
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.LOCKED
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 
 class CmHandleStateMonitorSpec extends Specification {
 
     def mockCmHandlesByState = Mock(IMap)
     def mockCmHandleQueryService = Mock(CmHandleQueryService)
-    def objectUnderTest = new CmHandleStateMonitor(mockCmHandleQueryService, mockCmHandlesByState)
+    def mockCpsCommonLocks = Mock(IMap)
+    def mockReadinessManager = Mock(ReadinessManager)
+    def objectUnderTest = new CmHandleStateMonitor(mockCmHandleQueryService, mockCmHandlesByState, mockCpsCommonLocks, mockReadinessManager)
 
     @Shared
     def entryProcessingMap = Hazelcast.getOrCreateHazelcastInstance(new Config('cmHandleStateMonitorSpecInstance')).getMap('entryProcessingMap')
@@ -91,6 +96,97 @@ class CmHandleStateMonitorSpec extends Specification {
             objectUnderTest.updateCmHandleStateMetrics([cmHandleTransitionPair])
         then: 'cm handle by state cache map is called only once'
             1 * mockCmHandlesByState.executeOnKey(_, _)
+    }
+
+    def 'Drifted cm handle state metrics converge to the database counts.'() {
+        given: 'a monitor using a real distributed map'
+            def realCmHandlesByState = Hazelcast.getHazelcastInstanceByName('cmHandleStateMonitorSpecInstance').getMap('reconciliationMap')
+            def monitorUsingRealMap = new CmHandleStateMonitor(mockCmHandleQueryService, realCmHandlesByState, mockCpsCommonLocks, mockReadinessManager)
+        and: 'the database holds 100 cm handles in READY and none in any other state'
+            mockCmHandleQueryService.queryCmHandleIdsByState(READY) >> (1..100).collect { 'ch-' + it }
+            mockCmHandleQueryService.queryCmHandleIdsByState(_) >> []
+        and: 'the counters are seeded correctly at startup'
+            monitorUsingRealMap.initialiseCmHandleStateMonitor(Mock(NcmpInventoryModelOnboardingFinishedEvent))
+            assert realCmHandlesByState.get('readyCmHandlesCount') == 100
+        and: 'churn then counts 20 READY transitions that the database never recorded'
+            20.times { realCmHandlesByState.executeOnKey('readyCmHandlesCount', new IncreasingEntryProcessor()) }
+        and: 'a deletion has been counted since startup'
+            realCmHandlesByState.put('deletedCmHandlesCount', 7)
+        and: 'the system is ready and this instance acquires the lock'
+            mockReadinessManager.isReady() >> true
+            mockCpsCommonLocks.tryLock(_) >> true
+        and: 'the gauge now over-reports READY against the database'
+            assert realCmHandlesByState.get('readyCmHandlesCount') == 120
+        when: 'reconciliation runs'
+            monitorUsingRealMap.reconcileCmHandleStateMetrics()
+        then: 'the READY counter matches the database again'
+            assert realCmHandlesByState.get('readyCmHandlesCount') == 100
+        and: 'the deleted counter is preserved because it counts deletions since startup'
+            assert realCmHandlesByState.get('deletedCmHandlesCount') == 7
+        when: 'further drift accumulates and reconciliation runs again'
+            30.times { realCmHandlesByState.executeOnKey('readyCmHandlesCount', new IncreasingEntryProcessor()) }
+            monitorUsingRealMap.reconcileCmHandleStateMetrics()
+        then: 'the counter converges again rather than accumulating'
+            assert realCmHandlesByState.get('readyCmHandlesCount') == 100
+        cleanup:
+            realCmHandlesByState.destroy()
+    }
+
+    def 'Under-reported cm handle state metrics also converge to the database counts.'() {
+        given: 'a monitor using a real distributed map'
+            def realCmHandlesByState = Hazelcast.getHazelcastInstanceByName('cmHandleStateMonitorSpecInstance').getMap('underCountMap')
+            def monitorUsingRealMap = new CmHandleStateMonitor(mockCmHandleQueryService, realCmHandlesByState, mockCpsCommonLocks, mockReadinessManager)
+        and: 'the database holds 50 cm handles in READY'
+            mockCmHandleQueryService.queryCmHandleIdsByState(READY) >> (1..50).collect { 'ch-' + it }
+            mockCmHandleQueryService.queryCmHandleIdsByState(_) >> []
+        and: 'the counter has been driven to zero by lost increments'
+            realCmHandlesByState.put('readyCmHandlesCount', 0)
+        and: 'the system is ready and this instance acquires the lock'
+            mockReadinessManager.isReady() >> true
+            mockCpsCommonLocks.tryLock(_) >> true
+        when: 'reconciliation runs'
+            monitorUsingRealMap.reconcileCmHandleStateMetrics()
+        then: 'the counter is corrected upwards to the database count'
+            assert realCmHandlesByState.get('readyCmHandlesCount') == 50
+        cleanup:
+            realCmHandlesByState.destroy()
+    }
+
+    def 'Reconcile cm handle state metrics.'() {
+        given: 'the system is ready and this instance acquires the lock'
+            mockReadinessManager.isReady() >> true
+            mockCpsCommonLocks.tryLock(_) >> true
+        and: 'the database holds 5 cm handles for each state'
+            mockCmHandleQueryService.queryCmHandleIdsByState(_) >> ['ch-1', 'ch-2', 'ch-3', 'ch-4', 'ch-5']
+        when: 'reconciliation is triggered'
+            objectUnderTest.reconcileCmHandleStateMetrics()
+        then: 'each current-state counter is overwritten with the count from the database'
+            1 * mockCmHandlesByState.put('advisedCmHandlesCount', 5)
+            1 * mockCmHandlesByState.put('readyCmHandlesCount', 5)
+            1 * mockCmHandlesByState.put('lockedCmHandlesCount', 5)
+            1 * mockCmHandlesByState.put('deletingCmHandlesCount', 5)
+        and: 'the deleted counter is left alone as it counts deletions since startup'
+            0 * mockCmHandlesByState.put('deletedCmHandlesCount', _)
+        and: 'the lock is released'
+            1 * mockCpsCommonLocks.unlock('cmHandleStateMetricsReconciliationLock')
+    }
+
+    def 'Reconcile cm handle state metrics when #scenario.'() {
+        given: 'system readiness and lock availability for the scenario'
+            mockReadinessManager.isReady() >> isReady
+            mockCpsCommonLocks.tryLock(_) >> lockAcquired
+        when: 'reconciliation is triggered'
+            objectUnderTest.reconcileCmHandleStateMetrics()
+        then: 'no counter is overwritten'
+            0 * mockCmHandlesByState.put(_, _)
+        and: 'the database is not queried'
+            0 * mockCmHandleQueryService.queryCmHandleIdsByState(_)
+        and: 'no lock is released'
+            0 * mockCpsCommonLocks.unlock(_)
+        where: 'the following conditions apply'
+            scenario                                | isReady | lockAcquired
+            'the system is not ready yet'            | false   | true
+            'another instance is already reconciling'| true    | false
     }
 
     def 'Applying decreasing entry processor to a key on map where #scenario'() {
