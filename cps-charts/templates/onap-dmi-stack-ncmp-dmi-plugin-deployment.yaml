@@ -70,9 +70,19 @@ spec:
               value: "{{ include "cps-and-ncmp.release-name" . }}-sdnc-service"
             - name: SDNC_PORT
               value: "{{ .Values.onapDmiStack.sdnc.service.port }}"
+            # NCMP stores this URL against the cm-handle and resolves it from
+            # inside the cluster, so it must match the actual service. Templating
+            # it from the release name keeps the two in step. Set here rather than
+            # in values.yaml, and skipped in the range below, so a stale override
+            # cannot emit a second DMI_SERVICE_URL (Kubernetes honours the last
+            # entry, so a duplicate would silently win).
+            - name: DMI_SERVICE_URL
+              value: "http://{{ include "cps-and-ncmp.release-name" . }}-ncmp-dmi-plugin-service:{{ .Values.onapDmiStack.ncmpDmiPlugin.service.port }}"
             {{- range $key, $value := .Values.onapDmiStack.ncmpDmiPlugin.env }}
+            {{- if ne ($key | upper) "DMI_SERVICE_URL" }}
             - name: {{ $key | upper }}
               value: "{{ $value }}"
+            {{- end }}
             {{- end }}
           resources:
             {{- toYaml .Values.onapDmiStack.ncmpDmiPlugin.resources | nindent 12 }}

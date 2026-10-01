@@ -18,8 +18,10 @@
 # The default test profile is kpi
 testProfile=${1:-kpi}
 
-# Use test profile as namespace for k8s deployments
-export K8S_NAMESPACE="${K8S_NAMESPACE:-$testProfile}"
+# Use test profile as namespace for k8s deployments. Lowercased to match the
+# namespace created by k6-main.sh, since a namespace must be a valid RFC 1123
+# DNS label and cannot contain the capitals of a camelCase profile name.
+export K8S_NAMESPACE="${K8S_NAMESPACE:-${testProfile,,}}"
 
 echo "=========================================="
 echo "TEARDOWN FOR PROFILE: $testProfile"
