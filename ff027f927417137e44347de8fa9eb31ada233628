@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852e6473_0cc83b87",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-01T09:54:26Z",
+      "side": 1,
+      "message": "This needs to be moved up too 😊",
+      "range": {
+        "startLine": 66,
+        "startChar": 1,
+        "endLine": 70,
+        "endChar": 64
+      },
+      "revId": "ff027f927417137e44347de8fa9eb31ada233628",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
