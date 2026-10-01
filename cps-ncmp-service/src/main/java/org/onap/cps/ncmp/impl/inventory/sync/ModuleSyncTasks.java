@@ -135,7 +135,13 @@ public class ModuleSyncTasks {
             } else if (inUpgrade) {
                 moduleSyncService.syncAndUpgradeSchemaSet(yangModelCmHandle);
             } else {
-                moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
+                final boolean anchorNewlyCreated =
+                        moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
+                if (!anchorNewlyCreated && isAlreadyReady(yangModelCmHandle.getId())) {
+                    log.info("CM handle '{}' was already promoted to READY by another instance; "
+                            + "skipping duplicate state change", yangModelCmHandle.getId());
+                    return NO_STATE_CHANGE;
+                }
             }
             compositeState.setLockReason(null);
             return CmHandleState.READY;
@@ -184,6 +190,25 @@ public class ModuleSyncTasks {
     private void removeResetCmHandleFromModuleSyncMap(final String resetCmHandleId) {
         moduleSyncStartedOnCmHandles.delete(resetCmHandleId);
         log.debug("{} removed from in progress map", resetCmHandleId);
+    }
+
+    /**
+     * Determine whether the stored state of a CM handle is already READY, which means another instance won the
+     * concurrent module-sync race and already promoted it. Re-persisting READY on this instance would emit a
+     * second READY LCM event and increment the cm handle state metrics again for the same CM handle, while the
+     * stored state is already correct.
+     *
+     * <p>This is only consulted when the anchor was not newly created, i.e. only for a CM handle that was
+     * concurrently processed. If the stored state is not yet READY this instance still promotes it, so a CM handle
+     * can never be left ADVISED because it lost the race.
+     *
+     * <p>Only the state is read (not the whole CM handle with its properties) to keep this check cheap.
+     *
+     * @param cmHandleId the CM handle id
+     * @return true if the CM handle is already in READY state
+     */
+    private boolean isAlreadyReady(final String cmHandleId) {
+        return inventoryPersistence.getCmHandleState(cmHandleId).getCmHandleState() == CmHandleState.READY;
     }
 
     private static boolean isCmHandleInAdvisedState(final YangModelCmHandle yangModelCmHandle) {
