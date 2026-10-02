@@ -1237,6 +1237,80 @@
                   "response": []
                 },
                 {
+                  "name": "Get cm handle by FDN (v2 lightweight)",
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v2/ch?distinguishedName=/Subnetwork=Europe/ManagedElement=X1&outputDmiProperties=true",
+                      "protocol": "http",
+                      "host": [
+                        "{{CPS_HOST}}"
+                      ],
+                      "port": "{{CPS_PORT}}",
+                      "path": [
+                        "ncmpInventory",
+                        "v2",
+                        "ch"
+                      ],
+                      "query": [
+                        {
+                          "key": "distinguishedName",
+                          "value": "/Subnetwork=Europe/ManagedElement=X1"
+                        },
+                        {
+                          "key": "outputDmiProperties",
+                          "value": "true"
+                        }
+                      ]
+                    },
+                    "description": "Get lightweight cm handle details (top-level leaves only) by distinguished name. dmiProperties are returned as a key-value object when outputDmiProperties=true."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Query CM handles (v2 lightweight, hasAllProperties)",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"color\": \"green\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v2/ch/searchCmHandles?outputDmiProperties=true",
+                      "protocol": "http",
+                      "host": [
+                        "{{CPS_HOST}}"
+                      ],
+                      "port": "{{CPS_PORT}}",
+                      "path": [
+                        "ncmpInventory",
+                        "v2",
+                        "ch",
+                        "searchCmHandles"
+                      ],
+                      "query": [
+                        {
+                          "key": "outputDmiProperties",
+                          "value": "true",
+                          "description": "Include dmiProperties as a key-value object in the response"
+                        }
+                      ]
+                    },
+                    "description": "Execute a lightweight cm handle search returning top-level leaves only. dmiProperties are returned as a key-value object when outputDmiProperties=true."
+                  },
+                  "response": []
+                },
+                {
                   "name": "Refresh Modules (color = red)",
                   "request": {
                     "method": "POST",
@@ -1630,6 +1704,73 @@
                         "cm-handle-1"
                       ]
                     }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "CM handle object search (v2 lightweight)",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{basic_auth_171s}}",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v2/ch/searches",
+                      "protocol": "http",
+                      "host": [
+                        "{{CPS_HOST}}"
+                      ],
+                      "port": "{{CPS_PORT}}",
+                      "path": [
+                        "ncmp",
+                        "v2",
+                        "ch",
+                        "searches"
+                      ]
+                    },
+                    "description": "Execute a lightweight cm handle search returning top-level leaves only (no nested state or properties)."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get CM handle details (v2 lightweight)",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "{{basic_auth_171s}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v2/ch/cm-handle-1",
+                      "protocol": "http",
+                      "host": [
+                        "{{CPS_HOST}}"
+                      ],
+                      "port": "{{CPS_PORT}}",
+                      "path": [
+                        "ncmp",
+                        "v2",
+                        "ch",
+                        "cm-handle-1"
+                      ]
+                    },
+                    "description": "Get lightweight cm handle details (top-level leaves only) for a single cm handle."
                   },
                   "response": []
                 },
