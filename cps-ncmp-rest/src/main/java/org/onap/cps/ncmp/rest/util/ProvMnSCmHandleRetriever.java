@@ -59,7 +59,7 @@ public class ProvMnSCmHandleRetriever {
     public YangModelCmHandle getAndValidateYangModelCmHandle(final String fdn, final String httpMethodName)
         throws ProvMnSException {
         try {
-            final String cmHandleId = alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/");
+            final String cmHandleId = alternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(fdn, "/");
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
             if (!StringUtils.hasText(yangModelCmHandle.getDataProducerIdentifier())) {
                 throw new ProvMnSException(httpMethodName, UNPROCESSABLE_CONTENT,
