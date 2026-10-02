@@ -639,11 +639,11 @@ components:
     cmHandleReferenceInPath:
       name: cm-handle
       in: path
-      description: The identifier (cmHandle or alternate) for a network function, network element, subnetwork or any other cm object by managed Network CM Proxy
+      description: The identifier (cmHandle or alternate) for a network function, network element, subnetwork or any other cm object by managed Network CM Proxy. An alternate id must be Base64URL encoded (padding optional), a cmHandle id is not encoded.
       required: true
       schema:
         type: string
-        example: my-cm-handle-reference
+        example: L1N1Ym5ldHdvcms9RXVyb3BlL01hbmFnZWRFbGVtZW50PU1FMQ
     outputAlternateIdOptionInQuery:
       name: outputAlternateId
       in: query
