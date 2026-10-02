@@ -38,7 +38,7 @@ class ReadRequestExaminerSpec extends Specification {
     def 'Classify selector into DMI group when target is READY'() {
         given: 'a READY cm handle resolved from the selector'
             def yangModelCmHandle = createYangModelCmHandle('ch-1', 'dmi-plugin-1', 'producer-A', CmHandleState.READY)
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/ManagedElement=ME1', '/') >> 'ch-1'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('/ManagedElement=ME1', '/') >> 'ch-1'
             mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle
         when: 'selectors are classified'
             def result = objectUnderTest.classifySelectors('/ManagedElement[id="ME1"]')
@@ -70,8 +70,8 @@ class ReadRequestExaminerSpec extends Specification {
         given: 'two READY cm handles on the same DMI and producer'
             def yangModelCmHandle1 = createYangModelCmHandle('ch-1', 'dmi-plugin-1', 'producer-A', CmHandleState.READY)
             def yangModelCmHandle2 = createYangModelCmHandle('ch-2', 'dmi-plugin-1', 'producer-A', CmHandleState.READY)
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/ManagedElement=ME1', '/') >> 'ch-1'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/SubNetwork=SN1/ManagedElement=ME2', '/') >> 'ch-2'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('/ManagedElement=ME1', '/') >> 'ch-1'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('/SubNetwork=SN1/ManagedElement=ME2', '/') >> 'ch-2'
             mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle1
             mockInventoryPersistence.getYangModelCmHandle('ch-2') >> yangModelCmHandle2
         when: 'selectors are classified'
@@ -89,8 +89,8 @@ class ReadRequestExaminerSpec extends Specification {
         given: 'two READY cm handles on different DMIs'
             def yangModelCmHandle1 = createYangModelCmHandle('ch-1', 'dmi-plugin-1', 'producer-A', CmHandleState.READY)
             def yangModelCmHandle2 = createYangModelCmHandle('ch-2', 'dmi-plugin-2', 'producer-B', CmHandleState.READY)
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/ManagedElement=ME1', '/') >> 'ch-1'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/MeContext=MC1', '/') >> 'ch-2'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('/ManagedElement=ME1', '/') >> 'ch-1'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('/MeContext=MC1', '/') >> 'ch-2'
             mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle1
             mockInventoryPersistence.getYangModelCmHandle('ch-2') >> yangModelCmHandle2
         when: 'selectors are classified'
@@ -104,7 +104,7 @@ class ReadRequestExaminerSpec extends Specification {
 
     def 'Classify selector with target not found'() {
         given: 'alternate id matcher throws exception'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(_, '/') >> { throw new NoAlternateIdMatchFoundException('test') }
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(_, '/') >> { throw new NoAlternateIdMatchFoundException('test') }
         when: 'selectors are classified'
             def result = objectUnderTest.classifySelectors('/ManagedElement[id="ME1"]')
         then: 'the selector is classified as error'
@@ -116,7 +116,7 @@ class ReadRequestExaminerSpec extends Specification {
 
     def 'Classify selector with #scenario'() {
         given: 'a cm handle that is not READY'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(_, '/') >> 'ch-1'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(_, '/') >> 'ch-1'
             mockInventoryPersistence.getYangModelCmHandle('ch-1') >> createYangModelCmHandle('ch-1', 'dmi-1', 'p1', cmHandleState)
         when: 'selectors are classified'
             def result = objectUnderTest.classifySelectors('/ManagedElement[id="ME1"]')

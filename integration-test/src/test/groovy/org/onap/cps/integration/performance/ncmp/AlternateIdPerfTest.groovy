@@ -70,7 +70,7 @@ class AlternateIdPerfTest extends CpsIntegrationSpecBase {
             resourceMeter.start()
             (1..100).each {
                 def target = "${altIdPrefix}alt=${it + offset}/d=4/e=5/f=6/g=7"
-                alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(target, "/")
+                alternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(target, "/")
             }
             resourceMeter.stop()
         then: 'record the result. Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2743?focusedCommentId=83220'

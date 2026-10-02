@@ -73,7 +73,7 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
         given: 'ProvMnS url'
             def provMnSUrl = "$provMnSBasePath/v1/myClass=id1"
         and: 'alternate Id can be matched'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('/myClass=id1', "/") >> 'ch-1'
         and: 'persistence service returns yangModelCmHandle'
             mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle
         and: 'dmi provides a response'
@@ -97,7 +97,7 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
         given: 'ProvMnS url'
             def provMnSUrl = "$provMnSBasePath/v1/myClass=id1"
         and: 'an exception happens during the process (method not relevant)'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(*_) >> {throw exceptionDuringProcessing}
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(*_) >> {throw exceptionDuringProcessing}
         when: 'get request is performed'
             def response = mvc.perform(get(provMnSUrl)).andReturn().response
         then: 'response status is #expectedHttpStatus'
@@ -158,7 +158,7 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
             mockedCmHandle.getAlternateId() >> alternateId
             def provmnsUrl = "$provMnSBasePath/v1$fdn"
         and: 'alternate Id can be matched'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> 'mock'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(fdn, "/") >> 'mock'
         and: 'persistence service returns yangModelCmHandle'
             mockInventoryPersistence.getYangModelCmHandle('mock') >> mockedCmHandle
         and: 'dmi provides a response'
@@ -186,7 +186,7 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
             def provmnsUrl = "$provMnSBasePath/v1$fdn"
         and: 'alternate Id can be matched'
             mockedCmHandle.getAlternateId() >> alternateId
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> 'mock'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(fdn, "/") >> 'mock'
         and: 'persistence service returns yangModelCmHandle'
             mockInventoryPersistence.getYangModelCmHandle('mock') >> mockedCmHandle
         when: 'patch request is performed'
@@ -375,7 +375,7 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
         given: 'ProvMnS url'
             def putUrl = "$provMnSBasePath/v1/myClass=id1"
         and: 'cannot match alternate ID'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(*_) >> { throw new NoAlternateIdMatchFoundException('') }
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(*_) >> { throw new NoAlternateIdMatchFoundException('') }
         when: 'put request is performed'
             def response = mvc.perform(put(putUrl)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -392,7 +392,7 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
             def deleteUrl = "$provMnSBasePath/v1$fdn"
         and: 'alternate Id is mocked can be matched'
             mockedCmHandle.getAlternateId() >> ParameterHelper.extractParentFdn(fdn)
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> 'mock'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(fdn, "/") >> 'mock'
         and: 'persistence service returns yangModelCmHandle'
             mockInventoryPersistence.getYangModelCmHandle('mock') >> mockedCmHandle
         and: 'dmi provides a response'
@@ -417,7 +417,7 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
         given: 'ProvMnS url'
             def deleteUrl = "$provMnSBasePath/v1/myClass=id1"
         and: 'cannot match alternate ID'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(*_) >> { throw new NoAlternateIdMatchFoundException('') }
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(*_) >> { throw new NoAlternateIdMatchFoundException('') }
         when: 'delete request is attempted'
             def response = mvc.perform(delete(deleteUrl)).andReturn().response
         then: 'response status is the same as what DMI gave'
@@ -431,7 +431,7 @@ class ProvMnSControllerSpec extends ProvMnSControllerBaseSpec {
             def deleteUrl = "$provMnSBasePath/v1$fdn"
         and: 'alternate Id is mocked can be matched'
             mockedCmHandle.getAlternateId() >> alternateId
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> 'mock'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(fdn, "/") >> 'mock'
         and: 'persistence service returns yangModelCmHandle'
             mockInventoryPersistence.getYangModelCmHandle('mock') >> mockedCmHandle
         when: 'delete request is attempted'

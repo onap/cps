@@ -51,18 +51,19 @@ class AlternateIdSpec extends CpsIntegrationSpecBase {
     def 'Pass-through data operations using a Base64URL encoded #scenario as reference.'() {
         given: 'a cm handle with an alternate id'
             registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, alternateId)
-        when: 'a pass-through data request is sent to NCMP with the Base64URL encoded alternate id'
-            def encodedAlternateId = Base64.getUrlEncoder().withoutPadding().encodeToString(alternateId.getBytes('UTF-8'))
-            def response = performGet("/ncmp/v1/ch/${encodedAlternateId}/data/ds/ncmp-datastore:passthrough-running",
+        when: 'a pass-through data request is sent to NCMP with the Base64URL encoded reference'
+            def encodedReference = Base64.getUrlEncoder().withoutPadding().encodeToString(cmHandleReference.getBytes('UTF-8'))
+            def response = performGet("/ncmp/v1/ch/${encodedReference}/data/ds/ncmp-datastore:passthrough-running",
                     [resourceIdentifier: 'my-resource-id'])
-        then: 'response status is Ok'
+        then: 'response status is Ok as the nearest registered alternate id is used'
             assert response.statusCode == HttpStatus.OK
         cleanup: 'remove the test cm handle'
             deregisterCmHandle(DMI1_URL, 'ch-1')
-        where: 'the following alternate ids are used'
-            scenario           | alternateId
-            'simple alt-id'    | 'alt-1'
-            'FDN with slashes' | '/SubNetwork=Europe/MeContext=node1'
+        where: 'the following references are used'
+            scenario                     | alternateId                          | cmHandleReference
+            'simple alt-id'              | 'alt-1'                              | 'alt-1'
+            'FDN with slashes'           | '/SubNetwork=Europe/MeContext=node1' | '/SubNetwork=Europe/MeContext=node1'
+            'descendant of an alt-id'    | '/SubNetwork=Europe/MeContext=node1' | '/SubNetwork=Europe/MeContext=node1/ManagedElement=ME1'
     }
 
 }

@@ -92,7 +92,7 @@ public class ReadRequestExaminer {
             return;
         }
         try {
-            final String cmHandleId = alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
+            final String cmHandleId = alternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(
                     fdnPrefix.get(), PATH_SEPARATOR);
             addToPerDmiIfReady(selector, cmHandleId, dmiSelectors, notReadySelectors);
         } catch (final NoAlternateIdMatchFoundException exception) {

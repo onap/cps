@@ -45,16 +45,18 @@ public class AlternateIdMatcher {
     private static final String URI_PATH_COMPONENT_SEPARATOR = "#";
 
     /**
-     * Get cm handle that matches longest alternate id by removing elements
-     * (as defined by the separator string) from right to left.
-     * If alternate id contains a hash then all elements after that hash are ignored.
+     * Resolve a cm handle reference (a cm handle id or an alternate id) to its cm handle id.
+     * Tries an exact match first, then the longest matching alternate id by removing path elements
+     * (as defined by the separator) from right to left. Elements after the path component separator are ignored.
      *
-     * @param alternateId            alternate ID
-     * @param separator              a string that separates each path element from the next.
-     * @return ncmp service cm handle
+     * @param cmHandleReference a cm handle id or an alternate id
+     * @param separator         separates each path element from the next
+     * @return the resolved cm handle id
+     * @throws NoAlternateIdMatchFoundException if no match is found
      */
-    public String getCmHandleIdByLongestMatchingAlternateId(final String alternateId, final String separator) {
-        final String[] uriPathComponents = alternateId.split(URI_PATH_COMPONENT_SEPARATOR, 2);
+    public String getCmHandleIdByLongestMatchingCmHandleReference(final String cmHandleReference,
+                                                                  final String separator) {
+        final String[] uriPathComponents = cmHandleReference.split(URI_PATH_COMPONENT_SEPARATOR, 2);
         String bestMatch = uriPathComponents[0];
         while (StringUtils.isNotEmpty(bestMatch)) {
             final String cmHandleId = cmHandleIdPerReferenceMap.get(bestMatch);
@@ -63,7 +65,7 @@ public class AlternateIdMatcher {
             }
             bestMatch = getParentPath(bestMatch, separator);
         }
-        throw new NoAlternateIdMatchFoundException(alternateId);
+        throw new NoAlternateIdMatchFoundException(cmHandleReference);
     }
 
     /**
