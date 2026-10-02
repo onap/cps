@@ -44,7 +44,6 @@ import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.ncmp.api.data.exceptions.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
@@ -309,7 +308,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<RestOutputCmHandle> retrieveCmHandleDetailsById(final String cmHandleReference) {
         final NcmpServiceCmHandle ncmpServiceCmHandle
             = networkCmProxyInventoryFacade.getNcmpServiceCmHandle(
-                resolveCmHandleReferenceByLongestMatch(cmHandleReference));
+                resolveCmHandleReference(cmHandleReference));
         final RestOutputCmHandle restOutputCmHandle = restOutputCmHandleMapper
                 .toRestOutputCmHandle(ncmpServiceCmHandle, false);
         return ResponseEntity.ok(restOutputCmHandle);
@@ -422,30 +421,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     /**
      * Resolve a cm handle reference from the path when it is a Base64URL encoded alternate id.
+     * The decoded value is resolved by exact match first, falling back to the longest matching alternate id.
      *
      * @param cmHandleReference Base64URL encoded alternate id or (not encoded) cm handle id
-     * @return the cm handle id of the encoded alternate id, otherwise the given cm handle reference
+     * @return the cm handle id of the resolved alternate id, otherwise the given cm handle reference
      */
     private String resolveCmHandleReference(final String cmHandleReference) {
-        final String decodedCmHandleReference = decodeBase64Url(cmHandleReference);
-        if (decodedCmHandleReference != null) {
-            try {
-                return alternateIdMatcher.getCmHandleId(decodedCmHandleReference);
-            } catch (final CmHandleNotFoundException ignored) {
-                // exception ignored as the cm handle reference is then treated as a (not encoded) cm handle id
-            }
-        }
-        return cmHandleReference;
-    }
-
-    /**
-     * Resolve a cm handle reference from the path when it is a Base64URL encoded alternate id,
-     * matching the longest alternate id.
-     *
-     * @param cmHandleReference Base64URL encoded alternate id or (not encoded) cm handle id
-     * @return the cm handle id of the longest matching alternate id, otherwise the given cm handle reference
-     */
-    private String resolveCmHandleReferenceByLongestMatch(final String cmHandleReference) {
         final String decodedCmHandleReference = decodeBase64Url(cmHandleReference);
         if (decodedCmHandleReference != null) {
             try {
@@ -494,7 +475,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             final String cmHandleReference) {
         final NcmpServiceCmHandle ncmpServiceCmHandle
             = networkCmProxyInventoryFacade.getNcmpServiceCmHandle(
-                resolveCmHandleReferenceByLongestMatch(cmHandleReference));
+                resolveCmHandleReference(cmHandleReference));
         return ResponseEntity.ok(restOutputCmHandleMapper.toRestOutputCmHandleLightweight(ncmpServiceCmHandle));
     }
 

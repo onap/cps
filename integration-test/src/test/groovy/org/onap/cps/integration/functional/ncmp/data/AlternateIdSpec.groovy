@@ -65,4 +65,32 @@ class AlternateIdSpec extends CpsIntegrationSpecBase {
             'FDN with slashes' | '/SubNetwork=Europe/MeContext=node1'
     }
 
+    def 'Pass-through data operations using a Base64URL encoded descendant of an alternate id.'() {
+        given: 'a cm handle with an FDN alternate id'
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/SubNetwork=Europe/MeContext=node1')
+        when: 'a pass-through data request is sent to NCMP for a descendant of that alternate id'
+            def descendantPath = '/SubNetwork=Europe/MeContext=node1/ManagedElement=ME1'
+            def encodedDescendantPath = Base64.getUrlEncoder().withoutPadding().encodeToString(descendantPath.getBytes('UTF-8'))
+            def response = performGet("/ncmp/v1/ch/${encodedDescendantPath}/data/ds/ncmp-datastore:passthrough-running",
+                    [resourceIdentifier: 'my-resource-id'])
+        then: 'response status is Ok as the nearest registered ancestor is used'
+            assert response.statusCode == HttpStatus.OK
+        cleanup: 'remove the test cm handle'
+            deregisterCmHandle(DMI1_URL, 'ch-1')
+    }
+
+    def 'Pass-through data operations using a Base64URL encoded path without any registered ancestor.'() {
+        given: 'a cm handle with an FDN alternate id'
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/SubNetwork=Europe/MeContext=node1')
+        when: 'a pass-through data request is sent to NCMP for an unrelated path'
+            def unrelatedPath = '/SubNetwork=Asia/MeContext=node9'
+            def encodedUnrelatedPath = Base64.getUrlEncoder().withoutPadding().encodeToString(unrelatedPath.getBytes('UTF-8'))
+            def response = performGet("/ncmp/v1/ch/${encodedUnrelatedPath}/data/ds/ncmp-datastore:passthrough-running",
+                    [resourceIdentifier: 'my-resource-id'])
+        then: 'response status is Not Found'
+            assert response.statusCode == HttpStatus.NOT_FOUND
+        cleanup: 'remove the test cm handle'
+            deregisterCmHandle(DMI1_URL, 'ch-1')
+    }
+
 }

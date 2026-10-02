@@ -76,4 +76,21 @@ class AlternateIdPerfTest extends CpsIntegrationSpecBase {
         then: 'record the result. Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2743?focusedCommentId=83220'
             println "*** CPS-2743 Execution time: ${resourceMeter.totalTimeInSeconds} ms"
     }
+
+    def 'Cm Handle Reference Resolution Performance, scenario: #scenario.'() {
+        given: 'an offset at 90% of the network size, so matches are not at the start...'
+            def offset = (int) (0.9 * NETWORK_SIZE)
+        when: 'perform 100 cm handle reference resolutions'
+            resourceMeter.start()
+            (1..100).each {
+                alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId("${altIdPrefix}alt=${it + offset}${pathSuffix}", '/')
+            }
+            resourceMeter.stop()
+        then: 'record the result, not asserted, just recorded'
+            println "*** CPS-3306, Cm handle reference resolution ($scenario). Execution time: ${resourceMeter.totalTimeInSeconds} s"
+        where: 'the following references are used'
+            scenario                     | pathSuffix
+            'exact match (fast path)'    | ''
+            'longest match'              | '/d=4/e=5/f=6/g=7'
+    }
 }

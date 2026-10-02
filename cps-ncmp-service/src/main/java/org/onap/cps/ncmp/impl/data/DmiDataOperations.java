@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2021-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,9 +38,9 @@ import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.OperationType;
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
 import org.onap.cps.ncmp.impl.data.models.DmiDataOperation;
 import org.onap.cps.ncmp.impl.data.models.DmiDataOperationRequest;
 import org.onap.cps.ncmp.impl.data.models.DmiOperationCmHandle;
@@ -258,8 +258,9 @@ public class DmiDataOperations {
         final Collection<String> resolvedCmHandleIds = new ArrayList<>(distinctCmHandleReferences.size());
         for (final String cmHandleReference : distinctCmHandleReferences) {
             try {
-                resolvedCmHandleIds.add(alternateIdMatcher.getCmHandleId(cmHandleReference));
-            } catch (final CmHandleNotFoundException ignored) {
+                resolvedCmHandleIds.add(
+                    alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(cmHandleReference, "/"));
+            } catch (final NoAlternateIdMatchFoundException ignored) {
                 // exception ignored as DmiDataOperationsHelper has its own logic for reporting not found handles
             }
         }

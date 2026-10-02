@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.impl.inventory
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
@@ -38,7 +39,6 @@ import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
-import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.dmi.DmiPluginUrlValidator
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
@@ -106,7 +106,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         when: 'yang resources is called'
             objectUnderTest.getYangResourcesModuleReferences(cmHandleRef)
         then: 'alternate id matcher can find it'
-            mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'some-cm-handle'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(cmHandleRef, '/') >> 'some-cm-handle'
         and: 'CPS module services is invoked for the correct cm handle'
             1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
         where: 'following cm handle reference is used'
@@ -117,7 +117,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
     def 'Getting Yang Resources with exception.'() {
         given: 'alternate id matcher can always find a cm handle'
-            mockAlternateIdMatcher.getCmHandleId(_) >> 'some id'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(_, '/') >> 'some id'
         and: 'CPS module services throws a not found exception'
             mockInventoryPersistence.getYangResourcesModuleReferences(_) >> { throw new CmHandleNotFoundException('') }
         when: 'attempt to get the yang resources'
@@ -165,20 +165,6 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
-    def 'Get cm handle details by reference with cm-handle-id (fall back lookup).'() {
-        given: 'the longest match throws NoAlternateIdMatchFoundException'
-            1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('cm-handle-input', '/') >> { throw new NoAlternateIdMatchFoundException('some-cm-handle') }
-        and: 'the fallback getCmHandleId returns the a cm handle id'
-            1 * mockAlternateIdMatcher.getCmHandleId('cm-handle-input') >> 'cm-handle-from-matcher'
-        and: 'the persistence service returns a yang modelled cm handle'
-            def yangModelCmHandle = new YangModelCmHandle(id: 'cm-handle-from-persistence', publicProperties: [], additionalProperties: [])
-            1 * mockInventoryPersistence.getYangModelCmHandle('cm-handle-from-matcher') >> yangModelCmHandle
-        when: 'getting cm handle details'
-            def result = objectUnderTest.getNcmpServiceCmHandle('cm-handle-input')
-        then: 'the correct cm handle is returned'
-            assert result.cmHandleId == 'cm-handle-from-persistence'
-    }
-
     def 'Get lightweight cm handle details delegates to persistence without properties.'() {
         given: 'a cm handle reference resolves to a cm handle id'
             1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('some-reference', '/') >> 'resolved-cm-handle-id'
@@ -202,7 +188,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             def alternateId = 'some-alternate-id'
             def yangModelCmHandle = new YangModelCmHandle(id:cmHandleId, alternateId: alternateId, dmiServiceName: 'some service name', additionalProperties: additionalProperties, publicProperties: publicProperties)
         and: 'we have corresponding cm handle for the cm handle reference'
-            1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> cmHandleId
+            1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(cmHandleRef, '/') >> cmHandleId
         and: 'the system returns this yang modelled cm handle'
             1 * mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
         when: 'getting cm handle public properties for a given cm handle reference from ncmp service'
@@ -213,6 +199,16 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             scenario                              | cmHandleRef
             'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
+    }
+
+    def 'Get cm handle details for a cm handle reference without any matching alternate id.'() {
+        given: 'the alternate id matcher cannot find a match'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('no-such-ref', '/') >> { throw new NoAlternateIdMatchFoundException('no-such-ref') }
+        when: 'getting cm handle details'
+            objectUnderTest.getNcmpServiceCmHandle('no-such-ref')
+        then: 'a cm handle not found exception is thrown so the legacy interface still reports not found'
+            def thrownException = thrown(CmHandleNotFoundException)
+            assert thrownException.message.contains('Cm handle not found')
     }
 
     def 'Get cm handle composite state using #scenario'() {
@@ -228,7 +224,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             def alternateId = 'some-alternate-id'
             def yangModelCmHandle = new YangModelCmHandle(id:cmHandleId, alternateId: alternateId, dmiServiceName: 'some service name', additionalProperties: additionalProperties, publicProperties: publicProperties, compositeState: compositeState)
         and: 'we have corresponding cm handle for the cm handle reference'
-            1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> cmHandleId
+            1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(cmHandleRef, '/') >> cmHandleId
         and: 'the system returns this yang modelled cm handle'
             1 * mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
         when: 'getting cm handle composite state for a given cm handle id from ncmp service'
@@ -262,7 +258,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         when: 'get module definitions is performed with module name and cm handle reference'
             objectUnderTest.getModuleDefinitionsByCmHandleAndModule(cmHandleRef, 'some-module', '2021-08-04')
         then: 'alternate id matcher returns some cm handle id for a given cm handle reference'
-            mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'some-cm-handle'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(cmHandleRef, '/') >> 'some-cm-handle'
         and: 'ncmp inventory persistence service is invoked once with correct parameters'
             1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleAndModule('some-cm-handle', 'some-module', '2021-08-04')
         where: 'following cm handle reference is used'
@@ -273,7 +269,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
     def 'Getting module definitions by module with exception.'() {
         given: 'alternate id matcher always finds a match'
-            mockAlternateIdMatcher.getCmHandleId(_) >> 'some id'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(_, '/') >> 'some id'
         and: 'ncmp inventory persistence service throws a not found exception'
             mockInventoryPersistence.getModuleDefinitionsByCmHandleAndModule(*_) >> { throw new CmHandleNotFoundException ('') }
         when: 'attempt to get the module definitions'
@@ -286,7 +282,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         when: 'get module definitions is performed with cm handle reference'
             objectUnderTest.getModuleDefinitionsByCmHandleReference(cmHandleRef)
         then: 'alternate id matcher returns some cm handle id for a given cm handle reference'
-            mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'some-cm-handle'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(cmHandleRef, '/') >> 'some-cm-handle'
         then: 'ncmp inventory persistence service is invoked once with correct parameter'
             1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleId('some-cm-handle')
         where: 'following cm handle reference is used'
@@ -297,7 +293,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
     def 'Getting module definitions by cm handle with exception.'() {
         given: 'alternate id matcher always finds a match'
-            mockAlternateIdMatcher.getCmHandleId(_) >> 'some id'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(_, '/') >> 'some id'
         and: 'ncmp inventory persistence service throws a not found exception'
             mockInventoryPersistence.getModuleDefinitionsByCmHandleId(_) >> { throw new CmHandleNotFoundException ('') }
         when: 'attempt to get the module definitions'
