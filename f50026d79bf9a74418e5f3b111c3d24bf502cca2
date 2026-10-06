@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "263b7bbd_71dc3e4a",
+        "filename": "k6-tests/cps-core/cps-core-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T11:02:26Z",
+      "side": 1,
+      "message": "TearDown function should come last.",
+      "revId": "f50026d79bf9a74418e5f3b111c3d24bf502cca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
