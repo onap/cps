@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ef41ce2_2a345201",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3476d7e7_da937501",
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39a6cbb4_a1961cb4",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-09-30T10:06:14Z",
       "side": 1,
       "message": "This method is not needed as we have same method in CpsDataService so this is line another public entry point for same public interface.",
+      "range": {
+        "startLine": 147,
+        "startChar": 25,
+        "endLine": 147,
+        "endChar": 54
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dcfef56_f43c09a7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsFacade.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39a6cbb4_a1961cb4",
       "range": {
         "startLine": 147,
         "startChar": 25,
@@ -64,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35dae370_a2502574",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51c11350_e6416518",
+      "range": {
+        "startLine": 66,
+        "startChar": 13,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ffe33d9_a82f083c",
@@ -77,6 +143,30 @@
       "writtenOn": "2026-09-30T10:06:14Z",
       "side": 1,
       "message": "This is the reason for cyclcic dependency down the line. As per my plan this class must not depend on CpsDeltaService. Inject DeltaReportGeneratorFacade instead and keep reading the source and target nodes in this class.",
+      "range": {
+        "startLine": 81,
+        "startChar": 18,
+        "endLine": 81,
+        "endChar": 33
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "267588aa_7cc195cf",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ffe33d9_a82f083c",
       "range": {
         "startLine": 81,
         "startChar": 18,
@@ -104,6 +194,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74c0c75c_3e0537c3",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eef7b058_73ded792",
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d84d7688_7c1de8c5",
@@ -117,6 +225,30 @@
       "writtenOn": "2026-09-30T10:06:14Z",
       "side": 1,
       "message": "Declare and assign on one line, or drop the variable once the facade is used.",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 49
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfd0c247_664011ee",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d84d7688_7c1de8c5",
       "range": {
         "startLine": 102,
         "startChar": 8,
@@ -150,6 +282,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0e957b1_baabb340",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2649d940_7301d0db",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 29
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4779cf4a_ce0897a7",
@@ -167,6 +323,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1320864_33435e2e",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4779cf4a_ce0897a7",
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26195aba_16d16b20",
@@ -180,6 +354,30 @@
       "writtenOn": "2026-09-30T10:06:14Z",
       "side": 1,
       "message": "Remove both fields. Facade is just a REST layer helper and should not read persistence layer directly.",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 70
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67b0b6ae_26cf4370",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26195aba_16d16b20",
       "range": {
         "startLine": 57,
         "startChar": 4,
@@ -213,6 +411,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a36cf21_e7e928ff",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e2e4863_2359354c",
+      "range": {
+        "startLine": 61,
+        "startChar": 20,
+        "endLine": 61,
+        "endChar": 44
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df4de5da_a28969f8",
@@ -226,6 +448,30 @@
       "writtenOn": "2026-09-30T10:06:14Z",
       "side": 1,
       "message": "Remove this as it duplicates CpsDataServiceImpl.getDataNodesForMultipleXpaths and reuses the metric name cps.data.service.datanode.batch.get, so two beans report under one name.",
+      "range": {
+        "startLine": 148,
+        "startChar": 32,
+        "endLine": 148,
+        "endChar": 61
+      },
+      "revId": "036495f9c39a5cda082f7ae3a4c902e3c1707342",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "421aca40_42bf186a",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-06T09:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df4de5da_a28969f8",
       "range": {
         "startLine": 148,
         "startChar": 32,
