@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,13 +26,16 @@ import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -41,9 +44,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class CmHandleStateMonitor {
     private static final String METRIC_POSTFIX = "CmHandlesCount";
+    private static final String RECONCILIATION_LOCK_NAME = "cmHandleStateMetricsReconciliationLock";
 
     private final CmHandleQueryService cmHandleQueryService;
     private final IMap<String, Integer> cmHandlesByState;
+    @Qualifier("cpsCommonLocks") private final IMap<String, String> cpsCommonLocks;
+    private final ReadinessManager readinessManager;
 
     /**
      * Method to initialise cm handle state monitor  by querying the current state counts
@@ -60,6 +66,50 @@ public class CmHandleStateMonitor {
             final int cmHandleCountForState = cmHandleQueryService.queryCmHandleIdsByState(cmHandleState).size();
             cmHandlesByState.putIfAbsent(stateMetricKey, cmHandleCountForState);
             log.info("Cm handle state monitor has set {} to {}", stateMetricKey, cmHandleCountForState);
+        }
+    }
+
+    /**
+     * Reset the current-state counters to the counts held in the database.
+     * The counters are maintained as increments and decrements per state transition, so any update that is lost or
+     * applied twice leaves an error that no later transition corrects: a decrement is floored at zero while an
+     * increment is not, so the error only ever grows. Seeding happens once at onboarding and uses putIfAbsent, which
+     * cannot correct an already populated map, and the map is shared across instances, so restarting a single
+     * instance does not clear the error either. Re-reading the counts from the database makes the gauge converge
+     * regardless of which transition was miscounted.
+     * DELETED is excluded on purpose: it counts cm handles deleted since startup rather than cm handles currently in
+     * that state, and a deleted cm handle is removed from the registry, so the database can never report it.
+     * The interval is set by ncmp.timers.cm-handle-state-metrics-reconciliation.sleep-time-ms.
+     */
+    @Scheduled(fixedDelayString =
+            "${ncmp.timers.cm-handle-state-metrics-reconciliation.sleep-time-ms:300000}")
+    public void reconcileCmHandleStateMetrics() {
+        if (!readinessManager.isReady()) {
+            log.debug("Skipping cm handle state metrics reconciliation, system is not ready yet");
+            return;
+        }
+        if (!cpsCommonLocks.tryLock(RECONCILIATION_LOCK_NAME)) {
+            log.debug("Skipping cm handle state metrics reconciliation, another instance is already reconciling");
+            return;
+        }
+        try {
+            for (final CmHandleState cmHandleState : CmHandleState.values()) {
+                if (CmHandleState.DELETED != cmHandleState) {
+                    reconcileCountForState(cmHandleState);
+                }
+            }
+        } finally {
+            cpsCommonLocks.unlock(RECONCILIATION_LOCK_NAME);
+        }
+    }
+
+    private void reconcileCountForState(final CmHandleState cmHandleState) {
+        final String stateMetricKey = cmHandleState.name().toLowerCase() + METRIC_POSTFIX;
+        final int cmHandleCountInDb = cmHandleQueryService.queryCmHandleIdsByState(cmHandleState).size();
+        final Integer previousCmHandleCount = cmHandlesByState.put(stateMetricKey, cmHandleCountInDb);
+        if (previousCmHandleCount == null || previousCmHandleCount != cmHandleCountInDb) {
+            log.info("Cm handle state metrics reconciliation corrected {} from {} to {}", stateMetricKey,
+                    previousCmHandleCount, cmHandleCountInDb);
         }
     }
 
