@@ -108,7 +108,7 @@ jobs:
     steps:
       - name: 'Harden runner'
         # yamllint disable-line rule:line-length
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1  # v2.21.1
+        uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
         with:
           egress-policy: audit
       - name: 'Clear votes'
@@ -130,13 +130,14 @@ jobs:
   # for a manual GERRIT_DISABLED run they are blanked so it falls back to
   # a standard checkout of the calling repository.
   #
-  # Pinned to v0.2.1. The job timeouts introduced in v0.0.4 remain the
-  # reason this lane completes at all: build 45 minutes, and 30 each for
-  # tests, SBOM and Grype. The fixed 10 minutes before that killed this
-  # reactor at module 18 of 24 while it was still compiling. A full run
-  # now builds in a little under 15 minutes, so the defaults suit cps
-  # with room to spare and nothing is set below; pass
-  # build_timeout_minutes if the reactor outgrows them.
+  # The job timeouts introduced in v0.0.4 remain the reason this lane
+  # completes at all: the fixed 10 minutes before them killed this
+  # reactor at module 18 of 24 while it was still compiling. Since
+  # v0.4.1 the test summary, SBOM and CBOM run as steps inside the
+  # build job, so build_timeout_minutes (45) bounds all of them, and
+  # Grype keeps its own 30. A full build job takes 15 to 17 minutes, so
+  # the defaults suit cps with room to spare and nothing is set below;
+  # pass build_timeout_minutes if the reactor outgrows them.
   #
   # v0.1.0 added optional build artefact publication and removed a dead
   # github_summary input that produced a warning annotation on every
@@ -160,7 +161,7 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@d268f9cd195fdd8a9e1277dcf5173cbfef48c510  # v0.3.1
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@0a730a2fb8bba32586061a5d348aea6b5bd3d5c9  # v0.4.1
     with:
       # master stream builds on Java 21 (paris/Java 17 handled separately).
       java_version: '21'
@@ -228,7 +229,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@7483557cf53b18109e679b8a3da42ce8e6dff219  # v0.8.0
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonarqube-cloud.yaml@4da5165382f8ca9b5ef0270caa343be4a63493d5  # v0.9.2
     with:
       sonar_organization: 'onap'
       sonar_project_key: 'onap_cps'
@@ -268,7 +269,7 @@ jobs:
     steps:
       - name: 'Harden runner'
         # yamllint disable-line rule:line-length
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1  # v2.21.1
+        uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
         with:
           egress-policy: audit
       - name: 'Get workflow conclusion'

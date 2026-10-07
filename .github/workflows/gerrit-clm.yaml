@@ -110,7 +110,7 @@ jobs:
     steps:
       - name: 'Harden runner'
         # yamllint disable-line rule:line-length
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1  # v2.21.1
+        uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
         with:
           egress-policy: audit
       - name: 'Clear votes'
@@ -137,7 +137,7 @@ jobs:
     permissions:
       contents: read
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@7483557cf53b18109e679b8a3da42ce8e6dff219  # v0.8.0
+    uses: lfreleng-actions/security-workflows/.github/workflows/sonatype-lifecycle.yaml@4da5165382f8ca9b5ef0270caa343be4a63493d5  # v0.9.2
     with:
       # Build before scanning: Nexus IQ identifies far more components
       # from the packaged output than from source alone. Tests and Jib
@@ -212,7 +212,7 @@ jobs:
     steps:
       - name: 'Harden runner'
         # yamllint disable-line rule:line-length
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1  # v2.21.1
+        uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
         with:
           egress-policy: audit
       - name: 'Get workflow conclusion'
