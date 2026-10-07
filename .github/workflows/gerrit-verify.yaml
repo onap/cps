@@ -163,7 +163,7 @@ jobs:
     # yamllint disable-line rule:line-length
     uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@0a730a2fb8bba32586061a5d348aea6b5bd3d5c9  # v0.4.1
     with:
-      # master stream builds on Java 21 (paris/Java 17 handled separately).
+      # master builds on Java 21.
       java_version: '21'
       # Skip Jib container image builds during verify; the merge/stage
       # lanes own image publication.
