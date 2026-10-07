@@ -38,4 +38,4 @@ jobs:
     # rejects published results otherwise. See
     # https://github.com/ossf/scorecard-action#workflow-restrictions
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/security-workflows/.github/workflows/openssf-scorecard.yaml@7483557cf53b18109e679b8a3da42ce8e6dff219  # v0.8.0
+    uses: lfreleng-actions/security-workflows/.github/workflows/openssf-scorecard.yaml@ae96a8d9cd91d99a70be0d301c91b539aea617e3  # v0.9.1
