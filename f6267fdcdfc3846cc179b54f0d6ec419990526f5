@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f7e9602_a33760d2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-08T12:31:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9f40c0d_6d9cfbd0",
+      "revId": "f6267fdcdfc3846cc179b54f0d6ec419990526f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7898bdc_00cdc7c4",
@@ -48,6 +66,30 @@
       "writtenOn": "2026-10-01T16:07:32Z",
       "side": 1,
       "message": "setFetchedAnchorsOnFragments - better describes the goal of the method",
+      "range": {
+        "startLine": 209,
+        "startChar": 18,
+        "endLine": 209,
+        "endChar": 55
+      },
+      "revId": "f6267fdcdfc3846cc179b54f0d6ec419990526f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "630b185b_74cdf93b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-08T12:31:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7898bdc_00cdc7c4",
       "range": {
         "startLine": 209,
         "startChar": 18,

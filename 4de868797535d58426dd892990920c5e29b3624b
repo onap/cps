@@ -16,6 +16,24 @@
       "message": "A java doc with the reason for the method can work here:\n\nResolves the lazily-loaded anchor on each fragment with a single query, so that building data nodes does not trigger a separate lazy load (anchor + dataspace) per anchor.",
       "revId": "4de868797535d58426dd892990920c5e29b3624b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "214b7bba_322ee9f4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-08T12:31:35Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "6c1296b1_0ee0ee70",
+      "revId": "4de868797535d58426dd892990920c5e29b3624b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
