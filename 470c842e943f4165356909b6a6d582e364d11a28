@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3c0197f_5ff533d2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsFacade.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0dadb57d_85a3a91c",
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0814197f_737b557a",
@@ -48,6 +66,30 @@
       "writtenOn": "2026-10-07T11:12:32Z",
       "side": 1,
       "message": "2026",
+      "range": {
+        "startLine": 6,
+        "startChar": 37,
+        "endLine": 6,
+        "endChar": 41
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14839576_d9f1a1a6",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0814197f_737b557a",
       "range": {
         "startLine": 6,
         "startChar": 37,
@@ -83,6 +125,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "636b1668_9b83e096",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "This change will require change in all the testcases of all the core apis so for this we already have separate ticket so i will do it in next patch.",
+      "parentUuid": "7c16b6ec_3fb36230",
+      "range": {
+        "startLine": 101,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 9
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f74cfcd8_7c1570c3",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 11
@@ -94,6 +160,30 @@
       "writtenOn": "2026-10-07T11:12:32Z",
       "side": 1,
       "message": "Revert this file as there is no change.",
+      "range": {
+        "startLine": 64,
+        "startChar": 13,
+        "endLine": 64,
+        "endChar": 32
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47a94ddb_e9bf9382",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f74cfcd8_7c1570c3",
       "range": {
         "startLine": 64,
         "startChar": 13,
@@ -127,6 +217,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bacb4cc_42933e21",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "049722d9_e9d5fca5",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 26
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c9e43f5_42cdc639",
@@ -140,6 +254,30 @@
       "writtenOn": "2026-10-07T11:12:32Z",
       "side": 1,
       "message": "New files have Copyright with current year. So only 2026",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23ee63a5_756dbb5c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c9e43f5_42cdc639",
       "range": {
         "startLine": 3,
         "startChar": 18,
@@ -173,6 +311,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d17a5104_cfd700b5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4deafb70_ecbddf57",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 6
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc5104d8_b8a329a0",
@@ -186,6 +348,30 @@
       "writtenOn": "2026-10-07T11:12:32Z",
       "side": 1,
       "message": "Please re-write this to a more meaningful javadoc. It does not convey anything. It should say that true produces condensed (grouped) reports through GroupedDeltaReportGenerator, and false produces normal reports through DeltaReportGenerator. \n\nThe class has no Javadoc either.",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3749b418_abf381dd",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc5104d8_b8a329a0",
       "range": {
         "startLine": 40,
         "startChar": 7,
@@ -219,6 +405,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1705da99_1ed32c56",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e13f3f58_78a62970",
+      "range": {
+        "startLine": 6,
+        "startChar": 37,
+        "endLine": 6,
+        "endChar": 41
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3052e6a9_15ad80e4",
@@ -232,6 +442,30 @@
       "writtenOn": "2026-10-07T11:12:32Z",
       "side": 1,
       "message": "2026",
+      "range": {
+        "startLine": 6,
+        "startChar": 36,
+        "endLine": 6,
+        "endChar": 40
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f60a04af_9956a7a9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3052e6a9_15ad80e4",
       "range": {
         "startLine": 6,
         "startChar": 36,
@@ -265,6 +499,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac6d0145_75af9114",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13022c8e_0eda0ba3",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e37c753_c76abe78",
@@ -278,6 +536,30 @@
       "writtenOn": "2026-10-07T11:12:32Z",
       "side": 1,
       "message": "General comment for all tests:\nMocks for DataNode and DeltaReports hold no behavior. I\u0027d prefer using real objects here.\nUse:\n- new DataNodeBuilder().withXpath(\u0027/parent\u0027).build()\n- new DeltaReportBuilder().withXpath(\u0027/parent\u0027).actionCreate().withTargetData([name: \u0027a\u0027]).build() instead.",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af67b610_ad16a2e4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e37c753_c76abe78",
       "range": {
         "startLine": 27,
         "startChar": 6,
@@ -311,6 +593,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a30f0b34_a6a008b0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57ba83e4_4d9219e1",
+      "range": {
+        "startLine": 34,
+        "startChar": 35,
+        "endLine": 34,
+        "endChar": 51
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44483dd4_8de0a434",
@@ -324,6 +630,30 @@
       "writtenOn": "2026-10-07T11:12:32Z",
       "side": 1,
       "message": "For all stubs:\nAll use (_, _) wildcards, so nothing proves the same source and target are passed through, in the right order. Stub with the actual lists.\nUse: createDeltaReports(sourceDataNodes, targetDataNodes) \u003e\u003e expectedReports instead.",
+      "range": {
+        "startLine": 40,
+        "startChar": 71,
+        "endLine": 40,
+        "endChar": 77
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db0d19d2_06a51a00",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44483dd4_8de0a434",
       "range": {
         "startLine": 40,
         "startChar": 71,
@@ -357,6 +687,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aec6555d_b962e0e9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f363608f_caa1c4a4",
+      "range": {
+        "startLine": 47,
+        "startChar": 35,
+        "endLine": 47,
+        "endChar": 53
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51bf65f3_8efc00b5",
@@ -380,6 +734,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0148bd5d_eb0da651",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51bf65f3_8efc00b5",
+      "range": {
+        "startLine": 60,
+        "startChar": 9,
+        "endLine": 60,
+        "endChar": 56
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94600ee2_3228379e",
@@ -393,6 +771,30 @@
       "writtenOn": "2026-10-07T11:12:32Z",
       "side": 1,
       "message": "The stubbing inside if (grouping) {…} else {…} is always awkward for me. A where block holding the expected generator, or two stubs with 0 * checks, is cleaner",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 13
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdc220b5_a0fa49a7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94600ee2_3228379e",
       "range": {
         "startLine": 77,
         "startChar": 12,
@@ -449,6 +851,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16ee2629_93d77ac7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7f24810_f27b8310",
+      "range": {
+        "startLine": 86,
+        "startChar": 8,
+        "endLine": 86,
+        "endChar": 13
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8501a10f_89da5a59",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7f3745_953fa48b",
+      "range": {
+        "startLine": 86,
+        "startChar": 16,
+        "endLine": 86,
+        "endChar": 26
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b7ab6d7_c334884c",
@@ -462,6 +912,30 @@
       "writtenOn": "2026-10-07T11:12:32Z",
       "side": 1,
       "message": "The first 3 repeat grouping\u003dfalse, only change is number of nodes and  facade ignores size, so they cover nothing new. Can be removed and only 1 can be kept.",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 91,
+        "endChar": 12
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c942a148_cabe3af9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-10-09T05:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b7ab6d7_c334884c",
       "range": {
         "startLine": 88,
         "startChar": 12,
