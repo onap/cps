@@ -22,6 +22,30 @@
       },
       "revId": "7e42ea2df6ebe2219e62e5222fc1568569ac7ceb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c141db61_3f1e8396",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-12T17:25:35Z",
+      "side": 0,
+      "message": "No, the exception is no longer being thrown in that class, where it would have previously NoAlternateIdMatchFoundException is thrown instead",
+      "parentUuid": "7ffb0996_4bc9cf4d",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 125
+      },
+      "revId": "7e42ea2df6ebe2219e62e5222fc1568569ac7ceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
