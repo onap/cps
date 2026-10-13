@@ -106,15 +106,17 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public void saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
+    public Collection<String> saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
         final Map<String, String> cmHandlesJsonDataMap = HashMap.newHashMap(cmHandleStatePerCmHandleId.size());
         final List<Map<String, String>> topLevelStateUpdates = new ArrayList<>(cmHandleStatePerCmHandleId.size());
+        final Collection<String> persistedCmHandleIds = new ArrayList<>(cmHandleStatePerCmHandleId.size());
 
         for (final Map.Entry<String, CompositeState> entry : cmHandleStatePerCmHandleId.entrySet()) {
             final String cmHandleId = entry.getKey();
             final CompositeState compositeState = entry.getValue();
             if (cmHandleIdPerReferenceMap.exists(cmHandleId)) {
                 cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId), compositeStateAsJson(compositeState));
+                persistedCmHandleIds.add(cmHandleId);
                 if (useOptimizedModel) {
                     final Map<String, String> topLevelUpdate = new HashMap<>();
                     topLevelUpdate.put("id", cmHandleId);
@@ -133,6 +135,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
                                                 cmHandleUpdatesAsJson(topLevelStateUpdates), now(), JSON);
             }
         }
+        return persistedCmHandleIds;
     }
 
     @Override

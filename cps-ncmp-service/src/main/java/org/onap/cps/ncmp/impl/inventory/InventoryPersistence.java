@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2023 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -52,10 +52,12 @@ public interface InventoryPersistence extends NcmpPersistence {
 
     /**
      * Save all cm handle CompositeStates and cmHandleStatus in batch.
+     * A cm handle that no longer exists is skipped, as it was deleted while its state change was in flight.
      *
      * @param cmHandleStatePerCmHandleId contains cm handle id and updated state
+     * @return the ids of the cm handles whose state was actually persisted
      */
-    void saveCmHandleStateBatch(Map<String, CompositeState> cmHandleStatePerCmHandleId);
+    Collection<String> saveCmHandleStateBatch(Map<String, CompositeState> cmHandleStatePerCmHandleId);
 
     /**
      * This method retrieves DMI service name, DMI properties and the state for a given cm handle.
