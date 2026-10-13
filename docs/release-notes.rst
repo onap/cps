@@ -11,6 +11,29 @@ CPS Release Notes
 .. contents::
     :depth: 2
 
+Version: 3.8.6
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:3.8.6                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 3.8.6                                                  |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | Not yet released                                       |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Features
+--------
+
 Version: 3.8.5
 ==============
 
@@ -27,22 +50,30 @@ Release Data
 | **Release designation**              | 3.8.5                                                  |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not yet released                                       |
+| **Release date**                     | 2026 October 14                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Features
 --------
+    - `CPS-3436 <https://lf-onap.atlassian.net/browse/CPS-3436>`_ add v2 lightweight get cm handle endpoint ``GET /ncmpInventory/v2/ch`` with optional ``outputDmiProperties``.
+    - `CPS-3305 <https://lf-onap.atlassian.net/browse/CPS-3305>`_ NCMP path now accepts Base64URL-encoded alternate ids, so FDNs containing slashes no longer need to be sent un-encoded.
 
 Bug Fixes
 ---------
     - `CPS-3328 <https://lf-onap.atlassian.net/browse/CPS-3328>`_ PUT now creates data on an empty anchor instead of silently succeeding without persisting it.
+    - `CPS-3441 <https://lf-onap.atlassian.net/browse/CPS-3441>`_ v2 endpoints now return ``dmiProperties`` as a key-value object (empty case serialized as ``{}``) instead of a raw JSON string.
+    - `CPS-3442 <https://lf-onap.atlassian.net/browse/CPS-3442>`_ fix cm handle state metrics (``cps_ncmp_inventory_cm_handles_by_state``) drifting from the database under cm-handle churn, so the gauges now stay accurate and reconcile automatically.
 
 Notes
 -----
 **Response code compatibility change (CPS-3328).**
     A successful PUT that creates the first data under an anchor now returns `201 Created`. A PUT that replaces existing data returns `204 No Content`;
     other successful PUT operations continue to return `200 OK`.
+
+**Response body compatibility change (CPS-3441).**
+    The v2 lightweight inventory endpoints now return ``dmiProperties`` as a key-value object rather than a raw JSON string. Clients that parsed the
+    previous string value must be updated to read the object directly. The field is omitted entirely when ``outputDmiProperties`` is not requested.
 
 Version: 3.8.4
 ==============
