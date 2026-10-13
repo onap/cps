@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25e79c2e_637f3b58",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T06:55:43Z",
+      "side": 1,
+      "message": "NB: indentation",
+      "range": {
+        "startLine": 45,
+        "startChar": 15,
+        "endLine": 45,
+        "endChar": 19
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29531ba8_5f50994e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T06:55:43Z",
+      "side": 1,
+      "message": "expected delta reports",
+      "range": {
+        "startLine": 40,
+        "startChar": 16,
+        "endLine": 40,
+        "endChar": 44
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396c01fd_cd2b5067",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T06:55:43Z",
+      "side": 1,
+      "message": "move this to line 41",
+      "range": {
+        "startLine": 41,
+        "startChar": 77,
+        "endLine": 42,
+        "endChar": 138
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d2cc3e7_0250d634",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T06:55:43Z",
+      "side": 1,
+      "message": "expected delta reports",
+      "range": {
+        "startLine": 53,
+        "startChar": 16,
+        "endLine": 53,
+        "endChar": 44
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1970bca4_be5eae4d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T06:55:43Z",
+      "side": 1,
+      "message": "move to line 54",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34f29602_04695ad5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T06:55:43Z",
+      "side": 1,
+      "message": "missed this one. Use real objects :)",
+      "range": {
+        "startLine": 55,
+        "startChar": 39,
+        "endLine": 55,
+        "endChar": 58
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
