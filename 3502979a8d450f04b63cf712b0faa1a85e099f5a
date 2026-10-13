@@ -3,6 +3,115 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46a506ad_11069534",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T07:08:49Z",
+      "side": 1,
+      "message": "NB: Returns, because we are not making delta reports here.",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 13
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c604d91_66da0f28",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T07:08:49Z",
+      "side": 1,
+      "message": "NB: extra spaces in line 39 and 40",
+      "range": {
+        "startLine": 39,
+        "startChar": 7,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cc21653_83103744",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T07:08:49Z",
+      "side": 1,
+      "message": "NB: ..are compared....",
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdb2e377_40fe7df1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T07:08:49Z",
+      "side": 1,
+      "message": "I\u0027d prefer something like useGroupedDeltaReports, it\u0027s not associated to datanodes. Its more inclined towards delta reports",
+      "range": {
+        "startLine": 44,
+        "startChar": 14,
+        "endLine": 44,
+        "endChar": 28
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b320a1dd_eab170e6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-13T07:08:49Z",
+      "side": 1,
+      "message": "cab keep description like:\nboolean flag,true to generate condensed grouped delta reports; false to generate standard delta report, default value:",
+      "range": {
+        "startLine": 44,
+        "startChar": 29,
+        "endLine": 44,
+        "endChar": 114
+      },
+      "revId": "3502979a8d450f04b63cf712b0faa1a85e099f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25e79c2e_637f3b58",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
         "patchSetId": 13
