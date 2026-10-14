@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2b6e582_55ea329e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-14T04:38:44Z",
+      "side": 1,
+      "message": "NB: indentation",
+      "revId": "23fd4895dda24afc9277258d123913ba08a7e051",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb19ba7_8cc3f06c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-14T04:38:44Z",
+      "side": 1,
+      "message": "NB: indentation",
+      "revId": "23fd4895dda24afc9277258d123913ba08a7e051",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
