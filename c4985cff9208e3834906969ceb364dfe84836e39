@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4e1c02b5_e3474d66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-14T15:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ad22380_650f5832",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "c4985cff9208e3834906969ceb364dfe84836e39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f4923ba6_003e2622",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bd38e67_618b2e05",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-14T15:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d202714_761e7695",
+      "range": {
+        "startLine": 429,
+        "startChar": 19,
+        "endLine": 429,
+        "endChar": 43
+      },
+      "revId": "c4985cff9208e3834906969ceb364dfe84836e39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bd3f3aa_a85724a7",
@@ -77,6 +125,30 @@
       "writtenOn": "2026-10-14T12:36:48Z",
       "side": 1,
       "message": "legacy issue: no wildcard for class/method names, re-introduce expected calls if needed",
+      "range": {
+        "startLine": 501,
+        "startChar": 16,
+        "endLine": 501,
+        "endChar": 19
+      },
+      "revId": "c4985cff9208e3834906969ceb364dfe84836e39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f77d5c5_49b0421d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-14T15:51:22Z",
+      "side": 1,
+      "message": "Updated, a little convoluted but method names are visible now",
+      "parentUuid": "9bd3f3aa_a85724a7",
       "range": {
         "startLine": 501,
         "startChar": 16,
@@ -110,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a1e0f1f_7eb41b1b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/NetworkCmProxyInventoryFacadeImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-14T15:51:22Z",
+      "side": 1,
+      "message": "getCmHandleIdByLongestMatchingAlternateId will also resolve cmHandleIds so this does not break functionality. There is an issue with naming as the method name does not reflect this so getCmHandleIdByLongestMatchingAlternateId method has been renamed to getCmHandleIdByLongestMatchingCmHandleReference",
+      "parentUuid": "e9028277_820097e2",
+      "range": {
+        "startLine": 255,
+        "startChar": 7,
+        "endLine": 256,
+        "endChar": 67
+      },
+      "revId": "c4985cff9208e3834906969ceb364dfe84836e39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84afbd32_b9aad4f1",
@@ -123,6 +219,30 @@
       "writtenOn": "2026-10-14T12:36:48Z",
       "side": 1,
       "message": "use \u0027Attempt\u0027 when expecting exceptions",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 9
+      },
+      "revId": "c4985cff9208e3834906969ceb364dfe84836e39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8fa389c_110abe6b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-14T15:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84afbd32_b9aad4f1",
       "range": {
         "startLine": 204,
         "startChar": 8,
@@ -150,6 +270,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e6b4eed_da505896",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/data/AlternateIdSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-14T15:51:22Z",
+      "side": 1,
+      "message": "Create new test in CmHandleReferenceResolutionSpec",
+      "parentUuid": "c2ce4b30_233b4115",
+      "revId": "c4985cff9208e3834906969ceb364dfe84836e39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "046b0b39_9144a802",
@@ -173,6 +311,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eab2e1ee_89e65802",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/data/AlternateIdSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-14T15:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "046b0b39_9144a802",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 101
+      },
+      "revId": "c4985cff9208e3834906969ceb364dfe84836e39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0e9e7e9_74e01844",
@@ -186,6 +348,30 @@
       "writtenOn": "2026-10-14T12:36:48Z",
       "side": 1,
       "message": "no performance test needed",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 5
+      },
+      "revId": "c4985cff9208e3834906969ceb364dfe84836e39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0a5d3ab_46279163",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-14T15:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0e9e7e9_74e01844",
       "range": {
         "startLine": 80,
         "startChar": 0,
