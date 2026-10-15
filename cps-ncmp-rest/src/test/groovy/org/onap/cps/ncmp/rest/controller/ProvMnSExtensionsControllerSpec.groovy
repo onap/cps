@@ -54,7 +54,7 @@ class ProvMnSExtensionsControllerSpec extends ProvMnSControllerBaseSpec {
         given: 'ProvMnS Extensions url'
             def provMnSExtensionsUrl = "$provMnSExtensionsBasePath/v1alpha1/actions/myClass=id1/someAction"
         and: 'alternate Id can be matched'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/myClass=id1', "/") >> 'ch-1'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('/myClass=id1', "/") >> 'ch-1'
         and: 'persistence service returns yangModelCmHandle'
             mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle
         when: 'post request is performed'
@@ -77,7 +77,7 @@ class ProvMnSExtensionsControllerSpec extends ProvMnSControllerBaseSpec {
         given: 'ProvMnS Extensions url'
             def provMnSExtensionsUrl = "$provMnSExtensionsBasePath/v1alpha1/actions/myClass=id1/someAction"
         and: 'an exception happens during the process (method not relevant)'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(*_) >> {throw exception}
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(*_) >> {throw exception}
         when: 'post request is performed'
             def response = mvc.perform(post(provMnSExtensionsUrl).contentType(MediaType.APPLICATION_JSON)
                     .content('{"customProperties":{}, "input":{}}')).andReturn().response

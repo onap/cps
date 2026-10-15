@@ -38,7 +38,7 @@ class AlternateIdMatcherSpec extends Specification {
         given: ' a match for alternate id "/a/b"'
             mockCmHandleIdPerReferenceMap.get('/a/b') >> 'ch1'
         expect: 'a match has been found'
-            assert objectUnderTest.getCmHandleIdByLongestMatchingAlternateId(targetAlternateId, '/') != null
+            assert objectUnderTest.getCmHandleIdByLongestMatchingCmHandleReference(targetAlternateId, '/') != null
         where: 'the following alternate ids are used'
             scenario                                                   | targetAlternateId
             'exact match'                                              | '/a/b'
@@ -64,7 +64,7 @@ class AlternateIdMatcherSpec extends Specification {
 
     def 'Attempt to find longest alternate id match without any matches.'() {
         when: 'attempt to find alternateId'
-            objectUnderTest.getCmHandleIdByLongestMatchingAlternateId(targetAlternateId, '/')
+            objectUnderTest.getCmHandleIdByLongestMatchingCmHandleReference(targetAlternateId, '/')
         then: 'no alternate id match found exception thrown'
             def thrown = thrown(NoAlternateIdMatchFoundException)
         and: 'the exception has the relevant details from the error response'

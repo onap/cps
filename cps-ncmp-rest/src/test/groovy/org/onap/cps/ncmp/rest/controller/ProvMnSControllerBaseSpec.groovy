@@ -104,7 +104,7 @@ abstract class ProvMnSControllerBaseSpec extends Specification {
     }
 
     def setupMocksForCmHandle(fdn, cmHandleId = 'ch-1') {
-        mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(fdn, "/") >> cmHandleId
+        mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(fdn, "/") >> cmHandleId
         mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> validCmHandle
     }
 }

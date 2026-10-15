@@ -44,7 +44,6 @@ import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.ncmp.api.data.exceptions.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
@@ -113,7 +112,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final Boolean includeDescendants,
                                                              final String authorization) {
         final CmResourceAddress cmResourceAddress = new CmResourceAddress(datastoreName,
-            resolveCmHandleReference(cmHandleReference), resourceIdentifier);
+            resolveCmHandleReferenceByLongestMatch(cmHandleReference), resourceIdentifier);
         final Object result = networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
             topicParamInQuery, includeDescendants, authorization);
         return ResponseEntity.ok(result);
@@ -176,7 +175,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
         final Object responseObject = networkCmProxyFacade
                 .writeResourceDataPassThroughRunningForCmHandle(
-                        resolveCmHandleReference(cmHandleReference), resourceIdentifier, PATCH,
+                        resolveCmHandleReferenceByLongestMatch(cmHandleReference), resourceIdentifier, PATCH,
                         jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return ResponseEntity.ok(responseObject);
     }
@@ -201,7 +200,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
         networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(
-                resolveCmHandleReference(cmHandleReference), resourceIdentifier, CREATE,
+                resolveCmHandleReferenceByLongestMatch(cmHandleReference), resourceIdentifier, CREATE,
                 jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -228,7 +227,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
         final Object responseObject = networkCmProxyFacade
                 .writeResourceDataPassThroughRunningForCmHandle(
-                    resolveCmHandleReference(cmHandleReference), resourceIdentifier, UPDATE,
+                    resolveCmHandleReferenceByLongestMatch(cmHandleReference), resourceIdentifier, UPDATE,
                         jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return ResponseEntity.ok(responseObject);
     }
@@ -253,7 +252,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(
-                resolveCmHandleReference(cmHandleReference), resourceIdentifier, DELETE,
+                resolveCmHandleReferenceByLongestMatch(cmHandleReference), resourceIdentifier, DELETE,
                 NO_BODY, contentType, authorization);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -326,7 +325,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             final String cmHandleReference) {
         final List<Map<String, String>> publicCmHandleProperties = new ArrayList<>(1);
         publicCmHandleProperties.add(networkCmProxyInventoryFacade.getPublicCmHandleProperties(
-            resolveCmHandleReference(cmHandleReference)));
+            resolveCmHandleReferenceByLongestMatch(cmHandleReference)));
         final RestOutputPublicCmHandleProperties restOutputPublicCmHandleProperties =
                 new RestOutputPublicCmHandleProperties();
         restOutputPublicCmHandleProperties.setPublicCmHandleProperties(publicCmHandleProperties);
@@ -343,7 +342,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<RestOutputCmHandleCompositeState> getCmHandleStateByCmHandleId(
             final String cmHandleReference) {
         final CompositeState cmHandleState = networkCmProxyInventoryFacade.getCmHandleCompositeState(
-            resolveCmHandleReference(cmHandleReference));
+            resolveCmHandleReferenceByLongestMatch(cmHandleReference));
         final RestOutputCmHandleCompositeState restOutputCmHandleCompositeState =
                 new RestOutputCmHandleCompositeState();
         restOutputCmHandleCompositeState.setState(
@@ -363,7 +362,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<List<RestModuleDefinition>> getModuleDefinitions(final String cmHandleReference,
                                                                            final String moduleName,
                                                                            final String revision) {
-        final String resolvedCmHandleReference = resolveCmHandleReference(cmHandleReference);
+        final String resolvedCmHandleReference = resolveCmHandleReferenceByLongestMatch(cmHandleReference);
         final Collection<ModuleDefinition> moduleDefinitions;
         if (StringUtils.hasText(moduleName)) {
             moduleDefinitions =
@@ -392,7 +391,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<List<RestModuleReference>> getModuleReferencesByCmHandle(final String cmHandleReference) {
         final List<RestModuleReference> restModuleReferences =
             networkCmProxyInventoryFacade.getYangResourcesModuleReferences(
-                    resolveCmHandleReference(cmHandleReference)).stream()
+                    resolveCmHandleReferenceByLongestMatch(cmHandleReference)).stream()
                         .map(ncmpRestInputMapper::toRestModuleReference)
                         .toList();
         return new ResponseEntity<>(restModuleReferences, HttpStatus.OK);
@@ -422,34 +421,17 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     /**
      * Resolve a cm handle reference from the path when it is a Base64URL encoded alternate id.
+     * The decoded value is resolved by exact match first, falling back to the longest matching alternate id.
      *
      * @param cmHandleReference Base64URL encoded alternate id or (not encoded) cm handle id
-     * @return the cm handle id of the encoded alternate id, otherwise the given cm handle reference
-     */
-    private String resolveCmHandleReference(final String cmHandleReference) {
-        final String decodedCmHandleReference = decodeBase64Url(cmHandleReference);
-        if (decodedCmHandleReference != null) {
-            try {
-                return alternateIdMatcher.getCmHandleId(decodedCmHandleReference);
-            } catch (final CmHandleNotFoundException ignored) {
-                // exception ignored as the cm handle reference is then treated as a (not encoded) cm handle id
-            }
-        }
-        return cmHandleReference;
-    }
-
-    /**
-     * Resolve a cm handle reference from the path when it is a Base64URL encoded alternate id,
-     * matching the longest alternate id.
-     *
-     * @param cmHandleReference Base64URL encoded alternate id or (not encoded) cm handle id
-     * @return the cm handle id of the longest matching alternate id, otherwise the given cm handle reference
+     * @return the cm handle id of the resolved alternate id, otherwise the given cm handle reference
      */
     private String resolveCmHandleReferenceByLongestMatch(final String cmHandleReference) {
         final String decodedCmHandleReference = decodeBase64Url(cmHandleReference);
         if (decodedCmHandleReference != null) {
             try {
-                return alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(decodedCmHandleReference, "/");
+                return alternateIdMatcher
+                    .getCmHandleIdByLongestMatchingCmHandleReference(decodedCmHandleReference, "/");
             } catch (final NoAlternateIdMatchFoundException ignored) {
                 // exception ignored as the cm handle reference is then treated as a (not encoded) cm handle id
             }

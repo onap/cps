@@ -34,12 +34,11 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.events.EventProducer
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
@@ -145,8 +144,7 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def setup() {
         setupLogger()
-        mockAlternateIdMatcher.getCmHandleId(_) >> { String alternateId -> throw new CmHandleNotFoundException(alternateId) }
-        mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(_, '/') >> { String alternateId, String separator -> throw new NoAlternateIdMatchFoundException(alternateId) }
+        mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(_, '/') >> { String cmHandleReference, String separator -> throw new NoAlternateIdMatchFoundException(cmHandleReference) }
     }
 
     def cleanup() {
@@ -489,7 +487,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         when: 'get data resource request is performed'
             mvc.perform(get(getUrl).contentType(APPLICATION_JSON)).andReturn().response
         then: 'the decoded alternate id is resolved to a cm handle id'
-            1 * mockAlternateIdMatcher.getCmHandleId(ALTERNATE_ID) >> 'ch-1'
+            1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(ALTERNATE_ID, '/') >> 'ch-1'
         and: 'the NCMP facade is called with the cm handle id'
             1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle({ it.cmHandleReference() == 'ch-1' }, *_)
     }
@@ -498,23 +496,23 @@ class NetworkCmProxyControllerSpec extends Specification {
         when: 'the request is performed with a Base64URL encoded alternate id'
             mvc.perform(executeRestOperation(operation, "$basePath/ch/$ENCODED_ALTERNATE_ID$pathSuffix")).andReturn().response
         then: 'the decoded alternate id is resolved to a cm handle id'
-            expectedExactMatchCalls * mockAlternateIdMatcher.getCmHandleId(ALTERNATE_ID) >> 'ch-1'
-            expectedLongestMatchCalls * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(ALTERNATE_ID, '/') >> 'ch-1'
-        and: 'the facade is called with the cm handle id'
-            1 * _._('ch-1', *_)
+            1 * mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(ALTERNATE_ID, '/') >> 'ch-1'
+        and: 'the expected facade method is called once with the resolved cm handle id'
+            (isInventoryCall ? 0 : 1) * mockNetworkCmProxyFacade."$expectedFacadeMethod"('ch-1', *_)
+            (isInventoryCall ? 1 : 0) * mockNetworkCmProxyInventoryFacade."$expectedFacadeMethod"('ch-1', *_)
         where: 'the following endpoints are used'
-            scenario                       | operation | basePath   | pathSuffix                                                                    || expectedExactMatchCalls | expectedLongestMatchCalls
-            'create resource data'         | 'POST'    | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || 1                       | 0
-            'update resource data'         | 'PUT'     | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || 1                       | 0
-            'patch resource data'          | 'PATCH'   | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || 1                       | 0
-            'delete resource data'         | 'DELETE'  | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || 1                       | 0
-            'module references'            | 'GET'     | '/ncmp/v1' | '/modules'                                                                    || 1                       | 0
-            'module definitions'           | 'GET'     | '/ncmp/v1' | '/modules/definitions'                                                        || 1                       | 0
-            'module definitions by module' | 'GET'     | '/ncmp/v1' | '/modules/definitions?module-name=my-module'                                  || 1                       | 0
-            'cm handle properties'         | 'GET'     | '/ncmp/v1' | '/properties'                                                                 || 1                       | 0
-            'cm handle state'              | 'GET'     | '/ncmp/v1' | '/state'                                                                      || 1                       | 0
-            'cm handle details'            | 'GET'     | '/ncmp/v1' | ''                                                                            || 0                       | 1
-            'cm handle details (v2)'       | 'GET'     | '/ncmp/v2' | ''                                                                            || 0                       | 1
+            scenario                       | operation | basePath   | pathSuffix                                                                   || isInventoryCall | expectedFacadeMethod
+            'create resource data'         | 'POST'    | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || false           | 'writeResourceDataPassThroughRunningForCmHandle'
+            'update resource data'         | 'PUT'     | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || false           | 'writeResourceDataPassThroughRunningForCmHandle'
+            'patch resource data'          | 'PATCH'   | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || false           | 'writeResourceDataPassThroughRunningForCmHandle'
+            'delete resource data'         | 'DELETE'  | '/ncmp/v1' | '/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource' || false           | 'writeResourceDataPassThroughRunningForCmHandle'
+            'module references'            | 'GET'     | '/ncmp/v1' | '/modules'                                                                   || true            | 'getYangResourcesModuleReferences'
+            'module definitions'           | 'GET'     | '/ncmp/v1' | '/modules/definitions'                                                       || true            | 'getModuleDefinitionsByCmHandleReference'
+            'module definitions by module' | 'GET'     | '/ncmp/v1' | '/modules/definitions?module-name=my-module'                                 || true            | 'getModuleDefinitionsByCmHandleAndModule'
+            'cm handle properties'         | 'GET'     | '/ncmp/v1' | '/properties'                                                                || true            | 'getPublicCmHandleProperties'
+            'cm handle state'              | 'GET'     | '/ncmp/v1' | '/state'                                                                     || true            | 'getCmHandleCompositeState'
+            'cm handle details'            | 'GET'     | '/ncmp/v1' | ''                                                                           || true            | 'getNcmpServiceCmHandle'
+            'cm handle details (v2)'       | 'GET'     | '/ncmp/v2' | ''                                                                           || true            | 'getNcmpServiceCmHandle'
     }
 
     def 'Cm handle id in the path that is not valid Base64URL.'() {
