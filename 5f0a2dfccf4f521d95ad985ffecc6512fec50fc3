@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b7cf3da_c2946d1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7849
+      },
+      "writtenOn": "2026-10-15T07:41:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf95d8ea_7dc16a20",
+      "revId": "5f0a2dfccf4f521d95ad985ffecc6512fec50fc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "906bfa7a_6f2a1e82",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7849
+      },
+      "writtenOn": "2026-10-15T07:41:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7692bc2_708cb4ea",
+      "revId": "5f0a2dfccf4f521d95ad985ffecc6512fec50fc3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
