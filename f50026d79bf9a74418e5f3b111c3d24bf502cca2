@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c442c635_f7232908",
+        "filename": "k6-tests/cps-core/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-16T07:20:56Z",
+      "side": 1,
+      "message": "I used camelCase for testConfig and scenarioMetaData because they are runtime data objects and consistent with ncmp k6 suite. But as per your request I used snake casing. Let me know if I should make it in line with ncmp.",
+      "parentUuid": "e59f9262_e85b3e1a",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 24
+      },
+      "revId": "f50026d79bf9a74418e5f3b111c3d24bf502cca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef88f021_5cb3dce4",
         "filename": "k6-tests/cps-core/common/utils.js",
         "patchSetId": 1
