@@ -37,7 +37,7 @@ import {
     LEGACY_BATCH_TOPIC_NAME,
     CONTAINER_COOL_DOWW_TIME_IN_SECONDS
 } from './common/utils.js';
-import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
+import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady, getPeakReadyCmHandleGaugeCount } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch, executeCmHandleSearchLightweight, executeCmHandleSearchV2 } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
@@ -95,6 +95,8 @@ export function setup() {
 }
 
 export function teardown() {
+    verifyReadyCmHandleGaugeDidNotExceedRegisteredTotal();
+
     const startTimeInMillis = Date.now();
 
     let numberOfDeregisteredCmHandles = 0
@@ -113,6 +115,23 @@ export function teardown() {
 
     kpiTrendDeclarations.cm_handles_deleted.add(numberOfDeregisteredCmHandles / totalDeregistrationTimeInSeconds);
     sleep(CONTAINER_COOL_DOWW_TIME_IN_SECONDS);
+}
+
+/**
+ * Logs a warning if the READY cm-handle gauge ever rose above the registered total during the run. The peak is read
+ * from Prometheus at teardown; the check is skipped when Prometheus is unavailable. This is informational only and
+ * does not fail the run.
+ */
+function verifyReadyCmHandleGaugeDidNotExceedRegisteredTotal() {
+    const peakReadyGauge = getPeakReadyCmHandleGaugeCount(testConfig.overCountCheckWindow);
+    if (peakReadyGauge === null) {
+        return;
+    }
+    if (peakReadyGauge > TOTAL_CM_HANDLES) {
+        console.warn(`⚠️ READY CM handle gauge over-count: peaked at ${peakReadyGauge} during the run (registered: ${TOTAL_CM_HANDLES}).`);
+    } else {
+        console.log(`READY CM handle gauge peaked at ${peakReadyGauge} during the run (registered: ${TOTAL_CM_HANDLES}).`);
+    }
 }
 
 export function passthroughReadAltIdScenario() {
