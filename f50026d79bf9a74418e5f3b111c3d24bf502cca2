@@ -103,6 +103,24 @@
       "message": "TearDown function should come last.",
       "revId": "f50026d79bf9a74418e5f3b111c3d24bf502cca2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b7b0ee_530e8b22",
+        "filename": "k6-tests/cps-core/cps-core-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2026-10-16T07:21:49Z",
+      "side": 1,
+      "message": "ordering of functions is not needed. Usually we keep setup and teardown close to one another",
+      "parentUuid": "263b7bbd_71dc3e4a",
+      "revId": "f50026d79bf9a74418e5f3b111c3d24bf502cca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
