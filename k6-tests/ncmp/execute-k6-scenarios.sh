@@ -89,8 +89,12 @@ echo "12,Kafka Message Verification,%,98,100,$actual_percentage" >> "$summaryFil
 # ══════════════════════════════════════════════════════════════
 case $k6_exit_code in
   0) echo "✅ K6 executed successfully for profile: [$testProfile]" ;;
-  99) echo "⚠️  K6 thresholds failed (exit code 99)" ;;
-  *) echo "❌ K6 execution error (exit code $k6_exit_code)";;
+  99) echo "⚠️  K6 thresholds failed (exit code 99)"
+      # k6 thresholds (e.g. cmhandles_no_overcount) are not CSV rows, so the
+      # CSV gate below cannot see them; count the breach so the kpi gate fails.
+      threshold_failures=$(( threshold_failures + 1 )) ;;
+  *) echo "❌ K6 execution error (exit code $k6_exit_code)"
+     threshold_failures=$(( threshold_failures + 1 )) ;;
 esac
 
 # ══════════════════════════════════════════════════════════════

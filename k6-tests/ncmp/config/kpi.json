@@ -2,6 +2,8 @@
   "ncmpBaseUrl": "http://localhost:30080",
   "dmiStubUrl": "http://cps-ncmp-dmi-stub-1-service:8092",
   "kafkaBootstrapServer": "localhost:30093",
+  "prometheusBaseUrl": "http://localhost:30090",
+  "overCountCheckWindow": "15m",
   "containerCoolDownTimeInSeconds": 10,
   "scenarios": {
     "passthrough_read_alt_id_scenario": {
@@ -248,6 +250,7 @@
   },
   "thresholds": {
     "checks{assertion:cmhandles_ready}": ["rate==1"],
+    "checks{assertion:cmhandles_no_overcount}": ["rate==1"],
     "http_req_failed": ["rate <= 0.01"],
     "cm_handles_created": ["avg >= 22"],
     "cm_handles_deleted": ["avg >= 22"],
