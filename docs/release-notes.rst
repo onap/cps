@@ -58,6 +58,7 @@ Features
 --------
     - `CPS-3436 <https://lf-onap.atlassian.net/browse/CPS-3436>`_ add v2 lightweight get cm handle endpoint ``GET /ncmpInventory/v2/ch`` with optional ``outputDmiProperties``.
     - `CPS-3305 <https://lf-onap.atlassian.net/browse/CPS-3305>`_ NCMP path now accepts Base64URL-encoded alternate ids, so FDNs containing slashes no longer need to be sent un-encoded.
+    - `CPS-3306 <https://lf-onap.atlassian.net/browse/CPS-3306>`_ legacy NCMP interfaces now resolve cm handle references by longest match, so a descendant FDN resolves to the nearest registered ancestor for both read and write operations.
 
 Bug Fixes
 ---------
