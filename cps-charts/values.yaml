@@ -494,7 +494,7 @@ policyExecutorStub:
       memory: "2Gi"
 
 prometheus:
-  enabled: false
+  enabled: true
   image:
     repository: prom/prometheus
     tag: latest

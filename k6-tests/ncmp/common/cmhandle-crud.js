@@ -21,7 +21,7 @@
 import { sleep } from 'k6';
 import http from 'k6/http';
 import {
-    performPostRequest, getAlternateId, NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES, MODULE_SET_TAGS, ACTUATOR_PROMETHEUS_URL
+    performPostRequest, getAlternateId, NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES, MODULE_SET_TAGS, ACTUATOR_PROMETHEUS_URL, PROMETHEUS_BASE_URL
 } from './utils.js';
 import { executeCmHandleIdSearch } from './search-base.js';
 
@@ -166,6 +166,24 @@ function getReadyCmHandlesCountFromInstrumentation() {
         return 0;
     }
     return Math.round(parseFloat(match[1]));
+}
+
+/**
+ * Returns the highest READY cm-handle gauge value seen during the run, read from Prometheus with max_over_time over
+ * the given window (for example '15m'). On a multi-instance deployment the gauge can briefly drift above the
+ * registered total and then be corrected, so a single value at teardown is not enough; the peak over the whole run
+ * is. Returns null when Prometheus has no data, so the caller can skip the check.
+ */
+export function getPeakReadyCmHandleGaugeCount(overCountCheckWindow) {
+    const query = `max_over_time(cps_ncmp_inventory_cm_handles_by_state{state="READY"}[${overCountCheckWindow}])`;
+    const url = `${PROMETHEUS_BASE_URL}/api/v1/query?query=${encodeURIComponent(query)}`;
+    const response = http.get(url, { tags: { endpoint: 'prometheus-query' } });
+    const results = response.status === 200 ? JSON.parse(response.body).data.result : [];
+    if (results.length === 0) {
+        console.warn('⚠️ No READY gauge data from Prometheus; skipping READY gauge over-count check.');
+        return null;
+    }
+    return Math.round(parseFloat(results[0].value[1]));
 }
 
 function getCmHandleCountByState(scenario) {
