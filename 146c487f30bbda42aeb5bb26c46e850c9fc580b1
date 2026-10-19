@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67123d09_eb437218",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-19T14:02:52Z",
+      "side": 1,
+      "message": "Few minor comments",
+      "revId": "146c487f30bbda42aeb5bb26c46e850c9fc580b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66fcddfe_52982b69",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonParseFailureTranslator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-19T14:02:52Z",
+      "side": 1,
+      "message": "unnessary text, return a CpsException is sufficent",
+      "range": {
+        "startLine": 46,
+        "startChar": 30,
+        "endLine": 46,
+        "endChar": 58
+      },
+      "revId": "146c487f30bbda42aeb5bb26c46e850c9fc580b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06112b8b_b718defe",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValueRecordingJsonReader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-19T14:02:52Z",
+      "side": 1,
+      "message": "ValueRecordingJsonReader is a bit vague and could be confusing outside of the context of the current use case. I suggest something like TrackingJsonReader",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "146c487f30bbda42aeb5bb26c46e850c9fc580b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba66264c_2ee55adb",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValueRecordingJsonReader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-19T14:02:52Z",
+      "side": 1,
+      "message": "Add a small java doc to describe what this class does to extend the jsonReader (provides context during failure)",
+      "revId": "146c487f30bbda42aeb5bb26c46e850c9fc580b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c005d99_64f3f6a3",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/ValueRecordingJsonReader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-19T14:02:52Z",
+      "side": 1,
+      "message": "getFirst() should return same data and be consistent with rest of file",
+      "range": {
+        "startLine": 50,
+        "startChar": 78,
+        "endLine": 50,
+        "endChar": 82
+      },
+      "revId": "146c487f30bbda42aeb5bb26c46e850c9fc580b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d7a3b94_2c3f6148",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-19T14:02:52Z",
+      "side": 1,
+      "message": "return to 2026",
+      "range": {
+        "startLine": 3,
+        "startChar": 26,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "146c487f30bbda42aeb5bb26c46e850c9fc580b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffafb2d7_42dac34b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-19T14:02:52Z",
+      "side": 1,
+      "message": "NB: Private not completely necessary here, can be removed to keep consistent with file",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 11
+      },
+      "revId": "146c487f30bbda42aeb5bb26c46e850c9fc580b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2efcaf2_7ed50107",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-19T14:02:52Z",
+      "side": 1,
+      "message": "Debug message is sufficient",
+      "range": {
+        "startLine": 167,
+        "startChar": 12,
+        "endLine": 169,
+        "endChar": 78
+      },
+      "revId": "146c487f30bbda42aeb5bb26c46e850c9fc580b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89319b22_5b230289",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-10-19T14:02:52Z",
+      "side": 1,
+      "message": "Do this instead to keep consistent with other string concatenations \nlog.debug(\"Schema node not found during JSON parse failure analysis.\", schemaLookupException)",
+      "range": {
+        "startLine": 170,
+        "startChar": 12,
+        "endLine": 170,
+        "endChar": 106
+      },
+      "revId": "146c487f30bbda42aeb5bb26c46e850c9fc580b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
