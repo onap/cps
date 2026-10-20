@@ -1,0 +1,338 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 The Linux Foundation
+
+# Gerrit-triggered merge pipeline for cps: publishes the Maven SNAPSHOTs
+# of the master branch to Nexus when a change merges, replacing the
+# Jenkins cps-master-merge-java job for that purpose.
+#
+# gerrit_to_platform dispatches this workflow (via the GitHub API) on
+# change-merged; it then comments on the change with the result.
+#
+# Discovery is filename-convention based: the name contains BOTH
+# 'gerrit' AND 'merge', so gerrit_to_platform dispatches it on
+# change-merged and on nothing else. The file must exist on every
+# active branch (dispatch targets refs/heads/{GERRIT_BRANCH}); this
+# deployment covers `master`, as gerrit-verify.yaml does.
+#
+# What the Jenkins job did, and where each part now lives:
+#   * mvn clean deploy -P cps-ncmp-docker on the head of master, full
+#     test suite included, deploying every module's SNAPSHOT to
+#     https://nexus.onap.org/content/repositories/snapshots/
+#       -> the reusable maven-merge lane below, which builds and tests
+#          the same reactor, deploys into a local repository, and
+#          publishes that from a separate job that never runs the
+#          project's code. The SNAPSHOT buildNumber carries on from the
+#          published metadata, so consumers see one continuous series.
+#   * Jib pushing nexus3.onap.org:10003/onap/cps-and-ncmp and
+#     onap/policy-executor-stub, tagged <version>-<timestamp> and
+#     latest, at the deploy phase
+#       -> NOT covered here. The Maven lane runs no registry push by
+#          design: the build job holds no registry credential, so Jib
+#          is skipped (-Djib.skip=true) exactly as the verify lane
+#          skips it. Container publication is the job of a
+#          docker-workflows merge lane, to follow separately. Until it
+#          lands, the Jenkins job must keep running for the images;
+#          see the commit that added this file.
+#   * The `remerge` comment trigger
+#       -> a manual workflow_dispatch run of this workflow with
+#          GERRIT_DISABLED set, which publishes the current head of
+#          master without reporting to any change.
+name: 'Gerrit Merge'
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+    inputs:
+      GERRIT_BRANCH:
+        description: 'Branch that change is against'
+        required: false
+        type: string
+        default: ''
+      GERRIT_CHANGE_ID:
+        description: 'The ID for the change'
+        required: false
+        type: string
+        default: ''
+      GERRIT_CHANGE_NUMBER:
+        description: 'The Gerrit number'
+        required: false
+        type: string
+        default: ''
+      GERRIT_CHANGE_URL:
+        description: 'URL to the change'
+        required: false
+        type: string
+        default: ''
+      GERRIT_EVENT_TYPE:
+        description: 'Type of Gerrit event'
+        required: false
+        type: string
+        default: ''
+      GERRIT_PATCHSET_NUMBER:
+        description: 'The patch number for the change'
+        required: false
+        type: string
+        default: ''
+      GERRIT_PATCHSET_REVISION:
+        description: 'The revision sha'
+        required: false
+        type: string
+        default: ''
+      GERRIT_PROJECT:
+        description: 'Project in Gerrit'
+        required: false
+        type: string
+        default: ''
+      GERRIT_REFSPEC:
+        description: 'Gerrit refspec of change'
+        required: false
+        type: string
+        default: ''
+      GERRIT_DISABLED:
+        description: 'Run without Gerrit components'
+        required: false
+        default: false
+        type: boolean
+
+# Keyed on the repository, never on the change or the branch, and a
+# running lane is never cancelled: every version of an artifact shares
+# one artifact-level maven-metadata.xml on Nexus, so two lanes
+# publishing at once would each drop the other's entry, and one stopped
+# between its metadata fetch and its publish would leave the numbering
+# behind. GitHub holds one pending run per group, and a newer dispatch
+# replaces an older one still waiting. That loses nothing here: each
+# run builds the branch head as it stands when it starts, so the run
+# that does start publishes everything the replaced one would have.
+# The replaced change receives no result comment, though. queue: max
+# would keep every pending run instead, but the actionlint release this
+# repository pins does not yet accept the key. Only master publishes
+# from this repository today; a second publishing branch would need its
+# own SNAPSHOT version, as on Jenkins.
+concurrency:
+  group: maven-merge-${{ github.repository }}
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  # Report that the build has started. The change has already merged,
+  # and Gerrit refuses to lower a vote on a closed change, so this posts
+  # a comment (STARTED and the run URL) without touching the labels.
+  clear-vote:
+    name: 'Notify Gerrit'
+    if: inputs.GERRIT_DISABLED != true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - name: 'Harden runner'
+        # yamllint disable-line rule:line-length
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25  # v2.22.1
+        with:
+          egress-policy: audit
+      - name: 'Comment on the change'
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/gerrit-review-action@1e3eae766b3de755a2e87aa216cedebbaf9c8292  # v1.1.3
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_USER }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}  # zizmor: ignore[secrets-outside-env]
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: clear
+          comment-only: 'true'
+
+  # Gerrit dispatches on merge, possibly before replication to the
+  # GitHub mirror lands. The lane builds the branch head, so without
+  # this wait it could publish the previous head's SNAPSHOT while
+  # reporting on this change. Poll until the merged commit is reachable
+  # from the mirrored branch rather than sleep a fixed time.
+  #
+  # The merged commit is not GERRIT_PATCHSET_REVISION as dispatched: on
+  # change-merged gerrit_to_platform sends the submitted commit, and cps
+  # submits with a merge commit, so the branch contains the change's
+  # current revision as a parent rather than as its tip. Ask Gerrit for
+  # that revision and accept the branch being identical to it or ahead
+  # of it.
+  wait-for-replication:
+    name: 'Wait for Replication'
+    if: inputs.GERRIT_DISABLED != true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read  # the compare API reads the mirror
+    timeout-minutes: 10
+    steps:
+      - name: 'Harden runner'
+        # yamllint disable-line rule:line-length
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25  # v2.22.1
+        with:
+          egress-policy: audit
+      - name: 'Wait for the merged commit on the mirror'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          BRANCH: ${{ inputs.GERRIT_BRANCH }}
+          CHANGE_NUMBER: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          CHANGE_URL: ${{ inputs.GERRIT_CHANGE_URL }}
+        run: |
+          set -euo pipefail
+          if [[ ! "${BRANCH}" =~ ^[A-Za-z0-9._/-]+$ ]]; then
+            echo '::error::GERRIT_BRANCH must be a plain branch name.'
+            exit 1
+          fi
+          if [[ ! "${CHANGE_NUMBER}" =~ ^[1-9][0-9]*$ ]]; then
+            echo '::error::GERRIT_CHANGE_NUMBER must be a change number.'
+            exit 1
+          fi
+          url_pattern='^https://[A-Za-z0-9.-]+(/[A-Za-z0-9._~%+/-]*)?$'
+          if [[ ! "${CHANGE_URL}" =~ ${url_pattern} ]]; then
+            echo '::error::GERRIT_CHANGE_URL must be an https URL.'
+            exit 1
+          fi
+          # The REST base precedes /c/ in the change URL, or the number
+          # in its short form, whatever path prefix the server uses.
+          case "${CHANGE_URL}" in
+            */c/*) gerrit="${CHANGE_URL%%/c/*}" ;;
+            */"${CHANGE_NUMBER}") gerrit="${CHANGE_URL%/"${CHANGE_NUMBER}"}" ;;
+            *)
+              echo '::error::GERRIT_CHANGE_URL does not name the change.'
+              exit 1 ;;
+          esac
+          # Gerrit prefixes JSON responses with )]}' to block XSSI.
+          change="$(curl -sSf --max-time 30 \
+            "${gerrit}/changes/${CHANGE_NUMBER}?o=CURRENT_REVISION" \
+            | tail -c +5)"
+          status="$(jq -r '.status' <<< "${change}")"
+          revision="$(jq -r '.current_revision' <<< "${change}")"
+          if [ "${status}" != 'MERGED' ]; then
+            echo "::error::Change ${CHANGE_NUMBER} is ${status}, not MERGED."
+            exit 1
+          fi
+          if [[ ! "${revision}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo '::error::Gerrit returned no merged revision.'
+            exit 1
+          fi
+          # Comparing the revision with the branch reports the branch
+          # identical or ahead once the branch contains the revision.
+          # Five minutes covers a slow replication queue.
+          for _ in $(seq 1 30); do
+            status="$(gh api \
+              "repos/${REPOSITORY}/compare/${revision}...${BRANCH}" \
+              --jq '.status' 2> /dev/null || true)"
+            case "${status}" in
+              identical | ahead)
+                echo "${BRANCH} contains ${revision} ✅"
+                exit 0 ;;
+            esac
+            sleep 10
+          done
+          echo "::error::${BRANCH} on the mirror still lacks ${revision}."
+          exit 1
+
+  # Call the reusable Maven merge lane. On a Gerrit dispatch it builds
+  # the head of GERRIT_BRANCH; on a GERRIT_DISABLED manual run the
+  # branch is blanked, so it builds the default branch.
+  #
+  # Pinned to v0.7.0, the first release consumed from this repository.
+  # The lane's own defaults suit cps: the verify lane builds this
+  # reactor in a little under 15 minutes against the same 45-minute
+  # build budget, and the publish is a plain HTTP upload of the
+  # deployed tree.
+  maven-merge:
+    name: 'Maven Merge'
+    needs: [clear-vote, wait-for-replication]
+    if: >-
+      always()
+      && (needs.clear-vote.result == 'success'
+          || needs.clear-vote.result == 'skipped')
+      && (needs.wait-for-replication.result == 'success'
+          || needs.wait-for-replication.result == 'skipped')
+    permissions:
+      contents: read
+      pull-requests: read  # repository-metadata-action queries PR data
+    # yamllint disable-line rule:line-length
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-merge.yaml@7bb1071df52ffc3fb4c2280511fe257041e259d8  # v0.7.0
+    with:
+      # yamllint disable-line rule:line-length
+      gerrit_branch: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_BRANCH || '' }}
+      # The ONAP Nexus 2 snapshot repository the Jenkins job deployed
+      # to, behind the ecomp-snapshots server id in the cps POMs. The
+      # lane reads its metadata anonymously and writes with the Nexus
+      # credential it loads from 1Password, under the name of this
+      # repository (cps), which is the username the Jenkins job used.
+      nexus_server: 'https://nexus.onap.org'
+      repository_name: 'snapshots'
+      # master stream builds on Java 21 (paris/Java 17 stays on Jenkins).
+      java_version: '21'
+      # The profile the Jenkins job activated. It is activeByDefault in
+      # cps-application, where it selects the cps-and-ncmp dependency
+      # set that the deployed application jar is repackaged from, so it
+      # stays explicit here rather than relied on.
+      mvn_profiles: 'cps-ncmp-docker'
+      # Skip Jib: the build job holds no registry credential, by
+      # design, so its deploy-phase push could only fail. See the
+      # header for where container publication belongs.
+      #
+      # docker.pull.registry has no default in the cps POMs: Jenkins
+      # supplied it through the managed settings.xml, and without it
+      # the Testcontainers specs in cps-ncmp-service and cps-ri fail
+      # to pull their Kafka and PostgreSQL images. The same values as
+      # the verify lane, for the same reasons given there:
+      # CONTAINER_PUBLIC_REGISTRY (10001, the Docker Hub proxy), not
+      # CONTAINER_PULL_REGISTRY, and docker.push.registry set only to
+      # keep the property resolved while Jib is skipped.
+      # yamllint disable-line rule:line-length
+      mvn_params: "-Djib.skip=true -Ddocker.pull.registry=${{ vars.CONTAINER_PUBLIC_REGISTRY || 'nexus3.onap.org:10001' }} -Ddocker.push.registry=${{ vars.CONTAINER_PUSH_REGISTRY || 'nexus3.onap.org:10002' }}"
+      # Run the build job's harden-runner in audit, as the verify lane
+      # does: the Testcontainers image pulls and Maven's CDNs are
+      # impractical to enumerate in the allow-list.
+      build_permit_egress_traffic: true
+      # Grype does not report CVEs on this lane either. The cps project
+      # leadership asked that dependency-risk findings surface in the
+      # CLM scan lane (gerrit-clm.yaml), so the audit stays there. The
+      # SBOM is kept: the Cyber Resilience Act mandates one, and this
+      # lane describes what was published.
+      grype_enabled: false
+    secrets:
+      # The publish job loads the Nexus password from 1Password. Passed
+      # by name: `secrets: inherit` does not cross organisations.
+      OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+      VAULT_MAPPING_JSON: ${{ secrets.VAULT_MAPPING_JSON }}
+
+  # Report the overall workflow conclusion back to Gerrit. A comment, as
+  # above: a merged change accepts no lowered vote, so a Verified -1 for
+  # a failed publish would be refused rather than recorded.
+  vote:
+    name: 'Report Status to Gerrit'
+    if: ${{ always() && inputs.GERRIT_DISABLED != true }}
+    needs: [clear-vote, wait-for-replication, maven-merge]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read  # workflow-conclusion lists run jobs via the API
+    timeout-minutes: 5
+    steps:
+      - name: 'Harden runner'
+        # yamllint disable-line rule:line-length
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25  # v2.22.1
+        with:
+          egress-policy: audit
+      - name: 'Get workflow conclusion'
+        # yamllint disable-line rule:line-length
+        uses: im-open/workflow-conclusion@8eac7f17381a6917bc04fec3e2c92e70ebc37526  # v3.0.0
+      - name: 'Comment on the change'
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/gerrit-review-action@1e3eae766b3de755a2e87aa216cedebbaf9c8292  # v1.1.3
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_USER }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}  # zizmor: ignore[secrets-outside-env]
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: ${{ env.WORKFLOW_CONCLUSION }}
+          comment-only: 'true'
