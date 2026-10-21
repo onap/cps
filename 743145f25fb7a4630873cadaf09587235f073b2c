@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be6b6b6a_0c2041cf",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-21T15:33:15Z",
+      "side": 1,
+      "message": "I suppose we can set this to true in this commit (to get legacy behavior) or leave \"fasle\" to immediately test performance once we merge it...",
+      "range": {
+        "startLine": 130,
+        "startChar": 74,
+        "endLine": 130,
+        "endChar": 81
+      },
+      "revId": "743145f25fb7a4630873cadaf09587235f073b2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
