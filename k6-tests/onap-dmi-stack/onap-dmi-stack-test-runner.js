@@ -23,11 +23,12 @@
  * flow, exercised through DMI's own API.
  *
  * Covers, in order:
- *   1. DMI plugin liveness and readiness
- *   2. CPS-NCMP liveness and readiness
- *   3. Register one cm-handle (the pnfsim netconf simulator)
- *   4. Wait for the cm-handle to reach READY, with a timeout
- *   5. Retrieve the modules and assert the expected module count
+ *   1. DMI plugin liveness, readiness and overall health
+ *   2. DMI plugin Swagger UI availability
+ *   3. CPS-NCMP liveness and readiness
+ *   4. Register one cm-handle (the pnfsim netconf simulator)
+ *   5. Wait for the cm-handle to reach READY, with a timeout
+ *   6. Retrieve the modules and assert the expected module count
  *
  * Target environment: the CM stack deployed by cps-charts
  * (--set onapDmiStack.enabled=true), i.e. DMI + cps-ncmp + SDNC + pnfsim with the
@@ -47,6 +48,8 @@ import {
 import {
     getDmiLiveness,
     getDmiReadiness,
+    getDmiAggregateHealth,
+    getDmiSwaggerUi,
     getNcmpLiveness,
     getNcmpReadiness,
     isHealthy
@@ -76,6 +79,7 @@ export function setup() {
 
 export function onapDmiStackScenario() {
     checkDmiPluginHealth();
+    checkDmiSwaggerUiIsAvailable();
     checkNcmpHealth();
     registerCmHandleWithDmi();
     waitUntilCmHandleIsReady();
@@ -91,6 +95,22 @@ function checkDmiPluginHealth() {
     const readinessResponse = getDmiReadiness();
     check(readinessResponse, {
         'DMI plugin readiness is UP': () => isHealthy(readinessResponse),
+    });
+
+    const aggregateHealthResponse = getDmiAggregateHealth();
+    check(aggregateHealthResponse, {
+        'DMI plugin overall health is UP': () => isHealthy(aggregateHealthResponse),
+    });
+}
+
+/**
+ * Checks the Swagger UI is served, so the API documentation stays reachable.
+ */
+function checkDmiSwaggerUiIsAvailable() {
+    const httpResponse = getDmiSwaggerUi();
+    check(httpResponse, {
+        'DMI Swagger UI status is 200': (response) =>
+            validateResponseStatus(response, 200, 'DMI Swagger UI'),
     });
 }
 

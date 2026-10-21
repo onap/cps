@@ -32,17 +32,27 @@ These replace the CSIT Robot suite that used to live under
 |---|---|---|
 | 1 | DMI plugin liveness is UP | `GET /actuator/health/liveness` |
 | 2 | DMI plugin readiness is UP | `GET /actuator/health/readiness` |
-| 3 | CPS-NCMP liveness is UP | `GET /actuator/health/liveness` |
-| 4 | CPS-NCMP readiness is UP | `GET /actuator/health/readiness` |
-| 5 | register cm handle status is 201 | `POST /dmi/v1/inventory/cmHandles` |
-| 6 | CM handle reaches READY | polls `GET /ncmp/v1/ch/{cmHandle}/state` |
-| 7 | get all modules status is 200 | `POST /dmi/v1/ch/{cmHandle}/modules` |
-| 8 | number of modules is 22 | (same response) |
+| 3 | DMI plugin overall health is UP | `GET /actuator/health` |
+| 4 | DMI Swagger UI status is 200 | `GET /swagger-ui/index.html` |
+| 5 | CPS-NCMP liveness is UP | `GET /actuator/health/liveness` |
+| 6 | CPS-NCMP readiness is UP | `GET /actuator/health/readiness` |
+| 7 | register cm handle status is 201 | `POST /dmi/v1/inventory/cmHandles` |
+| 8 | CM handle reaches READY | polls `GET /ncmp/v1/ch/{cmHandle}/state` |
+| 9 | get all modules status is 200 | `POST /dmi/v1/ch/{cmHandle}/modules` |
+| 10 | number of modules is 22 | (same response) |
 
-Health checks assert the actuator reports `"status":"UP"`, not merely a 200 — the
-endpoint can answer 200 while a component is degraded.
+Health checks assert both a 200 and `"status":"UP"`. A `DOWN` component makes the
+overall status `DOWN`, which the actuator returns as 503. The status field is
+asserted as well because `UNKNOWN` is also returned as 200.
 
-Step 6 polls with a bounded timeout (`cmHandleReadyTimeoutInSeconds`, default
+Step 3 is needed alongside the probes: liveness and readiness only report the
+application's own state, so a `DOWN` database or disk space shows up in the
+aggregate `/actuator/health` (step 3) but not in steps 1 and 2.
+
+Step 4 covers the Swagger UI rather than an actuator probe: it returns HTML, so
+only the status code is asserted.
+
+Step 8 polls with a bounded timeout (`cmHandleReadyTimeoutInSeconds`, default
 180s). Module sync against a real SDNC-backed device takes up to a minute, and
 retrieving modules before READY returns nothing useful.
 
