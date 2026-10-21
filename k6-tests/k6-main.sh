@@ -137,7 +137,8 @@ helm install cps ../cps-charts \
   --set cps.image.pullPolicy="${IMAGE_PULL_POLICY}" \
   --set dmiStub.image.tag="${DMI_STUB_VERSION}" \
   --set policyExecutorStub.image.tag="${POLICY_EXECUTOR_STUB_VERSION}" \
-  --set policyExecutorStub.image.pullPolicy="${IMAGE_PULL_POLICY}"
+  --set policyExecutorStub.image.pullPolicy="${IMAGE_PULL_POLICY}" \
+  --set cps.env.IGNORE_R20260423_MODEL="false"
 
 # Wait for pods and services until becomes ready
 echo "Waiting for cps and ncmp pods to be ready..."

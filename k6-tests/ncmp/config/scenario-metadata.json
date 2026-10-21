@@ -138,5 +138,40 @@
     "unit" : "milliseconds",
     "measurementName" : "provmns_write_overhead",
     "currentExpectation" : 18
+  },
+  {
+    "testNumber" : "13a",
+    "testName" : "CM-handle search V2 lightweight with No filter",
+    "unit" : "milliseconds",
+    "measurementName" : "cm_handle_search_v2_no_filter",
+    "currentExpectation" : 5000
+  },
+  {
+    "testNumber" : "13b",
+    "testName" : "CM-handle search V2 lightweight with Module filter",
+    "unit" : "milliseconds",
+    "measurementName" : "cm_handle_search_v2_module_filter",
+    "currentExpectation" : 5000
+  },
+  {
+    "testNumber" : "13c",
+    "testName" : "CM-handle search V2 lightweight with Property filter",
+    "unit" : "milliseconds",
+    "measurementName" : "cm_handle_search_v2_property_filter",
+    "currentExpectation" : 5000
+  },
+  {
+    "testNumber" : "13d",
+    "testName" : "CM-handle search V2 lightweight with Cps Path filter",
+    "unit" : "milliseconds",
+    "measurementName" : "cm_handle_search_v2_cps_path_filter",
+    "currentExpectation" : 5500
+  },
+  {
+    "testNumber" : "13e",
+    "testName" : "CM-handle search V2 lightweight with Trust Level filter",
+    "unit" : "milliseconds",
+    "measurementName" : "cm_handle_search_v2_trust_level_filter",
+    "currentExpectation" : 6000
   }
 ]

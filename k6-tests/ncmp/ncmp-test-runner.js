@@ -38,7 +38,7 @@ import {
     CONTAINER_COOL_DOWW_TIME_IN_SECONDS
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
-import { executeCmHandleSearch, executeCmHandleIdSearch, executeCmHandleSearchLightweight } from './common/search-base.js';
+import { executeCmHandleSearch, executeCmHandleIdSearch, executeCmHandleSearchLightweight, executeCmHandleSearchV2 } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
 import { executeWriteDataJob, executeWriteDataJobWithPayload, buildDataJobRequestPayload } from "./common/write-data-job.js";
@@ -173,6 +173,31 @@ export function cmHandleIdSearchTrustLevelScenario() {
 export function cmHandleSearchTrustLevelScenario() {
     const response = executeCmHandleSearchLightweight('trust-level');
     validateResponseAndRecordMetric(response, 200, 'CM handle trust level search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_trust_level_filter);
+}
+
+export function cmHandleSearchV2NoFilterScenario() {
+    const response = executeCmHandleSearchV2('no-filter');
+    validateResponseAndRecordMetric(response, 200, 'CM handle V2 no-filter search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_v2_no_filter);
+}
+
+export function cmHandleSearchV2ModuleScenario() {
+    const response = executeCmHandleSearchV2('module');
+    validateResponseAndRecordMetric(response, 200, 'CM handle V2 module search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_v2_module_filter);
+}
+
+export function cmHandleSearchV2PropertyScenario() {
+    const response = executeCmHandleSearchV2('property');
+    validateResponseAndRecordMetric(response, 200, 'CM handle V2 property search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_v2_property_filter);
+}
+
+export function cmHandleSearchV2CpsPathScenario() {
+    const response = executeCmHandleSearchV2('cps-path-for-ready-cm-handles');
+    validateResponseAndRecordMetric(response, 200, 'CM handle V2 cps path search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_v2_cps_path_filter);
+}
+
+export function cmHandleSearchV2TrustLevelScenario() {
+    const response = executeCmHandleSearchV2('trust-level');
+    validateResponseAndRecordMetric(response, 200, 'CM handle V2 trust level search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cm_handle_search_v2_trust_level_filter);
 }
 
 export function provMnSReadScenario() {
