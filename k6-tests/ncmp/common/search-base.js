@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2024-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +30,12 @@ export function executeCmHandleIdSearch(scenario) {
 
 export function executeCmHandleSearchLightweight(scenario) {
     return executeSearchRequest('v1', 'searches', scenario);
+}
+
+export function executeCmHandleSearchV2(scenario) {
+    const payload = JSON.stringify(SEARCH_PARAMETERS_PER_SCENARIO[scenario]);
+    const url = `${NCMP_BASE_URL}/ncmp/v2/ch/searches`;
+    return performPostRequest(url, payload, 'v2-searches');
 }
 
 function executeSearchRequest(version, searchType, scenario) {
