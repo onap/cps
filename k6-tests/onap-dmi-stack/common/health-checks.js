@@ -57,16 +57,46 @@ export function getNcmpReadiness() {
 }
 
 /**
- * Checks a health response reports status UP.
+ * Reads the DMI plugin's aggregate health endpoint.
+ *
+ * Distinct from the liveness and readiness probe groups: this reports the overall
+ * status including components such as the database and disk space, so a degraded
+ * component is visible here even when the probes still pass.
+ *
+ * @returns {Object} The HTTP response.
+ */
+export function getDmiAggregateHealth() {
+    return performGetRequest(`${DMI_BASE_URL}/actuator/health`, 'dmiAggregateHealth');
+}
+
+/**
+ * Reads the DMI plugin's Swagger UI page.
+ *
+ * Returns HTML rather than JSON, so callers assert on the status code only.
+ *
+ * @returns {Object} The HTTP response.
+ */
+export function getDmiSwaggerUi() {
+    return performGetRequest(`${DMI_BASE_URL}/swagger-ui/index.html`, 'dmiSwaggerUi');
+}
+
+/**
+ * Checks a health response reports status UP and no component reports DOWN.
  *
  * A 200 alone is not sufficient: the actuator can answer 200 while a component is
- * degraded, so the status field is asserted too.
+ * degraded, so the status field is asserted too. The aggregate endpoint nests a
+ * status per component, so the whole body is checked for DOWN as well.
  *
  * @param {Object} httpResponse - The response from a health endpoint.
- * @returns {boolean} True when the response is 200 and reports UP.
+ * @returns {boolean} True when the response is 200, reports UP and contains no DOWN.
  */
 export function isHealthy(httpResponse) {
     if (httpResponse.status !== 200) {
+        return false;
+    }
+    if (typeof httpResponse.body === 'string' && httpResponse.body.includes('DOWN')) {
+        console.error(`❌ Health response reports a component DOWN. URL: ${httpResponse.url}. `
+            + `Body: ${httpResponse.body}`);
         return false;
     }
     try {

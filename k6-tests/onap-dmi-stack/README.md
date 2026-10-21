@@ -32,17 +32,25 @@ These replace the CSIT Robot suite that used to live under
 |---|---|---|
 | 1 | DMI plugin liveness is UP | `GET /actuator/health/liveness` |
 | 2 | DMI plugin readiness is UP | `GET /actuator/health/readiness` |
-| 3 | CPS-NCMP liveness is UP | `GET /actuator/health/liveness` |
-| 4 | CPS-NCMP readiness is UP | `GET /actuator/health/readiness` |
-| 5 | register cm handle status is 201 | `POST /dmi/v1/inventory/cmHandles` |
-| 6 | CM handle reaches READY | polls `GET /ncmp/v1/ch/{cmHandle}/state` |
-| 7 | get all modules status is 200 | `POST /dmi/v1/ch/{cmHandle}/modules` |
-| 8 | number of modules is 22 | (same response) |
+| 3 | DMI plugin overall health is UP | `GET /actuator/health` |
+| 4 | DMI Swagger UI status is 200 | `GET /swagger-ui/index.html` |
+| 5 | CPS-NCMP liveness is UP | `GET /actuator/health/liveness` |
+| 6 | CPS-NCMP readiness is UP | `GET /actuator/health/readiness` |
+| 7 | register cm handle status is 201 | `POST /dmi/v1/inventory/cmHandles` |
+| 8 | CM handle reaches READY | polls `GET /ncmp/v1/ch/{cmHandle}/state` |
+| 9 | get all modules status is 200 | `POST /dmi/v1/ch/{cmHandle}/modules` |
+| 10 | number of modules is 22 | (same response) |
 
 Health checks assert the actuator reports `"status":"UP"`, not merely a 200 — the
-endpoint can answer 200 while a component is degraded.
+endpoint can answer 200 while a component is degraded. They also fail if the
+response body contains `DOWN` anywhere, so a degraded component nested in the
+aggregate response (step 3) is caught even when the top-level status still reads
+`UP`.
 
-Step 6 polls with a bounded timeout (`cmHandleReadyTimeoutInSeconds`, default
+Step 4 covers the Swagger UI rather than an actuator probe: it returns HTML, so
+only the status code is asserted.
+
+Step 8 polls with a bounded timeout (`cmHandleReadyTimeoutInSeconds`, default
 180s). Module sync against a real SDNC-backed device takes up to a minute, and
 retrieving modules before READY returns nothing useful.
 
