@@ -35,6 +35,15 @@
 
     <properties>
         <groovy.version>3.0.25</groovy.version>
+        <hibernate.version>7.4.13.Final</hibernate.version>
+        <hibernate-validator.version>9.1.5.Final</hibernate-validator.version>
+        <jackson-2-bom.version>2.21.7</jackson-2-bom.version>
+        <jackson-bom.version>3.2.3</jackson-bom.version>
+        <jetty.version>12.1.14</jetty.version>
+        <kafka.version>4.3.2</kafka.version>
+        <log4j2.version>2.26.1</log4j2.version>
+        <netty.version>4.2.19.Final</netty.version>
+        <spring-security.version>7.1.2</spring-security.version>
         <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
@@ -125,6 +134,11 @@
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-annotations</artifactId>
                 <version>4.9.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.luben</groupId>
+                <artifactId>zstd-jni</artifactId>
+                <version>1.5.7-23</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
