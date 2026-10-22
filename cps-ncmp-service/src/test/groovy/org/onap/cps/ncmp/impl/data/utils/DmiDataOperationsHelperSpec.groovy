@@ -25,6 +25,7 @@ import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.impl.KafkaHeaders
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.onap.cps.events.EventProducer
+import org.onap.cps.ncmp.api.data.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.api.data.models.OperationType
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
@@ -50,6 +51,9 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
 
     def static clientTopic = 'my-topic-name'
     def static dataOperationType = 'org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent'
+    def static resolvedCmHandleIdsForAllKnownReferences = ['ch1-dmi1': 'ch1-dmi1', 'ch2-dmi1': 'ch2-dmi1',
+        'ch3-dmi2': 'ch3-dmi2', 'non-ready-cm-handle': 'non-ready-cm-handle',
+        'alt1-dmi1': 'ch1-dmi1', 'alt1-dmi1/ManagedElement=1': 'ch1-dmi1']
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
@@ -58,13 +62,15 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
     EventProducer eventProducer = new EventProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, meterRegistry)
 
     def 'Process per data operation request with #serviceName.'() {
-        given: 'data operation request with 3 operations'
+        given: 'a data operation request with multiple operations'
             def dataOperationRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = jsonObjectMapper.convertJsonString(dataOperationRequestJsonData, DataOperationRequest.class)
-        and: '4 known cm handles: ch1-dmi1, ch2-dmi1, ch3-dmi2, ch4-dmi2'
+        and: 'the known cm handles'
             def yangModelCmHandles = getYangModelCmHandles()
+        and: 'each cm handle id resolves to itself, and alt1-dmi1 (and its descendant) resolve to ch1-dmi1'
+            def resolvedCmHandleIdPerCmHandleReference = resolvedCmHandleIdsForAllKnownReferences
         when: 'data operation request is processed'
-            def operationsOutPerDmiServiceName = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(clientTopic,'request-id', dataOperationRequest, yangModelCmHandles)
+            def operationsOutPerDmiServiceName = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(clientTopic, 'request-id', dataOperationRequest, yangModelCmHandles, resolvedCmHandleIdPerCmHandleReference)
         and: 'converted to a json node'
             def dmiDataOperationRequestBody = jsonObjectMapper.asJsonString(operationsOutPerDmiServiceName.get(serviceName))
             def dmiDataOperationRequestBodyAsJsonNode = jsonObjectMapper.convertToJsonNode(dmiDataOperationRequestBody).get(operationIndex)
@@ -73,19 +79,16 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
             assert dmiDataOperationRequestBodyAsJsonNode.get('operationId').asText() == expectedOperationId
             assert dmiDataOperationRequestBodyAsJsonNode.get('datastore').asText() == expectedDatastore
         and: 'the correct cm handles (just for #serviceName)'
-            assert dmiDataOperationRequestBodyAsJsonNode.get('cmHandles').size() == expectedCmHandleReferences.size()
-            expectedCmHandleReferences.each {
-                dmiDataOperationRequestBodyAsJsonNode.get('cmHandles').toString().contains(it)
+            assert dmiDataOperationRequestBodyAsJsonNode.get('cmHandles').size() == expectedCmHandleIds.size()
+            expectedCmHandleIds.each { expectedCmHandleId ->
+                assert dmiDataOperationRequestBodyAsJsonNode.get('cmHandles').toString().contains(expectedCmHandleId)
             }
         where: 'the following dmi service and operations are checked'
-            serviceName | operationIndex || expectedOperationId | expectedDatastore                        | expectedCmHandleReferences
-            'dmi1'      | 0              || 'operational-14'    | 'ncmp-datastore:passthrough-operational' | ['ch6-dmi1']
-            'dmi1'      | 1              || 'running-12'        | 'ncmp-datastore:passthrough-running'     | ['ch1-dmi1', 'ch2-dmi1']
-            'dmi1'      | 2              || 'operational-15'    | 'ncmp-datastore:passthrough-operational' | ['ch6-dmi1']
-            'dmi1'      | 3              || 'operational-16'    | 'ncmp-datastore:passthrough-operational' | ['alt6-dmi1']
+            serviceName | operationIndex || expectedOperationId | expectedDatastore                        | expectedCmHandleIds
+            'dmi1'      | 0              || 'running-12'        | 'ncmp-datastore:passthrough-running'     | ['ch1-dmi1', 'ch2-dmi1']
+            'dmi1'      | 1              || 'operational-15'    | 'ncmp-datastore:passthrough-operational' | ['ch1-dmi1']
+            'dmi1'      | 2              || 'operational-16'    | 'ncmp-datastore:passthrough-operational' | ['ch1-dmi1', 'ch1-dmi1']
             'dmi2'      | 0              || 'operational-14'    | 'ncmp-datastore:passthrough-operational' | ['ch3-dmi2']
-            'dmi2'      | 1              || 'running-12'        | 'ncmp-datastore:passthrough-running'     | ['ch7-dmi2']
-            'dmi2'      | 2              || 'operational-15'    | 'ncmp-datastore:passthrough-operational' | ['ch4-dmi2']
     }
 
     def 'Process one data operation request with #serviceName and Module Set Tag set.'() {
@@ -94,8 +97,10 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
             def dataOperationRequest = jsonObjectMapper.convertJsonString(dataOperationRequestJsonData, DataOperationRequest.class)
         and: '1 known cm handles: ch1-dmi1'
             def yangModelCmHandles = getYangModelCmHandlesForOneCmHandle()
+        and: 'ch1-dmi1 resolves to its cm handle id'
+            def resolvedCmHandleIdPerCmHandleReference = ['ch1-dmi1': 'ch1-dmi1']
         when: 'data operation request is processed'
-            def operationsOutPerDmiServiceName = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(clientTopic,'request-id', dataOperationRequest, yangModelCmHandles)
+            def operationsOutPerDmiServiceName = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(clientTopic, 'request-id', dataOperationRequest, yangModelCmHandles, resolvedCmHandleIdPerCmHandleReference)
         and: 'converted to a json node'
             def dmiDataOperationRequestBody = operationsOutPerDmiServiceName['dmi1']
             def cmHandlesInRequestBody = dmiDataOperationRequestBody[0].cmHandles
@@ -112,8 +117,10 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
         and: 'data operation request having non-ready and non-existing cm handle ids'
             def dataOperationRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = jsonObjectMapper.convertJsonString(dataOperationRequestJsonData, DataOperationRequest.class)
+        and: 'the known references resolve (unknown-cm-handle has no match)'
+            def resolvedCmHandleIdPerCmHandleReference = resolvedCmHandleIdsForAllKnownReferences
         when: 'data operation request is processed'
-            DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(clientTopic, 'request-id', dataOperationRequest, yangModelCmHandles)
+            DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(clientTopic, 'request-id', dataOperationRequest, yangModelCmHandles, resolvedCmHandleIdPerCmHandleReference)
         and: 'subscribed client specified topic is polled and first record is selected'
             def consumerRecordOut = cloudEventKafkaConsumer.poll(Duration.ofMillis(1500)).last()
         then: 'verify cloud compliant headers'
@@ -126,21 +133,23 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
         and: 'map consumer record to expected event type'
             def dataOperationResponseEvent =
                 toTargetEvent(consumerRecordOut.value(), DataOperationEvent.class)
-        and: 'data operation response event response size is 3'
-            dataOperationResponseEvent.data.responses.size() == 3
+        and: 'data operation response event response size is 2'
+            assert dataOperationResponseEvent.data.responses.size() == 2
         and: 'verify sent data operation response as json string'
             def dataOperationResponseEventJson = TestUtils.getResourceFileContent('dataOperationResponseEvent.json')
-            jsonObjectMapper.asJsonString(dataOperationResponseEvent.data.responses) == dataOperationResponseEventJson
+            assert jsonObjectMapper.asJsonString(dataOperationResponseEvent.data.responses) == dataOperationResponseEventJson
     }
 
     def 'Process data operation request referencing a non-ready cm handle by its alternate id.'() {
         given: 'a data operation request targeting the alternate id of a non-ready cm handle'
-            def dataOperationDefinition = new org.onap.cps.ncmp.api.data.models.DataOperationDefinition(
+            def dataOperationDefinition = new DataOperationDefinition(
                 operation: 'read', operationId: 'op-1', datastore: 'ncmp-datastore:passthrough-running',
                 cmHandleReferences: ['non-ready-alternate'])
             def dataOperationRequest = new DataOperationRequest(dataOperationDefinitions: [dataOperationDefinition])
+        and: 'the alternate id resolves to its non-ready cm handle id'
+            def resolvedCmHandleIdPerCmHandleReference = ['non-ready-alternate': 'non-ready-cm-handle']
         when: 'the data operation request is processed'
-            def operationsOutPerDmiServiceName = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(clientTopic, 'request-id', dataOperationRequest, getYangModelCmHandles())
+            def operationsOutPerDmiServiceName = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(clientTopic, 'request-id', dataOperationRequest, getYangModelCmHandles(), resolvedCmHandleIdPerCmHandleReference)
         then: 'no dmi operation is produced for the non-ready reference (it is classified non-ready, not dispatched)'
             assert operationsOutPerDmiServiceName.isEmpty()
     }
@@ -151,11 +160,7 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
         def advisedState = new CompositeStateBuilder().withCmHandleState(ADVISED).withLastUpdatedTimeNow().build()
         return [new YangModelCmHandle(id: 'ch1-dmi1', 'alternateId': 'alt1-dmi1', dmiServiceName: 'dmi1', additionalProperties: additionalProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch2-dmi1', 'alternateId': 'alt2-dmi1', dmiServiceName: 'dmi1', additionalProperties: additionalProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch6-dmi1', 'alternateId': 'alt6-dmi1', dmiServiceName: 'dmi1', additionalProperties: additionalProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch8-dmi1', 'alternateId': 'alt8-dmi1', dmiServiceName: 'dmi1', additionalProperties: additionalProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch3-dmi2', 'alternateId': 'alt3-dmi2', dmiServiceName: 'dmi2', additionalProperties: additionalProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch4-dmi2', 'alternateId': 'alt4-dmi2', dmiServiceName: 'dmi2', additionalProperties: additionalProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch7-dmi2', 'alternateId': 'alt7-dmi2', dmiServiceName: 'dmi2', additionalProperties: additionalProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'non-ready-cm-handle', 'alternateId': 'non-ready-alternate', dmiServiceName: 'dmi2', additionalProperties: additionalProperties, compositeState: advisedState)
         ]
     }
