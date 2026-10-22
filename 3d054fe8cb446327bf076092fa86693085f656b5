@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f817c272_f4f0631d",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-22T10:18:41Z",
+      "side": 1,
+      "message": "seems these new tests are running paralel with other test?\n(which I think is fine too as long as we are aware)",
+      "range": {
+        "startLine": 135,
+        "startChar": 19,
+        "endLine": 135,
+        "endChar": 28
+      },
+      "revId": "3d054fe8cb446327bf076092fa86693085f656b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a09b822_17e60ea3",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-22T10:18:41Z",
+      "side": 1,
+      "message": "bit misleading, i see its a copy of thee legacy test values.\nInstead maybe set a generous roundy number (same for all new test) based on previous test results or your bets estitimate. We know it is faster then the v1 tests!",
+      "range": {
+        "startLine": 147,
+        "startChar": 27,
+        "endLine": 147,
+        "endChar": 32
+      },
+      "revId": "3d054fe8cb446327bf076092fa86693085f656b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01be794e_187ba1ef",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-22T10:18:41Z",
+      "side": 1,
+      "message": "lets not prematurely add these here!",
+      "range": {
+        "startLine": 144,
+        "startChar": 43,
+        "endLine": 145,
+        "endChar": 84
+      },
+      "revId": "3d054fe8cb446327bf076092fa86693085f656b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
