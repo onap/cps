@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02a66c78_abc22fce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-10-22T13:33:12Z",
+      "side": 1,
+      "message": "looks good , ddnt finish reading test yet",
+      "revId": "743145f25fb7a4630873cadaf09587235f073b2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "695caa08_adf1b862",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-10-22T13:33:12Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 256,
+        "startChar": 11,
+        "endLine": 256,
+        "endChar": 79
+      },
+      "revId": "743145f25fb7a4630873cadaf09587235f073b2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be6b6b6a_0c2041cf",
