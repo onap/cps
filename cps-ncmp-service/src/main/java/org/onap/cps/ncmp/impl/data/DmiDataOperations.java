@@ -27,8 +27,8 @@ import static org.onap.cps.ncmp.api.data.models.OperationType.READ;
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
 
 import io.micrometer.core.annotation.Timed;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -145,14 +145,15 @@ public class DmiDataOperations {
                                            final String requestId,
                                            final String authorization)  {
 
-        final Collection<String> cmHandleIds = getDistinctCmHandleIds(dataOperationRequest);
+        final Map<String, String> resolvedCmHandleIdPerCmHandleReference =
+                getResolvedCmHandleIdPerCmHandleReference(dataOperationRequest);
 
         final Collection<YangModelCmHandle> yangModelCmHandles
-            = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
+            = inventoryPersistence.getYangModelCmHandles(resolvedCmHandleIdPerCmHandleReference.values());
 
         final Map<String, List<DmiDataOperation>> operationsOutPerDmiServiceName
                 = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(topicParamInQuery,
-                requestId, dataOperationRequest, yangModelCmHandles);
+                requestId, dataOperationRequest, yangModelCmHandles, resolvedCmHandleIdPerCmHandleReference);
 
         asyncSendMultipleRequest(requestId, topicParamInQuery, operationsOutPerDmiServiceName,
                 authorization);
@@ -253,18 +254,20 @@ public class DmiDataOperations {
         }
     }
 
-    private Collection<String> getDistinctCmHandleIds(final DataOperationRequest dataOperationRequest) {
+    private Map<String, String> getResolvedCmHandleIdPerCmHandleReference(
+            final DataOperationRequest dataOperationRequest) {
         final Collection<String> distinctCmHandleReferences = getDistinctCmHandleReferences(dataOperationRequest);
-        final Collection<String> resolvedCmHandleIds = new ArrayList<>(distinctCmHandleReferences.size());
+        final Map<String, String> resolvedCmHandleIdPerCmHandleReference =
+                HashMap.newHashMap(distinctCmHandleReferences.size());
         for (final String cmHandleReference : distinctCmHandleReferences) {
             try {
-                resolvedCmHandleIds.add(
+                resolvedCmHandleIdPerCmHandleReference.put(cmHandleReference,
                     alternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(cmHandleReference, "/"));
             } catch (final NoAlternateIdMatchFoundException ignored) {
-                // exception ignored as DmiDataOperationsHelper has its own logic for reporting not found handles
+                // unresolved references are omitted; DmiDataOperationsHelper reports them as not found
             }
         }
-        return resolvedCmHandleIds;
+        return resolvedCmHandleIdPerCmHandleReference;
     }
 
     private Collection<String> getDistinctCmHandleReferences(final DataOperationRequest dataOperationRequest) {
