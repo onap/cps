@@ -33,6 +33,24 @@
       "message": "adding minus 1 until conflicts are resolved",
       "revId": "4577254d6a1da47f66d2d3cc68bf056addf0b72e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e7e6076_dcd27873",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8523
+      },
+      "writtenOn": "2026-10-22T04:46:25Z",
+      "side": 1,
+      "message": "Here we can rebase this patch on top of master once the code of https://gerrit.onap.org/r/c/cps/+/147977 is merged in master instead of that",
+      "parentUuid": "dea8737e_51d71d00",
+      "revId": "4577254d6a1da47f66d2d3cc68bf056addf0b72e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
