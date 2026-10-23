@@ -16,6 +16,69 @@
       "message": "recheck",
       "revId": "7f26dc35674165227aa275715d631cc65dd97317",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d332e57_1a057f30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-23T07:45:51Z",
+      "side": 1,
+      "message": "looks good, some minor comments on teh testware",
+      "revId": "7f26dc35674165227aa275715d631cc65dd97317",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68e0ed51_a96667a7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-23T07:45:51Z",
+      "side": 1,
+      "message": "why don\u0027t you simply use \n0 * eventProducerStub.sendCloudEvent(_*) Like line #143\neven if you do NEED to local boolean for some reason for proving something is NOT called we prefer wildcard parameters",
+      "range": {
+        "startLine": 130,
+        "startChar": 12,
+        "endLine": 130,
+        "endChar": 42
+      },
+      "revId": "7f26dc35674165227aa275715d631cc65dd97317",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a6e80a3_14c50dab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/utils/DmiDataOperationsHelperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-23T07:45:51Z",
+      "side": 1,
+      "message": "legacy: do we really need some many different cm handles ids. Different test can use the same names for cm handles in the same state. I am suer this can be reduced",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 56
+      },
+      "revId": "7f26dc35674165227aa275715d631cc65dd97317",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
