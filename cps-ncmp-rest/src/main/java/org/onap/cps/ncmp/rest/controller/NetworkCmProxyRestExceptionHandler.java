@@ -57,6 +57,8 @@ public class NetworkCmProxyRestExceptionHandler {
 
     private static final String CHECK_LOGS_FOR_DETAILS = "Check logs for details.";
 
+    private static final String INTERNAL_ERROR_MESSAGE = "Internal error occurred.";
+
     /**
      * Default exception handler for internal server errors.
      *
@@ -65,7 +67,8 @@ public class NetworkCmProxyRestExceptionHandler {
      */
     @ExceptionHandler
     public static ResponseEntity<Object> handleInternalServerErrorExceptions(final Exception exception) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
+        log.error("Unexpected exception occurred", exception);
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, INTERNAL_ERROR_MESSAGE, CHECK_LOGS_FOR_DETAILS);
     }
 
     /**
@@ -141,16 +144,23 @@ public class NetworkCmProxyRestExceptionHandler {
         if (exception.getCause() != null || !(exception instanceof CpsException)) {
             log.error("Exception occurred", exception);
         }
+        final String details;
+        if (exception instanceof CpsException) {
+            details = ((CpsException) exception).getDetails();
+        } else if (exception instanceof NcmpException) {
+            details = ((NcmpException) exception).getDetails();
+        } else {
+            details = CHECK_LOGS_FOR_DETAILS;
+        }
+        return buildErrorResponse(status, exception.getMessage(), details);
+    }
+
+    private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final String message,
+                                                             final String details) {
         final var errorMessage = new ErrorMessage();
         errorMessage.setStatus(status.toString());
-        errorMessage.setMessage(exception.getMessage());
-        if (exception instanceof CpsException) {
-            errorMessage.setDetails(((CpsException) exception).getDetails());
-        } else if (exception instanceof NcmpException) {
-            errorMessage.setDetails(((NcmpException) exception).getDetails());
-        } else {
-            errorMessage.setDetails(CHECK_LOGS_FOR_DETAILS);
-        }
+        errorMessage.setMessage(message);
+        errorMessage.setDetails(details);
         return new ResponseEntity<>(errorMessage, status);
     }
 
