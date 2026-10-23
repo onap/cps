@@ -124,6 +124,56 @@
       "maxVUs": 1,
       "startTime": "12733ms"
     },
+    "cm_handle_search_v2_nofilter_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "cmHandleSearchV2NoFilterScenario",
+      "rate": 1,
+      "timeUnit": "48s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "maxVUs": 1,
+      "startTime": "15800ms"
+    },
+    "cm_handle_search_v2_module_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "cmHandleSearchV2ModuleScenario",
+      "rate": 1,
+      "timeUnit": "48s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "maxVUs": 1,
+      "startTime": "18866ms"
+    },
+    "cm_handle_search_v2_property_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "cmHandleSearchV2PropertyScenario",
+      "rate": 1,
+      "timeUnit": "48s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "maxVUs": 1,
+      "startTime": "21933ms"
+    },
+    "cm_handle_search_v2_cpspath_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "cmHandleSearchV2CpsPathScenario",
+      "rate": 1,
+      "timeUnit": "48s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "maxVUs": 1,
+      "startTime": "25000ms"
+    },
+    "cm_handle_search_v2_trustlevel_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "cmHandleSearchV2TrustLevelScenario",
+      "rate": 1,
+      "timeUnit": "48s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "maxVUs": 1,
+      "startTime": "28066ms"
+    },
     "legacy_batch_produce_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "legacyBatchProduceScenario",
@@ -211,6 +261,11 @@
     "cm_handle_search_property_filter": ["avg <= 24000"],
     "cm_handle_search_cps_path_filter": ["avg <= 24000"],
     "cm_handle_search_trust_level_filter": ["avg <= 24000"],
+    "cm_handle_search_v2_no_filter": ["avg <= 24000"],
+    "cm_handle_search_v2_module_filter": ["avg <= 24000"],
+    "cm_handle_search_v2_property_filter": ["avg <= 24000"],
+    "cm_handle_search_v2_cps_path_filter": ["avg <= 24000"],
+    "cm_handle_search_v2_trust_level_filter": ["avg <= 24000"],
     "ncmp_read_overhead": ["avg <= 40"],
     "ncmp_write_overhead": ["avg <= 40"],
     "legacy_batch_read": ["avg >= 150"],
