@@ -75,6 +75,27 @@ class CmHandleSearchesNorthBoundRestApiSpec extends CpsIntegrationSpecBase {
             'M1'       | null              || ['ch-1', 'ch-2', 'ch-3']
     }
 
+    def 'Search for CM Handles by module with an invalid character in the value.'() {
+        given: 'a JSON request body with a NUL byte (as a JSON unicode escape) in the module name value'
+            def requestBodyWithNulByteInModuleName = """{
+                    "cmHandleQueryParameters": [ {
+                                "conditionName": "hasAllModules",
+                                "conditionParameters": [ {"moduleName": "M1\\u0000"} ]
+                            } ]
+                }"""
+        when: 'a search is performed'
+            def response = performPost('/ncmp/v1/ch/id-searches', requestBodyWithNulByteInModuleName)
+        then: 'the response is a bad request'
+            assert response.statusCode == HttpStatus.BAD_REQUEST
+        and: 'the response body does not leak any SQL, schema or driver detail'
+            assert !response.body.toLowerCase().contains('select')
+            assert !response.body.toLowerCase().contains('module_name')
+            assert !response.body.toLowerCase().contains('anchor')
+            assert !response.body.toLowerCase().contains('sql')
+        and: 'the response body indicates an invalid control character'
+            assert response.body.contains('Invalid control character in condition parameter value')
+    }
+
     def 'Search for CM Handles using Cps Path Query.'() {
         given: 'a JSON request body containing search parameter'
             def requestBodyWithSearchCondition = """{
