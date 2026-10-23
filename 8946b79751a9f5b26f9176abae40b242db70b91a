@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4858b516_be028f40",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-23T10:22:18Z",
+      "side": 1,
+      "message": "i suppose this could affect overal performance. But a bit surprised it was not enabled already",
+      "range": {
+        "startLine": 497,
+        "startChar": 11,
+        "endLine": 497,
+        "endChar": 15
+      },
+      "revId": "8946b79751a9f5b26f9176abae40b242db70b91a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b87bf59_d0a276a7",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-23T10:22:18Z",
+      "side": 1,
+      "message": "NB: overCountCheckWindow for consistency",
+      "range": {
+        "startLine": 177,
+        "startChar": 47,
+        "endLine": 177,
+        "endChar": 53
+      },
+      "revId": "8946b79751a9f5b26f9176abae40b242db70b91a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfe9a19b_115eea0e",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-23T10:22:18Z",
+      "side": 1,
+      "message": "NB: seems redundant check to me as it is hardcoded in our own repo...",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 5
+      },
+      "revId": "8946b79751a9f5b26f9176abae40b242db70b91a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
