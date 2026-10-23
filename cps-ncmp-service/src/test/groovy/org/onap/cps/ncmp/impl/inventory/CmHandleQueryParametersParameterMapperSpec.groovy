@@ -72,6 +72,40 @@ class CmHandleQueryParametersParameterMapperSpec extends Specification {
             'empty key'              | 'validConditionName' | [['': 'wrong']]                    || 'conditionsParameter'
     }
 
+    def 'CM Handle Query validation: control character in value is allowed for #scenario.'() {
+        given: 'a cm handle query with a control character in the condition parameter value'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def condition = new ConditionProperties()
+            condition.conditionName = conditionName
+            condition.conditionParameters = [['key': value]]
+            cmHandleQueryParameters.cmHandleQueryParameters = [condition]
+        when: 'validator is invoked'
+            CmHandleQueryParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters, [conditionName])
+        then: 'data validation exception is not thrown'
+            noExceptionThrown()
+        where:
+            scenario            | conditionName         | value
+            'a cps path search' | 'cmHandleWithCpsPath' | 'val\u0000ue'
+            'a null value'      | 'hasAllModules'       | null
+    }
+
+    def 'CM Handle Query validation: control character in value is rejected for #conditionName.'() {
+        given: 'a cm handle query with a control character in the condition parameter value'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def condition = new ConditionProperties()
+            condition.conditionName = conditionName
+            condition.conditionParameters = [['key': 'val\u0000ue']]
+            cmHandleQueryParameters.cmHandleQueryParameters = [condition]
+        when: 'validator is invoked'
+            CmHandleQueryParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters, [conditionName])
+        then: 'a data validation exception is thrown'
+            def thrown = thrown(DataValidationException)
+        and: 'the exception details indicate an invalid control character'
+            assert thrown.details.contains('Invalid control character in condition parameter value')
+        where:
+            conditionName << ['hasAllModules', 'hasAllProperties', 'hasAllAdditionalProperties', 'cmHandleWithDmiPlugin']
+    }
+
     def 'CM Handle Query validation: validate module name condition properties - valid query.'() {
         given: 'a condition property'
             def conditionProperty = [moduleName: 'value']

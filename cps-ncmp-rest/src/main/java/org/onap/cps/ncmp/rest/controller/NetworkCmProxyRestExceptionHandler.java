@@ -41,6 +41,7 @@ import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -65,7 +66,9 @@ public class NetworkCmProxyRestExceptionHandler {
      */
     @ExceptionHandler
     public static ResponseEntity<Object> handleInternalServerErrorExceptions(final Exception exception) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
+        log.error("Unexpected exception occurred", exception);
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Internal error occurred.",
+                CHECK_LOGS_FOR_DETAILS);
     }
 
     /**
@@ -105,6 +108,19 @@ public class NetworkCmProxyRestExceptionHandler {
     }
 
     /**
+     * Exception handler for data access exceptions.
+     * Returns a sanitized response so backend SQL or driver details are never exposed.
+     *
+     * @param dataAccessException the data access exception to handle
+     * @return response with HTTP 400 status
+     */
+    @ExceptionHandler({DataAccessException.class})
+    public static ResponseEntity<Object> handleDataAccessExceptions(final DataAccessException dataAccessException) {
+        log.error("Data access exception occurred", dataAccessException);
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, "Invalid query parameter.", CHECK_LOGS_FOR_DETAILS);
+    }
+
+    /**
      * Exception handler for conflict exceptions.
      *
      * @param exception the exception to handle
@@ -141,16 +157,23 @@ public class NetworkCmProxyRestExceptionHandler {
         if (exception.getCause() != null || !(exception instanceof CpsException)) {
             log.error("Exception occurred", exception);
         }
-        final var errorMessage = new ErrorMessage();
-        errorMessage.setStatus(status.toString());
-        errorMessage.setMessage(exception.getMessage());
+        final String details;
         if (exception instanceof CpsException) {
-            errorMessage.setDetails(((CpsException) exception).getDetails());
+            details = ((CpsException) exception).getDetails();
         } else if (exception instanceof NcmpException) {
-            errorMessage.setDetails(((NcmpException) exception).getDetails());
+            details = ((NcmpException) exception).getDetails();
         } else {
-            errorMessage.setDetails(CHECK_LOGS_FOR_DETAILS);
+            details = CHECK_LOGS_FOR_DETAILS;
         }
+        return buildErrorResponse(status, exception.getMessage(), details);
+    }
+
+    private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final String message,
+                                                             final String details) {
+        final ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setStatus(status.toString());
+        errorMessage.setMessage(message);
+        errorMessage.setDetails(details);
         return new ResponseEntity<>(errorMessage, status);
     }
 
