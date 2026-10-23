@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -75,7 +75,20 @@ public class CmHandleQueryParametersValidator {
                 throw createDataValidationException(
                         "Missing 'conditionsParameterName' - please supply a valid name.");
             }
+            rejectControlCharacters(value);
         });
+    }
+
+    private static void rejectControlCharacters(final String value) {
+        if (value == null) {
+            return;
+        }
+        for (int i = 0; i < value.length(); i++) {
+            if (Character.isISOControl(value.charAt(i))) {
+                throw createDataValidationException(
+                        "Invalid character in condition parameter value at position " + (i + 1) + ".");
+            }
+        }
     }
 
     /**

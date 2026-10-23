@@ -49,6 +49,19 @@ class CmHandleQueryParametersParameterMapperSpec extends Specification {
             noExceptionThrown()
     }
 
+    def 'CM Handle Query validation: null condition parameter value.'() {
+        given: 'a cm handle query with a null condition parameter value'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def condition = new ConditionProperties()
+            condition.conditionName = 'validConditionName'
+            condition.conditionParameters = [['key': null]]
+            cmHandleQueryParameters.cmHandleQueryParameters = [condition]
+        when: 'validator is invoked'
+            CmHandleQueryParametersValidator.validateCmHandleQueryParameters(cmHandleQueryParameters, ['validConditionName'])
+        then: 'data validation exception is not thrown'
+            noExceptionThrown()
+    }
+
     def 'CM Handle Query validation: #scenario.'() {
         given: 'a cm handle query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
@@ -70,6 +83,7 @@ class CmHandleQueryParametersParameterMapperSpec extends Specification {
             'empty properties'       | 'validConditionName' | [[:]]                              || 'conditionsParameter'
             'too many properties'    | 'validConditionName' | [[key1: 'value1', key2: 'value2']] || 'conditionsParameter'
             'empty key'              | 'validConditionName' | [['': 'wrong']]                    || 'conditionsParameter'
+            'control char in value'  | 'validConditionName' | [['key': 'val\u0000ue']]           || 'Invalid character in condition parameter value'
     }
 
     def 'CM Handle Query validation: validate module name condition properties - valid query.'() {

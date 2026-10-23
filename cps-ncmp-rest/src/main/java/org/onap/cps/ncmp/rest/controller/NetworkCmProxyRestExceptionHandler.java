@@ -57,6 +57,8 @@ public class NetworkCmProxyRestExceptionHandler {
 
     private static final String CHECK_LOGS_FOR_DETAILS = "Check logs for details.";
 
+    private static final String GENERIC_ERROR_MESSAGE = "Internal error occurred.";
+
     /**
      * Default exception handler for internal server errors.
      *
@@ -65,7 +67,12 @@ public class NetworkCmProxyRestExceptionHandler {
      */
     @ExceptionHandler
     public static ResponseEntity<Object> handleInternalServerErrorExceptions(final Exception exception) {
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
+        log.error("Unexpected exception occurred", exception);
+        final var errorMessage = new ErrorMessage();
+        errorMessage.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+        errorMessage.setMessage(GENERIC_ERROR_MESSAGE);
+        errorMessage.setDetails(CHECK_LOGS_FOR_DETAILS);
+        return new ResponseEntity<>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     /**

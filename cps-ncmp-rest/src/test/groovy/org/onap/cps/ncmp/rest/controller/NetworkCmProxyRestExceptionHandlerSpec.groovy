@@ -165,7 +165,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'Invalid Operation'     | new InvalidOperationException('some reason')                              || BAD_REQUEST           | 'some reason'               | null
             'Unsupported Operation' | new OperationNotSupportedException('not yet')                             || BAD_REQUEST           | 'not yet'                   | null
             'DataNode Validation'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')          || NOT_FOUND             | 'DataNode not found'        | null
-            'other'                 | new IllegalStateException(sampleErrorMessage)                             || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
+            'other'                 | new IllegalStateException(sampleErrorMessage)                             || INTERNAL_SERVER_ERROR | 'Internal error occurred.'  | 'Check logs for details.'
             'Data Node Not Found'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')          || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
             'Existing entry'        | new AlreadyDefinedException('name',null)                                  || CONFLICT              | 'Already defined exception' | 'name already exists'
             'Existing entries'      | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName')          || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
