@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee4793a5_c8626099",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-27T11:14:18Z",
+      "side": 1,
+      "message": "as discussed, I think we need a sightly different approach",
+      "revId": "c45695f71a4b327b3b3da1447c76741caf454302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "033c5902_94918ca1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-27T11:14:18Z",
+      "side": 1,
+      "message": "why a constant at all, just use string literal at line 71, end discussion naming too :-)",
+      "range": {
+        "startLine": 60,
+        "startChar": 32,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "c45695f71a4b327b3b3da1447c76741caf454302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b31afc95_82373e09",
@@ -19,6 +59,76 @@
         "startChar": 14,
         "endLine": 160,
         "endChar": 18
+      },
+      "revId": "c45695f71a4b327b3b3da1447c76741caf454302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bba1fc1_a339a4de",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-27T11:14:18Z",
+      "side": 1,
+      "message": "agreed, your AI should know not to use \u0027var\u0027!",
+      "parentUuid": "b31afc95_82373e09",
+      "range": {
+        "startLine": 160,
+        "startChar": 14,
+        "endLine": 160,
+        "endChar": 18
+      },
+      "revId": "c45695f71a4b327b3b3da1447c76741caf454302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eea79d6_6535ec44",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryParametersValidator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-27T11:14:18Z",
+      "side": 1,
+      "message": "i think this might be  ab but blint. I thing we need something more clever.\nI can see problem going both ways:\n1) false positive: a search on a string containing some control character is valid (if unlikely usecase)\n2) false negative: There are probably other ways of break a sql-query.\n\nConsider: Can we validate the query using the Query engine itself ie catch the error and just handle it better...",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "c45695f71a4b327b3b3da1447c76741caf454302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "078e82fe_239b7309",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryParametersParameterMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-27T11:14:18Z",
+      "side": 1,
+      "message": "i think this actually should be allowed.\nBut a control character in the key(name) would NOT be valid...",
+      "range": {
+        "startLine": 86,
+        "startChar": 75,
+        "endLine": 86,
+        "endChar": 78
       },
       "revId": "c45695f71a4b327b3b3da1447c76741caf454302",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
