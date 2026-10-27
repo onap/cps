@@ -47,6 +47,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c87a404a_e4f30520",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-10-27T13:44:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b87bf59_d0a276a7",
+      "range": {
+        "startLine": 177,
+        "startChar": 47,
+        "endLine": 177,
+        "endChar": 53
+      },
+      "revId": "8946b79751a9f5b26f9176abae40b242db70b91a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfe9a19b_115eea0e",
@@ -60,6 +84,30 @@
       "writtenOn": "2026-10-23T10:22:18Z",
       "side": 1,
       "message": "NB: seems redundant check to me as it is hardcoded in our own repo...",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 5
+      },
+      "revId": "8946b79751a9f5b26f9176abae40b242db70b91a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2594bb1_5f335255",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-10-27T13:44:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfe9a19b_115eea0e",
       "range": {
         "startLine": 178,
         "startChar": 0,
