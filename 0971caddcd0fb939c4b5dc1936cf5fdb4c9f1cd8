@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b83f72d_bf2c1095",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-27T11:15:42Z",
+      "side": 1,
+      "message": "i checked path #2 but my comments form #1 are not addressed yet?",
+      "revId": "0971caddcd0fb939c4b5dc1936cf5fdb4c9f1cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
