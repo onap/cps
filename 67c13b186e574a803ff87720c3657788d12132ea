@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebc051f_86d571c4",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-27T14:26:04Z",
+      "side": 1,
+      "message": "NB use exactly the same (start of) string as on line 131: \"READY CM handle gauge\"\nTo make it easy to search the log and find either sentence...",
+      "range": {
+        "startLine": 133,
+        "startChar": 21,
+        "endLine": 133,
+        "endChar": 39
+      },
+      "revId": "67c13b186e574a803ff87720c3657788d12132ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
