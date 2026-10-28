@@ -28,8 +28,8 @@ import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.config.CpsApplicationContext
-import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.dmi.DmiOperationsBaseSpec
 import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties
@@ -71,7 +71,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     DmiDataOperations objectUnderTest
 
     @SpringBean
-    EventProducer eventProducerStub = Stub()
+    EventProducer mockEventProducer = Mock()
 
     @SpringBean
     PolicyExecutor mockPolicyExecutor = Mock()
@@ -104,20 +104,27 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             'datastore running with properties'    | [yangModelCmHandleProperty] || PASSTHROUGH_RUNNING     | OPTIONS_PARAM   | '{"prop1":"val1"}'
     }
 
-    def 'Request resource data from DMI (asynchronous).'() {
+    def 'Request resource data from DMI (asynchronous), including a descendant of a registered alternate id.'() {
         given: 'collection of yang model cm Handles and data operation request'
             mockYangModelCmHandleRetrievalByCmHandleId([yangModelCmHandleProperty])
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
-            dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences = [cmHandleId]
+        and: 'the single operation targets a descendant of a registered alternate id'
+            def descendantReference = alternateId + '/ManagedElement=1'
+            dataOperationRequest.dataOperationDefinitions = [dataOperationRequest.dataOperationDefinitions[0]]
+            dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences = [descendantReference]
+        and: 'the matcher resolves the descendant reference to its cm handle id'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(descendantReference, '/') >> cmHandleId
         and: 'a positive response from DMI service when it is called with valid request parameters'
             def responseFromDmi = Mono.just(new ResponseEntity<Object>(HttpStatus.ACCEPTED))
             def expectedUrlTemplateWithVariables = new UrlTemplateParameters('myServiceName/dmi/v1/data?requestId={requestId}&topic={topic}', ['requestId': 'requestId', 'topic': 'my-topic-name'])
             def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","moduleSetTag":"","cmHandleProperties":{"prop1":"val1"}}]}]}'
         when: 'get resource data for group of cm handles is invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
-        then: 'A DMI request was made with the expected URL and JSON request body'
+        then: 'a DMI request was made for the resolved cm handle with the expected URL and JSON request body'
             1 * mockDmiRestClient.asynchronousPostOperation(DATA, expectedUrlTemplateWithVariables, expectedBatchRequestAsJson, READ, NO_AUTH_HEADER) >> responseFromDmi
+        and: 'no not-found error event is sent to the client topic'
+            0 * mockEventProducer.sendCloudEvent(*_)
     }
 
     def 'Request resource data from DMI without any matching cm handle.'() {
@@ -125,7 +132,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
         and: 'no valid cm handles are found for the request'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(_, '/') >> { throw new NoAlternateIdMatchFoundException('') }
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(_, '/') >> { throw new NoAlternateIdMatchFoundException('no match') }
             mockInventoryPersistence.getYangModelCmHandles(_) >> []
         when: 'get resource data for group of cm handles is invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
@@ -139,9 +146,11 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
             dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences = [cmHandleId]
+        and: 'the matcher resolves the cm handle reference to its cm handle id'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(cmHandleId, '/') >> cmHandleId
         and: 'the sent cloud event will be captured'
             def actualDataOperationCloudEvent = null
-            eventProducerStub.sendCloudEvent('my-topic-name', 'my-request-id', _) >> {args -> actualDataOperationCloudEvent = args[2] }
+            mockEventProducer.sendCloudEvent('my-topic-name', 'my-request-id', _) >> {args -> actualDataOperationCloudEvent = args[2] }
         and: 'a DMI client request exception is thrown when DMI service is called'
             mockDmiRestClient.asynchronousPostOperation(*_) >> { Mono.error(new DmiClientRequestException(123, '', '', UNKNOWN_ERROR)) }
         when: 'attempt to get resource data for group of cm handles is invoked'

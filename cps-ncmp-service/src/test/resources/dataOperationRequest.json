@@ -9,7 +9,6 @@
       "targetIds": [
         "ch3-dmi2",
         "unknown-cm-handle",
-        "ch6-dmi1",
         "non-ready-cm-handle"
       ]
     },
@@ -21,9 +20,7 @@
       "resourceIdentifier": "some resource identifier",
       "targetIds": [
         "ch1-dmi1",
-        "ch7-dmi2",
-        "ch2-dmi1",
-        "non-ready-cm-handle"
+        "ch2-dmi1"
       ]
     },
     {
@@ -33,8 +30,7 @@
       "options": "some option",
       "resourceIdentifier": "some resource identifier",
       "targetIds": [
-        "ch4-dmi2",
-        "ch6-dmi1"
+        "ch1-dmi1"
       ]
     },
     {
@@ -44,8 +40,8 @@
       "options": "some option",
       "resourceIdentifier": "some resource identifier",
       "targetIds": [
-        "ch4-dmi2",
-        "alt6-dmi1"
+        "alt1-dmi1",
+        "alt1-dmi1/ManagedElement=1"
       ]
     }
   ]
