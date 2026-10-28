@@ -84,6 +84,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "284cd999_fc61f6a4",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-28T09:08:49Z",
+      "side": 1,
+      "message": "ok, thanks for clarifying",
+      "parentUuid": "f0e92ef3_6acbd99e",
+      "range": {
+        "startLine": 95,
+        "startChar": 25,
+        "endLine": 95,
+        "endChar": 30
+      },
+      "revId": "7425e77c96ce07b54eab6f258fb24da8b27bf9b9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f16be889_268d81b0",
         "filename": "cps-dependencies/pom.xml",
         "patchSetId": 1
