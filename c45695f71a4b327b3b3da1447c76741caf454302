@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6faf5454_beac4f12",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-10-28T16:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "033c5902_94918ca1",
+      "range": {
+        "startLine": 60,
+        "startChar": 32,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "c45695f71a4b327b3b3da1447c76741caf454302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b31afc95_82373e09",
@@ -78,6 +102,30 @@
       "side": 1,
       "message": "agreed, your AI should know not to use \u0027var\u0027!",
       "parentUuid": "b31afc95_82373e09",
+      "range": {
+        "startLine": 160,
+        "startChar": 14,
+        "endLine": 160,
+        "endChar": 18
+      },
+      "revId": "c45695f71a4b327b3b3da1447c76741caf454302",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdc7a472_09e1c55d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-10-28T16:11:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bba1fc1_a339a4de",
       "range": {
         "startLine": 160,
         "startChar": 14,
