@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67be1001_12d70a45",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-10-28T14:39:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4858b516_be028f40",
+      "range": {
+        "startLine": 497,
+        "startChar": 11,
+        "endLine": 497,
+        "endChar": 15
+      },
+      "revId": "8946b79751a9f5b26f9176abae40b242db70b91a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b87bf59_d0a276a7",
