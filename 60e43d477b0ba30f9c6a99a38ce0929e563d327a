@@ -18,6 +18,161 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72e00c4e_445d4a69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-28T16:51:36Z",
+      "side": 1,
+      "message": "looking much better, some small suggestions left",
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04091932_f10f5954",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-28T16:51:36Z",
+      "side": 1,
+      "message": "i wonder is this to specific for daatAccessException ie could there be other issues cause the same exception. all I am suggesting is a more generic wording. maybe something like \"Request resulted in invalid query\"",
+      "range": {
+        "startLine": 120,
+        "startChar": 59,
+        "endLine": 120,
+        "endChar": 82
+      },
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ae85b0_5248a937",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-28T16:51:36Z",
+      "side": 1,
+      "message": "misleading?/Could this be \u0027Some SQL\u0027",
+      "range": {
+        "startLine": 170,
+        "startChar": 78,
+        "endLine": 170,
+        "endChar": 98
+      },
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e23cb6_09ae5227",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryParametersParameterMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-28T16:51:36Z",
+      "side": 1,
+      "message": "NB: as per our convention try to add some description for the where block\ne.g \u0027the following conditions are used\u0027",
+      "range": {
+        "startLine": 86,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 14
+      },
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5dfb40f_8899aa90",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryParametersParameterMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-28T16:51:36Z",
+      "side": 1,
+      "message": "Attempt to execute query with control character in condition #conditionName\u0027",
+      "range": {
+        "startLine": 92,
+        "startChar": 9,
+        "endLine": 92,
+        "endChar": 79
+      },
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18df8b15_f7ebd694",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryParametersParameterMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-28T16:51:36Z",
+      "side": 1,
+      "message": "NB: as per our convention try to add some description for the where block",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 14
+      },
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f18fcf_459598e2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleSearchesNorthBoundRestApiSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-10-28T16:51:36Z",
+      "side": 1,
+      "message": "tell your AI no to include expectations :-)\nI think if you rebase/use my latest skill updates it should know!",
+      "range": {
+        "startLine": 78,
+        "startChar": 66,
+        "endLine": 78,
+        "endChar": 109
+      },
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30b46461_017d06cc",
