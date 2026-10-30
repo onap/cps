@@ -2,6 +2,8 @@
   "ncmpBaseUrl": "http://localhost:30080",
   "dmiStubUrl": "http://cps-ncmp-dmi-stub-1-service:8092",
   "kafkaBootstrapServer": "localhost:30093",
+  "prometheusBaseUrl": "http://localhost:30090",
+  "overCountCheckWindow": "15m",
   "containerCoolDownTimeInSeconds": 10,
   "scenarios": {
     "passthrough_read_alt_id_scenario": {
