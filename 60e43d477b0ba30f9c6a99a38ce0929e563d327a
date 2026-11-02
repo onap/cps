@@ -105,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a720fc28_2077c0de",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-11-02T10:05:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29ae85b0_5248a937",
+      "range": {
+        "startLine": 170,
+        "startChar": 78,
+        "endLine": 170,
+        "endChar": 98
+      },
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11e23cb6_09ae5227",
@@ -340,6 +364,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0fcb04c_3f90bd6d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleSearchesNorthBoundRestApiSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-11-02T10:05:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26a51f80_0a617e7d",
+      "range": {
+        "startLine": 79,
+        "startChar": 43,
+        "endLine": 79,
+        "endChar": 46
+      },
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a72317e9_46a35940",
@@ -377,6 +425,30 @@
       "side": 1,
       "message": "As above",
       "parentUuid": "a72317e9_46a35940",
+      "range": {
+        "startLine": 87,
+        "startChar": 81,
+        "endLine": 87,
+        "endChar": 84
+      },
+      "revId": "60e43d477b0ba30f9c6a99a38ce0929e563d327a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b92d6bc7_2fd8ac5b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/CmHandleSearchesNorthBoundRestApiSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2026-11-02T10:05:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e2c5b01_98eba1a0",
       "range": {
         "startLine": 87,
         "startChar": 81,
