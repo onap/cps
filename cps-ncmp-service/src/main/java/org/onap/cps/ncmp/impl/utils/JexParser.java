@@ -36,7 +36,8 @@ public class JexParser {
 
     private static final Pattern XPATH_SEGMENT_PATTERN = Pattern.compile("^([^]]*)\\[id=\\\"([^\\\"]*)\\\"]");
     private static final Pattern CONTAINS_PATTERN = Pattern.compile(
-            "(ManagedElement|MeContext)\\[contains\\(id,\\s*\"([^\"]*)\"\\)]");
+            "(ManagedElement|MeContext|NetworkElement|CloudInfrastructure|CloudInfrastructureManager|OCloud)"
+                    + "\\[contains\\(id,\\s*\"([^\"]*)\"\\)]");
     private static final String JEX_COMMENT_PREFIX = "&&";
     private static final String LINE_OR_LOGICAL_OR_REGEX = "\\R|\\bOR\\b";
     private static final String LINE_JOINER_DELIMITER = "\n";

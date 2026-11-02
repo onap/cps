@@ -110,6 +110,11 @@ class JexParserSpec extends Specification {
             'ManagedElement contains'       | '/ManagedElement[contains(id, "Ireland")]'                      || 'ManagedElement=Ireland'
             'MeContext contains'            | '/MeContext[contains(id, "Dublin")]'                            || 'MeContext=Dublin'
             'with SubNetwork prefix'        | '/SubNetwork[id="SN1"]/ManagedElement[contains(id, "Ireland")]' || 'ManagedElement=Ireland'
+            'NetworkElement contains'       | '/NetworkElement[contains(id, "NE1")]'                          || 'NetworkElement=NE1'
+            'CloudInfrastructure contains'  | '/CloudInfrastructure[contains(id, "CI1")]'                     || 'CloudInfrastructure=CI1'
+            'CloudInfrastructureManager contains' | '/CloudInfrastructureManager[contains(id, "CIM1")]'       || 'CloudInfrastructureManager=CIM1'
+            'OCloud contains'               | '/OCloud[contains(id, "OC1")]'                                  || 'OCloud=OC1'
+            'NetworkElement contains with SubNetwork prefix' | '/SubNetwork[id="SN1"]/NetworkElement[contains(id, "NE1")]' || 'NetworkElement=NE1'
             'exact id (not contains)'       | '/ManagedElement[id="ME1"]'                                     || null
             'no ManagedElement or MeContext'| '/SubNetwork[contains(id, "Europe")]'                           || null
             'deep search with contains'     | '//ManagedElement[contains(id, "Ireland")]'                     || 'ManagedElement=Ireland'

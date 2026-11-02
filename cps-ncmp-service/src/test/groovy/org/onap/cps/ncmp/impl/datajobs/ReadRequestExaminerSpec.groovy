@@ -51,6 +51,27 @@ class ReadRequestExaminerSpec extends Specification {
             ]
     }
 
+    def 'Classify selector into DMI group for top-level cloud-infrastructure type #scenario'() {
+        given: 'a READY cm handle resolved from the selector'
+            def yangModelCmHandle = createYangModelCmHandle('ch-1', 'dmi-plugin-1', 'producer-A', CmHandleState.READY)
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(expectedFdn, '/') >> 'ch-1'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle
+        when: 'the selector is classified'
+            def result = objectUnderTest.classifySelectors(selector)
+        then: 'the selector is treated as a specific node and grouped under the DMI'
+            assert result.broadcastSelectors().isEmpty()
+            assert result.dmiSelectors() == [
+                'dmi-plugin-1': [(new ProducerKey('dmi-plugin-1', 'producer-A')): [selector]]
+            ]
+        where: 'the following top-level cloud-infrastructure selectors are used'
+            scenario                             | selector                                     || expectedFdn
+            'NetworkElement'                     | '/NetworkElement[id="NE1"]'                  || '/NetworkElement=NE1'
+            'NetworkElement under SubNetwork'    | '/SubNetwork[id="SN1"]/NetworkElement[id="NE1"]' || '/SubNetwork=SN1/NetworkElement=NE1'
+            'CloudInfrastructure'                | '/CloudInfrastructure[id="CI1"]'             || '/CloudInfrastructure=CI1'
+            'CloudInfrastructureManager'         | '/CloudInfrastructureManager[id="CIM1"]'     || '/CloudInfrastructureManager=CIM1'
+            'OCloud'                             | '/OCloud[id="OC1"]'                          || '/OCloud=OC1'
+    }
+
     def 'Classify broadcast selectors with #scenario'() {
         when: 'selectors are classified'
             def result = objectUnderTest.classifySelectors(dataNodeSelectors)
