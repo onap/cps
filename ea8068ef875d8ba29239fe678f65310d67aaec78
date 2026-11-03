@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86acdd3b_609e3c8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-03T17:10:19Z",
+      "side": 1,
+      "message": "I think/hope this might restore the small loss in registration performance we saw before...",
+      "revId": "ea8068ef875d8ba29239fe678f65310d67aaec78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db95d415_7e0d0e9e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/DataMigrationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-03T17:10:19Z",
+      "side": 1,
+      "message": "nb: not suer why you (or AI) removed the separate and: description before this statement and combined it wit teh when: above",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 51
+      },
+      "revId": "ea8068ef875d8ba29239fe678f65310d67aaec78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
