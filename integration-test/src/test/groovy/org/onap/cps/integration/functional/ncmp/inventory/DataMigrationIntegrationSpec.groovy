@@ -20,13 +20,17 @@
 
 package org.onap.cps.integration.functional.ncmp.inventory
 
+import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
+import org.onap.cps.ncmp.impl.cache.CmHandleIdPerReferenceMap
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.utils.YangDataConverter
 import org.onap.cps.ncmp.init.InventoryModelLoader
 import org.onap.cps.utils.ContentType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.util.ReflectionTestUtils
-import spock.lang.Ignore
+
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 
 class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
 
@@ -36,34 +40,48 @@ class DataMigrationIntegrationSpec extends CpsIntegrationSpecBase {
     @Autowired
     InventoryPersistence inventoryPersistence
 
-     def 'Migrate inventory with batch processing.'() {
-        given: 'start with the old models (ignore upgrade)'
+    @Autowired
+    CmHandleIdPerReferenceMap cmHandleIdPerReferenceMap
+
+     def 'Migrate inventory with batch processing when the alternate-id cache is not yet populated.'() {
+        given: 'start with the old model (no top-level cm-handle-state leaf written on registration)'
             ReflectionTestUtils.setField(inventoryPersistence, 'useOptimizedModel', false)
         and: 'DMI will return modules when requested'
             dmiDispatcher1.moduleNamesPerCmHandleId = (1..2).collectEntries{ ['ch-'+it, ['M1']] }
-        and: 'multiple CM handles registered with old model'
+        and: 'multiple CM handles registered with old model, each with an additional property'
             (1..2).each {
                 registerCmHandle(DMI1_URL, 'ch-'+it, NO_MODULE_SET_TAG)
                 cpsDataService.saveListElements('NCMP-Admin', 'ncmp-dmi-registry', "/dmi-registry/cm-handles[@id='ch-${it}']",
                         '{"additional-properties":[{"name":"prop1","value":"value1"}]}', now, ContentType.JSON)
-                def someCmHandle = networkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-'+it)
-                assert someCmHandle.getCmHandleStatus() == null
-                assert someCmHandle.getCompositeState().getCmHandleState().name() == 'READY'
             }
-        when: 'the new (more performant) model is enabled'
+        and: 'the top-level cm-handle-state leaf is confirmed absent before migration'
+            getYangModelCmHandles('ch-').each {
+                assert it.getCmHandleStatus() == null
+                assert it.getCompositeState().getCmHandleState().name() == 'READY'
+            }
+        and: 'the alternate-id cache is emptied to mimic a fresh pod startup (cache is populated only after model loading)'
+            getYangModelCmHandles('ch-').each { cmHandleIdPerReferenceMap.removeAll([it]) }
+            assert cmHandleIdPerReferenceMap.isEmpty()
+        when: 'the new (more performant) model is enabled and inventory is upgraded (which triggers migration)'
             ReflectionTestUtils.setField(inventoryPersistence, 'useOptimizedModel', true)
             ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', false)
-        and: 'inventory is upgraded to the new revision'
             objectUnderTest.onboardOrUpgradeModel()
-        then: 'all CM handles have top-level cm-handle-state populated'
-            (1..2).each {
-                def someCmHandle = networkCmProxyInventoryFacade.getNcmpServiceCmHandle('ch-'+it)
-                assert someCmHandle.getCmHandleStatus() == 'READY'
-                assert someCmHandle.getCompositeState().getCmHandleState().name() == 'READY'
+        then: 'all CM handles have top-level cm-handle-state and dmi-properties populated, despite the empty cache'
+            def migratedCmHandles = getYangModelCmHandles('ch-')
+            assert migratedCmHandles.size() == 2
+            migratedCmHandles.each {
+                assert it.getCmHandleStatus() == 'READY'
+                assert it.getDmiProperties() == '{"prop1":"value1"}'
             }
         cleanup: 'deregister CM handles and restore flag'
             ReflectionTestUtils.setField(inventoryPersistence, 'useOptimizedModel', false)
             ReflectionTestUtils.setField(objectUnderTest, 'ignoreR20260423Model', true)
             deregisterCmHandles(DMI1_URL, (1..2).collect{ 'ch-'+it })
+    }
+
+    def getYangModelCmHandles(cmHandleIdPrefix) {
+        def childDataNodes = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+                .iterator().next().getChildDataNodes()
+        return childDataNodes.collect { YangDataConverter.toYangModelCmHandle(it) }.findAll { it.getId().startsWith(cmHandleIdPrefix) }
     }
 }
