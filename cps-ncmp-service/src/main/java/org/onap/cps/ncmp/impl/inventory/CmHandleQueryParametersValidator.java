@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +19,11 @@
  */
 
 package org.onap.cps.ncmp.impl.inventory;
+
+import static org.onap.cps.ncmp.impl.inventory.models.SouthboundCmHandleQuerySupportedConditions.HAS_ALL_ADDITIONAL_PROPERTIES;
+import static org.onap.cps.ncmp.impl.inventory.models.SouthboundCmHandleQuerySupportedConditions.HAS_ALL_MODULES;
+import static org.onap.cps.ncmp.impl.inventory.models.SouthboundCmHandleQuerySupportedConditions.HAS_ALL_PROPERTIES;
+import static org.onap.cps.ncmp.impl.inventory.models.SouthboundCmHandleQuerySupportedConditions.WITH_DMI_SERVICE;
 
 import com.google.common.base.Strings;
 import java.util.Collection;
@@ -54,14 +59,15 @@ public class CmHandleQueryParametersValidator {
                         throw createDataValidationException(
                                 "Empty 'conditionsParameters' - please supply a valid condition parameter.");
                     }
-                    cmHandleQueryParameter.getConditionParameters().forEach(
-                            CmHandleQueryParametersValidator::validateConditionParameter
+                    cmHandleQueryParameter.getConditionParameters().forEach(conditionParameter ->
+                            validateConditionParameter(cmHandleQueryParameter.getConditionName(), conditionParameter)
                     );
                 }
         );
     }
 
-    private static void validateConditionParameter(final Map<String, String> conditionParameter) {
+    private static void validateConditionParameter(final String conditionName,
+                                                   final Map<String, String> conditionParameter) {
         if (conditionParameter.isEmpty()) {
             throw createDataValidationException(
                     "Empty 'conditionsParameter' - please supply a valid condition parameter.");
@@ -75,7 +81,34 @@ public class CmHandleQueryParametersValidator {
                 throw createDataValidationException(
                         "Missing 'conditionsParameterName' - please supply a valid name.");
             }
+            if (rejectsControlCharacters(conditionName)) {
+                rejectControlCharacters(value);
+            }
         });
+    }
+
+    /**
+     * Conditions whose values are identifiers (or feed the SQL query engine) can never legitimately
+     * contain control characters. The cps path condition is deliberately excluded because a cps path
+     * may search free-text leaves (e.g. lock-reason details) that can legitimately contain them.
+     */
+    private static boolean rejectsControlCharacters(final String conditionName) {
+        return HAS_ALL_MODULES.getConditionName().equals(conditionName)
+                || HAS_ALL_PROPERTIES.getConditionName().equals(conditionName)
+                || HAS_ALL_ADDITIONAL_PROPERTIES.getConditionName().equals(conditionName)
+                || WITH_DMI_SERVICE.getConditionName().equals(conditionName);
+    }
+
+    private static void rejectControlCharacters(final String value) {
+        if (value == null) {
+            return;
+        }
+        for (int i = 0; i < value.length(); i++) {
+            if (Character.isISOControl(value.charAt(i))) {
+                throw createDataValidationException(
+                        "Invalid control character in condition parameter value at position " + (i + 1) + ".");
+            }
+        }
     }
 
     /**
