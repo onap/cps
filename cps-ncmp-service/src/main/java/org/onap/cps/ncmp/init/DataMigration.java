@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,11 +26,11 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.models.CmHandleMigrationDetail;
+import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
@@ -41,7 +41,6 @@ public class DataMigration {
 
     private final InventoryPersistence inventoryPersistence;
     private final CmHandleQueryService cmHandleQueryService;
-    private final NetworkCmProxyInventoryFacade networkCmProxyInventoryFacade;
     private final JsonObjectMapper jsonObjectMapper;
 
 
@@ -68,8 +67,8 @@ public class DataMigration {
                 new ArrayList<>(cmHandleIds.size());
         for (final String cmHandleId : cmHandleIds) {
             try {
-                final NcmpServiceCmHandle ncmpServiceCmHandle =
-                        networkCmProxyInventoryFacade.getNcmpServiceCmHandle(cmHandleId);
+                final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(
+                        inventoryPersistence.getYangModelCmHandle(cmHandleId));
                 cmHandleMigrationDetails.add(new CmHandleMigrationDetail(
                         ncmpServiceCmHandle.getCmHandleId(),
                         ncmpServiceCmHandle.getCompositeState().getCmHandleState().name(),
