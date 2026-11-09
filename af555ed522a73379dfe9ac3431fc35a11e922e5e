@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ccb83c2_05eba7e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-09T17:14:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70c391ba_93fe736c",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 108
+      },
+      "revId": "af555ed522a73379dfe9ac3431fc35a11e922e5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb77f2ce_70882bed",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-11-03T13:55:15Z",
       "side": 1,
       "message": "NB: as per previous comment, its time to extract these I think",
+      "range": {
+        "startLine": 39,
+        "startChar": 14,
+        "endLine": 39,
+        "endChar": 107
+      },
+      "revId": "af555ed522a73379dfe9ac3431fc35a11e922e5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1770260a_dcce1055",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-09T17:14:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb77f2ce_70882bed",
       "range": {
         "startLine": 39,
         "startChar": 14,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c06919c4_c227e20a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-09T17:14:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ba9a43d_cdf9214d",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 53
+      },
+      "revId": "af555ed522a73379dfe9ac3431fc35a11e922e5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d480fcb8_eaa601d8",
@@ -104,6 +176,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e5d5c3e_9a581af4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/ReadRequestExaminerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-09T17:14:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d480fcb8_eaa601d8",
+      "revId": "af555ed522a73379dfe9ac3431fc35a11e922e5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78b91d2d_e97f9d3d",
@@ -117,6 +207,24 @@
       "writtenOn": "2026-11-03T13:59:51Z",
       "side": 1,
       "message": "spacing",
+      "revId": "af555ed522a73379dfe9ac3431fc35a11e922e5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c350f5ba_feeacdf2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-09T17:14:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78b91d2d_e97f9d3d",
       "revId": "af555ed522a73379dfe9ac3431fc35a11e922e5e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
