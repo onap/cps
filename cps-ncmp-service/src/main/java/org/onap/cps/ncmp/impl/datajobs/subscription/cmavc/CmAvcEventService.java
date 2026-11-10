@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (c) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,9 +62,24 @@ public class CmAvcEventService {
 
         edits.forEach(
             edit -> {
-                final String operationNameUpperCase = edit.getOperation().toUpperCase();
-                handleCmAvcEventOperation(CmAvcOperationEnum.valueOf(operationNameUpperCase), cmHandleId, edit);
+                final CmAvcOperationEnum cmAvcOperation = validateOperationType(edit.getOperation(), cmHandleId);
+                if (cmAvcOperation != null) {
+                    handleCmAvcEventOperation(cmAvcOperation, cmHandleId, edit);
+                }
             });
+    }
+
+    private CmAvcOperationEnum validateOperationType(final String operationName, final String cmHandleId) {
+        if (operationName == null) {
+            log.warn("Skipping AVC edit with null operation for cmHandleId : {}", cmHandleId);
+            return null;
+        }
+        try {
+            return CmAvcOperationEnum.valueOf(operationName.toUpperCase());
+        } catch (final IllegalArgumentException illegalArgumentException) {
+            log.warn("Skipping unrecognized AVC operation '{}' for cmHandleId : {}", operationName, cmHandleId);
+            return null;
+        }
     }
 
     private void handleCmAvcEventOperation(final CmAvcOperationEnum cmAvcOperation, final String cmHandleId,
