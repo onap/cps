@@ -16,6 +16,23 @@
       "message": "do we have a convention for public/private method ordering?",
       "revId": "ce2edafb9fab8c64f812798a296f36bd818a6f14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a835645_9996a593",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-10T16:25:07Z",
+      "side": 1,
+      "message": "NB: Should these be java doc rather than comments",
+      "revId": "ce2edafb9fab8c64f812798a296f36bd818a6f14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
