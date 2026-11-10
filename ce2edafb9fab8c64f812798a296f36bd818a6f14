@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f163e9b9_dd3b8a33",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-10T17:57:31Z",
+      "side": 1,
+      "message": "yep I thought I fixed that, missed this one somehow.",
+      "parentUuid": "4cb39884_b05816c1",
+      "revId": "ce2edafb9fab8c64f812798a296f36bd818a6f14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a835645_9996a593",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-10T16:25:07Z",
       "side": 1,
       "message": "NB: Should these be java doc rather than comments",
+      "revId": "ce2edafb9fab8c64f812798a296f36bd818a6f14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71e6aec8_ecb5af41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-10T17:57:31Z",
+      "side": 1,
+      "message": "i asked AI to condense the \u0027story\u0027 it had added here to 1 or 2 lines looks like it took that too literal :-)\nAI tend to sprinkle the code with similar/repeated comments in several places. I decided to remove some al togteher!\nThere are still some comments from previous AI updates but I consider those legacy now and not addressing all in this commit",
+      "parentUuid": "3a835645_9996a593",
       "revId": "ce2edafb9fab8c64f812798a296f36bd818a6f14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
