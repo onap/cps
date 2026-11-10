@@ -48,7 +48,8 @@ public class ReadRequestExaminer {
     private static final String DEEP_SEARCH = "//";
     private static final String PATH_SEPARATOR = "/";
     private static final Pattern SPECIFIC_NODE_ID_PATTERN = Pattern.compile(
-            "(?:ManagedElement|MeContext)\\[(?:id=|contains\\(id,)");
+            "(?:" + JexParser.KNOWN_TOP_LEVEL_MO_NAMES + ")"
+                    + "\\[(?:id=|contains\\(id,)");
 
     private final AlternateIdMatcher alternateIdMatcher;
     private final InventoryPersistence inventoryPersistence;

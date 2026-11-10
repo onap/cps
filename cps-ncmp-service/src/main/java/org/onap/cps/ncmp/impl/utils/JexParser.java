@@ -34,9 +34,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JexParser {
 
+    public static final String KNOWN_TOP_LEVEL_MO_NAMES =
+            "ManagedElement|MeContext|NetworkElement|CloudInfrastructure|CloudInfrastructureManager|OCloud";
+
     private static final Pattern XPATH_SEGMENT_PATTERN = Pattern.compile("^([^]]*)\\[id=\\\"([^\\\"]*)\\\"]");
     private static final Pattern CONTAINS_PATTERN = Pattern.compile(
-            "(ManagedElement|MeContext)\\[contains\\(id,\\s*\"([^\"]*)\"\\)]");
+            "(" + KNOWN_TOP_LEVEL_MO_NAMES + ")"
+                    + "\\[contains\\(id,\\s*\"([^\"]*)\"\\)]");
     private static final String JEX_COMMENT_PREFIX = "&&";
     private static final String LINE_OR_LOGICAL_OR_REGEX = "\\R|\\bOR\\b";
     private static final String LINE_JOINER_DELIMITER = "\n";
