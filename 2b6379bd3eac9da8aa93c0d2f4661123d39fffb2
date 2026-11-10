@@ -49,6 +49,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04a61452_3fa52d76",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-10T19:38:47Z",
+      "side": 1,
+      "message": "i would skip \u0027validated\u0027 , i suggest it as a separate private method or just a validation inside the createCmAvcOperationEnum",
+      "parentUuid": "34fdd4f1_57cf664b",
+      "range": {
+        "startLine": 65,
+        "startChar": 58,
+        "endLine": 65,
+        "endChar": 79
+      },
+      "revId": "2b6379bd3eac9da8aa93c0d2f4661123d39fffb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1456ce73_616d194b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-10T19:38:47Z",
+      "side": 1,
+      "message": "nb legacy: remove",
+      "range": {
+        "startLine": 100,
+        "startChar": 22,
+        "endLine": 100,
+        "endChar": 77
+      },
+      "revId": "2b6379bd3eac9da8aa93c0d2f4661123d39fffb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "79381289_cc52a4ca",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventServiceSpec.groovy",
         "patchSetId": 1
