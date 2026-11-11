@@ -59,11 +59,11 @@ public class ModuleSyncWatchdog {
     private static final String MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME = "workQueueLock";
     private static final String MODULE_SYNC_MASTER_LOCK_NAME = "moduleSyncMasterLock";
 
-    // The master lock is acquired with a lease (TTL) and renewed by the master on every cycle. The lease must be
-    // comfortably longer than the gap between renewals so a healthy master never loses it, while still being short
-    // enough that a surviving instance takes over promptly if the master dies without leaving the cluster cleanly.
-    // Note the scheduler uses fixedDelay, so the renewal gap is the sleep interval (default 5s) plus the duration of
-    // a sync cycle; 25s leaves headroom for that on top of the default interval.
+    // The master lock is acquired with a lease (TTL) and renewed by the master every batch (see
+    // moduleSyncAdvisedCmHandles). The lease must be comfortably longer than the gap between renewals (one batch) so
+    // a healthy master never loses it mid-cycle, while still being short enough that a surviving instance takes over
+    // promptly if the master dies. Renewing per batch (not per cycle) keeps the lease short without it expiring
+    // during a long cycle that drains the whole work queue; 25s leaves ample headroom over a single batch.
     private static final long MASTER_LOCK_LEASE_SECONDS = 25;
 
     private volatile boolean isThisInstanceModuleSyncMaster = false;
@@ -89,51 +89,16 @@ public class ModuleSyncWatchdog {
     }
 
     /**
-     * Determine whether this instance should run module sync.
-     * When cross-instance coordination is enabled (default) every instance runs module sync, as before. When it is
-     * disabled only the master instance runs module sync, so there is no concurrency on the same cm handle.
-     *
-     * <p>Master election uses a single key in the shared cpsCommonLocks map, acquired with a lease (TTL) of
-     * {@value #MASTER_LOCK_LEASE_SECONDS} seconds. The current master renews the lease every cycle, so while it is
-     * healthy the lock never expires and no other instance can acquire it. If the master dies or hangs, it stops
-     * renewing; the lease then expires and the next instance to run its cycle acquires the lock and becomes master.
-     *
-     * <p>The lease is what makes take-over robust: it does not rely solely on Hazelcast releasing the lock when a
-     * member leaves the cluster, so it also covers a master that is still a cluster member but no longer making
-     * progress (e.g. hung before Kubernetes restarts it). The lease must stay comfortably larger than the sync
-     * interval so a healthy master always renews in time; see {@link #MASTER_LOCK_LEASE_SECONDS}.
-     *
-     * @return true if this instance should run module sync
-     */
-    private boolean isModuleSyncEnabledOnThisInstance() {
-        if (crossInstanceCoordinationEnabled) {
-            return true;
-        }
-        // tryLock is re-entrant: calling it again while already holding the lock renews the lease. So a single call
-        // both acquires the lock (for a non-master) and renews it (for the current master).
-        try {
-            isThisInstanceModuleSyncMaster = cpsCommonLocks.tryLock(MODULE_SYNC_MASTER_LOCK_NAME, 0, SECONDS,
-                    MASTER_LOCK_LEASE_SECONDS, SECONDS);
-        } catch (final InterruptedException e) {
-            // Restore the interrupt status and skip module sync this cycle; the next cycle will retry the lock.
-            Thread.currentThread().interrupt();
-            isThisInstanceModuleSyncMaster = false;
-            log.warn("Interrupted while acquiring the module-sync master lock; skipping module sync this cycle");
-        }
-        if (isThisInstanceModuleSyncMaster) {
-            log.debug("This instance holds the module-sync master lock");
-        }
-        return isThisInstanceModuleSyncMaster;
-    }
-
-    /**
-     * This method is used when we dont want the scheduled behaviour.
-     * Mainly used in the integration testware.
+     * This method can be used directly when we don't want the scheduled behaviour e.g. for integration testware.
      */
     public void moduleSyncAdvisedCmHandles() {
         log.debug("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
         while (!moduleSyncWorkQueue.isEmpty()) {
+            if (!crossInstanceCoordinationEnabled && !tryAcquireOrRenewMasterLock()) {
+                log.warn("Lost the module-sync master lock mid-cycle; stopping module sync for this cycle");
+                return;
+            }
             final Collection<String> nextBatch = prepareNextBatch();
             if (!nextBatch.isEmpty()) {
                 log.info("Processing module sync batch of {}. 1 batch(es) active.", nextBatch.size());
@@ -167,6 +132,30 @@ public class ModuleSyncWatchdog {
                 log.debug("Lock released by thread : {}", Thread.currentThread().getName());
             }
         }
+    }
+
+    private boolean isModuleSyncEnabledOnThisInstance() {
+        if (crossInstanceCoordinationEnabled) {
+            return true;
+        }
+        final boolean isMaster = tryAcquireOrRenewMasterLock();
+        if (isMaster) {
+            log.debug("This instance holds the module-sync master lock");
+        }
+        return isMaster;
+    }
+
+    private boolean tryAcquireOrRenewMasterLock() {
+        try {
+            isThisInstanceModuleSyncMaster = cpsCommonLocks.tryLock(MODULE_SYNC_MASTER_LOCK_NAME, 0, SECONDS,
+                    MASTER_LOCK_LEASE_SECONDS, SECONDS);
+        } catch (final InterruptedException e) {
+            // Restore the interrupt status and skip module sync this cycle; the next cycle will retry the lock.
+            Thread.currentThread().interrupt();
+            isThisInstanceModuleSyncMaster = false;
+            log.warn("Interrupted while acquiring the module-sync master lock; skipping module sync this cycle");
+        }
+        return isThisInstanceModuleSyncMaster;
     }
 
     private void refreshWorkQueue() {
