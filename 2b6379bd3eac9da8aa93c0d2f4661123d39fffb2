@@ -71,6 +71,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b23dc238_746bec17",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-11T16:36:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2f752de_92b6078a",
+      "range": {
+        "startLine": 65,
+        "startChar": 41,
+        "endLine": 65,
+        "endChar": 56
+      },
+      "revId": "2b6379bd3eac9da8aa93c0d2f4661123d39fffb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b563d5c_a03a8506",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-11T16:36:37Z",
+      "side": 1,
+      "message": "I prefer createValidatedCmAvcOperationEnum as it implies that the enum was validated from the input not just created during the processing.",
+      "parentUuid": "04a61452_3fa52d76",
+      "range": {
+        "startLine": 65,
+        "startChar": 58,
+        "endLine": 65,
+        "endChar": 79
+      },
+      "revId": "2b6379bd3eac9da8aa93c0d2f4661123d39fffb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1456ce73_616d194b",
@@ -94,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c293df65_7f635d5b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-11T16:36:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1456ce73_616d194b",
+      "range": {
+        "startLine": 100,
+        "startChar": 22,
+        "endLine": 100,
+        "endChar": 77
+      },
+      "revId": "2b6379bd3eac9da8aa93c0d2f4661123d39fffb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79381289_cc52a4ca",
@@ -107,6 +179,30 @@
       "writtenOn": "2026-11-10T17:40:08Z",
       "side": 1,
       "message": "does this really test a path that is not already covered by previous tests?!",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 0
+      },
+      "revId": "2b6379bd3eac9da8aa93c0d2f4661123d39fffb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f0c39dc_9b4a1aeb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-11T16:36:37Z",
+      "side": 1,
+      "message": "Technically the path is covered by other tests above, however it lacks a test to demonstrate the scenario where processing continues even when one edit is rejected",
+      "parentUuid": "79381289_cc52a4ca",
       "range": {
         "startLine": 117,
         "startChar": 0,
