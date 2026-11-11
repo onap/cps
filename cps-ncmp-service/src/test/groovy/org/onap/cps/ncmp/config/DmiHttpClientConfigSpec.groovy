@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,6 +71,20 @@ class DmiHttpClientConfigSpec extends Specification {
                 assert readTimeoutInSeconds == 25
                 assert writeTimeoutInSeconds == 26
                 assert responseTimeoutInSeconds == 60
+            }
+    }
+
+    def 'Http client configuration of health check services without properties set'() {
+        when: 'a configuration is created without binding any properties'
+            def result = new DmiHttpClientConfig().healthCheckServices
+        then: 'the health check services have the class default values'
+            with(result) {
+                assert connectionTimeoutInSeconds == 1
+                assert readTimeoutInSeconds == 1
+                assert writeTimeoutInSeconds == 1
+                assert responseTimeoutInSeconds == 60
+                assert maximumConnectionsTotal == 10
+                assert pendingAcquireMaxCount == 5
             }
     }
 }
