@@ -151,7 +151,7 @@ function createCmHandlePayload(cmHandleIds) {
  *
  * @returns {number} The instrumented READY count, or 0 if it cannot be read/parsed.
  */
-function getReadyCmHandlesCountFromInstrumentation() {
+export function getReadyCmHandlesCountFromInstrumentation() {
     const url = ACTUATOR_PROMETHEUS_URL;
     const response = http.get(url, { tags: { endpoint: 'actuator-prometheus' } });
     if (response.status !== 200) {

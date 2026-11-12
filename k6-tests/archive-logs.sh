@@ -21,7 +21,7 @@ set -euo pipefail
 # Constants & Configuration
 # ------------------------
 readonly LOG_DIR="${WORKSPACE:-.}/logs"
-readonly LOG_RETENTION_DAYS=14
+readonly LOG_RETENTION_DAYS=100
 readonly TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
 mkdir -p "$LOG_DIR"
