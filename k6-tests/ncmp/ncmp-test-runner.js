@@ -37,7 +37,7 @@ import {
     LEGACY_BATCH_TOPIC_NAME,
     CONTAINER_COOL_DOWW_TIME_IN_SECONDS
 } from './common/utils.js';
-import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady, getPeakReadyCmHandleGaugeCount } from './common/cmhandle-crud.js';
+import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady, getPeakReadyCmHandleGaugeCount, getReadyCmHandlesCountFromInstrumentation } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch, executeCmHandleSearchLightweight, executeCmHandleSearchV2 } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
@@ -96,6 +96,9 @@ export function setup() {
 
 export function teardown() {
     verifyReadyCmHandleGaugeDidNotExceedRegisteredTotal();
+
+    const readyGaugeAfterTestRun = getReadyCmHandlesCountFromInstrumentation();
+    console.log(`READY LCM events sent (instrumentation) after test run: ${readyGaugeAfterTestRun} (registered: ${TOTAL_CM_HANDLES}).`);
 
     const startTimeInMillis = Date.now();
 
