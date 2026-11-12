@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2c09c7e_5cc8ac4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-12T16:44:29Z",
+      "side": 1,
+      "message": "nothing blocking",
+      "revId": "21344e694499950ee2979fc897d3203040035667",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c404c8d_ff3aa482",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/DmiPluginTrustLevelWatchDog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-12T16:44:29Z",
+      "side": 1,
+      "message": "NB: could name this part better",
+      "range": {
+        "startLine": 42,
+        "startChar": 60,
+        "endLine": 42,
+        "endChar": 71
+      },
+      "revId": "21344e694499950ee2979fc897d3203040035667",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e62dbf33_dea0e3cb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/DmiHttpClientConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-12T16:44:29Z",
+      "side": 1,
+      "message": "why test it without this being set?",
+      "range": {
+        "startLine": 77,
+        "startChar": 60,
+        "endLine": 77,
+        "endChar": 68
+      },
+      "revId": "21344e694499950ee2979fc897d3203040035667",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fec2c57_0cd142bb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/DmiHttpClientConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-12T16:44:29Z",
+      "side": 1,
+      "message": "in the application.yaml you set this to 5. It makes more senss to test it WITH properties set.",
+      "range": {
+        "startLine": 83,
+        "startChar": 23,
+        "endLine": 83,
+        "endChar": 48
+      },
+      "revId": "21344e694499950ee2979fc897d3203040035667",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
