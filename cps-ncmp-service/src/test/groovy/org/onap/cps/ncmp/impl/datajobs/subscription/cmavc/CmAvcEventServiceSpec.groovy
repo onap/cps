@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2025 OpenInfra Foundation Europe. All rights reserved.
+ * Copyright (c) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,6 +98,34 @@ class CmAvcEventServiceSpec extends Specification {
             1 * mockCpsDataService.deleteDataNodes(_, cmHandleId, NO_TIMESTAMP)
         where: 'following targets are used'
             target << [null, '']
+    }
+
+    def 'Process event with invalid operation: #scenario.'() {
+        given: 'An edit with an operation that cannot be resolved to a known enum value'
+            def testAvcEventForInvalidOperation = testAvcEvent(operation, testTargetPath)
+        when: 'The AVC event is processed'
+            objectUnderTest.processCmAvcEvent(cmHandleId, testAvcEventForInvalidOperation)
+        then: 'no exception is thrown and no data service operation is performed'
+            noExceptionThrown()
+            0 * mockCpsDataService._
+        where: 'the following invalid operations are used'
+            scenario                 | operation
+            'unrecognized operation' | 'replace'
+            'null operation'         | null
+    }
+
+    def 'Process event with one invalid edit and one valid edit.'() {
+        given: 'An event containing an unrecognized operation followed by a valid create operation'
+            def badEdit = new Edit(operation: 'replace', editId: 'bad-edit-id', target: testTargetPath, value: sampleJson)
+            def goodEdit = new Edit(operation: 'create', editId: 'good-edit-id', target: NO_XPATH, value: sampleJson)
+            def testAvcEventForMixedBatch = new AvcEvent(data: new Data(pushChangeUpdate: new PushChangeUpdate(
+                datastoreChanges: new DatastoreChanges(ietfYangPatchYangPatch:
+                    new IetfYangPatchYangPatch(patchId: 'test-patch-id', edit: [badEdit, goodEdit])))))
+        when: 'The AVC event is processed'
+            objectUnderTest.processCmAvcEvent(cmHandleId, testAvcEventForMixedBatch)
+        then: 'the valid edit is still applied and no exception is thrown'
+            noExceptionThrown()
+            1 * mockCpsDataService.saveData(_, cmHandleId, sampleJson, NO_TIMESTAMP)
     }
 
     def 'Resolve parent xpath correctly: #scenario.'() {
