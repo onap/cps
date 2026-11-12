@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5fe0ba1_e2faa03f",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-12T10:48:53Z",
+      "side": 1,
+      "message": "name should imply its a number? like readyCmHandlesFromGauge or something?",
+      "revId": "ce40c87daacbd4cec0279b88ff54e3d2790976a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
