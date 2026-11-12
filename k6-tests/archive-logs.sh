@@ -21,7 +21,7 @@ set -euo pipefail
 # Constants & Configuration
 # ------------------------
 readonly LOG_DIR="${WORKSPACE:-.}/logs"
-readonly LOG_RETENTION_DAYS=14
+readonly LOG_RETENTION_DAYS=100
 readonly TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
 mkdir -p "$LOG_DIR"
@@ -42,9 +42,7 @@ fetch_pod_logs() {
 
     for pod in $pods; do
         echo "  Fetching logs for pod: $pod"
-        # --since covers a full run so the archive includes the registration/module-sync phase, not just the
-        # recent tail (kubectl logs defaults to the whole container log, but busy pods rotate earlier lines out).
-        kubectl logs --since=60m $namespace_flag "$pod" > "$dest_dir/${pod}_logs.log"
+        kubectl logs $namespace_flag "$pod" > "$dest_dir/${pod}_logs.log"
     done
 }
 

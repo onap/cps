@@ -82,7 +82,7 @@ public class ModuleSyncWatchdog {
             return;
         }
         if (!isModuleSyncEnabledOnThisInstance()) {
-            log.debug("This instance is not the module-sync master; skipping module sync");
+            log.info("This instance is not the module-sync master; skipping module sync");
             return;
         }
         moduleSyncAdvisedCmHandles();
@@ -106,6 +106,7 @@ public class ModuleSyncWatchdog {
                 log.info("Processing module sync batch finished. 0 batch(es) active.");
             }
         }
+        log.info("Module sync watchdog cycle finished; work queue empty.");
     }
 
     /**
@@ -140,7 +141,7 @@ public class ModuleSyncWatchdog {
         }
         final boolean isMaster = tryAcquireOrRenewMasterLock();
         if (isMaster) {
-            log.debug("This instance holds the module-sync master lock");
+            log.info("This instance holds the module-sync master lock");
         }
         return isMaster;
     }
