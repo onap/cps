@@ -137,16 +137,15 @@ public class CompositeQueryExecution {
      * Evaluates a single composite query condition against the candidate xpaths of its parent query.
      * The condition's cps path is queried across the whole anchor (results are cached per cps path) and
      * intersected with the parent scope so that only nodes present in the candidate trees are selected.
-     * When the condition carries nested conditions, those are evaluated recursively against a scope narrowed
-     * to the descendants of the nodes selected by this condition, because nesting means "within those selected
-     * nodes, further filter by these conditions". The switch on the operator is exhaustive: a new operator
-     * will not compile until its empty-nested-result behaviour is defined here.
+     * When the condition carries nested conditions, it does not select its own matches: those matches only
+     * scope the nested evaluation, which is run separately for each one (nesting means "within this specific
+     * selected node, further filter by these conditions"). What is returned is the union of the nested matches
+     * found under each selected node; a selected node that has no qualifying nested match contributes nothing.
      *
      * @param compositeQueryCondition    the condition to evaluate, possibly carrying nested conditions
      * @param parentQueryCandidateXpaths the xpaths in scope for this condition
-     * @return the selected xpaths: the nodes matching this condition's cps path within the parent scope,
-     *         plus any nested matches. When nested evaluation selects nothing, an AND operator invalidates
-     *         the selection entirely (empty set) while an OR operator preserves it.
+     * @return the selected xpaths: the nodes matching this condition's cps path within the parent scope when
+     *         there are no nested conditions, otherwise the nested matches found within each of those nodes
      */
     private Set<String> evaluateCondition(final CompositeQuery compositeQueryCondition,
                                           final Set<String> parentQueryCandidateXpaths) {
@@ -161,19 +160,12 @@ public class CompositeQueryExecution {
         if (compositeQueryCondition.getConditions().isEmpty()) {
             return selectedXpaths;
         }
-        final Set<String> nestedScopeXpaths = new HashSet<>();
+        final Set<String> nestedMatches = new HashSet<>();
         for (final String selectedXpath : selectedXpaths) {
-            nestedScopeXpaths.addAll(collectDescendantXpaths(selectedXpath));
+            nestedMatches.addAll(
+                computeMatchedXpaths(compositeQueryCondition, collectDescendantXpaths(selectedXpath)));
         }
-        final Set<String> nestedMatches = computeMatchedXpaths(compositeQueryCondition, nestedScopeXpaths);
-        if (nestedMatches.isEmpty()) {
-            return switch (toCompositeQueryOperator(compositeQueryCondition.getOperator())) {
-                case AND -> Collections.emptySet();
-                case OR -> selectedXpaths;
-            };
-        }
-        selectedXpaths.addAll(nestedMatches);
-        return selectedXpaths;
+        return nestedMatches;
     }
 
     /**
