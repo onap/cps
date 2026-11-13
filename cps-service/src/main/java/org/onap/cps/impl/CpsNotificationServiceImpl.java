@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 Deutsche Telekom AG
- *  Modifications Copyright (C) 2025 Nordix Foundation
+ *  Modifications Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -72,13 +72,15 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
 
     @Override
     public void deleteNotificationSubscription(final String xpath) {
-        cpsDataPersistenceService.deleteDataNode(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, xpath);
+        final String normalizedXpath = CpsPathUtil.getNormalizedXpath(xpath);
+        cpsDataPersistenceService.deleteDataNode(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, normalizedXpath);
     }
 
     @Override
     public List<Map<String, Object>> getNotificationSubscription(final String xpath) {
+        final String normalizedXpath = CpsPathUtil.getNormalizedXpath(xpath);
         final Collection<DataNode> dataNodes = cpsDataPersistenceService
-            .getDataNodes(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, xpath, INCLUDE_ALL_DESCENDANTS);
+            .getDataNodes(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, normalizedXpath, INCLUDE_ALL_DESCENDANTS);
         return dataMapper.toDataMaps(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, dataNodes);
     }
 
