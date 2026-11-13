@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b74becbf_d0afee34",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-13T13:22:35Z",
+      "side": 1,
+      "message": "nb: agreed to call it \u0027hardening\u0027 for these fixes",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "086f00cc3f616dbf24e15f9a5b0f652f741a02b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
