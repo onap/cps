@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2025 Deutsche Telekom AG
- * Modifications Copyright (C) 2025 Nordix Foundation
+ * Modifications Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,26 +91,30 @@ class CpsNotificationServiceImplSpec extends Specification {
             thrown(DataValidationException)
     }
 
-    def 'delete notification subscription for given xpath'() {
-        given: 'details for notification subscription'
-            def xpath = '/some/path'
+    def 'Delete notification subscription.'() {
         when: 'delete notification subscription is called'
             objectUnderTest.deleteNotificationSubscription(xpath)
-        then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, xpath)
+        then: 'the persistence service is called once with the normalized xpath'
+            1 * mockCpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, normalizedXpath)
+        where: 'the following xpaths are used'
+            scenario                   | xpath                                 || normalizedXpath
+            'already normalized xpath' | "/dataspaces/dataspace[@name='ds01']" || "/dataspaces/dataspace[@name='ds01']"
+            'xpath with double quotes' | '/dataspaces/dataspace[@name="ds01"]' || "/dataspaces/dataspace[@name='ds01']"
     }
 
-    def 'get notification subscription for given xpath'() {
-        given: 'details for notification subscription'
-            def xpath = '/some/path'
-        and: 'persistence service returns data nodes for subscribed data'
+    def 'Get notification subscription.'() {
+        given: 'persistence service returns data nodes for the normalized xpath'
             mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName,
-                    xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
-                    [new DataNodeBuilder().withXpath('/some/path').withLeaves([leaf: 'dataspace', leafList: ['ds01', 'ds02']]).build()]
-        when: 'delete notification subscription is called'
-            def result =  objectUnderTest.getNotificationSubscription(xpath)
+                    normalizedXpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
+                    [new DataNodeBuilder().withXpath(normalizedXpath).withLeaves([leaf: 'dataspace', leafList: ['ds01', 'ds02']]).build()]
+        when: 'get notification subscription is called'
+            def result = objectUnderTest.getNotificationSubscription(xpath)
         then: 'the result is a json representation of the data node(s) returned by the data persistence service'
-            assert result.get(0).toString() == '{path={leaf=dataspace, leafList=[ds01, ds02]}}'
+            assert result.get(0).toString() == '{dataspace={leaf=dataspace, leafList=[ds01, ds02]}}'
+        where: 'the following xpaths are used'
+            scenario                   | xpath                                 || normalizedXpath
+            'already normalized xpath' | "/dataspaces/dataspace[@name='ds01']" || "/dataspaces/dataspace[@name='ds01']"
+            'xpath with double quotes' | '/dataspaces/dataspace[@name="ds01"]' || "/dataspaces/dataspace[@name='ds01']"
     }
 
     def 'is notification enabled for given anchor'() {
