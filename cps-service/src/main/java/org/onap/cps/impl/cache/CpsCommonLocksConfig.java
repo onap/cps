@@ -38,4 +38,16 @@ public class CpsCommonLocksConfig extends HazelcastCacheConfig {
         return getOrCreateHazelcastInstance(DEFAULT_MAP_CONFIG).getMap("cpsCommonLocks");
     }
 
+    /**
+     * Stable identifier for this instance within the cluster, based on the Hazelcast local member UUID. Used to own
+     * value-based leases (e.g. module-sync master election) independently of the thread that renews them.
+     *
+     * @return the local Hazelcast member UUID as a String.
+     */
+    @Bean("cpsInstanceId")
+    public String cpsInstanceId() {
+        return getOrCreateHazelcastInstance(DEFAULT_MAP_CONFIG)
+                .getCluster().getLocalMember().getUuid().toString();
+    }
+
 }

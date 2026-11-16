@@ -21,14 +21,13 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.concurrent.BlockingQueue;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.init.MasterElection;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -46,6 +45,7 @@ public class ModuleSyncWatchdog {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     @Qualifier("cpsCommonLocks") private final IMap<String, String> cpsCommonLocks;
+    private final MasterElection masterElection;
     private final ReadinessManager readinessManager;
 
     // Cross-instance coordination (distributed work-queue lock + in-progress map + distributed work queue) is only
@@ -57,16 +57,7 @@ public class ModuleSyncWatchdog {
     private static final int MODULE_SYNC_BATCH_SIZE = 300;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
     private static final String MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME = "workQueueLock";
-    private static final String MODULE_SYNC_MASTER_LOCK_NAME = "moduleSyncMasterLock";
-
-    // The master lock is acquired with a lease (TTL) and renewed by the master every batch (see
-    // moduleSyncAdvisedCmHandles). The lease must be comfortably longer than the gap between renewals (one batch) so
-    // a healthy master never loses it mid-cycle, while still being short enough that a surviving instance takes over
-    // promptly if the master dies. Renewing per batch (not per cycle) keeps the lease short without it expiring
-    // during a long cycle that drains the whole work queue; 25s leaves ample headroom over a single batch.
-    private static final long MASTER_LOCK_LEASE_SECONDS = 25;
-
-    private volatile boolean isThisInstanceModuleSyncMaster = false;
+    private static final String MODULE_SYNC_MASTER_LEASE_NAME = "moduleSyncMaster";
 
     /**
      * Check DB for any cm handles in 'ADVISED' state.
@@ -82,7 +73,7 @@ public class ModuleSyncWatchdog {
             return;
         }
         if (!isModuleSyncEnabledOnThisInstance()) {
-            log.info("This instance is not the module-sync master; skipping module sync");
+            log.debug("This instance is not the module-sync master; skipping module sync");
             return;
         }
         moduleSyncAdvisedCmHandles();
@@ -95,10 +86,6 @@ public class ModuleSyncWatchdog {
         log.debug("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
         while (!moduleSyncWorkQueue.isEmpty()) {
-            if (!crossInstanceCoordinationEnabled && !tryAcquireOrRenewMasterLock()) {
-                log.warn("Lost the module-sync master lock mid-cycle; stopping module sync for this cycle");
-                return;
-            }
             final Collection<String> nextBatch = prepareNextBatch();
             if (!nextBatch.isEmpty()) {
                 log.info("Processing module sync batch of {}. 1 batch(es) active.", nextBatch.size());
@@ -106,7 +93,6 @@ public class ModuleSyncWatchdog {
                 log.info("Processing module sync batch finished. 0 batch(es) active.");
             }
         }
-        log.info("Module sync watchdog cycle finished; work queue empty.");
     }
 
     /**
@@ -139,24 +125,7 @@ public class ModuleSyncWatchdog {
         if (crossInstanceCoordinationEnabled) {
             return true;
         }
-        final boolean isMaster = tryAcquireOrRenewMasterLock();
-        if (isMaster) {
-            log.info("This instance holds the module-sync master lock");
-        }
-        return isMaster;
-    }
-
-    private boolean tryAcquireOrRenewMasterLock() {
-        try {
-            isThisInstanceModuleSyncMaster = cpsCommonLocks.tryLock(MODULE_SYNC_MASTER_LOCK_NAME, 0, SECONDS,
-                    MASTER_LOCK_LEASE_SECONDS, SECONDS);
-        } catch (final InterruptedException e) {
-            // Restore the interrupt status and skip module sync this cycle; the next cycle will retry the lock.
-            Thread.currentThread().interrupt();
-            isThisInstanceModuleSyncMaster = false;
-            log.warn("Interrupted while acquiring the module-sync master lock; skipping module sync this cycle");
-        }
-        return isThisInstanceModuleSyncMaster;
+        return masterElection.isMaster(MODULE_SYNC_MASTER_LEASE_NAME);
     }
 
     private void refreshWorkQueue() {

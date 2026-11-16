@@ -37,6 +37,9 @@ class CpsCommonLocksConfigSpec extends Specification {
     @Autowired
     IMap<String, String> cpsCommonLocks
 
+    @Autowired
+    String cpsInstanceId
+
     def cleanupSpec() {
         Hazelcast.getHazelcastInstanceByName('cpsCommonLocksCacheConfigSpecInstance').shutdown()
     }
@@ -50,6 +53,14 @@ class CpsCommonLocksConfigSpec extends Specification {
         and: 'the configuration has the correct (default) backup counts'
             assert config.backupCount == 1
             assert config.asyncBackupCount == 0
+    }
+
+    def 'Cps instance id is the local Hazelcast member uuid'() {
+        expect: 'the instance id is a non-blank string'
+            assert cpsInstanceId != null && !cpsInstanceId.isBlank()
+        and: 'it equals the local member uuid of the common locks instance'
+            def hazelcastInstance = ((MapProxyImpl) cpsCommonLocks).getNodeEngine().getHazelcastInstance()
+            assert cpsInstanceId == hazelcastInstance.getCluster().getLocalMember().getUuid().toString()
     }
 
 }
