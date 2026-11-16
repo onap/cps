@@ -43,6 +43,9 @@ public class NcmpInEventConsumer {
     @Value("${ncmp.datajob.subscription.enabled:false}")
     private boolean subscriptionFeatureEnabled;
 
+    @Value("${ncmp.datajob.subscription.maximum-data-node-selectors:1000}")
+    private int maximumDataNodeSelectors;
+
     /**
      * Consume the specified event.
      *
@@ -80,6 +83,11 @@ public class NcmpInEventConsumer {
         final String dataNodeSelector =
                 dataJob.getProductionJobDefinition().getTargetSelector().getDataNodeSelector();
         final List<String> dataNodeSelectors = JexParser.toXpaths(dataNodeSelector);
+        if (dataNodeSelectors.size() > maximumDataNodeSelectors) {
+            log.warn("Ignoring dataJobCreated event for dataJobId={}: {} dataNodeSelectors exceeds the maximum of {}",
+                dataJobId, dataNodeSelectors.size(), maximumDataNodeSelectors);
+            return;
+        }
         final DataSelector dataSelector = dataJob.getProductionJobDefinition().getDataSelector();
         cmSubscriptionHandler.createSubscription(dataSelector, dataJobId, dataNodeSelectors);
     }
