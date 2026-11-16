@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48ff138b_c8df8d1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-16T10:33:41Z",
+      "side": 1,
+      "message": "Just a minor observation on the testware",
+      "revId": "383b51867c4aab88e5099be33adc6fdb3dc88fb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11d0f129_8709a582",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-16T10:33:41Z",
+      "side": 1,
+      "message": "NB: same for each scenario not needed in table",
+      "range": {
+        "startLine": 100,
+        "startChar": 82,
+        "endLine": 100,
+        "endChar": 97
+      },
+      "revId": "383b51867c4aab88e5099be33adc6fdb3dc88fb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "062b5c11_e9d8b87b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-16T10:33:41Z",
+      "side": 1,
+      "message": "NB: same for each scenario not needed in table",
+      "range": {
+        "startLine": 116,
+        "startChar": 82,
+        "endLine": 116,
+        "endChar": 118
+      },
+      "revId": "383b51867c4aab88e5099be33adc6fdb3dc88fb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
