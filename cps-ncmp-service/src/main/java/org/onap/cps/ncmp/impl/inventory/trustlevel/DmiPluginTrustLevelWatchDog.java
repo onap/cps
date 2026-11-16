@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.inventory.trustlevel;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
@@ -38,6 +39,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class DmiPluginTrustLevelWatchDog {
 
+    private static final int CONSECUTIVE_HEALTH_CHECK_FAILURES_THRESHOLD = 3;
+
+    private final Map<String, Integer> numberOfFailedHealthChecksPerDmiPlugin = new ConcurrentHashMap<>();
+
     private final DmiRestClient dmiRestClient;
     private final CmHandleQueryService cmHandleQueryService;
     private final TrustLevelManager trustLevelManager;
@@ -53,15 +58,10 @@ public class DmiPluginTrustLevelWatchDog {
     @Scheduled(fixedDelayString = "${ncmp.timers.trust-level.dmi-availability-watchdog-ms:30000}")
     public void checkDmiAvailability() {
         trustLevelPerDmiPlugin.forEach((dmiServiceName, oldDmiTrustLevel) -> {
-            final TrustLevel newDmiTrustLevel;
             final String dmiHealthStatus = getDmiHealthStatus(dmiServiceName);
             log.info("The health status for dmi-plugin: {} is {}", dmiServiceName, dmiHealthStatus);
-
-            if ("UP".equals(dmiHealthStatus)) {
-                newDmiTrustLevel = TrustLevel.COMPLETE;
-            } else {
-                newDmiTrustLevel = TrustLevel.NONE;
-            }
+            final TrustLevel newDmiTrustLevel =
+                determineNewDmiTrustLevel(dmiServiceName, dmiHealthStatus, oldDmiTrustLevel);
             if (oldDmiTrustLevel.equals(newDmiTrustLevel)) {
                 log.debug("The Dmi Plugin: {} has already the same trust level: {}", dmiServiceName, newDmiTrustLevel);
             } else {
@@ -73,6 +73,24 @@ public class DmiPluginTrustLevelWatchDog {
                 trustLevelManager.updateDmi(dmiServiceName, cmHandleIds, newDmiTrustLevel);
             }
         });
+    }
+
+    private TrustLevel determineNewDmiTrustLevel(final String dmiServiceName,
+                                                 final String dmiHealthStatus,
+                                                 final TrustLevel oldDmiTrustLevel) {
+        if ("UP".equals(dmiHealthStatus)) {
+            numberOfFailedHealthChecksPerDmiPlugin.remove(dmiServiceName);
+            return TrustLevel.COMPLETE;
+        }
+        final int numberOfFailedHealthChecks =
+            numberOfFailedHealthChecksPerDmiPlugin.merge(dmiServiceName, 1, Integer::sum);
+        if (numberOfFailedHealthChecks < CONSECUTIVE_HEALTH_CHECK_FAILURES_THRESHOLD) {
+            log.info("Consecutive failed health check {} of {} for dmi-plugin: {}; keeping trust level {}",
+                numberOfFailedHealthChecks, CONSECUTIVE_HEALTH_CHECK_FAILURES_THRESHOLD, dmiServiceName,
+                oldDmiTrustLevel);
+            return oldDmiTrustLevel;
+        }
+        return TrustLevel.NONE;
     }
 
     private String getDmiHealthStatus(final String dmiServiceBaseUrl) {

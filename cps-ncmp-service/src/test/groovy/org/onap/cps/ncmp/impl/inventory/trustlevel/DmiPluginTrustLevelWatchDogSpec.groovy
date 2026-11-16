@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -53,14 +53,47 @@ class DmiPluginTrustLevelWatchDogSpec extends Specification {
             mockCmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier('dmi-1', false) >> ['ch-1', 'ch-2']
         when: 'dmi watch dog method runs'
             objectUnderTest.checkDmiAvailability()
-        then: 'the update delegated to manager'
-            numberOfCalls * mockTrustLevelManager.updateDmi('dmi-1', _, newDmiTrustLevel)
+        then: 'the update is delegated to the manager only when the trust level changes'
+            numberOfCalls * mockTrustLevelManager.updateDmi('dmi-1', ['ch-1', 'ch-2'], TrustLevel.COMPLETE)
+        and: 'no other update is delegated (a single failed health check is tolerated)'
+            0 * mockTrustLevelManager.updateDmi(*_)
         where: 'the following parameters are used'
-            dmiHealhStatus | dmiOldTrustLevel    | newDmiTrustLevel    || numberOfCalls
-            'UP'           | TrustLevel.COMPLETE | TrustLevel.COMPLETE || 0
-            'DOWN'         | TrustLevel.COMPLETE | TrustLevel.NONE     || 1
-            'DOWN'         | TrustLevel.NONE     | TrustLevel.NONE     || 0
-            'UP'           | TrustLevel.NONE     | TrustLevel.COMPLETE || 1
-            ''             | TrustLevel.COMPLETE | TrustLevel.NONE     || 1
+            dmiHealhStatus | dmiOldTrustLevel    || numberOfCalls
+            'UP'           | TrustLevel.COMPLETE || 0
+            'UP'           | TrustLevel.NONE     || 1
+            'DOWN'         | TrustLevel.COMPLETE || 0
+            'DOWN'         | TrustLevel.NONE     || 0
+            ''             | TrustLevel.COMPLETE || 0
+    }
+
+    def 'watch dmi plugin health status with consecutive failures for #dmiHealthStatus'() {
+        given: 'the cache "knows" about dmi-1 as trusted'
+            trustLevelPerDmiPlugin.put('dmi-1', TrustLevel.COMPLETE)
+        and: 'dmi client always returns health status #dmiHealthStatus'
+            mockDmiRestClient.getDmiHealthStatus(_) >> Mono.just(dmiHealthStatus)
+        and: 'the query returns the cm-handle references belonging to dmi-1'
+            mockCmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier('dmi-1', false) >> ['ch-1']
+        when: 'dmi watch dog method runs twice'
+            objectUnderTest.checkDmiAvailability()
+            objectUnderTest.checkDmiAvailability()
+        then: 'no update is delegated to the manager yet'
+            0 * mockTrustLevelManager.updateDmi(*_)
+        when: 'dmi watch dog method runs for the third time'
+            objectUnderTest.checkDmiAvailability()
+        then: 'the trust level NONE is delegated to the manager exactly once'
+            1 * mockTrustLevelManager.updateDmi('dmi-1', ['ch-1'], TrustLevel.NONE)
+        where: 'the following health statuses are used'
+            dmiHealthStatus << ['DOWN', '']
+    }
+
+    def 'watch dmi plugin health status with recovery between failures'() {
+        given: 'the cache "knows" about dmi-1 as trusted'
+            trustLevelPerDmiPlugin.put('dmi-1', TrustLevel.COMPLETE)
+        and: 'dmi client returns two failures, one UP and two failures again'
+            mockDmiRestClient.getDmiHealthStatus(_) >>> [Mono.just(''), Mono.just(''), Mono.just('UP'), Mono.just(''), Mono.just('')]
+        when: 'dmi watch dog method runs once per health status'
+            5.times { objectUnderTest.checkDmiAvailability() }
+        then: 'no update is delegated to the manager because UP resets the failure count'
+            0 * mockTrustLevelManager.updateDmi(*_)
     }
 }

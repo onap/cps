@@ -243,6 +243,8 @@ ncmp:
                 readTimeoutInSeconds: 30
                 writeTimeoutInSeconds: 30
                 responseTimeoutInSeconds: 60
+            health-check-services:
+                readTimeoutInSeconds: 5
         auth:
             username: ${DMI_USERNAME:cpsuser}
             password: ${DMI_PASSWORD:cpsr0cks!}

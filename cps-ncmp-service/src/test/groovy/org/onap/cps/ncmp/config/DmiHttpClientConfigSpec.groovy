@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ class DmiHttpClientConfigSpec extends Specification {
             }
     }
 
-    def 'Test http client configuration properties of health with default values'() {
+    def 'Http client configuration properties of health check services'() {
         expect: 'properties are populated correctly for health check services'
             with(dmiHttpClientConfig.healthCheckServices) {
                 assert maximumInMemorySizeInMegabytes == 21

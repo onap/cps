@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.dmi
 import com.fasterxml.jackson.databind.ObjectMapper
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import okhttp3.mockwebserver.SocketPolicy
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
 import org.onap.cps.ncmp.config.DmiHttpClientConfig
 import org.onap.cps.ncmp.impl.dmi.provmns.out.ClientRequestMetricsTagCustomizer
@@ -35,6 +36,7 @@ import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.util.InvalidUrlException
 import spock.lang.Specification
 
+import static java.util.concurrent.TimeUnit.SECONDS
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE
 import static org.onap.cps.ncmp.api.data.models.OperationType.READ
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
@@ -56,10 +58,14 @@ class DmiRestClientIntegrationSpec extends Specification {
                 .codecs { it.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(new ObjectMapper())) }
                 .build())
     def mockClientRequestMetricsTagCustomizer = Mock(ClientRequestMetricsTagCustomizer)
-    def dmiWebClientsConfiguration = new DmiWebClientsConfiguration(new DmiHttpClientConfig(), mockClientRequestMetricsTagCustomizer)
+    def dmiHttpClientConfig = new DmiHttpClientConfig().tap {
+        healthCheckServices.readTimeoutInSeconds = 3
+    }
+    def dmiWebClientsConfiguration = new DmiWebClientsConfiguration(dmiHttpClientConfig, mockClientRequestMetricsTagCustomizer)
     def webClientForMockServer = dmiWebClientsConfiguration.dataServicesWebClient(webClientBuilder)
+    def healthChecksWebClient = dmiWebClientsConfiguration.healthChecksWebClient(webClientBuilder.clone())
 
-    def objectUnderTest = new DmiRestClient(mockDmiServiceAuthenticationProperties, jsonObjectMapper, webClientForMockServer, webClientForMockServer, webClientForMockServer)
+    def objectUnderTest = new DmiRestClient(mockDmiServiceAuthenticationProperties, jsonObjectMapper, webClientForMockServer, webClientForMockServer, healthChecksWebClient)
 
     def cleanup() throws IOException {
         mockWebServer.shutdown()
@@ -146,18 +152,79 @@ class DmiRestClientIntegrationSpec extends Specification {
     }
 
     def 'DMI health status check with #scenario.'() {
-        given: 'Web Server will return OK response with status TEST'
-            mockWebServer.enqueue(new MockResponse().setResponseCode(HttpStatus.OK.value)
-                .setBody(jsonBody)
-                .addHeader('Content-Type', 'application/json'))
+        given: 'Web Server will return OK response with the given body (twice, to serve a retry)'
+            2.times {
+                mockWebServer.enqueue(new MockResponse().setResponseCode(HttpStatus.OK.value)
+                    .setBody(jsonBody)
+                    .addHeader('Content-Type', 'application/json'))
+            }
         when: 'DMI health status is checked'
             def result = objectUnderTest.getDmiHealthStatus(urlTemplateParameters).block()
         then: 'result is as expected'
-            result == expectedResult
+            assert result == expectedResult
+        and: 'the web server received the expected number of requests (a parse error is retried once)'
+            assert mockWebServer.requestCount == expectedRequestCount
         where: 'following json data is used'
-            scenario       | jsonBody            || expectedResult
-            'Valid Json'   | '{"status":"TEST"}' || 'TEST'
-            'Invalid Json' | 'invalid-json:!!'   || ''
+            scenario       | jsonBody            || expectedResult | expectedRequestCount
+            'Valid Json'   | '{"status":"TEST"}' || 'TEST'         | 1
+            'Invalid Json' | 'invalid-json:!!'   || ''             | 2
+    }
+
+    def 'DMI health status check with slow response.'() {
+        given: 'Web Server will return status UP after a delay of 2 seconds'
+            mockWebServer.enqueue(new MockResponse().setResponseCode(HttpStatus.OK.value)
+                .setHeadersDelay(2, SECONDS)
+                .setBody('{"status":"UP"}')
+                .addHeader('Content-Type', 'application/json'))
+        when: 'DMI health status is checked'
+            def result = objectUnderTest.getDmiHealthStatus(urlTemplateParameters).block()
+        then: 'result is UP'
+            assert result == 'UP'
+    }
+
+    def 'DMI health status check with dropped first connection.'() {
+        given: 'Web Server will close the first connection after the request, before any response'
+            mockWebServer.enqueue(new MockResponse().setSocketPolicy(SocketPolicy.DISCONNECT_AFTER_REQUEST))
+        and: 'Web Server will return status UP for the next request'
+            mockWebServer.enqueue(new MockResponse().setResponseCode(HttpStatus.OK.value)
+                .setBody('{"status":"UP"}')
+                .addHeader('Content-Type', 'application/json'))
+        when: 'DMI health status is checked'
+            def result = objectUnderTest.getDmiHealthStatus(urlTemplateParameters).block()
+        then: 'result is UP'
+            assert result == 'UP'
+        and: 'the web server received 2 requests'
+            assert mockWebServer.requestCount == 2
+    }
+
+    def 'DMI health status check with blank first response (#scenario).'() {
+        given: 'Web Server will return OK with a blank body for the first request'
+            mockWebServer.enqueue(new MockResponse().setResponseCode(HttpStatus.OK.value).setBody(blankBody))
+        and: 'Web Server will return status UP for the next request'
+            mockWebServer.enqueue(new MockResponse().setResponseCode(HttpStatus.OK.value)
+                .setBody('{"status":"UP"}')
+                .addHeader('Content-Type', 'application/json'))
+        when: 'DMI health status is checked'
+            def result = objectUnderTest.getDmiHealthStatus(urlTemplateParameters).block()
+        then: 'result is UP'
+            assert result == 'UP'
+        and: 'the web server received 2 requests'
+            assert mockWebServer.requestCount == 2
+        where: 'the following blank bodies are used'
+            scenario          | blankBody
+            'empty body'      | ''
+            'whitespace body' | ' '
+    }
+
+    def 'DMI health status check with persistent failure.'() {
+        given: 'Web Server will close the first two connections after the request, before any response'
+            2.times { mockWebServer.enqueue(new MockResponse().setSocketPolicy(SocketPolicy.DISCONNECT_AFTER_REQUEST)) }
+        when: 'DMI health status is checked'
+            def result = objectUnderTest.getDmiHealthStatus(urlTemplateParameters).block()
+        then: 'result is empty string (NOT_SPECIFIED)'
+            assert result == ''
+        and: 'the web server received at most 2 requests'
+            assert mockWebServer.requestCount <= 2
     }
 
     def 'DMI health status check with unreachable server.'() {

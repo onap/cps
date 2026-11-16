@@ -219,7 +219,8 @@ public class DmiRestClient {
      * parameters. If the response status code indicates a client error (4xx) or a server error (5xx), it logs a warning
      * and returns an empty Mono. In case of an error during the request, it logs the exception and returns a default
      * value of "NOT_SPECIFIED". If the response body contains a JSON node with a "status" field, the value of this
-     * field is returned.
+     * field is returned. The request is retried once on error, including a blank or unparseable response
+     * (e.g. a stale keep-alive connection closed by the DMI), before the error is handled.
      *
      * @param urlTemplateParameters the URL template parameters for the DMI health check endpoint
      * @return a Mono emitting the health status as a String, or "NOT_SPECIFIED" if an error occurs
@@ -230,14 +231,9 @@ public class DmiRestClient {
                 .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
                 .retrieve()
                 .bodyToMono(String.class)
-                .map(body -> {
-                    try {
-                        return new ObjectMapper().readTree(body).path("status").asText();
-                    } catch (final JsonProcessingException e) {
-                        log.warn("Failed to parse health status response: {}", e.getMessage());
-                        return NOT_SPECIFIED;
-                    }
-                })
+                .switchIfEmpty(Mono.error(() -> new IllegalStateException("Blank health status response")))
+                .map(this::parseHealthStatus)
+                .retry(1)
                 .onErrorResume(Exception.class, e -> {
                     log.warn("Failed to retrieve health status from {}. Exception type: {}, message: {}",
                             urlTemplateParameters.urlTemplate(), e.getClass().getName(), e.getMessage());
@@ -282,6 +278,17 @@ public class DmiRestClient {
                 .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
                 .exchangeToMono(this::createIdenticalResponseForClient)
                 .block();
+    }
+
+    private String parseHealthStatus(final String responseBody) {
+        if (responseBody.isBlank()) {
+            throw new IllegalStateException("Blank health status response");
+        }
+        try {
+            return new ObjectMapper().readTree(responseBody).path("status").asText();
+        } catch (final JsonProcessingException jsonProcessingException) {
+            throw new IllegalStateException("Unparseable health status response", jsonProcessingException);
+        }
     }
 
     private WebClient getWebClient(final RequiredDmiService requiredDmiService) {
