@@ -21,7 +21,7 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
+import static java.lang.Boolean.TRUE;
 
 import com.hazelcast.map.IMap;
 import java.util.Collection;
@@ -46,6 +46,7 @@ public class ModuleSyncWatchdog {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     @Qualifier("cpsCommonLocks") private final IMap<String, String> cpsCommonLocks;
+    @Qualifier("cpsInstanceId") private final String cpsInstanceId;
     private final ReadinessManager readinessManager;
 
     // Cross-instance coordination (distributed work-queue lock + in-progress map + distributed work queue) is only
@@ -57,16 +58,14 @@ public class ModuleSyncWatchdog {
     private static final int MODULE_SYNC_BATCH_SIZE = 300;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
     private static final String MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME = "workQueueLock";
-    private static final String MODULE_SYNC_MASTER_LOCK_NAME = "moduleSyncMasterLock";
+    private static final String MODULE_SYNC_MASTER_LEASE_NAME = "moduleSyncMasterLease";
 
-    // The master lock is acquired with a lease (TTL) and renewed by the master every batch (see
-    // moduleSyncAdvisedCmHandles). The lease must be comfortably longer than the gap between renewals (one batch) so
-    // a healthy master never loses it mid-cycle, while still being short enough that a surviving instance takes over
-    // promptly if the master dies. Renewing per batch (not per cycle) keeps the lease short without it expiring
-    // during a long cycle that drains the whole work queue; 25s leaves ample headroom over a single batch.
-    private static final long MASTER_LOCK_LEASE_SECONDS = 25;
-
-    private volatile boolean isThisInstanceModuleSyncMaster = false;
+    // The master lease is a value (owning instance id + expiry) stored in the shared cpsCommonLocks map, renewed by
+    // the master every batch and on every scheduled tick. Ownership is by instance id, not by thread, so any watchdog
+    // pool thread can renew it; a surviving instance takes over once the lease expires. The lease must be comfortably
+    // longer than the gap between renewals (one tick/batch) so a healthy master never loses it, while short enough
+    // that take-over is prompt if the master dies; 25s leaves ample headroom.
+    private static final long MASTER_LEASE_DURATION_MILLIS = 25_000L;
 
     /**
      * Check DB for any cm handles in 'ADVISED' state.
@@ -82,7 +81,7 @@ public class ModuleSyncWatchdog {
             return;
         }
         if (!isModuleSyncEnabledOnThisInstance()) {
-            log.info("This instance is not the module-sync master; skipping module sync");
+            log.info("This instance ({}) is not the module-sync master; skipping module sync", cpsInstanceId);
             return;
         }
         moduleSyncAdvisedCmHandles();
@@ -141,22 +140,18 @@ public class ModuleSyncWatchdog {
         }
         final boolean isMaster = tryAcquireOrRenewMasterLock();
         if (isMaster) {
-            log.info("This instance holds the module-sync master lock");
+            log.info("This instance ({}) holds the module-sync master lock", cpsInstanceId);
         }
         return isMaster;
     }
 
     private boolean tryAcquireOrRenewMasterLock() {
-        try {
-            isThisInstanceModuleSyncMaster = cpsCommonLocks.tryLock(MODULE_SYNC_MASTER_LOCK_NAME, 0, SECONDS,
-                    MASTER_LOCK_LEASE_SECONDS, SECONDS);
-        } catch (final InterruptedException e) {
-            // Restore the interrupt status and skip module sync this cycle; the next cycle will retry the lock.
-            Thread.currentThread().interrupt();
-            isThisInstanceModuleSyncMaster = false;
-            log.warn("Interrupted while acquiring the module-sync master lock; skipping module sync this cycle");
-        }
-        return isThisInstanceModuleSyncMaster;
+        final long newExpiry = System.currentTimeMillis() + MASTER_LEASE_DURATION_MILLIS;
+        final String leaseIfOwned = cpsInstanceId + ":" + newExpiry;
+        final MasterLeaseEntryProcessor masterLeaseEntryProcessor =
+            new MasterLeaseEntryProcessor(cpsInstanceId, leaseIfOwned);
+        // Returns true when this instance acquired, renewed, or took over the lease (i.e. it is now the master).
+        return TRUE.equals(cpsCommonLocks.executeOnKey(MODULE_SYNC_MASTER_LEASE_NAME, masterLeaseEntryProcessor));
     }
 
     private void refreshWorkQueue() {

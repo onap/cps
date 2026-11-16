@@ -33,7 +33,6 @@ import spock.lang.Specification
 
 import java.util.concurrent.ArrayBlockingQueue
 
-import static java.util.concurrent.TimeUnit.SECONDS
 import static org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE
 
 class ModuleSyncWatchdogSpec extends Specification {
@@ -50,9 +49,11 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def mockCpsCommonLocks = Mock(IMap<String,String>)
 
+    def cpsInstanceId = 'test-instance-id'
+
     def mockReadinessManager = Mock(ReadinessManager)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockModuleOperationsUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, mockCpsCommonLocks, mockReadinessManager)
+    def objectUnderTest = new ModuleSyncWatchdog(mockModuleOperationsUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, mockCpsCommonLocks, cpsInstanceId, mockReadinessManager)
 
     def logAppender = Spy(ListAppender<ILoggingEvent>)
 
@@ -84,8 +85,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockReadinessManager.isReady() >> true
         and: 'cross-instance coordination is disabled (master-only module sync)'
             objectUnderTest.crossInstanceCoordinationEnabled = false
-        and: 'this instance acquires the module-sync master lock'
-            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', _, _, _, _) >> true
+        and: 'this instance acquires the module-sync master lease'
+            mockCpsCommonLocks.executeOnKey('moduleSyncMasterLease', _) >> true
         and: 'there is an advised cm handle to process'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
@@ -102,8 +103,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockReadinessManager.isReady() >> true
         and: 'cross-instance coordination is disabled (master-only module sync)'
             objectUnderTest.crossInstanceCoordinationEnabled = false
-        and: 'this instance cannot acquire the module-sync master lock (another instance is master)'
-            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', _, _, _, _) >> false
+        and: 'this instance cannot acquire the master lease (another instance holds it)'
+            mockCpsCommonLocks.executeOnKey('moduleSyncMasterLease', _) >> false
         when: 'the scheduled module sync is triggered'
             objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
         then: 'no advised cm handles are fetched and no module sync task is performed'
@@ -111,7 +112,7 @@ class ModuleSyncWatchdogSpec extends Specification {
             0 * mockModuleSyncTasks.performModuleSync(*_)
     }
 
-    def 'Module sync on master instance renews the master lock each batch.'() {
+    def 'Module sync on master instance renews the master lease each batch.'() {
         given: 'system is ready to accept traffic'
             mockReadinessManager.isReady() >> true
         and: 'cross-instance coordination is disabled (master-only module sync)'
@@ -119,19 +120,19 @@ class ModuleSyncWatchdogSpec extends Specification {
         and: 'module sync utilities returns 3 batches worth of advised cm handles (queue capacity) and no locked cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(testQueueCapacity)
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
-        and: 'this instance holds (acquires or renews) the master lock with a lease on every attempt'
-            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', 0, SECONDS, 25, SECONDS) >> true
+        and: 'this instance holds (acquires or renews) the master lease on every attempt'
+            mockCpsCommonLocks.executeOnKey('moduleSyncMasterLease', _) >> true
         when: 'module sync is started'
             objectUnderTest.moduleSyncAdvisedCmHandles()
-        then: 'the master lock is renewed with its lease once per batch'
-            3 * mockCpsCommonLocks.tryLock('moduleSyncMasterLock', 0, SECONDS, 25, SECONDS) >> true
+        then: 'the master lease is renewed once per batch'
+            3 * mockCpsCommonLocks.executeOnKey('moduleSyncMasterLease', _) >> true
         and: 'all 3 batches are processed'
             3 * mockModuleSyncTasks.performModuleSync(*_)
         and: 'the distributed work queue lock is never used on the master-only path'
             0 * mockCpsCommonLocks.tryLock('workQueueLock')
     }
 
-    def 'Module sync on master instance that loses the master lock mid-cycle.'() {
+    def 'Module sync on master instance that loses the master lease mid-cycle.'() {
         given: 'system is ready to accept traffic'
             mockReadinessManager.isReady() >> true
         and: 'cross-instance coordination is disabled (master-only module sync)'
@@ -139,8 +140,8 @@ class ModuleSyncWatchdogSpec extends Specification {
         and: 'module sync utilities returns 3 batches worth of advised cm handles (queue capacity) and no locked cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(testQueueCapacity)
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
-        and: 'this instance holds the master lock for the first batch but loses it before the second'
-            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', 0, SECONDS, 25, SECONDS) >>> [true, false]
+        and: 'this instance holds the master lease for the first batch but loses it before the second'
+            mockCpsCommonLocks.executeOnKey('moduleSyncMasterLease', _) >>> [true, false]
         when: 'module sync is started'
             objectUnderTest.moduleSyncAdvisedCmHandles()
         then: 'only the first batch is processed before the cycle stops'
@@ -148,26 +149,6 @@ class ModuleSyncWatchdogSpec extends Specification {
         and: 'a warning is logged that the master lock was lost mid-cycle'
             def warningEvents = logAppender.list.findAll { it.level == Level.WARN }
             assert warningEvents.any { it.formattedMessage.contains('Lost the module-sync master lock mid-cycle') }
-    }
-
-    def 'Scheduled module sync when interrupted acquiring the master lock.'() {
-        given: 'system is ready to accept traffic'
-            mockReadinessManager.isReady() >> true
-        and: 'cross-instance coordination is disabled (master-only module sync)'
-            objectUnderTest.crossInstanceCoordinationEnabled = false
-        and: 'acquiring the module-sync master lock is interrupted'
-            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', _, _, _, _) >> { throw new InterruptedException() }
-        when: 'the scheduled module sync is triggered'
-            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
-        then: 'no module sync task is performed this cycle'
-            0 * mockModuleSyncTasks.performModuleSync(*_)
-        and: 'the thread interrupt status is restored'
-            assert Thread.currentThread().isInterrupted()
-        and: 'a warning is logged about the interruption'
-            def warningEvents = logAppender.list.findAll { it.level == Level.WARN }
-            assert warningEvents.any { it.formattedMessage.contains('Interrupted while acquiring the module-sync master lock') }
-        cleanup: 'clear the interrupt flag so it does not leak into other tests'
-            Thread.interrupted()
     }
 
     def 'Module sync advised cm handles with #scenario.'() {
@@ -215,8 +196,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockReadinessManager.isReady() >> true
         and: 'cross-instance coordination is disabled (master-only module sync)'
             objectUnderTest.crossInstanceCoordinationEnabled = false
-        and: 'this instance holds the module-sync master lock'
-            mockCpsCommonLocks.tryLock('moduleSyncMasterLock', _, _, _, _) >> true
+        and: 'this instance holds the module-sync master lease'
+            mockCpsCommonLocks.executeOnKey('moduleSyncMasterLease', _) >> true
         and: 'module sync utilities returns 3 advised cm handles and no locked cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(3)
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
