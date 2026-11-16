@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b93c6917_1094bdb0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonParseFailureTranslator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-11-16T06:54:29Z",
+      "side": 1,
+      "message": "he FallbackRule is meant to be a catch-all fallback that matches any context that none of the previous specific rules caught. If no rule matches, FallbackRule is applied as a last resort.\nSince rules are evaluated in order via Stream.concat() and .findFirst(), the fallback will only be reached when:\nNULL_LEAF rule doesn\u0027t match, AND\nINVALID_INTEGER rule doesn\u0027t match\nSo the return true; is correct",
+      "parentUuid": "487c54a0_705ee1ba",
+      "range": {
+        "startLine": 89,
+        "startChar": 10,
+        "endLine": 89,
+        "endChar": 24
+      },
+      "revId": "b75a3db978cd37b5620b7b5469ad236b745404cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d46954a_89fdbbbc",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-11-09T17:38:13Z",
       "side": 1,
       "message": "this removes the previous prefix of \u0027Failed to parse json data..\u0027 - would prefer if that was preserved to give context",
+      "range": {
+        "startLine": 94,
+        "startChar": 19,
+        "endLine": 95,
+        "endChar": 71
+      },
+      "revId": "b75a3db978cd37b5620b7b5469ad236b745404cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13713d9_76daf2e9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonParseFailureTranslator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-11-16T06:54:29Z",
+      "side": 1,
+      "message": "This is a valid concern. The fallback rule is using only context.exception().getMessage(), which loses the contextual prefix that would help users understand this is a JSON parsing error.\nDone",
+      "parentUuid": "4d46954a_89fdbbbc",
       "range": {
         "startLine": 94,
         "startChar": 19,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5931a434_7bff4728",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonParseFailureTranslator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-11-16T06:54:29Z",
+      "side": 1,
+      "message": "Since we have multiple rules now and anticipate more in the future",
+      "parentUuid": "c3c18b20_83a47762",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "b75a3db978cd37b5620b7b5469ad236b745404cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "847ff0d7_b7562e80",
@@ -83,6 +155,30 @@
       "writtenOn": "2026-11-09T17:38:13Z",
       "side": 1,
       "message": "this method returns JsonNodeFailureContext , not exception - name is misleading",
+      "range": {
+        "startLine": 150,
+        "startChar": 42,
+        "endLine": 150,
+        "endChar": 74
+      },
+      "revId": "b75a3db978cd37b5620b7b5469ad236b745404cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cff116fb_481deb4d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-11-16T06:54:29Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "847ff0d7_b7562e80",
       "range": {
         "startLine": 150,
         "startChar": 42,
