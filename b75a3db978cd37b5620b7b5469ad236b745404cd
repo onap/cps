@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ccf0edbc_48db8fa2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonParseFailureTranslator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-17T10:37:38Z",
+      "side": 1,
+      "message": "I agree with Lee-Anjella here, given this is a failure path and likely low volume setting up a stream will invoke a lot of unnecessary overhead. A for loop with if conditions would be easier to read and lighter. When more rules are applied those can be moved to another method in future rather than applying all of them on one line",
+      "parentUuid": "5931a434_7bff4728",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "b75a3db978cd37b5620b7b5469ad236b745404cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "847ff0d7_b7562e80",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
         "patchSetId": 5
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "done",
       "parentUuid": "847ff0d7_b7562e80",
+      "range": {
+        "startLine": 150,
+        "startChar": 42,
+        "endLine": 150,
+        "endChar": 74
+      },
+      "revId": "b75a3db978cd37b5620b7b5469ad236b745404cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ff52454_1616f2aa",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-17T10:37:38Z",
+      "side": 1,
+      "message": "Rename method to buildJsonDataValidation, exception in the name implies a java exception is thrown from this method when its not",
+      "parentUuid": "cff116fb_481deb4d",
       "range": {
         "startLine": 150,
         "startChar": 42,
