@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d225789_9d3d1102",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-17T18:00:26Z",
+      "side": 1,
+      "message": "Note: old pods use the \u0027moduleSyncMasterLock\u0027 lock, new pods the \u0027moduleSyncMaster\u0027 lease, so two masters are possible briefly during a rolling upgrade (only with coordination disabled). Probably acceptable; maybe worth a line in the commit message/release notes.",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff1095e4_fe1b47aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-17T18:00:26Z",
+      "side": 1,
+      "message": "The per-batch master check was removed. If the lease is lost mid-cycle (long GC pause, network split, heartbeat delayed behind other watchdog tasks), MasterElection only logs a warning while this instance keeps draining the queue and another instance takes over - two masters again. Suggest restoring a cheap check per batch:\n\n  if (!crossInstanceCoordinationEnabled \u0026\u0026 !masterElection.isMaster(MODULE_SYNC_MASTER_LEASE_NAME)) {\n      log.warn(\"Lost the module-sync master lease mid-cycle; stopping module sync for this cycle\");\n      return;\n  }",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5616f8d5_04c01112",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/MasterElection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-17T18:00:26Z",
+      "side": 1,
+      "message": "Optional: nothing releases held leases on graceful shutdown, so after a planned restart module sync pauses for up to 30s until the lease expires. A @PreDestroy that removes the entry when this instance owns it would allow immediate takeover.",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62616f6b_aacd19c0",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/MasterLeaseEntryProcessor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-17T18:00:26Z",
+      "side": 1,
+      "message": "Nit: expiry is computed with the caller\u0027s clock but checked against the partition owner\u0027s clock. With a 30s lease a few seconds of skew is harmless; maybe mention in the Javadoc.",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fd2cf57_5c255650",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/MasterElectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-17T18:00:26Z",
+      "side": 1,
+      "message": "Per AGENTS.md, titles should be slogans without the expectation. Suggest: \u0027Becoming master for a lease held by another instance.\u0027",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d65df26e_e7ef3b06",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/MasterElectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-17T18:00:26Z",
+      "side": 1,
+      "message": "Suggest slogan: \u0027Heartbeat.\u0027",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09d80711_2e914a7c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/MasterElectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-17T18:00:26Z",
+      "side": 1,
+      "message": "Suggest slogan: \u0027Heartbeat without a held lease.\u0027",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55900727_9a4e8ef3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/MasterElectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-17T18:00:26Z",
+      "side": 1,
+      "message": "Suggest slogan: \u0027Heartbeat on a lost lease.\u0027",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
