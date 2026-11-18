@@ -161,7 +161,7 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@a408046adeba05bcf505b8cc0fa240e21046cc10  # v0.7.3
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-build-test.yaml@1e5aae1c31ef26070fce3e8917be6c2b2a26fbb8  # v0.8.0
     with:
       # master builds on Java 21.
       java_version: '21'
