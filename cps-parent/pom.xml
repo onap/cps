@@ -56,7 +56,6 @@
         <maven.compiler.release>21</maven.compiler.release>
         <maven.site.plugin.version>4.0.0-M13</maven.site.plugin.version>
         <maven.surefire.plugin.version>3.5.2</maven.surefire.plugin.version>
-        <postgres.version>42.7.9</postgres.version>
         <slf4j.simple.version>2.0.17</slf4j.simple.version>
         <sonar.version>4.0.0.4121</sonar.version>
         <spotbugs.plugin.version>4.8.6.6</spotbugs.plugin.version>
