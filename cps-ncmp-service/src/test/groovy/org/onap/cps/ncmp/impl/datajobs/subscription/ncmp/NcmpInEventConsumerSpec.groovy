@@ -37,6 +37,7 @@ class NcmpInEventConsumerSpec extends Specification {
 
     def setup() {
         objectUnderTest.subscriptionFeatureEnabled = true
+        objectUnderTest.maximumDataNodeSelectors = 1000
     }
 
     def 'Consuming CREATE cm data job subscription request.'() {
@@ -54,6 +55,24 @@ class NcmpInEventConsumerSpec extends Specification {
             objectUnderTest.consumeSubscriptionEvent(event)
         then: 'subscription create request is called'
             1 * mockCmSubscriptionHandler.createSubscription(dataSelector, 'myDataJobId', dataNodeSelectorList)
+    }
+
+    def 'Consuming CREATE cm data job subscription request with more data node selectors than the maximum.'() {
+        given: 'a maximum of one data node selector'
+            objectUnderTest.maximumDataNodeSelectors = 1
+        and: 'a JSON file for create event'
+            def jsonData = TestUtils.getResourceFileContent(
+                'datajobs/subscription/cmNotificationSubscriptionNcmpInEvent.json')
+            jsonData = jsonData.replace('#myEventType', 'dataJobCreated')
+        and: 'the event data node selector is extended to have two selectors'
+            jsonData = jsonData.replace('SN1', 'SN1\\"]\\nOR /SubNetwork[id=\\"SN2')
+            def event = objectMapper.readValue(jsonData, DataJobSubscriptionOperationInEvent)
+        when: 'the event is consumed'
+            objectUnderTest.consumeSubscriptionEvent(event)
+        then: 'no error thrown'
+            noExceptionThrown()
+        and: 'the subscription is not created'
+            0 * mockCmSubscriptionHandler.createSubscription(*_)
     }
 
     def 'Consuming DELETE cm data job subscription request.'() {
