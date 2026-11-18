@@ -61,7 +61,7 @@ public class DataRestController implements CpsDataApi {
     private final JsonObjectMapper jsonObjectMapper;
 
     @Override
-    public ResponseEntity<String> createNode(final String apiVersion,
+    public ResponseEntity<Void> createNode(final String apiVersion,
                                              final String dataspaceName, final String anchorName,
                                              final String nodeData, final String parentNodeXpath,
                                              final Boolean dryRunEnabled, final String observedTimestamp,
@@ -91,7 +91,7 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<String> addListElements(final String apiVersion, final String dataspaceName,
+    public ResponseEntity<Void> addListElements(final String apiVersion, final String dataspaceName,
                                                   final String anchorName, final String parentNodeXpath,
                                                   final String nodeData, final Boolean dryRunEnabled,
                                                   final String observedTimestamp, final String contentTypeInHeader) {
@@ -148,7 +148,7 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
+    public ResponseEntity<Void> updateNodeLeaves(final String apiVersion, final String dataspaceName,
                                                    final String anchorName, final String nodeData,
                                                    final String parentNodeXpath, final Boolean dryRunEnabled,
                                                    final String observedTimestamp, final String contentTypeInHeader) {
@@ -164,7 +164,7 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> replaceNode(final String apiVersion, final String dataspaceName,
+    public ResponseEntity<Void> replaceNode(final String apiVersion, final String dataspaceName,
                                               final String anchorName, final String nodeData,
                                               final String parentNodeXpath, final Boolean dryRunEnabled,
                                               final String observedTimestamp, final String contentTypeInHeader) {
@@ -188,7 +188,7 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> replaceListContent(final String apiVersion, final String dataspaceName,
+    public ResponseEntity<Void> replaceListContent(final String apiVersion, final String dataspaceName,
                                                      final String anchorName, final String parentNodeXpath,
                                                      final String nodeData, final Boolean dryRunEnabled,
                                                      final String observedTimestamp, final String contentTypeInHeader) {

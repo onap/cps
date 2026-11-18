@@ -33,6 +33,7 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
+import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
@@ -50,6 +51,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request
 
 @WebMvcTest(DataRestController)
 class DataRestControllerSpec extends Specification {
@@ -92,6 +94,52 @@ class DataRestControllerSpec extends Specification {
         dataNodeBaseEndpointV1 = "$basePath/v1/dataspaces/$dataspaceName"
         dataNodeBaseEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName"
         dataNodeBaseEndpointV3 = "$basePath/v3/dataspaces/$dataspaceName"
+    }
+
+    def 'V2 mutation response for #scenario.'() {
+        given: 'a service outcome for node replacement'
+            mockCpsDataService.updateDataNodeAndDescendants(*_) >> dataNodeOperation
+        when: 'the mutation is requested'
+            def response = mvc.perform(request(httpMethod, "$dataNodeBaseEndpointV2/anchors/$anchorName/$resource")
+                .contentType(APPLICATION_JSON)
+                .content(requestBodyJson)
+                .param('xpath', '/')).andReturn().response
+        then: 'the response has the expected status and no representation'
+            response.status == expectedStatus.value()
+            response.contentAsByteArray.length == 0
+            response.getHeader('Content-Type') == null
+        where:
+            scenario                | httpMethod       | resource     | dataNodeOperation || expectedStatus
+            'create node'           | HttpMethod.POST  | 'nodes'      | null              || HttpStatus.CREATED
+            'create by replacement' | HttpMethod.PUT   | 'nodes'      | CREATE            || HttpStatus.CREATED
+            'replace node'          | HttpMethod.PUT   | 'nodes'      | REPLACE           || HttpStatus.NO_CONTENT
+            'update node'           | HttpMethod.PUT   | 'nodes'      | UPDATE            || HttpStatus.OK
+            'update leaves'         | HttpMethod.PATCH | 'nodes'      | null              || HttpStatus.OK
+            'replace list content'  | HttpMethod.PUT   | 'list-nodes' | null              || HttpStatus.OK
+            'add list elements'     | HttpMethod.POST  | 'list-nodes' | null              || HttpStatus.CREATED
+    }
+
+    def 'V2 dry-run mutation for #scenario.'() {
+        when: 'the mutation is requested in validation-only mode'
+            def response = mvc.perform(request(httpMethod, "$dataNodeBaseEndpointV2/anchors/$anchorName/$resource")
+                .contentType(APPLICATION_JSON)
+                .content(requestBodyJson)
+                .param('xpath', '/')
+                .param('dry-run', 'true')).andReturn().response
+        then: 'only validation is performed'
+            1 * mockCpsDataService.validateData(dataspaceName, anchorName, '/', requestBodyJson, ContentType.JSON)
+            0 * mockCpsDataService._
+        and: 'the response is empty and has no content type'
+            response.status == HttpStatus.OK.value()
+            response.contentAsByteArray.length == 0
+            response.getHeader('Content-Type') == null
+        where:
+            scenario               | httpMethod       | resource
+            'create node'          | HttpMethod.POST  | 'nodes'
+            'replace node'         | HttpMethod.PUT   | 'nodes'
+            'update leaves'        | HttpMethod.PATCH | 'nodes'
+            'replace list content' | HttpMethod.PUT   | 'list-nodes'
+            'add list elements'    | HttpMethod.POST  | 'list-nodes'
     }
 
     def 'Create a node: #scenario.'() {
