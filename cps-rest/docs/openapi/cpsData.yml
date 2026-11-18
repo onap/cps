@@ -20,7 +20,7 @@
 
 listElementByDataspaceAndAnchor:
   post:
-    description: Add list element(s) to a list for a given anchor and dataspace
+    description: Add list element(s) to a list for a given anchor and dataspace. Returns 201 on creation, or 200 when dry-run validates the data without persisting it.
     tags:
       - cps-data
     summary: Add list element(s)
@@ -51,8 +51,10 @@ listElementByDataspaceAndAnchor:
             dataSample:
               $ref: 'components.yml#/components/examples/dataSampleXml'
     responses:
+      '200':
+        $ref: 'components.yml#/components/responses/OkNoContent'
       '201':
-        $ref: 'components.yml#/components/responses/Created'
+        $ref: 'components.yml#/components/responses/CreatedV2'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
@@ -60,7 +62,7 @@ listElementByDataspaceAndAnchor:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
   put:
-    description: Replace list content under a given parent, anchor and dataspace
+    description: Replace list content under a given parent, anchor and dataspace. Returns 200 on success; dry-run validates the data without persisting it.
     tags:
       - cps-data
     summary: Replace list content
@@ -92,7 +94,7 @@ listElementByDataspaceAndAnchor:
               $ref: 'components.yml#/components/examples/dataSampleXml'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        $ref: 'components.yml#/components/responses/OkNoContent'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
@@ -102,7 +104,7 @@ listElementByDataspaceAndAnchor:
 
 nodesByDataspaceAndAnchor:
   post:
-    description: Create a node for a given anchor and dataspace
+    description: Create a node for a given anchor and dataspace. Returns 201 on creation, or 200 when dry-run validates the data without persisting it.
     tags:
       - cps-data
     summary: Create a node
@@ -133,8 +135,10 @@ nodesByDataspaceAndAnchor:
             dataSample:
               $ref: 'components.yml#/components/examples/dataSampleXml'
     responses:
+      '200':
+        $ref: 'components.yml#/components/responses/OkNoContent'
       '201':
-        $ref: 'components.yml#/components/responses/Created'
+        $ref: 'components.yml#/components/responses/CreatedV2'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
@@ -144,8 +148,7 @@ nodesByDataspaceAndAnchor:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
   patch:
-    description: Update a data node leaves for a given dataspace and anchor and a parent node xpath. This operation
-                  is currently supported for one top level data node only.
+    description: Update a data node leaves for a given dataspace and anchor and a parent node xpath. This operation is currently supported for one top level data node only. Returns 200 on success; dry-run validates the data without persisting it.
     tags:
       - cps-data
     summary: Update node leaves
@@ -177,7 +180,7 @@ nodesByDataspaceAndAnchor:
               $ref: 'components.yml#/components/examples/dataSampleXml'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        $ref: 'components.yml#/components/responses/OkNoContent'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
@@ -206,7 +209,7 @@ nodesByDataspaceAndAnchor:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
   put:
-    description: Replace a node with descendants for a given dataspace, anchor and a parent node xpath
+    description: Replace a node with descendants for a given dataspace, anchor and a parent node xpath. Returns 201 when created, 204 when replaced, and 200 for other outcomes. Dry-run validates the data without persisting it and returns 200.
     tags:
       - cps-data
     summary: Replace a node with descendants
@@ -238,9 +241,9 @@ nodesByDataspaceAndAnchor:
               $ref: 'components.yml#/components/examples/dataSampleXml'
     responses:
       '200':
-        $ref: 'components.yml#/components/responses/Ok'
+        $ref: 'components.yml#/components/responses/OkNoContent'
       '201':
-        $ref: 'components.yml#/components/responses/Created'
+        $ref: 'components.yml#/components/responses/CreatedV2'
       '204':
         $ref: 'components.yml#/components/responses/NoContent'
       '400':

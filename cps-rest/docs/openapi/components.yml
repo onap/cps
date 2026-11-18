@@ -662,6 +662,8 @@ components:
           examples:
             dataSample:
               value: ""
+    OkNoContent:
+      description: OK without response body
     Created:
       description: Created
       content:
