@@ -255,7 +255,7 @@ jobs:
       contents: read
       pull-requests: read  # repository-metadata-action queries PR data
     # yamllint disable-line rule:line-length
-    uses: lfreleng-actions/java-workflows/.github/workflows/maven-merge.yaml@a408046adeba05bcf505b8cc0fa240e21046cc10  # v0.7.3
+    uses: lfreleng-actions/java-workflows/.github/workflows/maven-merge.yaml@1e5aae1c31ef26070fce3e8917be6c2b2a26fbb8  # v0.8.0
     with:
       # yamllint disable-line rule:line-length
       gerrit_branch: ${{ !inputs.GERRIT_DISABLED && inputs.GERRIT_BRANCH || '' }}
