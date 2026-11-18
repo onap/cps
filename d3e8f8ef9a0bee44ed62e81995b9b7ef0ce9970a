@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "67555d50_d740da00",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/MasterElection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-18T14:30:08Z",
+      "side": 1,
+      "message": "not quite okay with the name but i cant think of a better one either",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5616f8d5_04c01112",
