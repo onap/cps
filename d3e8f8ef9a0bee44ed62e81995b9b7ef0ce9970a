@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "176c13c0_819e8328",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-18T16:37:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c1eaa17_7c62f88f",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff1095e4_fe1b47aa",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-11-17T18:00:26Z",
       "side": 1,
       "message": "The per-batch master check was removed. If the lease is lost mid-cycle (long GC pause, network split, heartbeat delayed behind other watchdog tasks), MasterElection only logs a warning while this instance keeps draining the queue and another instance takes over - two masters again. Suggest restoring a cheap check per batch:\n\n  if (!crossInstanceCoordinationEnabled \u0026\u0026 !masterElection.isMaster(MODULE_SYNC_MASTER_LEASE_NAME)) {\n      log.warn(\"Lost the module-sync master lease mid-cycle; stopping module sync for this cycle\");\n      return;\n  }",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bd4c421_792e396b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-18T16:37:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff1095e4_fe1b47aa",
       "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2f7e6b28_f13323a5",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/MasterElection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-18T16:37:31Z",
+      "side": 1,
+      "message": "Kept MasterElection for consistency with the existing \u0027master\u0027 terminology used in this are (module-sync master, master lock); happy to rename if a better name comes up.",
+      "parentUuid": "67555d50_d740da00",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5616f8d5_04c01112",
         "filename": "cps-service/src/main/java/org/onap/cps/init/MasterElection.java",
         "patchSetId": 2
@@ -82,6 +136,24 @@
       "writtenOn": "2026-11-17T18:00:26Z",
       "side": 1,
       "message": "Optional: nothing releases held leases on graceful shutdown, so after a planned restart module sync pauses for up to 30s until the lease expires. A @PreDestroy that removes the entry when this instance owns it would allow immediate takeover.",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b877d808_615e48ad",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/MasterElection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-18T16:37:31Z",
+      "side": 1,
+      "message": "Good point. A pause of up to 30s after a planned restart is acceptable for module sync, so I\u0027ve kept this change minimal; releasing the lease on shutdown can be added later if the delay turns out to matter.",
+      "parentUuid": "5616f8d5_04c01112",
       "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -103,6 +175,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1addefe_038d247b",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/MasterLeaseEntryProcessor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-18T16:37:31Z",
+      "side": 1,
+      "message": "Done, added a paragraph on clock skew to the class Javadoc.",
+      "parentUuid": "62616f6b_aacd19c0",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fd2cf57_5c255650",
@@ -116,6 +206,24 @@
       "writtenOn": "2026-11-17T18:00:26Z",
       "side": 1,
       "message": "Per AGENTS.md, titles should be slogans without the expectation. Suggest: \u0027Becoming master for a lease held by another instance.\u0027",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2a203c1_8adcb8cd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/MasterElectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-18T16:37:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fd2cf57_5c255650",
       "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -137,6 +245,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6ffb2de_57cc9ea4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/MasterElectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-18T16:37:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d65df26e_e7ef3b06",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09d80711_2e914a7c",
@@ -154,6 +280,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c20fec2_1cf13385",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/MasterElectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-18T16:37:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09d80711_2e914a7c",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55900727_9a4e8ef3",
@@ -167,6 +311,24 @@
       "writtenOn": "2026-11-17T18:00:26Z",
       "side": 1,
       "message": "Suggest slogan: \u0027Heartbeat on a lost lease.\u0027",
+      "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c62937c7_84821437",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/MasterElectionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-18T16:37:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55900727_9a4e8ef3",
       "revId": "d3e8f8ef9a0bee44ed62e81995b9b7ef0ce9970a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
