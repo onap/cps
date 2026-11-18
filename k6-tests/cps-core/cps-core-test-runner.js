@@ -18,8 +18,14 @@
  *  ============LICENSE_END=========================================================
  */
 
+import { check, sleep } from 'k6';
 import { Trend } from 'k6/metrics';
-import { testConfig, makeCustomSummaryReport } from './common/utils.js';
+import { testConfig, makeCustomSummaryReport, CONTAINER_COOL_DOWN_TIME_IN_SECONDS } from './common/utils.js';
+import {
+    createDataspace, deleteDataspace,
+    createSchemaSet, deleteSchemaSet,
+    createAnchor, deleteAnchor
+} from './common/admin-crud.js';
 
 const trendNamesFileContent = open('./config/trendNames.txt').trim();
 const trendNames = trendNamesFileContent ? trendNamesFileContent.split('\n') : [];
@@ -29,6 +35,10 @@ for (const trendName of trendNames) {
     kpiTrendDeclarations[trendName] = new Trend(trendName, true);
 }
 
+const DATASPACE_NAME = 'k6PerfDataspace';
+const SCHEMA_SET_NAME = 'k6PerfSchemaSet';
+const ANCHOR_NAME = 'k6PerfAnchor';
+
 export const options = {
     setupTimeout: '30m',
     teardownTimeout: '20m',
@@ -37,9 +47,30 @@ export const options = {
 };
 
 export function setup() {
+    const startTimeInMillis = Date.now();
+
+    let numberOfSuccessfulRegistrations = 0;
+    const registrations = [
+        [createDataspace(DATASPACE_NAME), 'create dataspace status equals 201'],
+        [createSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME), 'create schema set status equals 201'],
+        [createAnchor(DATASPACE_NAME, SCHEMA_SET_NAME, ANCHOR_NAME), 'create anchor status equals 201'],
+    ];
+    for (const [response, checkLabel] of registrations) {
+        if (check(response, { [checkLabel]: (response) => response.status === 201 })) {
+            numberOfSuccessfulRegistrations++;
+        }
+    }
+
+    const totalRegistrationTimeInSeconds = (Date.now() - startTimeInMillis) / 1000.0;
+    kpiTrendDeclarations.admin_crud_registrations.add(numberOfSuccessfulRegistrations / totalRegistrationTimeInSeconds);
 }
 
 export function teardown() {
+    check(deleteAnchor(DATASPACE_NAME, ANCHOR_NAME), { 'delete anchor status equals 204': (response) => response.status === 204 });
+    check(deleteSchemaSet(DATASPACE_NAME, SCHEMA_SET_NAME), { 'delete schema set status equals 204': (response) => response.status === 204 });
+    check(deleteDataspace(DATASPACE_NAME), { 'delete dataspace status equals 204': (response) => response.status === 204 });
+
+    sleep(CONTAINER_COOL_DOWN_TIME_IN_SECONDS);
 }
 
 // No-op default: keeps k6 happy while `scenarios` is empty (no scenarios wired up yet).
@@ -48,7 +79,7 @@ export default function () {
 }
 
 export function handleSummary(data) {
-    const testProfile = __ENV.TEST_PROFILE;
+    const testProfile = __ENV.TEST_PROFILE || 'kpi';
     if (testProfile === 'kpi') {
         console.log("✅ Generating KPI summary...");
         return {

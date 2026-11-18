@@ -1,0 +1,49 @@
+module stores {
+    yang-version 1.1;
+    namespace "org:onap:cps:sample";
+
+    prefix book-store;
+
+    revision "2024-02-08" {
+        description
+            "Sample bookstore model used by the cps-core k6 performance tests";
+    }
+
+    container bookstore {
+
+        leaf bookstore-name {
+            type string;
+        }
+
+        list categories {
+
+            key "code";
+
+            leaf code {
+                type string;
+            }
+
+            leaf name {
+                type string;
+            }
+
+            list books {
+                key title;
+
+                leaf title {
+                    type string;
+                }
+                leaf lang {
+                    type string;
+                }
+                leaf-list authors {
+                    ordered-by user;
+                    type string;
+                }
+                leaf price {
+                    type uint64;
+                }
+            }
+        }
+    }
+}

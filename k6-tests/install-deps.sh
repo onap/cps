@@ -30,7 +30,7 @@ export PATH="$(pwd)/bin:$PATH"
 suite=${1:-ncmp}
 
 if [ "$suite" = "cps-core" ]; then
-  # cps-core doesn't use Kafka, so skip the xk6-kafka download and use a plain k6 already on PATH.
+  # Use a plain k6 already on PATH (or bin/) instead of downloading the xk6-kafka build.
   if ! command -v k6 >/dev/null 2>&1 && [ ! -x bin/k6 ]; then
     echo " Error: k6 not found. Install k6 (e.g. via winget/choco/apt) or place it on PATH before running cps-core tests." >&2
     exit 1

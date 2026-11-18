@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "testNumber" : "0",
+    "testName" : "HTTP request failures for all tests",
+    "unit" : "rate of failed requests",
+    "measurementName" : "http_req_failed",
+    "currentExpectation" : 0
+  },
+  {
+    "testNumber" : "1",
+    "testName" : "Admin CRUD setup (dataspace/schema-set/anchor registration)",
+    "unit" : "registrations/second",
+    "measurementName" : "admin_crud_registrations",
+    "currentExpectation" : 1
+  }
+]

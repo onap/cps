@@ -5,6 +5,7 @@ k6 tests are written in JavaScript.
 
 ## k6 installation
 Follow the instructions in the [build from source guide](https://github.com/mostafa/xk6-kafka) to get started.
+The xk6-kafka build is only required for the ncmp suite; cps-core works with a plain k6.
 
 ## Running k6 test suites
 The CPS k6 tests measure the system capabilities as per requirements.
@@ -13,7 +14,8 @@ The CPS k6 tests measure the system capabilities as per requirements.
 There are two test suites, each with its own scenarios/config, kept as separate k6 invocations so results aren't
 contaminated by shared CPS container/DB contention:
 1. ncmp — the test scenarios specific to NCMP (default).
-2. cps-core — CPS-Core scenarios (scaffold only for now; no scenarios executed yet).
+2. cps-core — CPS-Core scenarios. Admin CRUD (dataspace/schema-set/anchor) runs in `setup()`/`teardown()`
+   to provide a live anchor for later scenarios; no load-test scenarios executed yet.
 
 ### Test Profiles
 There are three test profiles that can be run:
@@ -37,6 +39,8 @@ Run the main script. It assumes a Kubernetes environment with Helm is already av
 ```shell
 ./k6-main.sh [kpi|endurance|onapDmiStack] [ncmp|cps-core]
 ```
+The suite defaults to ncmp, so `./k6-main.sh kpi` runs the ncmp KPI tests. The cps-core suite only needs a plain k6
+on the PATH (no xk6-kafka build).
 
 ### Parallel runs
 KPI and endurance can run simultaneously on the same cluster. They use separate namespaces and
@@ -58,10 +62,10 @@ helm install cps ../cps-charts --namespace kpi --create-namespace
 
 To run an individual test from the command line, use:
 ```shell
-k6 run ncmp/scenarios-config.js -e TEST_PROFILE=kpi
+cd ncmp && k6 run ncmp-test-runner.js -e TEST_PROFILE=kpi
 ```
 
-or, for cps-core:
+or, for cps-core (the base URL comes from `cps-core/config/<profile>.json`, override with `-e CPS_CORE_BASE_URL=...`):
 ```shell
 cd cps-core && k6 run cps-core-test-runner.js -e TEST_PROFILE=kpi
 ```
