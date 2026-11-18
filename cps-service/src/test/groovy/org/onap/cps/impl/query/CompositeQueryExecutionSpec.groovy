@@ -283,9 +283,37 @@ class CompositeQueryExecutionSpec extends Specification {
                 FetchDescendantsOption.OMIT_DESCENDANTS, 0) >> []
         when: 'the composite query is processed'
             def result = processCompositeQuery(query, FetchDescendantsOption.OMIT_DESCENDANTS)
-        then: 'categoryChildren is returned because OR does not require all conditions to match'
+        then: 'no results are returned because the nested condition selects nothing within the Children category'
+            result.isEmpty()
+    }
+
+    def 'Composite query with a nested condition prunes the parent and drops non-matching parents.'() {
+        given: 'a comedy category holding one cheap book'
+            def bookCheap = new DataNode(xpath: "/bookstore/categories[@code='3']/books[@title='Cheap']",
+                leaves: [price: 5], dataspace: DATASPACE, anchorName: ANCHOR, childDataNodes: [])
+            def comedyWithCheapBook = new DataNode(xpath: "/bookstore/categories[@code='3']",
+                leaves: [name: 'Comedy'], dataspace: DATASPACE, anchorName: ANCHOR, childDataNodes: [bookCheap])
+        and: 'a nested query: categories AND (categories AND books[@price=20])'
+            def subCondition = CompositeQuery.builder().cpsPath('//books[@price=20]').build()
+            def condition    = CompositeQuery.builder().cpsPath('//categories').operator('and')
+                .conditions([subCondition]).build()
+            def query        = CompositeQuery.builder().cpsPath('//categories').operator('and')
+                .conditions([condition]).build()
+        and: 'both categories match the condition but only Matilda satisfies the sub-condition'
+            mockCpsDataPersistenceService.queryDataNodes(DATASPACE, ANCHOR, '//categories',
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, 0) >> [categoryChildren, comedyWithCheapBook]
+            mockCpsDataPersistenceService.queryDataNodes(DATASPACE, ANCHOR, '//categories',
+                FetchDescendantsOption.OMIT_DESCENDANTS, 0) >> [categoryChildren, comedyWithCheapBook]
+            mockCpsDataPersistenceService.queryDataNodes(DATASPACE, ANCHOR, '//books[@price=20]',
+                FetchDescendantsOption.OMIT_DESCENDANTS, 0) >> [bookMatilda]
+        when: 'the composite query is processed'
+            def result = processCompositeQuery(query, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'only the Children category is returned, Comedy is dropped'
             result.size() == 1
             result[0].xpath == "/bookstore/categories[@code='1']"
+        and: 'it holds only the matching book, not The Gruffalo'
+            result[0].childDataNodes.collect { it.xpath } ==
+                ["/bookstore/categories[@code='1']/books[@title='Matilda']"]
     }
 
     def 'Composite query with four-level hierarchy and all descendants fetch option.'() {
