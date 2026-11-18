@@ -166,6 +166,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da3f8f72_190d8adf",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonParseFailureTranslator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-11-18T11:01:16Z",
+      "side": 1,
+      "message": "I\u0027ve simplified the rule evaluation logic by replacing the stream processing with a straightforward loop. I kept the rule-based structure because we now have multiple validation scenarios with separate matching and exception-generation logic.",
+      "parentUuid": "ccf0edbc_48db8fa2",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "b75a3db978cd37b5620b7b5469ad236b745404cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "847ff0d7_b7562e80",
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "Rename method to buildJsonDataValidation, exception in the name implies a java exception is thrown from this method when its not",
       "parentUuid": "cff116fb_481deb4d",
+      "range": {
+        "startLine": 150,
+        "startChar": 42,
+        "endLine": 150,
+        "endChar": 74
+      },
+      "revId": "b75a3db978cd37b5620b7b5469ad236b745404cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86303c2b_3f71b000",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-11-18T11:01:16Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "4ff52454_1616f2aa",
       "range": {
         "startLine": 150,
         "startChar": 42,
