@@ -12,9 +12,10 @@
 ## Commit Messages
 - Follow [ONAP commit message guidelines](https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16390326/Commit+Message+Guidelines)
 - Format: `<type>: <short description>` (max 72 chars subject line)
-- Types: feat, fix, refactor, test, docs, chore
+- Types: feat, fix, refactor, test, docs, chore, hardening
 - **Always include Issue-ID (Jira ticket) in the footer. If unknown, ask the user before generating the commit message.**
 - Body should explain *why*, not *what* (the code shows what)
+- Body should use ASD-STE100 to explain the change
 - Prefer a short list of bullets in the body over prose paragraphs
 - Do not include Signed-off-by lines; the user will handle sign-off via git command line
 - Do not mention added or updated tests; the mandatory 100% code coverage rule makes test changes implicit.
