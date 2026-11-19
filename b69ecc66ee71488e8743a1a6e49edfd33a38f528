@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea509ee9_fbf54c03",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-11-19T13:14:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20c43af5_2d51f877",
+      "revId": "b69ecc66ee71488e8743a1a6e49edfd33a38f528",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90c5b034_a2ae9667",
@@ -48,6 +66,24 @@
       "writtenOn": "2026-11-17T10:19:58Z",
       "side": 1,
       "message": "Similar to comment above 1 * mockDeltaReportGenerator.createDeltaReports(_,_)",
+      "revId": "b69ecc66ee71488e8743a1a6e49edfd33a38f528",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5162c0c9_15fc7880",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8575
+      },
+      "writtenOn": "2026-11-19T13:14:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90c5b034_a2ae9667",
       "revId": "b69ecc66ee71488e8743a1a6e49edfd33a38f528",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
