@@ -28,7 +28,6 @@ import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,24 +96,16 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
 
     @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleReference(final String cmHandleReference) {
-        try {
-            final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
-            return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
-        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
-            return Collections.emptyList();
-        }
+        final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
+        return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
     }
 
     @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleReference,
                                                                                 final String moduleName,
                                                                                 final String moduleRevision) {
-        try {
-            final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
-            return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
-        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
-            return Collections.emptyList();
-        }
+        final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
+        return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
     }
 
     @Override
