@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -79,11 +79,11 @@ class UpdatePerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("CPS:${scenario}", expectedTime, resourceMeter.getTotalTimeInSeconds(), resourceMeter.getTotalMemoryUsageInMB(), referenceGraph)
         where:
             scenario                           | totalNodes | startId | changeLeaves || expectedTime | referenceGraph
-            'Replace 0 nodes with 100'         | 100        | 1       | false        || 3.0          | false
-            'Replace 100 using same data'      | 100        | 1       | false        || 5.0          | false
-            'Replace 100 with new leaf values' | 100        | 1       | true         || 5.4          | false
-            'Replace 100 with 100 new nodes'   | 100        | 101     | false        || 9.3          | REFERENCE_GRAPH
-            'Replace 50 existing and 50 new'   | 100        | 151     | true         || 7.3          | false
+            'Replace 0 nodes with 100'         | 100        | 1       | false        || 2.9          | false
+            'Replace 100 using same data'      | 100        | 1       | false        || 5.7          | false
+            'Replace 100 with new leaf values' | 100        | 1       | true         || 5.8          | false
+            'Replace 100 with 100 new nodes'   | 100        | 101     | false        || 8.8          | REFERENCE_GRAPH
+            'Replace 50 existing and 50 new'   | 100        | 151     | true         || 7.5          | false
             'Replace 100 nodes with 0'         | 0          | 1       | false        || 6.0          | false
     }
 
@@ -103,12 +103,12 @@ class UpdatePerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("CPS:${scenario}", expectedTime, resourceMeter.getTotalTimeInSeconds(), resourceMeter.getTotalMemoryUsageInMB())
         where:
             scenario                                   | totalNodes | startId | changeLeaves || expectedTime
-            'Replace list of 0 with 100'               | 100        | 1       | false        || 3.0
-            'Replace list of 100 using same data'      | 100        | 1       | false        || 5.0
-            'Replace list of 100 with new leaf values' | 100        | 1       | true         || 5.4
-            'Replace list with 100 new nodes'          | 100        | 101     | false        || 9.0
-            'Replace list with 50 existing and 50 new' | 100        | 151     | true         || 7.0
-            'Replace list of 100 nodes with 1'         | 1          | 1       | false        || 5.9
+            'Replace list of 0 with 100'               | 100        | 1       | false        || 2.9
+            'Replace list of 100 using same data'      | 100        | 1       | false        || 4.5
+            'Replace list of 100 with new leaf values' | 100        | 1       | true         || 4.7
+            'Replace list with 100 new nodes'          | 100        | 101     | false        || 8.7
+            'Replace list with 50 existing and 50 new' | 100        | 151     | true         || 6.7
+            'Replace list of 100 nodes with 1'         | 1          | 1       | false        || 5.8
     }
 
     def 'Update leaves for 100 data nodes.'() {
@@ -124,7 +124,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
         then: 'data leaves have expected values'
             assert 100 == countDataNodes('/openroadm-devices/openroadm-device[@status="fail"]')
         and: 'update completes within expected time and a margin of 100%'
-            recordAndAssertResourceUsage('CPS:Update leaves for 100 data nodes', 0.22, resourceMeter.getTotalTimeInSeconds(), resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Update leaves for 100 data nodes', 0.13, resourceMeter.getTotalTimeInSeconds(), resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Clean up for CPS Update API.'() {

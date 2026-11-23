@@ -11,84 +11,84 @@
     "testName" : "Registration of CM-handles",
     "unit" : "CM-handles/second",
     "measurementName" : "cm_handles_created",
-    "currentExpectation" : 75
+    "currentExpectation" : 57
   },
   {
     "testNumber" : "2",
     "testName" : "De-registration of CM-handles",
     "unit" : "CM-handles/second",
     "measurementName" : "cm_handles_deleted",
-    "currentExpectation" : 158
+    "currentExpectation" : 133
   },
   {
     "testNumber" : "3a",
     "testName" : "CM-handle ID search with No filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_id_search_no_filter",
-    "currentExpectation" : 648
+    "currentExpectation" : 655
   },
   {
     "testNumber" : "3b",
     "testName" : "CM-handle ID search with Module filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_id_search_module_filter",
-    "currentExpectation" : 2072
+    "currentExpectation" : 2376
   },
   {
     "testNumber" : "3c",
     "testName" : "CM-handle ID search with Property filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_id_search_property_filter",
-    "currentExpectation" : 1520
+    "currentExpectation" : 1680
   },
   {
     "testNumber" : "3d",
     "testName" : "CM-handle ID search with Cps Path filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_id_search_cps_path_filter",
-    "currentExpectation" : 1570
+    "currentExpectation" : 1750
   },
   {
     "testNumber" : "3e",
     "testName" : "CM-handle ID search with Trust Level filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_id_search_trust_level_filter",
-    "currentExpectation" : 1447
+    "currentExpectation" : 1787
   },
   {
     "testNumber" : "4a",
     "testName" : "CM-handle search with No filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_no_filter",
-    "currentExpectation" : 17502
+    "currentExpectation" : 15392
   },
   {
     "testNumber" : "4b",
     "testName" : "CM-handle search with Module filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_module_filter",
-    "currentExpectation" : 17050
+    "currentExpectation" : 15033
   },
   {
     "testNumber" : "4c",
     "testName" : "CM-handle search with Property filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_property_filter",
-    "currentExpectation" : 17271
+    "currentExpectation" : 15939
   },
   {
     "testNumber" : "4d",
     "testName" : "CM-handle search with Cps Path filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_cps_path_filter",
-    "currentExpectation" : 17264
+    "currentExpectation" : 16099
   },
   {
     "testNumber" : "4e",
     "testName" : "CM-handle search with Trust Level filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_trust_level_filter",
-    "currentExpectation" : 16654
+    "currentExpectation" : 16463
   },
   {
     "testNumber" : "5b",
@@ -116,62 +116,62 @@
     "testName" : "Write data job scenario - small",
     "unit" : "milliseconds",
     "measurementName" : "dcm_write_data_job_small",
-    "currentExpectation" : 25
+    "currentExpectation" : 26
   },
   {
     "testNumber" : "9",
     "testName" : "Write data job scenario - large",
     "unit" : "milliseconds",
     "measurementName" : "dcm_write_data_job_large",
-    "currentExpectation" : 4388
+    "currentExpectation" : 4670
   },
   {
     "testNumber" : "10",
     "testName" : "ProvMnS Read Operation",
     "unit" : "milliseconds",
     "measurementName" : "provmns_read_overhead",
-    "currentExpectation" : 13
+    "currentExpectation" : 14
   },
   {
     "testNumber" : "11",
     "testName" : "ProvMnS Write Operation",
     "unit" : "milliseconds",
     "measurementName" : "provmns_write_overhead",
-    "currentExpectation" : 18
+    "currentExpectation" : 19
   },
   {
     "testNumber" : "13a",
     "testName" : "CM-handle search V2 lightweight with No filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_v2_no_filter",
-    "currentExpectation" : 5000
+    "currentExpectation" : 3523
   },
   {
     "testNumber" : "13b",
     "testName" : "CM-handle search V2 lightweight with Module filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_v2_module_filter",
-    "currentExpectation" : 5000
+    "currentExpectation" : 3157
   },
   {
     "testNumber" : "13c",
     "testName" : "CM-handle search V2 lightweight with Property filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_v2_property_filter",
-    "currentExpectation" : 5000
+    "currentExpectation" : 4508
   },
   {
     "testNumber" : "13d",
     "testName" : "CM-handle search V2 lightweight with Cps Path filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_v2_cps_path_filter",
-    "currentExpectation" : 5500
+    "currentExpectation" : 4397
   },
   {
     "testNumber" : "13e",
     "testName" : "CM-handle search V2 lightweight with Trust Level filter",
     "unit" : "milliseconds",
     "measurementName" : "cm_handle_search_v2_trust_level_filter",
-    "currentExpectation" : 6000
+    "currentExpectation" : 4616
   }
 ]

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2025 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -78,7 +78,7 @@ class CpsPerfTestBase extends PerfTestBase {
         addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data, ContentType.JSON)
         resourceMeter.stop()
         def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        recordAndAssertResourceUsage('CPS:Creating openroadm anchors with large data tree', 100, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
+        recordAndAssertResourceUsage('CPS:Creating openroadm anchors with large data tree', 92, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
     }
 
     def generateOpenRoadData(numberOfNodes) {

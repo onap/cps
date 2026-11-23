@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2025 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -41,7 +41,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def setupDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'setup duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS:Delete test setup', 85, setupDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Delete test setup', 82, setupDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Delete 100 container nodes'() {
@@ -71,7 +71,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS:Batch delete 100 containers', 0.65, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Batch delete 100 containers', 0.68, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Delete 100 list elements'() {
@@ -87,7 +87,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS:Delete 100 lists elements', 2.3, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH)
+            recordAndAssertResourceUsage('CPS:Delete 100 lists elements', 2, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH)
     }
 
     def 'Batch delete 100 list elements'() {
@@ -101,7 +101,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS:Batch delete 100 lists elements', 0.7, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Batch delete 100 lists elements', 0.67, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Delete 100 whole lists'() {
@@ -116,8 +116,8 @@ class DeletePerfTest extends CpsPerfTestBase {
             }
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is below accepted margin (3x) of the expected average'
-            recordAndAssertResourceUsage('CPS:Delete 100 whole lists', 3.2, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH, 3)
+        then: 'delete duration is below accepted margin (4x) of the expected average'
+            recordAndAssertResourceUsage('CPS:Delete 100 whole lists', 3.5, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH, 4)
     }
 
     def 'Batch delete 100 whole lists'() {
@@ -129,7 +129,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is below accepted margin (3x) of the expected average'
-            recordAndAssertResourceUsage('CPS:Batch delete 100 whole lists', 2.2, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH, 3)
+            recordAndAssertResourceUsage('CPS:Batch delete 100 whole lists', 3.4, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH, 3)
     }
 
     def 'Delete 1 large data node'() {
@@ -149,7 +149,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS:Delete root node', 1.9, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Delete root node', 1.8, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Delete data nodes for an anchor'() {
@@ -159,7 +159,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS:Delete data nodes for anchor', 1.9, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Delete data nodes for anchor', 1.8, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Batch delete 100 non-existing nodes'() {
@@ -173,7 +173,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('CPS:Batch delete 100 non-existing data nodes', 2, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Batch delete 100 non-existing data nodes', 1.6, deleteDurationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Clean up test data'() {

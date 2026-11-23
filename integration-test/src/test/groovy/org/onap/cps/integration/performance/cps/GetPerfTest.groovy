@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -41,13 +41,13 @@ class GetPerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'all data is read within #expectedDuration seconds and a margin of 100%'
-            recordAndAssertResourceUsage("CPS:Read datatree with ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), referenceGraph)
+        then: 'all data is read within #expectedDuration seconds and the allowed margin'
+            recordAndAssertResourceUsage("CPS:Read datatree with ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), referenceGraph, timeLimitFactor)
         where: 'the following parameters are used'
-            scenario             | fetchDescendantsOption  | referenceGraph  || expectedDuration | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        | false           || 0.01             | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | false           || 0.03             | 1 + OPENROADM_DEVICES_PER_ANCHOR
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | REFERENCE_GRAPH || 1.0              | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            scenario             | fetchDescendantsOption  | referenceGraph  || expectedDuration | timeLimitFactor | expectedNumberOfDataNodes
+            'no descendants'     | OMIT_DESCENDANTS        | false           || 0.014            | 2               | 1
+            'direct descendants' | DIRECT_CHILDREN_ONLY    | false           || 0.035            | 3               | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS | REFERENCE_GRAPH || 0.98             | 2               | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
     def 'Read data trees for multiple xpaths'() {
@@ -61,7 +61,7 @@ class GetPerfTest extends CpsPerfTestBase {
         then: 'requested nodes and their descendants are returned'
             assert countDataNodesInTree(result) == OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
         and: 'all data is read within expected time and a margin of 200%'
-            recordAndAssertResourceUsage('CPS:Read datatrees for multiple xpaths', 2.0, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Read datatrees for multiple xpaths', 1.3, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Read for multiple xpaths to non-existing datanodes'() {
@@ -75,7 +75,7 @@ class GetPerfTest extends CpsPerfTestBase {
         then: 'no data is returned'
             assert result.isEmpty()
         and: 'the operation completes within within expected time'
-            recordAndAssertResourceUsage('CPS:Read non-existing xpaths', 0.06, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Read non-existing xpaths', 0.044, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Read complete data trees using #scenario.'() {
@@ -89,9 +89,9 @@ class GetPerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("CPS:Read datatrees using ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following xpaths are used'
             scenario                | xpath                                  || expectedDuration | expectedNumberOfDataNodes
-            'openroadm root'        | '/'                                    || 1                | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'openroadm top element' | '/openroadm-devices'                   || 0.95             | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 3.00             | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm root'        | '/'                                    || 0.96             | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm top element' | '/openroadm-devices'                   || 0.96             | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 1.2              | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
 }
