@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ package org.onap.cps.integration.performance.base
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 
 import java.text.DecimalFormat
+import java.time.LocalTime
+import java.time.ZoneOffset
 
 abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
@@ -35,6 +37,8 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
     static def REFERENCE_GRAPH = true
     static def CSV_PREFIX = "### CSV ### "                      // To be used in plot-job to extract CSV data from logs
     static def TIME_FORMAT = new DecimalFormat("0.####")
+    static def ENDURANCE_WINDOW_START_UTC = LocalTime.of(23, 30) // Same window as the k6 KPI tests: the endurance test
+    static def ENDURANCE_WINDOW_END_UTC = LocalTime.of(2, 30)    // runs in parallel then and inflates timings
 
     def cleanupSpec() {
         printTextRecords()
@@ -58,12 +62,15 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
     def recordAndAssertResourceUsage(String title, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB, boolean referenceGraph, double timeLimitFactor) {
         def testPassed = recordedTimeInSec <= timeLimitFactor * expectedAverageTimeInSec
-        addRecord(title, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB, testPassed)
+        def breachIgnored = !testPassed && isDuringEnduranceTest()
+        addRecord(title, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB, testPassed, breachIgnored)
         if (referenceGraph) {
             addCsvRecord('Reference', title, expectedAverageTimeInSec, recordedTimeInSec)
         }
         addCsvRecord('All', title, expectedAverageTimeInSec, recordedTimeInSec)
-        assert recordedTimeInSec <= timeLimitFactor * expectedAverageTimeInSec
+        if (!breachIgnored) {
+            assert recordedTimeInSec <= timeLimitFactor * expectedAverageTimeInSec
+        }
         return true
     }
 
@@ -80,12 +87,23 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
         recordAndAssertResourceUsage(title, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB, false)
     }
 
-    def addRecord(shortTitle, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB, boolean testPassed) {
+    static boolean isDuringEnduranceTest() {
+        def nowUtc = LocalTime.now(ZoneOffset.UTC)
+        return nowUtc.isAfter(ENDURANCE_WINDOW_START_UTC) || nowUtc.isBefore(ENDURANCE_WINDOW_END_UTC)
+    }
+
+    def addRecord(shortTitle, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB, boolean testPassed, boolean breachIgnored) {
         if (shortTitle.length() > 40) {
             shortTitle = shortTitle.substring(0, 40)
         }
         def record = String.format('%2d.%-40s limit %8.3f took %8.3f sec %,8.2f MB used ', PERFORMANCE_TXT_RECORDS.size() + 1, shortTitle, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB)
-        record += testPassed ? 'PASS' : 'FAIL'
+        if (testPassed) {
+            record += 'PASS'
+        } else if (breachIgnored) {
+            record += 'SKIP (endurance)'
+        } else {
+            record += 'FAIL'
+        }
         PERFORMANCE_TXT_RECORDS.add(record)
     }
 

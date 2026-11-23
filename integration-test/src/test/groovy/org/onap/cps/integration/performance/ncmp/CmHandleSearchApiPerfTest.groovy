@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ class CmHandleSearchApiPerfTest extends NcmpPerfTestBase {
         and: 'the response contains all the cm handles in the network'
             assert result.body.size() == TOTAL_CM_HANDLES
         and: 'record the resource usage'
-            recordAndAssertResourceUsage('NCMP:CM Handle API Query Performance A', 4.0 , resourceMeter.totalTimeInSeconds, 0.0)
+            recordAndAssertResourceUsage('NCMP:CM Handle API Query Performance A', 3.9 , resourceMeter.totalTimeInSeconds, 0.0)
     }
 
 }

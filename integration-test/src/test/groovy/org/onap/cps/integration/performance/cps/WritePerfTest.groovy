@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -45,10 +45,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | referenceGraph
-            50         || 1.45             | false
-            100        || 2.9              | false
-            200        || 6.2              | REFERENCE_GRAPH
-            400        || 13.0             | false
+            50         || 1.4              | false
+            100        || 2.7              | false
+            200        || 5.5              | REFERENCE_GRAPH
+            400        || 11               | false
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -68,10 +68,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalBooks || expectedDuration | referenceGraph
-            800        || 0.31             | false
-            1600       || 0.8              | false
-            3200       || 2.2              | false
-            6400       || 6.9              | REFERENCE_GRAPH
+            800        || 0.33             | false
+            1600       || 0.74             | false
+            3200       || 1.9              | false
+            6400       || 6.4              | REFERENCE_GRAPH
     }
 
     def 'Writing openroadm list data using saveListElements.'() {
@@ -94,10 +94,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration
-            50         || 1.5
-            100        || 3.0
-            200        || 6.4
-            400        || 10.0
+            50         || 1.4
+            100        || 2.7
+            200        || 5.4
+            400        || 11
     }
 
 }

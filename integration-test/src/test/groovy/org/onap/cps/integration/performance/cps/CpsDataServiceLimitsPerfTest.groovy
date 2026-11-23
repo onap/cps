@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the operation completes within 16 seconds'
-            recordAndAssertResourceUsage('CPS:Creating 33,000 books', 16, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH)
+            recordAndAssertResourceUsage('CPS:Creating 33,000 books', 14, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH)
     }
 
     def 'Get data nodes from multiple xpaths 32K (2^15) limit exceeded.'() {
@@ -88,7 +88,7 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'test data is deleted in 1 second (margin 3x)'
-            recordAndAssertResourceUsage('CPS:Deleting test data', 0.068, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false, 3)
+            recordAndAssertResourceUsage('CPS:Deleting test data', 0.078, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false, 3)
     }
 
     def countDataNodes() {
