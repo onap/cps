@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd54c02b_63f463cb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-23T16:44:14Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 76
+      },
+      "revId": "cb1cf7eed4dba67671dc94a3d08cc1d8f6bd54d7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

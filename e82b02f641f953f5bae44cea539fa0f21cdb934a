@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "276a3a35_faf4d0b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/NetworkCmProxyInventoryFacadeImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-23T16:44:14Z",
+      "side": 1,
+      "message": "is this a use case we missed in AC ?\nie you need to demo too?",
+      "range": {
+        "startLine": 105,
+        "startChar": 62,
+        "endLine": 105,
+        "endChar": 79
+      },
+      "revId": "e82b02f641f953f5bae44cea539fa0f21cdb934a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aed2e832_8ff90190",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-23T16:44:14Z",
+      "side": 1,
+      "message": "NB: Don\u0027t think you need to test this as you already have an exception you can assert",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 278,
+        "endChar": 84
+      },
+      "revId": "e82b02f641f953f5bae44cea539fa0f21cdb934a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d334cfc8_ca0d0205",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModulesRestApiSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-23T16:44:14Z",
+      "side": 1,
+      "message": "404 isn\u0027t in the REST API definition yet. In ncmp.yml, getModuleDefinitions (/v1/ch/{cm-handle}/modules/definitions) only lists 200, 403 and 500\nOK I see now its in a aspearte patch",
+      "range": {
+        "startLine": 94,
+        "startChar": 42,
+        "endLine": 94,
+        "endChar": 62
+      },
+      "revId": "e82b02f641f953f5bae44cea539fa0f21cdb934a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
