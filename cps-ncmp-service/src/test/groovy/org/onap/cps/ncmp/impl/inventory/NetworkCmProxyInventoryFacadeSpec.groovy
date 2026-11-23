@@ -115,15 +115,15 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
-    def 'Getting Yang Resources with exception.'() {
-        given: 'alternate id matcher can always find a cm handle'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(_, '/') >> 'some id'
-        and: 'CPS module services throws a not found exception'
-            mockInventoryPersistence.getYangResourcesModuleReferences(_) >> { throw new CmHandleNotFoundException('') }
+    def 'Getting Yang Resources with unknown cm handle.'() {
+        given: 'alternate id matcher cannot find a match for the cm handle reference'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('unknown-ref', '/') >> { throw new NoAlternateIdMatchFoundException('unknown-ref') }
         when: 'attempt to get the yang resources'
-            def result = objectUnderTest.getYangResourcesModuleReferences('some id')
-        then: 'the result is an empty collection'
-            assert result == []
+            objectUnderTest.getYangResourcesModuleReferences('unknown-ref')
+        then: 'a cm handle not found exception is thrown'
+            thrown(CmHandleNotFoundException)
+        and: 'persistence is not queried for module references'
+            0 * mockInventoryPersistence.getYangResourcesModuleReferences(_)
     }
 
     def 'Get a cm handle details using #scenario'() {
