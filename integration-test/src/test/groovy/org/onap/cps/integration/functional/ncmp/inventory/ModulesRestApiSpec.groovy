@@ -21,6 +21,7 @@
 package org.onap.cps.integration.functional.ncmp.inventory
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
+import org.springframework.http.HttpStatus
 
 class ModulesRestApiSpec extends CpsIntegrationSpecBase {
 
@@ -56,7 +57,13 @@ class ModulesRestApiSpec extends CpsIntegrationSpecBase {
             'alternate id'                  | 'alt-2'           || ['M1', 'M3']
             'CM handle with module set tag' | 'ch-3'            || ['M4']
             'not ready CM handle'           | 'not-ready-id'    || []
-            'non-existing CM handle'        | 'non-existing'    || []
+    }
+
+    def 'Get yang module references with non-existing CM handle.'() {
+        when: 'get module references API is called for a cm handle that is not registered'
+            def response = performGet('/ncmp/v1/ch/non-existing/modules')
+        then: 'response is not found'
+            assert response.statusCode == HttpStatus.NOT_FOUND
     }
 
     def 'Get yang module definitions returns expected modules with #scenario.'() {
