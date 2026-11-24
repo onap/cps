@@ -91,12 +91,8 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
 
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference) {
-        try {
-            final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
-            return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
-        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
-            return Collections.emptyList();
-        }
+        final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
+        return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
     }
 
     @Override
