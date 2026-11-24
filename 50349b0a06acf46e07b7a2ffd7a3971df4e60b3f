@@ -16,6 +16,29 @@
       "message": "run-clm",
       "revId": "50349b0a06acf46e07b7a2ffd7a3971df4e60b3f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36351e41_a28b46d2",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-24T18:09:31Z",
+      "side": 1,
+      "message": "major!  I presume if it compiles it is compatible 😊",
+      "range": {
+        "startLine": 343,
+        "startChar": 25,
+        "endLine": 343,
+        "endChar": 26
+      },
+      "revId": "50349b0a06acf46e07b7a2ffd7a3971df4e60b3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
