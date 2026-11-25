@@ -31,12 +31,18 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.exceptions.DataValidationException;
+import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CmHandleQueryParametersValidator {
+
+    private static final String PRIVATE_METADATA_NODE_NAME = "additional-properties";
 
     /**
      * Validate query parameters.
@@ -143,12 +149,38 @@ public class CmHandleQueryParametersValidator {
             throw createDataValidationException(
                 "Wrong CPS path. - please supply a valid CPS path.");
         }
-        if (cpsPath.contains("/additional-properties")) {
-            log.debug("{} - Private metadata cannot be queried. Nothing to be returned",
-                cpsPath);
+        if (referencesPrivateMetadata(cpsPath)) {
+            log.debug("Private metadata cannot be queried. Nothing to be returned");
             return false;
         }
         return true;
+    }
+
+    private static boolean referencesPrivateMetadata(final String cpsPath) {
+        final CpsPathQuery cpsPathQuery;
+        try {
+            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException pathParsingException) {
+            throw new DataValidationException(pathParsingException.getMessage(), pathParsingException.getDetails(),
+                    pathParsingException);
+        }
+        for (final String containerName : cpsPathQuery.getContainerNames()) {
+            if (isPrivateMetadataNode(containerName)) {
+                return true;
+            }
+        }
+        for (final String ancestorElement : cpsPathQuery.getAncestorSchemaNodeIdentifier().split("/")) {
+            if (isPrivateMetadataNode(ancestorElement)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isPrivateMetadataNode(final String pathElement) {
+        final String nameWithoutPredicate = StringUtils.substringBefore(pathElement, "[");
+        final String nameWithoutPrefix = nameWithoutPredicate.substring(nameWithoutPredicate.lastIndexOf(':') + 1);
+        return PRIVATE_METADATA_NODE_NAME.equals(nameWithoutPrefix);
     }
 
     private static DataValidationException createDataValidationException(final String details) {
