@@ -1,0 +1,590 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec127dd9_8d3ef49f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "add teh \u0027why\u0027 for these changes\n\n- A null value on a leaf caused an internal server error.\n  Now the user gets a validation error with the xpath.\n- A non-numeric value on an integer leaf gave an unclear message.\n  Now the message shows the xpath and the invalid value.",
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "228f10cd_71103a55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "Main issues production code overly complicated and NPE catches to broad!\nBut some smaller issues too.",
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fc401e0_423f561b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonNodeFailureContext.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "OVercoimplciated, not needed,see comment on  YangParserHelper #142-145",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4420881d_441fd3f9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonParseFailureRule.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "OVercoimplciated, not needed,see comment on  YangParserHelper #142-145",
+      "range": {
+        "startLine": 25,
+        "startChar": 10,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee8dbef3_1c10e21a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonParseFailureTranslator.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "make more generic some erro are in leaf-lists. Also null is invalid for any leaf in RFC 7951! \nso the message should say something like \"Null value is not allowed for \u0027%s\u0027\".",
+      "range": {
+        "startLine": 32,
+        "startChar": 43,
+        "endLine": 32,
+        "endChar": 92
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e92933_7965ad93",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonParseFailureTranslator.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "check is to Broad. Nedd to verifg the type too\ncontext.dataSchemaNode() is a TypedDataSchemaNode, and its getType() would be an Int8/16/32/64TypeDefinition or Uint8/16/32/64TypeDefinition.\n\nThe other option is to make lines 33–34 type-neutral, e.g. \"Value \u0027%s\u0027 is not valid for type \u0027%s\u0027\".",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 73,
+        "endChar": 107
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93dc9d50_7bb5ec34",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/TrackingJsonReader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "This class is possibly keeping a Stale state!\n\nAdd nextBoolean() override that clears both fields. Or reset both fields in nextName(), which also covers any other value type.",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 25
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b22ece65_55a21932",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/TrackingJsonReader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "seenFieldNames is tracked but never used\nNo rule in JsonParseFailureTranslator.java reads this field, so all of it can be removed. The TrackingJsonReaderSpec tests for it would go too.",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efd2b9cf_11af7e6a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "unnecessary constant, does not add value. \nIF you really do want it, do use it everywhere in this class (theer are still 2 string lterals) but I prefer string literals anway",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 41
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09043738_cc1eb065",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "Catching NullPointerException hides real bugs!\ntranslate an NPE only when jsonReader.isLastValueNull() is true\nrethrow it otherwise.",
+      "range": {
+        "startLine": 143,
+        "startChar": 25,
+        "endLine": 143,
+        "endChar": 46
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64cb5d81_3e54aff2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "a single if / else if / else at the catch can would check jsonReader.isLastValueNull() first, then the NumberFormatException cause, and throw the generic exception otherwise. That would replace all 3 new files.",
+      "range": {
+        "startLine": 142,
+        "startChar": 2,
+        "endLine": 146,
+        "endChar": 9
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f544338f_d5ffb5c3",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "buildJsonNodeFailureContext",
+      "range": {
+        "startLine": 150,
+        "startChar": 42,
+        "endLine": 150,
+        "endChar": 65
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "423de84c_49a05b48",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "no need for s stack trace, instead do somethign like:\n\n   log.debug(\"No schema node found for xpath \u0027{}\u0027: {}\", xpath,schemaLookupException.getDetails());",
+      "range": {
+        "startLine": 167,
+        "startChar": 10,
+        "endLine": 167,
+        "endChar": 106
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bb93cde_5a3a07bf",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "add \u0027s\u0027 its a list/plural!",
+      "range": {
+        "startLine": 174,
+        "startChar": 32,
+        "endLine": 174,
+        "endChar": 50
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e482cbc2_579a507a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "a name like stores:bookstore keeps its stores: prefix\nThe existing findDataSchemaNodeAndIdentifiersByXpathNodeIdSequence compares against getQName().getLocalName(), which has no prefix.\nFix: at line 183, strip everything up to and including the :.",
+      "range": {
+        "startLine": 179,
+        "startChar": 50,
+        "endLine": 179,
+        "endChar": 85
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52ef8166_832ca47b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "Wrong place, move to ContainerNode parseJsonData(...)",
+      "range": {
+        "startLine": 198,
+        "startChar": 3,
+        "endLine": 199,
+        "endChar": 4
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d664f148_f0840412",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParseFailureTranslatorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "ex[ectation shoudl not be in teh title\nSuggested slogan: \u0027Translating a parse failure: #scenario.\u0027",
+      "range": {
+        "startLine": 31,
+        "startChar": 10,
+        "endLine": 31,
+        "endChar": 51
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dadc028a_7a15c2ad",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParseFailureTranslatorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "Translating a parse failure with no specific rule: #scenario.\u0027.",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 90
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed7e95cf_852f258e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonParseFailureTranslatorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "no used in prodcution code",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 41
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec84845_f6557ee7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "add a row with a module-prefixed name, e.g. \u0027{\"stores:bookstore\": {\"bookstore-name\": null}}\u0027. It shows the prefix issue.",
+      "range": {
+        "startLine": 159,
+        "startChar": 12,
+        "endLine": 159,
+        "endChar": 41
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11bbc777_52b4c357",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "bookstore-name is not mandatory",
+      "range": {
+        "startLine": 160,
+        "startChar": 248,
+        "endLine": 160,
+        "endChar": 263
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3b33bf0_37741338",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "\u0027name\u0027 is not mandatory",
+      "range": {
+        "startLine": 162,
+        "startChar": 250,
+        "endLine": 162,
+        "endChar": 260
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed4e51f9_f9cdfc7d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "authors is a leaf-list and not mandatory.",
+      "range": {
+        "startLine": 163,
+        "startChar": 275,
+        "endLine": 163,
+        "endChar": 282
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06659fe7_2dac9733",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "add 1 or 2 rows. Both need a schema change or new code before they can be added:\nA boolean on an integer leaf after an earlier string, e.g. ... \"title\": \"Book\", \"price\": true .... It shows item 3 (the wrong value in the message).\nA decimal64 leaf (maybe not so important but good for completeness) with a non-numeric value. It shows item 4, but bookstore.yang has no decimal64 leaf, so the model or a test model needs one first.",
+      "range": {
+        "startLine": 178,
+        "startChar": 12,
+        "endLine": 178,
+        "endChar": 49
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa72e177_2b12a500",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "repeat of thest at line 144",
+      "range": {
+        "startLine": 201,
+        "startChar": 13,
+        "endLine": 202,
+        "endChar": 5
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f1ab64e_c703ccaf",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-25T10:50:44Z",
+      "side": 1,
+      "message": "NB: remove \u0027for\u0027",
+      "range": {
+        "startLine": 205,
+        "startChar": 16,
+        "endLine": 205,
+        "endChar": 19
+      },
+      "revId": "fe949e715ca999b3612431018a0fd796f0401f5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
