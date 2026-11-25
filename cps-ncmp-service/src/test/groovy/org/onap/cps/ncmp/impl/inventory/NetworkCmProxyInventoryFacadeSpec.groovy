@@ -115,14 +115,15 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
-    def 'Getting Yang Resources with unknown cm handle.'() {
-        given: 'alternate id matcher cannot find a match for the cm handle reference'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('unknown-ref', '/') >> { throw new NoAlternateIdMatchFoundException('unknown-ref') }
+    def 'Getting Yang Resources with exception.'() {
+        given: 'alternate id matcher can always find a cm handle'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(_, '/') >> 'some id'
+        and: 'CPS module services throws a not found exception'
+            mockInventoryPersistence.getYangResourcesModuleReferences(_) >> { throw new CmHandleNotFoundException('') }
         when: 'attempt to get the yang resources'
-            objectUnderTest.getYangResourcesModuleReferences('unknown-ref')
-        then: 'a cm handle not found exception is thrown'
-            def thrownException = thrown(CmHandleNotFoundException)
-            assert thrownException.message.contains('Cm handle not found')
+            def result = objectUnderTest.getYangResourcesModuleReferences('some id')
+        then: 'the result is an empty collection'
+            assert result == []
     }
 
     def 'Get a cm handle details using #scenario'() {
@@ -266,14 +267,15 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
-    def 'Getting module definitions by module with unknown cm handle.'() {
-        given: 'alternate id matcher cannot find a match for the cm handle reference'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('unknown-ref', '/') >> { throw new NoAlternateIdMatchFoundException('unknown-ref') }
+    def 'Getting module definitions by module with exception.'() {
+        given: 'alternate id matcher always finds a match'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(_, '/') >> 'some id'
+        and: 'ncmp inventory persistence service throws a not found exception'
+            mockInventoryPersistence.getModuleDefinitionsByCmHandleAndModule(*_) >> { throw new CmHandleNotFoundException ('') }
         when: 'attempt to get the module definitions'
-            objectUnderTest.getModuleDefinitionsByCmHandleAndModule('unknown-ref', 'some module', 'some revision')
-        then: 'a cm handle not found exception is thrown'
-            def thrownException = thrown(CmHandleNotFoundException)
-            assert thrownException.message.contains('Cm handle not found')
+            def result = objectUnderTest.getModuleDefinitionsByCmHandleAndModule('some reference', 'some module', 'some revision')
+        then: 'the result is an empty collection'
+            assert result == []
     }
 
     def 'Getting module definitions by cm handle for a given #scenario'() {
@@ -289,14 +291,15 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
-    def 'Getting module definitions by cm handle with unknown cm handle.'() {
-        given: 'alternate id matcher cannot find a match for the cm handle reference'
-            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference('unknown-ref', '/') >> { throw new NoAlternateIdMatchFoundException('unknown-ref') }
+    def 'Getting module definitions by cm handle with exception.'() {
+        given: 'alternate id matcher always finds a match'
+            mockAlternateIdMatcher.getCmHandleIdByLongestMatchingCmHandleReference(_, '/') >> 'some id'
+        and: 'ncmp inventory persistence service throws a not found exception'
+            mockInventoryPersistence.getModuleDefinitionsByCmHandleId(_) >> { throw new CmHandleNotFoundException ('') }
         when: 'attempt to get the module definitions'
-            objectUnderTest.getModuleDefinitionsByCmHandleReference('unknown-ref')
-        then: 'a cm handle not found exception is thrown'
-            def thrownException = thrown(CmHandleNotFoundException)
-            assert thrownException.message.contains('Cm handle not found')
+            def result = objectUnderTest.getModuleDefinitionsByCmHandleReference('some reference')
+        then: 'the result is an empty collection'
+            assert result == []
     }
 
     def 'Execute northbound cm handle search'() {

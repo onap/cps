@@ -28,6 +28,7 @@ import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,22 +91,34 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
 
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference) {
-        final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
-        return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
+        try {
+            final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
+            return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
+        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
+            return Collections.emptyList();
+        }
     }
 
     @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleReference(final String cmHandleReference) {
-        final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
-        return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
+        try {
+            final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
+            return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
+        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
+            return Collections.emptyList();
+        }
     }
 
     @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleReference,
                                                                                 final String moduleName,
                                                                                 final String moduleRevision) {
-        final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
-        return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
+        try {
+            final String cmHandleId = getCmHandleIdByLongestMatch(cmHandleReference);
+            return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
+        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
+            return Collections.emptyList();
+        }
     }
 
     @Override

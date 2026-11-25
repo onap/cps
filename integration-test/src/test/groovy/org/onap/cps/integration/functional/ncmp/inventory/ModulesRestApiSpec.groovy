@@ -21,7 +21,6 @@
 package org.onap.cps.integration.functional.ncmp.inventory
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.springframework.http.HttpStatus
 
 class ModulesRestApiSpec extends CpsIntegrationSpecBase {
 
@@ -57,13 +56,7 @@ class ModulesRestApiSpec extends CpsIntegrationSpecBase {
             'alternate id'                  | 'alt-2'           || ['M1', 'M3']
             'CM handle with module set tag' | 'ch-3'            || ['M4']
             'not ready CM handle'           | 'not-ready-id'    || []
-    }
-
-    def 'Get yang module references with non-existing CM handle.'() {
-        when: 'get module references API is called for a cm handle that is not registered'
-            def response = performGet('/ncmp/v1/ch/non-existing/modules')
-        then: 'response is not found'
-            assert response.statusCode == HttpStatus.NOT_FOUND
+            'non-existing CM handle'        | 'non-existing'    || []
     }
 
     def 'Get yang module definitions returns expected modules with #scenario.'() {
@@ -85,13 +78,7 @@ class ModulesRestApiSpec extends CpsIntegrationSpecBase {
             'alternate id'                  | 'alt-2'           || ['M1', 'M3']
             'CM handle with module set tag' | 'ch-3'            || ['M4']
             'not ready CM handle'           | 'not-ready-id'    || []
-    }
-
-    def 'Get yang module definitions with non-existing CM handle.'() {
-        when: 'get module definitions API is called for a cm handle that is not registered'
-            def response = performGet('/ncmp/v1/ch/non-existing/modules/definitions')
-        then: 'response is not found'
-            assert response.statusCode == HttpStatus.NOT_FOUND
+            'non-existing CM handle'        | 'non-existing'    || []
     }
 
     def 'Get yang module definition for specific module with #scenario.'() {
@@ -114,14 +101,7 @@ class ModulesRestApiSpec extends CpsIntegrationSpecBase {
             'alternate id'           | 'alt-2'           | 'M1'                || ['M1']
             'non-existing module'    | 'ch-1'            | 'non-existing'      || []
             'not ready CM handle'    | 'not-ready-id'    | 'not-relevant'      || []
-    }
-
-    def 'Get yang module definition for specific module with non-existing CM handle.'() {
-        when: 'get module definition API is called with a module name for a cm handle that is not registered'
-            def response = performGet('/ncmp/v1/ch/non-existing/modules/definitions',
-                    ['module-name': 'not-relevant', revision: '2024-01-01'])
-        then: 'response is not found'
-            assert response.statusCode == HttpStatus.NOT_FOUND
+            'non-existing CM handle' | 'non-existing'    | 'not-relevant'      || []
     }
 
 }
