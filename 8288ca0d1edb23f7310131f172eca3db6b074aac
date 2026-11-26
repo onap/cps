@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5e6d69f_8ff0928c",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-26T11:56:28Z",
+      "side": 1,
+      "message": "In theory its the version that we are working so could be minor or patch",
+      "parentUuid": "4242d9ee_ebf58336",
+      "range": {
+        "startLine": 14,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "8288ca0d1edb23f7310131f172eca3db6b074aac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f670b7f_30f7d2a0",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
