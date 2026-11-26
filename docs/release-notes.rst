@@ -11,7 +11,7 @@ CPS Release Notes
 .. contents::
     :depth: 2
 
-Version: 3.8.7
+Version: 3.9.1
 ==============
 
 Release Data
@@ -21,10 +21,10 @@ Release Data
 | **CPS Project**                      |                                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Docker images**                    | onap/cps-and-ncmp:3.8.7                                |
+| **Docker images**                    | onap/cps-and-ncmp:3.9.1                                |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release designation**              | 3.8.7                                                  |
+| **Release designation**              | 3.9.1                                                  |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 | **Release date**                     | Not yet released                                       |
@@ -33,6 +33,40 @@ Release Data
 
 Features
 --------
+
+Version: 3.9.0
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:3.9.0                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 3.9.0                                                  |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | 2026 November 26                                       |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Features
+--------
+    - `CPS-3186 <https://lf-onap.atlassian.net/browse/CPS-3186>`_ Uplift Spring Boot to 4.1.3 and Spring Security to 7.2.0
+
+Bug Fixes
+---------
+    - `CPS-3456 <https://lf-onap.atlassian.net/browse/CPS-3456>`_ sanitize backend errors on CM handle searches.
+    - `CPS-3462 <https://lf-onap.atlassian.net/browse/CPS-3462>`_ Inventory data migration to dmi-registry-2026-04-23 silently migrates zero CM handles
+
+Security Notes
+--------------
+    - Several security improvements
+
 
 Version: 3.8.6
 ==============
