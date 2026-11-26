@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2022-2026 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -151,8 +151,18 @@ class CmHandleQueryParametersParameterMapperSpec extends Specification {
         then: 'the expected boolean value is returned'
             result == expectedBoolean
         where:
-            scenario                                       | cpsPath                                                || expectedBoolean
-            'cpsPath is valid'                             | '/some/valid/path'                                     || true
-            'cpsPath attempts to query private properties' | "//additional-properties[@some-property='some-value']" || false
+            scenario                                       | cpsPath                                                  || expectedBoolean
+            'cpsPath is valid'                             | '/some/valid/path'                                       || true
+            'cpsPath attempts to query private properties' | "//additional-properties[@some-property='some-value']"   || false
+            'cpsPath uses module prefix'                   | '/dmi-registry/cm-handles/dmi-reg:additional-properties' || false
+            'cpsPath uses ancestor axis'                   | '//name/ancestor::additional-properties'                 || false
+            'cpsPath uses ancestor axis with predicate'    | "//name/ancestor::additional-properties[@name='a']"      || false
+    }
+
+    def 'Validate CmHandle with a malformed cps path.'() {
+        when: 'the validator is called on a malformed cps path'
+            CmHandleQueryParametersValidator.validateCpsPathConditionProperties(['cpsPath': '///'])
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
     }
 }
