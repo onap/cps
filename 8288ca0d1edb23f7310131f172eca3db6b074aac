@@ -69,6 +69,29 @@
       },
       "revId": "8288ca0d1edb23f7310131f172eca3db6b074aac",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00484c1f_3307b4ba",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2026-11-26T13:45:53Z",
+      "side": 1,
+      "message": "can you include Cloud Infrastructure Support https://lf-onap.atlassian.net/browse/CPS-3194",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 8
+      },
+      "revId": "8288ca0d1edb23f7310131f172eca3db6b074aac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
