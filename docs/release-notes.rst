@@ -57,6 +57,7 @@ Release Data
 Features
 --------
     - `CPS-3186 <https://lf-onap.atlassian.net/browse/CPS-3186>`_ Uplift Spring Boot to 4.1.3 and Spring Security to 7.2.0
+    - `CPS-3194 <https://lf-onap.atlassian.net/browse/CPS-3194>`_ Cloud Infrastructure Support
 
 Bug Fixes
 ---------
