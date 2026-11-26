@@ -33,7 +33,6 @@ Release Data
 
 Features
 --------
-    - `CPS-3476 <https://lf-onap.atlassian.net/browse/CPS-3476>`_ ``GET /ncmp/v1/ch/{cm-handle}/modules`` and ``GET /ncmp/v1/ch/{cm-handle}/modules/definitions`` now return 404 when the cm handle is not registered, instead of 200 with an empty list.
 
 Version: 3.8.6
 ==============
