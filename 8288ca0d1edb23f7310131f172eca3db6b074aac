@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4242d9ee_ebf58336",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-26T11:53:30Z",
+      "side": 1,
+      "message": "next release should be 10.0\nJust wondering should we label this section \u0027Next/Planned\u0027 release or something like that...",
+      "range": {
+        "startLine": 14,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "8288ca0d1edb23f7310131f172eca3db6b074aac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f670b7f_30f7d2a0",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2026-11-26T11:53:30Z",
+      "side": 1,
+      "message": "should we hold back wit this block til AFTER the release process (although I just realize since given how the RTD works it would appear anyway) SO you can ignore this comment....",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 97
+      },
+      "revId": "8288ca0d1edb23f7310131f172eca3db6b074aac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
