@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8bb6c7a_4b51cb09",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacade.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-27T11:11:49Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 39,
+        "startChar": 7,
+        "endLine": 39,
+        "endChar": 10
+      },
+      "revId": "6e9dd15e2a66e47eeadc0e906b29013c8ff583f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cd44d0c_4fcf56be",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-27T11:11:49Z",
+      "side": 1,
+      "message": "NB: Both of these tests could be combined into one with two scenarios",
+      "revId": "6e9dd15e2a66e47eeadc0e906b29013c8ff583f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb4ae568_5a50db41",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-27T11:11:49Z",
+      "side": 1,
+      "message": "NB: fix alignment",
+      "revId": "6e9dd15e2a66e47eeadc0e906b29013c8ff583f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dee682b2_998a9a06",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportGeneratorFacadeSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-27T11:11:49Z",
+      "side": 1,
+      "message": "NB: fix alignment",
+      "revId": "6e9dd15e2a66e47eeadc0e906b29013c8ff583f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

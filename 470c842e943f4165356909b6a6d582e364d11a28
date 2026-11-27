@@ -149,6 +149,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df775988_597a6496",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2026-11-27T11:11:49Z",
+      "side": 1,
+      "message": "I share the same concern as Arpit here, this does duplicate the method below with the generator call being the only difference. If you modify the private method to take in the destination i.e facade vs non-facade generator then it would minimally affect test ware and make it easier to remove later on. Also I would be better to split out an block like this to its own private method to prevent the overall method getting too long and unwieldy.",
+      "parentUuid": "636b1668_9b83e096",
+      "range": {
+        "startLine": 101,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 9
+      },
+      "revId": "470c842e943f4165356909b6a6d582e364d11a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f74cfcd8_7c1570c3",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 11
